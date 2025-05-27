@@ -23,17 +23,32 @@ function App() {
       <NavBar />
       <main className="revista-container">
         <HTMLFlipBook
-          width={420}
-          height={600}
+          width={425}
+          height={673}
           size="stretch"
-          minWidth={280}
-          maxWidth={700}
-          minHeight={400}
-          maxHeight={900}
+          minWidth={180}
+          maxWidth={600}
+          minHeight={285}
+          maxHeight={950}
           drawShadow={true}
           showCover={true}
           mobileScrollSupport={true}
           className="revista-flipbook"
+          startPage={0}
+          flippingTime={600}
+          usePortrait={true}
+          startZIndex={0}
+          maxShadowOpacity={0.5}
+          useMouseEvents={true}
+          clickEventForward={true}
+          disableFlipByClick={false}
+          onFlip={() => {}}
+          onChangeOrientation={() => {}}
+          onChangeState={() => {}}
+          autoSize={true}
+          swipeDistance={30}
+          showPageCorners={true}
+          style={{ width: '100%', height: '100%' }}
         >
           {catalogoFotos.map((src, i) => (
             <div className="revista-pagina" key={i}>
