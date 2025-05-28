@@ -1,14 +1,121 @@
 .home {
-  text-align: center;
-  padding: 2rem;
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff;
+  overflow-x: hidden;
 }
 
-.home h1 {
+.home-slider {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-slider-track {
+  display: flex;
+  height: 100vh;
+  width: 300vw; /* will be overwritten inline */
+}
+
+.home-slide {
+  height: 100vh;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: opacity 0.7s;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   font-size: 2rem;
-  color: #333;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.home p {
-  font-size: 1.2rem;
-  color: #555;
+.slider-arrow.left {
+  left: 24px;
+}
+
+.slider-arrow.right {
+  right: 24px;
+}
+
+.slider-arrow:hover {
+  background: #ED813C;
+  color: #fff;
+}
+
+.home-app-section {
+  width: 100%;
+  background: #f7f7f7;
+  padding: 48px 0 32px 0;
+  text-align: center;
+}
+
+.home-app-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #222;
+}
+
+.home-app-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.home-app-links img {
+  height: 54px;
+  width: auto;
+  transition: transform 0.2s;
+}
+
+.home-app-links img:hover {
+  transform: scale(1.07);
+}
+
+@media (max-width: 700px) {
+  .home-slider,
+  .home-slider-track,
+  .home-slide {
+    height: 60vh;
+    min-height: 320px;
+  }
+  .slider-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+    left: 8px;
+    right: 8px;
+  }
+  .slider-arrow.left {
+    left: 8px;
+  }
+  .slider-arrow.right {
+    right: 8px;
+  }
+  .home-app-section {
+    padding: 32px 0 24px 0;
+  }
+  .home-app-section h2 {
+    font-size: 1.2rem;
+  }
+  .home-app-links img {
+    height: 40px;
+  }
 }
