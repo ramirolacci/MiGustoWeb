@@ -1,0 +1,337 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Encapsula todos los estilos bajo .iphone-wrapper para evitar afectar el resto del sitio */
+
+.iphone-wrapper {
+    --iphone-border: 8px;
+    --iphone-outline: 2.5px;
+    --iphone-btn-width: 2px;
+
+    --whatsapp-primary: #25d366;
+    --whatsapp-secondary: #272626;
+    --whatsapp-base-text: #757575;
+    font-family: "Poppins", serif;
+}
+
+.iphone-wrapper main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    perspective: 900px;
+}
+
+.iphone-wrapper .power-btn {
+    position: absolute;
+    width: var(--iphone-btn-width);
+    height: 4rem;
+    border-radius: 15px;
+    background-color: #000;
+    right: calc(-1 * (var(--iphone-outline) + var(--iphone-btn-width)));
+    top: 23%;
+}
+
+.iphone-wrapper .volumne-btn-container {
+    position: absolute;
+    width: var(--iphone-btn-width);
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    left: calc(-1 * (var(--iphone-outline) + var(--iphone-btn-width)));
+    top: 20%;
+}
+
+.iphone-wrapper .volume-btn {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.iphone-wrapper .iphone-wrapper {
+    position: relative;
+    margin: 2rem;
+}
+
+.iphone-wrapper.animate {
+    animation: rotate3D 30s infinite alternate ease-in-out;
+}
+
+.iphone-wrapper .iPhone {
+    position: relative;
+    height: 37rem;
+    width: 19.02rem;
+    border: var(--iphone-border) solid #212121;
+    border-radius: 35px;
+    outline: var(--iphone-outline) solid #383838;
+    box-shadow: 0px 0px 22px -4px rgba(0, 0, 0, 0.57);
+    background-color: #000;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.iphone-wrapper .iPhone::-webkit-scrollbar {
+    display: none;
+}
+
+.iphone-wrapper .headers-container {
+    padding-top: 0.65rem;
+    padding-bottom: 0.5rem;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(25px);
+    z-index: 9;
+}
+
+.iphone-wrapper .iphone-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1.35rem;
+    position: relative;
+}
+
+.iphone-wrapper .time-text {
+    color: #fff;
+    font-size: 0.7rem;
+}
+
+.iphone-wrapper .dynamic-island {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    width: 5rem;
+    height: 1.2rem;
+    border-radius: 15px;
+}
+
+.iphone-wrapper .camera {
+    position: absolute;
+    right: 2.5px;
+    top: 0;
+    bottom: 0;
+    margin-block: auto;
+    display: block;
+    width: 0.95rem;
+    height: 0.95rem;
+    background: radial-gradient(circle, rgba(116, 116, 116, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    opacity: 0.5;
+    border-radius: 50%;
+}
+
+.iphone-wrapper .icons {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.iphone-wrapper .icon {
+    width: 0.8rem;
+    filter: invert(1);
+}
+
+.iphone-wrapper .appstore-header {
+    padding-inline: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+}
+
+.iphone-wrapper .appstore-title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.iphone-wrapper .right-action {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.iphone-wrapper .fa-magnifying-glass,
+.iphone-wrapper .fa-user {
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.iphone-wrapper .headers-secondary {
+    padding-inline: 0.7rem;
+    position: sticky;
+    top: 3.45rem;
+    background-color: black;
+    padding-bottom: 0.2rem;
+}
+
+.iphone-wrapper .hero-text {
+    color: #fff;
+    font-weight: 550;
+}
+
+.iphone-wrapper .input {
+    display: flex;
+    background-color: var(--whatsapp-secondary);
+    padding-block: 0.3rem;
+    padding-inline: 0.7rem;
+    border-radius: 4px;
+    margin-block: 0.6rem;
+}
+
+.iphone-wrapper .input input {
+    outline: none;
+    border: none;
+    flex-grow: 1;
+    background-color: transparent;
+    padding-left: 0.4rem;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.iphone-wrapper .featured-section {
+    padding: 1.2rem 1rem 0.5rem 1rem;
+    text-align: center;
+}
+
+.iphone-wrapper .featured-app-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.iphone-wrapper .featured-title {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.iphone-wrapper .featured-desc {
+    color: #bdbdbd;
+    font-size: 0.95em;
+    margin-bottom: 1em;
+}
+
+.iphone-wrapper .featured-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.iphone-wrapper .store-btn img {
+    height: 40px;
+    width: auto;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.iphone-wrapper .store-btn img:hover {
+    transform: scale(1.07);
+}
+
+.iphone-wrapper .categories-section {
+    margin: 24px 0;
+    text-align: center;
+}
+
+.iphone-wrapper .categories-list {
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.iphone-wrapper .category-item {
+    background: var(--whatsapp-secondary);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 16px;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.iphone-wrapper .footer {
+    position: sticky;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5rem 0 0.7rem 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    background: rgb(0, 0, 0);
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    z-index: 10;
+}
+
+.iphone-wrapper .footer .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    cursor: pointer;
+    color: var(--whatsapp-base-text);
+    font-size: 0.95em;
+}
+
+.iphone-wrapper .footer .item.active,
+.iphone-wrapper .footer .item.current {
+    color: #fff;
+}
+
+.iphone-wrapper .footer .item span {
+    font-size: 0.85em;
+}
+
+.iphone-wrapper .iPhone-bottom {
+    position: absolute;
+    width: 35%;
+    height: 1.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background-color: #fff;
+    opacity: 0.7;
+    bottom: calc(var(--iphone-border) + var(--iphone-outline));
+}
+
+.iphone-wrapper .footer {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    left: 0;
+    right: 0;
+}
+
+@keyframes rotate3D {
+    0% {
+        transform: rotateX(-20deg) rotateY(-20deg);
+    }
+    25% {
+        transform: rotateX(20deg) rotateY(-20deg);
+    }
+    50% {
+        transform: rotateX(20deg) rotateY(20deg);
+    }
+    75% {
+        transform: rotateX(-20deg) rotateY(20deg);
+    }
+    100% {
+        transform: rotateX(-20deg) rotateY(-20deg);
+    }
+}

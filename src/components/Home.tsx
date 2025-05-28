@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Home.css';
+import IphoneWhatsapp from './Iphone';
 
 const slidesDesktop = [
     '/sliders/desktop1.jpg',
@@ -77,23 +78,28 @@ function Home() {
                 </button>
             </div>
 
-            <section className="home-app-section">
-                <h2>Descargá nuestra app</h2>
-                <div className="home-app-links">
-                    <a
-                        href="https://play.google.com/store/apps/details?id=com.tuapp"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <img src="/app/google-play-badge.png" alt="Google Play" />
-                    </a>
-                    <a
-                        href="https://apps.apple.com/app/idXXXXXXXXX"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <img src="/app/app-store-badge.png" alt="App Store" />
-                    </a>
+            <section className="home-app-section-row">
+                <div className="home-app-iphone">
+                    <IphoneWhatsapp />
+                </div>
+                <div className="home-app-descarga">
+                    <h2>Descargá nuestra app</h2>
+                    <div className="home-app-links">
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.tuapp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img src="src/assets/google-play-logo.svg" alt="Google Play" />
+                        </a>
+                        <a
+                            href="https://apps.apple.com/app/idXXXXXXXXX"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img src="src/assets/google-play-logo.svg" alt="App Store" />
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>

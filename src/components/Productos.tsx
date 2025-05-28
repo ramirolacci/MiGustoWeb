@@ -1,11 +1,11 @@
 import { useState, useMemo } from "react";
 import './Productos.css';
 
-import { pizzas } from '../data/PizzasData';
-import { empanadas } from '../data/EmpanadasData';
+import { pizzas } from '../data/pizzasData';
+import { empanadas } from '../data/empanadasData';
 import { fitzzas } from '../data/fitzzasData';
-import { aderezos } from '../data/AderezosData';
-import { pizzasIndi } from '../data/PizzasIndiData';
+import { aderezos } from '../data/aderezosData';
+import { pizzasIndi } from '../data/pizzasIndiData';
 
 const categorias = ["Empanadas", "Pizzas INDI", "Fitzzas", "Pizzas", "Aderezos"];
 
