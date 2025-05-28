@@ -6,7 +6,7 @@ export interface PizzaIndi {
   descripcion: string;
 }
 
-export const pizzasIndis: PizzaIndi[] = [
+export const pizzasIndi: PizzaIndi[] = [
   {
     imagen: "https://example.com/imagen-pizza-jamon-crudo.jpg",
     titulo: "Jamon crudo, rucula y stracciatella",

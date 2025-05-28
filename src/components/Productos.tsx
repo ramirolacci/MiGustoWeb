@@ -6,34 +6,37 @@ interface Producto {
     descripcion: string;
 }
 
-// Importar tus arrays
+// Importar todos los productos
 import { pizzas } from '../data/PizzasData';
 import { empanadas } from '../data/EmpanadasData';
 import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/AderezosData';
+import { pizzasIndi } from '../data/PizzasIndiData';
 
-
-const categorias = ["Todos", "Pizzas", "Empanadas", "Aderezos"];
+const categorias = ["Todos", "Pizzas", "Pizzas Individuales", "Empanadas", "Fitzzas", "Aderezos"];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState("Todos");
 
-    // Según el filtro, elijo qué productos mostrar
     const productosFiltrados: Producto[] = React.useMemo(() => {
         switch (filtro) {
             case "Pizzas":
                 return pizzas;
+            case "Pizzas Individuales":
+                return pizzasIndi;
             case "Empanadas":
                 return empanadas;
+            case "Fitzzas":
+                return fitzzas;
             case "Aderezos":
                 return aderezos;
             default:
-                return [...pizzas, ...empanadas, ...aderezos];
+                return [...pizzas, ...pizzasIndi, ...empanadas, ...fitzzas, ...aderezos];
         }
     }, [filtro]);
 
     return (
-        <div>
+        <div style={{ padding: 20 }}>
             <h2>Productos</h2>
             <div style={{ marginBottom: 20 }}>
                 {categorias.map((cat) => (
