@@ -9,7 +9,19 @@ const SucursalCard: React.FC<Props> = ({ sucursal }) => {
     return (
         <div className="card mb-4 shadow-sm">
             <div className="card-body">
-                <h5 className="card-title">{sucursal.nombre}</h5>
+                <h5 className="card-title d-flex align-items-center">
+                    <img
+                        src="logo.jpg"
+                        alt="Logo"
+                        style={{
+                            height: '30px',
+                            marginRight: '10px',
+                            objectFit: 'cover',
+                            borderRadius: '50%'
+                        }}
+                    />
+                    {sucursal.nombre}
+                </h5>
                 <p className="card-text">
                     <strong>Dirección:</strong> {sucursal.direccion}, {sucursal.localidad}, {sucursal.provincia}
                 </p>
