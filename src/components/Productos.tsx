@@ -1,11 +1,5 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import './Productos.css';
-
-interface Producto {
-    imagen: string;
-    titulo: string;
-    descripcion: string;
-}
 
 import { pizzas } from '../data/PizzasData';
 import { empanadas } from '../data/EmpanadasData';
