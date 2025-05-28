@@ -1,0 +1,38 @@
+.nav-link-active {
+  position: relative;
+  font-weight: 700;
+  color: #ffffff !important;
+  display: inline-block;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2.5px;
+  width: 0%;
+  background-color: #ffffff;
+  transition: width 0.4s ease-out;
+  z-index: 1;
+}
+
+.nav-link-active:hover::after,
+.nav-link-active:focus::after,
+.nav-link-active:active::after,
+.nav-link-active.active::after,
+.nav-link-active.selected::after,
+.nav-link-active[aria-current="page"]::after {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .nav-link-active {
+    width: auto;
+    min-width: 0;
+    text-align: left;
+    padding-bottom: 4px;
+  }
+}
