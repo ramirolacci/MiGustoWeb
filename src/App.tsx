@@ -1,20 +1,27 @@
-import NavBar from './components/NavBar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/NavBar';
 import Revista from './components/Revista';
 import Footer from './components/Footer';
+import Sucursales from './components/Sucursales';
 
 function App() {
   return (
-    <div className="app">
-      <header>
-        <NavBar />
-      </header>
+    <Router>
+      <div className="app">
+        <header>
+          <Navbar />
+        </header>
 
-      <main>
-        <Revista />
-      </main>
+        <main>
+          <Routes>
+            <Route path="/" element={<Revista />} />
+            <Route path="/sucursales" element={<Sucursales />} />
+          </Routes>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
