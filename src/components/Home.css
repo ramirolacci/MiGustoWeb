@@ -1,7 +1,7 @@
 .home {
   width: 100vw;
   min-height: 100vh;
-  background: #fff;
+  background: #000000;
   overflow-x: hidden;
 }
 
@@ -15,7 +15,7 @@
 .home-slider-track {
   display: flex;
   height: 100vh;
-  width: 300vw; /* will be overwritten inline */
+  width: 300vw;
 }
 
 .home-slide {
