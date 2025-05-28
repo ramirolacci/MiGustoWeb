@@ -31,7 +31,7 @@ export default function Productos() {
 
     return (
         <div className="productos-container">
-            <h2 className="productos-titulo">Productos</h2>
+            <h2 className="productos-titulo" style={{ textAlign: "center" }}>Conocé nuestros productos</h2>
             <div className="productos-categorias">
                 {categorias.map((cat) => (
                     <button
