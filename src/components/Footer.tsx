@@ -127,14 +127,13 @@ const Footer = () => {
 
         <hr className="border-secondary my-3" />
 
-        <div className="row">
+                <div className="row">
           <div className="col-12 text-center">
-            <p className="text-white mb-2" style={{ fontSize: "0.9rem" }}>
-              Desarrollado por <br />
-              <span className="fw-bold">Equipo de sistemas de Mi Gusto 🥟💻</span>
+            <p className="text-white mb-1" style={{ fontSize: "0.9rem" }}>
+              Desarrollado por el Departamento de Sistemas de <strong>Mi Gusto</strong>
             </p>
             <p className="text-white mb-0" style={{ fontSize: "0.9rem" }}>
-              Mi Gusto ® es una empresa de La Honoria Alimentos SA - Argentina - CUIT: 30-71558654-8
+              <strong>Mi Gusto®</strong> es una marca de <strong>La Honoria Alimentos S.A.</strong> – Argentina CUIT: 30-71558654-8
             </p>
           </div>
         </div>
