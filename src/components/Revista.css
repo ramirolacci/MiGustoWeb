@@ -28,6 +28,38 @@
     display: block;
 }
 
+.revista-arrow-right,
+.revista-arrow-left {
+    position: absolute;
+    bottom: 8%;
+    font-size: 4rem;
+    color: #fff;
+    opacity: 0.95;
+    z-index: 20;
+    animation: flechaMove 1.2s infinite;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 2px 12px #000a;
+}
+
+.revista-arrow-left {
+    left: 62%;
+    transform: translate(-50%, 60px) scaleX(-1);
+}
+
+.revista-arrow-right {
+    left: 38%;
+    transform: translate(-50%, 60px);
+}
+
+@keyframes flechaMove {
+    0% { transform: translate(-50%, 60px) scale(1);}
+    50% { transform: translate(-50%, 60px) scale(1.13);}
+    100% { transform: translate(-50%, 60px) scale(1);}
+}
+
+/* Responsivo */
+/* Responsivo */
 @media (max-width: 768px) {
     .revista-container {
         padding: 1rem;
@@ -36,5 +68,25 @@
     .revista-flipbook {
         width: 100% !important;
         height: auto !important;
+    }
+    
+    .revista-arrow-left,
+    .revista-arrow-right {
+        font-size: 2rem;
+        bottom: 50%;
+        top: auto;
+        transform: translate(-50%, 0) scale(1);
+    }
+
+    .revista-arrow-left {
+        left: 85%;
+        right: auto;
+        transform: translate(-50%, 0);
+    }
+
+    .revista-arrow-right {
+        left: 15%;
+        right: auto;
+        transform: translate(-50%, 0);
     }
 }

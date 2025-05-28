@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Revista from './components/Revista';
 import Footer from './components/Footer';
 import Sucursales from './components/Sucursales';
+import Productos from './components/Productos';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Revista />} />
             <Route path="/sucursales" element={<Sucursales />} />
+            <Route path="/productos" element={<Productos />} /> 
           </Routes>
         </main>
 
