@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Revista.css'
 import HTMLFlipBook from 'react-pageflip';
 
@@ -17,8 +18,27 @@ const catalogoFotos = [
 ];
 
 const Revista = () => {
+    const [paginaActual, setPaginaActual] = useState(0);
+
     return (
         <div className="revista-container">
+            
+            {/* Flecha derecha al principio */}
+            {paginaActual === 0 && (
+                <div className="revista-arrow revista-arrow-right">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <polyline points="20,15 40,30 20,45" fill="none" stroke="#fff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </div>
+            )}
+            {paginaActual === catalogoFotos.length - 1 && (
+                <div className="revista-arrow revista-arrow-left">
+                    <svg width="60" height="60" viewBox="0 0 60 60" style={{ transform: "scaleX(-1)" }}>
+                        <polyline points="20,15 40,30 20,45" fill="none" stroke="#fff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </div>
+            )}
+
             <HTMLFlipBook
                 width={425}
                 height={673}
@@ -40,7 +60,7 @@ const Revista = () => {
                 useMouseEvents={true}
                 clickEventForward={true}
                 disableFlipByClick={false}
-                onFlip={() => { }}
+                onFlip={e => setPaginaActual(e.data)}
                 onChangeOrientation={() => { }}
                 onChangeState={() => { }}
                 autoSize={true}
