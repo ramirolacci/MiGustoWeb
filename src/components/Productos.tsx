@@ -7,7 +7,7 @@ import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/AderezosData';
 import { pizzasIndi } from '../data/PizzasIndiData';
 
-const categorias = ["Empanadas", "Pizzas Individuales", "Fitzzas", "Pizzas", "Aderezos"];
+const categorias = ["Empanadas", "Pizzas INDI", "Fitzzas", "Pizzas", "Aderezos"];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState(categorias[0]);
@@ -16,7 +16,7 @@ export default function Productos() {
         switch (filtro) {
             case "Empanadas":
                 return empanadas;
-            case "Pizzas Individuales":
+            case "Pizzas INDI":
                 return pizzasIndi;
             case "Fitzzas":
                 return fitzzas;
