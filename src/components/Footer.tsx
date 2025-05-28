@@ -43,6 +43,11 @@ const Footer = () => {
             <ul className="list-unstyled mb-0" style={{ fontSize: "1rem" }}>
               <li className="mb-1">
                 <a href="#" className="text-light text-decoration-none" onClick={() => window.fcn_open_contact && window.fcn_open_contact("P")}>
+                  Nosotros
+                </a>
+              </li>
+              <li className="mb-1">
+                <a href="#" className="text-light text-decoration-none" onClick={() => window.fcn_open_contact && window.fcn_open_contact("P")}>
                   Proveedores
                 </a>
               </li>
