@@ -1,23 +1,29 @@
-import React from 'react';
+// src/pages/Sucursales.tsx
+
+import React, { useState } from 'react';
+import { sucursales } from '../data/sucursalesData';
+import SucursalCard from '../components/SucursalCard';
+import Buscador from '../components/Buscador';
 
 const Sucursales: React.FC = () => {
+    const [filtro, setFiltro] = useState('');
+
+    const sucursalesFiltradas = sucursales.filter((sucursal) =>
+        `${sucursal.nombre} ${sucursal.localidad} ${sucursal.provincia}`
+            .toLowerCase()
+            .includes(filtro.toLowerCase())
+    );
+
     return (
         <div className="container my-5">
-            <h1 className="mb-4">Sucursales</h1>
-            <p>Aquí puedes poner la información de tus sucursales, horarios, direcciones y mapas.</p>
-
+            <h1 className="mb-4">Encontrá tu sucursal más cercana</h1>
+            <Buscador filtro={filtro} setFiltro={setFiltro} />
             <div className="row">
-                <div className="col-md-6 mb-4">
-                    <h5>Buenos Aires</h5>
-                    <p>Av. Corrientes 1234</p>
-                    <p>Horario: Lun a Vie 10:00 - 22:00</p>
-                    {/* Podrías agregar un iframe de Google Maps aquí */}
-                </div>
-                <div className="col-md-6 mb-4">
-                    <h5>Córdoba</h5>
-                    <p>Av. Vélez Sarsfield 5678</p>
-                    <p>Horario: Lun a Dom 11:00 - 23:00</p>
-                </div>
+                {sucursalesFiltradas.map((sucursal, index) => (
+                    <div className="col-md-6" key={index}>
+                        <SucursalCard sucursal={sucursal} />
+                    </div>
+                ))}
             </div>
         </div>
     );
