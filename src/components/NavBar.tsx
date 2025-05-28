@@ -60,7 +60,6 @@ const Navbar: React.FC = () => {
               <a
                 className="nav-link text-white"
                 href="https://pedir.migusto.com.ar/"
-                target="_blank"
                 rel="noopener noreferrer"
               >
                 Pedir
