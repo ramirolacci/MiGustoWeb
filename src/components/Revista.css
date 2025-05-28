@@ -4,7 +4,6 @@
     align-items: center;
     padding: 2rem;
     min-height: calc(100vh - 136px);
-    /* Ajusta esto según el alto de tu navbar y footer */
     background-color: #000000;
 }
 
