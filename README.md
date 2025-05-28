@@ -18,7 +18,6 @@ Bienvenido a **Mi Gusto Site**, una aplicación web moderna desarrollada con Rea
 ## 🎨 Estilos
 
 El proyecto utiliza **Tailwind CSS** y **Bootstrap** para lograr estilos rápidos, modernos y responsivos.  
-Puedes personalizar los estilos en el archivo `tailwind.config.js`, los archivos CSS correspondientes, o aprovechar las utilidades y componentes de Bootstrap según tus necesidades.
 
 ---
 
@@ -34,4 +33,4 @@ Este proyecto está bajo la licencia [MIT](LICENSE).
 
 ---
 
-By **Mi Gusto - Sistemas**! 🚀
+By **Mi Gusto - Sistemas Team**! 🪐
