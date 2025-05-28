@@ -89,6 +89,35 @@
   transform: scale(1.07);
 }
 
+.home-app-section-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  background: #f7f7f7;
+  padding: 48px 0 32px 0;
+  width: 100%;
+}
+
+.home-app-iphone {
+  flex-shrink: 0;
+}
+
+.home-app-descarga {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .home-app-section-row {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 0 24px 0;
+  }
+  .home-app-descarga {
+    text-align: center;
+  }
+}
+
 @media (max-width: 700px) {
   .home-slider,
   .home-slider-track,
