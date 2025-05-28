@@ -8,7 +8,7 @@ export interface Fittza {
 
 export const fitzzas: Fittza[] = [
   {
-    imagen: "https://example.com/imagen-muzzarella.jpg",
+    imagen: "https://i.postimg.cc/Hnwrq6nB/MUZZA-copia-2.jpg",
     titulo: "Muzzarella",
     descripcion: "Pizza grande de Muzzarella elaborada con salsa de tomate casera artesanal."
   },

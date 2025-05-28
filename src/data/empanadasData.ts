@@ -8,7 +8,7 @@ export interface Empanada {
 
 export const empanadas: Empanada[] = [
   {
-    imagen: "https://example.com/imagen-empanada-carne.jpg",
+    imagen: "https://http2.mlstatic.com/D_968876-MLA82051804859_012025-O.jpg",
     titulo: "Carne",
     descripcion: "Rellenas con carne picada, cebolla, huevo duro y especias clásicas."
   },

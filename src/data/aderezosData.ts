@@ -8,7 +8,7 @@ export interface Aderezo {
 
 export const aderezos: Aderezo[] = [
   {
-    imagen: "https://example.com/imagen-ajo.jpg",
+    imagen: "https://i.postimg.cc/y8cPmFj4/Mesa-de-trabajo-8.png",
     titulo: "Manteca de Ajo",
     descripcion: "Un toque especial de manteca infusionada con ajo, ideal para realzar sabores."
   },
