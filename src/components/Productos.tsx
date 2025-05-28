@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Productos.css';
 
 interface Producto {
     imagen: string;
@@ -6,7 +7,6 @@ interface Producto {
     descripcion: string;
 }
 
-// Importar todos los productos
 import { pizzas } from '../data/PizzasData';
 import { empanadas } from '../data/EmpanadasData';
 import { fitzzas } from '../data/fitzzasData';
@@ -36,46 +36,32 @@ export default function Productos() {
     }, [filtro]);
 
     return (
-        <div style={{ padding: 20 }}>
-            <h2>Productos</h2>
-            <div style={{ marginBottom: 20 }}>
+        <div className="productos-container">
+            <h2 className="productos-titulo">Productos</h2>
+            <div className="productos-categorias">
                 {categorias.map((cat) => (
                     <button
                         key={cat}
                         onClick={() => setFiltro(cat)}
-                        style={{
-                            marginRight: 10,
-                            backgroundColor: filtro === cat ? "blue" : "gray",
-                            color: "white",
-                            padding: "8px 16px",
-                            border: "none",
-                            borderRadius: 5,
-                            cursor: "pointer",
-                        }}
+                        className={`productos-btn ${filtro === cat ? "active" : ""}`}
                     >
                         {cat}
                     </button>
                 ))}
             </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 20 }}>
+            <div className="productos-lista">
                 {productosFiltrados.map((prod) => (
-                    <div
-                        key={prod.titulo}
-                        style={{
-                            border: "1px solid #ccc",
-                            borderRadius: 10,
-                            width: 250,
-                            padding: 10,
-                        }}
-                    >
+                    <div className="producto-card" key={prod.titulo}>
                         <img
                             src={prod.imagen}
                             alt={prod.titulo}
-                            style={{ width: "100%", borderRadius: 10 }}
+                            className="producto-img"
                         />
-                        <h3>{prod.titulo}</h3>
-                        <p>{prod.descripcion}</p>
+                        <div className="producto-info">
+                            <h3>{prod.titulo}</h3>
+                            <p>{prod.descripcion}</p>
+                        </div>
                     </div>
                 ))}
             </div>
