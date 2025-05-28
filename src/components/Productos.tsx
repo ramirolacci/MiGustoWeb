@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import './Productos.css';
 
 interface Producto {
@@ -13,25 +13,32 @@ import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/AderezosData';
 import { pizzasIndi } from '../data/PizzasIndiData';
 
-const categorias = ["Todos", "Pizzas", "Pizzas Individuales", "Empanadas", "Fitzzas", "Aderezos"];
+const categorias = ["Todos", "Empanadas", "Pizzas Individuales", "Fitzzas", "Pizzas", "Aderezos"];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState("Todos");
 
-    const productosFiltrados: Producto[] = React.useMemo(() => {
+    const productosFiltrados = useMemo(() => {
         switch (filtro) {
-            case "Pizzas":
-                return pizzas;
-            case "Pizzas Individuales":
-                return pizzasIndi;
             case "Empanadas":
                 return empanadas;
+            case "Pizzas Individuales":
+                return pizzasIndi;
             case "Fitzzas":
                 return fitzzas;
+            case "Pizzas":
+                return pizzas;
             case "Aderezos":
                 return aderezos;
+            case "Todos":
             default:
-                return [...pizzas, ...pizzasIndi, ...empanadas, ...fitzzas, ...aderezos];
+                return [
+                    ...empanadas,
+                    ...pizzasIndi,
+                    ...fitzzas,
+                    ...pizzas,
+                    ...aderezos,
+                ];
         }
     }, [filtro]);
 
@@ -44,6 +51,7 @@ export default function Productos() {
                         key={cat}
                         onClick={() => setFiltro(cat)}
                         className={`productos-btn ${filtro === cat ? "active" : ""}`}
+                        type="button"
                     >
                         {cat}
                     </button>
