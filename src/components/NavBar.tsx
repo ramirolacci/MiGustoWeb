@@ -5,7 +5,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container-fluid">
-        <a className="navbar-brand d-flex align-items-center" href="https://www.migusto.com.ar" target="_blank" rel="noopener noreferrer">
+        <a className="navbar-brand d-flex align-items-center" href="https://www.migusto.com.ar" rel="noopener noreferrer">
           <img
             src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
             alt="Mi Gusto"
