@@ -1,11 +1,101 @@
-// src/components/Home.jsx
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import './Home.css';
+
+const slidesDesktop = [
+    '/sliders/desktop1.jpg',
+    '/sliders/desktop2.jpg',
+    '/sliders/desktop3.jpg',
+];
+
+const slidesMobile = [
+    '/sliders/mobile1.jpg',
+    '/sliders/mobile2.jpg',
+    '/sliders/mobile3.jpg',
+];
 
 function Home() {
+    const [current, setCurrent] = useState(0);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
+    const slides = isMobile ? slidesMobile : slidesDesktop;
+    const timeoutRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 700);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Auto-slide every 3 seconds, infinite loop
+    useEffect(() => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+            setCurrent((prev) => (prev + 1) % slides.length);
+        }, 3000);
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        };
+    }, [current, slides.length]);
+
+    const goToPrev = () => {
+        setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    };
+
+    const goToNext = () => {
+        setCurrent((prev) => (prev + 1) % slides.length);
+    };
+
     return (
         <div className="home">
-            <h1>Bienvenido a Nuestra Tienda</h1>
-            <p>Explorá nuestros productos, descubrí la carta o encontrá tu sucursal más cercana.</p>
+            <div className="home-slider">
+                <div
+                    className="home-slider-track"
+                    style={{
+                        width: `${slides.length * 100}%`,
+                        transform: `translateX(-${current * (100 / slides.length)}%)`,
+                        transition: 'transform 0.7s cubic-bezier(.77,0,.18,1)'
+                    }}
+                >
+                    {slides.map((src, idx) => (
+                        <img
+                            key={src}
+                            src={src}
+                            alt={`slide-${idx + 1}`}
+                            className="home-slide"
+                            style={{ width: `${100 / slides.length}%` }}
+                        />
+                    ))}
+                </div>
+                <button className="slider-arrow left" onClick={goToPrev} aria-label="Anterior">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M18 24L10 14L18 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+                <button className="slider-arrow right" onClick={goToNext} aria-label="Siguiente">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M10 24L18 14L10 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <section className="home-app-section">
+                <h2>Descargá nuestra app</h2>
+                <div className="home-app-links">
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.tuapp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img src="/app/google-play-badge.png" alt="Google Play" />
+                    </a>
+                    <a
+                        href="https://apps.apple.com/app/idXXXXXXXXX"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img src="/app/app-store-badge.png" alt="App Store" />
+                    </a>
+                </div>
+            </section>
         </div>
     );
 }
