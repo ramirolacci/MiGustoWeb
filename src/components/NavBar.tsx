@@ -7,18 +7,20 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light shadow-sm" 
-    style={{ backgroundColor: '#ED813C' }}>
+    <nav
+      className="navbar navbar-expand-lg navbar-light shadow-sm"
+      style={{ backgroundColor: '#ED813C' }}
+    >
       <div className="container-fluid">
-        <Link 
-          className="navbar-brand d-flex align-items-center" 
-          to="/home"
+        <Link
+          className="navbar-brand d-flex align-items-center"
+          to="/"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{
             transform: isHovered ? 'scale(1.1) translateY(-2px)' : 'scale(1) translateY(0)',
             transition: 'all 0.3s ease',
-            filter: isHovered ? 'brightness(1.2)' : 'brightness(1)'
+            filter: isHovered ? 'brightness(1.2)' : 'brightness(1)',
           }}
         >
           <img
@@ -44,8 +46,16 @@ const Navbar: React.FC = () => {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
-                className={`nav-link text-white${location.pathname === '/' || location.pathname === '/home' ? ' nav-link-active' : ''}`}
+                className={`nav-link text-white${location.pathname === '/' ? ' nav-link-active' : ''}`}
                 to="/"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className={`nav-link text-white${location.pathname === '/carta' ? ' nav-link-active' : ''}`}
+                to="/carta"
               >
                 Carta
               </Link>
