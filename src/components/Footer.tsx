@@ -1,16 +1,23 @@
 const Footer = () => {
     return (
-        <footer className="bg-dark text-light pt-5 pb-4 mt-5">
+        <footer className="bg-dark text-light pt-5 pb-4">
             <div className="container">
-                <div className="row text-center text-md-start">
-                    <div className="col-12 col-md-4 mb-4">
+                <div className="row text-center text-md-start justify-content-center">
+                    <div className="col-12 col-md-3 mb-4">
                         <h6 className="text-uppercase fw-bold">Mi Gusto</h6>
                         <hr
                             className="mx-auto mx-md-0 mb-4 mt-0"
                             style={{ width: "60px", backgroundColor: "#7c4dff", height: "2px" }}
                         />
                         <p>
-                            Tu lugar para pedir la mejor comida. Calidad, variedad y servicio en cada plato.
+                            <a
+                                href="https://www.migusto.com.ar/pedir"
+                                className="text-light text-decoration-none"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Experiencias de Verdad.
+                            </a>
                         </p>
                     </div>
 
@@ -52,7 +59,7 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    <div className="col-12 col-md-5 mb-4">
+                    <div className="col-12 col-md-3 mb-4">
                         <h6 className="text-uppercase fw-bold">Contacto</h6>
                         <hr
                             className="mx-auto mx-md-0 mb-4 mt-0"
