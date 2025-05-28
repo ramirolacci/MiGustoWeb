@@ -39,7 +39,7 @@
   color: #222;
   cursor: pointer;
   transition: background 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,60 +61,75 @@
 .home-app-section {
   width: 100%;
   background: #f7f7f7;
-  padding: 48px 0 32px 0;
+  padding: 64px 16px 48px 16px;
   text-align: center;
 }
 
 .home-app-section h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   color: #222;
 }
 
 .home-app-links {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 32px;
 }
 
 .home-app-links img {
-  height: 54px;
+  height: 150px !important;
   width: auto;
   transition: transform 0.2s;
 }
 
 .home-app-links img:hover {
-  transform: scale(1.07);
+  transform: scale(1.1);
 }
 
 .home-app-section-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 48px;
   background: #f7f7f7;
-  padding: 48px 0 32px 0;
+  padding: 64px 16px 48px 16px;
   width: 100%;
 }
 
+.home-app-descarga,
 .home-app-iphone {
-  flex-shrink: 0;
-}
-
-.home-app-descarga {
+  flex: 1 1 300px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
+.home-app-section-row > .home-app-descarga {
+  order: 1;
+}
+
+.home-app-section-row > .home-app-iphone {
+  order: 2;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .home-app-section-row {
     flex-direction: column;
-    gap: 24px;
-    padding: 32px 0 24px 0;
+    gap: 32px;
+    padding: 48px 16px 32px 16px;
   }
-  .home-app-descarga {
-    text-align: center;
+
+  .home-app-section h2 {
+    font-size: 2rem;
   }
 }
 
@@ -125,26 +140,30 @@
     height: 60vh;
     min-height: 320px;
   }
+
   .slider-arrow {
     width: 38px;
     height: 38px;
     font-size: 1.3rem;
-    left: 8px;
-    right: 8px;
   }
+
   .slider-arrow.left {
     left: 8px;
   }
+
   .slider-arrow.right {
     right: 8px;
   }
+
   .home-app-section {
-    padding: 32px 0 24px 0;
+    padding: 32px 16px 24px 16px;
   }
+
   .home-app-section h2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
+
   .home-app-links img {
-    height: 40px;
+    height: 80px;
   }
 }
