@@ -4,7 +4,6 @@
     align-items: center;
     padding: 2rem;
     min-height: calc(100vh - 136px);
-    /* Ajusta esto según el alto de tu navbar y footer */
     background-color: #000000;
 }
 
@@ -59,6 +58,8 @@
     100% { transform: translate(-50%, 60px) scale(1);}
 }
 
+/* Responsivo */
+/* Responsivo */
 @media (max-width: 768px) {
     .revista-container {
         padding: 1rem;
@@ -67,5 +68,25 @@
     .revista-flipbook {
         width: 100% !important;
         height: auto !important;
+    }
+    
+    .revista-arrow-left,
+    .revista-arrow-right {
+        font-size: 2rem;
+        bottom: 50%;
+        top: auto;
+        transform: translate(-50%, 0) scale(1);
+    }
+
+    .revista-arrow-left {
+        left: 85%;
+        right: auto;
+        transform: translate(-50%, 0);
+    }
+
+    .revista-arrow-right {
+        left: 15%;
+        right: auto;
+        transform: translate(-50%, 0);
     }
 }
