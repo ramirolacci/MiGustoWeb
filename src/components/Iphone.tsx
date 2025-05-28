@@ -85,7 +85,7 @@ const IphoneStore: React.FC = () => {
                         </div>
                     </div>
                     <div className="categories-section" style={{ margin: '18px 0 0 0', textAlign: 'center' }}>
-                        <ul className="categories-list" style={{ display: 'flex', gap: 10, padding: 0, listStyle: 'none', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <ul className="categories-list" style={{ display: 'flex', gap: 12, padding: 0, listStyle: 'none', justifyContent: 'center', flexWrap: 'wrap' }}>
                             <li className="category-item" style={{ background: '#232323', color: '#fff', padding: '6px 16px', borderRadius: 16, fontSize: '0.98em', display: 'flex', alignItems: 'center', gap: 6 }}>
                                 <i className="fa-solid fa-utensils"></i> Empanadas Premium
                             </li>

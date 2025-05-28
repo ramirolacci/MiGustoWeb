@@ -79,27 +79,30 @@ function Home() {
             </div>
 
             <section className="home-app-section-row">
-                <div className="home-app-iphone">
-                    <IphoneWhatsapp />
-                </div>
                 <div className="home-app-descarga">
                     <h2>Descargá nuestra app</h2>
-                    <div className="home-app-links">
+                    <p style={{ color: '#444', margin: '0 0 1.2em 0', fontSize: '1.08em', fontWeight: 400 }}>
+                        ¡Pedí tus empanadas favoritas, encontrá la sucursal más cercana y disfrutá promos exclusivas desde tu celular!<br />
+                            Viví la experiencia Mi Gusto como nunca antes.                    </p>
+                    <div className="home-app-links" style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
                         <a
                             href="https://play.google.com/store/apps/details?id=com.tuapp"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="src/assets/google-play-logo.svg" alt="Google Play" />
+                            <img src="src/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} />
                         </a>
                         <a
                             href="https://apps.apple.com/app/idXXXXXXXXX"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="src/assets/google-play-logo.svg" alt="App Store" />
+                            <img src="src/assets/app-store-apple-logo.svg" alt="App Store" style={{ height: 60 }} />
                         </a>
                     </div>
+                </div>
+                <div className="home-app-iphone">
+                    <IphoneWhatsapp />
                 </div>
             </section>
         </div>
