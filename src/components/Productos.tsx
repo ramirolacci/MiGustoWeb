@@ -7,10 +7,10 @@ import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/AderezosData';
 import { pizzasIndi } from '../data/PizzasIndiData';
 
-const categorias = ["Todos", "Empanadas", "Pizzas Individuales", "Fitzzas", "Pizzas", "Aderezos"];
+const categorias = ["Empanadas", "Pizzas Individuales", "Fitzzas", "Pizzas", "Aderezos"];
 
 export default function Productos() {
-    const [filtro, setFiltro] = useState("Todos");
+    const [filtro, setFiltro] = useState(categorias[0]);
 
     const productosFiltrados = useMemo(() => {
         switch (filtro) {
@@ -24,15 +24,8 @@ export default function Productos() {
                 return pizzas;
             case "Aderezos":
                 return aderezos;
-            case "Todos":
             default:
-                return [
-                    ...empanadas,
-                    ...pizzasIndi,
-                    ...fitzzas,
-                    ...pizzas,
-                    ...aderezos,
-                ];
+                return [];
         }
     }, [filtro]);
 

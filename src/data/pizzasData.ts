@@ -8,7 +8,7 @@ export interface Pizza {
 
 export const pizzas: Pizza[] = [
     {
-        imagen: "https://example.com/imagen-muzzarella.jpg",
+        imagen: "https://i.postimg.cc/3wsp8DxN/Muzza.jpg",
         titulo: "Muzzarella",
         descripcion: "Pizza grande de Muzzarella elaborada con salsa de tomate casera artesanal."
     },

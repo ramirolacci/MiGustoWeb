@@ -8,7 +8,7 @@ export interface PizzaIndi {
 
 export const pizzasIndi: PizzaIndi[] = [
   {
-    imagen: "https://example.com/imagen-pizza-jamon-crudo.jpg",
+    imagen: "https://i.postimg.cc/63wVy4Zj/INDI-Napo.jpg",
     titulo: "Jamon crudo, rucula y stracciatella",
     descripcion: "Muzza, jamon crudo, rucula, stracciatella con aceite de oliva y pimienta negra con un toque de manteca de ajo en los bordes."
   },
