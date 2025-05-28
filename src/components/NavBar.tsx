@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import './NavBar.css';
 
 const Navbar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light shadow-sm" 
     style={{ backgroundColor: '#ED813C' }}>
       <div className="container-fluid">
-        <a 
+        <Link 
           className="navbar-brand d-flex align-items-center" 
-          href="https://www.migusto.com.ar" 
-          rel="noopener noreferrer"
+          to="/home"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{
@@ -26,7 +27,7 @@ const Navbar: React.FC = () => {
             height="40"
             className="me-2"
           />
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -42,17 +43,26 @@ const Navbar: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbarMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/">
+              <Link
+                className={`nav-link text-white${location.pathname === '/' || location.pathname === '/home' ? ' nav-link-active' : ''}`}
+                to="/"
+              >
                 Carta
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/productos">
+              <Link
+                className={`nav-link text-white${location.pathname === '/productos' ? ' nav-link-active' : ''}`}
+                to="/productos"
+              >
                 Productos
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/sucursales">
+              <Link
+                className={`nav-link text-white${location.pathname === '/sucursales' ? ' nav-link-active' : ''}`}
+                to="/sucursales"
+              >
                 Sucursales
               </Link>
             </li>
