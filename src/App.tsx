@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import NavBar from './components/NavBar';
 import Revista from './components/Revista';
 import Footer from './components/Footer';
 import Sucursales from './components/Sucursales';
@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="app">
         <header>
-          <Navbar />
+          <NavBar />
         </header>
 
         <main>
