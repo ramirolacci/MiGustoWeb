@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light shadow-sm"
-      style={{ backgroundColor: '#ED813C' }}
+      style={{ backgroundColor: '#000000' }}
     >
       <div className="container-fluid">
         <Link
