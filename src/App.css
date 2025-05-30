@@ -1,0 +1,10 @@
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding-top: 80px; /* Ajusta este valor según la altura de tu NavBar */
+} 
