@@ -30,7 +30,7 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 249, 0.7);
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -60,7 +60,7 @@
 
 .home-app-section {
   width: 100%;
-  background: #f7f7f7;
+  background: #fffff9;
   padding: 64px 16px 48px 16px;
   text-align: center;
 }
@@ -95,7 +95,7 @@
   align-items: center;
   justify-content: center;
   gap: 48px;
-  background: #f7f7f7;
+  background: #fffff9;
   padding: 64px 16px 48px 16px;
   width: 100%;
 }

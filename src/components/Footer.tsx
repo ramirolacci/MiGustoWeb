@@ -148,8 +148,13 @@ const Footer = () => {
           <div className="position-fixed bottom-0 end-0 mb-4 me-4">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="btn btn-light rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-              style={{ width: '45px', height: '45px' }}
+              className="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+              style={{ 
+                width: '45px', 
+                height: '45px',
+                backgroundColor: '#fffff9',
+                color: '#333'
+              }}
               aria-label="Volver arriba"
             >
               <svg
