@@ -29,7 +29,7 @@ export const pizzas: Pizza[] = [
         esRecomendado: true
     },
     {
-        imagen: "https://i.postimg.cc/3wsp8DxN/Muzza.jpg",
+        imagen: "https://i.postimg.cc/PqT96KDz/Jamon-con-morrones.png",
         titulo: "Jamón con Morrones",
         descripcion: "Pizza grande de Muzzarella elaborada con jamón cocido y morrones asados."
     },
