@@ -37,19 +37,24 @@
 .productos-input-busqueda {
     width: 100%;
     padding: 1rem 1.5rem;
-    border: 2px solid #333;
+    border: 2px solid #D4AF37;
     border-radius: 25px;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
     background-color: #000000;
     color: #ffffff;
 }
 
+.productos-input-busqueda::placeholder {
+    color: #D4AF37;
+    opacity: 0.8;
+}
+
 .productos-input-busqueda:focus {
     outline: none;
-    border-color: #ff6b6b;
-    box-shadow: 0 2px 15px rgba(255,107,107,0.1);
+    border-color: #D4AF37;
+    box-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
 }
 
 .productos-filtros {
