@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "title": "Big Burger",
+      "src": "/food-1.png",
+      "description": "Blend de ojo de bife y Tapa de asado, doble bacon, con cheddar, pepinillos y salsa Big."
+    },
+    {
+      "title": "Matambre a la pizza",
+      "src": "/food-2.png",
+      "description": "Matambre tierno ahumado a leña, acompañado de muzzarella y salsa casera de tomate, gratinada en los bordes con provolone y una pincelada de salsa chimichurri."
+    },
+    {
+      "title": "Mexican Pibil Pork",
+      "src": "/food-3.png",
+      "description": "Bondiola de cerdo de larga coccion adobada en achiote con porotos negros, complementada con crema acida, cebolla encurtida y cilantro."
+    }
+  ]
+}

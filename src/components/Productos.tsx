@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import './Productos.css';
+import ProductCard3D from './ProductCard3D';
+import ProductModal3D from './ProductModal3D';
 
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
@@ -158,100 +160,22 @@ export default function Productos() {
                     </div>
                 ) : (
                     productosFiltrados.map((prod) => (
-                        <div 
-                            className="producto-card" 
+                        <ProductCard3D
                             key={prod.titulo}
+                            image={prod.imagen}
+                            title={prod.titulo}
+                            price={prod.precio || ''}
                             onClick={() => setProductoSeleccionado(prod)}
-                        >
-                            <div className="producto-imagen-container">
-                                <img
-                                    src={prod.imagen}
-                                    alt={prod.titulo}
-                                    className="producto-img"
-                                />
-                                <div className="producto-badges">
-                                    {prod.esRecomendado && (
-                                        <span className="badge badge-recomendado">Recomendado</span>
-                                    )}
-                                    {prod.esVegetariano && (
-                                        <span className="badge badge-vegetariano">Vegetariano</span>
-                                    )}
-                                    {prod.esSinGluten && (
-                                        <span className="badge badge-sin-gluten">Sin Gluten</span>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="producto-info">
-                                <h3 className="producto-titulo">{prod.titulo}</h3>
-                                {prod.precio && (
-                                    <p className="producto-precio">{prod.precio}</p>
-                                )}
-                            </div>
-                        </div>
+                        />
                     ))
                 )}
             </div>
 
             {productoSeleccionado && (
-                <div className="modal-overlay" onClick={() => setProductoSeleccionado(null)}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close" onClick={() => setProductoSeleccionado(null)}>×</button>
-                        <div className="modal-header">
-                            <img
-                                src={productoSeleccionado.imagen}
-                                alt={productoSeleccionado.titulo}
-                                className="modal-img"
-                            />
-                            <div className="modal-badges">
-                                {productoSeleccionado.esRecomendado && (
-                                    <span className="badge badge-recomendado">Recomendado</span>
-                                )}
-                                {productoSeleccionado.esVegetariano && (
-                                    <span className="badge badge-vegetariano">Vegetariano</span>
-                                )}
-                                {productoSeleccionado.esSinGluten && (
-                                    <span className="badge badge-sin-gluten">Sin Gluten</span>
-                                )}
-                            </div>
-                        </div>
-                        <div className="modal-info">
-                            <h2>{productoSeleccionado.titulo}</h2>
-                            <p className="modal-descripcion">{productoSeleccionado.descripcion}</p>
-                            
-                            <div className="modal-detalles">
-                                <div className="detalle-item">
-                                    <h3>Ingredientes</h3>
-                                    <ul className="ingredientes-lista">
-                                        {extraerIngredientes(productoSeleccionado.descripcion).map((ingrediente, index) => (
-                                            <li key={index}>{ingrediente}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                
-                                {productoSeleccionado.tiempoPreparacion && (
-                                    <div className="detalle-item">
-                                        <h3>Tiempo de Preparación</h3>
-                                        <p>{productoSeleccionado.tiempoPreparacion}</p>
-                                    </div>
-                                )}
-                                
-                                {productoSeleccionado.calorias && (
-                                    <div className="detalle-item">
-                                        <h3>Información Nutricional</h3>
-                                        <p>{productoSeleccionado.calorias}</p>
-                                    </div>
-                                )}
-                                
-                                {productoSeleccionado.precio && (
-                                    <div className="detalle-item precio">
-                                        <h3>Precio</h3>
-                                        <p className="precio-valor">{productoSeleccionado.precio}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ProductModal3D
+                    producto={productoSeleccionado}
+                    onClose={() => setProductoSeleccionado(null)}
+                />
             )}
         </div>
     );
