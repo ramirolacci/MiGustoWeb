@@ -89,94 +89,97 @@ export default function Productos() {
     }, []);
 
     return (
-        <div className="productos-container">
-            <h2 className="productos-titulo">Conocé nuestros productos</h2>
-            
-            <div className="productos-busqueda">
-                <input
-                    type="text"
-                    placeholder="Buscar productos..."
-                    value={busqueda}
-                    onChange={(e) => setBusqueda(e.target.value)}
-                    className="productos-input-busqueda"
-                />
-            </div>
-
-            <div className="productos-filtros">
-                <div className="filtros-checkbox">
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={filtrosActivos.recomendados}
-                            onChange={(e) => setFiltrosActivos(prev => ({
-                                ...prev,
-                                recomendados: e.target.checked
-                            }))}
-                        />
-                        <span className="badge badge-recomendado">Recomendados</span>
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={filtrosActivos.vegetarianos}
-                            onChange={(e) => setFiltrosActivos(prev => ({
-                                ...prev,
-                                vegetarianos: e.target.checked
-                            }))}
-                        />
-                        <span className="badge badge-vegetariano">Vegetarianos</span>
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={filtrosActivos.sinGluten}
-                            onChange={(e) => setFiltrosActivos(prev => ({
-                                ...prev,
-                                sinGluten: e.target.checked
-                            }))}
-                        />
-                        <span className="badge badge-sin-gluten">Sin Gluten</span>
-                    </label>
+        <div className="productos-section">
+            <div className="background-overlay"></div>
+            <div className="productos-container">
+                <h2 className="productos-titulo">Conocé nuestros productos</h2>
+                
+                <div className="productos-busqueda">
+                    <input
+                        type="text"
+                        placeholder="Buscar productos..."
+                        value={busqueda}
+                        onChange={(e) => setBusqueda(e.target.value)}
+                        className="productos-input-busqueda"
+                    />
                 </div>
-            </div>
 
-            <div className="productos-categorias">
-                {categorias.map((cat) => (
-                    <button
-                        key={cat}
-                        onClick={() => setFiltro(cat)}
-                        className={`productos-btn ${filtro === cat ? "active" : ""}`}
-                        type="button"
-                    >
-                        {cat}
-                    </button>
-                ))}
-            </div>
-
-            <div className="productos-lista">
-                {productosFiltrados.length === 0 ? (
-                    <div className="productos-no-resultados">
-                        No se encontraron productos que coincidan con tu búsqueda
+                <div className="productos-filtros">
+                    <div className="filtros-checkbox">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={filtrosActivos.recomendados}
+                                onChange={(e) => setFiltrosActivos(prev => ({
+                                    ...prev,
+                                    recomendados: e.target.checked
+                                }))}
+                            />
+                            <span className="badge badge-recomendado">Recomendados</span>
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={filtrosActivos.vegetarianos}
+                                onChange={(e) => setFiltrosActivos(prev => ({
+                                    ...prev,
+                                    vegetarianos: e.target.checked
+                                }))}
+                            />
+                            <span className="badge badge-vegetariano">Vegetarianos</span>
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={filtrosActivos.sinGluten}
+                                onChange={(e) => setFiltrosActivos(prev => ({
+                                    ...prev,
+                                    sinGluten: e.target.checked
+                                }))}
+                            />
+                            <span className="badge badge-sin-gluten">Sin Gluten</span>
+                        </label>
                     </div>
-                ) : (
-                    productosFiltrados.map((prod) => (
-                        <ProductCard3D
-                            key={prod.titulo}
-                            image={prod.imagen}
-                            title={prod.titulo}
-                            price={prod.precio || ''}
-                            onClick={() => setProductoSeleccionado(prod)}
-                        />
-                    ))
+                </div>
+
+                <div className="productos-categorias">
+                    {categorias.map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setFiltro(cat)}
+                            className={`productos-btn ${filtro === cat ? "active" : ""}`}
+                            type="button"
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="productos-lista">
+                    {productosFiltrados.length === 0 ? (
+                        <div className="productos-no-resultados">
+                            No se encontraron productos que coincidan con tu búsqueda
+                        </div>
+                    ) : (
+                        productosFiltrados.map((prod) => (
+                            <ProductCard3D
+                                key={prod.titulo}
+                                image={prod.imagen}
+                                title={prod.titulo}
+                                price={prod.precio || ''}
+                                onClick={() => setProductoSeleccionado(prod)}
+                            />
+                        ))
+                    )}
+                </div>
+
+                {productoSeleccionado && (
+                    <ProductModal3D
+                        producto={productoSeleccionado}
+                        onClose={() => setProductoSeleccionado(null)}
+                    />
                 )}
             </div>
-
-            {productoSeleccionado && (
-                <ProductModal3D
-                    producto={productoSeleccionado}
-                    onClose={() => setProductoSeleccionado(null)}
-                />
-            )}
         </div>
     );
 }
