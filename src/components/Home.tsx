@@ -19,6 +19,7 @@ function Home() {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
     const slides = isMobile ? slidesMobile : slidesDesktop;
     const timeoutRef = useRef<number | null>(null);
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 700);
@@ -30,20 +31,36 @@ function Home() {
     useEffect(() => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
-            setCurrent((prev) => (prev + 1) % slides.length);
+            goToNext();
         }, 3000);
         return () => {
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
         };
-    }, [current, slides.length]);
+    }, [current]);
+
+    const handleTransitionEnd = () => {
+        setIsTransitioning(false);
+        if (current === -1) {
+            setCurrent(slides.length - 1);
+        } else if (current === slides.length) {
+            setCurrent(0);
+        }
+    };
 
     const goToPrev = () => {
-        setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrent((prev) => prev - 1);
     };
 
     const goToNext = () => {
-        setCurrent((prev) => (prev + 1) % slides.length);
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrent((prev) => prev + 1);
     };
+
+    // Crear array con slides duplicados para el efecto infinito
+    const extendedSlides = [...slides, ...slides, ...slides];
 
     return (
         <div className="home">
@@ -51,18 +68,19 @@ function Home() {
                 <div
                     className="home-slider-track"
                     style={{
-                        width: `${slides.length * 100}%`,
-                        transform: `translateX(-${current * (100 / slides.length)}%)`,
-                        transition: 'transform 0.7s cubic-bezier(.77,0,.18,1)'
+                        width: `${extendedSlides.length * 100}%`,
+                        transform: `translateX(-${(current + slides.length) * (100 / extendedSlides.length)}%)`,
+                        transition: isTransitioning ? 'transform 0.7s cubic-bezier(.77,0,.18,1)' : 'none'
                     }}
+                    onTransitionEnd={handleTransitionEnd}
                 >
-                    {slides.map((src, idx) => (
+                    {extendedSlides.map((src, idx) => (
                         <img
-                            key={src}
+                            key={`${src}-${idx}`}
                             src={src}
                             alt={`slide-${idx + 1}`}
                             className="home-slide"
-                            style={{ width: `${100 / slides.length}%` }}
+                            style={{ width: `${100 / extendedSlides.length}%` }}
                         />
                     ))}
                 </div>
@@ -83,7 +101,8 @@ function Home() {
                     <h2>Descargá nuestra app</h2>
                     <p style={{ color: '#444', margin: '0 0 1.2em 0', fontSize: '1.08em', fontWeight: 400 }}>
                         ¡Pedí tus empanadas favoritas, encontrá la sucursal más cercana y disfrutá promos exclusivas desde tu celular!<br />
-                            Viví la experiencia Mi Gusto como nunca antes.                    </p>
+                        Viví la experiencia Mi Gusto como nunca antes.
+                    </p>
                     <div className="home-app-links" style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
                         <a
                             href="https://play.google.com/store/apps/details?id=com.tuapp"
