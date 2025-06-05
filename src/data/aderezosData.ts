@@ -36,7 +36,7 @@ export const aderezos: Aderezo[] = [
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/6a472c7c-4141-4f5c-8a45-97a8e7465add.jpg",
     titulo: "Chimichurri",
     descripcion: "Salsa tradicional argentina con perejil, ajo y aceite de oliva.",
-    esRecomendado: true
+    esRecomendado: true 
   },
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/e5a56b70-9292-4f24-99c4-3893a8ff6aab.jpg",
