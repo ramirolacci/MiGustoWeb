@@ -43,6 +43,11 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose }) =>
         setPosition({ x: 0, y: 0 });
     };
 
+    const handleClose = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onClose();
+    };
+
     const extraerIngredientes = (descripcion: string): string[] => {
         return descripcion
             .replace(/elaborada con|y|,/g, ',')
@@ -63,23 +68,24 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose }) =>
                     transform: `perspective(2000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
                 }}
             >
-                <button className="modal-close" onClick={onClose}>×</button>
+                <button 
+                    className="modal-close" 
+                    onClick={handleClose}
+                    aria-label="Cerrar modal"
+                >×</button>
                 
-                <div className="modal-header-3d"
-                    style={{
-                        transform: `translateZ(60px) translateX(${position.x * 0.05}px) translateY(${position.y * 0.05}px)`
-                    }}>
-                    <div className="modal-image-container">
+                <div className="modal-header-3d">
+                    <div className="modal-image-container"
+                        style={{
+                            transform: `translateZ(60px) translateX(${position.x * 0.05}px) translateY(${position.y * 0.05}px)`
+                        }}>
                         <img
                             src={producto.imagen}
                             alt={producto.titulo}
                             className="modal-img"
                         />
                     </div>
-                    <div className="modal-badges"
-                        style={{
-                            transform: `translateZ(40px) translateX(${position.x * 0.04}px) translateY(${position.y * 0.04}px)`
-                        }}>
+                    <div className="modal-badges">
                         {producto.esRecomendado && (
                             <span className="badge badge-recomendado">Recomendado</span>
                         )}
@@ -92,17 +98,14 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose }) =>
                     </div>
                 </div>
 
-                <div className="modal-info-3d"
-                    style={{
-                        transform: `translateZ(40px) translateX(${position.x * 0.03}px) translateY(${position.y * 0.03}px)`
-                    }}>
+                <div className="modal-info-3d">
                     <h2>{producto.titulo}</h2>
                     <p className="modal-descripcion">{producto.descripcion}</p>
                     
                     <div className="modal-detalles">
                         <div className="detalle-item"
                             style={{
-                                transform: `translateZ(30px) translateX(${position.x * 0.02}px) translateY(${position.y * 0.02}px)`
+                                transform: `translateZ(60px) translateX(${position.x * 0.05}px) translateY(${position.y * 0.05}px)`
                             }}>
                             <h3>Ingredientes</h3>
                             <ul className="ingredientes-lista">
@@ -127,10 +130,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose }) =>
                         )}
                         
                         {producto.precio && (
-                            <div className="detalle-item precio"
-                                style={{
-                                    transform: `translateZ(50px) translateX(${position.x * 0.04}px) translateY(${position.y * 0.04}px)`
-                                }}>
+                            <div className="detalle-item precio">
                                 <h3>Precio</h3>
                                 <p className="precio-valor">{producto.precio}</p>
                             </div>
