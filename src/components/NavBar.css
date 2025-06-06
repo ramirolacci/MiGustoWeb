@@ -1,9 +1,14 @@
 .nav-link-active {
   position: relative;
   font-weight: 600;
-  color: #ffffff !important;
+  /* Golden Gradient Text for Active */
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent !important; /* Ensure text color is transparent */
   display: inline-block;
-  padding-bottom: 4px;
+  padding: 0.5rem 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
 }
@@ -14,20 +19,56 @@
   left: 0;
   bottom: 0;
   height: 2px;
-  width: 0%;
-  background-color: #ffffff;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%; /* Start with full width for active link */
+  /* Golden Gradient Underline */
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); /* Golden shadow */
+  transform-origin: bottom center;
+  transform: scaleY(1);
 }
 
-.nav-link-active:hover::after,
-.nav-link-active:focus::after,
-.nav-link-active:active::after,
-.nav-link-active.active::after,
-.nav-link-active.selected::after,
-.nav-link-active[aria-current="page"]::after {
+.nav-link:not(.nav-link-active)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  /* Golden Gradient Underline */
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+}
+
+.nav-link:not(.nav-link-active):hover::after,
+.nav-link:not(.nav-link-active):focus::after {
   width: 100%;
+  transform: scaleY(1);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); /* Golden shadow */
+}
+
+.nav-link-pedir {
+  /* Red color */
+  background: none !important; /* Remove gradient */
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  color: #E53935 !important; /* Strong red color */
+  font-weight: 600;
+}
+
+.nav-link-pedir:hover {
+    color: #FF0000 !important; /* Brighter red on hover */
+    transform: translateY(-3px) scale(1.05);
+    opacity: 1;
+}
+
+.nav-link-pedir::after {
+    content: none !important; /* Remove underline for Pedir */
 }
 
 @media (max-width: 700px) {
@@ -36,6 +77,31 @@
     min-width: 0;
     text-align: left;
     padding-bottom: 4px;
+  }
+
+  .nav-link, .nav-link-active {
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      width: 100%;
+      /* Ensure gradient works on mobile */
+      background: linear-gradient(45deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent; /* Ensure text color is transparent */
+  }
+
+  .nav-link-pedir {
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: unset !important;
+      background-clip: unset !important;
+      color: #E53935 !important;
+  }
+
+  .nav-link-active::after,
+  .nav-link:not(.nav-link-active)::after {
+    content: none; /* Remove underline effect on mobile */
   }
 }
 
@@ -68,13 +134,34 @@
 .nav-link {
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0 0.5rem;
+  margin: 0 0.75rem;
+  padding: 0.5rem 0;
+  color: #ffffff; /* Fallback color */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   opacity: 0.85;
+  display: inline-block;
+
+  /* Golden Gradient Text */
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Ensure text color is transparent to show gradient */
 }
 
 .nav-link:hover {
   transform: translateY(-2px);
   opacity: 1;
+  /* Golden Gradient Text on Hover */
+  background: linear-gradient(45deg, #FFEE00, #FFC107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Ensure text color is transparent */
 }
 
 .navbar-toggler {
