@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
 
 const Navbar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isHomePage = location.pathname === '/';
 
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light shadow-sm"
-      style={{ backgroundColor: '#000000' }}
+      className={`navbar navbar-expand-lg navbar-light shadow-sm ${isScrolled ? 'navbar-scrolled' : ''}`}
+      style={{
+        backgroundColor: isHomePage && !isScrolled ? 'transparent' : 'rgba(0, 0, 0, 0.95)',
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}
     >
       <div className="container-fluid">
         <Link
@@ -18,9 +35,9 @@ const Navbar: React.FC = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{
-            transform: isHovered ? 'scale(1.1) translateY(-2px)' : 'scale(1) translateY(0)',
-            transition: 'all 0.3s ease',
-            filter: isHovered ? 'brightness(1.2)' : 'brightness(1)',
+            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            opacity: isHovered ? 1 : 0.9,
           }}
         >
           <img
@@ -36,18 +53,20 @@ const Navbar: React.FC = () => {
           data-bs-toggle="collapse"
           data-bs-target="#navbarMenu"
           aria-controls="navbarMenu"
-          aria-expanded="false"
+          aria-expanded={isMenuOpen}
           aria-label="Toggle navigation"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarMenu">
+        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
                 className={`nav-link text-white${location.pathname === '/' ? ' nav-link-active' : ''}`}
                 to="/"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
@@ -56,6 +75,7 @@ const Navbar: React.FC = () => {
               <Link
                 className={`nav-link text-white${location.pathname === '/carta' ? ' nav-link-active' : ''}`}
                 to="/carta"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Carta
               </Link>
@@ -64,6 +84,7 @@ const Navbar: React.FC = () => {
               <Link
                 className={`nav-link text-white${location.pathname === '/productos' ? ' nav-link-active' : ''}`}
                 to="/productos"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Productos
               </Link>
@@ -72,6 +93,7 @@ const Navbar: React.FC = () => {
               <Link
                 className={`nav-link text-white${location.pathname === '/sucursales' ? ' nav-link-active' : ''}`}
                 to="/sucursales"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Sucursales
               </Link>
@@ -81,6 +103,7 @@ const Navbar: React.FC = () => {
                 className="nav-link text-white"
                 href="https://pedir.migusto.com.ar/"
                 rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Pedir
               </a>
