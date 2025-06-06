@@ -21,7 +21,8 @@ const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(0);
 
     return (
-        <>
+        <div className="revista-section">
+            <div className="background-overlay"></div>
             <h2 className="revista-titulo" style={{ color: "#fff", textAlign: "center", marginBottom: "1.5rem" }}>
                 Deslizá para explorar el catálogo
             </h2>
@@ -77,7 +78,7 @@ const Revista = () => {
                     ))}
                 </HTMLFlipBook>
             </div>
-        </>
+        </div>
     );
 };
 
