@@ -99,6 +99,24 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link
+                className={`nav-link text-white${location.pathname === '/nosotros' ? ' nav-link-active' : ''}`}
+                to="/nosotros"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Nosotros
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className={`nav-link text-white${location.pathname === '/contacto' ? ' nav-link-active' : ''}`}
+                to="/contacto"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contacto
+              </Link>
+            </li>
+            <li className="nav-item">
               <a
                 className="nav-link text-white nav-link-pedir"
                 href="https://pedir.migusto.com.ar/"

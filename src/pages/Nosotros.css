@@ -1,0 +1,35 @@
+.nosotros-container {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333;
+  line-height: 1.6;
+}
+
+.nosotros-container h1 {
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.nosotros-container p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nosotros-container {
+    padding: 60px 15px;
+  }
+  
+  .nosotros-container h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .nosotros-container p {
+    font-size: 1rem;
+  }
+} 
