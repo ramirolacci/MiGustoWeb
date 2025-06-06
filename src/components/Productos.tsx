@@ -102,6 +102,7 @@ export default function Productos() {
                         onChange={(e) => setBusqueda(e.target.value)}
                         className="productos-input-busqueda"
                     />
+                    <i className="fas fa-search buscador-icon"></i>
                 </div>
 
                 <div className="productos-filtros">

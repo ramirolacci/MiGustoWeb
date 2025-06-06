@@ -8,9 +8,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Ocultar barra de desplazamiento para Chrome, Safari y Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Ocultar barra de desplazamiento para IE, Edge y Firefox */
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Ocultar barra de desplazamiento en todos los elementos con scroll */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+  }
 } 
