@@ -1,0 +1,37 @@
+.buscador-container {
+    position: relative;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.buscador-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    padding-right: 3rem;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.buscador-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.buscador-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: #D4AF37;
+}
+
+.buscador-icon {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    opacity: 0.7;
+    pointer-events: none;
+} 
