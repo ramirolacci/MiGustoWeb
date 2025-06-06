@@ -124,6 +124,18 @@ function Home() {
                     <IphoneWhatsapp />
                 </div>
             </section>
+
+            {/* Nueva sección de Newsletter */}
+            <section className="home-newsletter-section">
+                <div className="newsletter-content">
+                    <h2>Suscríbete a nuestro Newsletter</h2>
+                    <p>Entérate de nuestras últimas noticias, promociones y lanzamientos exclusivos.</p>
+                    <form className="newsletter-form">
+                        <input type="email" placeholder="Ingresa tu email" className="newsletter-input" />
+                        <button type="submit" className="newsletter-button">Suscribirse</button>
+                    </form>
+                </div>
+            </section>
         </div>
     );
 }
