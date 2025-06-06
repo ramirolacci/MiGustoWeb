@@ -1,3 +1,30 @@
+.nav-link {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 0.75rem;
+  padding: 0.5rem 0;
+  color: #ffffff; /* White text color for inactive links */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  display: inline-block;
+
+  /* Ensure no gradient on inactive links */
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+  color: #ffffff; /* White text on hover for inactive links */
+}
+
 .nav-link-active {
   position: relative;
   font-weight: 600;
@@ -19,8 +46,8 @@
   left: 0;
   bottom: 0;
   height: 2px;
-  width: 100%; /* Start with full width for active link */
-  /* Golden Gradient Underline */
+  width: 100%; /* Full width underline for active link */
+  /* Golden Gradient Underline for Active */
   background: linear-gradient(45deg, #FFD700, #FFA500);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
@@ -35,8 +62,8 @@
   left: 0;
   bottom: 0;
   height: 2px;
-  width: 0%;
-  /* Golden Gradient Underline */
+  width: 0%; /* Start with zero width for inactive links */
+  /* Golden Gradient Underline on Hover for Inactive */
   background: linear-gradient(45deg, #FFD700, #FFA500);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
@@ -53,7 +80,7 @@
 
 .nav-link-pedir {
   /* Red color */
-  background: none !important; /* Remove gradient */
+  background: none !important; /* Remove any gradient */
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: unset !important;
   background-clip: unset !important;
@@ -83,12 +110,21 @@
       margin: 0.5rem 0;
       padding: 0.5rem 1rem;
       width: 100%;
-      /* Ensure gradient works on mobile */
+      /* Default to white text on mobile */
+      background: none;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+      background-clip: unset;
+      color: #ffffff !important; /* White text on mobile */
+  }
+
+  .nav-link-active {
+      /* Golden Gradient Text for Active on Mobile */
       background: linear-gradient(45deg, #FFD700, #FFA500);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent; /* Ensure text color is transparent */
+      color: transparent !important; /* Ensure text color is transparent */
   }
 
   .nav-link-pedir {
@@ -129,39 +165,6 @@
 .navbar-brand:hover {
   transform: scale(1.05);
   opacity: 1;
-}
-
-.nav-link {
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0 0.75rem;
-  padding: 0.5rem 0;
-  color: #ffffff; /* Fallback color */
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  display: inline-block;
-
-  /* Golden Gradient Text */
-  background: linear-gradient(45deg, #FFD700, #FFA500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent; /* Ensure text color is transparent to show gradient */
-}
-
-.nav-link:hover {
-  transform: translateY(-2px);
-  opacity: 1;
-  /* Golden Gradient Text on Hover */
-  background: linear-gradient(45deg, #FFEE00, #FFC107);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent; /* Ensure text color is transparent */
 }
 
 .navbar-toggler {
