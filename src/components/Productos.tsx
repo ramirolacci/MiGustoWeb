@@ -88,6 +88,37 @@ export default function Productos() {
         return () => window.removeEventListener('keydown', handleEscape);
     }, []);
 
+    const handleTouchStart = (e: React.TouchEvent<HTMLImageElement>) => {
+        const img = e.currentTarget;
+        const touch = e.touches[0];
+        const startX = touch.clientX;
+        const startY = touch.clientY;
+        const startTransform = img.style.transform || 'translate(0px, 0px)';
+        let currentX = 0;
+        let currentY = 0;
+
+        const handleTouchMove = (e: TouchEvent) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            currentX = deltaX;
+            currentY = deltaY;
+            
+            img.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        };
+
+        const handleTouchEnd = () => {
+            img.style.transform = startTransform;
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handleTouchEnd);
+    };
+
     return (
         <div className="productos-section">
             <div className="background-overlay"></div>

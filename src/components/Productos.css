@@ -332,20 +332,40 @@ body {
 .modal-header {
     position: relative;
     overflow: hidden;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: grab;
+    width: 100%;
+    height: 250px;
+}
+
+.modal-header:active {
+    cursor: grabbing;
 }
 
 .modal-img {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 20px 20px 0 0;
-    transform: scale(1.1);
-    animation: imageZoom 0.6s ease forwards;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: auto;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    transform-origin: center;
+    will-change: transform;
+    cursor: grab;
+    transition: transform 0.1s ease-out;
 }
 
-@keyframes imageZoom {
-    from { transform: scale(1.1); }
-    to { transform: scale(1); }
+.modal-img:active {
+    cursor: grabbing;
 }
 
 .modal-badges {
@@ -508,76 +528,350 @@ body {
 @media (max-width: 768px) {
     .productos-container {
         padding: 1rem;
-        background-color: #fffff9;
+        margin-top: 4rem;
     }
 
     .productos-titulo {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .productos-titulo::after {
+        width: 60px;
+        height: 2px;
+    }
+
+    .productos-busqueda {
+        margin-bottom: 1.5rem;
+    }
+
+    .productos-input-busqueda {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+
+    .productos-filtros {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+        padding: 0;
+    }
+
+    .filtros-checkbox {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0 0 1.5rem 0;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        justify-content: center;
+    }
+
+    .filtros-checkbox label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        background-color: #000000;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        height: 32px;
+        min-width: 120px;
+        flex: 1;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .filtros-checkbox label:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .filtros-checkbox input[type="checkbox"] {
+        display: none;
+    }
+
+    .filtros-checkbox input[type="checkbox"]:checked + label {
+        background-color: #D4AF37;
+        color: #000;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    .filtros-checkbox input[type="checkbox"]:checked + label[for*="recomendado"] {
+        background-color: #ff6b6b;
+        color: #fff;
+    }
+
+    .filtros-checkbox input[type="checkbox"]:checked + label[for*="vegetariano"] {
+        background-color: #51cf66;
+        color: #fff;
+    }
+
+    .filtros-checkbox input[type="checkbox"]:checked + label[for*="sin-gluten"] {
+        background-color: #339af0;
+        color: #fff;
     }
 
     .productos-categorias {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        margin: 0 -1rem 2rem -1rem;
-        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin: 0 0 1.5rem 0;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
     }
 
     .productos-btn {
-        min-width: 120px;
-        flex: 0 0 auto;
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 8px;
+        backdrop-filter: blur(5px);
+        color: #ffffff;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: center;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    .productos-btn:hover {
+        background: rgba(212, 175, 55, 0.15);
+        border-color: #D4AF37;
+        transform: translateY(-2px);
+    }
+
+    .productos-btn.active {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.3) 100%);
+        border-color: #D4AF37;
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Ajustes específicos para diferentes categorías */
+    .productos-btn[data-categoria="hamburguesas"] {
+        grid-column: span 2;
+    }
+
+    .productos-btn[data-categoria="todos"] {
+        grid-column: span 3;
+        margin-bottom: 0.5rem;
     }
 
     .productos-lista {
         grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 0.5rem;
     }
 
     .producto-card {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-        background-color: #fffff9;
+        margin: 0;
+        transform: none !important;
+        height: auto;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .producto-imagen-container {
-        width: 120px;
-        height: 120px;
-        flex-shrink: 0;
+    .producto-card:hover {
+        transform: none !important;
+        background: rgba(0, 0, 0, 0.25);
+        border-color: rgba(212, 175, 55, 0.2);
     }
 
-    .producto-img {
-        height: 100%;
-        border-radius: 10px;
+    .producto-card img {
+        height: 180px;
+        border-radius: 12px 12px 0 0;
     }
 
     .producto-info {
-        padding: 0 0 0 1rem;
+        background: rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(5px);
+        padding: 1rem;
+    }
+
+    .producto-info h3 {
+        color: #ffffff;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .producto-info p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+    }
+
+    .producto-precio {
+        color: #ff6b6b;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .producto-badges {
+        top: 0.8rem;
+        left: 0.8rem;
+        gap: 0.4rem;
+    }
+
+    .badge {
+        backdrop-filter: blur(5px);
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .badge-recomendado {
+        background: rgba(255, 107, 107, 0.7);
+    }
+
+    .badge-vegetariano {
+        background: rgba(81, 207, 102, 0.7);
+    }
+
+    .badge-sin-gluten {
+        background: rgba(51, 154, 240, 0.7);
+    }
+
+    .modal-header {
+        position: relative;
+        overflow: hidden;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: grab;
+    }
+
+    .modal-header:active {
+        cursor: grabbing;
+    }
+
+    .modal-img {
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        pointer-events: auto;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        transform-origin: center;
+        will-change: transform;
+        cursor: grab;
+    }
+
+    .modal-img:active {
+        cursor: grabbing;
     }
 
     .modal-content {
         width: 95%;
         margin: 1rem;
-        background-color: #fffff9;
-    }
-
-    .modal-img {
-        height: 250px;
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+        position: relative;
     }
 
     .modal-info {
         padding: 1.5rem;
-    }
-
-    .modal-info h2 {
-        font-size: 1.5rem;
+        touch-action: pan-y;
+        position: relative;
+        z-index: 1;
+        background: #000000;
     }
 
     .modal-detalles {
         grid-template-columns: 1fr;
         gap: 1rem;
+        touch-action: pan-y;
+    }
+
+    .detalle-item {
+        padding: 1rem;
+        touch-action: pan-y;
+    }
+
+    .ingredientes-lista {
+        touch-action: pan-y;
+    }
+
+    .ingredientes-lista li {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+        touch-action: pan-y;
+    }
+
+    .modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1001;
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .modal-close:active {
+        transform: scale(0.95);
+    }
+
+    .modal-overlay {
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
     }
 }
 
