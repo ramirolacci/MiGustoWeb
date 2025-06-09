@@ -52,7 +52,7 @@ body {
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+    background: linear-gradient(to right, #FFD700, #FFA500);
     border-radius: 2px;
 }
 
