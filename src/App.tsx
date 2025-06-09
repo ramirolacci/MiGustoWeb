@@ -7,7 +7,6 @@ import Sucursales from './components/Sucursales';
 import Productos from './components/Productos';
 import Home from './components/Home';
 import Nosotros from './pages/Nosotros';
-import Contacto from './pages/Contacto';
 import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
             <Route path="/sucursales" element={<Sucursales />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/contacto" element={<Contacto />} />
           </Routes>
         </main>
 
