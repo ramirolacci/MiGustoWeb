@@ -8,6 +8,9 @@ import Productos from './components/Productos';
 import Home from './components/Home';
 import Nosotros from './pages/Nosotros';
 import Contacto from './pages/Contacto';
+import Proveedores from './pages/Proveedores';
+import TrabajaConNosotros from './pages/TrabajaConNosotros';
+import Franquicias from './pages/Franquicias';
 import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
@@ -37,6 +40,9 @@ function App() {
             <Route path="/productos" element={<Productos />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/proveedores" element={<Proveedores />} />
+            <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
+            <Route path="/franquicias" element={<Franquicias />} />
           </Routes>
         </main>
 
