@@ -99,8 +99,8 @@ function Home() {
             <section className="home-app-section-row">
                 <div className="home-app-descarga">
                     <h2>Descargá nuestra app</h2>
-                    <p style={{ color: '#444', margin: '0 0 1.2em 0', fontSize: '1.08em', fontWeight: 400 }}>
-                        ¡Pedí tus empanadas favoritas, encontrá la sucursal más cercana y disfrutá promos exclusivas desde tu celular!<br />
+                    <p className="app-descarga-text">
+                        ¡Pedí tus empanadas favoritas, encontrá la sucursal más cercana y disfrá promos exclusivas desde tu celular!<br />
                         Viví la experiencia Mi Gusto como nunca antes.
                     </p>
                     <div className="home-app-links" style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
