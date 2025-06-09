@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Footer.css';
+import { Link } from "react-router-dom";
 
 declare global {
   interface Window {
@@ -49,27 +50,22 @@ const Footer = () => {
           <div className="footer-col-md-3">
             <ul className="footer-links-list">
               <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={handleLinkClick}>
-                  Nosotros
-                </a>
-              </li>
-              <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={handleLinkClick}>
+                <Link to="/proveedores" className="footer-link">
                   Proveedores
-                </a>
+                </Link>
               </li>
               <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={handleLinkClick}>
+                <Link to="/trabaja-con-nosotros" className="footer-link">
                   Trabajá con nosotros
-                </a>
+                </Link>
               </li>
               <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={handleLinkClick}>
+                <Link to="/franquicias" className="footer-link">
                   Franquicias
-                </a>
+                </Link>
               </li>
               <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={handleLinkClick}>
+                <a href="#" className="footer-link">
                   Legales
                 </a>
               </li>
