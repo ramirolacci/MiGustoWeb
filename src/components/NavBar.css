@@ -1,7 +1,10 @@
 .nav-link-active {
   position: relative;
   font-weight: 600;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
   display: inline-block;
   padding: 0.5rem 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -15,10 +18,10 @@
   bottom: 0;
   height: 2px;
   width: 100%;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
   transform-origin: bottom center;
   transform: scaleY(1);
 }
@@ -152,5 +155,97 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-venta-corporativa {
+  background: transparent;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-venta-corporativa:hover {
+  background: rgba(255, 77, 77, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-pedir {
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-pedir:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+}
+
+@media (max-width: 768px) {
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .btn-venta-corporativa,
+  .btn-pedir {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.nav-link-venta-corporativa {
+  background: transparent !important;
+  border: 2px solid #ff4d4d !important;
+  border-radius: 5px !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.5rem !important;
+  transition: all 0.3s ease !important;
+  color: #ffffff !important;
+}
+
+.nav-link-venta-corporativa:hover {
+  background: rgba(255, 77, 77, 0.1) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.nav-link-pedir {
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%) !important;
+  border-radius: 5px !important;
+  padding: 0.5rem 1.5rem !important;
+  margin-left: 0.5rem !important;
+  transition: all 0.3s ease !important;
+  color: #ffffff !important;
+}
+
+.nav-link-pedir:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3) !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 991px) {
+  .nav-link-venta-corporativa,
+  .nav-link-pedir {
+    margin: 0.5rem 0 !important;
+    text-align: center !important;
+    display: block !important;
   }
 }

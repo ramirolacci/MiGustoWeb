@@ -8,6 +8,8 @@ import Productos from './components/Productos';
 import Home from './components/Home';
 import Nosotros from './pages/Nosotros';
 import LoadingSpinner from './components/LoadingSpinner';
+import Contacto from './pages/Contacto';
+import VentaCorporativa from './pages/VentaCorporativa';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,6 +37,8 @@ function App() {
             <Route path="/sucursales" element={<Sucursales />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/venta-corporativa" element={<VentaCorporativa />} />
           </Routes>
         </main>
 
