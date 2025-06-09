@@ -163,13 +163,22 @@ export default function Productos() {
                         </div>
                     ) : (
                         productosFiltrados.map((prod) => (
-                            <ProductCard3D
-                                key={prod.titulo}
-                                image={prod.imagen}
-                                title={prod.titulo}
-                                price={prod.precio || ''}
+                            <div 
+                                className="producto-card"
                                 onClick={() => setProductoSeleccionado(prod)}
-                            />
+                                key={prod.titulo}
+                            >
+                                <img src={prod.imagen} alt={prod.titulo} />
+                                <div className="producto-info">
+                                    <h3>{prod.titulo}</h3>
+                                    <p>{prod.descripcion}</p>
+                                    <div className="producto-etiquetas">
+                                        {prod.esRecomendado && <span className="etiqueta recomendado">Recomendado</span>}
+                                        {prod.esVegetariano && <span className="etiqueta vegetariano">Vegetariano</span>}
+                                        {prod.esSinGluten && <span className="etiqueta sin-gluten">Sin Gluten</span>}
+                                    </div>
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>
