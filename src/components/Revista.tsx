@@ -91,7 +91,7 @@ const Revista = () => {
                     showPageCorners={true}
                 >
                     <div className="revista-pagina">
-                        <img src="/catalogo/prueba.jpg" alt="portada" className="revista-img" />
+                        <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" />
                     </div>
                     <div className="revista-pagina">
                         <img src="/catalogo/1.jpg" alt="catalogo-1" className="revista-img" />
