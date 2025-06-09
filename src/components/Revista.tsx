@@ -61,43 +61,6 @@ const Revista = () => {
             </h2>
             
             <div className="revista-container">
-                {/* Flecha derecha al principio con diseño mejorado */}
-                {paginaActual === 1 && (
-                    <div className="revista-arrow revista-arrow-right" style={{
-                        position: 'absolute',
-                        right: '-77px',
-                        top: '45%',
-                        transform: 'translateY(-50%)',
-                        zIndex: 1000,
-                        animation: 'float 3s ease-in-out infinite',
-                        cursor: 'pointer'
-                    }}>
-                        <svg width="80" height="80" viewBox="0 0 80 80">
-                            <circle 
-                                cx="40" 
-                                cy="40" 
-                                r="35" 
-                                fill="rgba(255, 255, 255, 0.1)"
-                                style={{
-                                    animation: 'pulse 3s ease-in-out infinite'
-                                }}
-                            />
-                            <polyline 
-                                points="25,20 45,40 25,60" 
-                                fill="none" 
-                                stroke="#fff" 
-                                strokeWidth="4" 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round"
-                                style={{
-                                    filter: 'drop-shadow(0 0 5px rgba(255, 255, 255, 0.5))',
-                                    animation: 'slide 3s ease-in-out infinite'
-                                }}
-                            />
-                        </svg>
-                    </div>
-                )}
-
                 <HTMLFlipBook
                     ref={flipBook}
                     width={425}
@@ -113,7 +76,7 @@ const Revista = () => {
                     className="revista-flipbook"
                     style={{}}
                     startPage={1}
-                    flippingTime={600}
+                    flippingTime={300}
                     usePortrait={true}
                     startZIndex={0}
                     maxShadowOpacity={0.5}
@@ -124,7 +87,7 @@ const Revista = () => {
                     onChangeOrientation={() => { }}
                     onChangeState={() => { }}
                     autoSize={true}
-                    swipeDistance={30}
+                    swipeDistance={10}
                     showPageCorners={true}
                 >
                     <div className="revista-pagina">
