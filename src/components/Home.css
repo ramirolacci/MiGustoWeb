@@ -4,6 +4,8 @@
   background: #000000;
   overflow-x: hidden;
   position: relative;
+  margin-top: -80px; /* Compensar el espacio del NavBar */
+  padding-top: 80px; /* Agregar padding para compensar el margen negativo */
 }
 
 .home::before {
@@ -26,6 +28,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  margin-top: -80px; /* Compensar el espacio del NavBar */
 }
 
 .home-slider-track {
