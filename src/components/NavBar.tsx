@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
 
-const Navbar: React.FC = () => {
+const NavBar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`navbar navbar-expand-lg navbar-light shadow-sm ${isScrolled ? 'navbar-scrolled' : ''}`}
+      className={`navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : ''}`}
       style={{
         backgroundColor: isHomePage && !isScrolled ? 'transparent' : 'rgba(0, 0, 0, 0.95)',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
@@ -50,17 +50,13 @@ const Navbar: React.FC = () => {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarMenu"
-          aria-controls="navbarMenu"
-          aria-expanded={isMenuOpen}
-          aria-label="Toggle navigation"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarMenu">
+        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
@@ -108,6 +104,15 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link
+                className="nav-link text-white nav-link-venta-corporativa"
+                to="/venta-corporativa"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Venta Corporativa
+              </Link>
+            </li>
+            <li className="nav-item">
               <a
                 className="nav-link text-white nav-link-pedir"
                 href="https://pedir.migusto.com.ar/"
@@ -124,4 +129,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

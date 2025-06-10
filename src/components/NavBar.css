@@ -1,39 +1,10 @@
-.nav-link {
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0 0.75rem;
-  padding: 0.5rem 0;
-  color: #ffffff; /* White text color for inactive links */
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  display: inline-block;
-
-  /* Ensure no gradient on inactive links */
-  background: none;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
-  background-clip: unset;
-}
-
-.nav-link:hover {
-  transform: translateY(-2px);
-  opacity: 1;
-  color: #ffffff; /* White text on hover for inactive links */
-}
-
 .nav-link-active {
   position: relative;
   font-weight: 600;
-  /* Golden Gradient Text for Active */
-  background: linear-gradient(45deg, #FFD700, #FFA500);
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent !important; /* Ensure text color is transparent */
+  color: transparent !important;
   display: inline-block;
   padding: 0.5rem 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -46,12 +17,11 @@
   left: 0;
   bottom: 0;
   height: 2px;
-  width: 100%; /* Full width underline for active link */
-  /* Golden Gradient Underline for Active */
-  background: linear-gradient(45deg, #FFD700, #FFA500);
+  width: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); /* Golden shadow */
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
   transform-origin: bottom center;
   transform: scaleY(1);
 }
@@ -62,9 +32,8 @@
   left: 0;
   bottom: 0;
   height: 2px;
-  width: 0%; /* Start with zero width for inactive links */
-  /* Golden Gradient Underline on Hover for Inactive */
-  background: linear-gradient(45deg, #FFD700, #FFA500);
+  width: 0%;
+  background-color: #ffffff;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   transform-origin: bottom center;
@@ -75,27 +44,7 @@
 .nav-link:not(.nav-link-active):focus::after {
   width: 100%;
   transform: scaleY(1);
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); /* Golden shadow */
-}
-
-.nav-link-pedir {
-  /* Red color */
-  background: none !important; /* Remove any gradient */
-  -webkit-background-clip: unset !important;
-  -webkit-text-fill-color: unset !important;
-  background-clip: unset !important;
-  color: #E53935 !important; /* Strong red color */
-  font-weight: 600;
-}
-
-.nav-link-pedir:hover {
-    color: #FF0000 !important; /* Brighter red on hover */
-    transform: translateY(-3px) scale(1.05);
-    opacity: 1;
-}
-
-.nav-link-pedir::after {
-    content: none !important; /* Remove underline for Pedir */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 700px) {
@@ -107,37 +56,14 @@
   }
 
   .nav-link, .nav-link-active {
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      width: 100%;
-      /* Default to white text on mobile */
-      background: none;
-      -webkit-background-clip: unset;
-      -webkit-text-fill-color: unset;
-      background-clip: unset;
-      color: #ffffff !important; /* White text on mobile */
-  }
-
-  .nav-link-active {
-      /* Golden Gradient Text for Active on Mobile */
-      background: linear-gradient(45deg, #FFD700, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent !important; /* Ensure text color is transparent */
-  }
-
-  .nav-link-pedir {
-      background: none !important;
-      -webkit-background-clip: unset !important;
-      -webkit-text-fill-color: unset !important;
-      background-clip: unset !important;
-      color: #E53935 !important;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    width: 100%;
   }
 
   .nav-link-active::after,
   .nav-link:not(.nav-link-active)::after {
-    content: none; /* Remove underline effect on mobile */
+    content: none;
   }
 }
 
@@ -165,6 +91,27 @@
 .navbar-brand:hover {
   transform: scale(1.05);
   opacity: 1;
+}
+
+.nav-link {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 0.75rem;
+  padding: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+  color: #ffffff;
 }
 
 .navbar-toggler {
@@ -208,5 +155,97 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-venta-corporativa {
+  background: transparent;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-venta-corporativa:hover {
+  background: rgba(255, 77, 77, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-pedir {
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-pedir:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+}
+
+@media (max-width: 768px) {
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .btn-venta-corporativa,
+  .btn-pedir {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.nav-link-venta-corporativa {
+  background: transparent !important;
+  border: 2px solid #ff4d4d !important;
+  border-radius: 5px !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.5rem !important;
+  transition: all 0.3s ease !important;
+  color: #ffffff !important;
+}
+
+.nav-link-venta-corporativa:hover {
+  background: rgba(255, 77, 77, 0.1) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.nav-link-pedir {
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%) !important;
+  border-radius: 5px !important;
+  padding: 0.5rem 1.5rem !important;
+  margin-left: 0.5rem !important;
+  transition: all 0.3s ease !important;
+  color: #ffffff !important;
+}
+
+.nav-link-pedir:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3) !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 991px) {
+  .nav-link-venta-corporativa,
+  .nav-link-pedir {
+    margin: 0.5rem 0 !important;
+    text-align: center !important;
+    display: block !important;
   }
 }

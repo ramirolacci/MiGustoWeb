@@ -88,6 +88,37 @@ export default function Productos() {
         return () => window.removeEventListener('keydown', handleEscape);
     }, []);
 
+    const handleTouchStart = (e: React.TouchEvent<HTMLImageElement>) => {
+        const img = e.currentTarget;
+        const touch = e.touches[0];
+        const startX = touch.clientX;
+        const startY = touch.clientY;
+        const startTransform = img.style.transform || 'translate(0px, 0px)';
+        let currentX = 0;
+        let currentY = 0;
+
+        const handleTouchMove = (e: TouchEvent) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            currentX = deltaX;
+            currentY = deltaY;
+            
+            img.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        };
+
+        const handleTouchEnd = () => {
+            img.style.transform = startTransform;
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handleTouchEnd);
+    };
+
     return (
         <div className="productos-section">
             <div className="background-overlay"></div>
@@ -163,13 +194,22 @@ export default function Productos() {
                         </div>
                     ) : (
                         productosFiltrados.map((prod) => (
-                            <ProductCard3D
-                                key={prod.titulo}
-                                image={prod.imagen}
-                                title={prod.titulo}
-                                price={prod.precio || ''}
+                            <div 
+                                className="producto-card"
                                 onClick={() => setProductoSeleccionado(prod)}
-                            />
+                                key={prod.titulo}
+                            >
+                                <img src={prod.imagen} alt={prod.titulo} />
+                                <div className="producto-info">
+                                    <h3>{prod.titulo}</h3>
+                                    <p>{prod.descripcion}</p>
+                                    <div className="producto-etiquetas">
+                                        {prod.esRecomendado && <span className="etiqueta recomendado">Recomendado</span>}
+                                        {prod.esVegetariano && <span className="etiqueta vegetariano">Vegetariano</span>}
+                                        {prod.esSinGluten && <span className="etiqueta sin-gluten">Sin Gluten</span>}
+                                    </div>
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>
