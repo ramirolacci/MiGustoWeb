@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
+import emailjs from '@emailjs/browser';
 
 const Proveedores: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,23 +11,47 @@ const Proveedores: React.FC = () => {
     descripcion: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Datos del formulario de proveedores:', formData);
-    // Aquí se manejaría el envío de datos, por ejemplo, a una API
-    alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
-    setFormData({
-      nombreEmpresa: '',
-      razonSocial: '',
-      telefono: '',
-      email: '',
-      descripcion: '',
-    });
+    setIsSubmitting(true);
+
+    const serviceID = 'service_vroveb8'; 
+    const templateID = 'template_rx2wmet'; 
+    const publicKey = '2muZYDfZaoXaOzlBc'; 
+
+    const templateParams = {
+      name: formData.nombreEmpresa,
+      email: formData.email,
+      message: `
+        Razón Social: ${formData.razonSocial}
+        Teléfono: ${formData.telefono}
+        Descripción: ${formData.descripcion}
+      `,
+    };
+
+    try {
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
+      setFormData({
+        nombreEmpresa: '',
+        razonSocial: '',
+        telefono: '',
+        email: '',
+        descripcion: '',
+      });
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -102,7 +127,7 @@ const Proveedores: React.FC = () => {
                     placeholder="Describa los productos o servicios que ofrece su empresa"
                   ></textarea>
                 </div>
-                <button type="submit" className="btn-ver-mas">
+                <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
                   Enviar
                 </button>
               </form>

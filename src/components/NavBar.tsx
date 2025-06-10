@@ -110,7 +110,7 @@ const NavBar: React.FC = () => {
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link text-white nav-link-venta-corporativa"
+                className={`nav-link text-white${location.pathname === '/venta-corporativa' ? ' nav-link-active' : ''}`}
                 to="/venta-corporativa"
                 onClick={() => setIsMenuOpen(false)}
               >
