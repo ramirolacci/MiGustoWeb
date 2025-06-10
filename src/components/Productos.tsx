@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
 import './Productos.css';
-import ProductCard3D from './ProductCard3D';
 import ProductModal3D from './ProductModal3D';
 
 import { pizzas } from '../data/pizzasData';
@@ -9,8 +8,8 @@ import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/aderezosData';
 import { pizzasIndi } from '../data/pizzasIndiData';
 import { salsas } from '../data/salsasData';
-import { bebidas } from '../data/bebidasData';
 import { postres } from '../data/postresData';
+import { promociones } from '../data/promocionesData';
 
 interface Producto {
     titulo: string;
@@ -26,7 +25,7 @@ interface Producto {
     esPremium?: boolean;
 }
 
-const categorias = ["Promociones", "Empanadas", "Pizzas INDI", "Fitzzas", "Salsas", "Bebidas", "Postres"];
+const categorias = ["Promociones", "Empanadas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState(categorias[1]);
@@ -62,14 +61,11 @@ export default function Productos() {
             case "Salsas":
                 productos = salsas;
                 break;
-            case "Bebidas":
-                productos = bebidas;
-                break;
             case "Postres":
                 productos = postres;
                 break;
             case "Promociones":
-                productos = [];
+                productos = promociones;
                 break;
             default:
                 productos = [];
@@ -177,14 +173,19 @@ export default function Productos() {
                         </div>
                     ) : (
                         productosFiltrados.map((prod) => (
-                            <ProductCard3D
-                                key={prod.titulo}
-                                image={prod.imagen}
-                                title={prod.titulo}
-                                price={prod.precio || ''}
-                                onClick={() => setProductoSeleccionado(prod)}
-                                esPremium={prod.esPremium}
-                            />
+                            <div className="producto-card" key={prod.titulo} onClick={() => setProductoSeleccionado(prod)}>
+                                {filtro === "Empanadas" && (
+                                    <div className="producto-tipo">
+                                        {prod.esPremium ? "Premium" : "Clásica"}
+                                    </div>
+                                )}
+                                <img src={prod.imagen} alt={prod.titulo} />
+                                <div className="producto-info">
+                                    <h3>{prod.titulo}</h3>
+                                    <p>{prod.descripcion}</p>
+                                    {prod.precio && <div className="producto-precio">{prod.precio}</div>}
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>
