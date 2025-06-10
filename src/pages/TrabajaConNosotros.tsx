@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const sucursalesList = [
   'Ballester',
@@ -54,6 +57,8 @@ const TrabajaConNosotros: React.FC = () => {
   });
 
   const [dragActive, setDragActive] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -63,13 +68,9 @@ const TrabajaConNosotros: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        setFormData(prevData => ({ ...prevData, cv: file }));
-      } else {
-        alert('Por favor, sube un archivo PDF, DOC o DOCX.');
-        e.target.value = ''; // Clear the input
-        setFormData(prevData => ({ ...prevData, cv: null }));
-      }
+      setFormData({ ...formData, cv: file });
+    } else {
+      setFormData({ ...formData, cv: null });
     }
   };
 
@@ -89,34 +90,106 @@ const TrabajaConNosotros: React.FC = () => {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        setFormData(prevData => ({ ...prevData, cv: file }));
-      } else {
-        alert('Por favor, sube un archivo PDF, DOC o DOCX.');
-        setFormData(prevData => ({ ...prevData, cv: null }));
-      }
+      setFormData({ ...formData, cv: file });
     }
   };
 
   const handleRemoveFile = () => {
-    setFormData(prevData => ({ ...prevData, cv: null }));
+    setFormData({ ...formData, cv: null });
+    const fileInput = document.getElementById('cv-upload') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Datos del formulario Trabajá con Nosotros:', formData);
-    // Aquí se manejaría el envío de datos, por ejemplo, a una API
-    alert('¡Postulación enviada con éxito! Gracias por tu interés.');
-    setFormData({
-      nombre: '',
-      apellido: '',
-      telefono: '',
-      email: '',
-      puesto: '',
-      area: '',
-      sucursal: '',
-      cv: null,
-    });
+    setIsSubmitting(true);
+    setError(null);
+
+    if (!formData.cv) {
+      setError('Por favor, adjunta tu CV.');
+      Swal.fire({
+        icon: 'warning',
+        title: 'CV Requerido',
+        text: 'Por favor, adjunta tu CV para completar la postulación.',
+        confirmButtonColor: '#d4af37',
+      });
+      setIsSubmitting(false);
+      return; // Detener el envío si no hay CV
+    }
+
+    try {
+      let cvUrl = '';
+      if (formData.cv) {
+        const cloudinaryFormData = new FormData();
+        cloudinaryFormData.append('file', formData.cv);
+        cloudinaryFormData.append('upload_preset', 'mi_gusto_cv_upload');
+        cloudinaryFormData.append('cloud_name', 'dgg3bmvoi');
+
+        const res = await axios.post(
+          `https://api.cloudinary.com/v1_1/dgg3bmvoi/raw/upload`,
+          cloudinaryFormData
+        );
+        cvUrl = res.data.secure_url;
+      }
+
+      await emailjs.send(
+        'service_vroveb8',
+        'template_rx2wmet',
+        {
+          name: `${formData.nombre} ${formData.apellido}`,
+          email: formData.email,
+          message: `
+            Nueva postulación recibida:
+
+            Nombre completo: ${formData.nombre} ${formData.apellido}
+            Teléfono: ${formData.telefono}
+            Email: ${formData.email}
+            Puesto: ${formData.puesto}
+            ${formData.area ? `Área: ${formData.area}` : ''}
+            ${formData.sucursal ? `Sucursal: ${formData.sucursal}` : ''}
+            CV adjunto: ${cvUrl || 'No se adjuntó CV'}
+          `,
+        },
+        '2muZYDfZaoXaOzlBc'
+      );
+
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Tu postulación ha sido enviada correctamente.',
+        confirmButtonColor: '#d4af37',
+      });
+      setFormData({
+        nombre: '',
+        apellido: '',
+        telefono: '',
+        email: '',
+        puesto: '',
+        area: '',
+        sucursal: '',
+        cv: null,
+      });
+      const fileInput = document.getElementById('cv-upload') as HTMLInputElement;
+      if (fileInput) {
+        fileInput.value = '';
+      }
+    } catch (err) {
+      console.error('Error al enviar el formulario:', err);
+      if (axios.isAxiosError(err) && err.response) {
+        console.error('Respuesta de Cloudinary/EmailJS:', err.response.data.error);
+      }
+      setError('Hubo un error al enviar tu postulación. Por favor, inténtalo de nuevo.');
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error!',
+        text: 'Hubo un error al enviar tu postulación. Por favor, inténtalo de nuevo.',
+        confirmButtonColor: '#d4af37',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -240,7 +313,7 @@ const TrabajaConNosotros: React.FC = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="cv">Subir CV: <span className="required">*</span></label>
+                  <label htmlFor="cv-upload">Adjuntar CV: <span className="required">*</span></label>
                   <div
                     className={`file-drop-zone ${dragActive ? 'dragging' : ''} ${formData.cv ? 'has-file' : ''}`}
                     onDragEnter={handleDrag}
@@ -249,32 +322,31 @@ const TrabajaConNosotros: React.FC = () => {
                     onDrop={handleDrop}
                     onClick={() => document.getElementById('cv-upload')?.click()}
                   >
-                    <input
-                      type="file"
-                      id="cv-upload"
-                      name="cv"
-                      accept=".pdf,.doc,.docx"
-                      onChange={handleFileChange}
-                      style={{ display: 'none' }}
-                      required
-                    />
-                    {formData.cv ? (
-                      <div className="file-drop-content">
-                        <p>{formData.cv.name}</p>
-                        <button type="button" className="remove-file" onClick={handleRemoveFile}>X</button>
-                      </div>
-                    ) : (
-                      <div className="file-drop-content">
-                        <i className="fas fa-cloud-upload-alt"></i>
-                        <p>Arrastra y suelta tu CV aquí o haz clic para seleccionar</p>
-                        <p className="file-types">(PDF, DOC, DOCX)</p>
-                      </div>
-                    )}
+                      <input
+                        type="file"
+                        id="cv-upload"
+                        name="cv"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                      />
+                      {formData.cv ? (
+                        <div className="file-drop-content">
+                            <p>{formData.cv.name}</p>
+                            <button type="button" className="remove-file" onClick={handleRemoveFile}>X</button>
+                        </div>
+                      ) : (
+                        <div className="file-drop-content">
+                            <i className="fas fa-cloud-upload-alt"></i>
+                            <p>Arrastra y suelta tu CV aquí o haz clic para seleccionar</p>
+                            <p className="file-types">(PDF, DOC, DOCX)</p>
+                        </div>
+                      )}
                   </div>
                 </div>
 
-                <button type="submit" className="btn-ver-mas">
-                  Postularse
+                <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+                  {isSubmitting ? 'Enviando...' : 'Postularse'}
                 </button>
               </form>
             </div>
