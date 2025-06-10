@@ -48,27 +48,41 @@ export default function Productos() {
 
     const productosFiltrados = useMemo(() => {
         let productos: Producto[] = [];
-        switch (filtro) {
-            case "Empanadas":
-                productos = empanadas;
-                break;
-            case "Pizzas INDI":
-                productos = pizzasIndi;
-                break;
-            case "Fitzzas":
-                productos = fitzzas;
-                break;
-            case "Salsas":
-                productos = salsas;
-                break;
-            case "Postres":
-                productos = postres;
-                break;
-            case "Promociones":
-                productos = promociones;
-                break;
-            default:
-                productos = [];
+        
+        // Si hay una búsqueda, buscar en todas las categorías
+        if (busqueda) {
+            productos = [
+                ...empanadas,
+                ...pizzasIndi,
+                ...fitzzas,
+                ...salsas,
+                ...postres,
+                ...promociones
+            ];
+        } else {
+            // Si no hay búsqueda, mostrar solo la categoría seleccionada
+            switch (filtro) {
+                case "Empanadas":
+                    productos = empanadas;
+                    break;
+                case "Pizzas INDI":
+                    productos = pizzasIndi;
+                    break;
+                case "Fitzzas":
+                    productos = fitzzas;
+                    break;
+                case "Salsas":
+                    productos = salsas;
+                    break;
+                case "Postres":
+                    productos = postres;
+                    break;
+                case "Promociones":
+                    productos = promociones;
+                    break;
+                default:
+                    productos = [];
+            }
         }
 
         return productos.filter(producto => {
@@ -76,7 +90,7 @@ export default function Productos() {
                                     (producto.descripcion && producto.descripcion.toLowerCase().includes(busqueda.toLowerCase()));
             
             let coincideTipoEmpanada = true;
-            if (filtro === "Empanadas") {
+            if (filtro === "Empanadas" && !busqueda) {
                 if (tipoProducto === "Premium") {
                     coincideTipoEmpanada = !!producto.esPremium;
                 } else if (tipoProducto === "Clasicas") {
