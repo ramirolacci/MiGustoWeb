@@ -54,7 +54,7 @@ export const empanadas: Empanada[] = [
     esPremium: true
   },
   {
-    imagen: "https://http2.mlstatic.com/D_657313-MLA81773035442_012025-O.jpg",
+    imagen: "https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png",
     titulo: "Jamon y queso",
     descripcion: "Clásica combinación de jamón cocido y queso mozzarella.",
     esPremium: false
@@ -103,7 +103,7 @@ export const empanadas: Empanada[] = [
     esPremium: false
   },
   {
-    imagen: "https://http2.mlstatic.com/D_612355-MLA81772829538_012025-O.jpg",
+    imagen: "https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png",
     titulo: "Roquefort con jamon",
     descripcion: "Queso roquefort con jamón cocido.",
     esPremium: false
@@ -148,7 +148,7 @@ export const empanadas: Empanada[] = [
     esPremium: false
   },
   {
-    imagen: "https://http2.mlstatic.com/D_898239-MLA82051774899_012025-O.jpg",
+    imagen: "https://i.postimg.cc/brr5kQtn/Calabaza.png",
     titulo: "Calabaza",
     descripcion: "Calabaza asada con cebolla caramelizada y queso.",
     esVegetariano: true,
