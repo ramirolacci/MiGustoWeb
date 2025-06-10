@@ -21,23 +21,80 @@ const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(0);
 
     return (
-        <>
-            <h2 className="revista-titulo" style={{ color: "#fff", textAlign: "center", marginBottom: "1.5rem" }}>
+        <div className="revista-wrapper" style={{ 
+            backgroundColor: '#000',
+            padding: '0',
+            minHeight: '100vh'
+        }}>
+            <h2 className="revista-titulo" style={{ 
+                textAlign: "center", 
+                margin: '0',
+                padding: '0.25rem 0',
+                fontSize: '1.8rem',
+                fontWeight: 'bold',
+                background: 'linear-gradient(45deg, #ED813C, #FFB74D, #ED813C)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                animation: 'gradient 3s ease infinite',
+                textShadow: '0 0 20px rgba(237, 129, 60, 0.3)',
+                letterSpacing: '0.05em',
+                lineHeight: '1'
+            }}>
                 Deslizá para explorar el catálogo
             </h2>
+            <style>
+                {`
+                    @keyframes gradient {
+                        0% { background-position: 0% 50%; }
+                        50% { background-position: 100% 50%; }
+                        100% { background-position: 0% 50%; }
+                    }
+                `}
+            </style>
             <div className="revista-container">
-                {/* Flecha derecha al principio */}
+                {/* Flecha izquierda al principio */}
                 {paginaActual === 0 && (
-                    <div className="revista-arrow revista-arrow-right">
-                        <svg width="60" height="60" viewBox="0 0 60 60">
-                            <polyline points="20,15 40,30 20,45" fill="none" stroke="#fff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+                    <div className="revista-arrow revista-arrow-right" style={{
+                        position: 'absolute',
+                        right: '-40px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        opacity: '0.6',
+                        transition: 'opacity 0.3s ease'
+                    }}>
+                        <svg width="40" height="40" viewBox="0 0 60 60">
+                            <polyline 
+                                points="20,15 40,30 20,45" 
+                                fill="none" 
+                                stroke="#ED813C" 
+                                strokeWidth="4" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round"
+                                style={{ opacity: '0.7' }}
+                            />
                         </svg>
                     </div>
                 )}
                 {paginaActual === catalogoFotos.length - 1 && (
-                    <div className="revista-arrow revista-arrow-left">
-                        <svg width="60" height="60" viewBox="0 0 60 60" style={{ transform: "scaleX(-1)" }}>
-                            <polyline points="20,15 40,30 20,45" fill="none" stroke="#fff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+                    <div className="revista-arrow revista-arrow-left" style={{
+                        position: 'absolute',
+                        left: '-40px',
+                        top: '50%',
+                        transform: 'translateY(-50%) scaleX(-1)',
+                        opacity: '0.6',
+                        transition: 'opacity 0.3s ease'
+                    }}>
+                        <svg width="40" height="40" viewBox="0 0 60 60">
+                            <polyline 
+                                points="20,15 40,30 20,45" 
+                                fill="none" 
+                                stroke="#ED813C" 
+                                strokeWidth="4" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round"
+                                style={{ opacity: '0.7' }}
+                            />
                         </svg>
                     </div>
                 )}
@@ -77,7 +134,7 @@ const Revista = () => {
                     ))}
                 </HTMLFlipBook>
             </div>
-        </>
+        </div>
     );
 };
 
