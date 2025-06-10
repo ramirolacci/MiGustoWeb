@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { sucursales } from '../data/sucursalesData';
 import SucursalCard from '../components/SucursalCard';
-import Buscador from '../components/Buscador';
 import './SucursalCard.css';
 import './Sucursales.css';
 
 const Sucursales: React.FC = () => {
     const [filtro, setFiltro] = useState('');
-    const [tiendaSeleccionada, setTiendaSeleccionada] = useState('');
     const [sucursalesMostradas, setSucursalesMostradas] = useState(10);
 
     const sucursalesFiltradas = sucursales.filter((sucursal) => {
-        const coincideTienda = tiendaSeleccionada === '' || sucursal.nombre === tiendaSeleccionada;
         const coincideTexto = `${sucursal.nombre} ${sucursal.localidad} ${sucursal.provincia}`
             .toLowerCase()
             .includes(filtro.toLowerCase());
-        return coincideTienda && coincideTexto;
+        return coincideTexto;
     });
 
     const sucursalesVisibles = sucursalesFiltradas.slice(0, sucursalesMostradas);
@@ -30,22 +27,16 @@ const Sucursales: React.FC = () => {
             <div className="background-overlay"></div>
             <div className="sucursales-container">
                 <div className="container">
-                    <h1 className="sucursales-title">Encontrá tu sucursal más cercana</h1>
-                    <Buscador filtro={filtro} setFiltro={setFiltro} />
-
-                    <div className="mb-4">
-                        <select
-                            className="sucursal-select"
-                            value={tiendaSeleccionada}
-                            onChange={(e) => setTiendaSeleccionada(e.target.value)}
-                        >
-                            <option value="">Seleccioná una Tienda...</option>
-                            {sucursales.map((sucursal, index) => (
-                                <option key={index} value={sucursal.nombre}>
-                                    {sucursal.localidad}, {sucursal.provincia}
-                                </option>
-                            ))}
-                        </select>
+                    <h2 className="productos-titulo">Encontrá tu sucursal más cercana</h2>
+                    <div className="productos-busqueda">
+                        <input
+                            type="text"
+                            placeholder="Buscar sucursales..."
+                            value={filtro}
+                            onChange={(e) => setFiltro(e.target.value)}
+                            className="productos-input-busqueda"
+                        />
+                        <i className="fas fa-search buscador-icon"></i>
                     </div>
 
                     <div className="row">
