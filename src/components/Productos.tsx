@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
 import './Productos.css';
-import ProductCard3D from './ProductCard3D';
 import ProductModal3D from './ProductModal3D';
 
 import { pizzas } from '../data/pizzasData';
@@ -177,14 +176,19 @@ export default function Productos() {
                         </div>
                     ) : (
                         productosFiltrados.map((prod) => (
-                            <ProductCard3D
-                                key={prod.titulo}
-                                image={prod.imagen}
-                                title={prod.titulo}
-                                price={prod.precio || ''}
-                                onClick={() => setProductoSeleccionado(prod)}
-                                esPremium={prod.esPremium}
-                            />
+                            <div className="producto-card" key={prod.titulo} onClick={() => setProductoSeleccionado(prod)}>
+                                {filtro === "Empanadas" && (
+                                    <div className="producto-tipo">
+                                        {prod.esPremium ? "Premium" : "Clásica"}
+                                    </div>
+                                )}
+                                <img src={prod.imagen} alt={prod.titulo} />
+                                <div className="producto-info">
+                                    <h3>{prod.titulo}</h3>
+                                    <p>{prod.descripcion}</p>
+                                    {prod.precio && <div className="producto-precio">{prod.precio}</div>}
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>
