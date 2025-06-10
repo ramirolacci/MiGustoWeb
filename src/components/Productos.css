@@ -10,9 +10,10 @@ body {
 }
 
 .productos-container {
-    padding: 6rem;
-    max-width: 1200px;
+    width: 85%;
+    max-width: 1800px;
     margin: 0 auto;
+    padding: 2rem;
     position: relative;
     z-index: 1;
 }
@@ -226,10 +227,22 @@ body {
 }
 
 .productos-lista {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     padding: 1rem;
+    justify-content: center;
+}
+
+.productos-lista > * {
+    flex: 0 1 calc(25% - 1.5rem);
+    min-width: 280px;
+}
+
+@media (max-width: 768px) {
+    .productos-lista > * {
+        flex: 0 1 100%;
+    }
 }
 
 .producto-card {
@@ -745,7 +758,7 @@ body {
         font-size: 1.2rem;
     }
 
-    .productos-lista {
+    .productos-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
         padding: 0.5rem;
