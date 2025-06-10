@@ -9,6 +9,7 @@ import { aderezos } from '../data/aderezosData';
 import { pizzasIndi } from '../data/pizzasIndiData';
 import { salsas } from '../data/salsasData';
 import { postres } from '../data/postresData';
+import { promociones } from '../data/promocionesData';
 
 interface Producto {
     titulo: string;
@@ -64,7 +65,7 @@ export default function Productos() {
                 productos = postres;
                 break;
             case "Promociones":
-                productos = [];
+                productos = promociones;
                 break;
             default:
                 productos = [];
