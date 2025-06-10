@@ -96,76 +96,116 @@ body {
     pointer-events: none;
 }
 
-.productos-filtros {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-}
-
-.filtros-checkbox {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.filtros-checkbox label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    background-color: #000000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    color: #ffffff;
-}
-
-.filtros-checkbox label:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.filtros-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.filtros-checkbox input[type="checkbox"]:checked + .badge {
-    opacity: 1;
-    transform: scale(1);
-}
-
 .productos-categorias {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
+    padding-bottom: 10px;
 }
 
 .productos-btn {
     background-color: transparent;
     color: #fff;
-    border: 2px solid #D4AF37;
-    padding: 12px 30px;
-    border-radius: 25px;
+    border: none;
+    padding: 0.5rem 0.75rem;
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 
 .productos-btn:hover {
-    background-color: #D4AF37;
-    color: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    color: #ffd700;
 }
 
 .productos-btn.active {
-    background-color: #D4AF37;
-    color: #000;
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    color: #ffd700;
+}
+
+.productos-btn.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background-color: #ffd700;
+    transition: all 0.3s ease;
+}
+
+.productos-subfiltros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.subfiltro-btn {
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    padding: 0 0.5rem;
+}
+
+.subfiltro-btn:hover {
+    color: #ffd700;
+}
+
+.subfiltro-btn.active {
+    color: #ffd700;
+}
+
+.subfiltro-btn.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background-color: #ffd700;
+    transition: all 0.3s ease;
+}
+
+.subfiltro-separator {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.productos-precio-display {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.precio-display-btn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05em;
+}
+
+.precio-display-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .productos-lista {
@@ -176,7 +216,9 @@ body {
 }
 
 .producto-card {
-    background-color: #000000;
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -186,18 +228,19 @@ body {
     flex-direction: column;
     cursor: pointer;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid #D4AF37;
 }
 
 .producto-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border-color: #D4AF37;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    border-color: #FFD700;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .producto-card:active {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
 }
 
 .producto-card img {
@@ -226,6 +269,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .producto-info h3 {
@@ -244,31 +289,9 @@ body {
 
 .producto-precio {
     margin: 0.5rem 0 0 0;
-    color: #ff6b6b;
+    color: #FFD700;
     font-weight: 700;
     font-size: 1.3rem;
-}
-
-.badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: white;
-    opacity: 0.9;
-    transition: all 0.3s ease;
-}
-
-.badge-recomendado {
-    background-color: #ff6b6b;
-}
-
-.badge-vegetariano {
-    background-color: #51cf66;
-}
-
-.badge-sin-gluten {
-    background-color: #339af0;
 }
 
 .productos-no-resultados {
@@ -624,61 +647,36 @@ body {
     }
 
     .productos-categorias {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-        margin: 0 0 1.5rem 0;
-        padding: 0.5rem;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
     }
 
     .productos-btn {
-        padding: 0.5rem;
-        font-size: 0.75rem;
-        font-weight: 500;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-radius: 8px;
-        backdrop-filter: blur(5px);
-        color: #ffffff;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 32px;
-        width: 100%;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-align: center;
-        white-space: normal;
-        word-wrap: break-word;
+        font-size: 0.95rem;
+        padding: 0.4rem 0.6rem;
     }
 
-    .productos-btn:hover {
-        background: rgba(212, 175, 55, 0.15);
-        border-color: #D4AF37;
-        transform: translateY(-2px);
+    .productos-subfiltros {
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
     }
 
-    .productos-btn.active {
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.3) 100%);
-        border-color: #D4AF37;
-        color: #ffffff;
-        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    .subfiltro-btn {
+        font-size: 1.1rem;
+        padding: 0 0.4rem;
     }
 
-    /* Ajustes específicos para diferentes categorías */
-    .productos-btn[data-categoria="hamburguesas"] {
-        grid-column: span 2;
+    .subfiltro-separator {
+        font-size: 1.1rem;
     }
 
-    .productos-btn[data-categoria="todos"] {
-        grid-column: span 3;
-        margin-bottom: 0.5rem;
+    .productos-precio-display {
+        margin-bottom: 2rem;
+    }
+
+    .precio-display-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 1.2rem;
     }
 
     .productos-lista {
@@ -688,19 +686,19 @@ body {
     }
 
     .producto-card {
+        border: 1px solid #D4AF37;
+        background-color: transparent;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         margin: 0;
         transform: none !important;
         height: auto;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .producto-card:hover {
-        transform: none !important;
-        background: rgba(0, 0, 0, 0.25);
-        border-color: rgba(212, 175, 55, 0.2);
+        transform: none;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        background-color: rgba(0, 0, 0, 0.2);
     }
 
     .producto-card img {
@@ -739,24 +737,6 @@ body {
         top: 0.8rem;
         left: 0.8rem;
         gap: 0.4rem;
-    }
-
-    .badge {
-        backdrop-filter: blur(5px);
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-    }
-
-    .badge-recomendado {
-        background: rgba(255, 107, 107, 0.7);
-    }
-
-    .badge-vegetariano {
-        background: rgba(81, 207, 102, 0.7);
-    }
-
-    .badge-sin-gluten {
-        background: rgba(51, 154, 240, 0.7);
     }
 
     .modal-header {
@@ -872,6 +852,38 @@ body {
         align-items: center;
         z-index: 1000;
         backdrop-filter: blur(5px);
+    }
+}
+
+@media (max-width: 480px) {
+    .productos-categorias {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .productos-btn {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .productos-subfiltros {
+        flex-direction: column;
+        gap: 0.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .subfiltro-separator {
+        display: none;
+    }
+
+    .subfiltro-btn {
+        font-size: 1rem;
+        padding: 0.2rem 0.3rem;
+    }
+
+    .precio-display-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 1.1rem;
     }
 }
 

@@ -8,6 +8,9 @@ import { empanadas } from '../data/empanadasData';
 import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/aderezosData';
 import { pizzasIndi } from '../data/pizzasIndiData';
+import { salsas } from '../data/salsasData';
+import { bebidas } from '../data/bebidasData';
+import { postres } from '../data/postresData';
 
 interface Producto {
     titulo: string;
@@ -20,19 +23,29 @@ interface Producto {
     esRecomendado?: boolean;
     esVegetariano?: boolean;
     esSinGluten?: boolean;
+    esPremium?: boolean;
 }
 
-const categorias = ["Empanadas", "Pizzas INDI", "Fitzzas", "Pizzas", "Aderezos"];
+const categorias = ["Promociones", "Empanadas", "Pizzas INDI", "Fitzzas", "Salsas", "Bebidas", "Postres"];
 
 export default function Productos() {
-    const [filtro, setFiltro] = useState(categorias[0]);
+    const [filtro, setFiltro] = useState(categorias[1]);
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
-    const [filtrosActivos, setFiltrosActivos] = useState({
-        recomendados: false,
-        vegetarianos: false,
-        sinGluten: false
-    });
+    const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
+    const [displayedPrice, setDisplayedPrice] = useState<string>("$4.000");
+
+    useEffect(() => {
+        if (filtro === "Empanadas") {
+            if (tipoProducto === "Clasicas") {
+                setDisplayedPrice("$3.700");
+            } else {
+                setDisplayedPrice("$4.000");
+            }
+        } else {
+            setDisplayedPrice("");
+        }
+    }, [filtro, tipoProducto]);
 
     const productosFiltrados = useMemo(() => {
         let productos: Producto[] = [];
@@ -46,11 +59,17 @@ export default function Productos() {
             case "Fitzzas":
                 productos = fitzzas;
                 break;
-            case "Pizzas":
-                productos = pizzas;
+            case "Salsas":
+                productos = salsas;
                 break;
-            case "Aderezos":
-                productos = aderezos;
+            case "Bebidas":
+                productos = bebidas;
+                break;
+            case "Postres":
+                productos = postres;
+                break;
+            case "Promociones":
+                productos = [];
                 break;
             default:
                 productos = [];
@@ -58,15 +77,20 @@ export default function Productos() {
 
         return productos.filter(producto => {
             const coincideBusqueda = producto.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
-                                    producto.descripcion.toLowerCase().includes(busqueda.toLowerCase());
+                                    (producto.descripcion && producto.descripcion.toLowerCase().includes(busqueda.toLowerCase()));
             
-            const coincideFiltros = (!filtrosActivos.recomendados || producto.esRecomendado) &&
-                                  (!filtrosActivos.vegetarianos || producto.esVegetariano) &&
-                                  (!filtrosActivos.sinGluten || producto.esSinGluten);
+            let coincideTipoEmpanada = true;
+            if (filtro === "Empanadas") {
+                if (tipoProducto === "Premium") {
+                    coincideTipoEmpanada = !!producto.esPremium;
+                } else if (tipoProducto === "Clasicas") {
+                    coincideTipoEmpanada = !producto.esPremium;
+                }
+            }
 
-            return coincideBusqueda && coincideFiltros;
+            return coincideBusqueda && coincideTipoEmpanada;
         });
-    }, [filtro, busqueda, filtrosActivos]);
+    }, [filtro, busqueda, tipoProducto]);
 
     const extraerIngredientes = (descripcion: string): string[] => {
         return descripcion
@@ -76,7 +100,6 @@ export default function Productos() {
             .filter(item => item.length > 0);
     };
 
-    // Cerrar modal con Escape
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -87,37 +110,6 @@ export default function Productos() {
         window.addEventListener('keydown', handleEscape);
         return () => window.removeEventListener('keydown', handleEscape);
     }, []);
-
-    const handleTouchStart = (e: React.TouchEvent<HTMLImageElement>) => {
-        const img = e.currentTarget;
-        const touch = e.touches[0];
-        const startX = touch.clientX;
-        const startY = touch.clientY;
-        const startTransform = img.style.transform || 'translate(0px, 0px)';
-        let currentX = 0;
-        let currentY = 0;
-
-        const handleTouchMove = (e: TouchEvent) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const deltaX = touch.clientX - startX;
-            const deltaY = touch.clientY - startY;
-            
-            currentX = deltaX;
-            currentY = deltaY;
-            
-            img.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        };
-
-        const handleTouchEnd = () => {
-            img.style.transform = startTransform;
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('touchend', handleTouchEnd);
-        };
-
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
-        document.addEventListener('touchend', handleTouchEnd);
-    };
 
     return (
         <div className="productos-section">
@@ -136,49 +128,14 @@ export default function Productos() {
                     <i className="fas fa-search buscador-icon"></i>
                 </div>
 
-                <div className="productos-filtros">
-                    <div className="filtros-checkbox">
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={filtrosActivos.recomendados}
-                                onChange={(e) => setFiltrosActivos(prev => ({
-                                    ...prev,
-                                    recomendados: e.target.checked
-                                }))}
-                            />
-                            <span className="badge badge-recomendado">Recomendados</span>
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={filtrosActivos.vegetarianos}
-                                onChange={(e) => setFiltrosActivos(prev => ({
-                                    ...prev,
-                                    vegetarianos: e.target.checked
-                                }))}
-                            />
-                            <span className="badge badge-vegetariano">Vegetarianos</span>
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={filtrosActivos.sinGluten}
-                                onChange={(e) => setFiltrosActivos(prev => ({
-                                    ...prev,
-                                    sinGluten: e.target.checked
-                                }))}
-                            />
-                            <span className="badge badge-sin-gluten">Sin Gluten</span>
-                        </label>
-                    </div>
-                </div>
-
                 <div className="productos-categorias">
                     {categorias.map((cat) => (
                         <button
                             key={cat}
-                            onClick={() => setFiltro(cat)}
+                            onClick={() => {
+                                setFiltro(cat);
+                                setTipoProducto(null);
+                            }}
                             className={`productos-btn ${filtro === cat ? "active" : ""}`}
                             type="button"
                         >
@@ -187,6 +144,32 @@ export default function Productos() {
                     ))}
                 </div>
 
+                {filtro === "Empanadas" && (
+                    <div className="productos-subfiltros">
+                        <button
+                            onClick={() => setTipoProducto("Premium")}
+                            className={`subfiltro-btn ${tipoProducto === "Premium" ? "active" : ""}`}
+                        >
+                            PREMIUM
+                        </button>
+                        <span className="subfiltro-separator">|</span>
+                        <button
+                            onClick={() => setTipoProducto("Clasicas")}
+                            className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
+                        >
+                            CLÁSICAS
+                        </button>
+                    </div>
+                )}
+
+                {filtro === "Empanadas" && (
+                    <div className="productos-precio-display">
+                        <button className="precio-display-btn">
+                            PRECIO {displayedPrice}
+                        </button>
+                    </div>
+                )}
+
                 <div className="productos-lista">
                     {productosFiltrados.length === 0 ? (
                         <div className="productos-no-resultados">
@@ -194,22 +177,14 @@ export default function Productos() {
                         </div>
                     ) : (
                         productosFiltrados.map((prod) => (
-                            <div 
-                                className="producto-card"
-                                onClick={() => setProductoSeleccionado(prod)}
+                            <ProductCard3D
                                 key={prod.titulo}
-                            >
-                                <img src={prod.imagen} alt={prod.titulo} />
-                                <div className="producto-info">
-                                    <h3>{prod.titulo}</h3>
-                                    <p>{prod.descripcion}</p>
-                                    <div className="producto-etiquetas">
-                                        {prod.esRecomendado && <span className="etiqueta recomendado">Recomendado</span>}
-                                        {prod.esVegetariano && <span className="etiqueta vegetariano">Vegetariano</span>}
-                                        {prod.esSinGluten && <span className="etiqueta sin-gluten">Sin Gluten</span>}
-                                    </div>
-                                </div>
-                            </div>
+                                image={prod.imagen}
+                                title={prod.titulo}
+                                price={prod.precio || ''}
+                                onClick={() => setProductoSeleccionado(prod)}
+                                esPremium={prod.esPremium}
+                            />
                         ))
                     )}
                 </div>
