@@ -2,44 +2,43 @@ import React, { useState } from 'react';
 import '../pages/Contacto.css';
 
 const sucursalesList = [
-  'Sucursal Abasto',
-  'Sucursal Belgrano',
-  'Sucursal Caballito',
-  'Sucursal Centro',
-  'Sucursal Palermo',
-  'Sucursal Recoleta',
-  'Sucursal Flores',
-  'Sucursal Colegiales',
-  'Sucursal Villa Crespo',
-  'Sucursal Almagro',
-  'Sucursal Boedo',
-  'Sucursal San Telmo',
-  'Sucursal La Boca',
-  'Sucursal Núñez',
-  'Sucursal Saavedra',
-  'Sucursal Coghlan',
-  'Sucursal Devoto',
-  'Sucursal Villa del Parque',
-  'Sucursal Agronomía',
-  'Sucursal Chacarita',
-  'Sucursal Paternal',
-  'Sucursal Parque Patricios',
-  'Sucursal Barracas',
-  'Sucursal Pompeya',
-  'Sucursal Liniers',
-  'Sucursal Mataderos',
-  'Sucursal Lugano',
-  'Sucursal Villa Soldati',
-  'Sucursal Villa Riachuelo',
-  'Sucursal Versalles',
-  'Sucursal Monte Castro',
-  'Sucursal Floresta',
-  'Sucursal Parque Avellaneda',
-  'Sucursal Vélez Sarsfield',
-  'Sucursal Villa Luro',
-  'Sucursal Parque Chacabuco',
-  'Sucursal Villa Devoto',
-  'Sucursal Villa General Mitre',
+  'Ballester',
+  'Balvanera',
+  'Barrancas de Belgrano',
+  'Belgrano',
+  'Bella Vista',
+  'Campana',
+  'Del Viso',
+  'Devoto',
+  'Don Torcuato',
+  'Escobar',
+  'Floresta',
+  'Florida',
+  'Gral. Pacheco',
+  'Hurlingham',
+  'Ituzaingó',
+  'José C. Paz',
+  'Los Polvorines',
+  'Martínez',
+  'Maschwitz',
+  'Mataderos',
+  'Merlo',
+  'Moreno',
+  'Muñiz',
+  'Munro',
+  'Palermo',
+  'Paternal',
+  'Pilar Centro',
+  'Pilar Cruce Derqui',
+  'Puerto Madero',
+  'San Fernando',
+  'San Martín',
+  'San Miguel',
+  'Tigre',
+  'Tortugas Norte',
+  'Villa Adelina',
+  'Villa Crespo',
+  'Villa Urquiza'
 ];
 
 const TrabajaConNosotros: React.FC = () => {
@@ -121,156 +120,165 @@ const TrabajaConNosotros: React.FC = () => {
   };
 
   return (
-    <div className="contacto-container">
-      <div className="contacto-header">
-        <h1>Trabajá con nosotros</h1>
-        <p>¿Querés formar parte de nuestro equipo? Completa el siguiente formulario y envíanos tu CV.</p>
-      </div>
-      <div className="contacto-content">
-        <div className="contacto-form-container">
-          <h2>Postulate Aquí</h2>
-          <form className="contacto-form" onSubmit={handleSubmit}>
-            <div className="form-row">
-              <div className="form-group half-width">
-                <label htmlFor="nombre">Nombre <span className="required">*</span></label>
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group half-width">
-                <label htmlFor="apellido">Apellido <span className="required">*</span></label>
-                <input
-                  type="text"
-                  id="apellido"
-                  name="apellido"
-                  value={formData.apellido}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group half-width">
-                <label htmlFor="telefono">Teléfono <span className="required">*</span></label>
-                <input
-                  type="tel"
-                  id="telefono"
-                  name="telefono"
-                  value={formData.telefono}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group half-width">
-                <label htmlFor="email">E-mail <span className="required">*</span></label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group half-width">
-                <label htmlFor="puesto">Puesto al que aspiras <span className="required">*</span></label>
-                <select
-                  id="puesto"
-                  name="puesto"
-                  value={formData.puesto}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Selecciona un puesto</option>
-                  <option value="fabrica">Fábrica</option>
-                  <option value="sucursales">Sucursales</option>
-                </select>
-              </div>
-              {formData.puesto === 'fabrica' && (
-                <div className="form-group half-width">
-                  <label htmlFor="area">Área <span className="required">*</span></label>
-                  <select
-                    id="area"
-                    name="area"
-                    value={formData.area}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Selecciona un área</option>
-                    <option value="administracion">Administración</option>
-                    <option value="produccion">Producción</option>
-                    <option value="logistica">Logística</option>
-                  </select>
-                </div>
-              )}
-              {formData.puesto === 'sucursales' && (
-                <div className="form-group half-width">
-                  <label htmlFor="sucursal">Sucursal <span className="required">*</span></label>
-                  <select
-                    id="sucursal"
-                    name="sucursal"
-                    value={formData.sucursal}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Selecciona una sucursal</option>
-                    {sucursalesList.map((sucursal, index) => (
-                      <option key={index} value={sucursal}>
-                        {sucursal}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="cv">Subir CV <span className="required">*</span></label>
-              <div
-                className={`file-drop-zone ${dragActive ? 'dragging' : ''} ${formData.cv ? 'has-file' : ''}`}
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
-                onClick={() => document.getElementById('cv-upload')?.click()}
-              >
-                <input
-                  type="file"
-                  id="cv-upload"
-                  name="cv"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleFileChange}
-                  style={{ display: 'none' }}
-                  required
-                />
-                {formData.cv ? (
-                  <div className="file-drop-content">
-                    <p>{formData.cv.name}</p>
-                    <button type="button" className="remove-file" onClick={handleRemoveFile}>X</button>
+    <div className="sucursales-section">
+      <div className="background-overlay"></div>
+      <div className="sucursales-container">
+        <div className="contacto-container">
+          <div className="contacto-content">
+            <div className="contacto-form-container">
+              <h2>Trabajá con nosotros</h2>
+              <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en formar parte de nuestro equipo.</p>
+              <form className="contacto-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="nombre">Nombre: <span className="required">*</span></label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      value={formData.nombre}
+                      onChange={handleChange}
+                      required
+                      placeholder="Ingrese su nombre"
+                    />
                   </div>
-                ) : (
-                  <div className="file-drop-content">
-                    <i className="fas fa-cloud-upload-alt"></i>
-                    <p>Arrastra y suelta tu CV aquí o haz clic para seleccionar</p>
-                    <p className="file-types">(PDF, DOC, DOCX)</p>
+                  <div className="form-group half-width">
+                    <label htmlFor="apellido">Apellido: <span className="required">*</span></label>
+                    <input
+                      type="text"
+                      id="apellido"
+                      name="apellido"
+                      value={formData.apellido}
+                      onChange={handleChange}
+                      required
+                      placeholder="Ingrese su apellido"
+                    />
                   </div>
-                )}
-              </div>
-            </div>
+                </div>
 
-            <button type="submit" className="btn-ver-mas">
-              Enviar Postulación
-            </button>
-          </form>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="telefono">Teléfono: <span className="required">*</span></label>
+                    <input
+                      type="tel"
+                      id="telefono"
+                      name="telefono"
+                      value={formData.telefono}
+                      onChange={handleChange}
+                      required
+                      placeholder="+54 9 11 1234-5678"
+                    />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="email">E-mail: <span className="required">*</span></label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="ejemplo@correo.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="puesto">Puesto: <span className="required">*</span></label>
+                    <select
+                      id="puesto"
+                      name="puesto"
+                      value={formData.puesto}
+                      onChange={handleChange}
+                      required
+                      className="contacto-form select"
+                    >
+                      <option value="">Selecciona un puesto</option>
+                      <option value="fabrica">Fábrica</option>
+                      <option value="sucursales">Sucursales</option>
+                    </select>
+                  </div>
+                  {formData.puesto === 'fabrica' && (
+                    <div className="form-group half-width">
+                      <label htmlFor="area">Área: <span className="required">*</span></label>
+                      <select
+                        id="area"
+                        name="area"
+                        value={formData.area}
+                        onChange={handleChange}
+                        required
+                        className="contacto-form select"
+                      >
+                        <option value="">Selecciona un área</option>
+                        <option value="administracion">Administración</option>
+                        <option value="produccion">Producción</option>
+                        <option value="logistica">Logística</option>
+                      </select>
+                    </div>
+                  )}
+                  {formData.puesto === 'sucursales' && (
+                    <div className="form-group half-width">
+                      <label htmlFor="sucursal">Sucursal: <span className="required">*</span></label>
+                      <select
+                        id="sucursal"
+                        name="sucursal"
+                        value={formData.sucursal}
+                        onChange={handleChange}
+                        required
+                        className="contacto-form select"
+                      >
+                        <option value="">Selecciona una sucursal</option>
+                        {sucursalesList.map((sucursal, index) => (
+                          <option key={index} value={sucursal}>
+                            {sucursal}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="cv">Subir CV: <span className="required">*</span></label>
+                  <div
+                    className={`file-drop-zone ${dragActive ? 'dragging' : ''} ${formData.cv ? 'has-file' : ''}`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                    onClick={() => document.getElementById('cv-upload')?.click()}
+                  >
+                    <input
+                      type="file"
+                      id="cv-upload"
+                      name="cv"
+                      accept=".pdf,.doc,.docx"
+                      onChange={handleFileChange}
+                      style={{ display: 'none' }}
+                      required
+                    />
+                    {formData.cv ? (
+                      <div className="file-drop-content">
+                        <p>{formData.cv.name}</p>
+                        <button type="button" className="remove-file" onClick={handleRemoveFile}>X</button>
+                      </div>
+                    ) : (
+                      <div className="file-drop-content">
+                        <i className="fas fa-cloud-upload-alt"></i>
+                        <p>Arrastra y suelta tu CV aquí o haz clic para seleccionar</p>
+                        <p className="file-types">(PDF, DOC, DOCX)</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <button type="submit" className="btn-ver-mas">
+                  Postularse
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
