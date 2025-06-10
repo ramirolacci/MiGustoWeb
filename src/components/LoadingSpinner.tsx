@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoadingSpinner.css';
-import empanadaSpinner from '/Matambre a la pizza.png';
+import empanadaSpinner from '/loadIcon.png';
 
 interface LoadingSpinnerProps {
   isLoading: boolean;

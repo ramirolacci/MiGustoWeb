@@ -8,7 +8,6 @@ import { fitzzas } from '../data/fitzzasData';
 import { aderezos } from '../data/aderezosData';
 import { pizzasIndi } from '../data/pizzasIndiData';
 import { salsas } from '../data/salsasData';
-import { bebidas } from '../data/bebidasData';
 import { postres } from '../data/postresData';
 
 interface Producto {
@@ -25,7 +24,7 @@ interface Producto {
     esPremium?: boolean;
 }
 
-const categorias = ["Promociones", "Empanadas", "Pizzas INDI", "Fitzzas", "Salsas", "Bebidas", "Postres"];
+const categorias = ["Promociones", "Empanadas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState(categorias[1]);
@@ -60,9 +59,6 @@ export default function Productos() {
                 break;
             case "Salsas":
                 productos = salsas;
-                break;
-            case "Bebidas":
-                productos = bebidas;
                 break;
             case "Postres":
                 productos = postres;
