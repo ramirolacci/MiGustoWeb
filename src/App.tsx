@@ -15,7 +15,7 @@ import VentaCorporativa from './pages/VentaCorporativa';
 
 import './App.css';
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <Router>
+    <>
       {loading && <LoadingSpinner />}
       <div className="app">
         <header>
@@ -55,6 +55,14 @@ const App: React.FC = () => {
           <Footer />
         </footer>
       </div>
+    </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 };
