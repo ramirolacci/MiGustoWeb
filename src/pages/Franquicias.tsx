@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
+import emailjs from '@emailjs/browser';
 
 const Franquicias: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -23,6 +24,7 @@ const Franquicias: React.FC = () => {
     localidadPreferencia: '',
     inmuebleGarantia: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -37,33 +39,67 @@ const Franquicias: React.FC = () => {
     setCurrentStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Datos del formulario de franquicias:', formData);
-    // Aquí se manejaría el envío de datos, por ejemplo, a una API
-    alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
-    // Reset form after submission
-    setFormData({
-      nombre: '',
-      fechaNacimiento: '',
-      sexo: '',
-      estadoCivil: '',
-      tipoDocumento: '',
-      numeroDocumento: '',
-      paisResidencia: '',
-      provinciaResidencia: '',
-      localidadResidencia: '',
-      domicilio: '',
-      telefonoCelular: '',
-      telefonoAlternativo: '',
-      email: '',
-      emailAlternativo: '',
-      paisPreferencia: '',
-      provinciaPreferencia: '',
-      localidadPreferencia: '',
-      inmuebleGarantia: '',
-    });
-    setCurrentStep(1);
+    setIsSubmitting(true);
+
+    const serviceID = 'service_vroveb8'; 
+    const templateID = 'template_rx2wmet'; 
+    const publicKey = '2muZYDfZaoXaOzlBc'; 
+
+    const templateParams = {
+      name: formData.nombre,
+      email: formData.email,
+      message: `
+        Fecha de Nacimiento: ${formData.fechaNacimiento}
+        Sexo: ${formData.sexo}
+        Estado Civil: ${formData.estadoCivil}
+        Tipo de Documento: ${formData.tipoDocumento}
+        Número de Documento: ${formData.numeroDocumento}
+        País de Residencia: ${formData.paisResidencia}
+        Provincia de Residencia: ${formData.provinciaResidencia}
+        Localidad de Residencia: ${formData.localidadResidencia}
+        Domicilio: ${formData.domicilio}
+        Teléfono Celular: ${formData.telefonoCelular}
+        Teléfono Alternativo: ${formData.telefonoAlternativo}
+        E-mail Alternativo: ${formData.emailAlternativo}
+        País de Preferencia: ${formData.paisPreferencia}
+        Provincia de Preferencia: ${formData.provinciaPreferencia}
+        Localidad de Preferencia: ${formData.localidadPreferencia}
+        ¿Dispone de Inmueble para Garantía?: ${formData.inmuebleGarantia}
+      `,
+    };
+
+    try {
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
+      setFormData({
+        nombre: '',
+        fechaNacimiento: '',
+        sexo: '',
+        estadoCivil: '',
+        tipoDocumento: '',
+        numeroDocumento: '',
+        paisResidencia: '',
+        provinciaResidencia: '',
+        localidadResidencia: '',
+        domicilio: '',
+        telefonoCelular: '',
+        telefonoAlternativo: '',
+        email: '',
+        emailAlternativo: '',
+        paisPreferencia: '',
+        provinciaPreferencia: '',
+        localidadPreferencia: '',
+        inmuebleGarantia: '',
+      });
+      setCurrentStep(1);
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const progressBarWidth = ((currentStep - 1) / 2) * 100;
@@ -133,8 +169,8 @@ const Franquicias: React.FC = () => {
                       </div>
                     </div>
                     <div className="form-buttons" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-                      <button type="button" className="btn-ver-mas" onClick={nextStep} style={{ margin: '0 5px' }}>Siguiente</button>
-                      <button type="button" className="btn-ver-mas" onClick={() => alert('Cancelado')} style={{ margin: '0 5px' }}>Cancelar</button>
+                      <button type="button" className="btn-ver-mas" onClick={nextStep} style={{ margin: '0 5px' }} disabled={isSubmitting}>Siguiente</button>
+                      <button type="button" className="btn-ver-mas" onClick={() => alert('Cancelado')} style={{ margin: '0 5px' }} disabled={isSubmitting}>Cancelar</button>
                     </div>
                   </div>
                 )}
@@ -186,8 +222,8 @@ const Franquicias: React.FC = () => {
                       </div>
                     </div>
                     <div className="form-buttons" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-                      <button type="button" className="btn-ver-mas" onClick={nextStep} style={{ margin: '0 5px' }}>Siguiente</button>
-                      <button type="button" className="btn-ver-mas" onClick={prevStep} style={{ margin: '0 5px' }}>Volver</button>
+                      <button type="button" className="btn-ver-mas" onClick={nextStep} style={{ margin: '0 5px' }} disabled={isSubmitting}>Siguiente</button>
+                      <button type="button" className="btn-ver-mas" onClick={prevStep} style={{ margin: '0 5px' }} disabled={isSubmitting}>Volver</button>
                     </div>
                   </div>
                 )}
@@ -223,8 +259,8 @@ const Franquicias: React.FC = () => {
                       </div>
                     </div>
                     <div className="form-buttons" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-                      <button type="submit" className="btn-ver-mas" style={{ margin: '0 5px' }}>Finalizar</button>
-                      <button type="button" className="btn-ver-mas" onClick={prevStep} style={{ margin: '0 5px' }}>Volver</button>
+                      <button type="submit" className="btn-ver-mas" style={{ margin: '0 5px' }} disabled={isSubmitting}>Finalizar</button>
+                      <button type="button" className="btn-ver-mas" onClick={prevStep} style={{ margin: '0 5px' }} disabled={isSubmitting}>Volver</button>
                     </div>
                   </div>
                 )}
