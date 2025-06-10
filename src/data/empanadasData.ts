@@ -135,5 +135,11 @@ export const empanadas: Empanada[] = [
     imagen: "https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png",
     titulo: "Panceta y Ciruela",
     descripcion: "Panceta con ciruelas pasas y cebolla caramelizada."
+  },
+  {
+    imagen: "https://http2.mlstatic.com/D_968876-MLA82051804859_012025-O.jpg",
+    titulo: "Carne",
+    descripcion: "Rellenas con carne picada, cebolla, huevo duro y especias clásicas.",
+    esRecomendado: true
   }
 ];
