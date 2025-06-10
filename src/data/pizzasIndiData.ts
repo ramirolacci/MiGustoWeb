@@ -1,45 +1,51 @@
-// src/data/pizzasIndis.ts
+// src/data/pizzasIndiData.ts
 
 export interface PizzaIndi {
   imagen: string;
   titulo: string;
   descripcion: string;
+  esRecomendado?: boolean;
+  esVegetariano?: boolean;
+  esSinGluten?: boolean;
 }
 
 export const pizzasIndi: PizzaIndi[] = [
   {
+    imagen: "https://i.postimg.cc/TYSrn4mW/INDI-Rucula.jpg",
+    titulo: "Jamón Crudo, Rúcula y Stracciatella INDI",
+    descripcion: "Pizza individual con jamón crudo, rúcula fresca y stracciatella.",
+    esRecomendado: true
+  },
+  {
+    imagen: "https://i.postimg.cc/TYP9Vb4B/Indi-Mortadela.jpg",
+    titulo: "Mortadela, Pistacho y Stracciatella INDI",
+    descripcion: "Pizza individual con mortadela, pistachos y stracciatella.",
+    esRecomendado: true
+  },
+  {
+    imagen: "https://i.postimg.cc/ydXPPyBC/Indi-Burger.jpg",
+    titulo: "Burger INDI",
+    descripcion: "Pizza individual con hamburguesa, queso cheddar, cebolla caramelizada y salsa especial.",
+    esRecomendado: true
+  },
+  {
+    imagen: "https://i.postimg.cc/7PK1Z6Z9/INDI-Pepperonni.jpg",
+    titulo: "Pepperoni INDI",
+    descripcion: "Pizza individual con pepperoni y queso mozzarella."
+  },
+  {
+    imagen: "https://i.postimg.cc/kMssRsfx/INDI-Jamon-y-morrones.jpg",
+    titulo: "Jamón y Morrón INDI",
+    descripcion: "Pizza individual con jamón cocido y morrones asados."
+  },
+  {
     imagen: "https://i.postimg.cc/63wVy4Zj/INDI-Napo.jpg",
-    titulo: "Jamon crudo, rucula y stracciatella",
-    descripcion: "Muzza, jamon crudo, rucula, stracciatella con aceite de oliva y pimienta negra con un toque de manteca de ajo en los bordes."
+    titulo: "Napolitana INDI",
+    descripcion: "Pizza individual con rodajas de tomate fresco y topping de salsa casera de provenzal."
   },
   {
-    imagen: "https://example.com/imagen-pizza-burger.jpg",
-    titulo: "Burger",
-    descripcion: "Muzza con blend de ojo de bife y vaco decorado con salsa tasty, cheddar y ketchup con un leve toque de manteca de ajo en los bordes."
-  },
-  {
-    imagen: "https://example.com/imagen-pizza-mortadela.jpg",
-    titulo: "Mortadela, pistacho y stracciatella",
-    descripcion: "Muzza, stracciatella di bufala y gruyere con fetas de mortadela con pistacho, pesto de la casa con un toque de manteca de ajo en los bordes."
-  },
-  {
-    imagen: "https://example.com/imagen-pizza-pepperoni.jpg",
-    titulo: "Pepperoni",
-    descripcion: "Muzza con rodajas de pepperoni con un toque de manteca de ajo en los bordes."
-  },
-  {
-    imagen: "https://example.com/imagen-pizza-jamon-morron.jpg",
-    titulo: "Jamon y morron",
-    descripcion: "Muzza fetas de jamon cocido y morron asado con un toque de manteca de ajo en los bordes."
-  },
-  {
-    imagen: "https://example.com/imagen-pizza-muzza.jpg",
-    titulo: "Muzza",
-    descripcion: "Muzza con salsa de tomate y un leve toque de manteca de ajo en los bordes."
-  },
-  {
-    imagen: "https://example.com/imagen-pizza-napolitana.jpg",
-    titulo: "Napolitana",
-    descripcion: "Muzza con rodajas de tomate fresco, topping de salsa casera de provenzal y leve toque de manteca de ajo en los bordes."
+    imagen: "https://i.postimg.cc/P5gQnR5k/INDI-Muzza.jpg",
+    titulo: "Muzza INDI",
+    descripcion: "Pizza individual de mozzarella con salsa de tomate casera artesanal."
   }
 ];
