@@ -36,12 +36,29 @@ body {
 
 .productos-titulo {
     margin-bottom: 2rem;
-    color: #ffffff;
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
     position: relative;
     padding-bottom: 1rem;
+    background: linear-gradient(45deg, #ffffff, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .productos-titulo::after {
