@@ -4,39 +4,79 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Slightly darker semi-transparent background */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Ensure it's on top of everything */
+  z-index: 9999;
   opacity: 1;
-  transition: opacity 0.6s ease-out; /* Slower transition */
+  transition: opacity 0.6s ease-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .loading-spinner {
-  /* This container can be used for additional centering or effects if needed */
-  /* Removing old spinner styles */
-  /*
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #ffc107;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .spinner-image {
-  width: 100px; /* Adjust size as needed */
-  height: 100px; /* Adjust size as needed */
+  width: 180px;
+  height: 180px;
   object-fit: contain;
-  animation: spin-image 2s linear infinite; /* Spinning animation for the image */
-  filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.7)); /* Add a golden shadow */
+  transform-origin: center;
+  animation: spin-and-pulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.8));
 }
 
-@keyframes spin-image {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.spinner-image:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 35px rgba(255, 193, 7, 0.9));
+}
+
+.loading-text {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards 0.3s;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.loading-text::after {
+  content: '...';
+  animation: loadingDots 1.5s infinite;
+}
+
+@keyframes spin-and-pulse {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.8));
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+    filter: drop-shadow(0 0 35px rgba(255, 193, 7, 0.9));
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.8));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loadingDots {
+  0% { content: '.'; }
+  33% { content: '..'; }
+  66% { content: '...'; }
+  100% { content: '.'; }
 }
 
 /* Optional: Add more complex spinner styles or different animations */

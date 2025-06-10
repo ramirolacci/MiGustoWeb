@@ -33,7 +33,7 @@ const AppContent: React.FC = () => {
 
   return (
     <>
-      {loading && <LoadingSpinner />}
+      {loading && <LoadingSpinner isLoading={loading} />}
       <div className="app">
         <header>
           <NavBar />
