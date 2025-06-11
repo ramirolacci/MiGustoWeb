@@ -6,6 +6,8 @@ const Nosotros: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isMuted, setIsMuted] = useState(true);
     const [isVideoVisible, setIsVideoVisible] = useState(true);
+    const [franquiciasCount, setFranquiciasCount] = useState(0);
+    const franquiciasRef = useRef<HTMLDivElement>(null);
 
     const toggleMute = () => {
         if (videoRef.current) {
@@ -35,6 +37,44 @@ const Nosotros: React.FC = () => {
         return () => {
             if (videoElement) {
                 observer.unobserve(videoElement);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setFranquiciasCount(0);
+                    const targetNumber = 37;
+                    const duration = 1500; // 1.5 segundos
+                    const steps = 37; // Un paso por número
+                    const stepDuration = duration / steps;
+
+                    let currentStep = 0;
+                    const interval = setInterval(() => {
+                        currentStep++;
+                        setFranquiciasCount(currentStep);
+                        
+                        if (currentStep >= targetNumber) {
+                            clearInterval(interval);
+                        }
+                    }, stepDuration);
+                }
+            },
+            {
+                threshold: 0.5
+            }
+        );
+
+        const franquiciasElement = franquiciasRef.current;
+        if (franquiciasElement) {
+            observer.observe(franquiciasElement);
+        }
+
+        return () => {
+            if (franquiciasElement) {
+                observer.unobserve(franquiciasElement);
             }
         };
     }, []);
@@ -152,9 +192,9 @@ const Nosotros: React.FC = () => {
                             en diferentes puntos del país, ofreciendo la misma calidad y experiencia 
                             en cada una de nuestras ubicaciones.
                         </p>
-                        <div className="franquicias-stats">
+                        <div className="franquicias-stats" ref={franquiciasRef}>
                             <div className="stat-item">
-                                <span className="stat-number">37</span>
+                                <span className="stat-number">{franquiciasCount}</span>
                                 <span className="stat-label">Franquicias</span>
                             </div>
                         </div>
@@ -163,34 +203,94 @@ const Nosotros: React.FC = () => {
 
                 <div className="section-card">
                     <h2>VALORES</h2>
-                    <div className="valores-grid">
-                        <div className="valor-item">
-                            <h4>Calidad</h4>
-                            <p>
-                                Nos comprometemos a ofrecer productos de la más alta calidad, 
-                                utilizando ingredientes frescos y procesos rigurosos.
-                            </p>
-                        </div>
-                        <div className="valor-item">
-                            <h4>Innovación</h4>
-                            <p>
-                                Buscamos constantemente nuevas formas de sorprender a nuestros 
-                                clientes con sabores y experiencias únicas.
-                            </p>
-                        </div>
-                        <div className="valor-item">
-                            <h4>Compromiso</h4>
-                            <p>
-                                Trabajamos con dedicación y pasión para superar las expectativas 
-                                de nuestros clientes en cada visita.
-                            </p>
-                        </div>
-                        <div className="valor-item">
-                            <h4>Sostenibilidad</h4>
-                            <p>
-                                Nos preocupamos por el medio ambiente y buscamos prácticas 
-                                sostenibles en todos nuestros procesos.
-                            </p>
+                    <div className="valores-carousel-container">
+                        <div className="valores-carousel-track">
+                            <div className="valor-item excelencia-card">
+                                <h4>EXCELENCIA</h4>
+                                <p>
+                                    Es tener una actitud comprometida para hacer las cosas bien la primera vez, 
+                                    siempre, y todos. "Somos lo que hacemos cada día, de modo que la excelencia 
+                                    no es un acto, sino un hábito" - Aristóteles.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>CALIDAD</h4>
+                                <p>
+                                    Es el premio a la excelencia, es hacer bien las cosas que hay que hacer. 
+                                    La calidad no se negocia.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>HUMANIDAD</h4>
+                                <p>
+                                    Invertimos en el desarrollo de nuestros colaboradores e incentivamos a tratar 
+                                    a otro como nos gustaría que nos traten.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>INNOVACIÓN CONTINUA</h4>
+                                <p>
+                                    Somos disruptivos y escuchamos ideas para mejorar lo que tenemos y para 
+                                    crear lo que aún no existe.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>ORIENTACIÓN AL CLIENTE</h4>
+                                <p>
+                                    Nuestra atención garantiza al cliente una experiencia premium para un 
+                                    producto premium.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>COMPROMISO</h4>
+                                <p>
+                                    Trabajamos con dedicación y pasión para superar las expectativas de 
+                                    nuestros clientes en cada visita.
+                                </p>
+                            </div>
+                            <div className="valor-item excelencia-card">
+                                <h4>EXCELENCIA</h4>
+                                <p>
+                                    Es tener una actitud comprometida para hacer las cosas bien la primera vez, 
+                                    siempre, y todos. "Somos lo que hacemos cada día, de modo que la excelencia 
+                                    no es un acto, sino un hábito" - Aristóteles.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>CALIDAD</h4>
+                                <p>
+                                    Es el premio a la excelencia, es hacer bien las cosas que hay que hacer. 
+                                    La calidad no se negocia.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>HUMANIDAD</h4>
+                                <p>
+                                    Invertimos en el desarrollo de nuestros colaboradores e incentivamos a tratar 
+                                    a otro como nos gustaría que nos traten.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>INNOVACIÓN CONTINUA</h4>
+                                <p>
+                                    Somos disruptivos y escuchamos ideas para mejorar lo que tenemos y para 
+                                    crear lo que aún no existe.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>ORIENTACIÓN AL CLIENTE</h4>
+                                <p>
+                                    Nuestra atención garantiza al cliente una experiencia premium para un 
+                                    producto premium.
+                                </p>
+                            </div>
+                            <div className="valor-item">
+                                <h4>COMPROMISO</h4>
+                                <p>
+                                    Trabajamos con dedicación y pasión para superar las expectativas de 
+                                    nuestros clientes en cada visita.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
