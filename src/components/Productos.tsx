@@ -15,6 +15,7 @@ interface Producto {
     titulo: string;
     descripcion: string;
     imagen: string;
+    imagenDetalle?: string;
     ingredientes?: string[];
     tiempoPreparacion?: string;
     calorias?: string;

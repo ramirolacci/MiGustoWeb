@@ -6,6 +6,7 @@ interface ProductModal3DProps {
         titulo: string;
         descripcion: string;
         imagen: string;
+        imagenDetalle?: string;
         ingredientes?: string[];
         tiempoPreparacion?: string;
         calorias?: string;
@@ -126,9 +127,9 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose }) =>
                             transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                         }}>
                         <img
-                            src={producto.imagen}
+                            src={producto.imagenDetalle || producto.imagen}
                             alt={producto.titulo}
-                            className="modal-img"
+                            className={`modal-img ${producto.titulo.toLowerCase().includes('vacio') || producto.titulo.toLowerCase().includes('american chicken') ? 'modal-img-large' : ''}`}
                             draggable="false"
                         />
                     </div>
