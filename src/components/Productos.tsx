@@ -25,7 +25,7 @@ interface Producto {
     esPremium?: boolean;
 }
 
-const categorias = ["Promociones", "Empanadas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
+const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState(categorias[1]);
@@ -33,6 +33,7 @@ export default function Productos() {
     const [busqueda, setBusqueda] = useState("");
     const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
     const [displayedPrice, setDisplayedPrice] = useState<string>("");
+    const [esVegetariano, setEsVegetariano] = useState<boolean>(false);
 
     useEffect(() => {
         if (filtro === "Empanadas") {
@@ -55,6 +56,7 @@ export default function Productos() {
         if (busqueda) {
             productos = [
                 ...empanadas,
+                ...pizzas,
                 ...pizzasIndi,
                 ...fitzzas,
                 ...salsas,
@@ -66,6 +68,9 @@ export default function Productos() {
             switch (filtro) {
                 case "Empanadas":
                     productos = empanadas;
+                    break;
+                case "Pizzas":
+                    productos = pizzas;
                     break;
                 case "Pizzas INDI":
                     productos = pizzasIndi;
@@ -100,9 +105,16 @@ export default function Productos() {
                 }
             }
 
-            return coincideBusqueda && coincideTipoEmpanada;
+            let coincideVegetariano = true;
+            if ((filtro === "Pizzas" || filtro === "Pizzas INDI") && !busqueda) {
+                if (esVegetariano) {
+                    coincideVegetariano = !!producto.esVegetariano;
+                }
+            }
+
+            return coincideBusqueda && coincideTipoEmpanada && coincideVegetariano;
         });
-    }, [filtro, busqueda, tipoProducto]);
+    }, [filtro, busqueda, tipoProducto, esVegetariano]);
 
     const extraerIngredientes = (descripcion: string): string[] => {
         return descripcion
@@ -170,6 +182,17 @@ export default function Productos() {
                             className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
                         >
                             CLÁSICAS
+                        </button>
+                    </div>
+                )}
+
+                {(filtro === "Pizzas") && (
+                    <div className="productos-subfiltros">
+                        <button
+                            onClick={() => setEsVegetariano(!esVegetariano)}
+                            className={`subfiltro-btn ${esVegetariano ? "active" : ""}`}
+                        >
+                            VEGETARIANO
                         </button>
                     </div>
                 )}
