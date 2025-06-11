@@ -331,9 +331,9 @@ const TrabajaConNosotros: React.FC = () => {
                         style={{ display: 'none' }}
                       />
                       {formData.cv ? (
-                        <div className="file-drop-content">
+                        <div className="file-drop-content has-file">
                             <p>{formData.cv.name}</p>
-                            <button type="button" className="remove-file" onClick={handleRemoveFile}>X</button>
+                            <button type="button" className="remove-file" onClick={handleRemoveFile}>&times;</button>
                         </div>
                       ) : (
                         <div className="file-drop-content">
