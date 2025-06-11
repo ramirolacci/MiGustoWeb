@@ -4,7 +4,6 @@
     background-color: #000;
     overflow: hidden;
     isolation: isolate;
-    font-family: 'Poppins', sans-serif;
 }
 
 .background-overlay {
@@ -52,7 +51,6 @@
     -webkit-text-fill-color: transparent;
     animation: gradientAnimation 3s ease infinite;
     background-size: 200% 200%;
-    font-family: 'Poppins', sans-serif;
 }
 
 .nosotros-header h1::after {
@@ -127,7 +125,6 @@
     text-transform: uppercase;
     position: relative;
     padding-bottom: 0.5rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .section-card h2::after {
@@ -145,7 +142,6 @@
     font-size: 1.5rem;
     margin-bottom: 2rem;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
 }
 
 .section-card p {
@@ -153,7 +149,6 @@
     line-height: 1.8;
     margin-bottom: 1rem;
     font-size: 1.1rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .pilares-list {
@@ -178,7 +173,6 @@
     min-width: 120px;
     text-align: center;
     background: rgba(212, 175, 55, 0.05);
-    font-family: 'Poppins', sans-serif;
 }
 
 .pilares-list li:hover {
@@ -220,13 +214,11 @@
     font-weight: 700;
     color: #D4AF37;
     margin-bottom: 0.5rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .stat-label {
     color: rgba(255, 255, 255, 0.9);
     font-size: 1.1rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .valores-grid {
@@ -255,14 +247,12 @@
     font-size: 1.3rem;
     margin-bottom: 1rem;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
 }
 
 .valor-item p {
     color: rgba(255, 255, 255, 0.8);
     font-size: 1rem;
     line-height: 1.6;
-    font-family: 'Poppins', sans-serif;
 }
 
 @media (max-width: 1200px) {
