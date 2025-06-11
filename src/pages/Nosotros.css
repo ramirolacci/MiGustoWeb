@@ -156,6 +156,20 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.excelencia-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.excelencia-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .pilares-list {
     list-style: none;
     padding: 0;
@@ -212,6 +226,14 @@
     background: rgba(212, 175, 55, 0.1);
     border-radius: 15px;
     border: 1px solid rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+    background: rgba(212, 175, 55, 0.15);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
 .stat-number {
@@ -221,6 +243,8 @@
     color: #D4AF37;
     margin-bottom: 0.5rem;
     font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 .stat-label {
@@ -683,4 +707,40 @@
     font-size: 1.2em;
     margin-bottom: 15px;
     font-weight: bold;
+}
+
+.valores-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.valores-carousel-track {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-carousel 18s linear infinite;
+    width: max-content;
+}
+
+.valores-carousel-track .valor-item {
+    width: 260px;
+    height: 260px;
+    min-width: 260px;
+    min-height: 260px;
+    max-width: 260px;
+    max-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes scroll-carousel {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 } 
