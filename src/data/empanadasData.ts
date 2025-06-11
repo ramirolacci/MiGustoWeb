@@ -2,6 +2,7 @@
 
 export interface Empanada {
   imagen: string;
+  imagenDetalle?: string;
   titulo: string;
   descripcion: string;
   esRecomendado?: boolean;
@@ -13,6 +14,7 @@ export interface Empanada {
 export const empanadas: Empanada[] = [
   {
     imagen: "https://i.postimg.cc/66dSFkR1/empanada-mexican-pibil-pork.jpg",
+    imagenDetalle: "https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png",
     titulo: "Mexican Pibil pork",
     descripcion: "Carne de cerdo marinada en achiote y naranja agria, con cebolla morada y cilantro.",
     esRecomendado: true,
@@ -20,37 +22,49 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/VLK78mN4/4cac9474-cd35-41f1-a8d9-8e0b2b9ffe86.jpg",
+    imagenDetalle: "https://i.postimg.cc/26x2LHzp/Mexican-Veggie.png",
     titulo: "Mexican Veggie",
     descripcion: "Mezcla de vegetales salteados con especias mexicanas, maíz y frijoles negros.",
     esVegetariano: true,
     esPremium: true
   },
   {
-    imagen: "https://i.postimg.cc/zXCf9vzK/burger.png",
+    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/9a2d8724-46bc-4cde-915f-c958c8e25ef4.jpg",
+    imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
     titulo: "Big Burguer",
     descripcion: "Hamburguesa de carne, queso cheddar, panceta, cebolla caramelizada y salsa especial.",
     esRecomendado: true,
     esPremium: true
   },
   {
-    imagen: "https://i.postimg.cc/bYQTF0tT/cheese-burguer.png",
+    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/3a48db8e-4dcd-476c-aa07-2a4503c637e1.jpg",
+    imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burguer.png",
     titulo: "Cheese Burguer",
     descripcion: "Hamburguesa de carne con queso cheddar, cebolla y salsa especial.",
     esRecomendado: true,
     esPremium: true
   },
   {
-    imagen: "https://i.postimg.cc/4xM2TfNb/Matambre-a-la-pizza.png",
+    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/0a6315c4-600e-4091-808f-565ff5906571.jpg",
+    imagenDetalle: "https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png",
     titulo: "Matambre a la pizza",
     descripcion: "Matambre relleno con salsa de tomate, mozzarella y orégano.",
     esRecomendado: true,
     esPremium: true
   },
   {
-    imagen: "https://i.postimg.cc/L5GFXrzr/VACIO-Y-PROVOLETA.png",
+    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/caaf75a1-068c-48f6-8abc-7f5be9f04e7c.jpg",
+    imagenDetalle: "https://i.postimg.cc/Dz32yH1f/VACIO-Y-PROVOLETA.png",
     titulo: "Vacio y provoleta",
     descripcion: "Vacio tierno con queso provolone fundido y chimichurri.",
     esRecomendado: true,
+    esPremium: true
+  },
+  {
+    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/1d3edfbd-33ae-4928-b656-bec8433d486d.jpg",
+    imagenDetalle: "https://i.postimg.cc/bv0qGgRx/AMERICAN.png",
+    titulo: "American Chicken",
+    descripcion: "Pollo con salsa barbacoa, cebolla caramelizada y queso cheddar.",
     esPremium: true
   },
   {
@@ -58,12 +72,6 @@ export const empanadas: Empanada[] = [
     titulo: "Jamon y queso",
     descripcion: "Clásica combinación de jamón cocido y queso mozzarella.",
     esPremium: false
-  },
-  {
-    imagen: "https://i.postimg.cc/d3WqnkmK/AMERICAN.png",
-    titulo: "American Chicken",
-    descripcion: "Pollo con salsa barbacoa, cebolla caramelizada y queso cheddar.",
-    esPremium: true
   },
   {
     imagen: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
@@ -161,7 +169,7 @@ export const empanadas: Empanada[] = [
     esPremium: false
   },
   {
-    imagen: "https://http2.mlstatic.com/D_968876-MLA82051804859_012025-O.jpg",
+    imagen: "https://i.postimg.cc/hGt9VnSD/carne.png",
     titulo: "Carne",
     descripcion: "Rellenas con carne picada, cebolla, huevo duro y especias clásicas.",
     esRecomendado: true,
