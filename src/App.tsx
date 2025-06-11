@@ -12,7 +12,7 @@ import TrabajaConNosotros from './pages/TrabajaConNosotros';
 import Franquicias from './pages/Franquicias';
 import LoadingSpinner from './components/LoadingSpinner';
 import VentaCorporativa from './pages/VentaCorporativa';
-import Carta from './pages/Carta';
+import Revista from './components/Revista';
 
 import './App.css';
 
@@ -41,7 +41,7 @@ const AppContent: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/carta" element={<Carta />} />
+            <Route path="/carta" element={<Revista />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/sucursales" element={<Sucursales />} />
             <Route path="/nosotros" element={<Nosotros />} />

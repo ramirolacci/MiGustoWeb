@@ -32,14 +32,16 @@ export default function Productos() {
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
     const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
-    const [displayedPrice, setDisplayedPrice] = useState<string>("$4.000");
+    const [displayedPrice, setDisplayedPrice] = useState<string>("");
 
     useEffect(() => {
         if (filtro === "Empanadas") {
             if (tipoProducto === "Clasicas") {
                 setDisplayedPrice("$3.700");
-            } else {
+            } else if (tipoProducto === "Premium") {
                 setDisplayedPrice("$4.000");
+            } else {
+                setDisplayedPrice("");
             }
         } else {
             setDisplayedPrice("");
@@ -172,7 +174,7 @@ export default function Productos() {
                     </div>
                 )}
 
-                {filtro === "Empanadas" && (
+                {filtro === "Empanadas" && tipoProducto && (
                     <div className="productos-precio-display">
                         <button className="precio-display-btn">
                             PRECIO {displayedPrice}
@@ -188,7 +190,7 @@ export default function Productos() {
                     ) : (
                         productosFiltrados.map((prod) => (
                             <div className="producto-card" key={prod.titulo} onClick={() => setProductoSeleccionado(prod)}>
-                                {filtro === "Empanadas" && (
+                                {filtro === "Empanadas" && !tipoProducto && (
                                     <div className="producto-tipo">
                                         {prod.esPremium ? "Premium" : "Clásica"}
                                     </div>
