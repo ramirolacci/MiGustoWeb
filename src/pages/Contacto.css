@@ -260,42 +260,65 @@
 .file-drop-content {
   text-align: center;
   color: rgba(248, 249, 250, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.file-drop-content.has-file {
+  flex-direction: row;
+}
+
+.file-drop-content:not(.has-file) {
+  flex-direction: column;
 }
 
 .file-drop-content i {
   font-size: 3rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #ffc107;
 }
 
 .file-drop-content p {
-  margin: 5px 0;
+  margin: 0;
   font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
 }
 
 .file-types {
   font-size: 0.9rem;
   color: rgba(248, 249, 250, 0.6);
+  margin-top: 5px;
 }
 
 .remove-file {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
+  background-color: transparent;
+  color: #ff0000;
+  border: 1px solid #ff0000;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .remove-file:hover {
-  background-color: #c82333;
+  background-color: #ff0000;
+  color: #fff;
+  transform: scale(1.1);
 }
 
 .progress-bar-container {
