@@ -20,6 +20,13 @@ const NavBar: React.FC = () => {
 
   const isHomePage = location.pathname === '/';
 
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/carta', label: 'Carta' },
+    { path: '/productos', label: 'Productos' },
+    { path: '/sucursales', label: 'Sucursales' }
+  ];
+
   return (
     <nav
       className={`navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : ''}`}
@@ -63,60 +70,17 @@ const NavBar: React.FC = () => {
 
         <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className={`nav-link text-white${location.pathname === '/' ? ' nav-link-active' : ''}`}
-                to="/"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link text-white${location.pathname === '/carta' ? ' nav-link-active' : ''}`}
-                to="/carta"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Carta
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link text-white${location.pathname === '/productos' ? ' nav-link-active' : ''}`}
-                to="/productos"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Productos
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link text-white${location.pathname === '/sucursales' ? ' nav-link-active' : ''}`}
-                to="/sucursales"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sucursales
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link text-white${location.pathname === '/nosotros' ? ' nav-link-active' : ''}`}
-                to="/nosotros"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Nosotros
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link text-white${location.pathname === '/venta-corporativa' ? ' nav-link-active' : ''}`}
-                to="/venta-corporativa"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Venta Corporativa
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.path} className="nav-item">
+                <Link
+                  className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
+                  to={link.path}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
             <li className="nav-item">
               <a
                 className="nav-link text-white nav-link-pedir"
@@ -135,4 +99,4 @@ const NavBar: React.FC = () => {
   );
 };
 
-export default NavBar;
+export default NavBar; 
