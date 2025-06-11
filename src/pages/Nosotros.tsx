@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './Nosotros.css';
 
 const Nosotros: React.FC = () => {
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isMuted, setIsMuted] = useState(true);
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !videoRef.current.muted;
+            setIsMuted(!isMuted);
+        }
+    };
+
     return (
         <div className="nosotros-container">
             <div className="background-overlay"></div>
@@ -9,7 +20,7 @@ const Nosotros: React.FC = () => {
                 <div className="nosotros-header">
                     <h1>NOSOTROS</h1>
                 </div>
-                
+
                 <div className="nosotros-grid">
                     <div className="nosotros-main-content">
                         <div className="section-card">
@@ -35,10 +46,11 @@ const Nosotros: React.FC = () => {
                             <div className="iphone-button right"></div>
                             <div className="tiktok-interface">
                                 <video
+                                    ref={videoRef}
                                     autoPlay
                                     loop
                                     playsInline
-                                    muted={false}
+                                    muted={isMuted}
                                     controls={false}
                                     style={{ 
                                         width: '100%', 
@@ -48,6 +60,9 @@ const Nosotros: React.FC = () => {
                                 >
                                     <source src="/MiGusto_Pabloyjesica.mp4" type="video/mp4" />
                                 </video>
+                                <button className="mute-button" onClick={toggleMute}>
+                                    {isMuted ? '🔇' : '🔊'}
+                                </button>
                                 <div className="tiktok-overlay">
                                     <div className="tiktok-user-info">
                                         <img 
