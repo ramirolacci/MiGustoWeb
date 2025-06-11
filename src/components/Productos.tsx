@@ -15,6 +15,7 @@ interface Producto {
     titulo: string;
     descripcion: string;
     imagen: string;
+    imagenDetalle?: string;
     ingredientes?: string[];
     tiempoPreparacion?: string;
     calorias?: string;
@@ -34,6 +35,7 @@ export default function Productos() {
     const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
     const [displayedPrice, setDisplayedPrice] = useState<string>("");
     const [esVegetariano, setEsVegetariano] = useState<boolean>(false);
+    const [showPrecioModal, setShowPrecioModal] = useState<boolean>(false);
 
     useEffect(() => {
         if (filtro === "Empanadas") {
@@ -200,7 +202,7 @@ export default function Productos() {
                 {filtro === "Empanadas" && tipoProducto && (
                     <div className="productos-precio-display">
                         <button className="precio-display-btn">
-                            PRECIO {displayedPrice}
+                            {tipoProducto === "Premium" ? "$4000" : tipoProducto === "Clasicas" ? "$3700" : ""}
                         </button>
                     </div>
                 )}
@@ -234,6 +236,35 @@ export default function Productos() {
                         producto={productoSeleccionado}
                         onClose={() => setProductoSeleccionado(null)}
                     />
+                )}
+
+                {showPrecioModal && (
+                    <div className="precio-modal">
+                        <div className="precio-modal-content">
+                            <span className="close" onClick={() => setShowPrecioModal(false)}>&times;</span>
+                            <h2>Precio</h2>
+                            {filtro === "Empanadas" && tipoProducto && (
+                                <>
+                                    {tipoProducto === "Premium" && (
+                                        <button 
+                                            className="precio-display-btn"
+                                            onClick={() => setShowPrecioModal(false)}
+                                        >
+                                            $4000
+                                        </button>
+                                    )}
+                                    {tipoProducto === "Clasicas" && (
+                                        <button 
+                                            className="precio-display-btn"
+                                            onClick={() => setShowPrecioModal(false)}
+                                        >
+                                            $3700
+                                        </button>
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

@@ -51,22 +51,35 @@ const Footer: React.FC = () => {
           <div className="footer-col-md-3">
             <ul className="footer-links-list">
               <li className="footer-link-item">
-                <Link to="/proveedores" className="footer-link">
+                <Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                  Nosotros
+                </Link>
+              </li>
+              <li className="footer-link-item">
+                <Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                   Proveedores
                 </Link>
               </li>
               <li className="footer-link-item">
-                <Link to="/trabaja-con-nosotros" className="footer-link">
+                <Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                   Trabajá con nosotros
                 </Link>
               </li>
               <li className="footer-link-item">
-                <Link to="/franquicias" className="footer-link">
+                <Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                   Franquicias
                 </Link>
               </li>
               <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={handleLinkClick}>
+                <Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                  Venta Corporativa
+                </Link>
+              </li>
+              <li className="footer-link-item">
+                <a href="#" className="footer-link" onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}>
                   Legales
                 </a>
               </li>
