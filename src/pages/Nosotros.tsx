@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './Nosotros.css';
 
 const Nosotros: React.FC = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isMuted, setIsMuted] = useState(true);
+    const [isVideoVisible, setIsVideoVisible] = useState(true);
 
     const toggleMute = () => {
         if (videoRef.current) {
@@ -12,6 +13,31 @@ const Nosotros: React.FC = () => {
             setIsMuted(!isMuted);
         }
     };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVideoVisible(entry.isIntersecting);
+                if (videoRef.current) {
+                    videoRef.current.muted = !entry.isIntersecting;
+                }
+            },
+            {
+                threshold: 0.5 // El video se considerará visible cuando al menos el 50% esté en pantalla
+            }
+        );
+
+        const videoElement = videoRef.current;
+        if (videoElement) {
+            observer.observe(videoElement);
+        }
+
+        return () => {
+            if (videoElement) {
+                observer.unobserve(videoElement);
+            }
+        };
+    }, []);
 
     return (
         <div className="nosotros-container">
@@ -50,7 +76,7 @@ const Nosotros: React.FC = () => {
                                     autoPlay
                                     loop
                                     playsInline
-                                    muted={isMuted}
+                                    muted={!isVideoVisible}
                                     controls={false}
                                     style={{ 
                                         width: '100%', 
