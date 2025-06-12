@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import './Home.css';
 import IphoneWhatsapp from './Iphone';
 
@@ -14,20 +14,13 @@ const slidesMobile = [
     '/sliders/mobile3.jpg',
 ];
 
-function Home() {
+const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean }) {
     const [current, setCurrent] = useState(0);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
     const slides = isMobile ? slidesMobile : slidesDesktop;
     const timeoutRef = useRef<number | null>(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const extendedSlides = [...slides, ...slides, ...slides];
 
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 700);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    // Auto-slide every 3 seconds, infinite loop
     useEffect(() => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
@@ -59,43 +52,53 @@ function Home() {
         setCurrent((prev) => prev + 1);
     };
 
-    // Crear array con slides duplicados para el efecto infinito
-    const extendedSlides = [...slides, ...slides, ...slides];
+    return (
+        <div className="home-slider">
+            <div
+                className="home-slider-track"
+                style={{
+                    width: `${extendedSlides.length * 100}%`,
+                    transform: `translateX(-${(current + slides.length) * (100 / extendedSlides.length)}%)`,
+                    transition: isTransitioning ? 'transform 0.7s cubic-bezier(.77,0,.18,1)' : 'none'
+                }}
+                onTransitionEnd={handleTransitionEnd}
+            >
+                {extendedSlides.map((src, idx) => (
+                    <img
+                        key={`${src}-${idx}`}
+                        src={src}
+                        alt={`slide-${idx + 1}`}
+                        className="home-slide"
+                        style={{ width: `${100 / extendedSlides.length}%` }}
+                        loading="lazy"
+                    />
+                ))}
+            </div>
+            <button className="slider-arrow left" onClick={goToPrev} aria-label="Anterior">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M18 24L10 14L18 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </button>
+            <button className="slider-arrow right" onClick={goToNext} aria-label="Siguiente">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M10 24L18 14L10 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </button>
+        </div>
+    );
+});
+
+function Home() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 700);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <div className="home">
-            <div className="home-slider">
-                <div
-                    className="home-slider-track"
-                    style={{
-                        width: `${extendedSlides.length * 100}%`,
-                        transform: `translateX(-${(current + slides.length) * (100 / extendedSlides.length)}%)`,
-                        transition: isTransitioning ? 'transform 0.7s cubic-bezier(.77,0,.18,1)' : 'none'
-                    }}
-                    onTransitionEnd={handleTransitionEnd}
-                >
-                    {extendedSlides.map((src, idx) => (
-                        <img
-                            key={`${src}-${idx}`}
-                            src={src}
-                            alt={`slide-${idx + 1}`}
-                            className="home-slide"
-                            style={{ width: `${100 / extendedSlides.length}%` }}
-                        />
-                    ))}
-                </div>
-                <button className="slider-arrow left" onClick={goToPrev} aria-label="Anterior">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                        <path d="M18 24L10 14L18 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
-                <button className="slider-arrow right" onClick={goToNext} aria-label="Siguiente">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                        <path d="M10 24L18 14L10 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
-            </div>
-
+            <HomeSlider isMobile={isMobile} />
             <section className="home-app-section-row">
                 <div className="home-app-descarga">
                     <h2>Descargá nuestra app</h2>
@@ -109,14 +112,14 @@ function Home() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="src/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} />
+                            <img src="src/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} loading="lazy" />
                         </a>
                         <a
                             href="https://apps.apple.com/app/idXXXXXXXXX"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="src/assets/app-store-apple-logo.svg" alt="App Store" style={{ height: 60 }} />
+                            <img src="src/assets/app-store-apple-logo.svg" alt="App Store" style={{ height: 60 }} loading="lazy" />
                         </a>
                     </div>
                 </div>
@@ -124,7 +127,6 @@ function Home() {
                     <IphoneWhatsapp />
                 </div>
             </section>
-
             {/* Nueva sección de Newsletter */}
             <section className="home-newsletter-section">
                 <div className="newsletter-content">
@@ -140,4 +142,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default memo(Home);
