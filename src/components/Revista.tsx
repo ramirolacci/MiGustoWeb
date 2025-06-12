@@ -4,7 +4,6 @@ import HTMLFlipBook from 'react-pageflip';
 
 const catalogoFotos = [
     '/catalogo/prueba.jpg',
-    '/catalogo/1.jpg',
     '/catalogo/2.jpg',
     '/catalogo/3.jpg',
     '/catalogo/4.jpg',
@@ -18,23 +17,12 @@ const catalogoFotos = [
     '/catalogo/12.jpg',
 ];
 
-const carruselFotos = [
-    '/catalogo/1(1).jpg',
-    '/catalogo/1(2).jpg',
-];
+const carruselFotos: string[] = [];
 
 const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(1);
     const [imagenActual, setImagenActual] = useState(0);
     const flipBook = useRef<any>(null);
-
-    useEffect(() => {
-        const intervalo = setInterval(() => {
-            setImagenActual((prev) => (prev + 1) % carruselFotos.length);
-        }, 1000);
-
-        return () => clearInterval(intervalo);
-    }, []);
 
     const handleFlip = (e: any) => {
         setPaginaActual(e.data);
@@ -94,23 +82,9 @@ const Revista = () => {
                     <div className="revista-pagina">
                         <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" />
                     </div>
-                    <div className="revista-pagina">
-                        <img src="/catalogo/1.jpg" alt="catalogo-1" className="revista-img" />
-                    </div>
-                    <div className="revista-pagina">
-                        <img 
-                            src={carruselFotos[imagenActual]} 
-                            alt="carrusel" 
-                            className="revista-img"
-                            style={{
-                                opacity: 1,
-                                transition: 'opacity 0.5s ease-in-out'
-                            }}
-                        />
-                    </div>
-                    {catalogoFotos.slice(2).map((src, i) => (
+                    {catalogoFotos.map((src, i) => (
                         <div className="revista-pagina" key={i + 1}>
-                            <img src={src} alt={`catalogo-${i + 3}`} className="revista-img" />
+                            <img src={src} alt={`catalogo-${i + 2}`} className="revista-img" />
                         </div>
                     ))}
                 </HTMLFlipBook>

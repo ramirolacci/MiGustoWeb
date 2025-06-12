@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-import Home from './components/Home';
-import Productos from './components/Productos';
-import Sucursales from './components/Sucursales';
-import Nosotros from './pages/Nosotros';
-import Contacto from './pages/Contacto';
-import Proveedores from './pages/Proveedores';
-import TrabajaConNosotros from './pages/TrabajaConNosotros';
-import Franquicias from './pages/Franquicias';
 import LoadingSpinner from './components/LoadingSpinner';
-import VentaCorporativa from './pages/VentaCorporativa';
-import Revista from './components/Revista';
+
+const Home = lazy(() => import('./components/Home'));
+const Productos = lazy(() => import('./components/Productos'));
+const Sucursales = lazy(() => import('./components/Sucursales'));
+const Nosotros = lazy(() => import('./pages/Nosotros'));
+const Contacto = lazy(() => import('./pages/Contacto'));
+const Proveedores = lazy(() => import('./pages/Proveedores'));
+const TrabajaConNosotros = lazy(() => import('./pages/TrabajaConNosotros'));
+const Franquicias = lazy(() => import('./pages/Franquicias'));
+const VentaCorporativa = lazy(() => import('./pages/VentaCorporativa'));
+const Revista = lazy(() => import('./components/Revista'));
 
 import './App.css';
 
@@ -39,18 +40,20 @@ const AppContent: React.FC = () => {
           <NavBar />
         </header>
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/carta" element={<Revista />} />
-            <Route path="/productos" element={<Productos />} />
-            <Route path="/sucursales" element={<Sucursales />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/proveedores" element={<Proveedores />} />
-            <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
-            <Route path="/franquicias" element={<Franquicias />} />
-            <Route path="/venta-corporativa" element={<VentaCorporativa />} />
-          </Routes>
+          <Suspense fallback={<LoadingSpinner isLoading={true} />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/carta" element={<Revista />} />
+              <Route path="/productos" element={<Productos />} />
+              <Route path="/sucursales" element={<Sucursales />} />
+              <Route path="/nosotros" element={<Nosotros />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/proveedores" element={<Proveedores />} />
+              <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
+              <Route path="/franquicias" element={<Franquicias />} />
+              <Route path="/venta-corporativa" element={<VentaCorporativa />} />
+            </Routes>
+          </Suspense>
         </main>
         <footer>
           <Footer />
