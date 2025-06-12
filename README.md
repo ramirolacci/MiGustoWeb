@@ -102,32 +102,6 @@ MiGustoSite/
 
 ---
 
-## Instalación y Puesta en Marcha
-
-1. **Clonar el repositorio:**
-   ```bash
-   git clone <url-del-repo>
-   cd MiGustoSite
-   ```
-2. **Instalar dependencias:**
-   ```bash
-   npm install
-   ```
-3. **Ejecutar en modo desarrollo:**
-   ```bash
-   npm run dev
-   ```
-4. **Compilar para producción:**
-   ```bash
-   npm run build
-   ```
-5. **Previsualizar build:**
-   ```bash
-   npm run preview
-   ```
-
----
-
 ## Buenas Prácticas y Estándares
 
 - **Componentes funcionales y hooks** para lógica de estado y efectos.
