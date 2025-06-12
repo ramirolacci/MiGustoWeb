@@ -1,36 +1,19 @@
-# Mi Gusto Site
+# Créditos — Mi Gusto Web
 
-Bienvenido a **Mi Gusto Site**, una aplicación web moderna desarrollada con React, Vite y Tailwind CSS. Este proyecto incluye un catálogo interactivo tipo revista utilizando la librería [react-pageflip](https://www.npmjs.com/package/react-pageflip).
+Este proyecto fue íntegramente desarrollado por el equipo de Sistemas de **Mi Gusto**, con dedicación, profesionalismo y compromiso con la excelencia tecnológica.
 
----
+## Equipo de Desarrollo
 
-## 🚀 Tecnologías Utilizadas
-
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Bootstrap](https://getbootstrap.com/)
-- [react-pageflip](https://www.npmjs.com/package/react-pageflip)
+- [**Joaquín Tonizzo**](https://github.com/JoaquinTonizzo)
+- [**Facundo Carrizo**](https://github.com/Facu14carrizo)
+- [**Ramiro Lacci**](https://github.com/ramirolacci)
 
 ---
 
-## 🎨 Estilos
+Agradecemos a toda la organización Mi Gusto por la confianza y el apoyo brindado durante el desarrollo de esta plataforma.
 
-El proyecto utiliza **Tailwind CSS** y **Bootstrap** para lograr estilos rápidos, modernos y responsivos.  
-
----
-
-## 📖 Catálogo tipo revista
-
-La funcionalidad de catálogo utiliza la librería [react-pageflip](https://www.npmjs.com/package/react-pageflip) para crear una experiencia interactiva haciendo que "página que se da vuelta".
+> **Mi Gusto Web** es el resultado del trabajo colaborativo, la innovación y la pasión por la tecnología aplicada a la mejora continua de nuestros servicios.
 
 ---
 
-## 📄 Licencia
-
-Este proyecto está bajo la licencia [MIT](LICENSE).
-
----
-
-By **Mi Gusto - Sistemas Team**! 🪐
+© Equipo de Sistemas — Mi Gusto
