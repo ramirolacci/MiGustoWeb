@@ -89,7 +89,7 @@ const NavBar: React.FC = () => {
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Pedir
+                <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
               </a>
             </li>
           </ul>
