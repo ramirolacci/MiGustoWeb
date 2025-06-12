@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
 
@@ -7,16 +7,22 @@ const NavBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isMenuOpen && menuButtonRef.current) {
+      menuButtonRef.current.focus();
+    }
+  }, [isMenuOpen]);
 
   const isHomePage = location.pathname === '/';
 
@@ -29,11 +35,14 @@ const NavBar: React.FC = () => {
 
   return (
     <nav
+      ref={navRef}
       className={`navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : ''}`}
       style={{
         backgroundColor: isHomePage && !isScrolled ? 'transparent' : 'rgba(0, 0, 0, 0.95)',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
+      role="navigation"
+      aria-label="Menú principal"
     >
       <div className="container-fluid">
         <Link
@@ -63,12 +72,15 @@ const NavBar: React.FC = () => {
           className="navbar-toggler"
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle navigation"
+          aria-label="Abrir menú de navegación"
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navbar-menu"
+          ref={menuButtonRef}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
+        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             {navLinks.map((link) => (
               <li key={link.path} className="nav-item">
@@ -76,6 +88,8 @@ const NavBar: React.FC = () => {
                   className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
+                  tabIndex={0}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
                 >
                   {link.label}
                 </Link>
@@ -88,6 +102,8 @@ const NavBar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
+                tabIndex={0}
+                aria-label="Pedir online (se abre en nueva pestaña)"
               >
                 Pedir
               </a>
