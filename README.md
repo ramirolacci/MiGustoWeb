@@ -16,7 +16,7 @@ Agradecemos a toda la organización Mi Gusto por la confianza y el apoyo brindad
 
 ---
 
-© Equipo de Sistemas — Mi Gusto
+
 
 # Documentación y Aspectos Destacados 
 
@@ -78,8 +78,7 @@ MiGustoSite/
 ├── package.json           # Dependencias y scripts
 ├── vite.config.ts         # Configuración de Vite
 ├── tsconfig*.json         # Configuración de TypeScript
-├── README.md              # Descripción general
-└── DOCUMENTACION.md       # Documentación principal (este archivo)
+└── README.md              # Descripción general y Documentación principal (este archivo)
 ```
 
 ---
@@ -168,3 +167,5 @@ MiGustoSite/
 ---
 
 *Proyecto diseñado, construido y revisado bajo estándares profesionales de desarrollo web.* 
+
+© Equipo de Sistemas — Mi Gusto
