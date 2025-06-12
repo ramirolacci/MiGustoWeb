@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, memo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 
@@ -27,16 +27,6 @@ interface Producto {
 }
 
 const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
-
-const ProductoCard = memo(function ProductoCard({ producto, onClick }: { producto: Producto, onClick: () => void }) {
-    return (
-        <div className="producto-card" tabIndex={0} role="button" aria-label={`Ver detalles de ${producto.titulo}`} onClick={onClick} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}>
-            <img src={producto.imagen} alt={producto.titulo} className="producto-img" loading="lazy" />
-            <h3>{producto.titulo}</h3>
-            <p>{producto.descripcion}</p>
-        </div>
-    );
-});
 
 export default function Productos() {
     const [filtro, setFiltro] = useState(categorias[1]);
@@ -223,8 +213,20 @@ export default function Productos() {
                             No se encontraron productos que coincidan con tu búsqueda
                         </div>
                     ) : (
-                        productosFiltrados.map((producto, idx) => (
-                            <ProductoCard key={producto.titulo + idx} producto={producto} onClick={() => setProductoSeleccionado(producto)} />
+                        productosFiltrados.map((prod) => (
+                            <div className="producto-card" key={prod.titulo} onClick={() => setProductoSeleccionado(prod)}>
+                                {filtro === "Empanadas" && !tipoProducto && (
+                                    <div className="producto-tipo">
+                                        {prod.esPremium ? "Premium" : "Clásica"}
+                                    </div>
+                                )}
+                                <img src={prod.imagen} alt={prod.titulo} />
+                                <div className="producto-info">
+                                    <h3>{prod.titulo}</h3>
+                                    <p>{prod.descripcion}</p>
+                                    {prod.precio && <div className="producto-precio">{prod.precio}</div>}
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>
