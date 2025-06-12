@@ -1,3 +1,5 @@
+[Ver documentación completa del proyecto](./DOCUMENTACION.md)
+
 # Créditos — Mi Gusto Web
 
 Este proyecto fue íntegramente desarrollado por el equipo de Sistemas de **Mi Gusto**, con dedicación, profesionalismo y compromiso con la excelencia tecnológica.
