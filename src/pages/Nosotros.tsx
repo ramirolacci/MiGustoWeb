@@ -21,7 +21,15 @@ const Nosotros: React.FC = () => {
             ([entry]) => {
                 setIsVideoVisible(entry.isIntersecting);
                 if (videoRef.current) {
-                    videoRef.current.muted = !entry.isIntersecting;
+                    if (entry.isIntersecting) {
+                        videoRef.current.play();
+                        videoRef.current.muted = false;
+                        setIsMuted(false);
+                    } else {
+                        videoRef.current.pause();
+                        videoRef.current.muted = true;
+                        setIsMuted(true);
+                    }
                 }
             },
             {
@@ -83,25 +91,27 @@ const Nosotros: React.FC = () => {
         <div className="nosotros-container">
             <div className="background-overlay"></div>
             <div className="nosotros-content">
-                <div className="nosotros-header">
-                    <h1>NOSOTROS</h1>
-                </div>
-
                 <div className="nosotros-grid">
                     <div className="nosotros-main-content">
                         <div className="section-card">
                             <h2>QUIENES SOMOS?</h2>
                             <p>
-                                Somos una empresa familiar que nació en el año 2000 con la misión de 
-                                ofrecer las mejores empanadas gourmet del mercado. A lo largo de los años, 
-                                hemos crecido y evolucionado, manteniendo siempre nuestro compromiso con 
-                                la calidad y la innovación.
+                            Somos Mi Gusto, una empresa familiar que nació en el año 2000 en Don Torcuato,
+                            impulsada por la pasión de Lucía, una mujer emprendedora que, junto a sus hijos
+                            Jésica y Pablo Lemos, transformó una pequeña rotisería en una de las cadenas de
+                            empanadas gourmet más reconocidas del país.
+                            </p><br></br>
+                            <p>
+                            Nuestro éxito radica en la combinación de tradición familiar, atención
+                            personalizada y una constante búsqueda por innovar en sabores y formatos,
+                            adaptándonos a las tendencias y necesidades de nuestros clientes.
+                            </p><br></br>
+                            <p>
+                            En Mi Gusto, no solo vendemos empanadas; ofrecemos una invitación a disfrutar
+                            de un producto premium, elaborado con ingredientes seleccionados y una pasión
+                            que se transmite en cada bocado. Somos una marca que crece con sus clientes,
+                            siempre fiel a sus raíces y con la mirada puesta en el futuro gastronómico.
                             </p>
-                            <ul className="pilares-list">
-                                <li>Calidad</li>
-                                <li>Servicio</li>
-                                <li>Limpieza</li>
-                            </ul>
                         </div>
                     </div>
 
@@ -116,7 +126,7 @@ const Nosotros: React.FC = () => {
                                     autoPlay
                                     loop
                                     playsInline
-                                    muted={!isVideoVisible}
+                                    muted={isMuted}
                                     controls={false}
                                     style={{ 
                                         width: '100%', 
@@ -252,8 +262,8 @@ const Nosotros: React.FC = () => {
                                 <h4>EXCELENCIA</h4>
                                 <p>
                                     Es tener una actitud comprometida para hacer las cosas bien la primera vez, 
-                                    siempre, y todos. "Somos lo que hacemos cada día, de modo que la excelencia 
-                                    no es un acto, sino un hábito" - Aristóteles.
+                                    siempre, y todos. Somos lo que hacemos cada día, de modo que la excelencia 
+                                    no es un acto, sino un hábito.
                                 </p>
                             </div>
                             <div className="valor-item">
