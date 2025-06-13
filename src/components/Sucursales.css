@@ -7,11 +7,12 @@ body {
     background-color: #000;
     overflow: hidden;
     isolation: isolate;
+    padding: 2rem 0;
 }
 
 .sucursales-container {
     position: relative;
-    padding: 6rem 0;
+    padding: 4rem 0;
     z-index: 1;
 }
 
@@ -56,4 +57,92 @@ body {
     color: #000;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.productos-titulo {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+    background: linear-gradient(45deg, #ffffff, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.productos-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    border-radius: 2px;
+}
+
+.productos-busqueda {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.productos-input-busqueda {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    padding-right: 3rem;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.productos-input-busqueda::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.productos-input-busqueda:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: #D4AF37;
+}
+
+.buscador-icon {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.row {
+    margin: 0 -1rem;
+}
+
+.col-md-6 {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
 } 

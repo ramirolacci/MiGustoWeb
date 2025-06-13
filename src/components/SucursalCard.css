@@ -20,33 +20,52 @@
 }
 
 .sucursal-card-body {
-    padding: 2rem;
+    padding: 1.5rem;
     color: #fff;
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 400px;
 }
 
 .sucursal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .sucursal-title {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #ffffff, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 3s ease infinite;
+    background-size: 200% 200%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .sucursal-logo {
-    height: 40px;
-    width: 40px;
-    margin-right: 15px;
+    height: 35px;
+    width: 35px;
+    margin-right: 12px;
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -54,12 +73,14 @@
 }
 
 .sucursal-info {
-    margin-bottom: 1rem;
-    font-size: 1.0rem;
+    margin-bottom: 0.75rem;
+    margin-top: 10px !important; 
+    font-size: 0.95rem;
     opacity: 0.9;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    min-height: 24px;
 }
 
 .sucursal-info i {
@@ -67,6 +88,7 @@
     font-size: 1.2rem;
     width: 20px;
     text-align: center;
+    display: inline-block;
 }
 
 .sucursal-info strong {
@@ -75,17 +97,16 @@
 }
 
 .sucursal-map-container {
-    margin-top: 1.5rem;
+    margin-top: auto;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-    flex: 1;
-    min-height: 250px;
+    height: 250px;
 }
 
 .sucursal-map-container iframe {
     width: 100%;
-    height: 250px;
+    height: 100%;
     border: none;
     transition: opacity 0.3s ease;
 }
@@ -113,6 +134,7 @@
 
 .whatsapp-button i {
     font-size: 1.4rem;
+    display: inline-block;
 }
 
 .sucursal-map-container:hover iframe {
