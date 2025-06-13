@@ -35,7 +35,7 @@ export const empanadas: Empanada[] = [
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/9a2d8724-46bc-4cde-915f-c958c8e25ef4.jpg",
     imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
     titulo: "Big Burguer",
-    precio: 4500,
+    precio: 4000,
     descripcion: "Hamburguesa de carne, queso cheddar, panceta, cebolla caramelizada y salsa especial.",
     esRecomendado: true,
     esPremium: true
