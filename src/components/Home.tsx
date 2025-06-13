@@ -23,7 +23,7 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 
     useEffect(() => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => {
+        timeoutRef.current = window.setTimeout(() => {
             goToNext();
         }, 3000);
         return () => {
@@ -125,17 +125,6 @@ function Home() {
                 </div>
                 <div className="home-app-iphone">
                     <IphoneWhatsapp />
-                </div>
-            </section>
-            {/* Nueva sección de Newsletter */}
-            <section className="home-newsletter-section">
-                <div className="newsletter-content">
-                    <h2>Suscríbete a nuestro Newsletter</h2>
-                    <p>Entérate de nuestras últimas noticias, promociones y lanzamientos exclusivos.</p>
-                    <form className="newsletter-form">
-                        <input type="email" placeholder="Ingresa tu email" className="newsletter-input" />
-                        <button type="submit" className="newsletter-button">Suscribirse</button>
-                    </form>
                 </div>
             </section>
         </div>

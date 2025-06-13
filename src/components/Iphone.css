@@ -5,8 +5,8 @@
 
 .iphone-wrapper {
     --iphone-border: 8px;
-    --iphone-outline: 2.5px;
-    --iphone-btn-width: 2px;
+    --iphone-outline: 3px;
+    --iphone-btn-width: 2.5px;
 
     --whatsapp-primary: #25d366;
     --whatsapp-secondary: #272626;
@@ -21,7 +21,7 @@
 }
 
 .iphone-wrapper.animate {
-    animation: rotate3D 30s infinite alternate ease-in-out;
+    /* animation: rotate3D 30s infinite alternate ease-in-out; */
 }
 
 .iphone-wrapper main {
@@ -36,41 +36,43 @@
 .iphone-wrapper .power-btn {
     position: absolute;
     width: var(--iphone-btn-width);
-    height: 4rem;
-    border-radius: 15px;
-    background-color: #000;
-    right: calc(-1 * (var(--iphone-outline) + var(--iphone-btn-width)));
+    height: 4.5rem;
+    border-radius: 4px;
+    background-color: #4a4a4a;
+    right: -3px;
     top: 23%;
     transition: none;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .iphone-wrapper .volumne-btn-container {
     position: absolute;
     width: var(--iphone-btn-width);
-    height: 90px;
+    height: 95px;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    left: calc(-1 * (var(--iphone-outline) + var(--iphone-btn-width)));
+    left: -3px;
     top: 20%;
 }
 
 .iphone-wrapper .volume-btn {
     height: 100%;
     width: 100%;
-    background-color: black;
-    border-radius: 15px;
+    background-color: #4a4a4a;
+    border-radius: 4px;
     transition: none;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .iphone-wrapper .iPhone {
     position: relative;
-    height: 37rem;
-    width: 19.02rem;
-    border: var(--iphone-border) solid #212121;
-    border-radius: 35px;
-    outline: var(--iphone-outline) solid #383838;
-    box-shadow: 0px 0px 22px -4px rgba(0, 0, 0, 0.57);
+    height: 40rem;
+    width: 19.5rem;
+    border: 8px solid #2a2a2a;
+    border-radius: 40px;
+    outline: 3px solid #4a4a4a;
+    box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75), inset 0px 0px 15px rgba(255, 255, 255, 0.05), inset 0px 0px 10px 2px rgba(255, 255, 255, 0.1);
     background-color: #000;
     overflow: hidden;
     transition: none;
@@ -101,8 +103,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-inline: 1.35rem;
-    padding-top: 0;
+    padding-inline: 0.8rem;
+    padding-top: 0.8rem;
     padding-bottom: 0;
     margin-top: 0;
     margin-bottom: 0;
@@ -133,7 +135,7 @@
     justify-content: center;
     width: 30px;
     height: 30px;
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(45 43 43 / 30%);
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
@@ -182,11 +184,11 @@
 }
 
 .iphone-wrapper .at-cliente-btn {
-    background-color: #1100ff;
+    background-color: #1557b8;
     color: #fff;
     border: none;
-    border-radius: 20px;
-    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+    padding: 0.4rem 0.4rem;
     font-size: 0.8rem;
     cursor: pointer;
     display: flex;
@@ -327,19 +329,6 @@
     display: block;
 }
 
-.iphone-wrapper .iPhone-bottom {
-    position: absolute;
-    width: 35%;
-    height: 1.5px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px;
-    background-color: #fff;
-    opacity: 0.7;
-    bottom: calc(var(--iphone-border) + var(--iphone-outline));
-    z-index: 10;
-}
-
 .iphone-wrapper .footer {
     position: sticky;
     left: 0;
@@ -347,7 +336,6 @@
     bottom: 0;
     width: 100%;
     box-sizing: border-box;
-    margin: 0;
     padding: 0.5rem 0;
     display: flex;
     align-items: flex-end;
@@ -366,7 +354,7 @@
     align-items: center;
     gap: 0.1rem;
     cursor: pointer;
-    color: #808080;
+    color: #000000;
     font-size: 0.7rem;
     transition: color 0.3s ease;
     padding: 0.3rem 0.5rem;
@@ -375,16 +363,16 @@
 }
 
 .iphone-wrapper .footer .item i {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-bottom: 0.2rem;
 }
 
 .iphone-wrapper .footer .item:hover {
-    color: #000;
+    color: #808080;
 }
 
 .iphone-wrapper .footer .item.active {
-    color: #000;
+    color: #808080;
 }
 
 .iphone-wrapper .footer .item.active::after {
@@ -401,13 +389,15 @@
 
 /* Estilos para el slider */
 .iphone-wrapper .iphone-content-scrollable {
-    height: 100%;
-    overflow-y: auto;
-    padding-top: 20px;
-    padding-bottom: 60px;
-    box-sizing: border-box;
     position: relative;
-    z-index: 1;
+    height: calc(100% - 50px); /* Ajustar la altura para que el contenido no se corte */
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0 0 30px 30px;
+    background-color: #000;
+    box-sizing: border-box; /* Asegurar que el padding se incluya en el cálculo de la altura */
 }
 
 .iphone-wrapper .iphone-slider {
@@ -437,10 +427,7 @@
 
 /* Estilos para los indicadores del slider */
 .iphone-wrapper .slider-indicators {
-    display: flex;
-    justify-content: center;
     padding: 1rem 0;
-    gap: 0.5rem;
     background: transparent;
     position: absolute;
     bottom: 70px;
@@ -462,19 +449,46 @@
     background-color: #FFFF00;
 }
 
-.iphone-wrapper .camera {
+.iphone-wrapper .dynamic-island {
     position: absolute;
-    right: 2.5px;
-    top: 0;
-    bottom: 0;
-    margin-block: auto;
-    display: block;
-    width: 0.95rem;
-    height: 0.95rem;
-    background: radial-gradient(circle, rgba(116, 116, 116, 1) 0%, rgba(0, 0, 0, 1) 100%);
-    opacity: 0.5;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    height: 30px;
+    width: 120px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+}
+
+.iphone-wrapper .dynamic-island.expanded {
+    width: 250px;
+    height: 80px;
+    border-radius: 30px;
+    background-color: #333;
+}
+
+.iphone-wrapper .island-camera {
+    width: 10px;
+    height: 10px;
+    background-color: #1a1a1a;
     border-radius: 50%;
-    transition: none;
+}
+
+.iphone-wrapper .island-sensor {
+    width: 60px;
+    height: 8px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+}
+
+.iphone-wrapper .camera {
+    display: none;
 }
 
 @keyframes rotate3D {
@@ -601,4 +615,109 @@
     height: 80%;
     background-color: #ff0000;
     border-radius: 2px;
+}
+
+.whatsapp-notification-pop-up {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 300px;
+    background-color: rgba(28, 28, 30, 0.7); /* Gris oscuro semitransparente */
+    backdrop-filter: blur(15px); /* Efecto de cristal esmerilado */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 12px; /* Bordes más suaves */
+    padding: 12px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-family: 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; /* Fuente tipo iOS */
+    opacity: 0;
+    animation: slideInNotification 0.5s forwards ease-out;
+}
+
+.whatsapp-notification-pop-up .notification-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.whatsapp-notification-pop-up .notification-app-info {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 6px;
+}
+
+.whatsapp-notification-pop-up .whatsapp-app-icon {
+    color: #25D366; /* Color oficial de WhatsApp */
+    font-size: 0.85rem;
+}
+
+.whatsapp-notification-pop-up .whatsapp-app-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.whatsapp-notification-pop-up .whatsapp-chevron-icon {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-left: 0px;
+}
+
+.whatsapp-notification-pop-up .notification-time {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-left: auto;
+}
+
+.whatsapp-notification-pop-up .notification-sender-and-message {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.whatsapp-notification-pop-up .notification-sender-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.whatsapp-notification-pop-up .notification-sender-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.whatsapp-notification-pop-up .notification-sender {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.whatsapp-notification-pop-up .notification-message {
+    font-size: 0.9rem;
+    line-height: 1.25;
+    margin: 0;
+    opacity: 0.9;
+    font-weight: 400;
+    padding-left: 28px;
+}
+
+@keyframes slideInNotification {
+    from {
+        top: 30px;
+        opacity: 0;
+    }
+    to {
+        top: 70px;
+        opacity: 1;
+    }
 }
