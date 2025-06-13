@@ -54,9 +54,11 @@ body {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -234,13 +236,13 @@ body {
     justify-content: center;
 }
 
-.productos-lista > * {
+.productos-lista>* {
     flex: 0 1 calc(25% - 1.5rem);
     min-width: 280px;
 }
 
 @media (max-width: 768px) {
-    .productos-lista > * {
+    .productos-lista>* {
         flex: 0 1 100%;
     }
 }
@@ -382,7 +384,7 @@ body {
     padding: 3rem;
     background: #000000;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     color: #ffffff;
     font-size: 1.2rem;
 }
@@ -405,8 +407,13 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .modal-content {
@@ -428,6 +435,7 @@ body {
         transform: scale(0.9) translateY(20px);
         opacity: 0;
     }
+
     to {
         transform: scale(1) translateY(0);
         opacity: 1;
@@ -490,6 +498,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -508,6 +517,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -539,7 +549,7 @@ body {
     background-color: #fffff9;
     padding: 1.5rem;
     border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .detalle-item h3 {
@@ -617,6 +627,7 @@ body {
         opacity: 0;
         transform: rotate(-180deg);
     }
+
     to {
         opacity: 1;
         transform: rotate(0);
@@ -683,7 +694,7 @@ body {
         padding: 0.5rem 1rem;
         border-radius: 20px;
         background-color: #000000;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
         color: #ffffff;
         font-size: 0.75rem;
@@ -700,30 +711,30 @@ body {
 
     .filtros-checkbox label:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .filtros-checkbox input[type="checkbox"] {
         display: none;
     }
 
-    .filtros-checkbox input[type="checkbox"]:checked + label {
+    .filtros-checkbox input[type="checkbox"]:checked+label {
         background-color: #D4AF37;
         color: #000;
         box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
     }
 
-    .filtros-checkbox input[type="checkbox"]:checked + label[for*="recomendado"] {
+    .filtros-checkbox input[type="checkbox"]:checked+label[for*="recomendado"] {
         background-color: #ff6b6b;
         color: #fff;
     }
 
-    .filtros-checkbox input[type="checkbox"]:checked + label[for*="vegetariano"] {
+    .filtros-checkbox input[type="checkbox"]:checked+label[for*="vegetariano"] {
         background-color: #51cf66;
         color: #fff;
     }
 
-    .filtros-checkbox input[type="checkbox"]:checked + label[for*="sin-gluten"] {
+    .filtros-checkbox input[type="checkbox"]:checked+label[for*="sin-gluten"] {
         background-color: #339af0;
         color: #fff;
     }
