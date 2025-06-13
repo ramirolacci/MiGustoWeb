@@ -73,14 +73,14 @@
 }
 
 .sucursal-info {
-    margin-bottom: 0.75rem;
-    margin-top: 10px !important; 
-    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
     opacity: 0.9;
     display: flex;
     align-items: center;
-    gap: 8px;
-    min-height: 24px;
+    gap: 12px;
+    min-height: 40px;
+    font-weight: normal;
 }
 
 .sucursal-info i {
