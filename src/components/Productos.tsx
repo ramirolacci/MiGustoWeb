@@ -25,6 +25,12 @@ interface Producto {
     esPremium?: boolean;
 }
 
+function formatearPrecio(precio: string | number) {
+    const num = typeof precio === "string" ? parseInt(precio.replace(/\D/g, "")) : precio;
+    if (isNaN(num)) return precio;
+    return num.toLocaleString("es-AR");
+}
+
 const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
 export default function Productos() {
@@ -37,7 +43,7 @@ export default function Productos() {
 
     const productosFiltrados = useMemo(() => {
         let productos: Producto[] = [];
-        
+
         // Si hay una búsqueda, buscar en todas las categorías
         if (busqueda) {
             productos = [
@@ -80,8 +86,8 @@ export default function Productos() {
 
         return productos.filter(producto => {
             const coincideBusqueda = producto.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
-                                    (producto.descripcion && producto.descripcion.toLowerCase().includes(busqueda.toLowerCase()));
-            
+                (producto.descripcion && producto.descripcion.toLowerCase().includes(busqueda.toLowerCase()));
+
             let coincideTipoEmpanada = true;
             if (filtro === "Empanadas" && !busqueda) {
                 if (tipoProducto === "Premium") {
@@ -119,7 +125,7 @@ export default function Productos() {
             <div className="background-overlay"></div>
             <div className="productos-container">
                 <h2 className="productos-titulo">Conocé nuestros productos</h2>
-                
+
                 <div className="productos-busqueda">
                     <input
                         type="text"
@@ -173,16 +179,15 @@ export default function Productos() {
                     ) : (
                         productosFiltrados.map((prod) => (
                             <div className="producto-card" key={prod.titulo} onClick={() => setProductoSeleccionado(prod)}>
-                                {filtro === "Empanadas" && !tipoProducto && (
+                                {prod.precio && (
                                     <div className="producto-tipo">
-                                        {prod.esPremium ? "Premium" : "Clásica"}
+                                        ${formatearPrecio(prod.precio)}
                                     </div>
                                 )}
                                 <img src={prod.imagen} alt={prod.titulo} />
                                 <div className="producto-info">
                                     <h3>{prod.titulo}</h3>
                                     <p>{prod.descripcion}</p>
-                                    {prod.precio && <div className="producto-precio">{prod.precio}</div>}
                                 </div>
                             </div>
                         ))
@@ -204,7 +209,7 @@ export default function Productos() {
                             {filtro === "Empanadas" && tipoProducto && (
                                 <>
                                     {tipoProducto === "Premium" && (
-                                        <button 
+                                        <button
                                             className="precio-display-btn"
                                             onClick={() => setShowPrecioModal(false)}
                                         >
@@ -212,7 +217,7 @@ export default function Productos() {
                                         </button>
                                     )}
                                     {tipoProducto === "Clasicas" && (
-                                        <button 
+                                        <button
                                             className="precio-display-btn"
                                             onClick={() => setShowPrecioModal(false)}
                                         >
