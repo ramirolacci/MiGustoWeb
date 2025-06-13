@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Home = lazy(() => import('./components/Home'));
 const Productos = lazy(() => import('./components/Productos'));
