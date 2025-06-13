@@ -10,20 +10,23 @@
     align-items: center;
     z-index: 1000;
     perspective: 2000px;
-    padding: 20px;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 .modal-content-3d {
     background: transparent;
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 0;
+    padding: 0;
     position: relative;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
     transform-style: preserve-3d;
     transition: transform 0.2s ease-out;
-    overflow-y: auto;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -45,41 +48,52 @@
     justify-content: center;
 }
 
-.modal-header-3d {
+.modal-header-3d, .modal-image-container {
     position: relative;
-    transform-style: preserve-3d;
-    margin-bottom: 20px;
+    z-index: 2;
+}
+.modal-img, .modal-img-large {
+    position: relative;
+    z-index: 3;
+}
+.modal-horizontal-right, .modal-detalles, .detalle-item {
+    position: relative;
+    z-index: 1;
+}
+
+.modal-header-3d {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
 }
 
 .modal-image-container {
     width: 100%;
-    height: 600px;
-    overflow: visible;
-    border-radius: 15px;
-    transform-style: preserve-3d;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
 }
 
-.modal-img {
+.modal-img, .modal-img-large {
+    max-width: 95%;
+    max-height: 60vh;
     width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;
     object-fit: contain;
     border-radius: 15px;
-    transform: scale(1.2);
     transition: all 0.3s ease;
 }
 
 .modal-img:hover {
     transform: scale(1.4);
-}
-
-.modal-img-large {
-    transform: scale(1.8);
 }
 
 .modal-img-large:hover {
@@ -135,28 +149,36 @@
 
 .modal-detalles {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 20px;
     transform-style: preserve-3d;
+    max-width: 650px;
+    margin-left: 0;
+    margin-right: auto;
 }
 
 .detalle-item {
     background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 32px 28px;
+    border-radius: 18px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.13);
     transform-style: preserve-3d;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(7px);
+    border: 1.5px solid rgba(255, 255, 255, 0.13);
     height: 100%;
     display: flex;
     flex-direction: column;
+    max-width: 650px;
+    margin-left: 0;
+    margin-right: auto;
+    font-size: 1.25rem;
 }
 
 .detalle-item h3 {
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin-bottom: 18px;
+    font-weight: 700;
 }
 
 .ingredientes-lista {
@@ -187,7 +209,7 @@
     padding: 6px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
+    font-size: 1.15rem;
 }
 
 .ingredientes-lista li:last-child {
@@ -236,28 +258,78 @@
     color: white;
 }
 
+.modal-horizontal-content {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-horizontal-left, .modal-horizontal-right {
+    height: 100%;
+}
+
+.modal-horizontal-left {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    height: 100%;
+}
+
+.modal-horizontal-right {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.modal-product-title {
+    color: #FFD700;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    text-align: left;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.28);
+}
+
 @media (max-width: 768px) {
+    .modal-content-3d,
     .modal-overlay {
-        padding: 10px;
-        align-items: flex-start;
-        padding-top: 20px;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        padding: 0;
     }
-
-    .modal-content-3d {
-        padding: 15px;
-        width: 95%;
-        max-height: 98vh;
-        margin: 10px 0;
-        margin-top: 20px;
+    .modal-horizontal-content {
+        flex-direction: row;
+        gap: 0;
+        width: 100vw;
+        height: 100vh;
     }
-
+    .modal-horizontal-left, .modal-horizontal-right {
+        width: 50vw;
+        height: 100vh;
+        min-width: 0;
+        min-height: 0;
+    }
     .modal-header-3d {
-        margin-bottom: 15px;
+        height: 60vh;
     }
-
-    .modal-image-container {
-        height: 180px;
-        margin-bottom: 10px;
+    .modal-img, .modal-img-large {
+        max-width: 98vw;
+        max-height: 40vh;
     }
 
     .modal-info-3d {
@@ -284,14 +356,13 @@
     }
 
     .detalle-item {
-        padding: 12px;
-        min-height: auto;
-        margin-top: 5px;
+        padding: 18px 8px;
+        font-size: 1.05rem;
     }
 
     .detalle-item h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
     }
 
     .ingredientes-lista {
@@ -304,9 +375,7 @@
     }
 
     .ingredientes-lista li {
-        font-size: 0.85rem;
-        padding: 4px 0;
-        line-height: 1.3;
+        font-size: 0.98rem;
     }
 
     .modal-badges {
@@ -344,6 +413,25 @@
     .modal-content-3d > * {
         position: relative;
         z-index: 1;
+    }
+
+    .modal-horizontal-left {
+        flex: 1 1 55%;
+    }
+    .modal-horizontal-right {
+        flex: 1 1 45%;
+        justify-content: center;
+        padding-top: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .modal-product-title {
+        font-size: 1.7rem;
+        margin-bottom: 18px;
+    }
+
+    .modal-detalles, .detalle-item {
+        max-width: 95vw;
     }
 }
 
