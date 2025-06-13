@@ -5,7 +5,6 @@ import ProductModal3D from './ProductModal3D';
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
 import { fitzzas } from '../data/fitzzasData';
-import { aderezos } from '../data/aderezosData';
 import { pizzasIndi } from '../data/pizzasIndiData';
 import { salsas } from '../data/salsasData';
 import { postres } from '../data/postresData';
@@ -33,23 +32,8 @@ export default function Productos() {
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
     const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
-    const [displayedPrice, setDisplayedPrice] = useState<string>("");
     const [esVegetariano, setEsVegetariano] = useState<boolean>(false);
     const [showPrecioModal, setShowPrecioModal] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (filtro === "Empanadas") {
-            if (tipoProducto === "Clasicas") {
-                setDisplayedPrice("$3.700");
-            } else if (tipoProducto === "Premium") {
-                setDisplayedPrice("$4.000");
-            } else {
-                setDisplayedPrice("");
-            }
-        } else {
-            setDisplayedPrice("");
-        }
-    }, [filtro, tipoProducto]);
 
     const productosFiltrados = useMemo(() => {
         let productos: Producto[] = [];
@@ -118,13 +102,6 @@ export default function Productos() {
         });
     }, [filtro, busqueda, tipoProducto, esVegetariano]);
 
-    const extraerIngredientes = (descripcion: string): string[] => {
-        return descripcion
-            .replace(/elaborada con|y|,/g, ',')
-            .split(',')
-            .map(item => item.trim())
-            .filter(item => item.length > 0);
-    };
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -184,25 +161,6 @@ export default function Productos() {
                             className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
                         >
                             CLÁSICAS
-                        </button>
-                    </div>
-                )}
-
-                {(filtro === "Pizzas") && (
-                    <div className="productos-subfiltros">
-                        <button
-                            onClick={() => setEsVegetariano(!esVegetariano)}
-                            className={`subfiltro-btn ${esVegetariano ? "active" : ""}`}
-                        >
-                            VEGETARIANO
-                        </button>
-                    </div>
-                )}
-
-                {filtro === "Empanadas" && tipoProducto && (
-                    <div className="productos-precio-display">
-                        <button className="precio-display-btn">
-                            {tipoProducto === "Premium" ? "$4000" : tipoProducto === "Clasicas" ? "$3700" : ""}
                         </button>
                     </div>
                 )}
