@@ -4,15 +4,21 @@ import './Nosotros.css';
 const Nosotros: React.FC = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [isMuted, setIsMuted] = useState(true);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [isVideoVisible, setIsVideoVisible] = useState(true);
     const [franquiciasCount, setFranquiciasCount] = useState(0);
     const franquiciasRef = useRef<HTMLDivElement>(null);
 
-    const toggleMute = () => {
+    const togglePlay = () => {
         if (videoRef.current) {
-            videoRef.current.muted = !videoRef.current.muted;
-            setIsMuted(!isMuted);
+            if (isPlaying) {
+                videoRef.current.pause();
+                videoRef.current.muted = true;
+            } else {
+                videoRef.current.play();
+                videoRef.current.muted = false;
+            }
+            setIsPlaying(!isPlaying);
         }
     };
 
@@ -21,19 +27,15 @@ const Nosotros: React.FC = () => {
             ([entry]) => {
                 setIsVideoVisible(entry.isIntersecting);
                 if (videoRef.current) {
-                    if (entry.isIntersecting) {
-                        videoRef.current.play();
-                        videoRef.current.muted = false;
-                        setIsMuted(false);
-                    } else {
+                    if (!entry.isIntersecting) {
                         videoRef.current.pause();
                         videoRef.current.muted = true;
-                        setIsMuted(true);
+                        setIsPlaying(false);
                     }
                 }
             },
             {
-                threshold: 0.5 // El video se considerará visible cuando al menos el 50% esté en pantalla
+                threshold: 0.5
             }
         );
 
@@ -120,13 +122,12 @@ const Nosotros: React.FC = () => {
                             <div className="iphone-notch"></div>
                             <div className="iphone-button left"></div>
                             <div className="iphone-button right"></div>
-                            <div className="tiktok-interface">
+                            <div className="tiktok-interface" onClick={togglePlay}>
                                 <video
                                     ref={videoRef}
-                                    autoPlay
                                     loop
                                     playsInline
-                                    muted={isMuted}
+                                    muted={!isPlaying}
                                     controls={false}
                                     style={{ 
                                         width: '100%', 
@@ -136,9 +137,11 @@ const Nosotros: React.FC = () => {
                                 >
                                     <source src="/MiGusto_Pabloyjesica.mp4" type="video/mp4" />
                                 </video>
-                                <button className="mute-button" onClick={toggleMute}>
-                                    {isMuted ? '🔇' : '🔊'}
-                                </button>
+                                {!isPlaying && (
+                                    <div className="play-overlay">
+                                        <i className="fas fa-play"></i>
+                                    </div>
+                                )}
                                 <div className="tiktok-overlay">
                                     <div className="tiktok-user-info">
                                         <img 

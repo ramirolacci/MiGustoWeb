@@ -17,6 +17,7 @@ const IphoneStore: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isDynamicIslandExpanded, setIsDynamicIslandExpanded] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [showWhatsAppNotification, setShowWhatsAppNotification] = useState(false);
 
     useEffect(() => {
         const updateTime = () => {
@@ -26,9 +27,19 @@ const IphoneStore: React.FC = () => {
             setCurrentTime(`${hours}:${minutes}`);
         };
 
-        // updateTime(); // Mantener la hora estática de la screenshot por ahora
+        const notificationTimer = setTimeout(() => {
+            setShowWhatsAppNotification(true);
+            const hideNotificationTimer = setTimeout(() => {
+                setShowWhatsAppNotification(false);
+            }, 5000); // La notificación desaparece después de 5 segundos
+            return () => clearTimeout(hideNotificationTimer);
+        }, 3000); // La notificación aparece después de 3 segundos
+
         const interval = setInterval(updateTime, 60000); // Actualizar cada minuto (opcional)
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearTimeout(notificationTimer);
+        };
     }, []);
 
     useEffect(() => {
@@ -69,21 +80,24 @@ const IphoneStore: React.FC = () => {
                 className="iphone-wrapper animate" 
                 ref={iphoneRef}
             >
-                <span className="power-btn"></span>
-                <div className="volumne-btn-container">
-                    <span className="volume-btn"></span>
-                    <span className="volume-btn"></span>
-                </div>
                 <div className="iPhone">
+                    <span className="power-btn"></span>
+                    <div className="volumne-btn-container">
+                        <span className="volume-btn"></span>
+                        <span className="volume-btn"></span>
+                    </div>
                     <div className="headers-container">
                         <div className="iphone-header">
                             <span className="time-text">{currentTime}</span>
+                            <div className="dynamic-island" onClick={handleDynamicIslandClick}>
+                                {/* Aquí irá el contenido dinámico si se expande */}
+                                <div className="island-camera"></div>
+                                <div className="island-sensor"></div>
+                            </div>
                             <div className="icons">
                                 <img className="icon" src="https://raw.githubusercontent.com/khatri2002/codepen/30b52de44864248b0617b059a7fc7c0ebbcc0eda/iphone-whatsapp/assets/images/icons/network-icon.svg" alt="network-icon" />
                                 <img className="icon" src="https://raw.githubusercontent.com/khatri2002/codepen/30b52de44864248b0617b059a7fc7c0ebbcc0eda/iphone-whatsapp/assets/images/icons/wifi-icon.svg" alt="wifi-icon" />
                                 <img className="icon" src="https://raw.githubusercontent.com/khatri2002/codepen/30b52de44864248b0617b059a7fc7c0ebbcc0eda/iphone-whatsapp/assets/images/icons/battery-icon.svg" alt="battery-icon" />
-                                {/* Ícono de campana de notificación */}
-                                <i className="fa-solid fa-bell notification-icon"></i>
                             </div>
                         </div>
                         <div className="appstore-header">
@@ -94,13 +108,32 @@ const IphoneStore: React.FC = () => {
                                 </button>
                                 {/* Contenedor para el icono de campana y quizás un badge de notificación */}
                                 <div className="notification-icon-container">
-                                    <i className="fa-solid fa-bell notification-icon"></i>
+                                    <i className="fa-regular fa-bell notification-icon"></i>
                                     {/* <span className="notification-badge">3</span> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                     
+                    {/* WhatsApp Notification */}
+                    {showWhatsAppNotification && (
+                        <div className="whatsapp-notification-pop-up">
+                            <div className="notification-app-info">
+                                <i className="fab fa-whatsapp whatsapp-app-icon"></i>
+                                <span className="whatsapp-app-name">WhatsApp</span>
+                                <i className="fas fa-chevron-right whatsapp-chevron-icon"></i>
+                                <span className="notification-time">Ahora</span>
+                            </div>
+                            <div className="notification-sender-and-message">
+                                <div className="notification-sender-line">
+                                    <img src="/logo.jpg" alt="Mi Gusto" className="notification-sender-icon" />
+                                    <span className="notification-sender">Mi Gusto</span>
+                                </div>
+                                <p className="notification-message">Ya pediste lo de siempre? 🥟<br/>Te extrañamos 💕</p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Menú desplegable (condicional) */}
                     {isMenuOpen && (
                         <div className={`menu-overlay ${isMenuOpen ? 'visible' : ''}`} onClick={handleOverlayClick}>

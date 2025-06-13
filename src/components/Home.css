@@ -147,24 +147,40 @@
 
 .home-app-section-row {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  gap: 80px;
-  background: transparent;
-  padding: 100px 24px;
-  width: 100%;
-  position: relative;
+  align-items: center;
+  gap: 14rem;
+  padding: 4rem 2rem;
+  background-color: #000; /* Fondo principal */
+  position: relative; /* Necesario para el pseudo-elemento */
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: 4rem; /* Ajuste para espacio superior */
+  padding-bottom: 4rem; /* Ajuste para espacio inferior */
+}
+
+.home-app-section-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../assets/background-text.jpg');
+  background-size: 120% auto;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+  filter: contrast(1.2) brightness(1.2);
 }
 
 .home-app-descarga {
-  flex: 1 1 400px;
-  max-width: 520px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  padding: 0 20px;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  max-width: 500px;
 }
 
 .home-app-descarga h2 {
@@ -195,15 +211,16 @@
 }
 
 .app-descarga-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
-  text-align: left;
+  text-align: justify;
   color: #ffffff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin-bottom: 30px;
   opacity: 1;
   transform: none;
   animation: none;
+  font-family: 'Poppins', sans-serif;
 }
 
 .home-app-links {
