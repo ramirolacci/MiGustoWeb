@@ -390,3 +390,55 @@
     left: -100%;
   }
 }
+
+.mobile-pedir-button {
+  display: none;
+  margin-right: 15px;
+}
+
+.mobile-pedir-button .btn-hacer-pedido-img {
+  width: 150px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .side-menu {
+    width: 100%;
+    left: -100%;
+  }
+
+  .navbar-collapse {
+    display: none !important;
+  }
+
+  .mobile-pedir-button {
+    display: flex;
+    align-items: center;
+  }
+
+  .desktop-pedir-button {
+    display: none;
+  }
+
+  .hamburger-menu {
+    order: 1;
+  }
+
+  .mobile-pedir-button {
+    order: 2;
+  }
+
+  .navbar-brand {
+    order: 3;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-pedir-button {
+    display: none !important;
+  }
+
+  .desktop-pedir-button {
+    display: block;
+  }
+}
