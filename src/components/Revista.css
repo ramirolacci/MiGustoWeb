@@ -105,14 +105,6 @@
     text-shadow: 0 2px 12px #000a;
 }
 
-.revista-arrow-left {
-    /* No scaleX(-1) aquí, el SVG ya lo invierte */
-}
-
-.revista-arrow-right {
-    /* No scaleX(-1) aquí */
-}
-
 @keyframes flechaMove {
     0% { transform: translate(-50%, 60px) scale(1);}
     50% { transform: translate(-50%, 60px) scale(1.13);}
