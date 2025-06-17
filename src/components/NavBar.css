@@ -65,6 +65,12 @@
   .nav-link:not(.nav-link-active)::after {
     content: none;
   }
+
+  .navbar-brand, .navbar-brand img {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 }
 
 .navbar {
@@ -377,10 +383,6 @@
 /* Ajustes para el navbar */
 .navbar {
   padding: 10px 20px;
-}
-
-.navbar-brand {
-  margin-left: 10px;
 }
 
 /* Ajustes para dispositivos móviles */
