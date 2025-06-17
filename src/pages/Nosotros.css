@@ -275,12 +275,15 @@
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .valor-item:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(212, 175, 55, 0.3);
+    z-index: 2;
 }
 
 .valor-item h4 {
@@ -581,17 +584,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.4) 0%,
-        transparent 20%,
-        transparent 80%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
     pointer-events: none;
     z-index: 2;
 }
@@ -599,9 +591,13 @@
 .tiktok-user-info {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
+    margin-top: 40px;
     margin-bottom: 20px;
     pointer-events: auto;
+    width: 100%;
+    padding: 0 15px;
 }
 
 .tiktok-avatar {
@@ -750,6 +746,7 @@
     overflow: hidden;
     position: relative;
     margin-top: 2rem;
+    padding: 5px 0;
 }
 
 .valores-carousel-track {
@@ -757,6 +754,7 @@
     gap: 2rem;
     animation: scroll-carousel 35s linear infinite;
     width: max-content;
+    padding: 5px 0;
 }
 
 .valores-carousel-track .valor-item {
