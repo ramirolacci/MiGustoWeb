@@ -92,7 +92,9 @@
 .revista-arrow-right,
 .revista-arrow-left {
     position: absolute;
-    bottom: 8%;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
     font-size: 4rem;
     color: #fff;
     opacity: 0.95;
@@ -104,13 +106,11 @@
 }
 
 .revista-arrow-left {
-    left: 62%;
-    transform: translate(-50%, 60px) scaleX(-1);
+    /* No scaleX(-1) aquí, el SVG ya lo invierte */
 }
 
 .revista-arrow-right {
-    left: 38%;
-    transform: translate(-50%, 60px);
+    /* No scaleX(-1) aquí */
 }
 
 @keyframes flechaMove {
@@ -133,9 +133,10 @@
     .revista-arrow-left,
     .revista-arrow-right {
         font-size: 2rem;
+        left: 50%;
         bottom: 50%;
         top: auto;
-        transform: translate(-50%, 0) scale(1);
+        transform: translate(-50%, 50%);
     }
 
     .revista-arrow-left {
