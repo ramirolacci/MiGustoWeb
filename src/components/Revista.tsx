@@ -3,7 +3,6 @@ import './Revista.css'
 import HTMLFlipBook from 'react-pageflip';
 
 const catalogoFotos = [
-    '/catalogo/prueba.jpg',
     '/catalogo/2.jpg',
     '/catalogo/3.jpg',
     '/catalogo/4.jpg',
@@ -20,8 +19,7 @@ const catalogoFotos = [
 const carruselFotos: string[] = [];
 
 const Revista = () => {
-    const [paginaActual, setPaginaActual] = useState(1);
-    const [imagenActual, setImagenActual] = useState(0);
+    const [paginaActual, setPaginaActual] = useState(0); // Empieza en la primera página
     const flipBook = useRef<any>(null);
 
     const handleFlip = (e: any) => {
@@ -42,7 +40,7 @@ const Revista = () => {
                         </svg>
                     </div>
                 )}
-                {paginaActual === catalogoFotos.length - 1 && (
+                {paginaActual === catalogoFotos.length && (
                     <div className="revista-arrow revista-arrow-left">
                         <svg width="60" height="60" viewBox="0 0 60 60" style={{ transform: "scaleX(-1)" }}>
                             <polyline points="20,15 40,30 20,45" fill="none" stroke="#fff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
@@ -64,7 +62,7 @@ const Revista = () => {
                     mobileScrollSupport={true}
                     className="revista-flipbook"
                     style={{}}
-                    startPage={1}
+                    startPage={0}
                     flippingTime={300}
                     usePortrait={true}
                     startZIndex={0}
