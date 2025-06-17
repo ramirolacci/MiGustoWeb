@@ -16,7 +16,7 @@
     perspective: 1000px;
     position: relative;
     margin: 2rem;
-    transition: none;
+    transition: all 0.3s ease;
     transform: none;
 }
 
@@ -75,7 +75,7 @@
     box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75), inset 0px 0px 15px rgba(255, 255, 255, 0.05), inset 0px 0px 10px 2px rgba(255, 255, 255, 0.1);
     background-color: #000;
     overflow: hidden;
-    transition: none;
+    transition: all 0.3s ease;
     transform: none;
 }
 
@@ -720,4 +720,244 @@
         top: 70px;
         opacity: 1;
     }
+}
+
+@media (max-width: 900px) {
+    .iphone-wrapper {
+        margin: 1rem;
+    }
+
+    .iphone-wrapper .iPhone {
+        height: 35rem;
+        width: 17rem;
+        border-width: 6px;
+        border-radius: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .iphone-wrapper {
+        margin: 0.5rem;
+    }
+
+    .iphone-wrapper .iPhone {
+        height: 30rem;
+        width: 15rem;
+        border-width: 5px;
+        border-radius: 30px;
+    }
+
+    .iphone-wrapper .fitzza-title {
+        font-size: 3rem;
+    }
+
+    .iphone-wrapper .new-arrival-text {
+        font-size: 1.5rem;
+    }
+
+    .iphone-wrapper .nueva-label {
+        width: 50px;
+        height: 50px;
+        font-size: 0.8rem;
+    }
+
+    .iphone {
+        width: 250px;
+        height: 500px;
+        border-radius: 35px;
+        box-shadow: 0 0 0 9px #1f1f1f, 0 0 0 11px #000, 0 0 0 17px rgba(0, 0, 0, 0.5);
+    }
+
+    .iphone-notch {
+        width: 120px;
+        height: 25px;
+    }
+
+    .iphone-button {
+        top: 100px;
+        height: 50px;
+    }
+
+    .iphone-button::before {
+        top: 60px;
+        height: 25px;
+    }
+
+    .iphone-button::after {
+        top: 120px;
+        height: 40px;
+    }
+
+    .iphone-wrapper .menu-item {
+        font-size: 0.5rem;
+    }
+
+    .iphone-wrapper .menu-item i {
+        font-size: 0.5rem;
+    }
+
+    .iphone-wrapper .footer .item {
+        font-size: 0.7rem;
+    }
+
+    .iphone-wrapper .footer .item i {
+        font-size: 0.7rem;
+    }
+}
+
+.iphone-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.iphone {
+  position: relative;
+  width: 300px;
+  height: 600px;
+  background: #1a1a1a;
+  border-radius: 40px;
+  box-shadow: 0 0 0 11px #1f1f1f, 0 0 0 13px #000, 0 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: rotateY(-15deg);
+  transition: transform 0.5s ease;
+}
+
+.iphone:hover {
+  transform: rotateY(0deg);
+}
+
+.iphone-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 30px;
+  background: #000;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 2;
+}
+
+.iphone-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.iphone-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.iphone-button {
+  position: absolute;
+  right: -3px;
+  top: 120px;
+  width: 3px;
+  height: 60px;
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+.iphone-button::before {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 70px;
+  width: 3px;
+  height: 30px;
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+.iphone-button::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 140px;
+  width: 3px;
+  height: 50px;
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+.iphone-reflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+@media (max-width: 480px) {
+  .iphone {
+    width: 250px;
+    height: 500px;
+    border-radius: 35px;
+    box-shadow: 0 0 0 9px #1f1f1f, 0 0 0 11px #000, 0 0 0 17px rgba(0, 0, 0, 0.5);
+  }
+
+  .iphone-notch {
+    width: 120px;
+    height: 25px;
+  }
+
+  .iphone-button {
+    top: 100px;
+    height: 50px;
+  }
+
+  .iphone-button::before {
+    top: 60px;
+    height: 25px;
+  }
+
+  .iphone-button::after {
+    top: 120px;
+    height: 40px;
+  }
+
+  .iphone-wrapper .footer .item {
+    font-size: 0.5rem;
+  }
+
+  .iphone-wrapper .footer .item i {
+    font-size: 1.2rem;
+  }
 }

@@ -151,12 +151,12 @@
   align-items: center;
   gap: 14rem;
   padding: 4rem 2rem;
-  background-color: #000; /* Fondo principal */
-  position: relative; /* Necesario para el pseudo-elemento */
+  background-color: #000;
+  position: relative;
   overflow: hidden;
   isolation: isolate;
-  padding-top: 4rem; /* Ajuste para espacio superior */
-  padding-bottom: 4rem; /* Ajuste para espacio inferior */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .home-app-section-row::before {
@@ -248,6 +248,7 @@
 
 @media (max-width: 900px) {
   .home-app-section-row {
+    flex-direction: column;
     gap: 40px;
     padding: 60px 20px;
   }
@@ -265,6 +266,28 @@
   .app-descarga-text {
     font-size: 1.2rem;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-app-section-row {
+    padding: 20px 10px;
+    gap: 10px;
+  }
+
+  .home-app-iphone {
+    transform: scale(0.9);
+    margin-top: -10px;
+  }
+
+  .home-app-links {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .home-app-links img {
+    height: 45px;
   }
 }
 
