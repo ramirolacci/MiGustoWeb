@@ -335,6 +335,62 @@
     }
 }
 
+@media (max-width: 480px) {
+    .nosotros-content {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .section-card {
+        padding: 1.5rem;
+    }
+
+    .section-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-card p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+        text-align: left;
+    }
+
+    .nosotros-main-content .section-card p {
+        text-align: left;
+    }
+
+    .valor-item {
+        padding: 1.25rem;
+    }
+
+    .valor-item h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .valor-item p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        text-align: left;
+    }
+
+    .vision-mision {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .mision, .vision {
+        padding: 1.25rem;
+    }
+
+    .mision p, .vision p {
+        text-align: left;
+    }
+}
+
 .nosotros-video-container {
     position: sticky;
     top: 2rem;
