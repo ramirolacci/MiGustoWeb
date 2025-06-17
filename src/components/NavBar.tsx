@@ -9,6 +9,7 @@ const NavBar: React.FC = () => {
   const location = useLocation();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,10 +20,16 @@ const NavBar: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen && menuButtonRef.current) {
-      menuButtonRef.current.focus();
-    }
-  }, [isMenuOpen]);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node) &&
+          menuButtonRef.current && !menuButtonRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const isHomePage = location.pathname === '/';
 
@@ -31,6 +38,19 @@ const NavBar: React.FC = () => {
     { path: '/carta', label: 'Carta' },
     { path: '/productos', label: 'Productos' },
     { path: '/sucursales', label: 'Sucursales' }
+  ];
+
+  const sideMenuLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/carta', label: 'Carta' },
+    { path: '/productos', label: 'Productos' },
+    { path: '/sucursales', label: 'Sucursales' },
+    { path: '/nosotros', label: 'Nosotros' },
+    { path: '/proveedores', label: 'Proveedores' },
+    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros' },
+    { path: '/franquicias', label: 'Franquicias' },
+    { path: '/venta-corporativa', label: 'Venta corporativa' },
+    { path: '/legales', label: 'Legales' }
   ];
 
   return (
@@ -45,6 +65,20 @@ const NavBar: React.FC = () => {
       aria-label="Menú principal"
     >
       <div className="container-fluid">
+        <button
+          className="hamburger-menu"
+          type="button"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Abrir menú de navegación"
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navbar-menu"
+          ref={menuButtonRef}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hamburger-icon">
+            <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+          </svg>
+        </button>
+
         <Link
           className="navbar-brand d-flex align-items-center"
           to="/"
@@ -68,17 +102,6 @@ const NavBar: React.FC = () => {
             }}
           />
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Abrir menú de navegación"
-          aria-expanded={isMenuOpen}
-          aria-controls="main-navbar-menu"
-          ref={menuButtonRef}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
 
         <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -108,6 +131,28 @@ const NavBar: React.FC = () => {
                 <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
               </a>
             </li>
+          </ul>
+        </div>
+
+        <div 
+          ref={menuRef}
+          className={`side-menu ${isMenuOpen ? 'open' : ''}`}
+          id="side-menu"
+        >
+          <ul className="side-menu-list">
+            {sideMenuLinks.map((link) => (
+              <li key={link.path} className="side-menu-item">
+                <Link
+                  className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
+                  to={link.path}
+                  onClick={() => setIsMenuOpen(false)}
+                  tabIndex={0}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
