@@ -158,12 +158,20 @@ body {
     transition: all 0.3s ease;
 }
 
+.productos-filtros {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
 .productos-subfiltros {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .subfiltro-btn {
@@ -946,33 +954,153 @@ body {
 
 @media (max-width: 480px) {
     .productos-categorias {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
         gap: 0.5rem;
+        padding: 0.5rem;
         margin-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100vw;
+        overflow-y: hidden;
+        justify-content: flex-start;
     }
 
-    .productos-btn {
-        font-size: 0.85rem;
-        padding: 0.3rem 0.5rem;
-    }
-
-    .productos-subfiltros {
-        flex-direction: column;
-        gap: 0.2rem;
-        margin-bottom: 1rem;
-    }
-
-    .subfiltro-separator {
+    .productos-categorias::-webkit-scrollbar {
         display: none;
     }
 
-    .subfiltro-btn {
-        font-size: 1rem;
-        padding: 0.2rem 0.3rem;
+    .productos-btn {
+        flex: 0 0 auto;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        min-width: max-content;
+        text-overflow: ellipsis;
+        overflow: visible;
+        width: auto;
+        display: inline-block;
+        text-align: center;
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    .productos-btn:hover {
+        color: #ffd700;
+    }
+
+    .productos-btn.active {
+        color: #ffd700;
+    }
+
+    .productos-btn.active::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background-color: #ffd700;
+        transition: all 0.3s ease;
+    }
+
+    .productos-filtros {
+        display: flex;
+        overflow-x: scroll;
+        white-space: nowrap;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100vw;
+        overflow-y: hidden;
+    }
+
+    .productos-filtros::-webkit-scrollbar {
+        display: none;
+    }
+
+    .productos-filtros button {
+        flex: 0 0 auto;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        min-width: max-content;
+    }
+
+    .productos-subfiltros {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: nowrap;
+    }
+
+    .productos-subfiltros button {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .subfiltro-separator {
+        margin: 0 0.25rem;
     }
 
     .precio-display-btn {
         padding: 0.5rem 1.2rem;
         font-size: 1.1rem;
+    }
+
+    .producto-card {
+        height: 420px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+
+    .producto-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        object-position: center;
+        padding: 0;
+        background: none;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .producto-card .producto-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+    }
+
+    .producto-card .producto-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+    }
+
+    .producto-card .producto-info p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.8);
     }
 }
 
