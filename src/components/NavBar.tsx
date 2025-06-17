@@ -65,43 +65,58 @@ const NavBar: React.FC = () => {
       aria-label="Menú principal"
     >
       <div className="container-fluid">
-        <button
-          className="hamburger-menu"
-          type="button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Abrir menú de navegación"
-          aria-expanded={isMenuOpen}
-          aria-controls="main-navbar-menu"
-          ref={menuButtonRef}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hamburger-icon">
-            <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
-          </svg>
-        </button>
+        <div className="d-flex align-items-center">
+          <button
+            className="hamburger-menu"
+            type="button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menú de navegación"
+            aria-expanded={isMenuOpen}
+            aria-controls="main-navbar-menu"
+            ref={menuButtonRef}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hamburger-icon">
+              <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+            </svg>
+          </button>
 
-        <Link
-          className="navbar-brand d-flex align-items-center"
-          to="/"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          style={{
-            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-            opacity: isHovered ? 1 : 0.9,
-          }}
-        >
-          <img
-            src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
-            alt="Mi Gusto"
-            height="40"
-            className="me-2"
+          <div className="mobile-pedir-button">
+            <a
+              className="nav-link text-white"
+              href="https://pedir.migusto.com.ar/"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={0}
+              aria-label="Pedir online (se abre en nueva pestaña)"
+            >
+              <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+            </a>
+          </div>
+
+          <Link
+            className="navbar-brand d-flex align-items-center"
+            to="/"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{
-              transition: 'all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              transform: 'translateZ(30px)',
-              willChange: 'transform'
+              transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              opacity: isHovered ? 1 : 0.9,
             }}
-          />
-        </Link>
+          >
+            <img
+              src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
+              alt="Mi Gusto"
+              height="40"
+              className="me-2"
+              style={{
+                transition: 'all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                transform: 'translateZ(30px)',
+                willChange: 'transform'
+              }}
+            />
+          </Link>
+        </div>
 
         <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -118,7 +133,7 @@ const NavBar: React.FC = () => {
                 </Link>
               </li>
             ))}
-            <li className="nav-item">
+            <li className="nav-item desktop-pedir-button">
               <a
                 className="nav-link text-white nav-link-pedir"
                 href="https://pedir.migusto.com.ar/"
