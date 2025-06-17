@@ -178,7 +178,12 @@ export default function Productos() {
                         </div>
                     ) : (
                         productosFiltrados.map((prod) => (
-                            <div className="producto-card" key={prod.titulo} onClick={() => setProductoSeleccionado(prod)}>
+                            <div 
+                                className="producto-card" 
+                                key={prod.titulo} 
+                                onClick={() => setProductoSeleccionado(prod)}
+                                data-categoria={filtro}
+                            >
                                 {prod.precio && (
                                     <div className="producto-tipo">
                                         ${formatearPrecio(prod.precio)}
