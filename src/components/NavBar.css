@@ -276,3 +276,117 @@
     display: block !important;
   }
 }
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  z-index: 1000;
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+.hamburger-menu:hover .hamburger-icon {
+  fill: #D4AF37;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  transition: left 0.3s ease;
+  z-index: 999;
+  padding: 80px 20px 20px;
+  overflow-y: auto;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu-item {
+  margin-bottom: 15px;
+}
+
+.side-menu-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: block;
+  padding: 10px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.side-menu-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #D4AF37;
+}
+
+.side-menu-link.active {
+  color: #D4AF37;
+  font-weight: bold;
+}
+
+.btn-hacer-pedido-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Overlay para cuando el menú está abierto */
+.side-menu::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.side-menu.open::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ajustes para el navbar */
+.navbar {
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  margin-left: 10px;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .side-menu {
+    width: 100%;
+    left: -100%;
+  }
+}
