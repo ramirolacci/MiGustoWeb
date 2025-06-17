@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import './Revista.css'
 import HTMLFlipBook from 'react-pageflip';
 
@@ -16,7 +16,6 @@ const catalogoFotos = [
     '/catalogo/12.jpg',
 ];
 
-const carruselFotos: string[] = [];
 
 const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(0); // Empieza en la primera página
