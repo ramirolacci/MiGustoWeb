@@ -4,8 +4,8 @@
   background: #000000;
   overflow-x: hidden;
   position: relative;
-  margin-top: -80px; /* Compensar el espacio del NavBar */
-  padding-top: 80px; /* Agregar padding para compensar el margen negativo */
+  margin-top: -80px;
+  padding-top: 80px;
 }
 
 .home::before {
@@ -28,7 +28,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  margin-top: -80px; /* Compensar el espacio del NavBar */
+  margin-top: -80px;
 }
 
 .home-slider-track {
@@ -136,8 +136,10 @@
 .home-app-links img {
   height: 180px !important;
   width: auto;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.2));
+  will-change: transform, filter;
 }
 
 .home-app-links img:hover {
@@ -147,6 +149,7 @@
 
 .home-app-section-row {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 14rem;
@@ -157,6 +160,7 @@
   isolation: isolate;
   padding-top: 4rem;
   padding-bottom: 4rem;
+  height: 100vh;
 }
 
 .home-app-section-row::before {
@@ -191,11 +195,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.1;
-  letter-spacing: -0.5px;
-  text-shadow: none;
   animation: gradientAnimation 3s ease infinite;
-  background-size: 200% 200%;
+  min-height: 80px;
+  padding: 30px;
 }
 
 @keyframes gradientAnimation {
@@ -243,13 +245,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 0;
 }
 
 @media (max-width: 900px) {
   .home-app-section-row {
     flex-direction: column;
-    gap: 40px;
     padding: 60px 20px;
+    height: auto;
+    gap: 0;
   }
 
   .home-app-descarga {
@@ -259,11 +263,11 @@
   }
 
   .home-app-descarga h2 {
-    font-size: 2.8rem;
+    font-size: 2rem;
   }
 
   .app-descarga-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
   }
 }
@@ -271,22 +275,17 @@
 @media (max-width: 480px) {
   .home-app-section-row {
     padding: 20px 10px;
-    gap: 10px;
-  }
-
-  .home-app-iphone {
-    transform: scale(0.9);
-    margin-top: -10px;
+    gap: 0;
   }
 
   .home-app-links {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 0;
   }
 
   .home-app-links img {
-    height: 45px;
+    height: 150px !important;
   }
 }
 
@@ -379,33 +378,4 @@
   background-color: #e0a800; /* Darker golden on hover */
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Responsive adjustments for newsletter form */
-@media (max-width: 600px) {
-  .newsletter-content h2 {
-    font-size: 2.2rem;
-  }
-  
-  .newsletter-content p {
-    font-size: 1rem;
-  }
-
-  .newsletter-form {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .newsletter-input {
-    width: 80%; /* Adjust width for smaller screens */
-    padding: 12px 15px;
-    font-size: 1rem;
-  }
-
-  .newsletter-button {
-    width: 80%; /* Adjust width for smaller screens */
-    padding: 12px 15px;
-    font-size: 1rem;
-  }
 }
