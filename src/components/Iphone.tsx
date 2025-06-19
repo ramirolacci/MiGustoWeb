@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Iphone.css';
 
 // Importar las imágenes de los sliders
@@ -10,7 +9,6 @@ const sliderImages = [
 ];
 
 const IphoneStore: React.FC = () => {
-    const navigate = useNavigate();
     const iphoneRef = useRef<HTMLDivElement>(null);
     const [currentTime, setCurrentTime] = useState('15:26'); // Ajustar hora a la captura
     const [activeCategory, setActiveCategory] = useState('Inicio');
@@ -31,11 +29,11 @@ const IphoneStore: React.FC = () => {
             setShowWhatsAppNotification(true);
             const hideNotificationTimer = setTimeout(() => {
                 setShowWhatsAppNotification(false);
-            }, 5000); // La notificación desaparece después de 5 segundos
+            }, 10000); // La notificación desaparece después de 10 segundos
             return () => clearTimeout(hideNotificationTimer);
         }, 3000); // La notificación aparece después de 3 segundos
 
-        const interval = setInterval(updateTime, 60000); // Actualizar cada minuto (opcional)
+        const interval = setInterval(updateTime, 30000); // Actualizar cada 30 segundos
         return () => {
             clearInterval(interval);
             clearTimeout(notificationTimer);
@@ -118,12 +116,6 @@ const IphoneStore: React.FC = () => {
                     {/* WhatsApp Notification */}
                     {showWhatsAppNotification && (
                         <div className="whatsapp-notification-pop-up">
-                            <div className="notification-app-info">
-                                <i className="fab fa-whatsapp whatsapp-app-icon"></i>
-                                <span className="whatsapp-app-name">WhatsApp</span>
-                                <i className="fas fa-chevron-right whatsapp-chevron-icon"></i>
-                                <span className="notification-time">Ahora</span>
-                            </div>
                             <div className="notification-sender-and-message">
                                 <div className="notification-sender-line">
                                     <img src="/logo.jpg" alt="Mi Gusto" className="notification-sender-icon" />
