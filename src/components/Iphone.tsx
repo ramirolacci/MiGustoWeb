@@ -141,7 +141,7 @@ const IphoneStore: React.FC = () => {
                                 {/* Sección del perfil */}
                                 <div className="profile-section">
                                     <img src="/logo.jpg" alt="Profile" className="profile-avatar" /> {/* Usando logo.jpg */}
-                                    <span>MiGusto Lover ♥</span>
+                                    <span>Mi Gusto</span>
                                 </div>
 
                                 {/* Lista de opciones del menú */}
