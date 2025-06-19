@@ -205,16 +205,6 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose }) =>
                                     <p>{producto.calorias}</p>
                                 </div>
                             )}
-                            {producto.precio && (
-                                <div className="detalle-item precio"
-                                    style={{
-                                        transform: `translateZ(190px) translateX(${position.x * 0.13}px) translateY(${position.y * 0.13}px)`,
-                                        transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                                    }}>
-                                    <h3>Precio</h3>
-                                    <p className="precio-valor">{producto.precio}</p>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
