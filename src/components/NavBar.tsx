@@ -77,7 +77,7 @@ const NavBar: React.FC = () => {
         aria-label="Menú principal"
       >
         <div className="container-fluid">
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center navbar-flex-responsive">
             <button
               className="hamburger-menu"
               type="button"
@@ -91,19 +91,6 @@ const NavBar: React.FC = () => {
                 <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
               </svg>
             </button>
-
-            <div className="mobile-pedir-button">
-              <a
-                className="nav-link text-white"
-                href="https://pedir.migusto.com.ar/"
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={0}
-                aria-label="Pedir online (se abre en nueva pestaña)"
-              >
-                <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
-              </a>
-            </div>
 
             <Link
               className="navbar-brand d-flex align-items-center"
@@ -218,6 +205,19 @@ const NavBar: React.FC = () => {
                 </span>
               </span>
             </label>
+
+            <div className="mobile-pedir-button">
+              <a
+                className="nav-link text-white"
+                href="https://pedir.migusto.com.ar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={0}
+                aria-label="Pedir online (se abre en nueva pestaña)"
+              >
+                <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+              </a>
+            </div>
           </div>
 
           <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
