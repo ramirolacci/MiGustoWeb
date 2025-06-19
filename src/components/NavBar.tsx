@@ -128,7 +128,7 @@ const NavBar: React.FC = () => {
               <input type="checkbox" style={{display: 'none'}} checked={isSwitchOn} readOnly />
               <span
                 style={{
-                  height: 28,
+                  height: 40,
                   border: 'none',
                   background: 'transparent',
                   borderRadius: 999,
@@ -140,7 +140,7 @@ const NavBar: React.FC = () => {
                   padding: '0 12px 0 0',
                   overflow: 'hidden',
                   width: 90,
-                  minWidth: 90,
+                  minWidth: 120,
                   cursor: 'pointer',
                   opacity: 1,
                   transitionProperty: 'background, opacity',
@@ -177,8 +177,8 @@ const NavBar: React.FC = () => {
                     left: 4,
                     top: '50%',
                     transform: isSwitchOn ? 'translateY(-50%) translateX(58px)' : 'translateY(-50%) translateX(0)',
-                    width: 20,
-                    height: 20,
+                    width: 25,
+                    height: 25,
                     background: '#c21818',
                     borderRadius: '50%',
                     boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
