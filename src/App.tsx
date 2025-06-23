@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import BotmakerChat from './components/BotmakerChat';
 
 const Home = lazy(() => import('./components/Home'));
 const Productos = lazy(() => import('./components/Productos'));
@@ -36,6 +37,7 @@ const AppContent: React.FC = () => {
   return (
     <>
       {loading && <LoadingSpinner isLoading={loading} />}
+      <BotmakerChat />
       <div className="app">
         <header>
           <NavBar />
