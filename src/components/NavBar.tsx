@@ -38,6 +38,7 @@ const NavBar: React.FC = () => {
     { path: '/', label: 'Home' },
     { path: '/carta', label: 'Carta' },
     { path: '/productos', label: 'Productos' },
+    { path: '/productos2', label: 'Productos2' },
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
@@ -64,6 +65,20 @@ const NavBar: React.FC = () => {
         @keyframes switchBorderGradientMove {
           0% { background-position: 0% 0%; }
           100% { background-position: 100% 0%; }
+        }
+        @media (max-width: 600px) {
+          .switch-lovers {
+            width: 64px !important;
+            min-width: 64px !important;
+            height: 28px !important;
+            padding: 0 6px 0 0 !important;
+          }
+          .switch-lovers-btn {
+            width: 20px !important;
+            height: 20px !important;
+            left: 2px !important;
+            top: 50% !important;
+          }
         }
       `}</style>
       <nav
@@ -127,6 +142,7 @@ const NavBar: React.FC = () => {
             >
               <input type="checkbox" style={{display: 'none'}} checked={isSwitchOn} readOnly />
               <span
+                className="switch-lovers"
                 style={{
                   height: 40,
                   border: 'none',
@@ -172,13 +188,14 @@ const NavBar: React.FC = () => {
                 />
                 {/* Botón circular del switch y texto Lovers siempre a la derecha */}
                 <span
+                  className="switch-lovers-btn"
                   style={{
                     position: 'absolute',
                     left: 4,
                     top: '50%',
-                    transform: isSwitchOn ? 'translateY(-50%) translateX(58px)' : 'translateY(-50%) translateX(0)',
-                    width: 25,
-                    height: 25,
+                    transform: isSwitchOn ? 'translateY(-50%) translateX(80px)' : 'translateY(-50%) translateX(0)',
+                    width: 28,
+                    height: 28,
                     background: '#c21818',
                     borderRadius: '50%',
                     boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
@@ -196,7 +213,7 @@ const NavBar: React.FC = () => {
                     fontFamily: 'inherit',
                     letterSpacing: 1,
                     zIndex: 1,
-                    marginLeft: isSwitchOn ? 10 : 34,
+                    marginLeft: isSwitchOn ? 10 : 55,
                     marginRight: 10,
                     transition: 'margin-left 0.3s cubic-bezier(0.4,0,0.2,1)'
                   }}
