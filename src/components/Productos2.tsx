@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import './Productos.css';
+import ProductView from './ProductView';
 
 const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
@@ -59,25 +60,45 @@ export default function Productos2() {
                     </div>
                 )}
             </div>
-            {/* Grilla de imágenes por filas */}
-            <div style={{ width: '100%', maxWidth: 1200, margin: '32px auto 0 auto' }}>
-                {/* Primera fila: 01-04 */}
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 24 }}>
-                    <img src="/01.png" alt="01" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
-                    <img src="/02.png" alt="02" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
-                    <img src="/03.png" alt="03" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
-                    <img src="/04.png" alt="04" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
+            {/* Distribución con posiciones absolutas */}
+            <div style={{
+                position: 'relative',
+                width: '100vw',
+                height: '90vh',
+                maxWidth: '100vw',
+                margin: '32px 0 0 0',
+                background: 'transparent',
+                overflow: 'hidden'
+            }}>
+                {/* Primera fila: 4 productos */}
+                <div style={{ position: 'absolute', top: '5%', left: '2%', width: '23%', height: '25%' }}>
+                    <ProductView image="/01.png" alt="01" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
                 </div>
-                {/* Segunda fila: 05-07 */}
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 24 }}>
-                    <img src="/05.png" alt="05" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
-                    <img src="/06.png" alt="06" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
-                    <img src="/07.png" alt="07" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
+                <div style={{ position: 'absolute', top: '5%', left: '26%', width: '23%', height: '25%' }}>
+                    <ProductView image="/02.png" alt="02" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
                 </div>
-                {/* Tercera fila: 08-09 */}
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 24 }}>
-                    <img src="/08.png" alt="08" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
-                    <img src="/09.png" alt="09" style={{ width: 305.8, height: 275, objectFit: 'contain', borderRadius: 12 }} />
+                <div style={{ position: 'absolute', top: '5%', left: '50%', width: '23%', height: '25%' }}>
+                    <ProductView image="/03.png" alt="03" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
+                </div>
+                <div style={{ position: 'absolute', top: '5%', left: '74%', width: '23%', height: '25%' }}>
+                    <ProductView image="/04.png" alt="04" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
+                </div>
+                {/* Segunda fila: 3 productos */}
+                <div style={{ position: 'absolute', top: '37%', left: '14%', width: '23%', height: '25%' }}>
+                    <ProductView image="/05.png" alt="05" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
+                </div>
+                <div style={{ position: 'absolute', top: '37%', left: '39%', width: '23%', height: '25%' }}>
+                    <ProductView image="/06.png" alt="06" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
+                </div>
+                <div style={{ position: 'absolute', top: '37%', left: '64%', width: '23%', height: '25%' }}>
+                    <ProductView image="/07.png" alt="07" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
+                </div>
+                {/* Tercera fila: 2 productos */}
+                <div style={{ position: 'absolute', top: '69%', left: '26%', width: '23%', height: '25%' }}>
+                    <ProductView image="/08.png" alt="08" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
+                </div>
+                <div style={{ position: 'absolute', top: '69%', left: '50%', width: '23%', height: '25%' }}>
+                    <ProductView image="/09.png" alt="09" width={window.innerWidth * 0.23} height={window.innerHeight * 0.225} />
                 </div>
             </div>
         </div>
