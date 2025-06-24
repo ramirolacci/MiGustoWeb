@@ -107,8 +107,9 @@ const NavBar: React.FC = () => {
               </svg>
             </button>
 
+            {/* Logo solo visible en desktop */}
             <Link
-              className="navbar-brand d-flex align-items-center"
+              className="navbar-brand d-flex align-items-center navbar-brand-desktop"
               to="/"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -273,6 +274,16 @@ const NavBar: React.FC = () => {
             className={`side-menu ${isMenuOpen ? 'open' : ''}`}
             id="side-menu"
           >
+            {/* Logo solo visible en mobile, arriba a la derecha */}
+            <div className="side-menu-logo-mobile">
+              <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                <img
+                  src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
+                  alt="Mi Gusto"
+                  className="side-menu-logo-img"
+                />
+              </Link>
+            </div>
             <ul className="side-menu-list">
               {sideMenuLinks.map((link) => (
                 <li key={link.path} className="side-menu-item">
