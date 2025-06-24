@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
+import Switch from './Switch';
+import './Switch.css';
 
 const NavBar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -132,97 +134,15 @@ const NavBar: React.FC = () => {
               />
             </Link>
             {/* Switch al lado del logo */}
-            <label
-              style={{display: 'flex', alignItems: 'center', marginLeft: 12, cursor: 'pointer'}}
+            <Switch
+              isOn={isSwitchOn}
               onClick={() => {
                 setIsSwitchOn(true);
                 setTimeout(() => {
                   window.location.href = 'https://migustodev.github.io/MiGustoLovers/';
                 }, 350);
               }}
-            >
-              <input type="checkbox" style={{display: 'none'}} checked={isSwitchOn} readOnly />
-              <span
-                className="switch-lovers"
-                style={{
-                  height: 40,
-                  border: 'none',
-                  background: 'transparent',
-                  borderRadius: 999,
-                  position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  transition: 'background 0.3s',
-                  boxShadow: '0 4px 24px 0 #800000cc',
-                  padding: '0 12px 0 0',
-                  overflow: 'hidden',
-                  width: 90,
-                  minWidth: 120,
-                  cursor: 'pointer',
-                  opacity: 1,
-                  transitionProperty: 'background, opacity',
-                  transitionDuration: '0.3s, 0.4s',
-                  transitionTimingFunction: 'ease, ease'
-                }}
-              >
-                {/* Borde animado gradiente */}
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    borderRadius: 'inherit',
-                    padding: 0,
-                    zIndex: 0,
-                    pointerEvents: 'none',
-                    background: 'linear-gradient(270deg, #c21818, #800000, #c21818)',
-                    backgroundSize: '200% 100%',
-                    animation: 'switchBorderGradientMove 3s linear infinite',
-                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    WebkitMaskComposite: 'xor',
-                    maskComposite: 'exclude',
-                    border: '2px solid transparent',
-                    boxSizing: 'border-box'
-                  }}
-                />
-                {/* Botón circular del switch y texto Lovers siempre a la derecha */}
-                <span
-                  className="switch-lovers-btn"
-                  style={{
-                    position: 'absolute',
-                    left: 4,
-                    top: '50%',
-                    transform: isSwitchOn ? 'translateY(-50%) translateX(80px)' : 'translateY(-50%) translateX(0)',
-                    width: 28,
-                    height: 28,
-                    background: '#c21818',
-                    borderRadius: '50%',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
-                    border: '2px solid #800000',
-                    transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)',
-                    zIndex: 1
-                  }}
-                ></span>
-                <span
-                  style={{
-                    color: '#ffffff',
-                    fontWeight: 600,
-                    fontSize: 14,
-                    userSelect: 'none',
-                    fontFamily: 'inherit',
-                    letterSpacing: 1,
-                    zIndex: 1,
-                    marginLeft: isSwitchOn ? 10 : 55,
-                    marginRight: 10,
-                    transition: 'margin-left 0.3s cubic-bezier(0.4,0,0.2,1)'
-                  }}
-                >
-                  Lovers
-                </span>
-              </span>
-            </label>
+            />
 
             <div className="mobile-pedir-button">
               <a
