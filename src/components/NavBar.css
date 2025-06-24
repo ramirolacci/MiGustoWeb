@@ -444,3 +444,37 @@
     max-height: 28px !important;
   }
 }
+
+/* Logo solo visible en desktop */
+.navbar-brand-desktop {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand-desktop {
+    display: none !important;
+  }
+  .side-menu-logo-mobile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    width: calc(100% - 48px);
+    z-index: 1001;
+  }
+  .side-menu-logo-img {
+    height: 38px;
+    max-height: 38px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px #000a);
+    transition: transform 0.3s;
+  }
+}
+
+@media (min-width: 769px) {
+  .side-menu-logo-mobile {
+    display: none !important;
+  }
+}
