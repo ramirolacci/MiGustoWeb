@@ -404,12 +404,6 @@
 }
 
 @media (max-width: 768px) {
-  .navbar-flex-responsive {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
   .mobile-pedir-button {
     display: flex;
     align-items: center;
@@ -422,41 +416,6 @@
     margin-left: 0;
     margin-right: 0;
     z-index: 10;
-  }
-  .desktop-pedir-button {
-    display: none;
-  }
-}
-@media (min-width: 769px) {
-  .mobile-pedir-button {
-    display: none !important;
-  }
-  .desktop-pedir-button {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-flex-responsive {
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
-  .navbar-flex-responsive .hamburger-menu {
-    order: 1;
-  }
-  .navbar-flex-responsive .navbar-brand {
-    order: 2;
-  }
-  .navbar-flex-responsive label {
-    order: 3;
-  }
-  .navbar-flex-responsive .mobile-pedir-button {
-    order: 4;
-  }
-  .navbar-flex-responsive .navbar-brand img {
-    height: 28px !important;
-    max-height: 28px !important;
   }
 }
 
@@ -493,3 +452,16 @@
     display: none !important;
   }
 }
+
+.switch-lovers-text {
+  font-size: 14px;
+  margin-left: 55px;
+}
+
+@media (max-width: 768px) {
+  .switch-lovers-text {
+    font-size: 10px;
+    margin-left: 24px;
+  }
+}
+
