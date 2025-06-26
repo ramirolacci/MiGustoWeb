@@ -25,14 +25,61 @@ const Franquicias: React.FC = () => {
     inmuebleGarantia: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({
+    nombre: '',
+    fechaNacimiento: '',
+    sexo: '',
+    estadoCivil: '',
+    tipoDocumento: '',
+    numeroDocumento: '',
+    paisResidencia: '',
+    provinciaResidencia: '',
+    localidadResidencia: '',
+    domicilio: '',
+    telefonoCelular: '',
+    email: '',
+    paisPreferencia: '',
+    provinciaPreferencia: '',
+    localidadPreferencia: '',
+    inmuebleGarantia: '',
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
+  const validateStep = () => {
+    const newErrors: any = {};
+    if (currentStep === 1) {
+      if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es obligatorio.';
+      if (!formData.fechaNacimiento.trim()) newErrors.fechaNacimiento = 'La fecha de nacimiento es obligatoria.';
+      if (!formData.sexo.trim()) newErrors.sexo = 'El sexo es obligatorio.';
+      if (!formData.estadoCivil.trim()) newErrors.estadoCivil = 'El estado civil es obligatorio.';
+      if (!formData.tipoDocumento.trim()) newErrors.tipoDocumento = 'El tipo de documento es obligatorio.';
+      if (!formData.numeroDocumento.trim()) newErrors.numeroDocumento = 'El número de documento es obligatorio.';
+    }
+    if (currentStep === 2) {
+      if (!formData.paisResidencia.trim()) newErrors.paisResidencia = 'El país de residencia es obligatorio.';
+      if (!formData.provinciaResidencia.trim()) newErrors.provinciaResidencia = 'La provincia de residencia es obligatoria.';
+      if (!formData.localidadResidencia.trim()) newErrors.localidadResidencia = 'La localidad de residencia es obligatoria.';
+      if (!formData.domicilio.trim()) newErrors.domicilio = 'El domicilio es obligatorio.';
+      if (!formData.telefonoCelular.trim()) newErrors.telefonoCelular = 'El teléfono celular es obligatorio.';
+      if (!formData.email.trim()) newErrors.email = 'El email es obligatorio.';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'El formato del email no es válido.';
+    }
+    if (currentStep === 3) {
+      if (!formData.paisPreferencia.trim()) newErrors.paisPreferencia = 'El país de preferencia es obligatorio.';
+      if (!formData.provinciaPreferencia.trim()) newErrors.provinciaPreferencia = 'La provincia de preferencia es obligatoria.';
+      if (!formData.localidadPreferencia.trim()) newErrors.localidadPreferencia = 'La localidad de preferencia es obligatoria.';
+      if (!formData.inmuebleGarantia.trim()) newErrors.inmuebleGarantia = 'Este campo es obligatorio.';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const nextStep = () => {
-    setCurrentStep(prevStep => prevStep + 1);
+    if (validateStep()) setCurrentStep(prevStep => prevStep + 1);
   };
 
   const prevStep = () => {
@@ -41,6 +88,7 @@ const Franquicias: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateStep()) return;
     setIsSubmitting(true);
 
     const serviceID = 'service_vroveb8'; 
@@ -125,16 +173,19 @@ const Franquicias: React.FC = () => {
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="nombre">Nombre completo: <span className="required">*</span></label>
+                        {errors.nombre && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombre}</div>}
                         <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} required placeholder="Ingrese su nombre completo" />
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="fechaNacimiento">Fecha de Nacimiento: <span className="required">*</span></label>
+                        {errors.fechaNacimiento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.fechaNacimiento}</div>}
                         <input type="date" id="fechaNacimiento" name="fechaNacimiento" value={formData.fechaNacimiento} onChange={handleChange} required />
                       </div>
                     </div>
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="sexo">Sexo: <span className="required">*</span></label>
+                        {errors.sexo && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sexo}</div>}
                         <select id="sexo" name="sexo" value={formData.sexo} onChange={handleChange} required>
                           <option value="">Selecciona</option>
                           <option value="masculino">Masculino</option>
@@ -144,6 +195,7 @@ const Franquicias: React.FC = () => {
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="estadoCivil">Estado Civil: <span className="required">*</span></label>
+                        {errors.estadoCivil && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.estadoCivil}</div>}
                         <select id="estadoCivil" name="estadoCivil" value={formData.estadoCivil} onChange={handleChange} required>
                           <option value="">Selecciona</option>
                           <option value="soltero">Soltero/a</option>
@@ -156,6 +208,7 @@ const Franquicias: React.FC = () => {
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="tipoDocumento">Tipo de Documento: <span className="required">*</span></label>
+                        {errors.tipoDocumento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.tipoDocumento}</div>}
                         <select id="tipoDocumento" name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} required>
                           <option value="">Selecciona</option>
                           <option value="DNI">DNI</option>
@@ -165,6 +218,7 @@ const Franquicias: React.FC = () => {
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="numeroDocumento">Número de Documento: <span className="required">*</span></label>
+                        {errors.numeroDocumento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.numeroDocumento}</div>}
                         <input type="text" id="numeroDocumento" name="numeroDocumento" value={formData.numeroDocumento} onChange={handleChange} required placeholder="Ingrese su número de documento" />
                       </div>
                     </div>
@@ -180,6 +234,7 @@ const Franquicias: React.FC = () => {
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="paisResidencia">País de Residencia: <span className="required">*</span></label>
+                        {errors.paisResidencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.paisResidencia}</div>}
                         <select id="paisResidencia" name="paisResidencia" value={formData.paisResidencia} onChange={handleChange} required>
                           <option value="">Selecciona</option>
                           <option value="argentina">Argentina</option>
@@ -188,22 +243,26 @@ const Franquicias: React.FC = () => {
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="provinciaResidencia">Provincia de Residencia: <span className="required">*</span></label>
+                        {errors.provinciaResidencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.provinciaResidencia}</div>}
                         <input type="text" id="provinciaResidencia" name="provinciaResidencia" value={formData.provinciaResidencia} onChange={handleChange} required placeholder="Ingrese su provincia" />
                       </div>
                     </div>
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="localidadResidencia">Localidad de Residencia: <span className="required">*</span></label>
+                        {errors.localidadResidencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.localidadResidencia}</div>}
                         <input type="text" id="localidadResidencia" name="localidadResidencia" value={formData.localidadResidencia} onChange={handleChange} required placeholder="Ingrese su localidad" />
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="domicilio">Domicilio: <span className="required">*</span></label>
+                        {errors.domicilio && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.domicilio}</div>}
                         <input type="text" id="domicilio" name="domicilio" value={formData.domicilio} onChange={handleChange} required placeholder="Ingrese su domicilio completo" />
                       </div>
                     </div>
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="telefonoCelular">Teléfono Celular: <span className="required">*</span></label>
+                        {errors.telefonoCelular && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefonoCelular}</div>}
                         <input type="tel" id="telefonoCelular" name="telefonoCelular" value={formData.telefonoCelular} onChange={handleChange} required placeholder="+54 9 11 1234-5678" />
                       </div>
                       <div className="form-group half-width">
@@ -214,6 +273,7 @@ const Franquicias: React.FC = () => {
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="email">E-mail: <span className="required">*</span></label>
+                        {errors.email && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>}
                         <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="ejemplo@email.com" />
                       </div>
                       <div className="form-group half-width">
@@ -233,6 +293,7 @@ const Franquicias: React.FC = () => {
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="paisPreferencia">País de Preferencia: <span className="required">*</span></label>
+                        {errors.paisPreferencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.paisPreferencia}</div>}
                         <select id="paisPreferencia" name="paisPreferencia" value={formData.paisPreferencia} onChange={handleChange} required>
                           <option value="">Selecciona</option>
                           <option value="argentina">Argentina</option>
@@ -241,16 +302,19 @@ const Franquicias: React.FC = () => {
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="provinciaPreferencia">Provincia de Preferencia: <span className="required">*</span></label>
+                        {errors.provinciaPreferencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.provinciaPreferencia}</div>}
                         <input type="text" id="provinciaPreferencia" name="provinciaPreferencia" value={formData.provinciaPreferencia} onChange={handleChange} required placeholder="Ingrese la provincia de preferencia" />
                       </div>
                     </div>
                     <div className="form-row">
                       <div className="form-group half-width">
                         <label htmlFor="localidadPreferencia">Localidad de Preferencia: <span className="required">*</span></label>
+                        {errors.localidadPreferencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.localidadPreferencia}</div>}
                         <input type="text" id="localidadPreferencia" name="localidadPreferencia" value={formData.localidadPreferencia} onChange={handleChange} required placeholder="Ingrese la localidad de preferencia" />
                       </div>
                       <div className="form-group half-width">
                         <label htmlFor="inmuebleGarantia">¿Dispone de Inmueble para Garantía?: <span className="required">*</span></label>
+                        {errors.inmuebleGarantia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.inmuebleGarantia}</div>}
                         <select id="inmuebleGarantia" name="inmuebleGarantia" value={formData.inmuebleGarantia} onChange={handleChange} required>
                           <option value="">Selecciona</option>
                           <option value="si">Sí</option>

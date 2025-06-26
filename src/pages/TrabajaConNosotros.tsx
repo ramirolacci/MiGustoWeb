@@ -59,10 +59,37 @@ const TrabajaConNosotros: React.FC = () => {
   const [dragActive, setDragActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState({
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    email: '',
+    puesto: '',
+    cv: '',
+    area: '',
+    sucursal: '',
+  });
+
+  const validate = () => {
+    const newErrors: any = {};
+    if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es obligatorio.';
+    if (!formData.apellido.trim()) newErrors.apellido = 'El apellido es obligatorio.';
+    if (!formData.telefono.trim()) newErrors.telefono = 'El teléfono es obligatorio.';
+    else if (!/^[\d\s\-\+\(\)]+$/.test(formData.telefono)) newErrors.telefono = 'El formato del teléfono no es válido.';
+    if (!formData.email.trim()) newErrors.email = 'El email es obligatorio.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'El formato del email no es válido.';
+    if (!formData.puesto.trim()) newErrors.puesto = 'El puesto es obligatorio.';
+    if (!formData.cv) newErrors.cv = 'El CV es obligatorio.';
+    if (formData.puesto === 'fabrica' && !formData.area.trim()) newErrors.area = 'El área es obligatoria.';
+    if (formData.puesto === 'sucursales' && !formData.sucursal.trim()) newErrors.sucursal = 'La sucursal es obligatoria.';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,6 +131,7 @@ const TrabajaConNosotros: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
     setIsSubmitting(true);
     setError(null);
 
@@ -211,9 +239,9 @@ const TrabajaConNosotros: React.FC = () => {
                       name="nombre"
                       value={formData.nombre}
                       onChange={handleChange}
-                      required
                       placeholder="Ingrese su nombre"
                     />
+                    {errors.nombre && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombre}</div>}
                   </div>
                   <div className="form-group half-width">
                     <label htmlFor="apellido">Apellido: <span className="required">*</span></label>
@@ -223,9 +251,9 @@ const TrabajaConNosotros: React.FC = () => {
                       name="apellido"
                       value={formData.apellido}
                       onChange={handleChange}
-                      required
                       placeholder="Ingrese su apellido"
                     />
+                    {errors.apellido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.apellido}</div>}
                   </div>
                 </div>
 
@@ -238,9 +266,9 @@ const TrabajaConNosotros: React.FC = () => {
                       name="telefono"
                       value={formData.telefono}
                       onChange={handleChange}
-                      required
                       placeholder="+54 9 11 1234-5678"
                     />
+                    {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
                   </div>
                   <div className="form-group half-width">
                     <label htmlFor="email">E-mail: <span className="required">*</span></label>
@@ -250,9 +278,9 @@ const TrabajaConNosotros: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      required
                       placeholder="ejemplo@correo.com"
                     />
+                    {errors.email && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>}
                   </div>
                 </div>
 
@@ -264,13 +292,13 @@ const TrabajaConNosotros: React.FC = () => {
                       name="puesto"
                       value={formData.puesto}
                       onChange={handleChange}
-                      required
                       className="contacto-form select"
                     >
                       <option value="">Selecciona un puesto</option>
                       <option value="fabrica">Fábrica</option>
                       <option value="sucursales">Sucursales</option>
                     </select>
+                    {errors.puesto && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.puesto}</div>}
                   </div>
                   {formData.puesto === 'fabrica' && (
                     <div className="form-group half-width">
@@ -280,7 +308,6 @@ const TrabajaConNosotros: React.FC = () => {
                         name="area"
                         value={formData.area}
                         onChange={handleChange}
-                        required
                         className="contacto-form select"
                       >
                         <option value="">Selecciona un área</option>
@@ -288,6 +315,7 @@ const TrabajaConNosotros: React.FC = () => {
                         <option value="produccion">Producción</option>
                         <option value="logistica">Logística</option>
                       </select>
+                      {errors.area && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.area}</div>}
                     </div>
                   )}
                   {formData.puesto === 'sucursales' && (
@@ -298,7 +326,6 @@ const TrabajaConNosotros: React.FC = () => {
                         name="sucursal"
                         value={formData.sucursal}
                         onChange={handleChange}
-                        required
                         className="contacto-form select"
                       >
                         <option value="">Selecciona una sucursal</option>
@@ -308,6 +335,7 @@ const TrabajaConNosotros: React.FC = () => {
                           </option>
                         ))}
                       </select>
+                      {errors.sucursal && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>}
                     </div>
                   )}
                 </div>
@@ -330,6 +358,7 @@ const TrabajaConNosotros: React.FC = () => {
                         onChange={handleFileChange}
                         style={{ display: 'none' }}
                       />
+                      {errors.cv && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.cv}</div>}
                       {formData.cv ? (
                         <div className="file-drop-content has-file">
                             <p>{formData.cv.name}</p>
