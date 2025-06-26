@@ -6,9 +6,12 @@ interface ProductViewProps {
   alt: string;
   width?: number;
   height?: number;
+  noHover?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
-const ProductView: React.FC<ProductViewProps> = ({ image, alt, width = 305.8, height = 275 }) => {
+const ProductView: React.FC<ProductViewProps> = ({ image, alt, width = 305.8, height = 275, noHover, onClick, style }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -34,12 +37,14 @@ const ProductView: React.FC<ProductViewProps> = ({ image, alt, width = 305.8, he
     <div
       ref={cardRef}
       className="product-card-3d"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={noHover ? undefined : handleMouseMove}
+      onMouseLeave={noHover ? undefined : handleMouseLeave}
+      onClick={onClick}
       style={{
         width,
         height,
-        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        ...style
       }}
     >
       <div className="card-image"
@@ -47,8 +52,9 @@ const ProductView: React.FC<ProductViewProps> = ({ image, alt, width = 305.8, he
           height,
           transform: `translateZ(60px) translateX(${position.x * 0.05}px) translateY(${position.y * 0.05}px)`
         }}
+        onClick={onClick}
       >
-        <img src={image} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 12 }} />
+        <img src={image} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 12 }} loading="lazy" onClick={onClick} />
       </div>
     </div>
   );

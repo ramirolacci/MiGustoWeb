@@ -11,15 +11,45 @@ const Proveedores: React.FC = () => {
     descripcion: '',
   });
 
+  const [errors, setErrors] = useState({
+    nombreEmpresa: '',
+    razonSocial: '',
+    telefono: '',
+    email: '',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validate = () => {
+    const newErrors: any = {};
+    if (!formData.nombreEmpresa.trim()) {
+      newErrors.nombreEmpresa = 'El nombre de la empresa es obligatorio.';
+    }
+    if (!formData.razonSocial.trim()) {
+      newErrors.razonSocial = 'La razón social es obligatoria.';
+    }
+    if (!formData.telefono.trim()) {
+      newErrors.telefono = 'El teléfono es obligatorio.';
+    } else if (!/^[\d\s\-\+\(\)]+$/.test(formData.telefono)) {
+      newErrors.telefono = 'El formato del teléfono no es válido.';
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = 'El email es obligatorio.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'El formato del email no es válido.';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
     setIsSubmitting(true);
 
     const serviceID = 'service_vroveb8'; 
@@ -46,6 +76,12 @@ const Proveedores: React.FC = () => {
         email: '',
         descripcion: '',
       });
+      setErrors({
+        nombreEmpresa: '',
+        razonSocial: '',
+        telefono: '',
+        email: '',
+      });
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
       alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
@@ -63,7 +99,7 @@ const Proveedores: React.FC = () => {
             <div className="contacto-form-container">
               <h2>Proveedores</h2>
               <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en ser proveedor de Mi Gusto.</p>
-              <form className="contacto-form" onSubmit={handleSubmit}>
+              <form className="contacto-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-row">
                   <div className="form-group half-width">
                     <label htmlFor="nombreEmpresa">Nombre de la Empresa: <span className="required">*</span></label>
@@ -76,6 +112,7 @@ const Proveedores: React.FC = () => {
                       required
                       placeholder="Ingrese el nombre de su empresa"
                     />
+                    {errors.nombreEmpresa && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreEmpresa}</div>}
                   </div>
                   <div className="form-group half-width">
                     <label htmlFor="email">E-mail: <span className="required">*</span></label>
@@ -88,6 +125,7 @@ const Proveedores: React.FC = () => {
                       required
                       placeholder="ejemplo@empresa.com"
                     />
+                    {errors.email && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>}
                   </div>
                 </div>
                 <div className="form-row">
@@ -102,6 +140,7 @@ const Proveedores: React.FC = () => {
                       required
                       placeholder="Ingrese la razón social"
                     />
+                    {errors.razonSocial && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.razonSocial}</div>}
                   </div>
                   <div className="form-group half-width">
                     <label htmlFor="telefono">Teléfono: <span className="required">*</span></label>
@@ -114,6 +153,7 @@ const Proveedores: React.FC = () => {
                       required
                       placeholder="+54 9 11 1234-5678"
                     />
+                    {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
                   </div>
                 </div>
                 <div className="form-group">
