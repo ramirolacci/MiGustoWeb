@@ -9,5 +9,8 @@ export default defineConfig({
       '54e6-2803-9810-b097-f910-8d3d-cb35-65d8-6446.ngrok-free.app',
       '.ngrok-free.app'
     ]
+  },
+  resolve: {
+    dedupe: ['react', 'react-dom']
   }
 })

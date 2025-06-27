@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import Switch from './Switch';
 import './Switch.css';
@@ -10,6 +10,7 @@ const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -139,7 +140,7 @@ const NavBar: React.FC = () => {
               onClick={() => {
                 setIsSwitchOn(true);
                 setTimeout(() => {
-                  window.location.href = 'https://migustodev.github.io/MiGustoLovers/';
+                  navigate('/lovers');
                 }, 350);
               }}
             />

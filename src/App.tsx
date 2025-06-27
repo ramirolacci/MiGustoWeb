@@ -17,6 +17,7 @@ const Franquicias = lazy(() => import('./pages/Franquicias'));
 const VentaCorporativa = lazy(() => import('./pages/VentaCorporativa'));
 const Revista = lazy(() => import('./components/Revista'));
 const Productos2 = lazy(() => import('./components/Productos2'));
+const Lovers = lazy(() => import('./pages/Lovers'));
 
 import './App.css';
 
@@ -35,14 +36,14 @@ const AppContent: React.FC = () => {
     };
   }, [location.pathname]);
 
+  const isLovers = location.pathname.startsWith('/lovers');
+
   return (
     <>
       {loading && <LoadingSpinner isLoading={loading} />}
       <BotmakerChat />
       <div className="app">
-        <header>
-          <NavBar />
-        </header>
+        {!isLovers && <header><NavBar /></header>}
         <main className='main'>
           <Suspense fallback={<LoadingSpinner isLoading={true} />}>
             <Routes>
@@ -57,12 +58,11 @@ const AppContent: React.FC = () => {
               <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
               <Route path="/franquicias" element={<Franquicias />} />
               <Route path="/venta-corporativa" element={<VentaCorporativa />} />
+              <Route path="/lovers" element={<Lovers />} />
             </Routes>
           </Suspense>
         </main>
-        <footer>
-          <Footer />
-        </footer>
+        {!isLovers && <footer><Footer /></footer>}
       </div>
     </>
   );
