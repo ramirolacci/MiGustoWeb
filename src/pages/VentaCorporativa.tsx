@@ -84,9 +84,9 @@ const VentaCorporativa: React.FC = () => {
         <div className="sucursales-section">
             <div className="background-overlay"></div>
             <div className="sucursales-container">
-                <div style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+                <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
                     <img src="/corporativa.png" alt="Imagen corporativa" style={{ width: '45vw', height: '95%', maxHeight: '90vh', objectFit: 'cover', display: 'block' }} />
-                    <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '-40px' }}>
+                    <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '-87px' }}>
                         <div className="contacto-content" style={{ width: '100%' }}>
                             <div className="contacto-form-container">
                                 <h2>Venta Corporativa</h2>
