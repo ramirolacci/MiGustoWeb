@@ -9,4 +9,8 @@
 .main {
     flex: 1;
     padding-top: 80px;
+}
+
+body.lovers-page .main {
+    padding-top: 0 !important;
 } 
