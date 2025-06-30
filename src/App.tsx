@@ -17,6 +17,7 @@ const Franquicias = lazy(() => import('./pages/Franquicias'));
 const VentaCorporativa = lazy(() => import('./pages/VentaCorporativa'));
 const Revista = lazy(() => import('./components/Revista'));
 const Productos2 = lazy(() => import('./components/Productos2'));
+const Lovers = lazy(() => import('./lovers/App.tsx'));
 
 import './App.css';
 
@@ -57,6 +58,7 @@ const AppContent: React.FC = () => {
               <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
               <Route path="/franquicias" element={<Franquicias />} />
               <Route path="/venta-corporativa" element={<VentaCorporativa />} />
+              <Route path="/lovers/*" element={<Lovers />} />
             </Routes>
           </Suspense>
         </main>
