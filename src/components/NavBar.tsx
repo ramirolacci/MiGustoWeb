@@ -166,7 +166,10 @@ const NavBar: React.FC = () => {
                   <Link
                     className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
                     to={link.path}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                     tabIndex={0}
                     aria-current={location.pathname === link.path ? 'page' : undefined}
                   >
@@ -211,7 +214,10 @@ const NavBar: React.FC = () => {
                   <Link
                     className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
                     to={link.path}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                     tabIndex={0}
                     aria-current={location.pathname === link.path ? 'page' : undefined}
                   >
