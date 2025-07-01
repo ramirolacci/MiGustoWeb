@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import BotmakerChat from './components/BotmakerChat';
+import Viewer3D from './components/Viewer3D';
 
 const Home = lazy(() => import('./components/Home'));
 const Productos = lazy(() => import('./components/Productos'));
@@ -59,6 +60,7 @@ const AppContent: React.FC = () => {
               <Route path="/franquicias" element={<Franquicias />} />
               <Route path="/venta-corporativa" element={<VentaCorporativa />} />
               <Route path="/lovers/*" element={<Lovers />} />
+              <Route path="/3d" element={<Viewer3D />} />
             </Routes>
           </Suspense>
         </main>
