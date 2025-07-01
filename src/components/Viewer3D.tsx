@@ -33,7 +33,14 @@ const Viewer3D: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '100vh', background: '#181818', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ 
+      width: '100vw', 
+      height: '100vh', 
+      background: `url('/EstudioFondo.png') center center / cover no-repeat, #181818`,
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center' 
+    }}>
       {React.createElement('model-viewer' as any, {
         src: '/3D/big-burger-3D.glb',
         alt: 'Big Burger 3D',
