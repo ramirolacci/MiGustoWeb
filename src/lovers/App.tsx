@@ -606,7 +606,7 @@ function App() {
 
   if (isSubmitted) {
     return (
-      <>
+      <div className="app">
         <style>{modalStyles}</style>
         <ParticlesBG />
         <Confetti />
@@ -626,14 +626,26 @@ function App() {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="app">
       <style>{modalStyles}</style>
-      <header style={{background: 'rgba(24,24,24,0.85)', backdropFilter: 'blur(8px)', boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)', position: 'sticky', top: 0, zIndex: 10}}>
+      <header style={{
+        background: 'rgba(24,24,24,0.85)',
+        backdropFilter: 'blur(8px)',
+        boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        zIndex: 100,
+        margin: 0,
+        padding: 0,
+        minHeight: 0
+      }}>
         {windowWidth > 900 ? (
           <div style={{
             maxWidth: 1200,
@@ -658,7 +670,7 @@ function App() {
                 onClick={() => {
                   setIsSwitchOn(true);
                   setTimeout(() => {
-                    window.location.href = 'http://localhost:5173/ ';
+                    window.location.href = '/';
                   }, 350);
                 }}
               />
@@ -789,7 +801,7 @@ function App() {
                 onClick={() => {
                   setIsSwitchOn(true);
                   setTimeout(() => {
-                    window.location.href = 'http://localhost:5173/ ';
+                    window.location.href = '/';
                   }, 350);
                 }}
               />
@@ -866,16 +878,19 @@ function App() {
       </header>
       <div
         style={{
-          minHeight: '100vh',
           background: `linear-gradient(rgba(24,24,24,0.72), rgba(24,24,24,0.82)), url(${backgroundText}) center/cover no-repeat fixed`,
-          width: '100%',
+          width: '100vw',
+          margin: 0,
+          padding: 0,
+          minHeight: '100vh',
+          boxSizing: 'border-box',
         }}
       >
         <section
           style={{
-            width: '100%',
+            width: '100vw',
             minWidth: '0',
-            maxWidth: '100%',
+            maxWidth: '100vw',
             boxSizing: 'border-box',
             overflowX: 'hidden',
             padding: 0,
@@ -1872,7 +1887,7 @@ function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
