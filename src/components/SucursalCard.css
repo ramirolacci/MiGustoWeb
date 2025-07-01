@@ -73,14 +73,14 @@
 }
 
 .sucursal-info {
-    margin-bottom: 1rem;
     font-size: 1rem;
     opacity: 0.9;
     display: flex;
     align-items: center;
     gap: 12px;
-    min-height: 40px;
     font-weight: normal;
+    margin-bottom: auto;
+    min-height: 30px;
 }
 
 .sucursal-info i {
@@ -97,7 +97,7 @@
 }
 
 .sucursal-map-container {
-    margin-top: auto;
+    margin-top: 10px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
