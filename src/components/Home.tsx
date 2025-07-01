@@ -15,13 +15,15 @@ const slidesMobile = [
 ];
 
 const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean }) {
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(1);
+    const [transition, setTransition] = useState(true);
     const slides = isMobile ? slidesMobile : slidesDesktop;
     const timeoutRef = useRef<number | null>(null);
-    const [isTransitioning, setIsTransitioning] = useState(false);
-    const extendedSlides = [...slides, ...slides, ...slides];
+
+    const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
 
     useEffect(() => {
+        if (!transition) return;
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = window.setTimeout(() => {
             goToNext();
@@ -29,26 +31,33 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
         return () => {
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
         };
-    }, [current]);
+    }, [current, slides, transition]);
 
     const handleTransitionEnd = () => {
-        setIsTransitioning(false);
-        if (current === -1) {
-            setCurrent(slides.length - 1);
-        } else if (current === slides.length) {
-            setCurrent(0);
+        if (current === 0) {
+            setTransition(false);
+            setCurrent(slides.length);
+        } else if (current === slides.length + 1) {
+            setTransition(false);
+            setCurrent(1);
+        } else {
+            setTransition(true);
         }
     };
 
+    useEffect(() => {
+        if (!transition) {
+            requestAnimationFrame(() => setTransition(true));
+        }
+    }, [transition]);
+
     const goToPrev = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
+        if (!transition) return;
         setCurrent((prev) => prev - 1);
     };
 
     const goToNext = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
+        if (!transition) return;
         setCurrent((prev) => prev + 1);
     };
 
@@ -58,8 +67,8 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                 className="home-slider-track"
                 style={{
                     width: `${extendedSlides.length * 100}%`,
-                    transform: `translateX(-${(current + slides.length) * (100 / extendedSlides.length)}%)`,
-                    transition: isTransitioning ? 'transform 0.7s cubic-bezier(.77,0,.18,1)' : 'none'
+                    transform: `translateX(-${current * (100 / extendedSlides.length)}%)`,
+                    transition: transition ? 'transform 0.7s cubic-bezier(.77,0,.18,1)' : 'none'
                 }}
                 onTransitionEnd={handleTransitionEnd}
             >
