@@ -84,84 +84,87 @@ const VentaCorporativa: React.FC = () => {
         <div className="sucursales-section">
             <div className="background-overlay"></div>
             <div className="sucursales-container">
-                <div className="contacto-container">
-                    <div className="contacto-content">
-                        <div className="contacto-form-container">
-                            <h2>Venta Corporativa</h2>
-                            <p style={{ textAlign: 'center' }}>Completa el siguiente formulario para solicitar una venta corporativa.</p>
-                            <form onSubmit={handleSubmit} className="contacto-form">
-                                <div className="form-row">
-                                    <div className="form-group half-width">
-                                        <label htmlFor="nombreCompleto">Nombre Completo: <span className="required">*</span></label>
-                                        <input
-                                            type="text"
-                                            id="nombreCompleto"
-                                            name="nombreCompleto"
-                                            value={formData.nombreCompleto}
-                                            onChange={handleChange}
-                                            placeholder="Ingrese su nombre completo"
-                                        />
-                                        {errors.nombreCompleto && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreCompleto}</div>}
-                                    </div>
-                                    <div className="form-group half-width">
-                                        <label htmlFor="empresa">Empresa: <span className="required">*</span></label>
-                                        <input
-                                            type="text"
-                                            id="empresa"
-                                            name="empresa"
-                                            value={formData.empresa}
-                                            onChange={handleChange}
-                                            placeholder="Nombre de su empresa"
-                                        />
-                                        {errors.empresa && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.empresa}</div>}
-                                    </div>
-                                </div>
-
-                                <div className="form-row">
-                                    <div className="form-group half-width">
-                                        <label htmlFor="email">Correo Electrónico: <span className="required">*</span></label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            placeholder="ejemplo@empresa.com"
-                                        />
-                                        {errors.email && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>}
+                <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+                    <img src="/corporativa.png" alt="Imagen corporativa" style={{ width: '45vw', height: '95%', maxHeight: '90vh', objectFit: 'cover', display: 'block' }} />
+                    <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '-87px' }}>
+                        <div className="contacto-content" style={{ width: '100%' }}>
+                            <div className="contacto-form-container">
+                                <h2>Venta Corporativa</h2>
+                                <p style={{ textAlign: 'center' }}>Completa el siguiente formulario para solicitar una venta corporativa.</p>
+                                <form onSubmit={handleSubmit} className="contacto-form">
+                                    <div className="form-row">
+                                        <div className="form-group half-width">
+                                            <label htmlFor="nombreCompleto">Nombre Completo: <span className="required">*</span></label>
+                                            <input
+                                                type="text"
+                                                id="nombreCompleto"
+                                                name="nombreCompleto"
+                                                value={formData.nombreCompleto}
+                                                onChange={handleChange}
+                                                placeholder="Ingrese su nombre completo"
+                                            />
+                                            {errors.nombreCompleto && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreCompleto}</div>}
+                                        </div>
+                                        <div className="form-group half-width">
+                                            <label htmlFor="empresa">Empresa: <span className="required">*</span></label>
+                                            <input
+                                                type="text"
+                                                id="empresa"
+                                                name="empresa"
+                                                value={formData.empresa}
+                                                onChange={handleChange}
+                                                placeholder="Nombre de su empresa"
+                                            />
+                                            {errors.empresa && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.empresa}</div>}
+                                        </div>
                                     </div>
 
-                                    <div className="form-group half-width">
-                                        <label htmlFor="telefono">Teléfono: <span className="required">*</span></label>
-                                        <input
-                                            type="tel"
-                                            id="telefono"
-                                            name="telefono"
-                                            value={formData.telefono}
-                                            onChange={handleChange}
-                                            placeholder="+54 9 11 1234-5678"
-                                        />
-                                        {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
+                                    <div className="form-row">
+                                        <div className="form-group half-width">
+                                            <label htmlFor="email">Correo Electrónico: <span className="required">*</span></label>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                placeholder="ejemplo@empresa.com"
+                                            />
+                                            {errors.email && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>}
+                                        </div>
+
+                                        <div className="form-group half-width">
+                                            <label htmlFor="telefono">Teléfono: <span className="required">*</span></label>
+                                            <input
+                                                type="tel"
+                                                id="telefono"
+                                                name="telefono"
+                                                value={formData.telefono}
+                                                onChange={handleChange}
+                                                placeholder="+54 9 11 1234-5678"
+                                            />
+                                            {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="detallePedido">Detalle del Pedido:</label>
-                                    <textarea
-                                        id="detallePedido"
-                                        name="detallePedido"
-                                        value={formData.detallePedido}
-                                        onChange={handleChange}
-                                        placeholder="Describa su pedido, cantidad aproximada y cualquier requisito especial"
-                                        rows={5}
-                                    />
-                                    {errors.detallePedido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.detallePedido}</div>}
-                                </div>
+                                    <div className="form-group">
+                                        <label htmlFor="detallePedido">Detalle del Pedido:</label>
+                                        <textarea
+                                            id="detallePedido"
+                                            name="detallePedido"
+                                            value={formData.detallePedido}
+                                            onChange={handleChange}
+                                            placeholder="Describa su pedido, cantidad aproximada y cualquier requisito especial"
+                                            rows={5}
+                                        />
+                                        {errors.detallePedido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.detallePedido}</div>}
+                                    </div>
 
-                                <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
-                                    Enviar Solicitud
-                                </button>
-                            </form>
+                                    <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+                                        Enviar Solicitud
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

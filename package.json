@@ -11,14 +11,18 @@
     "optimize-images": "node scripts/optimize-images.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "axios": "^1.10.0",
     "bootstrap": "^5.3.6",
     "framer-motion": "^12.15.0",
+    "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
     "react-pageflip": "^2.0.3",
-    "react-router-dom": "^7.6.1"
+    "react-router-dom": "^7.6.1",
+    "sweetalert2": "^11.22.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
