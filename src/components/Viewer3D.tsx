@@ -36,7 +36,7 @@ const SmokeEffect: React.FC = () => {
     const blur = isBig ? 18 : 10;
     const opacity = isBig ? 0.22 + Math.random() * 0.18 : 0.13 + Math.random() * 0.12;
     const delay = Math.random() * 2;
-    const duration = 4.5 + Math.random() * 2.5;
+    const duration = 7 + Math.random() * 3.5; // más lento y suave
     const drift = (Math.random() - 0.5) * (isBig ? 40 : 80); // más dispersión en nubes chicas
     const rot = (Math.random() - 0.5) * 16; // leve rotación
     return (
@@ -53,7 +53,7 @@ const SmokeEffect: React.FC = () => {
           opacity,
           borderRadius: '50%',
           pointerEvents: 'none',
-          animation: `smokeUpVolumetric ${duration}s linear ${delay}s infinite`,
+          animation: `smokeUpVolumetric ${duration}s cubic-bezier(.4,0,.6,1) ${delay}s infinite`,
           '--drift': `${drift}px`,
           '--rot': `${rot}deg`,
         } as React.CSSProperties}
@@ -76,13 +76,16 @@ const SmokeEffect: React.FC = () => {
         @keyframes smokeUpVolumetric {
           0% {
             transform: translateY(0) scale(1) translateX(0) rotate(var(--rot,0deg));
-            opacity: 0.7;
+            opacity: 0.01;
           }
-          30% {
+          18% {
+            opacity: 0.32;
+          }
+          40% {
             opacity: 0.5;
           }
-          60% {
-            opacity: 0.32;
+          80% {
+            opacity: 0.22;
           }
           100% {
             transform: translateY(-170px) scale(1.5) translateX(var(--drift,0px)) rotate(var(--rot,0deg));
@@ -101,6 +104,7 @@ const Viewer3D: React.FC = () => {
   const [fullscreen, setFullscreen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [smokeScale, setSmokeScale] = useState(1);
 
   useEffect(() => {
     if (!scriptLoaded.current) {
@@ -110,6 +114,28 @@ const Viewer3D: React.FC = () => {
       document.body.appendChild(script);
       scriptLoaded.current = true;
     }
+  }, []);
+
+  // Adaptar el humo al zoom del usuario
+  useEffect(() => {
+    const mv = document.querySelector('model-viewer');
+    if (!mv) return;
+    const handler = () => {
+      // Leer el valor de camera-orbit (ej: "0deg 75deg 2.5m")
+      const orbit = mv.getAttribute('camera-orbit');
+      if (orbit) {
+        const match = orbit.match(/([\d.]+)m/);
+        if (match) {
+          const dist = parseFloat(match[1]);
+          // Ajustar el scale del humo: más cerca = humo más grande
+          // 2.5m (default) => scale 1, 4.5m (zoom out) => scale 0.7, 1.7m (zoom in) => scale 1.3
+          const scale = Math.max(0.6, Math.min(1.4, 2.5 / dist));
+          setSmokeScale(scale);
+        }
+      }
+    };
+    mv.addEventListener('camera-change', handler);
+    return () => mv.removeEventListener('camera-change', handler);
   }, []);
 
   // Fullscreen handler
@@ -164,8 +190,29 @@ const Viewer3D: React.FC = () => {
         opacity: 1
       }}
     >
-      {/* Efecto de humo */}
-      <SmokeEffect />
+      {/* Efecto de humo detrás del modelo */}
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div style={{
+          width: '100%',
+          height: '100%',
+          transform: `scale(${smokeScale})`,
+          transition: 'transform 0.3s',
+          position: 'relative',
+        }}>
+          <SmokeEffect />
+        </div>
+      </div>
       {/* Botón de volver */}
       <button
         onClick={() => navigate(-1)}
