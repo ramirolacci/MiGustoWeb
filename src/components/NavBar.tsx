@@ -55,7 +55,8 @@ const NavBar: React.FC = () => {
     { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros' },
     { path: '/franquicias', label: 'Franquicias' },
     { path: '/venta-corporativa', label: 'Venta corporativa' },
-    { path: '/legales', label: 'Legales' }
+    { path: '/legales', label: 'Legales' },
+    { path: '/3d', label: 'Studio 3D' },
   ];
 
   return (
