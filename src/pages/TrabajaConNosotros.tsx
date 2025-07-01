@@ -225,8 +225,8 @@ const TrabajaConNosotros: React.FC = () => {
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <img src="/staff.png" alt="Imagen staff" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: '80px' }} />
-          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '-87px' }}>
+          <img src="/staff.png" alt="Imagen staff" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: '80px', position: 'relative', zIndex: 2 }} />
+          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center' }}>
             <div className="contacto-content" style={{ width: '100%' }}>
               <div className="contacto-form-container">
                 <h2>Trabajá con nosotros</h2>
