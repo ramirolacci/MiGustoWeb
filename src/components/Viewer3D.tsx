@@ -345,7 +345,7 @@ const Viewer3D: React.FC = () => {
         'shadow-softness': '1',
         exposure: '1.2',
         'camera-orbit': '0deg 75deg 2.5m',
-        'min-camera-orbit': 'auto auto 2m',
+        'min-camera-orbit': 'auto auto 3m',
         'max-camera-orbit': 'auto auto 3m',
         'interaction-prompt': 'none',
         onLoad: () => setLoading(false),
