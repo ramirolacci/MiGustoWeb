@@ -183,6 +183,15 @@ const Viewer3D: React.FC = () => {
     }
   }, [loading]);
 
+  // Deshabilitar scroll al montar y restaurar al desmontar
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   return (
     <div 
       ref={containerRef}
@@ -336,7 +345,7 @@ const Viewer3D: React.FC = () => {
         'shadow-softness': '1',
         exposure: '1.2',
         'camera-orbit': '0deg 75deg 2.5m',
-        'min-camera-orbit': 'auto auto 4.5m',
+        'min-camera-orbit': 'auto auto 2m',
         'max-camera-orbit': 'auto auto 3m',
         'interaction-prompt': 'none',
         onLoad: () => setLoading(false),
