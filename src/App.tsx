@@ -43,7 +43,7 @@ const AppContent: React.FC = () => {
   return (
     <>
       {loading && <LoadingSpinner isLoading={loading} />}
-      <BotmakerChat />
+      {!isLovers && !isViewer3D && <BotmakerChat />}
       <div className="app">
         {!isLovers && <header><NavBar /></header>}
         <main className='main'>
