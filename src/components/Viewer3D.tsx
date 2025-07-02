@@ -348,7 +348,7 @@ const Viewer3D: React.FC = () => {
         'min-camera-orbit': 'auto auto 3m',
         'max-camera-orbit': 'auto auto 3m',
         'interaction-prompt': 'none',
-        ...(isMobile ? { 'disable-pan': true } : {}),
+        'disable-pan': true,
         onLoad: () => setLoading(false),
       })}
     </div>
