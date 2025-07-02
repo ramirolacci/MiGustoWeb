@@ -105,6 +105,7 @@ const Viewer3D: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [smokeScale, setSmokeScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (!scriptLoaded.current) {
@@ -114,6 +115,13 @@ const Viewer3D: React.FC = () => {
       document.body.appendChild(script);
       scriptLoaded.current = true;
     }
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Adaptar el humo al zoom del usuario
@@ -238,27 +246,29 @@ const Viewer3D: React.FC = () => {
         </button>
       )}
       {/* Botón de fullscreen */}
-      <button
-        onClick={handleFullscreen}
-        style={{
-          position: 'absolute',
-          top: 24,
-          right: 24,
-          zIndex: 20,
-          background: 'rgba(24,24,24,0.85)',
-          color: '#FFD700',
-          border: 'none',
-          borderRadius: 8,
-          padding: '10px 18px',
-          fontWeight: 700,
-          fontSize: 18,
-          boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-      >
-        {fullscreen ? 'Salir Fullscreen' : 'Fullscreen'}
-      </button>
+      {!isMobile && (
+        <button
+          onClick={handleFullscreen}
+          style={{
+            position: 'absolute',
+            top: 24,
+            right: 24,
+            zIndex: 20,
+            background: 'rgba(24,24,24,0.85)',
+            color: '#FFD700',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 18px',
+            fontWeight: 700,
+            fontSize: 18,
+            boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+          }}
+        >
+          {fullscreen ? 'Salir Fullscreen' : 'Fullscreen'}
+        </button>
+      )}
       {/* Indicador de carga */}
       {loading && (
         <div style={{
@@ -283,25 +293,27 @@ const Viewer3D: React.FC = () => {
         </div>
       )}
       {/* Instrucciones */}
-      <div style={{
-        position: 'absolute',
-        bottom: 32,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 20,
-        background: 'rgba(24,24,24,0.85)',
-        color: '#FFD700',
-        borderRadius: 12,
-        padding: '12px 28px',
-        fontWeight: 600,
-        fontSize: 18,
-        boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
-        textAlign: 'center',
-        userSelect: 'none',
-        letterSpacing: 0.2
-      }}>
-        🖱️ Arrastra para rotar &nbsp; | &nbsp; Rueda para zoom &nbsp; | &nbsp; Pincha para mover
-      </div>
+      {!isMobile && (
+        <div style={{
+          position: 'absolute',
+          bottom: 32,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 20,
+          background: 'rgba(24,24,24,0.85)',
+          color: '#FFD700',
+          borderRadius: 12,
+          padding: '12px 28px',
+          fontWeight: 600,
+          fontSize: 18,
+          boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+          textAlign: 'center',
+          userSelect: 'none',
+          letterSpacing: 0.2
+        }}>
+          🖱️ Arrastra para rotar &nbsp; | &nbsp; Rueda para zoom &nbsp; | &nbsp; Pincha para mover
+        </div>
+      )}
       {/* Model Viewer */}
       {React.createElement('model-viewer' as any, {
         src: '/3D/big-burger-3D.glb',
