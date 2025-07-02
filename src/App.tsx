@@ -38,6 +38,7 @@ const AppContent: React.FC = () => {
   }, [location.pathname]);
 
   const isLovers = location.pathname.startsWith('/lovers');
+  const isViewer3D = location.pathname === '/3d';
 
   return (
     <>
@@ -64,7 +65,7 @@ const AppContent: React.FC = () => {
             </Routes>
           </Suspense>
         </main>
-        {!isLovers && <footer><Footer /></footer>}
+        {!isLovers && !isViewer3D && <footer><Footer /></footer>}
       </div>
     </>
   );
