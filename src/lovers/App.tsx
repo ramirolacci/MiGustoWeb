@@ -137,36 +137,74 @@ interface FormErrors {
   saboresFavoritos?: string;
 }
 
+// Agrego estilos globales para animaciones de partículas
+const particlesAnimations = `
+  @keyframes empanada-fall-optimized {
+    0% {
+      opacity: 0;
+      transform: translateY(-80px) rotate(0deg);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(110vh) rotate(var(--rotEnd, 360deg));
+    }
+  }
+`;
+
 function ParticlesBG() {
   const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
-  // Solo se genera una vez y nunca se reinicia
-  const particles = useMemo(() =>
-    Array.from({length: 28}).map((_, i) => {
-    const left = Math.random() * 100;
+  const particleCount = 28;
+  // Detectar si es mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 900;
+  // Generar propiedades únicas para cada partícula solo al montar
+  const particlesData = useMemo(() =>
+    Array.from({length: particleCount}).map(() => {
+      const left = Math.random() * 100;
       const size = 54 + Math.random() * 64;
-      const delay = -Math.random() * 8;
-      const duration = 5 + Math.random() * 7;
-    const rotate = Math.random() * 360;
-    const img = empanadas[Math.floor(Math.random() * empanadas.length)];
-    return (
-      <img
-        key={i}
-        src={img}
-        className="empanada-particle"
-        alt="empanada"
-        style={{
-          left: `${left}%`,
-          width: size,
-          height: size,
-          animationDelay: `${delay}s`,
-          animationDuration: `${duration}s`,
-          '--rot': `${rotate}deg`
-        } as React.CSSProperties}
-      />
-    );
-    })
-  , []); // Solo se ejecuta una vez
-  return <div className="particles-bg">{particles}</div>;
+      const delay = -Math.random() * 12;
+      const duration = 10 + Math.random() * 10;
+      const img = empanadas[Math.floor(Math.random() * empanadas.length)];
+      const clockwise = Math.random() > 0.5;
+      const rotEnd = clockwise ? 360 : -360;
+      return { left, size, delay, duration, img, rotEnd };
+    }),
+    []
+  );
+  return (
+    <>
+      <style>{particlesAnimations}</style>
+      <div className="particles-bg">
+        {particlesData.map((p, i) => (
+          <img
+            key={i}
+            src={p.img}
+            className="empanada-particle"
+            alt="empanada"
+            loading="lazy"
+            style={{
+              position: 'absolute',
+              left: `${p.left}%`,
+              width: p.size,
+              height: p.size,
+              animation: `empanada-fall-optimized ${p.duration}s linear infinite`,
+              animationDelay: `${p.delay}s`,
+              willChange: 'transform, opacity',
+              zIndex: 1,
+              pointerEvents: 'none',
+              opacity: isMobile ? 0.45 : 1,
+              '--rotEnd': `${p.rotEnd}deg`,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
+    </>
+  );
 }
 
 function Confetti() {
@@ -878,12 +916,18 @@ function App() {
       </header>
       <div
         style={{
-          background: `linear-gradient(rgba(24,24,24,0.72), rgba(24,24,24,0.82)), url(${backgroundText}) center/cover no-repeat fixed`,
+          background: window.innerWidth > 900
+            ? `linear-gradient(rgba(24,24,24,0.72), rgba(24,24,24,0.82)), url(${backgroundText}) center/cover no-repeat fixed`
+            : `linear-gradient(rgba(24,24,24,0.72), rgba(24,24,24,0.82)), url(${backgroundText}) center/cover no-repeat`,
           width: '100vw',
           margin: 0,
           padding: 0,
           minHeight: '100vh',
           boxSizing: 'border-box',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
+          // Quitar blur en mobile
+          backdropFilter: window.innerWidth > 900 ? 'blur(8px)' : undefined,
         }}
       >
         <section
@@ -918,6 +962,8 @@ function App() {
               gap: windowWidth > 900 ? 24 : 0,
               background: 'transparent',
               position: 'relative',
+              willChange: 'transform', // aceleración por hardware
+              transform: 'translateZ(0)', // aceleración por hardware
             }}
           >
             {/* Empanadas caen por encima del texto pero detrás de las cards y el form */}
