@@ -214,27 +214,29 @@ const Viewer3D: React.FC = () => {
         </div>
       </div>
       {/* Botón de volver */}
-      <button
-        onClick={() => navigate(-1)}
-        style={{
-          position: 'absolute',
-          top: 24,
-          left: 24,
-          zIndex: 20,
-          background: 'rgba(24,24,24,0.85)',
-          color: '#FFD700',
-          border: 'none',
-          borderRadius: 8,
-          padding: '10px 18px',
-          fontWeight: 700,
-          fontSize: 18,
-          boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-      >
-        ← Volver
-      </button>
+      {fullscreen && (
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            position: 'absolute',
+            top: 24,
+            left: 24,
+            zIndex: 20,
+            background: 'rgba(24,24,24,0.85)',
+            color: '#FFD700',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 18px',
+            fontWeight: 700,
+            fontSize: 18,
+            boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+          }}
+        >
+          ← Volver
+        </button>
+      )}
       {/* Botón de fullscreen */}
       <button
         onClick={handleFullscreen}
