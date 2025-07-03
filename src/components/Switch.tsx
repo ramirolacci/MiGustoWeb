@@ -7,36 +7,11 @@ interface SwitchProps {
 }
 
 const Switch: React.FC<SwitchProps> = ({ isOn, onClick }) => {
-  // Detectar si es mobile para ajustar el desplazamiento del thumb
-  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
-  const thumbTranslate = isMobile ? 48 : 64; // Ajuste fino para mobile
   return (
-    <label
-      className={`switch-modern${isOn ? ' switch-on' : ''}`}
-      onClick={onClick}
-      style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', marginLeft: 12 }}
-    >
-      <input type="checkbox" style={{ display: 'none' }} checked={isOn} readOnly />
-      <span className="switch-modern-track">
-        <span
-          className="switch-modern-thumb"
-          style={{
-            transform: isOn ? `translateX(${thumbTranslate}px)` : 'translateX(0)',
-          }}
-        />
-        <span
-          className={`switch-modern-text${isOn ? ' on' : ''}`}
-          style={{
-            ...(isOn
-              ? { transform: 'translateX(-18px)', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)' }
-              : { transform: 'translateX(0)', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)' }
-            )
-          }}
-        >
-          Lovers
-        </span>
-      </span>
-    </label>
+    <button className={`switch${isOn ? ' switch-on' : ''}`} onClick={onClick} type="button">
+      <span className="switch-thumb" />
+      <span className="switch-label">Lovers</span>
+    </button>
   );
 };
 
