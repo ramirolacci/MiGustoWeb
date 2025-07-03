@@ -41,7 +41,7 @@ const Revista = () => {
     return (
         <>
             <h2 className="revista-titulo" style={{ color: "#fff", textAlign: "center", marginBottom: "1.5rem" }}>
-                Deslizá para explorar el catálogo
+                Deslizá para explorar
             </h2>
             <div className="revista-container">
                 {isMobile ? (
