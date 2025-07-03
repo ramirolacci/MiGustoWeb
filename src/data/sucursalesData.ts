@@ -79,7 +79,7 @@ export const sucursales: Sucursal[] = [
         direccion: "Av. Francisco Beiró 4523",
         localidad: "Devoto",
         provincia: "Ciudad Autónoma de Buenos Aires",
-        telefono: "+54 11 5631-3181 / 54 11 7519-3502 / 54 11 7530- 7192 / 54 11 5096-6549 / 54 11 5652-8446",
+        telefono: "+54 11 5631-3181 / 54 11 7530-2518 / 54 11 7540- 0060 / 54 11 7539-5956",
         horario: "Lunes a Miércoles 11:00 a 15:30 y 18:00 a 23:30 | Jueves a Sábado 11:00 a 15:00 y 18:00 a 00:00 | Domingo 18:00 a 00:00",
         mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8631319324686!2d-58.51466053336684!3d-34.60762232154594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb707542c673b%3A0x60bcf9ab69a2b2b4!2sMi%20Gusto!5e0!3m2!1ses!2sar!4v1749043992094!5m2!1ses!2sar"
     },
