@@ -83,16 +83,6 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                     />
                 ))}
             </div>
-            <button className="slider-arrow left" onClick={goToPrev} aria-label="Anterior">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M18 24L10 14L18 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
-            <button className="slider-arrow right" onClick={goToNext} aria-label="Siguiente">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M10 24L18 14L10 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
         </div>
     );
 });

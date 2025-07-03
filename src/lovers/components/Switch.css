@@ -108,7 +108,7 @@
   height: 36px;
   background: linear-gradient(135deg, #ffff01 0%, #ffff66 25%, #ffff01 50%, #ffff33 75%, #ffff01 100%);
   background-size: 200% 200%;
-  border-radius: 999px;
+  border-radius: 999px !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
@@ -146,6 +146,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   animation: switchGlowGray 2s ease-in-out infinite;
+  border-radius: 999px !important;
 }
 
 .switch-modern-thumb {
@@ -155,7 +156,7 @@
   width: 28px;
   height: 28px;
   background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 50%, #ffffff 100%);
-  border-radius: 50%;
+  border-radius: 50% !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     0 4px 8px rgba(0, 0, 0, 0.2),
@@ -188,6 +189,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50% !important;
 }
 
 .switch-modern.switch-on .switch-modern-thumb::before {
