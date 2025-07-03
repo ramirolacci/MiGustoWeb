@@ -23,6 +23,7 @@ interface Producto {
     esVegetariano?: boolean;
     esSinGluten?: boolean;
     esPremium?: boolean;
+    categoria: string;
 }
 
 function formatearPrecio(precio: string | number) {
@@ -44,40 +45,46 @@ export default function Productos() {
     const productosFiltrados = useMemo(() => {
         let productos: Producto[] = [];
 
-        // Si hay una búsqueda, buscar en todas las categorías
         if (busqueda) {
-            productos = [
-                ...empanadas,
-                ...pizzas,
-                ...pizzasIndi,
-                ...fitzzas,
-                ...salsas,
-                ...postres,
-                ...promociones
+            const productosBusqueda = [
+                ...empanadas.map(e => ({ ...e, precio: e.precio?.toString(), categoria: 'Empanada' })),
+                ...pizzas.map(p => ({ ...p, categoria: 'Pizza' })),
+                ...pizzasIndi.map(p => ({ ...p, categoria: 'Pizzas INDI' })),
+                ...fitzzas.map(f => ({ ...f, categoria: 'Fitzzas' })),
+                ...salsas.map(s => ({ ...s, categoria: 'Salsas' })),
+                ...postres.map(p => ({ ...p, categoria: 'Postres' })),
+                ...promociones.map(p => ({ ...p, categoria: 'Promociones' }))
             ];
+            productos = productosBusqueda.filter(producto =>
+                producto.titulo.toLowerCase().includes(busqueda.toLowerCase())
+            );
+            const unique = new Map();
+            productos.forEach(prod => {
+                unique.set(prod.titulo + '-' + prod.categoria, prod);
+            });
+            productos = Array.from(unique.values());
         } else {
-            // Si no hay búsqueda, mostrar solo la categoría seleccionada
             switch (filtro) {
                 case "Empanadas":
-                    productos = empanadas;
+                    productos = empanadas.map(e => ({ ...e, precio: e.precio?.toString(), categoria: 'Empanada' }));
                     break;
                 case "Pizzas":
-                    productos = pizzas;
+                    productos = pizzas.map(p => ({ ...p, categoria: 'Pizza' }));
                     break;
                 case "Pizzas INDI":
-                    productos = pizzasIndi;
+                    productos = pizzasIndi.map(p => ({ ...p, categoria: 'Pizzas INDI' }));
                     break;
                 case "Fitzzas":
-                    productos = fitzzas;
+                    productos = fitzzas.map(f => ({ ...f, categoria: 'Fitzzas' }));
                     break;
                 case "Salsas":
-                    productos = salsas;
+                    productos = salsas.map(s => ({ ...s, categoria: 'Salsas' }));
                     break;
                 case "Postres":
-                    productos = postres;
+                    productos = postres.map(p => ({ ...p, categoria: 'Postres' }));
                     break;
                 case "Promociones":
-                    productos = promociones;
+                    productos = promociones.map(p => ({ ...p, categoria: 'Promociones' }));
                     break;
                 default:
                     productos = [];
@@ -85,15 +92,17 @@ export default function Productos() {
         }
 
         return productos.filter(producto => {
-            const coincideBusqueda = producto.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
-                (producto.descripcion && producto.descripcion.toLowerCase().includes(busqueda.toLowerCase()));
+            let coincideBusqueda = true;
+            if (busqueda) {
+                coincideBusqueda = producto.titulo.toLowerCase().includes(busqueda.toLowerCase());
+            }
 
             let coincideTipoEmpanada = true;
             if (filtro === "Empanadas" && !busqueda) {
                 if (tipoProducto === "Premium") {
-                    coincideTipoEmpanada = !!producto.esPremium;
+                    coincideTipoEmpanada = Boolean(producto.esPremium);
                 } else if (tipoProducto === "Clasicas") {
-                    coincideTipoEmpanada = !producto.esPremium;
+                    coincideTipoEmpanada = !Boolean(producto.esPremium);
                 }
             }
 
@@ -108,6 +117,10 @@ export default function Productos() {
         });
     }, [filtro, busqueda, tipoProducto, esVegetariano]);
 
+    // Limpiar producto seleccionado si se borra la búsqueda o cambia la categoría
+    useEffect(() => {
+        setProductoSeleccionado(null);
+    }, [busqueda, filtro]);
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -180,7 +193,7 @@ export default function Productos() {
                         productosFiltrados.map((prod) => (
                             <div 
                                 className="producto-card" 
-                                key={prod.titulo} 
+                                key={prod.titulo + '-' + prod.categoria} 
                                 onClick={() => setProductoSeleccionado(prod)}
                                 data-categoria={filtro}
                             >
