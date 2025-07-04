@@ -33,6 +33,19 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
         };
     }, [current, slides, transition]);
 
+    useEffect(() => {
+        const handleVisibility = () => {
+            if (document.visibilityState === 'visible') {
+                setCurrent(1);
+                setTransition(true);
+            }
+        };
+        document.addEventListener('visibilitychange', handleVisibility);
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibility);
+        };
+    }, []);
+
     const handleTransitionEnd = () => {
         if (current === 0) {
             setTransition(false);
