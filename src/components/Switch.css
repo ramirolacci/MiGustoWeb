@@ -14,7 +14,7 @@
 }
 
 .switch.switch-on {
-  background: #FFD700;
+  background: #fbff07b4;
 }
 
 .switch-thumb {
@@ -38,6 +38,12 @@
   font-weight: bold;
   font-size: 1rem;
   letter-spacing: 0.5px;
+  transition: background 0.3s, transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  transform: translateX(0);
+}
+
+.switch.switch-on .switch-label {
+  transform: translateX(-24px);
 }
 
 .switch-lovers {
