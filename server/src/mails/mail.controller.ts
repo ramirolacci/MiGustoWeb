@@ -6,12 +6,12 @@ export class MailController {
   constructor(private readonly mailService: MailService) {}
 
   @Post('send')
-  async sendMail(@Body() body: { to: string; subject: string; text: string; html?: string }) {
-    const { to, subject, text, html } = body;
+  async sendMail(@Body() body: { to: string; subject: string; text: string; html?: string; sheetData?: any }) {
+    const { to, subject, text, html, sheetData } = body;
     if (!to || !subject || !text) {
       throw new BadRequestException('Faltan campos requeridos: to, subject, text');
     }
-    await this.mailService.sendMail(to, subject, text, html);
+    await this.mailService.sendMail(to, subject, text, html, sheetData);
     return { message: 'Correo enviado correctamente' };
   }
 } 
