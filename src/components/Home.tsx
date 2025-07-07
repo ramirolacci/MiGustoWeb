@@ -33,6 +33,19 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
         };
     }, [current, slides, transition]);
 
+    useEffect(() => {
+        const handleVisibility = () => {
+            if (document.visibilityState === 'visible') {
+                setCurrent(1);
+                setTransition(true);
+            }
+        };
+        document.addEventListener('visibilitychange', handleVisibility);
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibility);
+        };
+    }, []);
+
     const handleTransitionEnd = () => {
         if (current === 0) {
             setTransition(false);
@@ -83,16 +96,6 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                     />
                 ))}
             </div>
-            <button className="slider-arrow left" onClick={goToPrev} aria-label="Anterior">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M18 24L10 14L18 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
-            <button className="slider-arrow right" onClick={goToNext} aria-label="Siguiente">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M10 24L18 14L10 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
         </div>
     );
 });
