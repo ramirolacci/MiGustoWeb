@@ -16,6 +16,7 @@ import { FaInstagram } from 'react-icons/fa';
 import backgroundText from './assets/background-text.jpg';
 import Switch from './components/Switch';
 import './index.css';
+import emailCardHtml from './emailCard.html?raw';
 
 // Registrar el locale español
 registerLocale('es', es);
@@ -483,76 +484,37 @@ function App() {
           novedades: sanitizedData.novedades ? 'Sí' : 'No',
           formToken: formToken
         };
-        // Enviar correo usando EmailJS
-        await emailjs.send(
-          config.emailjs.serviceId,
-          config.emailjs.templateId,
-          templateParams,
-          config.emailjs.publicKey
-        );
-
-        // Preparar datos para SheetDB
+        // Reemplazar los placeholders en el HTML
+        let htmlBody = emailCardHtml;
+        Object.entries(templateParams).forEach(([key, value]) => {
+          htmlBody = htmlBody.replace(new RegExp(`{{${key}}}`, 'g'), value);
+        });
+        // Preparar datos para SheetDB (solo una vez)
         const sheetData = {
-          data: [{
-            nombre: sanitizedData.nombre,
-            email: sanitizedData.email,
-            telefono: sanitizedData.telefono,
-            sucursal: sanitizedData.sucursal,
-            esCliente: sanitizedData.cliente === 'si' ? 'si' : 'no',
-            aceptaBeneficios: sanitizedData.novedades ? 'Sí' : 'No',
-            cumple: formatearFecha(sanitizedData.cumple),
-            saboresFavoritos: sanitizedData.saboresFavoritos.join(', '),
-            formToken: formToken
-          }]
+          nombre: sanitizedData.nombre,
+          email: sanitizedData.email,
+          telefono: sanitizedData.telefono,
+          sucursal: sanitizedData.sucursal,
+          esCliente: sanitizedData.cliente === 'si' ? 'si' : 'no',
+          aceptaBeneficios: sanitizedData.novedades ? 'Sí' : 'No',
+          cumple: formatearFecha(sanitizedData.cumple),
+          saboresFavoritos: sanitizedData.saboresFavoritos.join(', '),
+          formToken: formToken
         };
-
-        // Enviar datos a SheetDB con retry y timeout
-        const fetchWithTimeout = async (url: string, options: RequestInit, timeout = 5000) => {
-          const controller = new AbortController();
-          const id = setTimeout(() => controller.abort(), timeout);
-          try {
-            const response = await fetch(url, {
-              ...options,
-              signal: controller.signal
-            });
-            clearTimeout(id);
-            return response;
-          } catch (error) {
-            clearTimeout(id);
-            throw error;
-          }
-        };
-
-        const maxRetries = 3;
-        let retryCount = 0;
-        let response;
-        let lastError: Error | null = null;
-        while (retryCount < maxRetries) {
-          try {
-            response = await fetchWithTimeout(
-              config.sheetdb.url,
-              {
+        // Enviar correo usando el backend propio
+        const mailResponse = await fetch('http://localhost:3000/mail/send', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(sheetData)
-              },
-              5000
-            );
-            if (response.ok) break;
-            lastError = new Error(`HTTP error! status: ${response.status}`);
-            retryCount++;
-          } catch (error) {
-            lastError = error as Error;
-            if (retryCount === maxRetries - 1) throw error;
-            retryCount++;
-            await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
-          }
-        }
-
-        if (!response?.ok) {
-          throw lastError || new Error('Failed to send data to SheetDB');
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: sanitizedData.email,
+            subject: '¡Bienvenido a Mi Gusto Lovers!',
+            text: `¡Bienvenido a Mi Gusto Lovers!\n\nNombre: ${templateParams.nombre}\nEmail: ${templateParams.email}\nTeléfono: ${templateParams.telefono}\nCumpleaños: ${templateParams.cumple}\nSabores favoritos: ${templateParams.saboresFavoritos}\n¿Es cliente?: ${templateParams.cliente}\nSucursal: ${templateParams.sucursal}\n¿Recibe novedades?: ${templateParams.novedades}`,
+            html: htmlBody,
+            sheetData: sheetData
+          })
+        });
+        if (!mailResponse.ok) {
+          throw new Error('No se pudo enviar el correo');
         }
 
         setIsSubmitted(true);
