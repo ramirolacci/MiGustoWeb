@@ -279,7 +279,7 @@
     right: 2rem;
     width: 50px;
     height: 50px;
-    background-color: #ffc107;
+    background: #ffc107;
     color: #1a1a1a;
     border: none;
     border-radius: 50%;
@@ -292,8 +292,16 @@
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.3s ease forwards;
+    z-index: 9999;
 }
-
+.scroll-top-button svg {
+    display: block;
+    margin: 0 auto;
+    color: #1a1a1a;
+    stroke: #1a1a1a;
+    width: 24px;
+    height: 24px;
+}
 .scroll-top-button:hover {
     background-color: #ffd54f;
     transform: translateY(-5px);
@@ -310,11 +318,5 @@
     .footer-col-12 {
         flex: 0 0 auto;
         width: 100%;
-    }
-}
-
-@media (max-width: 900px) {
-    .scroll-top-button {
-        display: none !important;
     }
 } 
