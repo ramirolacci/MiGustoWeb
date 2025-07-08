@@ -18,7 +18,7 @@ export const empanadas: Empanada[] = [
     imagenDetalle: "https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png",
     titulo: "Mexican Pibil pork",
     precio: 4000,
-    descripcion: "Carne de cerdo marinada en achiote y naranja agria, con cebolla morada y cilantro.",
+    descripcion: "Bondiola de cerdo de larga coccion, Achiote con porotos negros, Crema acida, Cebolla encurtida, Cilantro.",
     esRecomendado: true,
     esPremium: true
   },
@@ -27,7 +27,7 @@ export const empanadas: Empanada[] = [
     imagenDetalle: "https://i.postimg.cc/26x2LHzp/Mexican-Veggie.png",
     titulo: "Mexican Veggie",
     precio: 4000,
-    descripcion: "Mezcla de vegetales salteados con especias mexicanas, maíz y frijoles negros.",
+    descripcion: "Salteado de champinones, Morron y cebolla, Choclo y porotos negros, Crema acida, cilantro y cebolla encurtida, Masa vegana.",
     esVegetariano: true,
     esPremium: true
   },
@@ -36,7 +36,16 @@ export const empanadas: Empanada[] = [
     imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
     titulo: "Big Burguer",
     precio: 4000,
-    descripcion: "Hamburguesa de carne, queso cheddar, panceta, cebolla caramelizada y salsa especial.",
+    descripcion: "Blend de ojo de bife, Tapa de asado, Doble bacon, Cheddar, Pepinillos, Salsa Big.",
+    esRecomendado: true,
+    esPremium: true
+  },
+  {
+    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/0a6315c4-600e-4091-808f-565ff5906571.jpg",
+    imagenDetalle: "https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png",
+    titulo: "Matambre a la pizza",
+    precio: 4000,
+    descripcion: "Matambre tierno ahumado a leña, Muzzarella, Salsa casera de tomate, Gratinado de provolone, Salsa chimichurri.",
     esRecomendado: true,
     esPremium: true
   },
@@ -46,15 +55,6 @@ export const empanadas: Empanada[] = [
     titulo: "Cheese Burguer",
     precio: 4000,  
     descripcion: "Hamburguesa de carne con queso cheddar, cebolla y salsa especial.",
-    esRecomendado: true,
-    esPremium: true
-  },
-  {
-    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/0a6315c4-600e-4091-808f-565ff5906571.jpg",
-    imagenDetalle: "https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png",
-    titulo: "Matambre a la pizza",
-    precio: 4000,
-    descripcion: "Matambre relleno con salsa de tomate, mozzarella y orégano.",
     esRecomendado: true,
     esPremium: true
   },
