@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
+import NavBar from './NavBar';
 
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
@@ -33,6 +34,13 @@ function formatearPrecio(precio: string | number) {
 }
 
 const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
+
+const EMPANADAS_3D = [
+    "Big Burguer",
+    "Mexican Pibil pork",
+    "Mexican Veggie",
+    "Matambre a la pizza"
+];
 
 export default function Productos() {
     const [filtro, setFiltro] = useState(categorias[1]);
@@ -133,6 +141,17 @@ export default function Productos() {
         return () => window.removeEventListener('keydown', handleEscape);
     }, []);
 
+    useEffect(() => {
+        if (productoSeleccionado && EMPANADAS_3D.includes(productoSeleccionado.titulo) && window.innerWidth < 900) {
+            document.body.classList.add('ocultar-navbar');
+        } else {
+            document.body.classList.remove('ocultar-navbar');
+        }
+        return () => {
+            document.body.classList.remove('ocultar-navbar');
+        };
+    }, [productoSeleccionado]);
+
     return (
         <div className="productos-section">
             <div className="background-overlay"></div>
@@ -190,25 +209,50 @@ export default function Productos() {
                             No se encontraron productos que coincidan con tu búsqueda
                         </div>
                     ) : (
-                        productosFiltrados.map((prod) => (
-                            <div 
-                                className="producto-card" 
-                                key={prod.titulo + '-' + prod.categoria} 
-                                onClick={() => setProductoSeleccionado(prod)}
-                                data-categoria={filtro}
-                            >
-                                {prod.precio && (
-                                    <div className="producto-tipo">
-                                        ${formatearPrecio(prod.precio)}
+                        productosFiltrados.map((prod) => {
+                            const tiene3D = EMPANADAS_3D.includes(prod.titulo);
+                            return (
+                                <div 
+                                    className="producto-card" 
+                                    key={prod.titulo + '-' + prod.categoria} 
+                                    onClick={() => setProductoSeleccionado(prod)}
+                                    data-categoria={filtro}
+                                    style={{ position: 'relative' }}
+                                >
+                                    {tiene3D && (
+                                        <span className="icono-3d" title="Vista 3D disponible" style={{position:'absolute',bottom:10,right:10,zIndex:2}}>
+                                            <span className="icono-3d-minimal">3D</span>
+                                        </span>
+                                    )}
+                                    <img src={prod.imagen} alt={prod.titulo} />
+                                    <div className="producto-info">
+                                        <h3
+                                            style={{
+                                                fontSize: '1.45rem',
+                                                fontWeight: 900,
+                                                marginBottom: '0.3rem',
+                                                letterSpacing: '0.03em',
+                                                lineHeight: 1.1,
+                                                filter: 'drop-shadow(0 1px 4px #FFD70022)',
+                                                transition: 'font-size 0.2s, background-position 0.7s, filter 0.3s',
+                                            }}
+                                        >
+                                            <span style={{
+                                                display: 'inline-block',
+                                                background: 'linear-gradient(90deg, #FFD700 30%, #FFA500 70%, #fff 100%)',
+                                                WebkitBackgroundClip: 'text',
+                                                WebkitTextFillColor: 'transparent',
+                                                backgroundClip: 'text',
+                                                color: 'transparent',
+                                                textShadow: '0 2px 8px #FFD70033, 0 1px 0 #fff, 0 0px 8px #FFA50022',
+                                                backgroundSize: '200% 200%',
+                                                backgroundPosition: '0% 50%'
+                                            }}>{prod.titulo}</span>
+                                        </h3>
                                     </div>
-                                )}
-                                <img src={prod.imagen} alt={prod.titulo} />
-                                <div className="producto-info">
-                                    <h3>{prod.titulo}</h3>
-                                    <p>{prod.descripcion}</p>
                                 </div>
-                            </div>
-                        ))
+                            );
+                        })
                     )}
                 </div>
 
@@ -216,6 +260,7 @@ export default function Productos() {
                     <ProductModal3D
                         producto={productoSeleccionado}
                         onClose={() => setProductoSeleccionado(null)}
+                        tiene3D={EMPANADAS_3D.includes(productoSeleccionado.titulo)}
                     />
                 )}
 
