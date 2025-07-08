@@ -34,6 +34,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [transitionStyle, setTransitionStyle] = useState('transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)');
+    const [loading3D, setLoading3D] = useState(true);
 
     useEffect(() => {
         if (tiene3D) {
@@ -44,8 +45,23 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                 script.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
                 document.body.appendChild(script);
             }
+            setLoading3D(true); // Reiniciar el loading cada vez que cambia el producto 3D
         }
-    }, [tiene3D]);
+    }, [tiene3D, producto.titulo]);
+
+    // Solución robusta: escuchar el evento 'load' del <model-viewer> directamente
+    useEffect(() => {
+        if (!tiene3D || !RUTAS_3D[producto.titulo]) return;
+        setLoading3D(true);
+        const interval = setInterval(() => {
+            const mv = document.querySelector('model-viewer');
+            if (mv) {
+                mv.addEventListener('load', () => setLoading3D(false), { once: true });
+                clearInterval(interval);
+            }
+        }, 60);
+        return () => clearInterval(interval);
+    }, [tiene3D, producto.titulo]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!modalRef.current || isDragging) return;
@@ -151,12 +167,36 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                     transition: transitionStyle
                 }}
             >
-                <button 
-                    className="modal-close" 
-                    onClick={handleClose}
-                    aria-label="Cerrar modal"
-                    style={tiene3D ? {color:'#FFD700',background:'#222',fontSize:32,top:24,right:24,position:'absolute',zIndex:10} : {}}
-                >×</button>
+                {/* Indicador de carga para el modelo 3D */}
+                {tiene3D && RUTAS_3D[producto.titulo] && loading3D && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      // Desktop: mucho más a la izquierda, Mobile: centrado
+                      top: '50%',
+                      left: '36%',
+                      transform: 'translate(-50%, -50%)',
+                      zIndex: 100,
+                      background: 'rgba(24,24,24,0.85)',
+                      color: '#FFD700',
+                      padding: '24px 36px',
+                      borderRadius: 16,
+                      fontWeight: 700,
+                      fontSize: 22,
+                      boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 16,
+                      minWidth: 260,
+                      maxWidth: 340,
+                      textAlign: 'center',
+                    }}
+                    className="loading-3d-indicator"
+                  >
+                    <span className="fa fa-spinner fa-spin" style={{fontSize: 32}}></span>
+                    Cargando modelo 3D...
+                  </div>
+                )}
                 {tiene3D ? (
                     <div className="modal-3d-fullscreen-wrapper">
                         <div className="modal-3d-viewer-outer">
@@ -196,6 +236,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                         'max-camera-orbit': 'auto auto 3m',
                                         'interaction-prompt': 'none',
                                         'disable-pan': true,
+                                        onLoad: () => setLoading3D(false),
                                     })
                                 ) : (
                                     <div style={{color:'#FFD700',textAlign:'center'}}>Modelo 3D próximamente</div>
@@ -216,84 +257,92 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                         </div>
                     </div>
                 ) : (
-                    <div className="modal-horizontal-content" style={{width: '100%', height: '100%'}}>
-                        <div className="modal-horizontal-left">
-                            <div className="modal-header-3d">
-                                <div className="modal-image-container"
-                                    style={{
-                                        transform: `translateZ(200px) translateX(${position.x * 0.15}px) translateY(${position.y * 0.15}px)`,
-                                        transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                                    }}>
-                                    <img
-                                        src={producto.imagenDetalle || producto.imagen}
-                                        alt={producto.titulo}
-                                        className={`modal-img ${producto.titulo.toLowerCase().includes('vacio') || producto.titulo.toLowerCase().includes('american chicken') ? 'modal-img-large' : ''}`}
-                                        draggable="false"
-                                    />
-                                </div>
-                                <div className="modal-badges"
-                                    style={{
-                                        transform: `translateZ(180px) translateX(${position.x * 0.12}px) translateY(${position.y * 0.12}px)`,
-                                        transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                                    }}>
-                                    {producto.esRecomendado && (
-                                        <span className="badge badge-recomendado">Recomendado</span>
-                                    )}
-                                    {producto.esVegetariano && (
-                                        <span className="badge badge-vegetariano">Vegetariano</span>
-                                    )}
-                                    {producto.esSinGluten && (
-                                        <span className="badge badge-sin-gluten">Sin Gluten</span>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="modal-info-3d">
-                                {/* <h2 ...>{producto.titulo}</h2> eliminado */}
-                            </div>
-                        </div>
-                        <div className="modal-horizontal-right">
-                            <h2 className="modal-product-title"
-                                style={{
-                                    transform: `translateZ(150px) translateX(${position.x * 0.1}px) translateY(${position.y * 0.1}px)`,
-                                    transition: isHovered && !isDragging ? 'none' : transitionStyle
-                                }}
-                            >{producto.titulo}</h2>
-                            <div className="modal-detalles">
-                                <div className="detalle-item"
-                                    style={{
-                                        transform: `translateZ(160px) translateX(${position.x * 0.11}px) translateY(${position.y * 0.11}px)`,
-                                        transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                                    }}>
-                                    <h3>Ingredientes</h3>
-                                    <ul className="ingredientes-lista">
-                                        {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
-                                            <li key={index}>{ingrediente}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                {producto.tiempoPreparacion && (
-                                    <div className="detalle-item"
+                    <React.Fragment>
+                        <button 
+                            className="modal-close" 
+                            onClick={handleClose}
+                            aria-label="Cerrar modal"
+                            style={{position: 'absolute', top: 24, right: 24, zIndex: 20000, fontSize: 32, background: '#222', color: '#FFD700', borderRadius: 24, border: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 12px 0 #FFD70033'}}
+                        >×</button>
+                        <div className="modal-horizontal-content" style={{width: '100%', height: '100%'}}>
+                            <div className="modal-horizontal-left">
+                                <div className="modal-header-3d">
+                                    <div className="modal-image-container"
                                         style={{
-                                            transform: `translateZ(155px) translateX(${position.x * 0.105}px) translateY(${position.y * 0.105}px)`,
+                                            transform: `translateZ(200px) translateX(${position.x * 0.15}px) translateY(${position.y * 0.15}px)`,
                                             transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                                         }}>
-                                        <h3>Tiempo de Preparación</h3>
-                                        <p>{producto.tiempoPreparacion}</p>
+                                        <img
+                                            src={producto.imagenDetalle || producto.imagen}
+                                            alt={producto.titulo}
+                                            className={`modal-img ${producto.titulo.toLowerCase().includes('vacio') || producto.titulo.toLowerCase().includes('american chicken') ? 'modal-img-large' : ''}`}
+                                            draggable="false"
+                                        />
                                     </div>
-                                )}
-                                {producto.calorias && (
-                                    <div className="detalle-item"
+                                    <div className="modal-badges"
                                         style={{
-                                            transform: `translateZ(150px) translateX(${position.x * 0.1}px) translateY(${position.y * 0.1}px)`,
+                                            transform: `translateZ(180px) translateX(${position.x * 0.12}px) translateY(${position.y * 0.12}px)`,
                                             transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                                         }}>
-                                        <h3>Información Nutricional</h3>
-                                        <p>{producto.calorias}</p>
+                                        {producto.esRecomendado && (
+                                            <span className="badge badge-recomendado">Recomendado</span>
+                                        )}
+                                        {producto.esVegetariano && (
+                                            <span className="badge badge-vegetariano">Vegetariano</span>
+                                        )}
+                                        {producto.esSinGluten && (
+                                            <span className="badge badge-sin-gluten">Sin Gluten</span>
+                                        )}
                                     </div>
-                                )}
+                                </div>
+                                <div className="modal-info-3d">
+                                    {/* <h2 ...>{producto.titulo}</h2> eliminado */}
+                                </div>
+                            </div>
+                            <div className="modal-horizontal-right">
+                                <h2 className="modal-product-title"
+                                    style={{
+                                        transform: `translateZ(150px) translateX(${position.x * 0.1}px) translateY(${position.y * 0.1}px)`,
+                                        transition: isHovered && !isDragging ? 'none' : transitionStyle
+                                    }}
+                                >{producto.titulo}</h2>
+                                <div className="modal-detalles">
+                                    <div className="detalle-item"
+                                        style={{
+                                            transform: `translateZ(160px) translateX(${position.x * 0.11}px) translateY(${position.y * 0.11}px)`,
+                                            transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                        }}>
+                                        <h3>Ingredientes</h3>
+                                        <ul className="ingredientes-lista">
+                                            {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
+                                                <li key={index}>{ingrediente}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    {producto.tiempoPreparacion && (
+                                        <div className="detalle-item"
+                                            style={{
+                                                transform: `translateZ(155px) translateX(${position.x * 0.105}px) translateY(${position.y * 0.105}px)`,
+                                                transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                            }}>
+                                            <h3>Tiempo de Preparación</h3>
+                                            <p>{producto.tiempoPreparacion}</p>
+                                        </div>
+                                    )}
+                                    {producto.calorias && (
+                                        <div className="detalle-item"
+                                            style={{
+                                                transform: `translateZ(150px) translateX(${position.x * 0.1}px) translateY(${position.y * 0.1}px)`,
+                                                transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                            }}>
+                                            <h3>Información Nutricional</h3>
+                                            <p>{producto.calorias}</p>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </React.Fragment>
                 )}
             </div>
         </div>
