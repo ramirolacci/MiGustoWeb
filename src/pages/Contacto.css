@@ -147,6 +147,7 @@
 }
 
 .btn-ver-mas {
+  background: none;
   background-color: transparent;
   color: #fff;
   border: 2px solid #D4AF37;
@@ -298,8 +299,8 @@
 }
 
 .remove-file {
-  background-color: transparent;
-  color: #ff0000;
+  background-color: transparent !important;
+  color: #ff0000 !important;
   border: 1px solid #ff0000;
   border-radius: 50%;
   width: 24px;
@@ -316,8 +317,8 @@
 }
 
 .remove-file:hover {
-  background-color: #ff0000;
-  color: #fff;
+  background-color: #ff0000 !important;
+  color: #fff !important;
   transform: scale(1.1);
 }
 

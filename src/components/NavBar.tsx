@@ -4,11 +4,15 @@ import './NavBar.css';
 import LoversButton from './LoversButton';
 import './LoversButton.css';
 
-const NavBar: React.FC = () => {
+interface NavBarProps {
+  loversActive?: boolean;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ loversActive }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(loversActive ?? false);
   const location = useLocation();
   const navigate = useNavigate();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -141,7 +145,7 @@ const NavBar: React.FC = () => {
               onClick={() => {
                 setIsSwitchOn(true);
                 setTimeout(() => {
-                  navigate('/lovers');
+                  navigate('/lovers-form');
                 }, 350);
               }}
             />
