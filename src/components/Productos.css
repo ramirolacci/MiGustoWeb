@@ -1584,6 +1584,11 @@ body {
     filter: drop-shadow(0 2px 8px #FFD70033);
     transition: font-size 0.2s;
 }
+@keyframes brilloTituloCard {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 @media (max-width: 900px) {
     .titulo-impresionante-3d {
         font-size: 2rem;
