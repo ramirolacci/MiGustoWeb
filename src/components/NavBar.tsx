@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
-import Switch from './Switch';
-import './Switch.css';
+import LoversButton from './LoversButton';
+import './LoversButton.css';
 
-const NavBar: React.FC = () => {
+interface NavBarProps {
+  loversActive?: boolean;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ loversActive }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(loversActive ?? false);
   const location = useLocation();
   const navigate = useNavigate();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -135,13 +139,13 @@ const NavBar: React.FC = () => {
                 }}
               />
             </Link>
-            {/* Switch al lado del logo */}
-            <Switch
+            {/* Botón Lovers al lado del logo */}
+            <LoversButton
               isOn={isSwitchOn}
               onClick={() => {
                 setIsSwitchOn(true);
                 setTimeout(() => {
-                  navigate('/lovers');
+                  navigate('/lovers-form');
                 }, 350);
               }}
             />
