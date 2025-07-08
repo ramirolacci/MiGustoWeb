@@ -220,7 +220,7 @@ export default function Productos() {
                                     style={{ position: 'relative' }}
                                 >
                                     {tiene3D && (
-                                        <span className="icono-3d" title="Vista 3D disponible" style={{position:'absolute',bottom:10,right:10,zIndex:2}}>
+                                        <span className="icono-3d" title="Vista 3D disponible" style={{position:'absolute',top:10,right:10,zIndex:2}}>
                                             <span className="icono-3d-minimal">3D</span>
                                         </span>
                                     )}
@@ -228,27 +228,43 @@ export default function Productos() {
                                     <div className="producto-info">
                                         <h3
                                             style={{
-                                                fontSize: '1.45rem',
+                                                fontSize: '2.3rem',
                                                 fontWeight: 900,
-                                                marginBottom: '0.3rem',
-                                                letterSpacing: '0.03em',
-                                                lineHeight: 1.1,
-                                                filter: 'drop-shadow(0 1px 4px #FFD70022)',
-                                                transition: 'font-size 0.2s, background-position 0.7s, filter 0.3s',
+                                                margin: '0.7rem 0 0.7rem 0',
+                                                letterSpacing: '0.05em',
+                                                lineHeight: 1.12,
+                                                textAlign: 'center',
+                                                textShadow: '0 2px 8px #FFD70077, 0 1px 0 #fff',
+                                                padding: '0.45em 0.2em',
+                                                borderRadius: '22px',
+                                                border: '2.5px solid #FFD700',
+                                                boxShadow: '0 4px 24px 0 #FFD70033, 0 2px 8px 0 #0008',
+                                                position: 'relative',
+                                                overflow: 'visible',
+                                                background: 'transparent',
                                             }}
                                         >
                                             <span style={{
-                                                display: 'inline-block',
-                                                background: 'linear-gradient(90deg, #FFD700 30%, #FFA500 70%, #fff 100%)',
+                                                display: 'inline',
+                                                background: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
                                                 WebkitBackgroundClip: 'text',
                                                 WebkitTextFillColor: 'transparent',
                                                 backgroundClip: 'text',
                                                 color: 'transparent',
-                                                textShadow: '0 2px 8px #FFD70033, 0 1px 0 #fff, 0 0px 8px #FFA50022',
-                                                backgroundSize: '200% 200%',
-                                                backgroundPosition: '0% 50%'
+                                                backgroundSize: '300% 300%',
+                                                backgroundPosition: '0% 50%',
+                                                animation: 'brilloTituloCard 2.5s linear infinite',
                                             }}>{prod.titulo}</span>
                                         </h3>
+                                        <div style={{
+                                            width: '80%',
+                                            height: '0.7em',
+                                            margin: '-0.3em auto 0 auto',
+                                            background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.01) 100%)',
+                                            opacity: 0.7,
+                                            borderRadius: '50%',
+                                            filter: 'blur(2.5px)',
+                                        }}></div>
                                     </div>
                                 </div>
                             );
