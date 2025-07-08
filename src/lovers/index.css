@@ -71,7 +71,7 @@ label {
   display: block;
 }
 
-button, .btn {
+body.lovers-page .lovers-app button, body.lovers-page .lovers-app .btn {
   background: linear-gradient(90deg, var(--dorado) 0%, var(--dorado-claro) 100%);
   color: #181818;
   font-weight: 700;
@@ -850,7 +850,7 @@ input[type="radio"].input-error:hover {
     margin-right: auto !important;
     display: block !important;
   }
-  button, .btn {
+  body.lovers-page .lovers-app button, body.lovers-page .lovers-app .btn {
     width: 100% !important;
     max-width: 380px !important;
     min-width: 0 !important;

@@ -14,8 +14,8 @@ import Empanada3 from './assets/Empanadas/Matambre a la pizza.png';
 import Empanada4 from './assets/Empanadas/burger.png';
 import { FaInstagram } from 'react-icons/fa';
 import backgroundText from './assets/background-text.jpg';
-import Switch from './components/Switch';
-import './index.css';
+import LoversButton from './components/LoversButton';
+// import './index.css';
 import emailCardHtml from './emailCard.html?raw';
 
 // Registrar el locale español
@@ -606,7 +606,7 @@ function App() {
 
   if (isSubmitted) {
     return (
-      <div className="app">
+      <div className="app lovers-app">
         <style>{modalStyles}</style>
         <ParticlesBG />
         <Confetti />
@@ -631,7 +631,7 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="app lovers-app">
       <style>{modalStyles}</style>
       <header style={{
         background: 'rgba(24,24,24,0.85)',
@@ -664,8 +664,8 @@ function App() {
               <div style={{width: 44, height: 44, background: 'linear-gradient(135deg, #e53935 0%, #f7c873 100%)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <Heart className="heartbeat" style={{width: 28, height: 28, color: '#181818'}} />
               </div>
-              {/* Switch Site a la derecha del corazón */}
-              <Switch
+              {/* Botón Lovers a la derecha del corazón */}
+              <LoversButton
                 isOn={isSwitchOn}
                 onClick={() => {
                   setIsSwitchOn(true);
@@ -794,9 +794,9 @@ function App() {
             background: 'transparent',
             minHeight: 60
           }}>
-            {/* Switch a la izquierda */}
+            {/* Botón Lovers a la izquierda */}
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', minWidth: 70}}>
-              <Switch
+              <LoversButton
                 isOn={isSwitchOn}
                 onClick={() => {
                   setIsSwitchOn(true);
