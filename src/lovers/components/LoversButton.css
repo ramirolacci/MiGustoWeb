@@ -1,0 +1,49 @@
+.switch-lovers-btn {
+  background: #e0e0e0;
+  color: #888;
+  font-weight: 500;
+  font-size: 0.92rem;
+  border: none;
+  border-radius: 999px;
+  padding: 4px 16px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
+  letter-spacing: 0.5px;
+  outline: none;
+  min-width: 64px;
+  margin-left: 8px;
+  opacity: 0.85;
+}
+.switch-lovers-btn.on {
+  background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+  color: #181818;
+  font-weight: bold;
+  box-shadow: 0 2px 12px 0 rgba(255,215,0,0.18);
+  opacity: 1;
+  /* Mantengo el mismo tamaño y padding que el estado normal */
+  font-size: 0.92rem;
+  padding: 4px 16px;
+  min-width: 64px;
+}
+.switch-lovers-btn:hover, .switch-lovers-btn:focus {
+  transform: scale(1.06);
+}
+.switch-lovers-btn.on:hover, .switch-lovers-btn.on:focus {
+  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
+  box-shadow: 0 4px 24px 0 rgba(255,215,0,0.28);
+}
+
+@media (max-width: 600px) {
+  .switch-lovers-btn {
+    font-size: 0.92rem;
+    padding: 4px 16px;
+    min-width: 64px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    border-radius: 999px;
+  }
+} 

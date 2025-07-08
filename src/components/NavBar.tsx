@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
-import Switch from './Switch';
-import './Switch.css';
+import LoversButton from './LoversButton';
+import './LoversButton.css';
 
 const NavBar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -135,8 +135,8 @@ const NavBar: React.FC = () => {
                 }}
               />
             </Link>
-            {/* Switch al lado del logo */}
-            <Switch
+            {/* Botón Lovers al lado del logo */}
+            <LoversButton
               isOn={isSwitchOn}
               onClick={() => {
                 setIsSwitchOn(true);
