@@ -10,6 +10,7 @@ export interface Empanada {
   esVegetariano?: boolean;
   esSinGluten?: boolean;
   esPremium?: boolean;
+  ingredientes?: string[];
 }
 
 export const empanadas: Empanada[] = [
@@ -54,7 +55,7 @@ export const empanadas: Empanada[] = [
     imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burguer.png",
     titulo: "Cheese Burguer",
     precio: 4000,  
-    descripcion: "Hamburguesa de carne con queso cheddar, cebolla y salsa especial.",
+    descripcion: "Blend de ojo de bife y vacio, Doble bacon, Salsa bbq, Mar de cheddar.",
     esRecomendado: true,
     esPremium: true
   },
@@ -63,7 +64,7 @@ export const empanadas: Empanada[] = [
     imagenDetalle: "https://i.postimg.cc/Dz32yH1f/VACIO-Y-PROVOLETA.png",
     titulo: "Vacio y provoleta",
     precio: 4000,
-    descripcion: "Vacio tierno con queso provolone fundido y chimichurri.",
+    descripcion: "Delicioso vacio asado desmechado, Clásico chimichurri con cebolla, Morrón salteado a fuego lento, Provoleta y muzzarella seleccionada, Semolin en la tapa.",
     esRecomendado: true,
     esPremium: true
   },
@@ -72,56 +73,62 @@ export const empanadas: Empanada[] = [
     imagenDetalle: "https://i.postimg.cc/bv0qGgRx/AMERICAN.png",
     titulo: "American Chicken",
     precio: 4000,
-    descripcion: "Pollo con salsa barbacoa, cebolla caramelizada y queso cheddar.",
+    descripcion: "Chicken sabroso y dulce, Bacón crujiente braseado, Mar de cheddar.",
     esPremium: true
   },
   {
     imagen: "https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png",
     titulo: "Jamon y queso",
     precio: 3700,
-    descripcion: "Clásica combinación de jamón cocido y queso mozzarella.",
+    descripcion: "Jamón cocido feteado, Abundante muzzarella seleccionada.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
     titulo: "Jamon, huevo y queso",
     precio: 3700,
-    descripcion: "Jamón cocido, huevo duro y queso mozzarella.",
+    descripcion: "Jamón cocido en cubos, Colmado de muzzarella seleccionada, Huevo duro.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/fLCSdvyz/Carne-picante.png",
     titulo: "Carne picante",
     precio: 3700,
-    descripcion: "Carne picada con cebolla, huevo y ají picante.",
+    descripcion: "Corte de paleta premium, Salteado de cebolla y morrón, Verdeo y huevo duro, Especias y ají picante.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/MHHWPC0L/con-aceitunas.png",
     titulo: "Carne con aceituna",
     precio: 3700,
-    descripcion: "Carne picada con cebolla, huevo y aceitunas verdes.",
+    descripcion: "Corte de paleta premium, salteado de cebolla, morrón, verdeo con huevo duro, abundantes rodajas de aceitunas verdes y delicadas especias.",
+    ingredientes: [
+      "Corte de paleta premium",
+      "Salteado de cebolla, morrón, verdeo con huevo duro",
+      "Abundante rodajas de aceitunas verdes",
+      "Delicadas especias"
+    ],
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/d12LYjrR/Carne-a-cuchillo.png",
     titulo: "Carne a cuchillo",
     precio: 3700,
-    descripcion: "Carne cortada a cuchillo con cebolla, huevo y especias.",
+    descripcion: "Carne cuadrada premium con corte a cuchillo artesanal, Mix de morrón y huevo, Toque secreto salteño.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/NMjmpnW9/Carne-Suave.png",
     titulo: "Carne Suave",
     precio: 3700,
-    descripcion: "Carne picada con cebolla y huevo, sin picante.",
+    descripcion: "Corte de paleta premium, Salteado con cebolla y morrón, Huevo duro, Delicadas especias de nuestra tradición.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/1XtxRybm/Cebolla.png",
     titulo: "Queso y Cebolla",
     precio: 3700,
-    descripcion: "Queso mozzarella con cebolla caramelizada.",
+    descripcion: "Perfecta union muzzarella seleccionada, Salteado de cebolla, Toque de quesardo estacionado.",
     esVegetariano: true,
     esPremium: false
   },
@@ -129,28 +136,40 @@ export const empanadas: Empanada[] = [
     imagen: "https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png",
     titulo: "Roquefort con jamon",
     precio: 3700,
-    descripcion: "Queso roquefort con jamón cocido.",
+    descripcion: "Jamon cocido feteado, Intenso queso roquefort premium.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/FRJDQZbH/tomate-y-albahaca.png",
     titulo: "Jamon, tomate y albahaca",
     precio: 3700,
-    descripcion: "Jamón cocido con tomate fresco y albahaca.",
+    descripcion: "Jamón cocido en cubos, Tomates cherry asados, Albahaca fresca, Abundante queso muzzarella.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/NGS2HDk4/pollo.png",
     titulo: "Pollo",
     precio: 3700,
-    descripcion: "Pollo desmenuzado con cebolla y especias.",
+    descripcion: "Suprema de pollo cortada en trozos a base de cebolla, morrón y salsa de especias, cocinado a fuego lento y finalizado con huevo duro.",
+    ingredientes: [
+      "Suprema de pollo cortada en trozos a base de cebolla",
+      "Morrón y salsa de especias",
+      "Cocinado a fuego lento",
+      "Finalizado con huevo duro"
+    ],
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/rw1NF3W3/cuatro-quesos.png",
     titulo: "Cuatro Quesos",
     precio: 3700,
-    descripcion: "Mezcla de mozzarella, roquefort, provolone y queso azul.",
+    descripcion: "Blend de abundante queso muzzarella, quesardo seleccionado, roquefort intenso y provolone estacionado.",
+    ingredientes: [
+      "Blend de abundante queso muzzarella",
+      "Quesardo seleccionado",
+      "Roquefort intenso",
+      "Provolone estacionado"
+    ],
     esVegetariano: true,
     esPremium: false
   },
@@ -158,14 +177,25 @@ export const empanadas: Empanada[] = [
     imagen: "https://i.postimg.cc/rmGWykxP/champi.png",
     titulo: "Pollo al champignon",
     precio: 3700,
-    descripcion: "Pollo con champiñones salteados y crema.",
+    descripcion: "Suprema de pollo cortada en trozos, cremosa salsa bechamel y champignon fresco salteado.",
+    ingredientes: [
+      "Suprema de pollo cortada en trozos",
+      "Cremosa salsa bechamel",
+      "Champignon fresco salteado"
+    ],
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/t40x6JkM/choclo.png",
     titulo: "Choclo",
     precio: 3700,
-    descripcion: "Maíz cremoso con cebolla y especias.",
+    descripcion: "Deliciosa mezcla de choclo entero, choclo cremoso, especias y abundante queso muzzarella.",
+    ingredientes: [
+      "Deliciosa mezcla de choclo entero",
+      "Choclo cremoso",
+      "Especias",
+      "Abundante queso muzzarella"
+    ],
     esVegetariano: true,
     esPremium: false
   },
@@ -173,7 +203,13 @@ export const empanadas: Empanada[] = [
     imagen: "https://i.postimg.cc/zGcQZVmp/verdura.png",
     titulo: "Verdura",
     precio: 3700,
-    descripcion: "Mezcla de verduras salteadas con huevo.",
+    descripcion: "Salteado de espinaca, cebolla, morrón, puerro y verdeo, cremosa salsa bechamel, rebosada de abundante muzzarella y queso sardo estacionado.",
+    ingredientes: [
+      "Salteado de espinaca, cebolla, morrón, puerro y verdeo",
+      "Cremosa salsa bechamel",
+      "Rebosada de abundante muzzarella",
+      "Queso sardo estacionado"
+    ],
     esVegetariano: true,
     esPremium: false
   },
@@ -181,7 +217,12 @@ export const empanadas: Empanada[] = [
     imagen: "https://i.postimg.cc/brr5kQtn/Calabaza.png",
     titulo: "Calabaza",
     precio: 3700,
-    descripcion: "Calabaza asada con cebolla caramelizada y queso.",
+    descripcion: "Calabaza horneada especiada, abundante muzzarella en tapa integral y semillas.",
+    ingredientes: [
+      "Calabaza horneada especiada",
+      "Abundante muzzarella en tapa integral",
+      "Semillas"
+    ],
     esVegetariano: true,
     esPremium: false
   },
@@ -189,7 +230,12 @@ export const empanadas: Empanada[] = [
     imagen: "https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png",
     titulo: "Panceta y Ciruela",
     precio: 3700,
-    descripcion: "Panceta con ciruelas pasas y cebolla caramelizada.",
+    descripcion: "Panceta ahumada feteada, abundante queso muzzarella y ciruelas en pasas.",
+    ingredientes: [
+      "Panceta ahumada feteada",
+      "Abundante queso muzzarella",
+      "Ciruelas en pasas"
+    ],
     esPremium: false
   },
   {
