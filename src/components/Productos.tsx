@@ -39,7 +39,8 @@ const EMPANADAS_3D = [
     "Big Burguer",
     "Mexican Pibil pork",
     "Mexican Veggie",
-    "Matambre a la pizza"
+    "Matambre a la pizza",
+    "Cheese Burguer",
 ];
 
 export default function Productos() {
