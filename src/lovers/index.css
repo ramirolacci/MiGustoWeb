@@ -83,7 +83,7 @@ body.lovers-page .lovers-app button, body.lovers-page .lovers-app .btn {
   box-shadow: 0 4px 18px 0 rgba(255,215,0,0.13);
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
-button:hover, .btn:hover {
+body.lovers-page .lovers-app button:hover, body.lovers-page .lovers-app .btn:hover {
   background: linear-gradient(90deg, var(--dorado-brillante) 0%, var(--dorado) 100%);
   color: #181818;
   box-shadow: 0 6px 24px 0 rgba(255,215,0,0.22);

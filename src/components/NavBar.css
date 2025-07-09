@@ -304,8 +304,12 @@
   transition: fill 0.3s ease;
 }
 
-.hamburger-menu:hover .hamburger-icon {
-  fill: #ffffff;
+.hamburger-menu:hover {
+    background: none !important;
+    color: inherit !important;
+    fill: inherit !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .side-menu {

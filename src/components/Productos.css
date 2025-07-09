@@ -139,10 +139,6 @@ body {
     letter-spacing: 0.02em;
 }
 
-.productos-btn:hover {
-    color: #ffd700;
-}
-
 .productos-btn.active {
     color: #ffd700;
 }
@@ -156,6 +152,14 @@ body {
     height: 2px;
     background-color: #ffd700;
     transition: all 0.3s ease;
+}
+
+.productos-btn:hover {
+    color: inherit !important;
+    background: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    filter: none !important;
 }
 
 .productos-filtros {
@@ -187,7 +191,11 @@ body {
 }
 
 .subfiltro-btn:hover {
-    color: #ffd700;
+    color: inherit !important;
+    background: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    filter: none !important;
 }
 
 .subfiltro-btn.active {
@@ -993,10 +1001,6 @@ body {
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.02em;
-    }
-
-    .productos-btn:hover {
-        color: #ffd700;
     }
 
     .productos-btn.active {
