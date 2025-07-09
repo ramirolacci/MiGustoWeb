@@ -24,6 +24,7 @@ const RUTAS_3D: Record<string, string> = {
     "Mexican Pibil pork": "/3D/mexican-pibil-pork-3D.glb",
     "Mexican Veggie": "/3D/mexican-veggie-3D.glb",
     "Matambre a la pizza": "/3D/Matambre-a-la-Pizza-3D.glb",
+    "Cheese Burguer": "/3D/cheese-burger-3D.glb",
 };
 
 const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tiene3D }) => {
@@ -231,7 +232,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                         'shadow-intensity': '1',
                                         'shadow-softness': '1',
                                         exposure: '1.2',
-                                        'camera-orbit': '0deg 75deg 2.5m',
+                                        'camera-orbit': producto.titulo === 'Cheese Burguer' ? '180deg 90deg 2.5m' : '0deg 75deg 2.5m',
                                         'min-camera-orbit': 'auto auto 3m',
                                         'max-camera-orbit': 'auto auto 3m',
                                         'interaction-prompt': 'none',
