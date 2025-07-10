@@ -9,6 +9,7 @@ import Empanada4 from '../lovers/assets/Empanadas/burger.png';
 import '../lovers/index.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Footer from '../components/Footer';
 
 const sucursales = [
   'Ballester', 'Balvanera', 'Barrancas', 'Belgrano', 'Bella Vista', 'Campana', 'Del Viso', 'Devoto', 'Don Torcuato', 'Escobar', 'Floresta', 'Florida', 'Gral. Pacheco', 'Hurlingham', 'Ituzaingo', 'Jose C. Paz', 'Los Polvorines', 'Martinez', 'Maschwitz', 'Mataderos', 'Merlo', 'Moreno', 'Muñiz', 'Munro', 'Palermo', 'Paternal', 'Pilar Centro', 'Pilar Derqui', 'Puerto Madero', 'San Fernando', 'San Martin', 'San Miguel', 'Tigre', 'Tortugas Norte', 'Villa Adelina', 'Villa Crespo', 'Villa Urquiza',
@@ -408,6 +409,7 @@ const LoversForm: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
