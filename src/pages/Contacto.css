@@ -445,7 +445,7 @@
     bottom: 0;
     background-image: url('../assets/background-text.jpg');
     background-size: 120% auto;
-    background-position: center;
+    background-position: center top 20%;
     background-repeat: repeat;
     opacity: 0.4;
     z-index: 0;
