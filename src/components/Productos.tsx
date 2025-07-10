@@ -233,34 +233,59 @@ export default function Productos() {
                                     <div className="producto-info">
                                         <h3
                                             style={{
-                                                fontSize: '2.3rem',
-                                                fontWeight: 900,
-                                                margin: '0.7rem 0 0.7rem 0',
-                                                letterSpacing: '0.05em',
-                                                lineHeight: 1.12,
+                                                fontSize: '1.45rem', // Un poco más grande
+                                                fontWeight: 600,
+                                                margin: '-1.3rem 0 0.4rem 0', // Más arriba aún, margen negativo mayor
+                                                letterSpacing: '0.03em',
+                                                lineHeight: 1.18,
                                                 textAlign: 'center',
-                                                textShadow: '0 2px 8px #FFD70077, 0 1px 0 #fff',
-                                                padding: '0.45em 0.2em',
-                                                borderRadius: '22px',
-                                                border: '2.5px solid #FFD700',
-                                                boxShadow: '0 4px 24px 0 #FFD70033, 0 2px 8px 0 #0008',
+                                                textShadow: 'rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px',
+                                                padding: '0.18em 0.1em',
+                                                borderRadius: '12px',
                                                 position: 'relative',
                                                 overflow: 'visible',
                                                 background: 'transparent',
-                                            }}
-                                        >
-                                            <span style={{
-                                                display: 'inline',
-                                                background: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
+                                                backgroundClip: 'text',
                                                 WebkitBackgroundClip: 'text',
                                                 WebkitTextFillColor: 'transparent',
-                                                backgroundClip: 'text',
-                                                color: 'transparent',
-                                                backgroundSize: '300% 300%',
-                                                backgroundPosition: '0% 50%',
+                                                backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
                                                 animation: 'brilloTituloCard 2.5s linear infinite',
-                                            }}>{prod.titulo}</span>
+                                            }}
+                                        >
+                                            {prod.titulo}
                                         </h3>
+                                        {/* Descripción e ingredientes debajo del título */}
+                                        {prod.descripcion && (
+                                            <p style={{
+                                                color: '#fff',
+                                                fontSize: '1rem',
+                                                margin: '0 0 0.3rem 0',
+                                                textAlign: 'left',
+                                                opacity: 0.85,
+                                                lineHeight: 1.4,
+                                                fontWeight: 400
+                                            }}>{prod.descripcion}</p>
+                                        )}
+                                        {prod.ingredientes && prod.ingredientes.length > 0 && ![
+                                            'Cuatro Quesos',
+                                            'Pollo al champignon',
+                                            'Choclo',
+                                            'Calabaza',
+                                            'Panceta y Ciruela',
+                                            'Panceta y ciruela'
+                                        ].includes(prod.titulo) && (
+                                            <p style={{
+                                                color: '#FFD700',
+                                                fontSize: '0.98rem',
+                                                margin: '0 0 0.5rem 0',
+                                                textAlign: 'center',
+                                                opacity: 0.85,
+                                                lineHeight: 1.3,
+                                                fontWeight: 400
+                                            }}>
+                                                {prod.ingredientes.join(', ')}
+                                            </p>
+                                        )}
                                         <div style={{
                                             width: '80%',
                                             height: '0.7em',
