@@ -437,8 +437,26 @@
         margin-bottom: 18px;
     }
 
+    .modal-3d-info {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 0 16px 0 !important;
+        box-sizing: border-box !important;
+    }
     .modal-detalles, .detalle-item {
-        max-width: 95vw;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 0 16px 0 !important;
+        box-sizing: border-box !important;
+    }
+    .ingredientes-lista {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
     }
 }
 

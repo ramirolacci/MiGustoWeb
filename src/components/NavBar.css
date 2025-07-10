@@ -373,14 +373,24 @@
 
 /* Ajustes para dispositivos móviles */
 @media (max-width: 768px) {
-  .side-menu {
-    width: 100%;
-    left: -100%;
-    background-color: #000;
+  .navbar {
+    height: 54px !important;
+    min-height: 54px !important;
+    max-height: 54px !important;
+    padding: 0.3rem 0 !important;
+    z-index: 2000 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   }
-  .side-menu.open {
-    background-color: #000;
+  .navbar-brand-desktop {
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
   }
+}
+body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
+  display: none !important;
 }
 
 .mobile-pedir-button {
