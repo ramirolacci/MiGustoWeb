@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import './ProductModal3D.css';
 
 interface ProductModal3DProps {
@@ -25,6 +26,8 @@ const RUTAS_3D: Record<string, string> = {
     "Mexican Veggie": "/3D/mexican-veggie-3D.glb",
     "Matambre a la pizza": "/3D/Matambre-a-la-Pizza-3D.glb",
     "Cheese Burguer": "/3D/cheese-burger-3D.glb",
+    "American Chicken": "/3D/american-chicken-3D.glb",
+    "Vacio y provoleta": "/3D/vacio-provoleta-3D.glb",
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {
@@ -33,6 +36,8 @@ const CAMERA_ORBITS_3D: Record<string, string> = {
     "Mexican Veggie": "45deg 65deg 2.7m",
     "Matambre a la pizza": "45deg 65deg 2.7m",
     "Cheese Burguer": "180deg 65deg 2.7m",
+    "American Chicken": "90deg 65deg 2.7m",
+    "Vacio y provoleta": "90deg 65deg 2.7m",
 };
 
 const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tiene3D }) => {
@@ -44,6 +49,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     const [isDragging, setIsDragging] = useState(false);
     const [transitionStyle, setTransitionStyle] = useState('transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)');
     const [loading3D, setLoading3D] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         if (tiene3D) {
@@ -100,6 +106,13 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
             }
         };
     }, [tiene3D, producto.titulo]);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!modalRef.current || isDragging) return;
@@ -177,9 +190,40 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
 
     return (
         <div className="modal-overlay" onClick={onClose} style={tiene3D ? {background:'#181818ee',backdropFilter:'blur(2px)'} : {}}>
+            {ReactDOM.createPortal(
+                <button 
+                    className={tiene3D ? "boton-cerrar-3d" : "modal-close"}
+                    onClick={handleClose}
+                    aria-label="Cerrar modal"
+                    style={{
+                        position: 'fixed',
+                        top: isMobile ? 68 : 60,
+                        right: 12,
+                        zIndex: 99999,
+                        fontSize: 32,
+                        background: 'rgba(24,24,24,0.92)',
+                        color: '#FFD700',
+                        borderRadius: '50%',
+                        border: 'none',
+                        width: 44,
+                        height: 44,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 2px 12px 0 #FFD70033'
+                    }}
+                >×</button>,
+                document.body
+            )}
             <div 
                 ref={modalRef}
-                className={tiene3D ? "modal-content-3d modal-horizontal" : "modal-content-3d modal-horizontal"}
+                className={
+                    tiene3D
+                        ? "modal-content-3d modal-horizontal"
+                        : isMobile
+                        ? "modal-content-3d modal-mobile-column"
+                        : "modal-content-3d modal-horizontal"
+                }
                 onClick={e => e.stopPropagation()}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}
@@ -239,7 +283,6 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                     <div className="modal-3d-fullscreen-wrapper">
                         <div className="modal-3d-viewer-outer">
                             <div className="modal-3d-viewer-container" style={{background:'none',border:'none',boxShadow:'none', width: '60vw', height: '80vh', minWidth: '320px', minHeight: '320px', maxWidth: '900px', maxHeight: '92vh', position: 'relative'}}>
-                                <button className="boton-cerrar-3d" onClick={handleClose} aria-label="Cerrar modal">×</button>
                                 <div className="model-3d-align-left">
                                 {RUTAS_3D[producto.titulo] ? (
                                     React.createElement('model-viewer' as any, {
@@ -296,12 +339,6 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                     </div>
                 ) : (
                     <React.Fragment>
-                        <button 
-                            className="modal-close" 
-                            onClick={handleClose}
-                            aria-label="Cerrar modal"
-                            style={{position: 'absolute', top: 24, right: 24, zIndex: 20000, fontSize: 32, background: '#222', color: '#FFD700', borderRadius: 24, border: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 12px 0 #FFD70033'}}
-                        >×</button>
                         <div className="modal-horizontal-content" style={{width: '100%', height: '100%'}}>
                             <div className="modal-horizontal-left">
                                 <div className="modal-header-3d">
