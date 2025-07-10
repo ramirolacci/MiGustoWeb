@@ -8,9 +8,36 @@
 
 .main {
     flex: 1;
-    padding-top: 80px;
+    padding-top: 0 !important;
 }
 
 body.lovers-page .main {
     padding-top: 0 !important;
+}
+
+/* Botón flotante de ir arriba: tamaño y forma circular en todos los dispositivos */
+.boton-scroll-top, .scroll-to-top, .go-top-btn {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .boton-scroll-top, .scroll-to-top, .go-top-btn {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
 } 

@@ -27,6 +27,14 @@ const RUTAS_3D: Record<string, string> = {
     "Cheese Burguer": "/3D/cheese-burger-3D.glb",
 };
 
+const CAMERA_ORBITS_3D: Record<string, string> = {
+    "Big Burguer": "45deg 65deg 2.7m",
+    "Mexican Pibil pork": "45deg 65deg 2.7m",
+    "Mexican Veggie": "45deg 65deg 2.7m",
+    "Matambre a la pizza": "45deg 65deg 2.7m",
+    "Cheese Burguer": "180deg 65deg 2.7m",
+};
+
 const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tiene3D }) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -54,14 +62,43 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     useEffect(() => {
         if (!tiene3D || !RUTAS_3D[producto.titulo]) return;
         setLoading3D(true);
+        let timeoutId: any;
+        let mv: any = null;
+        const hideLoading = () => setLoading3D(false);
+        const checkLoaded = () => {
+            mv = document.querySelector('model-viewer');
+            if (mv && (mv.loaded || mv.hasAttribute('loaded'))) {
+                setLoading3D(false);
+                return true;
+            }
+            return false;
+        };
+        // Intentar ocultar loading inmediatamente si ya está cargado
+        if (checkLoaded()) return;
         const interval = setInterval(() => {
-            const mv = document.querySelector('model-viewer');
-            if (mv) {
-                mv.addEventListener('load', () => setLoading3D(false), { once: true });
+            if (checkLoaded()) {
                 clearInterval(interval);
+                if (timeoutId) clearTimeout(timeoutId);
+                return;
+            }
+            mv = document.querySelector('model-viewer');
+            if (mv) {
+                mv.addEventListener('load', hideLoading, { once: true });
+                mv.addEventListener('poster-dismissed', hideLoading, { once: true });
+                mv.addEventListener('ar-status', hideLoading, { once: true });
+                clearInterval(interval);
+                timeoutId = setTimeout(hideLoading, 3000);
             }
         }, 60);
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            if (timeoutId) clearTimeout(timeoutId);
+            if (mv) {
+                mv.removeEventListener('load', hideLoading);
+                mv.removeEventListener('poster-dismissed', hideLoading);
+                mv.removeEventListener('ar-status', hideLoading);
+            }
+        };
     }, [tiene3D, producto.titulo]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -229,10 +266,10 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             top: 0,
                                             marginLeft: 0,
                                         },
-                                        'shadow-intensity': '1',
+                                        'shadow-intensity': '1.5',
                                         'shadow-softness': '1',
-                                        exposure: '1.2',
-                                        'camera-orbit': producto.titulo === 'Cheese Burguer' ? '180deg 90deg 2.5m' : '0deg 75deg 2.5m',
+                                        exposure: '2',
+                                        'camera-orbit': CAMERA_ORBITS_3D[producto.titulo] || '0deg 75deg 2.5m',
                                         'min-camera-orbit': 'auto auto 3m',
                                         'max-camera-orbit': 'auto auto 3m',
                                         'interaction-prompt': 'none',
