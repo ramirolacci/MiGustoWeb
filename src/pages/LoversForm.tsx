@@ -167,7 +167,7 @@ const LoversForm: React.FC = () => {
             z-index: 2 !important;
           }
         `}</style>
-        <div className="particles-bg">
+        <div className="particles-bg" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 2 }}>
           {particlesData.map((p, i) => (
             <img
               key={i}
@@ -183,7 +183,7 @@ const LoversForm: React.FC = () => {
                 animation: `empanada-fall-optimized ${p.duration}s linear infinite`,
                 animationDelay: `${p.delay}s`,
                 willChange: 'transform, opacity',
-                zIndex: 0,
+                zIndex: 2, // Ahora las empanadas pasan por delante del fondo pero detrás del formulario
                 pointerEvents: 'none',
                 opacity: isMobile ? 0.45 : 1,
                 '--rotEnd': `${p.rotEnd}deg`,
@@ -198,9 +198,9 @@ const LoversForm: React.FC = () => {
   return (
     <>
       <NavBar loversActive={true} />
-      <ParticlesBG />
       <div className="sucursales-section" style={{ height: '100vh', overflow: 'hidden', width: '100vw', display: 'flex', flexDirection: 'column' }}>
         <div className="background-overlay"></div>
+        <ParticlesBG />
         <div className="sucursales-container" style={{ flex: 1, display: 'flex', flexDirection: 'row', width: '100vw', height: '100%' }}>
           <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', height: '100%', alignItems: 'stretch', flex: 1 }}>
             <div className="contacto-container" style={{ width: '50vw', height: '100%', display: 'flex', alignItems: 'stretch', justifyContent: 'center', position: 'relative', zIndex: 3 }}>
