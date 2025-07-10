@@ -187,7 +187,6 @@ export default function Productos() {
                             {cat}
                         </button>
                     ))}
-                    <span className="flecha-deslizable">→</span>
                 </div>
 
                 {filtro === "Empanadas" && (
