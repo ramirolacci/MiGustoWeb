@@ -29,6 +29,9 @@ const Footer: React.FC = () => {
     }
   };
 
+  // Ocultar el botón si el body tiene la clase 'ocultar-navbar' (modal 3D abierto)
+  const isModal3DOpen = typeof document !== 'undefined' && document.body.classList.contains('ocultar-navbar');
+
   return (
     <footer className="main-footer" role="contentinfo" aria-label="Pie de página">
       <div className="footer-container">
@@ -158,9 +161,9 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {showScrollTop && (
+      {showScrollTop && !isModal3DOpen && (
         <button
-          className="scroll-top-button"
+          className="scroll-top-button boton-scroll-top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Volver arriba"
         >
