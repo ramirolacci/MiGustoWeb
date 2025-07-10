@@ -203,8 +203,8 @@ const LoversForm: React.FC = () => {
         <ParticlesBG />
         <div className="sucursales-container" style={{ flex: 1, display: 'flex', flexDirection: 'row', width: '100vw', height: '100%' }}>
           <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', height: '100%', alignItems: 'stretch', flex: 1 }}>
-            <div className="contacto-container" style={{ width: '50vw', height: '100%', display: 'flex', alignItems: 'stretch', justifyContent: 'center', position: 'relative', zIndex: 3 }}>
-              <div className="contacto-content" style={{ width: '100%', marginTop: 0, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="contacto-container" style={{ width: 'auto', height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 3, margin: 'auto' }}>
+              <div className="contacto-content" style={{ marginTop: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div className="contacto-form-container">
                   <h2>Lovers</h2>
                   <p style={{ textAlign: 'center' }}>Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.</p>
