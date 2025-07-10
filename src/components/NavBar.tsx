@@ -141,12 +141,13 @@ const NavBar: React.FC<NavBarProps> = ({ loversActive }) => {
             </Link>
             {/* Botón Lovers al lado del logo */}
             <LoversButton
-              isOn={isSwitchOn}
+              isOn={location.pathname === '/lovers-form'}
               onClick={() => {
-                setIsSwitchOn(true);
-                setTimeout(() => {
+                if (location.pathname === '/lovers-form') {
+                  navigate('/');
+                } else {
                   navigate('/lovers-form');
-                }, 350);
+                }
               }}
             />
 

@@ -41,6 +41,8 @@ const EMPANADAS_3D = [
     "Mexican Veggie",
     "Matambre a la pizza",
     "Cheese Burguer",
+    "American Chicken",
+    "Vacio y provoleta",
 ];
 
 export default function Productos() {
@@ -143,7 +145,8 @@ export default function Productos() {
     }, []);
 
     useEffect(() => {
-        if (productoSeleccionado && EMPANADAS_3D.includes(productoSeleccionado.titulo) && window.innerWidth < 900) {
+        const isMobile = window.innerWidth < 900;
+        if (productoSeleccionado && isMobile) {
             document.body.classList.add('ocultar-navbar');
         } else {
             document.body.classList.remove('ocultar-navbar');
@@ -184,6 +187,7 @@ export default function Productos() {
                             {cat}
                         </button>
                     ))}
+                    <span className="flecha-deslizable">→</span>
                 </div>
 
                 {filtro === "Empanadas" && (
