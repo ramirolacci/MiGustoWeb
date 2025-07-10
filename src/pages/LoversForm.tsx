@@ -10,6 +10,7 @@ import '../lovers/index.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Footer from '../components/Footer';
+import { FaPercent, FaRegCalendarAlt, FaCrown, FaGift } from 'react-icons/fa';
 
 const sucursales = [
   'Ballester', 'Balvanera', 'Barrancas', 'Belgrano', 'Bella Vista', 'Campana', 'Del Viso', 'Devoto', 'Don Torcuato', 'Escobar', 'Floresta', 'Florida', 'Gral. Pacheco', 'Hurlingham', 'Ituzaingo', 'Jose C. Paz', 'Los Polvorines', 'Martinez', 'Maschwitz', 'Mataderos', 'Merlo', 'Moreno', 'Muñiz', 'Munro', 'Palermo', 'Paternal', 'Pilar Centro', 'Pilar Derqui', 'Puerto Madero', 'San Fernando', 'San Martin', 'San Miguel', 'Tigre', 'Tortugas Norte', 'Villa Adelina', 'Villa Crespo', 'Villa Urquiza',
@@ -241,53 +242,21 @@ const LoversForm: React.FC = () => {
             position: 'relative',
             zIndex: 2,
           }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              background: 'none',
-              border: '1.5px solid #FFD700',
-              boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)',
-              borderRadius: 32,
-              padding: '0.5rem 1.2rem',
-              marginBottom: 14,
-              marginTop: 14,
-              justifyContent: 'center',
-              width: 'auto',
-              transition: 'box-shadow 0.3s, border 0.3s',
-              position: 'relative',
-              overflow: 'visible',
-            }}>
-              <span style={{ color: '#FFD700', fontWeight: 900, fontSize: 18, marginRight: 6 }}>★</span>
-              <span style={{
-                fontWeight: 900,
-                fontSize: '1.08rem',
-                letterSpacing: 0.5,
-                background: 'linear-gradient(90deg, #FFD700 0%, #fffbe6 25%, #e53935 50%, #f7c873 75%, #FFD700 100%)',
-                backgroundSize: '200% auto',
-                color: '#FFD700',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                zIndex: 2,
-                userSelect: 'none',
-                position: 'relative',
-              }}>
-                Programa Exclusivo de Beneficios
-              </span>
-            </div>
             <h1 style={{
-              fontSize: '2.1rem',
-              fontWeight: 900,
+              fontSize: '2rem',
+              fontWeight: 700,
               color: '#FFD700',
               marginBottom: 16,
               letterSpacing: 0.5,
-              textAlign: 'left',
+              textAlign: 'center',
               width: '100%',
-              textShadow: '0 2px 18px #FFD700cc, 0 0px 2px #f8e434, 1px 1px 0 #181818',
+              // textShadow eliminado para quitar la iluminación
               position: 'relative',
               fontFamily: 'Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif',
+              lineHeight: 1.2,
+              marginTop: 0,
             }}>
-              Mi Gusto Lovers
+              Programa exclusivo de beneficios!
             </h1>
             <p style={{
               fontSize: '1.15rem',
@@ -295,7 +264,7 @@ const LoversForm: React.FC = () => {
               marginBottom: 18,
               maxWidth: 420,
               lineHeight: 1.6,
-              textAlign: 'left',
+              textAlign: 'center',
               width: '100%',
               fontWeight: 400,
               letterSpacing: 0.1,
@@ -313,24 +282,30 @@ const LoversForm: React.FC = () => {
               margin: '18px 0 0 0',
               position: 'relative',
               zIndex: 3,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
-              <div style={{ minWidth: 160, maxWidth: 180, textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
-                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}>🎁</div>
+              {/* Card 1 */}
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><FaPercent color="#FFD700" size={22} /></div>
                 <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Descuentos</h3>
                 <p style={{ color: '#fff', fontSize: '0.92rem' }}>Hasta 25% de descuento y promos especiales.</p>
               </div>
-              <div style={{ minWidth: 160, maxWidth: 180, textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
-                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}>👥</div>
+              {/* Card 2 */}
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><FaRegCalendarAlt color="#FFD700" size={22} /></div>
                 <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Eventos</h3>
                 <p style={{ color: '#fff', fontSize: '0.92rem' }}>Cenas, catas y eventos únicos.</p>
               </div>
-              <div style={{ minWidth: 160, maxWidth: 180, textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
-                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}>⭐</div>
+              {/* Card 3 */}
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><FaCrown color="#FFD700" size={22} /></div>
                 <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>VIP</h3>
                 <p style={{ color: '#fff', fontSize: '0.92rem' }}>Reservas y atención prioritaria.</p>
               </div>
-              <div style={{ minWidth: 160, maxWidth: 180, textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
-                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}>🎁</div>
+              {/* Card 4 */}
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+                <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><FaGift color="#FFD700" size={22} /></div>
                 <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Sorteos y Premios</h3>
                 <p style={{ color: '#fff', fontSize: '0.92rem' }}>Participa por premios y experiencias exclusivas.</p>
               </div>
@@ -357,7 +332,7 @@ const LoversForm: React.FC = () => {
               justifyContent: 'center'
             }}>
               <div className="contacto-form-container">
-                <h2>Lovers</h2>
+                <h2>Mi Gusto Lovers</h2>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.</p>
                 <form className="contacto-form" onSubmit={handleSubmit} noValidate>
                   <div className="form-row">
@@ -563,7 +538,7 @@ const LoversForm: React.FC = () => {
                         onChange={handleChange}
                         style={{ accentColor: '#e53935', width: 18, height: 18, margin: 0 }}
                       />
-                      <label htmlFor="aceptaBeneficios" style={{ margin: 0, color: '#FFD700', fontWeight: 500, fontSize: '1rem', cursor: 'pointer' }}>
+                      <label htmlFor="aceptaBeneficios" style={{ margin: 0, color: '#fff', fontWeight: 500, fontSize: '1rem', cursor: 'pointer' }}>
                         Quiero recibir novedades y beneficios exclusivos
                       </label>
                     </div>
