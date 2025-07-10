@@ -9,6 +9,7 @@ import Empanada4 from '../lovers/assets/Empanadas/burger.png';
 import '../lovers/index.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Footer from '../components/Footer';
 
 const sucursales = [
   'Ballester', 'Balvanera', 'Barrancas', 'Belgrano', 'Bella Vista', 'Campana', 'Del Viso', 'Devoto', 'Don Torcuato', 'Escobar', 'Floresta', 'Florida', 'Gral. Pacheco', 'Hurlingham', 'Ituzaingo', 'Jose C. Paz', 'Los Polvorines', 'Martinez', 'Maschwitz', 'Mataderos', 'Merlo', 'Moreno', 'Muñiz', 'Munro', 'Palermo', 'Paternal', 'Pilar Centro', 'Pilar Derqui', 'Puerto Madero', 'San Fernando', 'San Martin', 'San Miguel', 'Tigre', 'Tortugas Norte', 'Villa Adelina', 'Villa Crespo', 'Villa Urquiza',
@@ -202,9 +203,9 @@ const LoversForm: React.FC = () => {
         <div className="background-overlay"></div>
         <ParticlesBG />
         <div className="sucursales-container" style={{ flex: 1, display: 'flex', flexDirection: 'row', width: '100vw', height: '100%' }}>
-          <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', height: '100%', alignItems: 'stretch', flex: 1 }}>
-            <div className="contacto-container" style={{ width: '50vw', height: '100%', display: 'flex', alignItems: 'stretch', justifyContent: 'center', position: 'relative', zIndex: 3 }}>
-              <div className="contacto-content" style={{ width: '100%', marginTop: 0, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', height: '100%', alignItems: 'center', justifyContent: 'flex-end', flex: 1 }}>
+            <div className="contacto-container" style={{ width: 'auto', height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 3, marginRight: '4vw', marginLeft: 0, marginTop: '3.5rem' }}>
+              <div className="contacto-content" style={{ marginTop: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div className="contacto-form-container">
                   <h2>Lovers</h2>
                   <p style={{ textAlign: 'center' }}>Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.</p>
@@ -408,6 +409,7 @@ const LoversForm: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
