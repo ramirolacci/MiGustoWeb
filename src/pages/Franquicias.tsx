@@ -186,7 +186,7 @@ const Franquicias: React.FC = () => {
   const progressBarWidth = ((currentStep - 1) / 2) * 100;
 
   return (
-    <div className="sucursales-section">
+    <div className="sucursales-section" style={{ marginTop: '40px' }}>
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
