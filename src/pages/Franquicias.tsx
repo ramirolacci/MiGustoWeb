@@ -1,6 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../pages/Contacto.css';
 import emailjs from '@emailjs/browser';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+// Custom input para el datepicker que NO abre el calendario al hacer clic o foco
+const CalendarInput = React.forwardRef<HTMLInputElement, any>(({ value, onClick, onChange, placeholder }, ref) => (
+  <div style={{ position: 'relative', width: '100%' }}>
+    <input
+      ref={ref}
+      value={value}
+      onClick={onClick}
+      onChange={onChange}
+      placeholder={placeholder}
+      className="contacto-form input datepicker-match"
+      style={{ paddingRight: '160px' }}
+      autoComplete="off"
+    />
+  </div>
+));
 
 const Franquicias: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -24,6 +42,8 @@ const Franquicias: React.FC = () => {
     localidadPreferencia: '',
     inmuebleGarantia: '',
   });
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const datePickerRef = useRef<any>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({
     nombre: '',
@@ -47,6 +67,19 @@ const Franquicias: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
+  };
+
+  // Nueva función para manejar la fecha con react-datepicker
+  const handleDateChange = (date: Date | null, event: React.SyntheticEvent<any, Event> | undefined) => {
+    setFormData(prevData => ({
+      ...prevData,
+      fechaNacimiento: date ? date.toLocaleDateString('es-AR') : (event && 'target' in event && (event.target as HTMLInputElement).value) || ''
+    }));
+    setCalendarOpen(false);
+  };
+  // Permitir escribir manualmente la fecha
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prevData => ({ ...prevData, fechaNacimiento: e.target.value }));
   };
 
   const validateStep = () => {
@@ -170,6 +203,54 @@ const Franquicias: React.FC = () => {
                   <div className="progress-bar" style={{ width: `${progressBarWidth}%` }}></div>
                 </div>
                 <form className="contacto-form" onSubmit={handleSubmit}>
+                  <style>{`
+                    .contacto-form .select-match-input {
+                      padding: 15px !important;
+                      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                      border-radius: 5px !important;
+                      font-size: 1rem !important;
+                      background-color: rgba(255, 255, 255, 0.1) !important;
+                      color: #f8f9fa !important;
+                      transition: all 0.3s ease !important;
+                      appearance: none !important;
+                      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+                      background-repeat: no-repeat !important;
+                      background-position: right 1.5rem center !important;
+                      background-size: 1.5rem !important;
+                      cursor: pointer !important;
+                      width: 100% !important;
+                      min-width: 120px !important;
+                      box-sizing: border-box !important;
+                    }
+                    .contacto-form .select-match-input:focus {
+                      outline: none !important;
+                      border-color: #ffc107 !important;
+                      box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+                      background-color: rgba(255, 255, 255, 0.2) !important;
+                    }
+                    .contacto-form .select-match-input option[value=''] {
+                      color: rgba(248, 249, 250, 0.6) !important;
+                    }
+                    .contacto-form .select-match-input option,
+                    .contacto-form .select-match-input option:checked,
+                    .contacto-form .select-match-input option:focus,
+                    .contacto-form .select-match-input option:hover {
+                      color: #f8f9fa !important;
+                      background-color: #1a1a1a !important;
+                    }
+                    .form-group.half-width .contacto-form.input {
+                      width: 100% !important;
+                      min-width: 0 !important;
+                      max-width: 100% !important;
+                      display: block;
+                    }
+                    .form-group.half-width .datepicker-match {
+                      width: 100% !important;
+                      min-width: 0 !important;
+                      max-width: 100% !important;
+                      display: block !important;
+                    }
+                  `}</style>
                   {currentStep === 1 && (
                     <div className="form-step">
                       <div className="form-row">
@@ -181,14 +262,46 @@ const Franquicias: React.FC = () => {
                         <div className="form-group half-width">
                           <label htmlFor="fechaNacimiento">Fecha de Nacimiento: <span className="required">*</span></label>
                           {errors.fechaNacimiento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.fechaNacimiento}</div>}
-                          <input type="date" id="fechaNacimiento" name="fechaNacimiento" value={formData.fechaNacimiento} onChange={handleChange} required />
+                          <div style={{ position: 'relative', width: '100%' }}>
+                            <DatePicker
+                              selected={formData.fechaNacimiento ? new Date(formData.fechaNacimiento.split('/').reverse().join('-')) : null}
+                              onChange={handleDateChange}
+                              dateFormat="dd/MM/yy"
+                              placeholderText="dd/mm/aa"
+                              customInput={<CalendarInput onChange={handleInputChange} />}
+                              id="fechaNacimiento"
+                              name="fechaNacimiento"
+                              showMonthDropdown
+                              showYearDropdown
+                              dropdownMode="select"
+                              maxDate={new Date()}
+                              onClickOutside={() => setCalendarOpen(false)}
+                              shouldCloseOnSelect={true}
+                              ref={datePickerRef}
+                            />
+                            <span
+                              style={{
+                                position: 'absolute',
+                                right: '15px',
+                                top: '35%',
+                                transform: 'translateY(-50%)',
+                                cursor: 'pointer',
+                                color: 'rgba(248, 249, 250, 0.6)',
+                                fontSize: '1.3em',
+                                zIndex: 2
+                              }}
+                              onClick={() => setCalendarOpen(true)}
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" stroke="rgba(248, 249, 250, 0.6)" strokeWidth="2"/><path d="M16 3v4M8 3v4" stroke="rgba(248, 249, 250, 0.6)" strokeWidth="2" strokeLinecap="round"/><path d="M3 9h18" stroke="rgba(248, 249, 250, 0.6)" strokeWidth="2"/></svg>
+                            </span>
+                          </div>
                         </div>
                       </div>
                       <div className="form-row">
                         <div className="form-group half-width">
                           <label htmlFor="sexo">Sexo: <span className="required">*</span></label>
                           {errors.sexo && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sexo}</div>}
-                          <select id="sexo" name="sexo" value={formData.sexo} onChange={handleChange} required>
+                          <select id="sexo" name="sexo" value={formData.sexo} onChange={handleChange} required className="contacto-form select select-match-input">
                             <option value="">Selecciona</option>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
@@ -198,7 +311,7 @@ const Franquicias: React.FC = () => {
                         <div className="form-group half-width">
                           <label htmlFor="estadoCivil">Estado Civil: <span className="required">*</span></label>
                           {errors.estadoCivil && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.estadoCivil}</div>}
-                          <select id="estadoCivil" name="estadoCivil" value={formData.estadoCivil} onChange={handleChange} required>
+                          <select id="estadoCivil" name="estadoCivil" value={formData.estadoCivil} onChange={handleChange} required className="contacto-form select select-match-input">
                             <option value="">Selecciona</option>
                             <option value="soltero">Soltero/a</option>
                             <option value="casado">Casado/a</option>
@@ -211,7 +324,7 @@ const Franquicias: React.FC = () => {
                         <div className="form-group half-width">
                           <label htmlFor="tipoDocumento">Tipo de Documento: <span className="required">*</span></label>
                           {errors.tipoDocumento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.tipoDocumento}</div>}
-                          <select id="tipoDocumento" name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} required>
+                          <select id="tipoDocumento" name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} required className="contacto-form select select-match-input">
                             <option value="">Selecciona</option>
                             <option value="DNI">DNI</option>
                             <option value="LC">LC</option>
@@ -237,7 +350,7 @@ const Franquicias: React.FC = () => {
                         <div className="form-group half-width">
                           <label htmlFor="paisResidencia">País de Residencia: <span className="required">*</span></label>
                           {errors.paisResidencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.paisResidencia}</div>}
-                          <select id="paisResidencia" name="paisResidencia" value={formData.paisResidencia} onChange={handleChange} required>
+                          <select id="paisResidencia" name="paisResidencia" value={formData.paisResidencia} onChange={handleChange} required className="contacto-form select select-match-input">
                             <option value="">Selecciona</option>
                             <option value="argentina">Argentina</option>
                             <option value="otros">Otros</option>
@@ -296,7 +409,7 @@ const Franquicias: React.FC = () => {
                         <div className="form-group half-width">
                           <label htmlFor="paisPreferencia">País de Preferencia: <span className="required">*</span></label>
                           {errors.paisPreferencia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.paisPreferencia}</div>}
-                          <select id="paisPreferencia" name="paisPreferencia" value={formData.paisPreferencia} onChange={handleChange} required>
+                          <select id="paisPreferencia" name="paisPreferencia" value={formData.paisPreferencia} onChange={handleChange} required className="contacto-form select select-match-input">
                             <option value="">Selecciona</option>
                             <option value="argentina">Argentina</option>
                             <option value="otros">Otros</option>
@@ -317,7 +430,7 @@ const Franquicias: React.FC = () => {
                         <div className="form-group half-width">
                           <label htmlFor="inmuebleGarantia">¿Dispone de Inmueble para Garantía?: <span className="required">*</span></label>
                           {errors.inmuebleGarantia && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.inmuebleGarantia}</div>}
-                          <select id="inmuebleGarantia" name="inmuebleGarantia" value={formData.inmuebleGarantia} onChange={handleChange} required>
+                          <select id="inmuebleGarantia" name="inmuebleGarantia" value={formData.inmuebleGarantia} onChange={handleChange} required className="contacto-form select select-match-input">
                             <option value="">Selecciona</option>
                             <option value="si">Sí</option>
                             <option value="no">No</option>
