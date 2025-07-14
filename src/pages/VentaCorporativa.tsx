@@ -202,6 +202,8 @@ const VentaCorporativa: React.FC = () => {
                                         </button>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
