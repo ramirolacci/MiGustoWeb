@@ -27,37 +27,22 @@
 
 .revista-section {
     position: relative;
-    background-color: #000;
+    background: none !important;
+    background-color: transparent !important;
     overflow: hidden;
     isolation: isolate;
 }
 
-.background-overlay {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../assets/background-text.jpg');
-    background-size: 120% auto;
-    background-position: center;
-    background-repeat: repeat;
-    opacity: 0.4;
-    z-index: 0;
-    pointer-events: none;
-    filter: contrast(1.2) brightness(1.2);
-}
-
 .revista-container {
+    background: none !important;
+    background-color: transparent !important;
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
     min-height: calc(100vh - 136px);
-    background-color: transparent;
-    position: relative;
-    z-index: 1;
 }
 
 .revista-content {

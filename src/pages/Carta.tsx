@@ -18,7 +18,6 @@ const Carta: React.FC = () => {
       >
         <div className="background-overlay"></div>
         <div className="carta-container">
-          <h2 className="productos-titulo">Desliza para explorar nuestra carta</h2>
           <Revista />
         </div>
       </div>

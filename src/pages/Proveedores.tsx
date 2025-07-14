@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
 import emailjs from '@emailjs/browser';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Proveedores: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -52,23 +54,14 @@ const Proveedores: React.FC = () => {
     if (!validate()) return;
     setIsSubmitting(true);
 
-    const serviceID = 'service_vroveb8'; 
-    const templateID = 'template_rx2wmet'; 
-    const publicKey = '2muZYDfZaoXaOzlBc'; 
-
-    const templateParams = {
-      name: formData.nombreEmpresa,
-      email: formData.email,
-      message: `
-        Razón Social: ${formData.razonSocial}
-        Teléfono: ${formData.telefono}
-        Descripción: ${formData.descripcion}
-      `,
-    };
-
     try {
-      await emailjs.send(serviceID, templateID, templateParams, publicKey);
-      alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
+      await axios.post('/api/mail/proveedor', formData);
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Tu solicitud de proveedor ha sido enviada correctamente.',
+        confirmButtonColor: '#d4af37',
+      });
       setFormData({
         nombreEmpresa: '',
         razonSocial: '',
@@ -170,7 +163,7 @@ const Proveedores: React.FC = () => {
                     ></textarea>
                   </div>
                   <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
-                    Enviar
+                    {isSubmitting ? 'Enviando...' : 'Enviar'}
                   </button>
                 </form>
               </div>

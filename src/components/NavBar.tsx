@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
-import LoversButton from './LoversButton';
-import './LoversButton.css';
 
-interface NavBarProps {
-  loversActive?: boolean;
-}
-
-const NavBar: React.FC<NavBarProps> = ({ loversActive }) => {
+const NavBar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSwitchOn, setIsSwitchOn] = useState(loversActive ?? false);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -140,16 +134,37 @@ const NavBar: React.FC<NavBarProps> = ({ loversActive }) => {
               />
             </Link>
             {/* Botón Lovers al lado del logo */}
-            <LoversButton
-              isOn={location.pathname === '/lovers-form'}
+            <Link
+              to="/lovers"
+              className="btn-ver-mas"
+              style={{
+                marginLeft: 16,
+                background: 'linear-gradient(90deg, #ffb347 0%, #ffcc33 100%)',
+                color: '#000',
+                border: '2px solid #D4AF37',
+                borderRadius: 25,
+                padding: '8px 18px',
+                fontWeight: 600,
+                fontSize: '1rem',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                boxShadow: '0 2px 8px rgba(255, 193, 7, 0.15)'
+              }}
+            >
+              Lovers
+            </Link>
+            {/* Switch al lado del logo */}
+            {/* Eliminar o comentar la línea:
+            <Switch
+              isOn={isSwitchOn}
               onClick={() => {
-                if (location.pathname === '/lovers-form') {
-                  navigate('/');
-                } else {
-                  navigate('/lovers-form');
-                }
+                setIsSwitchOn(true);
+                setTimeout(() => {
+                  navigate('/lovers');
+                }, 350);
               }}
             />
+            */}
 
             <div className="mobile-pedir-button">
               <a

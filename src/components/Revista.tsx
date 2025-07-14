@@ -39,7 +39,10 @@ const Revista = () => {
     };
 
     return (
-        <>
+        <div className="revista-section">
+            <h2 className="revista-titulo" style={{ color: "#fff", textAlign: "center", marginBottom: "1.5rem" }}>
+                Deslizá para explorar
+            </h2>
             <div className="revista-container">
                 {isMobile ? (
                     <Swiper
@@ -108,7 +111,7 @@ const Revista = () => {
                     </HTMLFlipBook>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 
