@@ -17,7 +17,8 @@ const Carta: React.FC = () => {
         }}
       >
         <div className="background-overlay"></div>
-        <div className="carta-container">
+        <div className="carta-container" style={{ marginTop: '0.1rem' }}>
+          <h2 className="productos-titulo">Deslizá para explorar nuestra carta</h2>
           <Revista />
         </div>
       </div>
