@@ -1,20 +1,28 @@
 import React from 'react';
 import Revista from '../components/Revista';
-import './Carta.css';
+import '../components/Productos.css';
 import backgroundText from '../assets/background-text.jpg';
+import NavBar from '../components/NavBar';
 
 const Carta: React.FC = () => {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: `linear-gradient(rgba(24,24,24,0.72), rgba(24,24,24,0.82)), url(${backgroundText}) center/cover no-repeat fixed`,
-      }}
-    >
-      <div className="carta-container">
-        <Revista />
+    <>
+      <NavBar />
+      <div
+        style={{
+          minHeight: '100vh',
+          position: 'relative',
+          backgroundColor: '#000',
+          paddingTop: '104px',
+        }}
+      >
+        <div className="background-overlay"></div>
+        <div className="carta-container">
+          <h2 className="productos-titulo">Desliza para explorar nuestra carta</h2>
+          <Revista />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
