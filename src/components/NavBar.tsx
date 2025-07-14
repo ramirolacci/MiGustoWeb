@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
+import LoversButton from './LoversButton';
 
 const NavBar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -134,25 +135,15 @@ const NavBar: React.FC = () => {
               />
             </Link>
             {/* Botón Lovers al lado del logo */}
-            <Link
-              to="/lovers"
-              className="btn-ver-mas"
-              style={{
-                marginLeft: 16,
-                background: 'linear-gradient(90deg, #ffb347 0%, #ffcc33 100%)',
-                color: '#000',
-                border: '2px solid #D4AF37',
-                borderRadius: 25,
-                padding: '8px 18px',
-                fontWeight: 600,
-                fontSize: '1rem',
-                textDecoration: 'none',
-                transition: 'all 0.2s',
-                boxShadow: '0 2px 8px rgba(255, 193, 7, 0.15)'
+            <LoversButton
+              isOn={isSwitchOn}
+              onClick={() => {
+                setIsSwitchOn(true);
+                setTimeout(() => {
+                  navigate('/lovers');
+                }, 350);
               }}
-            >
-              Lovers
-            </Link>
+            />
             {/* Switch al lado del logo */}
             {/* Eliminar o comentar la línea:
             <Switch
