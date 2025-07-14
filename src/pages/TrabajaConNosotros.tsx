@@ -144,44 +144,28 @@ const TrabajaConNosotros: React.FC = () => {
         confirmButtonColor: '#d4af37',
       });
       setIsSubmitting(false);
-      return; // Detener el envío si no hay CV
+      return;
     }
 
     try {
-      let cvUrl = '';
-      if (formData.cv) {
-        const cloudinaryFormData = new FormData();
-        cloudinaryFormData.append('file', formData.cv);
-        cloudinaryFormData.append('upload_preset', 'mi_gusto_cv_upload');
-        cloudinaryFormData.append('cloud_name', 'dgg3bmvoi');
+      const data = new FormData();
+      data.append('nombre', formData.nombre);
+      data.append('apellido', formData.apellido);
+      data.append('telefono', formData.telefono);
+      data.append('email', formData.email);
+      data.append('puesto', formData.puesto);
+      if (formData.area) data.append('area', formData.area);
+      if (formData.cv) data.append('cv', formData.cv);
 
-        const res = await axios.post(
-          `https://api.cloudinary.com/v1_1/dgg3bmvoi/raw/upload`,
-          cloudinaryFormData
-        );
-        cvUrl = res.data.secure_url;
-      }
+      // Si tienes campos extra como area o sucursal, puedes agregarlos aquí si el backend los acepta
+      // data.append('area', formData.area);
+      // data.append('sucursal', formData.sucursal);
 
-      await emailjs.send(
-        'service_vroveb8',
-        'template_rx2wmet',
-        {
-          name: `${formData.nombre} ${formData.apellido}`,
-          email: formData.email,
-          message: `
-            Nueva postulación recibida:
-
-            Nombre completo: ${formData.nombre} ${formData.apellido}
-            Teléfono: ${formData.telefono}
-            Email: ${formData.email}
-            Puesto: ${formData.puesto}
-            ${formData.area ? `Área: ${formData.area}` : ''}
-            ${formData.sucursal ? `Sucursal: ${formData.sucursal}` : ''}
-            CV adjunto: ${cvUrl || 'No se adjuntó CV'}
-          `,
+      await axios.post('/api/mail/trabaja', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-        '2muZYDfZaoXaOzlBc'
-      );
+      });
 
       Swal.fire({
         icon: 'success',
@@ -199,20 +183,22 @@ const TrabajaConNosotros: React.FC = () => {
         sucursal: '',
         cv: null,
       });
-      const fileInput = document.getElementById('cv-upload') as HTMLInputElement;
-      if (fileInput) {
-        fileInput.value = '';
-      }
-    } catch (err) {
-      console.error('Error al enviar el formulario:', err);
-      if (axios.isAxiosError(err) && err.response) {
-        console.error('Respuesta de Cloudinary/EmailJS:', err.response.data.error);
-      }
-      setError('Hubo un error al enviar tu postulación. Por favor, inténtalo de nuevo.');
+      setErrors({
+        nombre: '',
+        apellido: '',
+        telefono: '',
+        email: '',
+        puesto: '',
+        cv: '',
+        area: '',
+        sucursal: '',
+      });
+    } catch (err: any) {
+      setError('Hubo un error al enviar la postulación. Intenta nuevamente.');
       Swal.fire({
         icon: 'error',
-        title: '¡Error!',
-        text: 'Hubo un error al enviar tu postulación. Por favor, inténtalo de nuevo.',
+        title: 'Error',
+        text: 'Hubo un error al enviar la postulación. Intenta nuevamente.',
         confirmButtonColor: '#d4af37',
       });
     } finally {
