@@ -236,26 +236,24 @@ const VentaCorporativa: React.FC = () => {
                                             style={{ width: '100%' }}
                                         />
                                     </div>
-                                </div>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '18px', gap: '8px' }}>
-                                    <div className="contact-links" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0', whiteSpace: 'nowrap' }}>
-                                        <a href="mailto:eventos@migusto.com.ar" style={{ color: '#D4AF37', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
-                                        Email: eventos@migusto.com.ar
-                                        </a>
-                                        <a href="https://wa.me/541163704522" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
-                                        Contactanos por Whatsapp
-                                        </a>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '18px', gap: '8px' }}>
+                                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0', whiteSpace: 'nowrap' }}>
+                                            <a href="mailto:eventos@migusto.com.ar" style={{ color: '#D4AF37', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
+                                                MÁS INFO EN eventos@migusto.com.ar
+                                            </a>
+                                            <a href="https://wa.me/541163704522" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
+                                                Organizar evento por Whatsapp!
+                                            </a>
+                                        </div>
+                                        <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+                                            {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+                                        </button>
                                     </div>
-                                    <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
-                                        {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
