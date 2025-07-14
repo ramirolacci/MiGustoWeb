@@ -8,12 +8,12 @@ export interface Salsa {
 export const salsas: Salsa[] = [
     {
         imagen: "https://i.postimg.cc/VsBz44M9/Crema-de-Ajo.png",
-        titulo: "Crema de Ajo",
+        titulo: "Crema de ajo",
         descripcion: "Salsa cremosa con sabor a ajo, perfecta para acompañar pizzas y empanadas."
     },
     {
         imagen: "https://i.postimg.cc/JzwVLkb7/American-Ketchup.png",
-        titulo: "American Ketchup",
+        titulo: "American ketchup",
         descripcion: "Ketchup estilo americano, dulce y espeso.",
         esRecomendado: true
     },
@@ -41,7 +41,7 @@ export const salsas: Salsa[] = [
     },
     {
         imagen: "https://i.postimg.cc/VsBz44M9/Crema-de-Ajo.png",
-        titulo: "Crema Ácida",
+        titulo: "Crema ácida",
         descripcion: "Crema ácida suave y refrescante."
     },
     {
