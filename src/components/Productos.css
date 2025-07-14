@@ -1774,3 +1774,8 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
         background-position: center top !important;
     }
 }
+
+.carta-container .revista-container {
+  margin-top: 0.2rem !important;
+  padding-top: 0 !important;
+}
