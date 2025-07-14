@@ -87,46 +87,17 @@ const VentaCorporativa: React.FC = () => {
     };
 
     return (
-        <div className="venta-corporativa-section" style={{ 
-            background: '#111', 
-            minHeight: '100vh', 
-            width: '100vw', 
-            overflowX: 'hidden',
-            backgroundImage: `linear-gradient(rgba(17,17,17,0.5), rgba(17,17,17,0.5)), url('/assets/background-text.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            paddingTop: '6vh', // Aumenta el espacio superior para centrar mejor
-        }}>
-            <div style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch', justifyContent: 'center' }}>
-                {/* Columna izquierda: Imagen y beneficios */}
-                <div style={{ width: '48vw', minWidth: 340, maxWidth: 600, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: '64px 0 0 0' }}>
-                    <img src="/corp/foto f-100.jpg" alt="Venta corporativa" className="img-corporativa" />
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: '90%', maxWidth: 520 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-                            <img src="/corp/descuento.png" alt="Descuento" style={{ width: 54, height: 54 }} />
-                            <span style={{ color: '#fff', fontSize: '1.35rem', fontWeight: 500 }}>Packs corporativos anticipados con hasta 25% OFF</span>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-                            <img src="/corp/entrega.png" alt="Entrega" style={{ width: 54, height: 54 }} />
-                            <span style={{ color: '#fff', fontSize: '1.35rem', fontWeight: 500 }}>Entregas en <b>CABA</b> y <b>GBA</b></span>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-                            <img src="/corp/servicio.png" alt="Servicio" style={{ width: 54, height: 54 }} />
-                            <span style={{ color: '#fff', fontSize: '1.35rem', fontWeight: 500 }}>Atención personalizada, adaptada a las necesidades de cada empresa</span>
-                        </div>
-                    </div>
-                </div>
-                {/* Columna derecha: Formulario */}
-                <div style={{ width: '52vw', minWidth: 340, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', background: 'none', borderRadius: 18, paddingTop: '64px' }}>
-                    <div className="glass-form-container">
-                        {/* <h1 style={{ color: '#fff', fontWeight: 700, fontSize: '2.2rem', textAlign: 'left', marginBottom: 12, letterSpacing: 0 }}>VENTA CORPORATIVA</h1> */}
-                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, marginBottom: 12, display: 'block', marginLeft: 'auto', marginRight: 'auto' }} />
-                        <p style={{ color: '#fff', textAlign: 'center', marginBottom: 24, fontSize: '1.08rem', opacity: 0.92 }}>
-                            Completa el siguiente formulario para solicitar una venta corporativa.
-                        </p>
-                        {/* Formulario original */}
-                        <form onSubmit={handleSubmit} className="contacto-form">
+        <div className="sucursales-section">
+            <div className="background-overlay"></div>
+            <div className="sucursales-container">
+                <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+                    <img src="/corporativa.png" alt="Imagen corporativa" style={{ width: '45vw', height: '95%', maxHeight: '90vh', objectFit: 'cover', display: 'block', position: 'relative', zIndex: 2 }} />
+                    <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center' }}>
+                        <div className="contacto-content" style={{ width: '100%', marginTop: (typeof window !== 'undefined' && window.innerWidth > 900) ? '-40px' : '0' }}>
+                            <div className="contacto-form-container">
+                                <h2>Venta Corporativa</h2>
+                                <p style={{ textAlign: 'center' }}>Completa el siguiente formulario para solicitar una venta corporativa.</p>
+                                <form onSubmit={handleSubmit} className="contacto-form">
                                     <div className="form-row">
                                         <div className="form-group half-width">
                                             <label htmlFor="nombreEmpresa">Nombre de Empresa: <span className="required">*</span></label>

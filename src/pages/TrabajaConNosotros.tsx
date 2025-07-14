@@ -207,7 +207,7 @@ const TrabajaConNosotros: React.FC = () => {
   };
 
   return (
-    <div className="sucursales-section">
+    <div className="sucursales-section" style={{ marginTop: '40px' }}>
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
@@ -218,6 +218,52 @@ const TrabajaConNosotros: React.FC = () => {
                 <h2>Trabajá con nosotros</h2>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en formar parte de nuestro equipo.</p>
                 <form className="contacto-form" onSubmit={handleSubmit}>
+                  <style>{`
+                    .contacto-form .select-match-input {
+                      padding: 15px !important;
+                      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                      border-radius: 5px !important;
+                      font-size: 1rem !important;
+                      background-color: rgba(255, 255, 255, 0.1) !important;
+                      color: #f8f9fa !important;
+                      transition: all 0.3s ease !important;
+                      appearance: none !important;
+                      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+                      background-repeat: no-repeat !important;
+                      background-position: right 1.5rem center !important;
+                      background-size: 1.5rem !important;
+                      cursor: pointer !important;
+                      width: 100% !important;
+                      min-width: 300px !important;
+                      box-sizing: border-box !important;
+                    }
+                    .contacto-form .select-match-input:focus {
+                      outline: none !important;
+                      border-color: #ffc107 !important;
+                      box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+                      background-color: rgba(255, 255, 255, 0.2) !important;
+                    }
+                    .contacto-form .select-match-input option[value=''] {
+                      color: rgba(248, 249, 250, 0.6) !important;
+                    }
+                    .contacto-form .select-match-input option {
+                      white-space: nowrap !important;
+                      overflow: hidden !important;
+                      text-overflow: ellipsis !important;
+                      max-width: 100%;
+                    }
+                    .contacto-form .select-match-input option:hover {
+                      white-space: normal !important;
+                      overflow: visible !important;
+                    }
+                    .contacto-form .select-match-input option,
+                    .contacto-form .select-match-input option:checked,
+                    .contacto-form .select-match-input option:focus,
+                    .contacto-form .select-match-input option:hover {
+                      color: #f8f9fa !important;
+                      background-color: #1a1a1a !important;
+                    }
+                  `}</style>
                   <div className="form-row">
                     <div className="form-group half-width">
                       <label htmlFor="nombre">Nombre: <span className="required">*</span></label>
@@ -280,7 +326,7 @@ const TrabajaConNosotros: React.FC = () => {
                         name="puesto"
                         value={formData.puesto}
                         onChange={handleChange}
-                        className="contacto-form select"
+                        className="contacto-form select select-match-input"
                       >
                         <option value="">Selecciona un puesto</option>
                         <option value="fabrica">Fábrica</option>
@@ -296,7 +342,7 @@ const TrabajaConNosotros: React.FC = () => {
                           name="area"
                           value={formData.area}
                           onChange={handleChange}
-                          className="contacto-form select"
+                          className="contacto-form select select-match-input"
                         >
                           <option value="">Selecciona un área</option>
                           <option value="administracion">Administración</option>
@@ -314,7 +360,7 @@ const TrabajaConNosotros: React.FC = () => {
                           name="sucursal"
                           value={formData.sucursal}
                           onChange={handleChange}
-                          className="contacto-form select"
+                          className="contacto-form select select-match-input"
                         >
                           <option value="">Selecciona una sucursal</option>
                           {sucursalesList.map((sucursal, index) => (

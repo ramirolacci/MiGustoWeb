@@ -18,19 +18,19 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/SKgTg4kk/Doble-Muzza.png",
-        titulo: "Doble Muzzarella",
+        titulo: "Doble muzzarella",
         descripcion: "Pizza grande de Muzzarella doble elaborada con salsa de tomate casera artesanal.",
         esRecomendado: true
     },
     {
         imagen: "https://i.postimg.cc/5NZMmwpn/Muzza-con-Jamon.png",
-        titulo: "Muzzarella con Jamón",
+        titulo: "Muzzarella con jamón",
         descripcion: "Pizza grande de Muzzarella elaborada con jamón cocido y salsa de tomate.",
         esRecomendado: true
     },
     {
         imagen: "https://i.postimg.cc/PqT96KDz/Jamon-con-morrones.png",
-        titulo: "Jamón con Morrones",
+        titulo: "Jamón con morrones",
         descripcion: "Pizza grande de Muzzarella elaborada con jamón cocido y morrones asados."
     },
     {
@@ -41,7 +41,7 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/76fkVmvt/Napo-con-Jamon.png",
-        titulo: "Napolitana con Jamón",
+        titulo: "Napolitana con jamón",
         descripcion: "Pizza grande de queso Muzzarella elaborada con jamón cocido, rodajas de tomate fresco y topping de salsa casera de provenzal."
     },
     {
@@ -51,7 +51,7 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/Y0zbmBX5/Provolone-con-Jamon.png",
-        titulo: "Provolone con Jamón",
+        titulo: "Provolone con jamón",
         descripcion: "Pizza grande de queso Muzzarella elaborada con queso provolone, jamón cocido, salsa de tomate, con orégano y ají molido."
     },
     {
@@ -66,7 +66,7 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/Ss7Wg7W8/Roquefort-con-Jamon.png",
-        titulo: "Roquefort con Jamón",
+        titulo: "Roquefort con jamón",
         descripcion: "Pizza grande de queso muzzarella, queso roquefort y jamón cocido."
     },
     {
@@ -77,12 +77,12 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/xj5vH5jV/Calabresa-con-Jaon.png",
-        titulo: "Calabresa con Jamón",
+        titulo: "Calabresa con jamón",
         descripcion: "Pizza grande de queso Muzzarella, fetas de calabresa y jamón cocido."
     },
     {
         imagen: "https://i.postimg.cc/L4xPhsvH/Cuatro-Quesos.png",
-        titulo: "Cuatro Quesos",
+        titulo: "Cuatro quesos",
         descripcion: "Pizza 4 quesos mezcla de queso muzzarella elaborada con queso roquefort y provolone.",
         esVegetariano: true
     },
@@ -101,12 +101,12 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/qR89QYbL/Fugazzeta-con-Panceta.png",
-        titulo: "Fugazzeta con Panceta",
+        titulo: "Fugazzeta con panceta",
         descripcion: "Pizza grande de queso Muzzarella elaborada con cebolla blanca, panceta y provolone."
     },
     {
         imagen: "https://i.postimg.cc/P5s5qsGX/Fugazzeta-con-Jamon.png",
-        titulo: "Fugazzeta con Jamón",
+        titulo: "Fugazzeta con jamón",
         descripcion: "Pizza grande de queso Muzzarella elaborada con cebolla blanca, jamón cocido y provolone."
     },
     {
@@ -116,7 +116,7 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/nLVjHb7s/Jamon-con-Anana.png",
-        titulo: "Jamón con Ananá",
+        titulo: "Jamón con ananá",
         descripcion: "Pizza grande de queso Muzzarella elaborada con salsa de tomate, jamón cocido, ananá en rodajas, orégano y cerezas."
     },
     {
@@ -127,38 +127,38 @@ export const pizzas: Pizza[] = [
     },
     {
         imagen: "https://i.postimg.cc/dtMhhTrc/Jamon-Tomate-y-Huevo.png",
-        titulo: "Jamón, Tomate y Huevo",
+        titulo: "Jamón, tomate y huevo",
         descripcion: "Pizza grande de queso Muzzarella elaborada con tomate fresco, jamón y huevo cocidos."
     },
     {
         imagen: "https://i.postimg.cc/tR6TGCfS/Muzza-con-Huevo.png",
-        titulo: "Muzzarella con Huevo",
+        titulo: "Muzzarella con huevo",
         descripcion: "Pizza grande de queso Muzzarella elaborada con tomate fresco y huevo cocido.",
         esVegetariano: true
     },
     {
         imagen: "https://i.postimg.cc/QdfNJB9t/Jamon-y-huevo.png",
-        titulo: "Jamón y Huevo",
+        titulo: "Jamón y huevo",
         descripcion: "Pizza grande de queso Muzzarella elaborada con jamón y huevo cocidos."
     },
     {
         imagen: "https://i.postimg.cc/pd723gBM/Jamon-tomate-huevo-y-roquefort.png",
-        titulo: "Jamón, Tomate, Huevo, Roquefort",
+        titulo: "Jamón, tomate, huevo y roquefort",
         descripcion: "Pizza grande de queso Muzzarella elaborada con queso roquefort, tomate fresco y huevo cocido."
     },
     {
         imagen: "https://i.postimg.cc/J4m1w3j0/Provo-Jamon-y-Longaniza.png",
-        titulo: "Provolone, Jamón y Longaniza",
+        titulo: "Provolone, jamón y longaniza",
         descripcion: "Pizza grande de queso Muzzarella elaborada con queso provolone, jamón cocido y fetas de longaniza."
     },
     {
         imagen: "https://i.postimg.cc/ncknns1k/Provolone-Jamon-y-Morron.png",
-        titulo: "Provolone, Jamón y Morrón",
+        titulo: "Provolone, jamón y morrón",
         descripcion: "Pizza grande de queso Muzzarella elaborada con queso provolone, jamón cocido y morrones asados."
     },
     {
         imagen: "https://i.postimg.cc/c1Bpnp81/Panceta-y-verdeo.png",
-        titulo: "Panceta y Verdeo",
+        titulo: "Panceta y verdeo",
         descripcion: "Pizza grande de queso Muzzarella elaborada con panceta y verdeo."
     }
 ];

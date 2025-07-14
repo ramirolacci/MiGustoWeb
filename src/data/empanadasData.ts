@@ -17,7 +17,7 @@ export const empanadas: Empanada[] = [
   {
     imagen: "https://i.postimg.cc/66dSFkR1/empanada-mexican-pibil-pork.jpg",
     imagenDetalle: "https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png",
-    titulo: "Mexican Pibil pork",
+    titulo: "Mexican pibil pork",
     precio: 4000,
     descripcion: "Bondiola de cerdo de larga coccion, Achiote con porotos negros, Crema acida, Cebolla encurtida, Cilantro.",
     esRecomendado: true,
@@ -26,7 +26,7 @@ export const empanadas: Empanada[] = [
   {
     imagen: "https://i.postimg.cc/VLK78mN4/4cac9474-cd35-41f1-a8d9-8e0b2b9ffe86.jpg",
     imagenDetalle: "https://i.postimg.cc/26x2LHzp/Mexican-Veggie.png",
-    titulo: "Mexican Veggie",
+    titulo: "Mexican veggie",
     precio: 4000,
     descripcion: "Salteado de champinones, Morron y cebolla, Choclo y porotos negros, Crema acida, cilantro y cebolla encurtida, Masa vegana.",
     esVegetariano: true,
@@ -35,7 +35,7 @@ export const empanadas: Empanada[] = [
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/9a2d8724-46bc-4cde-915f-c958c8e25ef4.jpg",
     imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
-    titulo: "Big Burguer",
+    titulo: "Big burguer",
     precio: 4000,
     descripcion: "Blend de ojo de bife, Tapa de asado, Doble bacon, Cheddar, Pepinillos, Salsa Big.",
     esRecomendado: true,
@@ -53,7 +53,7 @@ export const empanadas: Empanada[] = [
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/3a48db8e-4dcd-476c-aa07-2a4503c637e1.jpg",
     imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burguer.png",
-    titulo: "Cheese Burguer",
+    titulo: "Cheese burguer",
     precio: 4000,  
     descripcion: "Blend de ojo de bife y vacio, Doble bacon, Salsa bbq, Mar de cheddar.",
     esRecomendado: true,
@@ -71,21 +71,21 @@ export const empanadas: Empanada[] = [
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/1d3edfbd-33ae-4928-b656-bec8433d486d.jpg",
     imagenDetalle: "https://i.postimg.cc/bv0qGgRx/AMERICAN.png",
-    titulo: "American Chicken",
+    titulo: "American chicken",
     precio: 4000,
     descripcion: "Chicken sabroso y dulce, Bacón crujiente braseado, Mar de cheddar.",
     esPremium: true
   },
   {
     imagen: "https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png",
-    titulo: "Jamon y queso",
+    titulo: "Jamón y queso",
     precio: 3700,
     descripcion: "Jamón cocido feteado, Abundante muzzarella seleccionada.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
-    titulo: "Jamon, huevo y queso",
+    titulo: "Jamón, huevo y queso",
     precio: 3700,
     descripcion: "Jamón cocido en cubos, Colmado de muzzarella seleccionada, Huevo duro.",
     esPremium: false
@@ -126,7 +126,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/1XtxRybm/Cebolla.png",
-    titulo: "Queso y Cebolla",
+    titulo: "Queso y cebolla",
     precio: 3700,
     descripcion: "Perfecta union muzzarella seleccionada, Salteado de cebolla, Toque de quesardo estacionado.",
     esVegetariano: true,
@@ -134,14 +134,14 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png",
-    titulo: "Roquefort con jamon",
+    titulo: "Roquefort con jamón",
     precio: 3700,
     descripcion: "Jamon cocido feteado, Intenso queso roquefort premium.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/FRJDQZbH/tomate-y-albahaca.png",
-    titulo: "Jamon, tomate y albahaca",
+    titulo: "Jamón, tomate y albahaca",
     precio: 3700,
     descripcion: "Jamón cocido en cubos, Tomates cherry asados, Albahaca fresca, Abundante queso muzzarella.",
     esPremium: false
@@ -161,7 +161,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/rw1NF3W3/cuatro-quesos.png",
-    titulo: "Cuatro Quesos",
+    titulo: "Cuatro quesos",
     precio: 3700,
     descripcion: "Blend de abundante queso muzzarella, quesardo seleccionado, roquefort intenso y provolone estacionado.",
     ingredientes: [
@@ -228,7 +228,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png",
-    titulo: "Panceta y Ciruela",
+    titulo: "Panceta y ciruela",
     precio: 3700,
     descripcion: "Panceta ahumada feteada, abundante queso muzzarella y ciruelas en pasas.",
     ingredientes: [

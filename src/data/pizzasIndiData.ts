@@ -12,13 +12,13 @@ export interface PizzaIndi {
 export const pizzasIndi: PizzaIndi[] = [
   {
     imagen: "https://i.postimg.cc/TYSrn4mW/INDI-Rucula.jpg",
-    titulo: "Jamón Crudo, Rúcula y Stracciatella INDI",
+    titulo: "Jamón crudo, rúcula y stracciatella INDI",
     descripcion: "Pizza individual con jamón crudo, rúcula fresca y stracciatella.",
     esRecomendado: true
   },
   {
     imagen: "https://i.postimg.cc/TYP9Vb4B/Indi-Mortadela.jpg",
-    titulo: "Mortadela, Pistacho y Stracciatella INDI",
+    titulo: "Mortadela, pistacho y stracciatella INDI",
     descripcion: "Pizza individual con mortadela, pistachos y stracciatella.",
     esRecomendado: true
   },
@@ -35,7 +35,7 @@ export const pizzasIndi: PizzaIndi[] = [
   },
   {
     imagen: "https://i.postimg.cc/kMssRsfx/INDI-Jamon-y-morrones.jpg",
-    titulo: "Jamón y Morrón INDI",
+    titulo: "Jamón y morrón INDI",
     descripcion: "Pizza individual con jamón cocido y morrones asados."
   },
   {

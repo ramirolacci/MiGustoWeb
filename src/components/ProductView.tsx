@@ -12,45 +12,30 @@ interface ProductViewProps {
 }
 
 const ProductView: React.FC<ProductViewProps> = ({ image, alt, width = 305.8, height = 275, noHover, onClick, style }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // Elimino el estado y handlers de rotación
+  // const cardRef = useRef<HTMLDivElement>(null);
+  // const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  // const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const card = cardRef.current;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rotateX = ((y / rect.height) * 100 - 50) * -0.2;
-    const rotateY = ((x / rect.width) * 100 - 50) * 0.2;
-    setRotation({ x: rotateX, y: rotateY });
-    setPosition({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setRotation({ x: 0, y: 0 });
-    setPosition({ x: 0, y: 0 });
-  };
+  // const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => { ... }
+  // const handleMouseLeave = () => { ... }
 
   return (
     <div
-      ref={cardRef}
+      // ref={cardRef}
       className="product-card-3d"
-      onMouseMove={noHover ? undefined : handleMouseMove}
-      onMouseLeave={noHover ? undefined : handleMouseLeave}
+      // onMouseMove={noHover ? undefined : handleMouseMove}
+      // onMouseLeave={noHover ? undefined : handleMouseLeave}
       onClick={onClick}
       style={{
         width,
         height,
-        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         ...style
       }}
     >
       <div className="card-image"
         style={{
-          height,
-          transform: `translateZ(60px) translateX(${position.x * 0.05}px) translateY(${position.y * 0.05}px)`
+          height
         }}
         onClick={onClick}
       >

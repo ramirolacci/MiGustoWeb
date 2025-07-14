@@ -117,7 +117,7 @@ export default function Productos2() {
                 width: '100vw',
                 height: '90vh',
                 maxWidth: '100vw',
-                margin: '32px 0 0 0',
+                margin: '-32px 0 0 0',
                 background: 'transparent',
                 overflow: 'hidden'
             }}>
