@@ -6,6 +6,8 @@ import LoadingSpinner from './components/LoadingSpinner';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import BotmakerChat from './components/BotmakerChat';
 import Viewer3D from './components/Viewer3D';
+import LoversForm from './pages/LoversForm';
+import Carta from './pages/Carta';
 
 const Home = lazy(() => import('./components/Home'));
 const Productos = lazy(() => import('./components/Productos'));
@@ -50,7 +52,7 @@ const AppContent: React.FC = () => {
           <Suspense fallback={<LoadingSpinner isLoading={true} />}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/carta" element={<Revista />} />
+              <Route path="/carta" element={<Carta />} />
               <Route path="/productos" element={<Productos />} />
               <Route path="/productos2" element={<Productos2 />} />
               <Route path="/sucursales" element={<Sucursales />} />
