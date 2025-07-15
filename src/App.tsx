@@ -20,7 +20,7 @@ const Franquicias = lazy(() => import('./pages/Franquicias'));
 const VentaCorporativa = lazy(() => import('./pages/VentaCorporativa'));
 const Revista = lazy(() => import('./components/Revista'));
 const Productos2 = lazy(() => import('./components/Productos2'));
-const Lovers = lazy(() => import('./lovers/App.tsx'));
+const Lovers = lazy(() => import('./pages/Lovers.tsx'));
 
 import './App.css';
 

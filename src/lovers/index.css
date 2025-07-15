@@ -20,6 +20,17 @@ body {
   padding: 0;
 }
 
+body.lovers-page {
+  min-height: 100vh;
+  background: url('/assets/background-text.jpg') center center / cover no-repeat !important;
+  background-color: #181818cc !important;
+  color: #fff;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 0.01em;
+  margin: 0;
+  padding: 0;
+}
+
 body.lovers-page .app {
   padding-top: 0 !important;
   margin-top: 0 !important;
@@ -29,46 +40,52 @@ body.lovers-page .main {
   margin-top: 0 !important;
 }
 
-.glass-card {
-  background: rgba(24, 24, 24, 0.75);
-  border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
-  border: 1.5px solid rgba(255, 215, 0, 0.18);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 2.5rem 2rem;
-  transition: box-shadow 0.35s cubic-bezier(.23,1.02,.32,1), backdrop-filter 0.35s cubic-bezier(.23,1.02,.32,1);
-  will-change: box-shadow, backdrop-filter;
+body.lovers-page .navbar {
+  z-index: 20000 !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-h1, h2, h3, h4, h5 {
-  color: var(--dorado);
-  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.03em;
+body.lovers-page, body.lovers-page html {
+  height: 100vh;
+  overflow: hidden !important;
 }
 
-input, select, textarea {
-  background: rgba(255,255,255,0.08);
-  border: 1.5px solid var(--dorado);
-  border-radius: 12px;
-  color: #fff;
-  font-size: 1.1rem;
-  padding: 0.9rem 1.2rem;
-  margin-bottom: 1.2rem;
-  outline: none;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-input:focus, select:focus, textarea:focus {
-  border-color: var(--dorado);
-  box-shadow: 0 0 0 2px #FFD70044;
+body.lovers-page .app.lovers-app {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px; /* Altura del navbar */
+  box-sizing: border-box;
 }
 
-label {
-  color: var(--dorado);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: block;
+body.lovers-page .app.lovers-app > *:not(.navbar) {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 32px; /* Separación visual del navbar */
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.lovers-page .main,
+body.lovers-page .lovers-app > section,
+body.lovers-page .lovers-app > div:not(.navbar) {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 body.lovers-page .lovers-app button, body.lovers-page .lovers-app .btn {
@@ -1152,5 +1169,387 @@ input[type="radio"].input-error:hover {
   margin-left: auto !important;
   margin-right: auto !important;
   display: block !important;
+}
+ 
+/* --- Fix visual para formulario Lovers: igualar a Contacto.css solo en .contacto-form --- */
+.contacto-form input,
+.contacto-form select,
+.contacto-form textarea {
+  width: 100% !important;
+  padding: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+}
+.contacto-form input::placeholder,
+.contacto-form textarea::placeholder {
+  color: rgba(248, 249, 250, 0.6) !important;
+}
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.contacto-form select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  padding: 15px !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.5rem center !important;
+  background-size: 1.5rem !important;
+  cursor: pointer !important;
+}
+.contacto-form select:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.contacto-form select option {
+  background-color: #1a1a1a !important;
+  color: #f8f9fa !important;
+}
+.contacto-form .btn-ver-mas {
+  background: none !important;
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 2px solid #D4AF37 !important;
+  padding: 12px 30px !important;
+  border-radius: 25px !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: block !important;
+  margin: 2rem auto 0 !important;
+  min-width: 200px !important;
+  box-shadow: none !important;
+}
+.contacto-form .btn-ver-mas:hover {
+  background-color: #D4AF37 !important;
+  color: #000 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3) !important;
+}
+ 
+/* --- Fix ultra-específico para formulario Lovers: igualar a Contacto.css solo en .lovers-contacto-form --- */
+.lovers-contacto-form input,
+.lovers-contacto-form select,
+.lovers-contacto-form textarea {
+  width: 100% !important;
+  padding: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+}
+.lovers-contacto-form input::placeholder,
+.lovers-contacto-form textarea::placeholder {
+  color: rgba(248, 249, 250, 0.6) !important;
+}
+.lovers-contacto-form input:focus,
+.lovers-contacto-form textarea:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.lovers-contacto-form select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  padding: 15px !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.5rem center !important;
+  background-size: 1.5rem !important;
+  cursor: pointer !important;
+}
+.lovers-contacto-form select:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.lovers-contacto-form select option {
+  background-color: #1a1a1a !important;
+  color: #f8f9fa !important;
+}
+.lovers-contacto-form .btn-ver-mas {
+  background: none !important;
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 2px solid #D4AF37 !important;
+  padding: 12px 30px !important;
+  border-radius: 25px !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: block !important;
+  margin: 2rem auto 0 !important;
+  min-width: 200px !important;
+  box-shadow: none !important;
+}
+.lovers-contacto-form .btn-ver-mas:hover {
+  background-color: #D4AF37 !important;
+  color: #000 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3) !important;
+}
+ 
+/* --- Fix ultra-específico para que el formulario Lovers se vea igual al de la web --- */
+.lovers-contacto-form,
+.lovers-contacto-form * {
+  all: unset;
+  all: revert;
+  box-sizing: border-box !important;
+}
+
+.contacto-container.lovers-contacto-form,
+.lovers-contacto-form .contacto-header,
+.lovers-contacto-form .contacto-content,
+.lovers-contacto-form .contacto-form-container,
+.lovers-contacto-form .contacto-form {
+  all: unset;
+  all: revert;
+  box-sizing: border-box !important;
+}
+
+.lovers-contacto-form input,
+.lovers-contacto-form select,
+.lovers-contacto-form textarea {
+  width: 100% !important;
+  padding: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+}
+.lovers-contacto-form input::placeholder,
+.lovers-contacto-form textarea::placeholder {
+  color: rgba(248, 249, 250, 0.6) !important;
+}
+.lovers-contacto-form input:focus,
+.lovers-contacto-form textarea:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.lovers-contacto-form select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  padding: 15px !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.5rem center !important;
+  background-size: 1.5rem !important;
+  cursor: pointer !important;
+}
+.lovers-contacto-form select:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.lovers-contacto-form select option {
+  background-color: #1a1a1a !important;
+  color: #f8f9fa !important;
+}
+.lovers-contacto-form .btn-ver-mas {
+  background: none !important;
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 2px solid #D4AF37 !important;
+  padding: 12px 30px !important;
+  border-radius: 25px !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: block !important;
+  margin: 2rem auto 0 !important;
+  min-width: 200px !important;
+  box-shadow: none !important;
+}
+.lovers-contacto-form .btn-ver-mas:hover {
+  background-color: #D4AF37 !important;
+  color: #000 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3) !important;
+}
+ 
+/* --- Fix para que la pantalla Lovers NO tenga scroll y el formulario se vea igual al de la web --- */
+body.lovers-page, html.lovers-page {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+#lovers-form, #lovers-form * {
+  all: unset;
+  all: revert;
+  box-sizing: border-box !important;
+}
+#lovers-form.contacto-container {
+  background: rgba(30, 30, 30, 0.35) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 0.2rem 3rem 3rem 3rem !important;
+}
+#lovers-form .contacto-header {
+  text-align: center !important;
+  margin-bottom: 40px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+#lovers-form .contacto-header h1 {
+  color: #ffc107 !important;
+  font-size: 4rem !important;
+  margin-bottom: 15px !important;
+  font-weight: 700 !important;
+  text-shadow: 0 3px 12px rgba(255, 193, 7, 0.4) !important;
+  letter-spacing: 1.5px !important;
+}
+#lovers-form .contacto-header p {
+  color: rgba(248, 249, 250, 0.9) !important;
+  font-size: 1.4rem !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
+#lovers-form .contacto-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+#lovers-form .contacto-form-container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  padding: 30px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+#lovers-form .contacto-form-container h2 {
+  color: #ffc107 !important;
+  margin-bottom: 25px !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 5px rgba(255, 193, 7, 0.2) !important;
+  text-align: center !important;
+}
+#lovers-form .contacto-form .form-group {
+  margin-bottom: 14px !important;
+}
+#lovers-form .contacto-form label {
+  display: block !important;
+  margin-bottom: 10px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  font-size: 1.1rem !important;
+}
+#lovers-form .contacto-form label .required {
+  color: #ff0000 !important;
+  margin-left: 4px !important;
+}
+#lovers-form .contacto-form input,
+#lovers-form .contacto-form textarea {
+  width: 100% !important;
+  padding: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  transition: all 0.3s ease !important;
+}
+#lovers-form .contacto-form input::placeholder,
+#lovers-form .contacto-form textarea::placeholder {
+  color: rgba(248, 249, 250, 0.6) !important;
+}
+#lovers-form .contacto-form input:focus,
+#lovers-form .contacto-form textarea:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+#lovers-form .contacto-form select {
+  width: 100% !important;
+  padding: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f9fa !important;
+  transition: all 0.3s ease !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.5rem center !important;
+  background-size: 1.5rem !important;
+  cursor: pointer !important;
+}
+#lovers-form .contacto-form select:focus {
+  outline: none !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+#lovers-form .contacto-form select option {
+  background-color: #1a1a1a !important;
+  color: #f8f9fa !important;
+}
+#lovers-form .btn-ver-mas {
+  background: none !important;
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 2px solid #D4AF37 !important;
+  padding: 12px 30px !important;
+  border-radius: 25px !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: block !important;
+  margin: 2rem auto 0 !important;
+  min-width: 200px !important;
+  box-shadow: none !important;
+}
+#lovers-form .btn-ver-mas:hover {
+  background-color: #D4AF37 !important;
+  color: #000 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3) !important;
 }
  
