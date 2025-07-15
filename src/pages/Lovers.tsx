@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Users, Gift } from 'lucide-react';
 import { Percent, Crown } from 'lucide-react';
 import NavBar from '../components/NavBar';
@@ -12,35 +12,38 @@ const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
 
 function EmpanadaRain() {
   const particleCount = 24;
-  const particles = Array.from({ length: particleCount }).map((_, i) => {
-    const left = Math.random() * 100;
-    const size = 54 + Math.random() * 64;
-    const delay = -Math.random() * 12;
-    const duration = 10 + Math.random() * 10;
-    const img = empanadas[Math.floor(Math.random() * empanadas.length)];
-    const clockwise = Math.random() > 0.5;
-    const rotEnd = clockwise ? 360 : -360;
-    return (
-      <img
-        key={i}
-        src={img}
-        alt="empanada"
-        style={{
-          position: 'absolute',
-          left: `${left}%`,
-          width: size,
-          height: size,
-          animation: `empanada-fall  ${duration}s linear infinite` ,
-          animationDelay: `${delay}s`,
-          objectFit: 'contain',
-          aspectRatio: '1/1',
-          pointerEvents: 'none',
-          zIndex: 2,
-          opacity: 0.9,
-        }}
-      />
-    );
-  });
+  const particlesRef = useRef<React.ReactNode[] | null>(null);
+  if (!particlesRef.current) {
+    particlesRef.current = Array.from({ length: particleCount }).map((_, i) => {
+      const left = Math.random() * 100;
+      const size = 54 + Math.random() * 64;
+      const delay = -Math.random() * 12;
+      const duration = 10 + Math.random() * 10;
+      const img = empanadas[Math.floor(Math.random() * empanadas.length)];
+      const clockwise = Math.random() > 0.5;
+      const rotEnd = clockwise ? 360 : -360;
+      return (
+        <img
+          key={i}
+          src={img}
+          alt="empanada"
+          style={{
+            position: 'absolute',
+            left: `${left}%`,
+            width: size,
+            height: size,
+            animation: `empanada-fall  ${duration}s linear infinite` ,
+            animationDelay: `${delay}s`,
+            objectFit: 'contain',
+            aspectRatio: '1/1',
+            pointerEvents: 'none',
+            zIndex: 2,
+            opacity: 0.9,
+          }}
+        />
+      );
+    });
+  }
   return (
     <>
       <style>{`
@@ -62,7 +65,7 @@ function EmpanadaRain() {
         }
       `}</style>
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 2 }}>
-        {particles}
+        {particlesRef.current}
       </div>
     </>
   );
@@ -287,9 +290,9 @@ const Lovers = () => {
         </div>
         {/* Formulario alineado a la derecha */}
         <div style={{ flex: '0 1 700px', minWidth: 420, maxWidth: 700 }}>
-          <div className="contacto-form-container" style={{ margin: 0 }}>
-            <h2 style={{ color: '#ffc107', textAlign: 'center', marginBottom: 8, fontWeight: 700, fontSize: '1.5rem' }}>Mi Gusto Lovers</h2>
-            <p style={{ color: '#fff', textAlign: 'center', marginBottom: 18, fontSize: '1.05rem', opacity: 0.92 }}>
+          <div className="contacto-form-container" style={{ margin: 0, background: 'rgba(30,30,30,0.65)', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)' }}>
+            <h2 style={{ color: '#ffc107', textAlign: 'center', marginBottom: 8, fontWeight: 700, fontSize: '2rem' }}>Mi Gusto Lovers</h2>
+            <p style={{ color: '#fff', textAlign: 'center', marginBottom: 34, fontSize: '1.05rem', opacity: 0.92 }}>
               Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.
             </p>
             <form className="contacto-form" onSubmit={handleSubmit}>
