@@ -22,6 +22,20 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 
     const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
 
+    // --- FIX: Reiniciar el slider al volver a la pestaña ---
+    useEffect(() => {
+        const handleVisibility = () => {
+            if (document.visibilityState === 'visible') {
+                // Reiniciar el slider al volver a la pestaña
+                setTransition(false);
+                setCurrent(1);
+            }
+        };
+        document.addEventListener('visibilitychange', handleVisibility);
+        return () => document.removeEventListener('visibilitychange', handleVisibility);
+    }, []);
+    // --- END FIX ---
+
     useEffect(() => {
         if (!transition) return;
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -83,16 +97,7 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                     />
                 ))}
             </div>
-            <button className="slider-arrow left" onClick={goToPrev} aria-label="Anterior">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M18 24L10 14L18 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
-            <button className="slider-arrow right" onClick={goToNext} aria-label="Siguiente">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M10 24L18 14L10 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
+            {/* Botones de flecha eliminados */}
         </div>
     );
 });
@@ -140,4 +145,4 @@ function Home() {
     );
 }
 
-export default memo(Home);
+export default Home;
