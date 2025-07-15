@@ -1,5 +1,6 @@
 import App from '../lovers/App';
 import { useEffect } from 'react';
+import NavBar from '../components/NavBar';
 
 const LOVERS_CSS_ID = 'lovers-css-dynamic';
 
@@ -23,7 +24,12 @@ const LoversWrapper = () => {
       }
     };
   }, []);
-  return <App />;
+  return (
+    <>
+      <NavBar />
+      <App />
+    </>
+  );
 };
 
 export default LoversWrapper; 
