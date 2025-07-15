@@ -74,23 +74,69 @@ const saboresEmpanadas = [
 
 const Lovers = () => {
   // Estado para los sabores seleccionados
-  const [saboresSeleccionados, setSaboresSeleccionados] = useState<string[]>([]);
-  const [esCliente, setEsCliente] = useState<string>('');
-  const [errorEsCliente, setErrorEsCliente] = useState<string>('');
+  const [formData, setFormData] = useState({
+    nombreCompleto: '',
+    email: '',
+    telefono: '',
+    cumple: '',
+    sucursal: '',
+    saboresFavoritos: [] as string[],
+    esCliente: '',
+  });
+  const [errors, setErrors] = useState({
+    nombreCompleto: '',
+    email: '',
+    telefono: '',
+    saboresFavoritos: '',
+    esCliente: '',
+    cumple: '',
+    sucursal: '',
+  });
   const [recibirNovedades, setRecibirNovedades] = useState<boolean>(false);
 
   const handleAgregarSabor = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const sabor = e.target.value;
-    if (sabor && !saboresSeleccionados.includes(sabor) && saboresSeleccionados.length < 3) {
-      setSaboresSeleccionados([...saboresSeleccionados, sabor]);
+    if (sabor && !formData.saboresFavoritos.includes(sabor) && formData.saboresFavoritos.length < 3) {
+      setFormData(prev => ({ ...prev, saboresFavoritos: [...prev.saboresFavoritos, sabor] }));
+      setErrors(prev => ({ ...prev, saboresFavoritos: '' }));
     }
-    // Reiniciar el select a vacío
     e.target.value = '';
   };
 
   const handleQuitarSabor = (sabor: string) => {
-    setSaboresSeleccionados(saboresSeleccionados.filter(s => s !== sabor));
+    setFormData(prev => ({ ...prev, saboresFavoritos: prev.saboresFavoritos.filter(s => s !== sabor) }));
+    setErrors(prev => ({ ...prev, saboresFavoritos: '' }));
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    if (type === 'radio') {
+      setFormData(prev => ({ ...prev, [name]: value }));
+      setErrors(prev => ({ ...prev, [name]: '' }));
+      return;
+    }
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: '' }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: any = {};
+    if (!formData.nombreCompleto.trim()) newErrors.nombreCompleto = 'Este campo es obligatorio';
+    if (!formData.email.trim()) newErrors.email = 'Este campo es obligatorio';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Ingrese un email válido';
+    if (!formData.telefono.trim()) newErrors.telefono = 'Este campo es obligatorio';
+    if (formData.saboresFavoritos.length === 0) newErrors.saboresFavoritos = 'Debes elegir al menos un sabor';
+    if (!formData.esCliente) newErrors.esCliente = 'Este campo es obligatorio';
+    if (!formData.cumple) newErrors.cumple = 'Este campo es obligatorio';
+    if (!formData.sucursal) newErrors.sucursal = 'Este campo es obligatorio';
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
+    // Aquí iría el submit real
+    alert('¡Formulario enviado correctamente!');
+  };
+
+  console.log('ERRORES FORMULARIO LOVERS:', errors);
 
   return (
     <div
@@ -233,47 +279,82 @@ const Lovers = () => {
             <p style={{ color: '#fff', textAlign: 'center', marginBottom: 18, fontSize: '1.05rem', opacity: 0.92 }}>
               Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.
             </p>
-            <form className="contacto-form">
+            <form className="contacto-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="nombreCompleto">Nombre completo:<span className="required">*</span></label>
-                  <input type="text" id="nombreCompleto" name="nombreCompleto" required placeholder="Ingrese su nombre completo" style={{ width: '100%', minWidth: 220, maxWidth: 400 }} />
+                  <input
+                    type="text"
+                    id="nombreCompleto"
+                    name="nombreCompleto"
+                    value={formData.nombreCompleto}
+                    onChange={handleInputChange}
+                    placeholder="Ingrese su nombre completo"
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
+                  />
+                  {errors.nombreCompleto && (
+                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreCompleto}</div>
+                  )}
                 </div>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="email">E-mail:<span className="required">*</span></label>
-                  <input type="email" id="email" name="email" required placeholder="ejemplo@email.com" style={{ width: '100%', minWidth: 220, maxWidth: 400 }} />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="ejemplo@email.com"
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
+                  />
+                  {errors.email && (
+                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>
+                  )}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="telefono">Teléfono:<span className="required">*</span></label>
-                  <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +54 9 11 1234-5678" style={{ width: '100%', minWidth: 220, maxWidth: 400 }} />
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    value={formData.telefono}
+                    onChange={handleInputChange}
+                    placeholder="Ej: +54 9 11 1234-5678"
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
+                  />
+                  {errors.telefono && (
+                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>
+                  )}
                   {/* Select de sabores favoritos (nuevo comportamiento) */}
                   <label htmlFor="saboresFavoritos" style={{ marginTop: 18 }}>Tus 3 sabores favoritos:<span className="required">*</span></label>
                   <select
                     id="saboresFavoritos"
                     name="saboresFavoritos"
-                    required
                     className="contacto-form"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400, marginBottom: 0 }}
                     onChange={handleAgregarSabor}
-                    disabled={saboresSeleccionados.length >= 3}
+                    disabled={formData.saboresFavoritos.length >= 3}
                     defaultValue=""
                   >
                     <option value="" disabled>Selecciona 3 sabores</option>
-                    {saboresEmpanadas.filter(sabor => !saboresSeleccionados.includes(sabor)).map(sabor => (
+                    {saboresEmpanadas.filter(sabor => !formData.saboresFavoritos.includes(sabor)).map(sabor => (
                       <option key={sabor} value={sabor}>{sabor}</option>
                     ))}
                   </select>
                   {/* Chips de sabores seleccionados */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 8, marginBottom: 0 }}>
-                    {saboresSeleccionados.map(sabor => (
+                    {formData.saboresFavoritos.map(sabor => (
                       <div key={sabor} style={{ background: '#ffc107', color: '#222', borderRadius: 16, padding: '4px 12px', display: 'flex', alignItems: 'center', fontWeight: 600, fontSize: '0.98rem' }}>
                         {sabor}
                         <button type="button" onClick={() => handleQuitarSabor(sabor)} style={{ marginLeft: 6, background: 'none', border: 'none', color: '#b71c1c', fontWeight: 900, fontSize: 18, cursor: 'pointer', lineHeight: 1 }} aria-label={`Quitar ${sabor}`}>×</button>
                       </div>
                     ))}
                   </div>
+                  {errors.saboresFavoritos && (
+                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.saboresFavoritos}</div>
+                  )}
                  {/* Campo: ¿Ya eres cliente de Mi Gusto? */}
                  <div className="form-group" style={{ marginTop: 18, marginBottom: 0 }}>
                    <label style={{ fontWeight: 500, color: '#fff', marginBottom: 6, display: 'block' }}>¿Ya eres cliente de Mi Gusto? <span className="required">*</span></label>
@@ -283,8 +364,8 @@ const Lovers = () => {
                          type="radio"
                          name="esCliente"
                          value="si"
-                         checked={esCliente === 'si'}
-                         onChange={() => { setEsCliente('si'); setErrorEsCliente(''); }}
+                         checked={formData.esCliente === 'si'}
+                         onChange={handleInputChange}
                          style={{ accentColor: '#ffc107' }}
                        />
                        Sí
@@ -294,14 +375,16 @@ const Lovers = () => {
                          type="radio"
                          name="esCliente"
                          value="no"
-                         checked={esCliente === 'no'}
-                         onChange={() => { setEsCliente('no'); setErrorEsCliente(''); }}
+                         checked={formData.esCliente === 'no'}
+                         onChange={handleInputChange}
                          style={{ accentColor: '#ffc107' }}
                        />
                        No
                      </label>
                    </div>
-                   {errorEsCliente && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errorEsCliente}</div>}
+                    {errors.esCliente && (
+                      <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.esCliente}</div>
+                    )}
                  </div>
                  {/* Checkbox de novedades */}
                  <div className="form-group" style={{ marginTop: 14, marginBottom: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -320,17 +403,35 @@ const Lovers = () => {
                 </div>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="cumple">Fecha de cumpleaños:<span className="required">*</span></label>
-                  <input type="date" id="cumple" name="cumple" required placeholder="Selecciona tu cumpleaños" style={{ width: '100%', minWidth: 220, maxWidth: 400 }} />
+                  <input
+                    type="date"
+                    id="cumple"
+                    name="cumple"
+                    value={formData.cumple}
+                    onChange={handleInputChange}
+                    placeholder="Selecciona tu cumpleaños"
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
+                  />
+                  {errors.cumple && (
+                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.cumple}</div>
+                  )}
                   {/* Select de sucursal habitual */}
                   <label htmlFor="sucursal" style={{ marginTop: 18 }}>Sucursal habitual:<span className="required">*</span></label>
-                  <select id="sucursal" name="sucursal" required style={{ width: '100%', minWidth: 220, maxWidth: 400, marginBottom: 0 }}>
-                    <option value="" disabled selected>Selecciona tu sucursal</option>
-                    {[
-                      "Ballester","Balvanera","Barrancas de Belgrano","Belgrano","Bella Vista","Campana","Del Viso","Devoto","Don Torcuato","Escobar","Floresta","Florida","Gral. Pacheco","Hurlingham","Ituzaingó","José C. Paz","Los Polvorines","Martínez","Maschwitz","Mataderos","Merlo","Moreno","Muñiz","Munro","Palermo","Paternal","Pilar Centro"
-                    ].map(suc => (
+                  <select
+                    id="sucursal"
+                    name="sucursal"
+                    value={formData.sucursal}
+                    onChange={handleInputChange}
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400, marginBottom: 0 }}
+                  >
+                    <option value="" disabled>Selecciona tu sucursal</option>
+                    {["Ballester","Balvanera","Barrancas de Belgrano","Belgrano","Bella Vista","Campana","Del Viso","Devoto","Don Torcuato","Escobar","Floresta","Florida","Gral. Pacheco","Hurlingham","Ituzaingó","José C. Paz","Los Polvorines","Martínez","Maschwitz","Mataderos","Merlo","Moreno","Muñiz","Munro","Palermo","Paternal","Pilar Centro"].map(suc => (
                       <option key={suc} value={suc}>{suc}</option>
                     ))}
                   </select>
+                  {errors.sucursal && (
+                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>
+                  )}
                   {/* Botón Enviar Mensaje debajo de Sucursal */}
                   <button type="submit" className="btn-ver-mas" style={{ marginTop: 28 }}>Unirme ahora</button>
                 </div>
@@ -341,27 +442,6 @@ const Lovers = () => {
       </div>
       <EmpanadaRain />
       {/* Aquí puedes agregar el contenido o formulario que desees */}
-      {/* Validación al enviar el formulario */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          document.querySelector('.contacto-form')?.addEventListener('submit', function(e) {
-            var esCliente = document.querySelector('input[name="esCliente"]:checked');
-            var errorDiv = document.querySelector('.form-group div[style*="color: red"]');
-            if (!esCliente) {
-              e.preventDefault();
-              if (errorDiv) errorDiv.textContent = 'Este campo es obligatorio';
-              else {
-                var newDiv = document.createElement('div');
-                newDiv.style.color = 'red';
-                newDiv.style.fontSize = '0.95rem';
-                newDiv.style.marginTop = '4px';
-                newDiv.textContent = 'Este campo es obligatorio';
-                document.querySelector('.form-group').appendChild(newDiv);
-              }
-            }
-          });
-        `
-      }} />
     </div>
   );
 };
