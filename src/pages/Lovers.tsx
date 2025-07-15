@@ -143,11 +143,12 @@ const Lovers = () => {
       style={{
         minHeight: '100vh',
         width: '100vw',
-        background: `url('/src/assets/background-text.jpg') center center / cover no-repeat`,
+        backgroundColor: '#000',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
+      <div className="background-overlay"></div>
       <NavBar />
       <div style={{
         display: 'flex',
@@ -157,7 +158,7 @@ const Lovers = () => {
         width: '100%',
         maxWidth: 1300,
         margin: '0 auto',
-        paddingTop: '5.5rem',
+        paddingTop: '8.5rem',
         zIndex: 10,
         position: 'relative',
         gap: '2.5rem',
@@ -195,9 +196,10 @@ const Lovers = () => {
             }}>
               {/* Card 1: Descuentos */}
               <div style={{
-                background: 'rgba(0,0,0,0.55)',
-                borderRadius: 18,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.18)',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
                 padding: '1.3rem 0.7rem 0.9rem 0.7rem',
                 width: 200,
                 minWidth: 200,
@@ -205,6 +207,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                backdropFilter: 'blur(5px)',
+                WebkitBackdropFilter: 'blur(5px)',
               }}>
                 <Percent color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Descuentos</span>
@@ -214,9 +218,10 @@ const Lovers = () => {
               </div>
               {/* Card 2: Eventos */}
               <div style={{
-                background: 'rgba(0,0,0,0.55)',
-                borderRadius: 18,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.18)',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
                 padding: '1.3rem 0.7rem 0.9rem 0.7rem',
                 width: 200,
                 minWidth: 200,
@@ -224,6 +229,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                backdropFilter: 'blur(5px)',
+                WebkitBackdropFilter: 'blur(5px)',
               }}>
                 <Users color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Eventos</span>
@@ -233,9 +240,10 @@ const Lovers = () => {
               </div>
               {/* Card 3: VIP */}
               <div style={{
-                background: 'rgba(0,0,0,0.55)',
-                borderRadius: 18,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.18)',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
                 padding: '1.3rem 0.7rem 0.9rem 0.7rem',
                 width: 200,
                 minWidth: 200,
@@ -243,6 +251,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                backdropFilter: 'blur(5px)',
+                WebkitBackdropFilter: 'blur(5px)',
               }}>
                 <Crown color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>VIP</span>
@@ -252,9 +262,10 @@ const Lovers = () => {
               </div>
               {/* Card 4: Sorteos y Premios */}
               <div style={{
-                background: 'rgba(0,0,0,0.55)',
-                borderRadius: 18,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.18)',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
                 padding: '1.3rem 0.7rem 0.9rem 0.7rem',
                 width: 200,
                 minWidth: 200,
@@ -262,6 +273,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                backdropFilter: 'blur(5px)',
+                WebkitBackdropFilter: 'blur(5px)',
               }}>
                 <Gift color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Sorteos y Premios</span>
@@ -433,7 +446,7 @@ const Lovers = () => {
                     <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>
                   )}
                   {/* Botón Enviar Mensaje debajo de Sucursal */}
-                  <button type="submit" className="btn-ver-mas" style={{ marginTop: 28 }}>Unirme ahora</button>
+                  <button type="submit" className="btn-ver-mas" style={{ marginTop: 64 }}>Unirme ahora</button>
                 </div>
               </div>
             </form>
