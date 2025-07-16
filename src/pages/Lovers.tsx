@@ -286,7 +286,26 @@ const Lovers = () => {
         }
       `}</style>
       <NavBar />
-      <div style={{
+      <style>{`
+        @media (max-width: 900px) {
+          .lovers-flex {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 1.5rem !important;
+          }
+          .lovers-left {
+            order: 1 !important;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+          }
+          .lovers-form {
+            order: 2 !important;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+          }
+        }
+      `}</style>
+      <div className="lovers-flex" style={{
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'flex-start',
@@ -299,7 +318,7 @@ const Lovers = () => {
         position: 'relative',
         gap: '2.5rem',
       }}>
-        <div style={{ flex: 1, minWidth: 320 }}>
+        <div className="lovers-left" style={{ flex: 1, minWidth: 320 }}>
           <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', marginLeft: 0 }}>
             <h2 className="productos-titulo" style={{ marginBottom: '2.5rem', marginTop: 0, maxWidth: 900, textAlign: 'left' }}>
               <span style={{ display: 'block' }}>Programa exclusivo de</span>
@@ -422,14 +441,14 @@ const Lovers = () => {
           </div>
         </div>
         {/* Formulario alineado a la derecha */}
-        <div style={{ flex: '0 1 700px', minWidth: 420, maxWidth: 700 }}>
+        <div className="lovers-form" style={{ flex: '0 1 700px', minWidth: 420, maxWidth: 700 }}>
           <div className="contacto-form-container" style={{ margin: 0, background: 'rgba(30,30,30,0.65)', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)' }}>
             <h2 style={{ color: '#ffc107', textAlign: 'center', marginBottom: 8, fontWeight: 700, fontSize: '2rem' }}>Mi Gusto Lovers</h2>
             <p style={{ color: '#fff', textAlign: 'center', marginBottom: 34, fontSize: '1.05rem', opacity: 0.92 }}>
               Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.
             </p>
             <form className="contacto-form" onSubmit={handleSubmit}>
-              <div className="form-row">
+              <div className="form-row" style={{ marginBottom: 12 }}>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="nombreCompleto">Nombre completo:<span className="required">*</span></label>
                   <input
@@ -441,9 +460,7 @@ const Lovers = () => {
                     placeholder="Ingrese su nombre completo"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
-                    {errors.nombreCompleto}
-                  </div>
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreCompleto}</div>
                 </div>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="email">E-mail:<span className="required">*</span></label>
@@ -456,12 +473,10 @@ const Lovers = () => {
                     placeholder="ejemplo@email.com"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
-                    {errors.email}
-                  </div>
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>
                 </div>
               </div>
-              <div className="form-row">
+              <div className="form-row" style={{ marginBottom: 0 }}>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="telefono">Teléfono:<span className="required">*</span></label>
                   <input
@@ -473,10 +488,24 @@ const Lovers = () => {
                     placeholder="Ej: +54 9 11 1234-5678"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
-                    {errors.telefono}
-                  </div>
-                  {/* Select de sabores favoritos (nuevo comportamiento) */}
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>
+                </div>
+                <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
+                  <label htmlFor="cumple">Fecha de cumpleaños:<span className="required">*</span></label>
+                  <input
+                    type="date"
+                    id="cumple"
+                    name="cumple"
+                    value={formData.cumple}
+                    onChange={handleInputChange}
+                    placeholder="Selecciona tu cumpleaños"
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
+                  />
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.cumple}</div>
+                </div>
+              </div>
+              <div className="form-row" style={{ marginTop: 0, marginBottom: 12 }}>
+                <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="saboresFavoritos" style={{ marginTop: 18 }}>Tus 3 sabores favoritos:<span className="required">*</span></label>
                   <select
                     id="saboresFavoritos"
@@ -492,7 +521,6 @@ const Lovers = () => {
                       <option key={sabor} value={sabor}>{sabor}</option>
                     ))}
                   </select>
-                  {/* Chips de sabores seleccionados */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 8, marginBottom: 0 }}>
                     {formData.saboresFavoritos.map(sabor => (
                       <div key={sabor} style={{ background: '#ffc107', color: '#222', borderRadius: 16, padding: '4px 12px', display: 'flex', alignItems: 'center', fontWeight: 600, fontSize: '0.98rem' }}>
@@ -504,8 +532,29 @@ const Lovers = () => {
                   {errors.saboresFavoritos && (
                     <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.saboresFavoritos}</div>
                   )}
+                </div>
+                <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
+                  <label htmlFor="sucursal" style={{ marginTop: 18 }}>Sucursal habitual:<span className="required">*</span></label>
+                  <select
+                    id="sucursal"
+                    name="sucursal"
+                    value={formData.sucursal}
+                    onChange={handleInputChange}
+                    style={{ width: '100%', minWidth: 220, maxWidth: 400, marginBottom: 0 }}
+                  >
+                    <option value="" disabled>Selecciona tu sucursal</option>
+                    {["Ballester","Balvanera","Barrancas de Belgrano","Belgrano","Bella Vista","Campana","Del Viso","Devoto","Don Torcuato","Escobar","Floresta","Florida","Gral. Pacheco","Hurlingham","Ituzaingó","José C. Paz","Los Polvorines","Martínez","Maschwitz","Mataderos","Merlo","Moreno","Muñiz","Munro","Palermo","Paternal","Pilar Centro"].map(suc => (
+                      <option key={suc} value={suc}>{suc}</option>
+                    ))}
+                  </select>
+                  {errors.sucursal && (
+                    <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>
+                  )}
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                  {/* Campo: ¿Ya eres cliente de Mi Gusto? */}
-                 <div className="form-group" style={{ marginTop: 18, marginBottom: 0 }}>
                    <label style={{ fontWeight: 500, color: '#fff', marginBottom: 6, display: 'block' }}>¿Ya eres cliente de Mi Gusto? <span className="required">*</span></label>
                    <div style={{ display: 'flex', gap: 24, marginTop: 6 }}>
                      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 400, color: '#fff' }}>
@@ -532,11 +581,10 @@ const Lovers = () => {
                      </label>
                    </div>
                     {errors.esCliente && (
-                      <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.esCliente}</div>
+                    <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.esCliente}</div>
                     )}
-                 </div>
                  {/* Checkbox de novedades */}
-                 <div className="form-group" style={{ marginTop: 14, marginBottom: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div className="form-group" style={{ marginTop: 18, marginBottom: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
                    <input
                      type="checkbox"
                      id="recibirNovedades"
@@ -549,49 +597,19 @@ const Lovers = () => {
                      Quiero recibir novedades y beneficios exclusivos.
                    </label>
                  </div>
-                {/* Texto de términos y condiciones */}
-                <div style={{ marginTop: 18, marginBottom: 0 }}>
-                  <span
-                    style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer', fontSize: '1rem' }}
-                    onClick={() => setShowModal(true)}
-                  >
-                    Ver términos y condiciones.
-                  </span>
-                </div>
+                  {/* Texto de términos y condiciones debajo del checkbox */}
+                  <div style={{ marginTop: 18, marginBottom: 0 }}>
+                    <span
+                      style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer', fontSize: '1rem' }}
+                      onClick={() => setShowModal(true)}
+                    >
+                      Ver términos y condiciones.
+                    </span>
+                  </div>
                 </div>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
-                  <label htmlFor="cumple">Fecha de cumpleaños:<span className="required">*</span></label>
-                  <input
-                    type="date"
-                    id="cumple"
-                    name="cumple"
-                    value={formData.cumple}
-                    onChange={handleInputChange}
-                    placeholder="Selecciona tu cumpleaños"
-                    style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
-                  />
-                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
-                    {errors.cumple}
-                  </div>
-                  {/* Select de sucursal habitual */}
-                  <label htmlFor="sucursal" style={{ marginTop: 18 }}>Sucursal habitual:<span className="required">*</span></label>
-                  <select
-                    id="sucursal"
-                    name="sucursal"
-                    value={formData.sucursal}
-                    onChange={handleInputChange}
-                    style={{ width: '100%', minWidth: 220, maxWidth: 400, marginBottom: 0 }}
-                  >
-                    <option value="" disabled>Selecciona tu sucursal</option>
-                    {["Ballester","Balvanera","Barrancas de Belgrano","Belgrano","Bella Vista","Campana","Del Viso","Devoto","Don Torcuato","Escobar","Floresta","Florida","Gral. Pacheco","Hurlingham","Ituzaingó","José C. Paz","Los Polvorines","Martínez","Maschwitz","Mataderos","Merlo","Moreno","Muñiz","Munro","Palermo","Paternal","Pilar Centro"].map(suc => (
-                      <option key={suc} value={suc}>{suc}</option>
-                    ))}
-                  </select>
-                  {errors.sucursal && (
-                    <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>
-                  )}
-                  {/* Botón Enviar Mensaje debajo de Sucursal */}
-                  <button type="submit" className="btn-ver-mas" style={{ marginTop: 64 }}>Unirme ahora</button>
+                  {/* Botón Unirme ahora en la segunda columna, sin cambiar tamaño */}
+                  <button type="submit" className="btn-ver-mas" style={{ marginTop: 18 }}>Unirme ahora</button>
                 </div>
               </div>
             </form>
@@ -600,6 +618,12 @@ const Lovers = () => {
       </div>
       <EmpanadaRain />
       {/* Aquí puedes agregar el contenido o formulario que desees */}
+      <style>{`
+        @media (max-width: 900px) {
+          .terminos-desktop { display: none !important; }
+          .terminos-mobile { display: block !important; }
+        }
+      `}</style>
     </div>
   );
 };
