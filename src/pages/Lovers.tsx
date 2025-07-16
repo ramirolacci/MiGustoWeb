@@ -152,6 +152,19 @@ const Lovers = () => {
       }}
     >
       <div className="background-overlay"></div>
+      {/* Fuerza el estado activo del botón Lovers solo en esta pantalla */}
+      <style>{`
+        .switch-lovers-btn {
+          /* Asegura el estilo base, pero solo sobrescribe si no está activo */
+        }
+        .switch-lovers-btn:not(.on) {
+          background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%) !important;
+          color: #181818 !important;
+          font-weight: bold !important;
+          box-shadow: 0 2px 12px 0 rgba(255,215,0,0.18) !important;
+          opacity: 1 !important;
+        }
+      `}</style>
       <NavBar />
       <div style={{
         display: 'flex',
