@@ -7,6 +7,7 @@ import Empanada1 from '../lovers/assets/Empanadas/Mexican-Veggie-demo.png';
 import Empanada2 from '../lovers/assets/Empanadas/Mexican-Pibil-Pork-demo.png';
 import Empanada3 from '../lovers/assets/Empanadas/Matambre a la pizza.png';
 import Empanada4 from '../lovers/assets/Empanadas/burger.png';
+import { useEffect } from 'react';
 
 const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
 
@@ -96,6 +97,24 @@ const Lovers = () => {
     sucursal: '',
   });
   const [recibirNovedades, setRecibirNovedades] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false); // Para animación
+  const [modalClosing, setModalClosing] = useState(false);
+
+  // Manejar apertura/cierre con animación
+  useEffect(() => {
+    if (showModal) {
+      setModalVisible(true);
+      setModalClosing(false);
+    } else if (modalVisible) {
+      setModalClosing(true);
+      const timeout = setTimeout(() => {
+        setModalVisible(false);
+        setModalClosing(false);
+      }, 480); // Duración de la animación (más lenta)
+      return () => clearTimeout(timeout);
+    }
+  }, [showModal]);
 
   const handleAgregarSabor = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const sabor = e.target.value;
@@ -141,6 +160,9 @@ const Lovers = () => {
 
   console.log('ERRORES FORMULARIO LOVERS:', errors);
 
+  // Ajuste: color de placeholder del formulario
+  const placeholderColor = '#888';
+
   return (
     <div
       style={{
@@ -151,6 +173,104 @@ const Lovers = () => {
         overflow: 'hidden',
       }}
     >
+      {modalVisible && (
+        <div
+          className={`lovers-modal-overlay${modalClosing ? ' closing' : ''}`}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: showModal ? 'auto' : 'none',
+          }}
+        >
+          <div
+            className={`lovers-modal-content${modalClosing ? ' closing' : ''}`}
+            style={{
+              background: 'rgba(30,30,30,0.98)',
+              borderRadius: 16,
+              boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+              padding: '2.5rem 2rem 2rem 2rem',
+              maxWidth: 480,
+              width: '100%',
+              margin: '0 16px',
+              position: 'relative',
+              color: '#fff',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              transition: 'opacity 0.25s, transform 0.25s',
+            }}
+          >
+            <button
+              onClick={() => setShowModal(false)}
+              style={{
+                position: 'absolute',
+                top: 8,
+                right: 12,
+                background: 'none',
+                border: 'none',
+                color: placeholderColor,
+                fontWeight: 900,
+                fontSize: 28,
+                cursor: 'pointer',
+                lineHeight: 1,
+              }}
+              aria-label="Cerrar"
+            >×</button>
+            <h2 className="productos-titulo" style={{
+              marginBottom: '1.5rem',
+              marginTop: 0,
+              maxWidth: 420,
+              textAlign: 'center',
+              color: '#ffc107',
+              whiteSpace: 'nowrap',
+              fontSize: '2.35rem',
+              fontWeight: 700,
+            }}>
+              Términos y condiciones
+            </h2>
+            <div style={{ color: '#fff', fontSize: '1.08rem', lineHeight: 1.6, textAlign: 'justify', maxWidth: 420 }}>
+              Al unirte a Mi Gusto Lovers, aceptás recibir novedades, promociones y beneficios exclusivos por correo electrónico o teléfono. Tus datos serán utilizados únicamente para fines relacionados con el programa y no serán compartidos con terceros. Podés darte de baja en cualquier momento. La participación está sujeta a disponibilidad y condiciones de cada sucursal. Para más información, consultá en nuestras bases y condiciones generales.
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Animaciones del modal y overlay */}
+      <style>{`
+        .lovers-modal-overlay {
+          background: rgba(0,0,0,0.45);
+          opacity: 1;
+          transition: opacity 0.45s cubic-bezier(0.4,0,0.2,1);
+        }
+        .lovers-modal-overlay.closing {
+          opacity: 0;
+        }
+        .lovers-modal-content {
+          opacity: 1;
+          transform: scale(1);
+          transition: opacity 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
+        }
+        .lovers-modal-content.closing {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        .lovers-modal-content:not(.closing) {
+          animation: lovers-modal-in 0.45s cubic-bezier(0.4,0,0.2,1);
+        }
+        @keyframes lovers-modal-in {
+          0% {
+            opacity: 0;
+            transform: scale(0.92);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
       <div className="background-overlay"></div>
       {/* Fuerza el estado activo del botón Lovers solo en esta pantalla */}
       <style>{`
@@ -321,9 +441,9 @@ const Lovers = () => {
                     placeholder="Ingrese su nombre completo"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  {errors.nombreCompleto && (
-                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreCompleto}</div>
-                  )}
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
+                    {errors.nombreCompleto}
+                  </div>
                 </div>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="email">E-mail:<span className="required">*</span></label>
@@ -336,9 +456,9 @@ const Lovers = () => {
                     placeholder="ejemplo@email.com"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  {errors.email && (
-                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>
-                  )}
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
+                    {errors.email}
+                  </div>
                 </div>
               </div>
               <div className="form-row">
@@ -353,9 +473,9 @@ const Lovers = () => {
                     placeholder="Ej: +54 9 11 1234-5678"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  {errors.telefono && (
-                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>
-                  )}
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
+                    {errors.telefono}
+                  </div>
                   {/* Select de sabores favoritos (nuevo comportamiento) */}
                   <label htmlFor="saboresFavoritos" style={{ marginTop: 18 }}>Tus 3 sabores favoritos:<span className="required">*</span></label>
                   <select
@@ -382,7 +502,7 @@ const Lovers = () => {
                     ))}
                   </div>
                   {errors.saboresFavoritos && (
-                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.saboresFavoritos}</div>
+                    <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.saboresFavoritos}</div>
                   )}
                  {/* Campo: ¿Ya eres cliente de Mi Gusto? */}
                  <div className="form-group" style={{ marginTop: 18, marginBottom: 0 }}>
@@ -412,7 +532,7 @@ const Lovers = () => {
                      </label>
                    </div>
                     {errors.esCliente && (
-                      <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.esCliente}</div>
+                      <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.esCliente}</div>
                     )}
                  </div>
                  {/* Checkbox de novedades */}
@@ -429,6 +549,15 @@ const Lovers = () => {
                      Quiero recibir novedades y beneficios exclusivos.
                    </label>
                  </div>
+                {/* Texto de términos y condiciones */}
+                <div style={{ marginTop: 18, marginBottom: 0 }}>
+                  <span
+                    style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer', fontSize: '1rem' }}
+                    onClick={() => setShowModal(true)}
+                  >
+                    Ver términos y condiciones.
+                  </span>
+                </div>
                 </div>
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   <label htmlFor="cumple">Fecha de cumpleaños:<span className="required">*</span></label>
@@ -441,9 +570,9 @@ const Lovers = () => {
                     placeholder="Selecciona tu cumpleaños"
                     style={{ width: '100%', minWidth: 220, maxWidth: 400 }}
                   />
-                  {errors.cumple && (
-                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.cumple}</div>
-                  )}
+                  <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>
+                    {errors.cumple}
+                  </div>
                   {/* Select de sucursal habitual */}
                   <label htmlFor="sucursal" style={{ marginTop: 18 }}>Sucursal habitual:<span className="required">*</span></label>
                   <select
@@ -459,7 +588,7 @@ const Lovers = () => {
                     ))}
                   </select>
                   {errors.sucursal && (
-                    <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>
+                    <div style={{ minHeight: 18, color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.sucursal}</div>
                   )}
                   {/* Botón Enviar Mensaje debajo de Sucursal */}
                   <button type="submit" className="btn-ver-mas" style={{ marginTop: 64 }}>Unirme ahora</button>
