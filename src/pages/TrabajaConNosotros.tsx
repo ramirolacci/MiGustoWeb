@@ -47,6 +47,8 @@ const sucursalesList = [
 const TrabajaConNosotros: React.FC = () => {
   const [formData, setFormData] = useState({
     nombre: '',
+    edad: '',
+    localidad: '',
     apellido: '',
     telefono: '',
     email: '',
@@ -61,6 +63,8 @@ const TrabajaConNosotros: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState({
     nombre: '',
+    edad: '',
+    localidad: '',
     apellido: '',
     telefono: '',
     email: '',
@@ -70,9 +74,16 @@ const TrabajaConNosotros: React.FC = () => {
     sucursal: '',
   });
 
+  const localidadesBuenosAires = [
+    'Adrogué', 'Almirante Brown', 'Avellaneda', 'Bahía Blanca', 'Balcarce', 'Baradero', 'Berazategui', 'Berisso', 'Bolívar', 'Bragado', 'Campana', 'Cañuelas', 'Capitán Sarmiento', 'Carlos Casares', 'Carlos Tejedor', 'Carmen de Areco', 'Castelli', 'Chacabuco', 'Chascomús', 'Chivilcoy', 'Colón', 'Coronel Dorrego', 'Coronel Pringles', 'Coronel Suárez', 'Daireaux', 'Dolores', 'Ensenada', 'Escobar', 'Esteban Echeverría', 'Exaltación de la Cruz', 'Ezeiza', 'Florencio Varela', 'Florentino Ameghino', 'General Alvarado', 'General Alvear', 'General Arenales', 'General Belgrano', 'General Guido', 'General Juan Madariaga', 'General La Madrid', 'General Las Heras', 'General Lavalle', 'General Paz', 'General Pinto', 'General Pueyrredón', 'General Rodríguez', 'General San Martín', 'General Viamonte', 'General Villegas', 'Guaminí', 'Hipólito Yrigoyen', 'Hurlingham', 'Ituzaingó', 'José C. Paz', 'Junín', 'La Matanza', 'La Plata', 'Lanús', 'Laprida', 'Las Flores', 'Leandro N. Alem', 'Lincoln', 'Lobería', 'Lobos', 'Lomas de Zamora', 'Luján', 'Magdalena', 'Maipú', 'Malvinas Argentinas', 'Mar Chiquita', 'Marcos Paz', 'Mercedes', 'Merlo', 'Monte', 'Monte Hermoso', 'Moreno', 'Morón', 'Navarro', 'Necochea', 'Olavarría', 'Patagones', 'Pehuajó', 'Pellegrini', 'Pergamino', 'Pila', 'Pilar', 'Pinamar', 'Presidente Perón', 'Puán', 'Punta Indio', 'Quilmes', 'Ramallo', 'Rauch', 'Rivadavia', 'Rojas', 'Roque Pérez', 'Saavedra', 'Saladillo', 'Salliqueló', 'Salto', 'San Andrés de Giles', 'San Antonio de Areco', 'San Cayetano', 'San Fernando', 'San Isidro', 'San Miguel', 'San Nicolás', 'San Pedro', 'San Vicente', 'Suipacha', 'Tandil', 'Tapalqué', 'Tigre', 'Tordillo', 'Tornquist', 'Trenque Lauquen', 'Tres Arroyos', 'Tres de Febrero', 'Tres Lomas', 'Vicente López', 'Villa Gesell', 'Villarino', 'Zárate'
+  ];
+
   const validate = () => {
     const newErrors: any = {};
     if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es obligatorio.';
+    if (!formData.edad.trim()) newErrors.edad = 'La edad es obligatoria.';
+    else if (!/^\d+$/.test(formData.edad) || parseInt(formData.edad) < 16 || parseInt(formData.edad) > 99) newErrors.edad = 'Ingrese una edad válida (16-99).';
+    if (!formData.localidad.trim()) newErrors.localidad = 'La localidad es obligatoria.';
     if (!formData.apellido.trim()) newErrors.apellido = 'El apellido es obligatorio.';
     if (!formData.telefono.trim()) newErrors.telefono = 'El teléfono es obligatorio.';
     else if (!/^[\d\s\-\+\(\)]+$/.test(formData.telefono)) newErrors.telefono = 'El formato del teléfono no es válido.';
@@ -150,6 +161,8 @@ const TrabajaConNosotros: React.FC = () => {
     try {
       const data = new FormData();
       data.append('nombre', formData.nombre);
+      data.append('edad', formData.edad);
+      data.append('localidad', formData.localidad);
       data.append('apellido', formData.apellido);
       data.append('telefono', formData.telefono);
       data.append('email', formData.email);
@@ -175,6 +188,8 @@ const TrabajaConNosotros: React.FC = () => {
       });
       setFormData({
         nombre: '',
+        edad: '',
+        localidad: '',
         apellido: '',
         telefono: '',
         email: '',
@@ -185,6 +200,8 @@ const TrabajaConNosotros: React.FC = () => {
       });
       setErrors({
         nombre: '',
+        edad: '',
+        localidad: '',
         apellido: '',
         telefono: '',
         email: '',
@@ -288,6 +305,38 @@ const TrabajaConNosotros: React.FC = () => {
                         placeholder="Ingrese su apellido"
                       />
                       {errors.apellido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.apellido}</div>}
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="form-group half-width">
+                      <label htmlFor="edad">Edad: <span className="required">*</span></label>
+                      <input
+                        type="number"
+                        id="edad"
+                        name="edad"
+                        value={formData.edad}
+                        onChange={handleChange}
+                        placeholder="Ingrese su edad"
+                        min="16"
+                        max="99"
+                      />
+                      {errors.edad && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.edad}</div>}
+                    </div>
+                    <div className="form-group half-width">
+                      <label htmlFor="localidad">Localidad: <span className="required">*</span></label>
+                      <select
+                        id="localidad"
+                        name="localidad"
+                        value={formData.localidad}
+                        onChange={handleChange}
+                        className="contacto-form select select-match-input"
+                      >
+                        <option value="">Selecciona una localidad</option>
+                        {localidadesBuenosAires.map((loc, idx) => (
+                          <option key={idx} value={loc}>{loc}</option>
+                        ))}
+                      </select>
+                      {errors.localidad && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.localidad}</div>}
                     </div>
                   </div>
 

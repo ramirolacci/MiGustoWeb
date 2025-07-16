@@ -325,8 +325,8 @@ const Viewer3D: React.FC = () => {
       )}
       {/* Model Viewer */}
       {React.createElement('model-viewer' as any, {
-        src: '/3D/big-burger-3D.glb',
-        alt: 'Big Burger 3D',
+        src: '/3D/Doritos-3D.glb',
+        alt: 'Doritos 3D',
         'camera-controls': true,
         'auto-rotate': true,
         'auto-rotate-delay': '0',
