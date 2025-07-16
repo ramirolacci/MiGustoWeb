@@ -76,12 +76,15 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
     };
 
     return (
-        <div className="home-slider">
+        <div className="home-slider" style={isMobile ? { height: '100vh', minHeight: 320 } : {}}>
             <div
                 className="home-slider-track"
                 style={{
-                    width: `${extendedSlides.length * 100}%`,
-                    transform: `translateX(-${current * (100 / extendedSlides.length)}%)`,
+                    width: isMobile ? `${extendedSlides.length * 100}vw` : `${extendedSlides.length * 100}%`,
+                    height: isMobile ? '100vh' : 'calc(100vh + 80px)',
+                    transform: isMobile
+                        ? `translateX(-${current * 100}vw)`
+                        : `translateX(-${current * (100 / extendedSlides.length)}%)`,
                     transition: transition ? 'transform 0.7s cubic-bezier(.77,0,.18,1)' : 'none'
                 }}
                 onTransitionEnd={handleTransitionEnd}
@@ -92,7 +95,13 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                         src={src}
                         alt={`slide-${idx + 1}`}
                         className="home-slide"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{
+                            width: isMobile ? '100vw' : '100%',
+                            height: isMobile ? '100vh' : '100%',
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                            display: 'block'
+                        }}
                         loading="lazy"
                     />
                 ))}

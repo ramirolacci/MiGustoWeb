@@ -13,6 +13,7 @@ const NavBar: React.FC = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +33,12 @@ const NavBar: React.FC = () => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth > 700);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const isHomePage = location.pathname === '/';
@@ -171,39 +178,42 @@ const NavBar: React.FC = () => {
             </div>
           </div>
 
-          <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              {navLinks.map((link) => (
-                <li key={link.path} className="nav-item">
-                  <Link
-                    className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
-                    to={link.path}
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    tabIndex={0}
-                    aria-current={location.pathname === link.path ? 'page' : undefined}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li className="nav-item desktop-pedir-button">
-                <a
-                  className="nav-link text-white nav-link-pedir"
-                  href="https://pedir.migusto.com.ar/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMenuOpen(false)}
-                  tabIndex={0}
-                  aria-label="Pedir online (se abre en nueva pestaña)"
-                >
-                  <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
-                </a>
-              </li>
-            </ul>
-          </div>
+            {/* Renderizo el menú colapsable solo en desktop/web */}
+            {isDesktop && (
+              <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
+                <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                  {navLinks.map((link) => (
+                    <li key={link.path} className="nav-item">
+                      <Link
+                        className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
+                        to={link.path}
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        tabIndex={0}
+                        aria-current={location.pathname === link.path ? 'page' : undefined}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <a
+                      className="nav-link text-white nav-link-pedir"
+                      href="https://pedir.migusto.com.ar/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsMenuOpen(false)}
+                      tabIndex={0}
+                      aria-label="Pedir online (se abre en nueva pestaña)"
+                    >
+                      <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
 
           <div 
             ref={menuRef}
