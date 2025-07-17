@@ -470,4 +470,24 @@ const TrabajaConNosotros: React.FC = () => {
   );
 };
 
-export default TrabajaConNosotros; 
+export default TrabajaConNosotros;
+
+// Solo para mobile: subir imagen y formulario y mantener separación
+if (typeof window !== 'undefined') {
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @media (max-width: 900px) {
+      .sucursales-section {
+        margin-top: 0px !important;
+      }
+      .contacto-container {
+        margin-top: 32px !important;
+      }
+      .responsive-row img {
+        margin-top: 8px !important;
+        margin-bottom: 32px !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+} 
