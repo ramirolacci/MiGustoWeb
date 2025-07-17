@@ -175,4 +175,24 @@ const Proveedores: React.FC = () => {
   );
 };
 
-export default Proveedores; 
+export default Proveedores;
+
+// Solo para mobile: reducir el margen superior del contenido
+if (typeof window !== 'undefined') {
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @media (max-width: 900px) {
+      .sucursales-section {
+        margin-top: 0px !important;
+      }
+      .contacto-container {
+        margin-top: 32px !important;
+      }
+      .responsive-row img {
+        margin-top: 8px !important;
+        margin-bottom: 32px !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+} 
