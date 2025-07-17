@@ -121,4 +121,8 @@
         right: auto;
         transform: translate(-50%, 0);
     }
+
+    .revista-section {
+        margin-top: 24px !important;
+    }
 }
