@@ -1,30 +1,20 @@
 import React, { useState, useRef } from 'react';
 import '../pages/Contacto.css';
+import emailjs from '@emailjs/browser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Custom input para el datepicker que abre el calendario al hacer clic o foco
+// Custom input para el datepicker que NO abre el calendario al hacer clic o foco
 const CalendarInput = React.forwardRef<HTMLInputElement, any>(({ value, onClick, onChange, placeholder }, ref) => (
   <div style={{ position: 'relative', width: '100%' }}>
     <input
       ref={ref}
       value={value}
       onClick={onClick}
-      onFocus={onClick}
       onChange={onChange}
-      onInput={e => {
-        // Filtra letras en tiempo real y autocompleta las barras para dd/mm/aaaa
-        const input = e.target as HTMLInputElement;
-        let val = input.value.replace(/[^0-9]/g, '');
-        if (val.length > 2 && val[2] !== '/') val = val.slice(0,2) + '/' + val.slice(2);
-        if (val.length > 5 && val[5] !== '/') val = val.slice(0,5) + '/' + val.slice(5);
-        input.value = val.slice(0,10);
-      }}
-      inputMode="numeric"
-      pattern="[0-9/]*"
       placeholder={placeholder}
       className="contacto-form input datepicker-match"
-      style={{ paddingRight: '48px' }}
+      style={{ paddingRight: '160px' }}
       autoComplete="off"
     />
   </div>
@@ -89,15 +79,7 @@ const Franquicias: React.FC = () => {
   };
   // Permitir escribir manualmente la fecha
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
-    // Solo permite números y barras, máximo 8 caracteres
-    if (/^[0-9/]*$/.test(value) && value.length <= 8) {
-      // Formato progresivo: dd, dd/, dd/mm, dd/mm/, dd/mm/aa
-      const regex = /^(\d{0,2})(\/)?(\d{0,2})(\/)?(\d{0,2})$/;
-      if (value === '' || regex.test(value)) {
-        setFormData(prevData => ({ ...prevData, fechaNacimiento: value }));
-      }
-    }
+    setFormData(prevData => ({ ...prevData, fechaNacimiento: e.target.value }));
   };
 
   const validateStep = () => {
@@ -142,39 +124,57 @@ const Franquicias: React.FC = () => {
     if (!validateStep()) return;
     setIsSubmitting(true);
 
+    const serviceID = 'service_vroveb8'; 
+    const templateID = 'template_rx2wmet'; 
+    const publicKey = '2muZYDfZaoXaOzlBc'; 
+
+    const templateParams = {
+      name: formData.nombre,
+      email: formData.email,
+      message: `
+        Fecha de Nacimiento: ${formData.fechaNacimiento}
+        Sexo: ${formData.sexo}
+        Estado Civil: ${formData.estadoCivil}
+        Tipo de Documento: ${formData.tipoDocumento}
+        Número de Documento: ${formData.numeroDocumento}
+        País de Residencia: ${formData.paisResidencia}
+        Provincia de Residencia: ${formData.provinciaResidencia}
+        Localidad de Residencia: ${formData.localidadResidencia}
+        Domicilio: ${formData.domicilio}
+        Teléfono Celular: ${formData.telefonoCelular}
+        Teléfono Alternativo: ${formData.telefonoAlternativo}
+        E-mail Alternativo: ${formData.emailAlternativo}
+        País de Preferencia: ${formData.paisPreferencia}
+        Provincia de Preferencia: ${formData.provinciaPreferencia}
+        Localidad de Preferencia: ${formData.localidadPreferencia}
+        ¿Dispone de Inmueble para Garantía?: ${formData.inmuebleGarantia}
+      `,
+    };
+
     try {
-      const response = await fetch('http://localhost:3000/mail/franquicia', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
+      setFormData({
+        nombre: '',
+        fechaNacimiento: '',
+        sexo: '',
+        estadoCivil: '',
+        tipoDocumento: '',
+        numeroDocumento: '',
+        paisResidencia: '',
+        provinciaResidencia: '',
+        localidadResidencia: '',
+        domicilio: '',
+        telefonoCelular: '',
+        telefonoAlternativo: '',
+        email: '',
+        emailAlternativo: '',
+        paisPreferencia: '',
+        provinciaPreferencia: '',
+        localidadPreferencia: '',
+        inmuebleGarantia: '',
       });
-      if (response.ok) {
-        alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
-        setFormData({
-          nombre: '',
-          fechaNacimiento: '',
-          sexo: '',
-          estadoCivil: '',
-          tipoDocumento: '',
-          numeroDocumento: '',
-          paisResidencia: '',
-          provinciaResidencia: '',
-          localidadResidencia: '',
-          domicilio: '',
-          telefonoCelular: '',
-          telefonoAlternativo: '',
-          email: '',
-          emailAlternativo: '',
-          paisPreferencia: '',
-          provinciaPreferencia: '',
-          localidadPreferencia: '',
-          inmuebleGarantia: '',
-        });
-        setCurrentStep(1);
-      } else {
-        const data = await response.json();
-        alert(data.message || 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
-      }
+      setCurrentStep(1);
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
       alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
@@ -189,92 +189,12 @@ const Franquicias: React.FC = () => {
     <div className="sucursales-section" style={{ marginTop: '40px' }}>
       <div className="background-overlay"></div>
       <div className="sucursales-container">
-        <div className="responsive-row" style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          width: '100vw',
-          minHeight: '100vh',
-          margin: 0,
-          padding: 0,
-          gap: '24px',
-          boxSizing: 'border-box',
-          marginTop: '64px',
-        }}>
-          <style>{`
-            @media (max-width: 1100px) {
-              .responsive-row {
-                flex-direction: column !important;
-                gap: 32px !important;
-                height: auto !important;
-                min-height: 100vh !important;
-                justify-content: center !important;
-                align-items: center !important;
-              }
-              .franq-col-izq, .franq-col-der {
-                max-width: 95vw !important;
-                min-width: 320px !important;
-              }
-            }
-          `}</style>
-          {/* PARTE IZQUIERDA: Mockup Franquicias */}
-          <div className="franq-col-izq" style={{
-            height: '100%',
-            background: `url('/background-text.jpg') center center / cover no-repeat`,
-            color: '#fff',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            textAlign: 'left',
-            padding: 0,
-            position: 'relative',
-            overflow: 'hidden',
-            maxWidth: '560px',
-            width: '100%',
-            minWidth: '320px',
-            boxSizing: 'border-box',
-            marginTop: '-20px',
-          }}>
-            <div style={{
-              position: 'relative',
-              zIndex: 1,
-              width: '100%',
-              maxWidth: 560,
-              margin: '0 auto',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              padding: 0,
-            }}>
-              <div style={{ position: 'relative', width: '100%' }}>
-                <img src="/franq/Franquicias.png" alt="Franquicias" style={{ width: '340px', marginBottom: '24px', marginTop: 0, display: 'block', marginLeft: '0' }} />
-                <img src="/franq/sucursal.png" alt="Sucursal Mi Gusto" style={{ width: '100%', borderRadius: '8px', marginBottom: '32px', boxShadow: '0 2px 12px rgba(0,0,0,0.18)', zIndex: 1, display: 'block' }} />
-              </div>
-              {/* Bloque de texto */}
-              <div style={{ zIndex: 1, background: 'rgba(0,0,0,0.38)', padding: '24px 0', borderRadius: '8px', width: '100%', boxShadow: '0 2px 12px rgba(0,0,0,0.18)', textAlign: 'left' }}>
-                <div style={{ fontWeight: 700, fontSize: '1.18rem', marginBottom: '12px' }}>¿Por qué elegir Mi Gusto?</div>
-                <div style={{ fontSize: '1.05rem', lineHeight: 1.6, whiteSpace: 'pre-line' }}>
-Porque llevamos más de 25 años en el mercado y sabemos cómo
-hacer que un negocio funcione. Tenemos un modelo probado,
-pensado para vender en volumen y con procesos simples de 
-operar.
-Invertimos en tecnología, tenemos app propia y presencia en 
-todas las plataformas de delivery.
-Ofrecemos una amplia variedad de productos y un sistema de
-atención 360 que acompaña cada punto de venta.
-Si buscás una marca con experiencia real, respaldo y potencial de
-crecimiento, este es el momento de sumarte.
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* PARTE DERECHA: Formulario (no tocar) */}
-          <div className="franq-col-der contacto-container" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, margin: 0, maxWidth: '520px', width: '100%', minWidth: '320px', boxSizing: 'border-box' }}>
-            <div className="contacto-content" style={{ width: '100%', maxWidth: '520px', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0', alignSelf: 'flex-start' }}>
-              <div className="contacto-form-container" style={{ maxWidth: '520px', width: '100%', margin: 0, padding: '40px 36px', boxShadow: '0 2px 12px rgba(0,0,0,0.18)', borderRadius: '12px', background: 'rgba(0,0,0,0.45)' }}>
+        <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+          <img src="/franquicia.png" alt="Imagen franquicia" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', position: 'relative', zIndex: 2 }} />
+          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center' }}>
+            <div className="contacto-content" style={{ width: '100%', marginTop: (typeof window !== 'undefined' && window.innerWidth > 900) ? '-40px' : '0' }}>
+              <div className="contacto-form-container">
+                <h2>Franquicias</h2>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en abrir una franquicia de Mi Gusto.</p>
                 <div style={{ textAlign: 'center', marginBottom: '10px', fontSize: '1.1rem', color: '#ffc107' }}>
                   Paso {currentStep} de 3
@@ -331,68 +251,6 @@ crecimiento, este es el momento de sumarte.
                       display: block !important;
                     }
                   `}</style>
-                  {/* Estilos personalizados para react-datepicker */}
-                  <style>{`
-                    .react-datepicker {
-                      background: #181818 !important;
-                      border: 1px solid #333 !important;
-                      color: #fff !important;
-                      font-family: inherit !important;
-                      border-radius: 8px !important;
-                      box-shadow: 0 4px 24px rgba(0,0,0,0.25) !important;
-                    }
-                    .react-datepicker__header {
-                      background: #222 !important;
-                      border-bottom: 1px solid #333 !important;
-                      color: #fff !important;
-                      border-radius: 8px 8px 0 0 !important;
-                    }
-                    .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
-                      color: #ffc107 !important;
-                      font-weight: bold !important;
-                    }
-                    .react-datepicker__day, .react-datepicker__day-name {
-                      color: #fff !important;
-                      font-size: 1rem !important;
-                      border-radius: 4px !important;
-                    }
-                    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
-                      background: #ffc107 !important;
-                      color: #222 !important;
-                    }
-                    .react-datepicker__day:hover {
-                      background: #333 !important;
-                      color: #ffc107 !important;
-                    }
-                    .react-datepicker__triangle {
-                      display: none !important;
-                    }
-                    .react-datepicker__navigation {
-                      top: 12px !important;
-                    }
-                    .react-datepicker__navigation-icon::before {
-                      border-color: #ffc107 !important;
-                    }
-                    .react-datepicker__month-dropdown, .react-datepicker__year-dropdown {
-                      background: #181818 !important;
-                      color: #fff !important;
-                    }
-                    .react-datepicker__month-option, .react-datepicker__year-option {
-                      color: #fff !important;
-                    }
-                    .react-datepicker__month-option--selected, .react-datepicker__year-option--selected {
-                      background: #ffc107 !important;
-                      color: #222 !important;
-                    }
-                  `}</style>
-                  {/* Estilo para el placeholder del DatePicker */}
-                  <style>{`
-                    .datepicker-match::placeholder {
-                      color: #bbb !important;
-                      opacity: 1 !important;
-                      font-style: normal !important;
-                    }
-                  `}</style>
                   {currentStep === 1 && (
                     <div className="form-step">
                       <div className="form-row">
@@ -407,13 +265,10 @@ crecimiento, este es el momento de sumarte.
                           <div style={{ position: 'relative', width: '100%' }}>
                             <DatePicker
                               selected={formData.fechaNacimiento ? new Date(formData.fechaNacimiento.split('/').reverse().join('-')) : null}
-                              onChange={(date, event) => {
-                                handleDateChange(date, event);
-                                setCalendarOpen(false);
-                              }}
+                              onChange={handleDateChange}
                               dateFormat="dd/MM/yy"
-                              placeholderText="dd/mm/aaaa"
-                              customInput={<CalendarInput onChange={handleInputChange} onClick={() => setCalendarOpen(true)} />}
+                              placeholderText="dd/mm/aa"
+                              customInput={<CalendarInput onChange={handleInputChange} />}
                               id="fechaNacimiento"
                               name="fechaNacimiento"
                               showMonthDropdown
@@ -422,7 +277,6 @@ crecimiento, este es el momento de sumarte.
                               maxDate={new Date()}
                               onClickOutside={() => setCalendarOpen(false)}
                               shouldCloseOnSelect={true}
-                              open={calendarOpen}
                               ref={datePickerRef}
                             />
                             <span
