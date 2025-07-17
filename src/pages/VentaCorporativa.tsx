@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './VentaCorporativa.css';
-import emailjs from '@emailjs/browser';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -60,9 +59,22 @@ const VentaCorporativa: React.FC = () => {
             await axios.post('/api/mail/corporativa', formData);
             Swal.fire({
                 icon: 'success',
-                title: '¡Éxito!',
-                text: 'Tu solicitud de venta corporativa ha sido enviada correctamente.',
+                title: '<span style="color:#fff;font-family:inherit;font-size:1.5rem;font-weight:600;">¡Éxito!</span>',
+                html: '<span style="color:#fff;font-family:inherit;font-size:1.08rem;">Tu solicitud de venta corporativa ha sido enviada correctamente.</span>',
+                background: '#1a1a1a',
+                color: '#fff',
                 confirmButtonColor: '#d4af37',
+                customClass: {
+                  popup: 'swal2-corporativa-popup',
+                  confirmButton: 'swal2-corporativa-btn',
+                },
+                buttonsStyling: false,
+                showClass: {
+                  popup: 'swal2-show'
+                },
+                hideClass: {
+                  popup: 'swal2-hide'
+                }
             });
             setFormData({
                 nombreApellido: '',
@@ -99,7 +111,7 @@ const VentaCorporativa: React.FC = () => {
         <>
             <nav className="navbar-corporativa">
                 <a href="https://www.migusto.com.ar/?gad_source=1&gad_campaignid=21522046218&gclid=CjwKCAjw1dLDBhBoEiwAQNRiQZmhl6UsJh3HcV3WRq5ip6gpuIfDQCJPpZUsT1RWBzVYdqpsi8vXWBoCb9EQAvD_BwE" target="_blank" rel="noopener noreferrer">
-                    <img src="/corp/icono.png" alt="Mi Gusto Icono" className="logo-navbar-corporativa" />
+                    <img src="/corp/icono.png" alt="Mi Gusto Icono" className="logo-navbar-corporativa" loading="lazy" />
                 </a>
             </nav>
             <div className="venta-corporativa-section">
@@ -107,23 +119,27 @@ const VentaCorporativa: React.FC = () => {
                     {/* Imagen "Venta corporativa" arriba de todo SOLO en mobile */}
                     {isMobile && (
                       <div className="venta-corporativa-header-mobile">
-                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, margin: '16px auto 12px', display: 'block' }} />
+                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, margin: '16px auto 12px', display: 'block' }} loading="lazy" />
                       </div>
                     )}
                     {/* Columna izquierda: Imagen y beneficios */}
                     <div className="corporativa-col corporativa-col-img">
-                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" className="img-corporativa" />
+                        {/* Imagen de título SOLO en escritorio, arriba de la imagen principal */}
+                        {!isMobile && (
+                          <img src="/corp/venta corporativa.png" alt="Venta Corporativa" className="venta-corporativa-header-desktop" loading="lazy" />
+                        )}
+                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" className="img-corporativa" loading="lazy" />
                         <div className="beneficios-corporativa">
                             <div className="beneficio-item">
-                                <img src="/corp/descuento.png" alt="Descuento" className="icono-beneficio" />
+                                <img src="/corp/descuento.png" alt="Descuento" className="icono-beneficio" loading="lazy" />
                                 <span>Packs corporativos anticipados con hasta 25% OFF</span>
                             </div>
                             <div className="beneficio-item">
-                                <img src="/corp/entrega.png" alt="Entrega" className="icono-beneficio" />
+                                <img src="/corp/entrega.png" alt="Entrega" className="icono-beneficio" loading="lazy" />
                                 <span>Entregas en <b>CABA</b> y <b>GBA</b></span>
                             </div>
                             <div className="beneficio-item">
-                                <img src="/corp/servicio.png" alt="Servicio" className="icono-beneficio" />
+                                <img src="/corp/servicio.png" alt="Servicio" className="icono-beneficio" loading="lazy" />
                                 <span>Atención personalizada, adaptada a las necesidades de cada empresa</span>
                             </div>
                         </div>
@@ -131,10 +147,8 @@ const VentaCorporativa: React.FC = () => {
                     {/* Columna derecha: Formulario */}
                     <div className="corporativa-col corporativa-col-form">
                         <div className="glass-form-container">
-                            {/* Título solo en desktop */}
-                            {!isMobile && (
-                              <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, marginBottom: 12, display: 'block', marginLeft: 'auto', marginRight: 'auto' }} />
-                            )}
+                            {/* Título solo en desktop - ELIMINADO */}
+                            {/* <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, marginBottom: 12, display: 'block', marginLeft: 'auto', marginRight: 'auto' }} loading="lazy" /> */}
                             <p style={{ color: '#fff', textAlign: 'center', marginBottom: 24, fontSize: '1.08rem', opacity: 0.92 }}>
                                 Completa el siguiente formulario para solicitar una venta corporativa.
                             </p>
