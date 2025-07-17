@@ -32,27 +32,35 @@
 
 .modal-close {
     position: fixed !important;
-    right: 20px !important;
-    top: 20px !important;
-    background: rgba(0, 0, 0, 0.8) !important;
+    right: 36px !important;
+    top: 64px !important;
+    background: none !important;
     border: none !important;
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 50% !important;
-    font-size: 32px !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    font-size: 2.5rem !important;
     cursor: pointer !important;
-    color: #FFD700 !important;
+    color: #ffffffb3 !important;
     z-index: 20000 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 2px 12px 0 #FFD70033 !important;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
+    box-shadow: none !important;
+    transition: color 0.18s, transform 0.18s;
+    padding: 0 !important;
 }
 .modal-close:hover {
-    background: #FFD700 !important;
-    color: #181818 !important;
-    transform: scale(1.08) rotate(-8deg);
+    color: #FFD700 !important;
+    background: none !important;
+    transform: scale(1.13) rotate(-3deg);
+}
+@media (max-width: 768px) {
+    .modal-close {
+        top: 44px !important;
+        right: 18px !important;
+        font-size: 2.1rem !important;
+    }
 }
 
 .modal-header-3d, .modal-image-container {
@@ -99,12 +107,8 @@
     transition: all 0.3s ease;
 }
 
-.modal-img:hover {
-    transform: scale(1.4);
-}
-
-.modal-img-large:hover {
-    transform: scale(2.2);
+.modal-img:hover, .modal-img-large:hover {
+    transform: none !important;
 }
 
 /* Estilos específicos para Vacio y provoleta y American Chicken */
@@ -676,6 +680,40 @@
     }
 } 
 
+.boton-cerrar-3d {
+    position: fixed !important;
+    top: 64px !important;
+    right: 36px !important;
+    z-index: 99999 !important;
+    width: auto !important;
+    height: auto !important;
+    font-size: 2.5rem !important;
+    background: none !important;
+    color: #ffffffb3 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transition: color 0.18s;
+    padding: 0 !important;
+}
+.boton-cerrar-3d:hover {
+    color: #FFD700 !important;
+    background: none !important;
+    transform: scale(1.13) rotate(-3deg);
+}
+@media (max-width: 768px) {
+    .boton-cerrar-3d {
+        top: 44px !important;
+        right: 18px !important;
+        font-size: 2.1rem !important;
+    }
+} 
+
 @media (max-width: 768px) {
     .modal-content-3d,
     .modal-mobile-column,
@@ -683,5 +721,32 @@
     .modal-horizontal-left,
     .modal-horizontal-right {
         padding-top: 60px !important;
+    }
+} 
+
+.titulo-impresionante-3d {
+    font-size: 2.7rem;
+    font-weight: 900;
+    text-align: left;
+    margin-bottom: 18px;
+    color: #D4AF37;
+    background: linear-gradient(90deg, rgb(255, 215, 0) 10%, rgb(255, 165, 0) 60%, rgb(255, 255, 255) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: rgba(255, 215, 0, 0.65) 0px 2px 8px, rgb(194, 186, 144) 0px 1px 0px;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    transition: font-size 0.2s;
+    filter: none !important;
+    animation: none !important;
+} 
+
+@media (max-width: 900px) {
+    .modal-3d-info {
+        border: none !important;
+        max-width: 94vw !important;
+        padding: 12px 8px !important;
+        box-sizing: border-box;
     }
 } 

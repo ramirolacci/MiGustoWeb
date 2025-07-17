@@ -149,18 +149,6 @@ export default function Productos() {
         return () => window.removeEventListener('keydown', handleEscape);
     }, []);
 
-    useEffect(() => {
-        const isMobile = window.innerWidth < 900;
-        if (productoSeleccionado && isMobile) {
-            document.body.classList.add('ocultar-navbar');
-        } else {
-            document.body.classList.remove('ocultar-navbar');
-        }
-        return () => {
-            document.body.classList.remove('ocultar-navbar');
-        };
-    }, [productoSeleccionado]);
-
     return (
         <div className="productos-section">
             <div className="background-overlay"></div>
