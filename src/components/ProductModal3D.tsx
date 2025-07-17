@@ -336,7 +336,24 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                             </div>
                         </div>
                         <div className="modal-3d-info">
-                            <h2 className="titulo-impresionante-3d">{producto.titulo}</h2>
+                            <h2 
+                                className="titulo-impresionante-3d"
+                                style={{
+                                    fontSize: '2.7rem',
+                                    fontWeight: 900,
+                                    marginBottom: '18px',
+                                    backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                    letterSpacing: '0.04em',
+                                    lineHeight: 1.1,
+                                    animation: 'brilloTituloCard 2.5s linear infinite',
+                                    textAlign: 'left',
+                                    background: 'none',
+                                    padding: 0
+                                }}
+                            >{producto.titulo}</h2>
                             <div style={{color:'#fff',marginBottom:8}}>
                                 <h3 style={{color:'#FFD700',marginBottom:8}}>Ingredientes</h3>
                                 <ul style={{paddingLeft:18}}>
