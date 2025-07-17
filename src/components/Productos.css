@@ -572,10 +572,16 @@ body {
 }
 
 .detalle-item h3 {
-    color: #333;
-    margin-bottom: 1rem;
+    color: #FFD700;
     font-size: 1.2rem;
-    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
+    text-shadow: none;
+    animation: none;
 }
 
 .ingredientes-lista {
@@ -594,7 +600,7 @@ body {
 
 .ingredientes-lista li::before {
     content: '•';
-    color: #ff6b6b;
+    color: #fff;
     font-weight: bold;
     margin-right: 0.5rem;
 }
@@ -1688,7 +1694,7 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
         box-sizing: border-box;
         background: rgba(24,24,24,0.97);
         border: 2.5px solid #FFD700;
-        box-shadow: 0 4px 24px 0 #FFD70033, 0 2px 8px 0 #0008;
+        box-shadow: 0 4px 24px 0 #FFD70033, 0 2px 8px 0 #0008 !important;
         text-align: center;
     }
     .modal-3d-info h2, .modal-3d-info h3 {
@@ -1778,4 +1784,40 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 .carta-container .revista-container {
   margin-top: 0.2rem !important;
   padding-top: 0 !important;
+}
+
+.modal-product-title {
+    font-size: 2.7rem;
+    font-weight: 900;
+    text-align: left;
+    margin-bottom: 18px;
+    color: #D4AF37;
+    background: linear-gradient(90deg, rgb(255, 215, 0) 10%, rgb(255, 165, 0) 60%, rgb(255, 255, 255) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: rgba(255, 215, 0, 0.65) 0px 2px 8px, rgb(194, 186, 144) 0px 1px 0px;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    transition: font-size 0.2s;
+    filter: none !important;
+    animation: none !important;
+}
+
+.modal-horizontal-right .modal-product-title {
+    font-size: 2.7rem !important;
+    font-weight: 900 !important;
+    text-align: left !important;
+    margin-bottom: 18px !important;
+    color: #D4AF37 !important;
+    background: linear-gradient(90deg, rgb(255, 215, 0) 10%, rgb(255, 165, 0) 60%, rgb(255, 255, 255) 100%) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: rgba(255, 215, 0, 0.65) 0px 2px 8px, rgb(194, 186, 144) 0px 1px 0px !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.1 !important;
+    transition: font-size 0.2s !important;
+    filter: none !important;
+    animation: none !important;
 }
