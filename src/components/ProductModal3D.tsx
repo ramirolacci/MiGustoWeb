@@ -15,6 +15,7 @@ interface ProductModal3DProps {
         esRecomendado?: boolean;
         esVegetariano?: boolean;
         esSinGluten?: boolean;
+        categoria?: string; // Added for categorization
     };
     onClose: () => void;
     tiene3D?: boolean;
@@ -149,7 +150,9 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     };
 
     const handleMouseLeave = () => {
-        // No reseteo la rotación ni la posición, pero hago la transición más suave
+        // Al salir el mouse, reseteo la rotación y la posición
+        setRotation({ x: 0, y: 0 });
+        setPosition({ x: 0, y: 0 });
         setTransitionStyle('transform 1.2s cubic-bezier(0.23, 1, 0.32, 1)');
     };
 
@@ -198,6 +201,9 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
             .filter(item => item.length > 0);
     };
 
+    // Determino si el producto es de la categoría Promociones
+    const esPromocion = producto.categoria && producto.categoria.toLowerCase().includes('promocion');
+
     return (
         <div className="modal-overlay" onClick={onClose} style={tiene3D ? {background:'#181818ee',backdropFilter:'blur(2px)'} : {}}>
             {ReactDOM.createPortal(
@@ -218,12 +224,6 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                         : "modal-content-3d modal-horizontal"
                 }
                 onClick={e => e.stopPropagation()}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
                 style={tiene3D ? {
                     width: '100vw',
                     height: '100vh',
@@ -338,9 +338,19 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                             <div className="modal-horizontal-left">
                                 <div className="modal-header-3d">
                                     <div className="modal-image-container"
+                                        {...(!esPromocion ? {
+                                            onMouseMove: handleMouseMove,
+                                            onMouseEnter: handleMouseEnter,
+                                            onMouseLeave: handleMouseLeave,
+                                            onTouchStart: handleTouchStart,
+                                            onTouchMove: handleTouchMove,
+                                            onTouchEnd: handleTouchEnd,
+                                        } : {})}
                                         style={{
-                                            transform: `translateZ(200px) translateX(${position.x * 0.15}px) translateY(${position.y * 0.15}px)`,
-                                            transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                            transform: !esPromocion ? `translateZ(200px) translateX(${position.x * 0.15}px) translateY(${position.y * 0.15}px)` : 'none',
+                                            transition: isHovered && !isDragging && !esPromocion ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                                            marginTop: '-16px',
+                                            marginBottom: '8px'
                                         }}>
                                         <img
                                             src={producto.imagenDetalle || producto.imagen}
@@ -354,12 +364,6 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             transform: `translateZ(180px) translateX(${position.x * 0.12}px) translateY(${position.y * 0.12}px)`,
                                             transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                                         }}>
-                                        {producto.esRecomendado && (
-                                            <span className="badge badge-recomendado">Recomendado</span>
-                                        )}
-                                        {producto.esVegetariano && (
-                                            <span className="badge badge-vegetariano">Vegetariano</span>
-                                        )}
                                         {producto.esSinGluten && (
                                             <span className="badge badge-sin-gluten">Sin Gluten</span>
                                         )}
@@ -370,18 +374,15 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                 </div>
                             </div>
                             <div className="modal-horizontal-right">
-                                <h2 className="modal-product-title"
-                                    style={{
-                                        transform: `translateZ(150px) translateX(${position.x * 0.1}px) translateY(${position.y * 0.1}px)`,
-                                        transition: isHovered && !isDragging ? 'none' : transitionStyle
-                                    }}
-                                >{producto.titulo}</h2>
                                 <div className="modal-detalles">
                                     <div className="detalle-item"
                                         style={{
-                                            transform: `translateZ(160px) translateX(${position.x * 0.11}px) translateY(${position.y * 0.11}px)`,
-                                            transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                                        }}>
+                                            transition: 'box-shadow 0.2s, background 0.2s'
+                                        }}
+                                    >
+                                        <h2 className="modal-product-title"
+                                            // Aplico el mismo estilo visual que el título de las cards
+                                        >{producto.titulo}</h2>
                                         <h3>Ingredientes</h3>
                                         <ul className="ingredientes-lista">
                                             {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
