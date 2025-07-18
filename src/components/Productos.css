@@ -264,6 +264,13 @@ body {
     .productos-lista>* {
         flex: 0 1 100%;
     }
+    .productos-lista {
+        gap: 0 !important;
+    }
+    .productos-lista > * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
 
 .producto-card {
@@ -673,6 +680,10 @@ body {
         padding-top: 0 !important;
         margin-top: 0;
         padding-top: 56px !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .productos-titulo {
@@ -1849,4 +1860,87 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
         margin-right: 0 !important;
         padding-left: 18px !important;
     }
+}
+
+@media (max-width: 768px) {
+  .producto-row-mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(24,24,24,0.92);
+    border-radius: 10px;
+    margin: 8px 12px !important;
+    padding: 10px 10px !important;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.08);
+    border-bottom: 1px solid #222;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .producto-row-mobile:last-child {
+    border-bottom: none;
+  }
+  .producto-img-mobile {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: none;
+    flex-shrink: 0;
+    box-shadow: none;
+    margin-left: 0;
+    border: none;
+  }
+  .producto-info-mobile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    padding-right: 8px;
+  }
+  .producto-info-mobile h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem 0;
+    letter-spacing: 0.03em;
+    line-height: 1.18;
+    text-align: left;
+    text-shadow: rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px;
+    padding: 0.18em 0.1em 0.18em 0;
+    border-radius: 12px;
+    position: relative;
+    overflow: visible;
+    background: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%);
+    animation: brilloTituloCard 2.5s linear infinite;
+  }
+  .producto-info-mobile p {
+    font-size: 0.98rem;
+    color: #fff;
+    margin: 0 0 2px 0;
+    line-height: 1.3;
+    text-align: left;
+    opacity: 0.92;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    max-height: 2.6em;
+  }
+  .ingredientes-mobile {
+    color: #FFD700;
+    font-size: 0.95rem;
+    margin-top: 2px;
+    font-weight: 500;
+    opacity: 0.95;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
