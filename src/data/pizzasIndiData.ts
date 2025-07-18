@@ -11,40 +11,40 @@ export interface PizzaIndi {
 
 export const pizzasIndi: PizzaIndi[] = [
   {
-    imagen: "https://i.postimg.cc/TYSrn4mW/INDI-Rucula.jpg",
+    imagen: "https://i.postimg.cc/T3Szw1qx/INDI-Rucula-Photoroom.png",
     titulo: "Jamón crudo, rúcula y stracciatella INDI",
     descripcion: "Pizza individual con jamón crudo, rúcula fresca y stracciatella.",
     esRecomendado: true
   },
   {
-    imagen: "https://i.postimg.cc/TYP9Vb4B/Indi-Mortadela.jpg",
+    imagen: "https://i.postimg.cc/j5kP0VYM/Indi-Mortadela-Photoroom.png",
     titulo: "Mortadela, pistacho y stracciatella INDI",
     descripcion: "Pizza individual con mortadela, pistachos y stracciatella.",
     esRecomendado: true
   },
   {
-    imagen: "https://i.postimg.cc/ydXPPyBC/Indi-Burger.jpg",
+    imagen: "https://i.postimg.cc/g0xhWzm1/Indi-Burger-Photoroom.png",
     titulo: "Burger INDI",
     descripcion: "Pizza individual con hamburguesa, queso cheddar, cebolla caramelizada y salsa especial.",
     esRecomendado: true
   },
   {
-    imagen: "https://i.postimg.cc/7PK1Z6Z9/INDI-Pepperonni.jpg",
+    imagen: "https://i.postimg.cc/BZPG1dns/INDI-Pepperonni-Photoroom.png",
     titulo: "Pepperoni INDI",
     descripcion: "Pizza individual con pepperoni y queso mozzarella."
   },
   {
-    imagen: "https://i.postimg.cc/kMssRsfx/INDI-Jamon-y-morrones.jpg",
+    imagen: "https://i.postimg.cc/y6DS3YRd/INDI-Jamon-y-morrones-Photoroom.png",
     titulo: "Jamón y morrón INDI",
     descripcion: "Pizza individual con jamón cocido y morrones asados."
   },
   {
-    imagen: "https://i.postimg.cc/63wVy4Zj/INDI-Napo.jpg",
+    imagen: "https://i.postimg.cc/HkvgMHXY/INDI-Napo-Photoroom.png",
     titulo: "Napolitana INDI",
     descripcion: "Pizza individual con rodajas de tomate fresco y topping de salsa casera de provenzal."
   },
   {
-    imagen: "https://i.postimg.cc/P5gQnR5k/INDI-Muzza.jpg",
+    imagen: "https://i.postimg.cc/sgkTqNRP/INDI-Muzza-Photoroom.png",
     titulo: "Muzza INDI",
     descripcion: "Pizza individual de mozzarella con salsa de tomate casera artesanal."
   }
