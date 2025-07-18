@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './VentaCorporativa.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -98,7 +98,12 @@ const VentaCorporativa: React.FC = () => {
         }
     };
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 600;
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 600);
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 600);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Antes del return, defino la fecha mínima para el input de fecha
     const today = new Date();
@@ -140,7 +145,7 @@ const VentaCorporativa: React.FC = () => {
                             </div>
                             <div className="beneficio-item">
                                 <img src="/corp/servicio.png" alt="Servicio" className="icono-beneficio" loading="lazy" />
-                                <span>Atención personalizada, adaptada a las necesidades de cada empresa</span>
+                                <span>Atención personalizada, adaptada a tus necesidades</span>
                             </div>
                         </div>
                     </div>

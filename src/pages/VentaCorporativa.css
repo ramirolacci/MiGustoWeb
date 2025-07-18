@@ -57,7 +57,7 @@ html, body {
   width: 100%;
   max-width: 600px;
   border-radius: 12px;
-  margin-bottom: 64px;
+  margin-bottom: 35px;
 }
 
 .contacto-form {
@@ -310,8 +310,7 @@ input[type="date"] {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 90%;
-  max-width: 380px;
+  max-width: auto;
 }
 .beneficio-item {
   display: flex;
@@ -347,7 +346,8 @@ input[type="date"] {
   }
   .beneficios-corporativa {
     gap: 18px;
-    max-width: 98vw;
+    max-width: 90vw;
+    margin: 20px auto 30px auto;
   }
 }
 @media (max-width: 600px) {
@@ -634,12 +634,12 @@ input[type="date"] {
 /* Imagen de título en desktop */
 @media (min-width: 901px) {
   .venta-corporativa-header-desktop {
-    width: 520px;
+    width: 500px;
     max-width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
     margin-left: 0;
     display: block;
-    align-self: flex-start;
+    align-self: center;
   }
 } 
 
