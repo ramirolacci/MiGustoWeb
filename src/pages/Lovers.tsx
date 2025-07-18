@@ -8,6 +8,7 @@ import Empanada2 from '../lovers/assets/Empanadas/Mexican-Pibil-Pork-demo.png';
 import Empanada3 from '../lovers/assets/Empanadas/Matambre a la pizza.png';
 import Empanada4 from '../lovers/assets/Empanadas/burger.png';
 import { useEffect } from 'react';
+import Footer from '../components/Footer';
 
 const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
 
@@ -442,7 +443,7 @@ const Lovers = () => {
         </div>
         {/* Formulario alineado a la derecha */}
         <div className="lovers-form" style={{ flex: '0 1 700px', minWidth: 420, maxWidth: 700 }}>
-          <div className="contacto-form-container" style={{ margin: 0, background: 'rgba(30,30,30,0.65)', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)' }}>
+          <div className="contacto-form-container" style={{ margin: 0, background: 'rgba(30,30,30,0.65)', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)', marginBottom: 48 }}>
             <h2 style={{ color: '#ffc107', textAlign: 'center', marginBottom: 8, fontWeight: 700, fontSize: '2rem' }}>Mi Gusto Lovers</h2>
             <p style={{ color: '#fff', textAlign: 'center', marginBottom: 34, fontSize: '1.05rem', opacity: 0.92 }}>
               Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.
@@ -624,6 +625,7 @@ const Lovers = () => {
           .terminos-mobile { display: block !important; }
         }
       `}</style>
+      <Footer />
     </div>
   );
 };

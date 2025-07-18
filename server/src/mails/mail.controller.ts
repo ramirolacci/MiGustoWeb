@@ -54,13 +54,70 @@ export class MailController {
 
   @Post('corporativa')
   async corporativa(
-    @Body() body: { nombreEmpresa: string; telefono: string; fechaEvento: string; cantidadDocenas: string; cantidadComensales: string; descripcionEvento: string; observaciones: string }
+    @Body() body: {
+      mailCorporativo: string;
+      nombreApellido: string;
+      telefono: string;
+      fechaEvento: string;
+      cantidadDocenas: string;
+      cantidadComensales: string;
+      descripcionEvento: string;
+      observaciones: string;
+    }
   ) {
-    const { nombreEmpresa, telefono, fechaEvento, cantidadDocenas, cantidadComensales, descripcionEvento } = body;
-    if (!nombreEmpresa || !telefono || !fechaEvento || !cantidadDocenas || !cantidadComensales || !descripcionEvento) {
+    const { mailCorporativo, nombreApellido, telefono, fechaEvento, cantidadDocenas, cantidadComensales, descripcionEvento } = body;
+    if (!mailCorporativo || !nombreApellido || !telefono || !fechaEvento || !cantidadDocenas || !cantidadComensales || !descripcionEvento) {
       throw new BadRequestException('Faltan campos requeridos');
     }
     await this.mailService.sendCorporativaMail(body);
     return { message: 'Formulario de venta corporativa enviado correctamente' };
+  }
+
+  @Post('franquicia')
+  async franquicia(
+    @Body() body: {
+      nombre: string;
+      fechaNacimiento: string;
+      sexo: string;
+      estadoCivil: string;
+      tipoDocumento: string;
+      numeroDocumento: string;
+      paisResidencia: string;
+      provinciaResidencia: string;
+      localidadResidencia: string;
+      domicilio: string;
+      telefonoCelular: string;
+      telefonoAlternativo?: string;
+      email: string;
+      emailAlternativo?: string;
+      paisPreferencia: string;
+      provinciaPreferencia: string;
+      localidadPreferencia: string;
+      inmuebleGarantia: string;
+    }
+  ) {
+    const {
+      nombre,
+      fechaNacimiento,
+      sexo,
+      estadoCivil,
+      tipoDocumento,
+      numeroDocumento,
+      paisResidencia,
+      provinciaResidencia,
+      localidadResidencia,
+      domicilio,
+      telefonoCelular,
+      email,
+      paisPreferencia,
+      provinciaPreferencia,
+      localidadPreferencia,
+      inmuebleGarantia
+    } = body;
+    if (!nombre || !fechaNacimiento || !sexo || !estadoCivil || !tipoDocumento || !numeroDocumento || !paisResidencia || !provinciaResidencia || !localidadResidencia || !domicilio || !telefonoCelular || !email || !paisPreferencia || !provinciaPreferencia || !localidadPreferencia || !inmuebleGarantia) {
+      throw new BadRequestException('Faltan campos requeridos');
+    }
+    await this.mailService.sendFranquiciaMail(body);
+    return { message: 'Formulario de franquicia enviado correctamente' };
   }
 } 
