@@ -85,7 +85,7 @@ const NavBar: React.FC = () => {
           }
           .switch-lovers-btn {
             width: 20px !important;
-            height: 20px !important;
+            height: 30px !important;
             left: 2px !important;
             top: 50% !important;
           }
