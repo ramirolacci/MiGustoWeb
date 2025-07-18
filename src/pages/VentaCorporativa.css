@@ -78,7 +78,7 @@ html, body {
 .half-width {
   flex: 1 1 calc(50% - 10px);
   min-width: 150px;
-  max-width: 250px;
+  max-width: 400px;
   box-sizing: border-box;
 }
 
@@ -536,7 +536,7 @@ input[type="date"] {
     box-sizing: border-box;
   }
   .form-row .form-group.half-width:nth-child(2) {
-    margin-left: 48px;
+    margin-left: 0;
   }
   .contact-links {
     flex-direction: row !important;
