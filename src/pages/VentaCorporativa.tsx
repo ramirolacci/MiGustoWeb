@@ -221,6 +221,7 @@ const VentaCorporativa: React.FC = () => {
                                             onChange={handleChange}
                                             min="1"
                                             style={{ width: '100%' }}
+                                            placeholder="Ingrese la cantidad de comensales"
                                         />
                                         {errors.cantidadComensales && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.cantidadComensales}</div>}
                                     </div>
@@ -235,7 +236,7 @@ const VentaCorporativa: React.FC = () => {
                                             onChange={handleChange}
                                             placeholder="Describa brevemente el evento"
                                             rows={2}
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%', height: 48, minHeight: 48, padding: '12px 16px', resize: 'none' }}
                                         />
                                         {errors.descripcionEvento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.descripcionEvento}</div>}
                                     </div>
@@ -250,7 +251,7 @@ const VentaCorporativa: React.FC = () => {
                                             onChange={handleChange}
                                             placeholder="Detalle aquí cualquier requerimiento especial"
                                             rows={2}
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%', height: 48, minHeight: 48, padding: '12px 16px', resize: 'none' }}
                                         />
                                     </div>
                                 </div>
