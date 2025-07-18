@@ -569,6 +569,7 @@ body {
     padding: 1.5rem;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: none !important;
 }
 
 .detalle-item h3 {
@@ -593,7 +594,7 @@ body {
 .ingredientes-lista li {
     padding: 0.5rem 0;
     color: #666;
-    border-bottom: 1px solid #eee;
+    border-bottom: none !important;
     display: flex;
     align-items: center;
 }
@@ -1820,4 +1821,32 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
     transition: font-size 0.2s !important;
     filter: none !important;
     animation: none !important;
+}
+
+@media (max-width: 768px) {
+    .modal-mobile-column .modal-horizontal-right .detalle-item {
+        width: 94vw !important;
+        max-width: 94vw !important;
+        min-width: 0 !important;
+        margin: 0 auto !important;
+        border: none !important;
+        border-radius: 18px !important;
+        padding: 12px 8px !important;
+        box-sizing: border-box !important;
+        background: rgba(24,24,24,0.97) !important;
+    }
+    .modal-mobile-column .modal-product-title,
+    .modal-mobile-column .ingredientes-lista {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .modal-mobile-column .detalle-item h3 {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 18px !important;
+    }
 }
