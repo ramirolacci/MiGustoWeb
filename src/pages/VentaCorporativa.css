@@ -311,7 +311,7 @@ input[type="date"] {
   flex-direction: column;
   gap: 32px;
   width: 90%;
-  max-width: 520px;
+  max-width: 380px;
 }
 .beneficio-item {
   display: flex;

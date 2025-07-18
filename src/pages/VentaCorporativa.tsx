@@ -147,11 +147,9 @@ const VentaCorporativa: React.FC = () => {
                     {/* Columna derecha: Formulario */}
                     <div className="corporativa-col corporativa-col-form">
                         <div className="glass-form-container">
-                            {/* Título solo en desktop - ELIMINADO */}
-                            {/* <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, marginBottom: 12, display: 'block', marginLeft: 'auto', marginRight: 'auto' }} loading="lazy" /> */}
-                            <p style={{ color: '#fff', textAlign: 'center', marginBottom: 24, fontSize: '1.08rem', opacity: 0.92 }}>
-                                Completa el siguiente formulario para solicitar una venta corporativa.
-                            </p>
+                            <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, textAlign: 'center', marginBottom: 28, letterSpacing: 1 }}>
+                                Eventos Corporativos: solicitá tu propuesta personalizada
+                            </h2>
                             {/* Formulario original */}
                             <form onSubmit={handleSubmit} className="contacto-form">
                                 <div className="form-row">
