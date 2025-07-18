@@ -57,6 +57,13 @@ export default function Productos() {
     const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
     const [esVegetariano, setEsVegetariano] = useState<boolean>(false);
     const [showPrecioModal, setShowPrecioModal] = useState<boolean>(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const productosFiltrados = useMemo(() => {
         let productos: Producto[] = [];
@@ -208,6 +215,20 @@ export default function Productos() {
                     ) : (
                         productosFiltrados.map((prod) => {
                             const tiene3D = EMPANADAS_3D.includes(prod.titulo);
+                            if (isMobile) {
+                                return (
+                                    <div className="producto-row-mobile" key={prod.titulo + '-' + prod.categoria} onClick={() => setProductoSeleccionado(prod)}>
+                                        <img src={prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
+                                        <div className="producto-info-mobile">
+                                            <h3>{prod.titulo}</h3>
+                                            <p>{prod.descripcion}</p>
+                                            {prod.ingredientes && prod.ingredientes.length > 0 && (
+                                                <p className="ingredientes-mobile">{prod.ingredientes.join(', ')}</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            }
                             return (
                                 <div 
                                     className="producto-card" 
