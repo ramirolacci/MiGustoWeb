@@ -216,13 +216,26 @@ export default function Productos() {
                         productosFiltrados.map((prod) => {
                             const tiene3D = EMPANADAS_3D.includes(prod.titulo);
                             if (isMobile) {
+                                // Cards que deben mostrar solo una vez la descripción
+                                const soloDescripcion = [
+                                    'Carne con aceituna',
+                                    'Pollo',
+                                    'Cuatro quesos',
+                                    'Cuatro Quesos',
+                                    'Pollo al champignon',
+                                    'Choclo',
+                                    'Verdura',
+                                    'Calabaza',
+                                    'Panceta y ciruela',
+                                    'Panceta y Ciruela'
+                                ];
                                 return (
                                     <div className="producto-row-mobile" key={prod.titulo + '-' + prod.categoria} onClick={() => setProductoSeleccionado(prod)}>
                                         <img src={prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
                                         <div className="producto-info-mobile">
                                             <h3>{prod.titulo}</h3>
                                             <p>{prod.descripcion}</p>
-                                            {prod.ingredientes && prod.ingredientes.length > 0 && (
+                                            {prod.ingredientes && prod.ingredientes.length > 0 && !soloDescripcion.includes(prod.titulo) && (
                                                 <p className="ingredientes-mobile">{prod.ingredientes.join(', ')}</p>
                                             )}
                                         </div>
