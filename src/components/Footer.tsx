@@ -64,7 +64,8 @@ const Footer: React.FC = () => {
                 <li className="footer-link-item"><Link to="/carta" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Carta">Carta</Link></li>
                 <li className="footer-link-item"><Link to="/productos" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Productos">Productos</Link></li>
                 <li className="footer-link-item"><Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">Sucursales</Link></li>
-                <li className="footer-link-item"><Link to="/studio-3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">Studio 3D</Link></li>
+                {/* Studio 3D */}
+                <li className="footer-link-item"><Link to="/3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">Studio 3D</Link></li>
                 {/* Links originales */}
                 <li className="footer-link-item"><Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">Nosotros</Link></li>
                 <li className="footer-link-item"><Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">Proveedores</Link></li>
@@ -100,7 +101,7 @@ const Footer: React.FC = () => {
                     </Link>
                   </li>
                   <li className="footer-link-item">
-                    <Link to="/studio-3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">
+                    <Link to="/3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">
                       Studio 3D
                     </Link>
                   </li>
