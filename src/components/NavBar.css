@@ -379,7 +379,8 @@
     max-height: 54px !important;
     padding: 0.3rem 0 !important;
     z-index: 2000 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.18); */
+    box-shadow: none !important;
   }
   .navbar-brand-desktop {
     height: 40px !important;
@@ -406,15 +407,31 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 @media (max-width: 768px) {
   .mobile-pedir-button {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
     position: fixed;
+    top: 2px;
     right: 12px;
-    top: 12px;
-    height: auto;
+    left: auto;
     width: auto;
+    height: auto;
     margin: 0;
     z-index: 900;
+    pointer-events: none;
+  }
+  .mobile-pedir-button a {
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+  .mobile-pedir-button .btn-hacer-pedido-img {
+    width: 150px;
+    max-width: 80vw;
+    height: auto;
+    margin: 0;
+    display: block;
   }
 }
 
