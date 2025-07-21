@@ -43,6 +43,7 @@ const NavBar: React.FC = () => {
 
   const isHomePage = location.pathname === '/';
 
+  // Elimino los ítems solicitados del menú desktop
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/carta', label: 'Carta' },
@@ -51,7 +52,7 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
-  const sideMenuLinks = [
+  const allSideMenuLinks = [
     { path: '/', label: 'Home' },
     { path: '/carta', label: 'Carta' },
     { path: '/productos', label: 'Productos' },
@@ -64,6 +65,11 @@ const NavBar: React.FC = () => {
     { path: '/legales', label: 'Legales' },
     { path: '/3d', label: 'Studio 3D' },
   ];
+
+  // En desktop oculto los links pedidos, en mobile muestro todos
+  const sideMenuLinks = isDesktop
+    ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Sucursales', 'Legales'].includes(link.label))
+    : allSideMenuLinks;
 
   return (
     <>
