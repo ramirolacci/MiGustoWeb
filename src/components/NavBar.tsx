@@ -41,6 +41,20 @@ const NavBar: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    // Solo en mobile y solo en la ruta '/3d'
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile && location.pathname === '/3d') {
+      document.body.classList.add('ruta-3d');
+    } else {
+      document.body.classList.remove('ruta-3d');
+    }
+    // Limpiar al desmontar
+    return () => {
+      document.body.classList.remove('ruta-3d');
+    };
+  }, [location.pathname]);
+
   const isHomePage = location.pathname === '/';
 
   // Elimino los ítems solicitados del menú desktop

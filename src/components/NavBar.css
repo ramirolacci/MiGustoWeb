@@ -410,7 +410,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
     justify-content: flex-end;
     position: fixed;
     right: 12px;
-    top: 12px;
+    top: 2px;
     height: auto;
     width: auto;
     margin: 0;
@@ -466,5 +466,23 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 
 .mobile-pedir-button-hidden {
   display: none !important;
+}
+
+@media (max-width: 768px) {
+  body.ruta-3d .navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 2000 !important;
+    height: 54px !important;
+    min-height: 54px !important;
+    max-height: 54px !important;
+    padding: 0.3rem 0 !important;
+    background: rgba(0,0,0,0.97) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    display: flex !important;
+    align-items: center !important;
+  }
 }
 
