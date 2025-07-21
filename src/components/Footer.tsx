@@ -11,14 +11,22 @@ declare global {
 
 const Footer: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
-
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    handleResize(); // set initial value
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -47,41 +55,95 @@ const Footer: React.FC = () => {
             </a>
           </div>
 
-          {/* Enlaces */}
-          <div className="footer-col-md-3">
-            <ul className="footer-links-list">
-              <li className="footer-link-item">
-                <Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">
-                  Nosotros
-                </Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">
-                  Proveedores
-                </Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">
-                  Trabajá con nosotros
-                </Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">
-                  Franquicias
-                </Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">
-                  Venta Corporativa
-                </Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">
-                  Legales
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Links: mobile juntos, desktop en dos columnas */}
+          {isMobile ? (
+            <div className="footer-col-md-3" style={{ width: '100%' }}>
+              <ul className="footer-links-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.2rem' }}>
+                {/* Nuevos links */}
+                <li className="footer-link-item"><Link to="/" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Home">Home</Link></li>
+                <li className="footer-link-item"><Link to="/carta" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Carta">Carta</Link></li>
+                <li className="footer-link-item"><Link to="/productos" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Productos">Productos</Link></li>
+                <li className="footer-link-item"><Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">Sucursales</Link></li>
+                <li className="footer-link-item"><Link to="/studio-3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">Studio 3D</Link></li>
+                {/* Links originales */}
+                <li className="footer-link-item"><Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">Nosotros</Link></li>
+                <li className="footer-link-item"><Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">Proveedores</Link></li>
+                <li className="footer-link-item"><Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">Trabajá con nosotros</Link></li>
+                <li className="footer-link-item"><Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">Franquicias</Link></li>
+                <li className="footer-link-item"><Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">Venta Corporativa</Link></li>
+                <li className="footer-link-item"><Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">Legales</Link></li>
+              </ul>
+            </div>
+          ) : (
+            <>
+              {/* Nueva columna de enlaces a la izquierda */}
+              <div className="footer-col-md-3">
+                <ul className="footer-links-list">
+                  <li className="footer-link-item">
+                    <Link to="/" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Home">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/carta" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Carta">
+                      Carta
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/productos" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Productos">
+                      Productos
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">
+                      Sucursales
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/studio-3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">
+                      Studio 3D
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Enlaces existentes */}
+              <div className="footer-col-md-3">
+                <ul className="footer-links-list">
+                  <li className="footer-link-item">
+                    <Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">
+                      Nosotros
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">
+                      Proveedores
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">
+                      Trabajá con nosotros
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">
+                      Franquicias
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">
+                      Venta Corporativa
+                    </Link>
+                  </li>
+                  <li className="footer-link-item">
+                    <Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">
+                      Legales
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
 
           {/* Redes sociales y apps */}
           <div className="footer-col-md-4">
