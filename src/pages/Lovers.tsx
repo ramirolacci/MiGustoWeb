@@ -306,6 +306,27 @@ const Lovers = () => {
           }
         }
       `}</style>
+      <style>{`
+        @media (max-width: 480px) {
+          .lovers-beneficios-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            gap: 0.7rem !important;
+            justify-items: center !important;
+          }
+          .lovers-beneficio-card {
+            width: 44vw !important;
+            min-width: 120px !important;
+            max-width: 44vw !important;
+            height: 44vw !important;
+            min-height: 120px !important;
+            max-height: 44vw !important;
+            box-sizing: border-box !important;
+            padding: 0.9rem 0.4rem 0.7rem 0.4rem !important;
+          }
+        }
+      `}</style>
       <div className="lovers-flex" style={{
         display: 'flex',
         flexDirection: 'row',
@@ -340,18 +361,21 @@ const Lovers = () => {
               Únete a nuestro programa exclusivo y disfruta de beneficios únicos descuentos especiales y experiencias gastronómicas irrepetibles en todas nuestras sucursales.
             </p>
             {/* Cards de beneficios */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '1.1rem',
-              marginTop: '1.5rem',
-              marginBottom: '2.5rem',
-              width: '100%',
-              maxWidth: 440,
-              justifyItems: 'center',
-            }}>
+            <div
+              className="lovers-beneficios-grid"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: '1.1rem',
+                marginTop: '1.5rem',
+                marginBottom: '2.5rem',
+                width: '100%',
+                maxWidth: 440,
+                justifyItems: 'center',
+              }}
+            >
               {/* Card 1: Descuentos */}
-              <div style={{
+              <div className="lovers-beneficio-card" style={{
                 background: 'rgba(255,255,255,0.05)',
                 borderRadius: 8,
                 border: '1px solid rgba(255,255,255,0.1)',
@@ -373,7 +397,7 @@ const Lovers = () => {
                 </span>
               </div>
               {/* Card 2: Eventos */}
-              <div style={{
+              <div className="lovers-beneficio-card" style={{
                 background: 'rgba(255,255,255,0.05)',
                 borderRadius: 8,
                 border: '1px solid rgba(255,255,255,0.1)',
@@ -395,7 +419,7 @@ const Lovers = () => {
                 </span>
               </div>
               {/* Card 3: VIP */}
-              <div style={{
+              <div className="lovers-beneficio-card" style={{
                 background: 'rgba(255,255,255,0.05)',
                 borderRadius: 8,
                 border: '1px solid rgba(255,255,255,0.1)',
@@ -417,7 +441,7 @@ const Lovers = () => {
                 </span>
               </div>
               {/* Card 4: Sorteos y Premios */}
-              <div style={{
+              <div className="lovers-beneficio-card" style={{
                 background: 'rgba(255,255,255,0.05)',
                 borderRadius: 8,
                 border: '1px solid rgba(255,255,255,0.1)',
