@@ -178,11 +178,12 @@ const Footer: React.FC = () => {
             </div>
             <div className="footer-app-links">
               <a 
-                href="#"
+                href="https://play.google.com/store/apps/details?id=com.tuapp"
                 className="footer-app-link"
-                onClick={handleLinkClick}
                 tabIndex={0}
                 aria-label="Descargar en Google Play"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img
                   src="src/assets/google-play-logo.svg"
@@ -191,11 +192,12 @@ const Footer: React.FC = () => {
                 />
               </a>
               <a 
-                href="#"
+                href="https://apps.apple.com/app/idXXXXXXXXX"
                 className="footer-app-link"
-                onClick={handleLinkClick}
                 tabIndex={0}
                 aria-label="Descargar en App Store"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img
                   src="src/assets/app-store-apple-logo.svg"
