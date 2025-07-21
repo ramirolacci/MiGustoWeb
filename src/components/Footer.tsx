@@ -76,12 +76,9 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li className="footer-link-item">
-                <a href="#" className="footer-link" onClick={(e) => {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }} tabIndex={0} aria-label="Ver legales">
+                <Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">
                   Legales
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
