@@ -220,6 +220,26 @@ const NavBar: React.FC = () => {
             className={`side-menu ${isMenuOpen ? 'open' : ''}`}
             id="side-menu"
           >
+            {/* Botón cerrar menú hamburguesa */}
+            <button
+              className="side-menu-close"
+              style={{
+                position: 'absolute',
+                top: 18,
+                left: 18,
+                background: 'none',
+                border: 'none',
+                color: '#fff',
+                fontSize: 32,
+                zIndex: 10001,
+                cursor: 'pointer',
+                display: 'block',
+              }}
+              aria-label="Cerrar menú"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              &times;
+            </button>
             {/* Logo solo visible en mobile, arriba a la derecha */}
             <div className="side-menu-logo-mobile">
               <Link to="/" onClick={() => setIsMenuOpen(false)}>
