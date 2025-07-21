@@ -174,10 +174,6 @@ const IphoneStore: React.FC = () => {
                                          <i className="fa-solid fa-building"></i> {/* Icono placeholder */}
                                          <span>Institucional</span>
                                     </li>
-                                    <li className="menu-item" onClick={() => window.location.href = '/legales'}>
-                                         <i className="fa-solid fa-file-contract"></i>
-                                         <span>Legales</span>
-                                    </li>
                                     <li className={`menu-item ${activeCategory === 'Perfil' ? 'active' : ''}`} onClick={() => handleCategoryClick('Perfil')}>
                                          <i className="fa-solid fa-user"></i> {/* Icono placeholder */}
                                          <span>Perfil</span>
@@ -246,13 +242,6 @@ const IphoneStore: React.FC = () => {
                         >
                             <i className="fa-solid fa-percent"></i>
                             <span>Promociones</span>
-                        </li>
-                        <li 
-                            className={`item`}
-                            onClick={() => window.location.href = '/legales'}
-                        >
-                            <i className="fa-solid fa-file-contract"></i>
-                            <span>Legales</span>
                         </li>
                     </ul>
                 </div>
