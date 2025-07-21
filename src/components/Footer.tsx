@@ -178,7 +178,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="footer-app-links">
               <a 
-                href="https://play.google.com/store/apps/details?id=com.tuapp"
+                href="https://play.google.com/store/apps/details?id=com.migusto.app&hl=es_AR"
                 className="footer-app-link"
                 tabIndex={0}
                 aria-label="Descargar en Google Play"
@@ -192,7 +192,7 @@ const Footer: React.FC = () => {
                 />
               </a>
               <a 
-                href="https://apps.apple.com/app/idXXXXXXXXX"
+                href="https://apps.apple.com/ar/app/mi-gusto/id1487319586"
                 className="footer-app-link"
                 tabIndex={0}
                 aria-label="Descargar en App Store"

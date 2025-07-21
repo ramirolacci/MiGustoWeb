@@ -131,14 +131,14 @@ function Home() {
                     </p>
                     <div className="home-app-links" style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
                         <a
-                            href="https://play.google.com/store/apps/details?id=com.tuapp"
+                            href="https://play.google.com/store/apps/details?id=com.migusto.app&hl=es_AR"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
                             <img src="src/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} loading="lazy" />
                         </a>
                         <a
-                            href="https://apps.apple.com/app/idXXXXXXXXX"
+                            href="https://apps.apple.com/ar/app/mi-gusto/id1487319586"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
