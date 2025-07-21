@@ -1969,3 +1969,22 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
     text-overflow: ellipsis;
   }
 }
+
+/* Título de las cards desktop: forzar una sola línea y elipsis */
+@media (min-width: 769px) {
+  .titulo-card-desktop {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+    max-width: 100%;
+    font-size: 1.45rem;
+    transition: font-size 0.2s;
+  }
+  .titulo-card-desktop[style*='font-size: 1.18rem'] {
+    font-size: 1.18rem !important;
+  }
+  .titulo-card-desktop[style*='font-size: 1.05rem'] {
+    font-size: 1.05rem !important;
+  }
+}

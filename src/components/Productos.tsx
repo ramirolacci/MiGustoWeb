@@ -245,10 +245,21 @@ export default function Productos() {
                                     <img src={prod.imagen} alt={prod.titulo} />
                                     <div className="producto-info">
                                         <h3
+                                            className="titulo-card-desktop"
                                             style={{
-                                                fontSize: '1.45rem', // Un poco más grande
+                                                fontSize: ([
+                                                    'Jamón, Tomate, Huevo, Roquefort',
+                                                    'Jamón, tomate, huevo y roquefort',
+                                                    'Jamón crudo, rúcula y stracciatella INDI',
+                                                    'Mortadela, pistacho y stracciatella INDI',
+                                                    'Fitzza mortadela, pistacho y stracciatella',
+                                                    'Fitzza jamón crudo, rúcula y stracciatella',
+                                                    'Fitzza Jamón crudo, rúcula y stracciatella'
+                                                ].includes(prod.titulo)
+                                                    ? '1.45rem'
+                                                    : (prod.titulo.length > 28 ? (prod.titulo.length > 38 ? '1.05rem' : '1.18rem') : '1.45rem')),
                                                 fontWeight: 600,
-                                                margin: '-1.3rem 0 0.4rem 0', // Más arriba aún, margen negativo mayor
+                                                margin: '-1.3rem 0 0.4rem 0',
                                                 letterSpacing: '0.03em',
                                                 lineHeight: 1.18,
                                                 textAlign: 'center',
@@ -256,39 +267,19 @@ export default function Productos() {
                                                 padding: '0.18em 0.1em',
                                                 borderRadius: '12px',
                                                 position: 'relative',
-                                                overflow: 'visible',
+                                                overflow: 'hidden',
                                                 background: 'transparent',
                                                 backgroundClip: 'text',
                                                 WebkitBackgroundClip: 'text',
                                                 WebkitTextFillColor: 'transparent',
                                                 backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
                                                 animation: 'brilloTituloCard 2.5s linear infinite',
-                                                ...( [
-                                                    'Jamón, Tomate, Huevo, Roquefort',
-                                                    'Provolone, Jamón y Longaniza',
-                                                    'Provolone, Jamón y Morrón',
-                                                    'Jamón Crudo, Rúcula y Stracciatella INDI',
-                                                    'Mortadela, Pistacho y Stracciatella INDI',
-                                                    'Fitzza Mortadela, Pistacho y Stracciatella',
-                                                    'Fitzza Jamón Crudo, Rúcula y Stracciatella',
-                                                    'Franuí Chocolate Con Leche',
-                                                    'Jamón, tomate, huevo y roquefort',
-                                                    'Provolone, jamón y longaniza',
-                                                    'Provolone, jamón y morrón',
-                                                    'Jamón crudo, rúcula y stracciatella INDI',
-                                                    'Mortadela, pistacho y stracciatella INDI',
-                                                    'Fitzza mortadela, pistacho y stracciatella',
-                                                    'Fitzza jamón crudo, rúcula y stracciatella',
-                                                    'Fitzza Jamón crudo, rúcula y stracciatella'
-                                                ].includes(prod.titulo)
-                                                    ? {
-                                                        whiteSpace: 'nowrap',
-                                                        overflow: 'hidden',
-                                                        textOverflow: 'ellipsis',
-                                                        display: 'block',
-                                                    }
-                                                    : {})
+                                                whiteSpace: 'nowrap',
+                                                textOverflow: 'ellipsis',
+                                                display: 'block',
+                                                maxWidth: '100%',
                                             }}
+                                            title={prod.titulo}
                                         >
                                             {prod.titulo}
                                         </h3>
@@ -329,7 +320,7 @@ export default function Productos() {
                                                 return (
                                                     <p style={{
                                                         color: '#fff',
-                                                        fontSize: '0.93rem', // Más pequeño para asegurar dos líneas
+                                                        fontSize: '0.93rem',
                                                         margin: '0 0 0.3rem 0',
                                                         textAlign: 'left',
                                                         opacity: 0.85,
@@ -340,7 +331,7 @@ export default function Productos() {
                                                         WebkitBoxOrient: 'vertical',
                                                         overflow: 'hidden',
                                                         textOverflow: 'ellipsis',
-                                                        maxHeight: '2.7em', // Ajuste más preciso
+                                                        maxHeight: '2.7em',
                                                     }}>{prod.descripcion}</p>
                                                 );
                                             }
