@@ -34,6 +34,9 @@ const RUTAS_3D: Record<string, string> = {
     "American Chicken": "/3D/american-chicken-3D.glb",
     "American chicken": "/3D/american-chicken-3D.glb",
     "Vacio y provoleta": "/3D/vacio-provoleta-3D.glb",
+    // Agregado para Franuí chocolate amargo y con leche
+    "Franuí chocolate amargo": "/3D/Franui-Dark-3D.glb",
+    "Franuí chocolate con leche": "/3D/Franui-Milk-3D.glb",
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {
@@ -49,6 +52,9 @@ const CAMERA_ORBITS_3D: Record<string, string> = {
     "American Chicken": "90deg 65deg 2.7m",
     "American chicken": "90deg 65deg 2.7m",
     "Vacio y provoleta": "90deg 65deg 2.7m",
+    // Agregado para Franuí chocolate amargo y con leche
+    "Franuí chocolate amargo": "45deg 65deg 2.7m",
+    "Franuí chocolate con leche": "45deg 65deg 2.7m",
 };
 
 const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tiene3D }) => {

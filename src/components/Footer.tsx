@@ -217,7 +217,7 @@ const Footer: React.FC = () => {
               Desarrollado por el Departamento de Sistemas de <strong>Mi Gusto</strong>
             </p>
             <p className="footer-final-text">
-              <strong>Mi Gusto®</strong> es una marca de <strong>La Honoria Alimentos S.A.</strong> – Argentina CUIT: 30-71558654-8
+              <strong>La Honoria Alimentos S.A.</strong> – Argentina CUIT: 30-71558654-8
             </p>
           </div>
         </div>
