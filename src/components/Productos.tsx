@@ -48,6 +48,9 @@ const EMPANADAS_3D = [
     "American Chicken",
     "American chicken",
     "Vacio y provoleta",
+    // Agregado para Franuí chocolate amargo y con leche
+    "Franuí chocolate amargo",
+    "Franuí chocolate con leche",
 ];
 
 export default function Productos() {
@@ -416,7 +419,7 @@ export default function Productos() {
                     <ProductModal3D
                         producto={productoSeleccionado}
                         onClose={() => setProductoSeleccionado(null)}
-                        tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
+                        tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase()) || productoSeleccionado.titulo === "Franuí chocolate amargo" || productoSeleccionado.titulo === "Franuí chocolate con leche"}
                     />
                 )}
 
