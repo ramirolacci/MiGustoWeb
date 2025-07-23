@@ -503,3 +503,51 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   }
 }
 
+/* --- Animación sutil y continua para los botones del navbar --- */
+@keyframes navButtonFloat {
+  0% {
+    transform: translateY(0) scale(1) rotate(-1deg);
+    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.08);
+    filter: brightness(1);
+  }
+  20% {
+    transform: translateY(-2px) scale(1.04) rotate(1deg);
+    box-shadow: 0 4px 16px 0 rgba(255,215,0,0.12);
+    filter: brightness(1.08);
+  }
+  40% {
+    transform: translateY(1px) scale(0.98) rotate(-2deg);
+    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.10);
+    filter: brightness(0.98);
+  }
+  60% {
+    transform: translateY(-1px) scale(1.03) rotate(2deg);
+    box-shadow: 0 6px 18px 0 rgba(255,215,0,0.13);
+    filter: brightness(1.05);
+  }
+  80% {
+    transform: translateY(0.5px) scale(1.01) rotate(-1deg);
+    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.09);
+    filter: brightness(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(-1deg);
+    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.08);
+    filter: brightness(1);
+  }
+}
+
+.nav-link, .side-menu-link {
+  animation: navButtonFloat 4.5s ease-in-out infinite;
+  animation-delay: calc(var(--nav-index, 0) * 0.18s);
+  /* El delay permite que cada botón se mueva desfasado */
+}
+
+/* Para que el botón activo también tenga la animación */
+.nav-link-active {
+  animation: navButtonFloat 4.5s ease-in-out infinite;
+  animation-delay: calc(var(--nav-index, 0) * 0.18s);
+}
+
+/* --- Fin animación navbar --- */
+

@@ -202,7 +202,7 @@ const NavBar: React.FC = () => {
             {isDesktop && (
               <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                  {navLinks.map((link) => (
+                  {navLinks.map((link, idx) => (
                     <li key={link.path} className="nav-item">
                       <Link
                         className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
@@ -213,6 +213,7 @@ const NavBar: React.FC = () => {
                         }}
                         tabIndex={0}
                         aria-current={location.pathname === link.path ? 'page' : undefined}
+                        style={{ '--nav-index': idx } as React.CSSProperties }
                       >
                         {link.label}
                       </Link>
@@ -271,7 +272,7 @@ const NavBar: React.FC = () => {
               </Link>
             </div>
             <ul className="side-menu-list">
-              {sideMenuLinks.map((link) => (
+              {sideMenuLinks.map((link, idx) => (
                 <li key={link.path} className="side-menu-item">
                   <Link
                     className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
@@ -282,6 +283,7 @@ const NavBar: React.FC = () => {
                     }}
                     tabIndex={0}
                     aria-current={location.pathname === link.path ? 'page' : undefined}
+                    style={{ '--nav-index': idx } as React.CSSProperties }
                   >
                     {link.label}
                   </Link>
