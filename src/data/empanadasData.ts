@@ -24,15 +24,6 @@ export const empanadas: Empanada[] = [
     esPremium: true
   },
   {
-    imagen: "https://i.postimg.cc/VLK78mN4/4cac9474-cd35-41f1-a8d9-8e0b2b9ffe86.jpg",
-    imagenDetalle: "https://i.postimg.cc/26x2LHzp/Mexican-Veggie.png",
-    titulo: "Mexican veggie",
-    precio: 4000,
-    descripcion: "Salteado de champinones, Morron y cebolla, Choclo y porotos negros, Crema acida, cilantro y cebolla encurtida, Masa vegana.",
-    esVegetariano: true,
-    esPremium: true
-  },
-  {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/9a2d8724-46bc-4cde-915f-c958c8e25ef4.jpg",
     imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
     titulo: "Big burguer",
