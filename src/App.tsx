@@ -50,7 +50,7 @@ const AppContent: React.FC = () => {
       <div className="app">
         {!isLovers && <header><NavBar /></header>}
         <main className='main'>
-          <Suspense fallback={<LoadingSpinner isLoading={true} />}>
+          <Suspense>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/carta" element={<Carta />} />
