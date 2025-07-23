@@ -24,8 +24,8 @@ interface ProductModal3DProps {
 const RUTAS_3D: Record<string, string> = {
     "Big Burguer": "/3D/big-burger-3D.glb",
     "Big burguer": "/3D/big-burger-3D.glb",
-    "Mexican Pibil pork": "/3D/mexican-pibil-pork-3D.glb",
-    "Mexican pibil pork": "/3D/mexican-pibil-pork-3D.glb",
+    "Mexican Pibil pork": "/3D/mexican-veggie-3D.glb", // <-- cambiado
+    "Mexican pibil pork": "/3D/mexican-veggie-3D.glb", // <-- cambiado
     "Mexican Veggie": "/3D/mexican-veggie-3D.glb",
     "Mexican veggie": "/3D/mexican-veggie-3D.glb",
     "Matambre a la pizza": "/3D/Matambre-a-la-Pizza-3D.glb",

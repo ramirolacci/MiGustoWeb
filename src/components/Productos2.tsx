@@ -46,7 +46,6 @@ export default function Productos2() {
         '04': empanadas.find(e => e.titulo.toLowerCase().includes('cheese')),
         '05': empanadas.find(e => e.titulo.toLowerCase().includes('american')),
         '08': empanadas.find(e => e.titulo.toLowerCase().includes('pibil')),
-        '09': empanadas.find(e => e.titulo.toLowerCase().includes('veggie')),
     };
 
     useEffect(() => {
