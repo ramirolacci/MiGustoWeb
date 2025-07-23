@@ -66,13 +66,16 @@ const Footer: React.FC = () => {
                 <li className="footer-link-item"><Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">Sucursales</Link></li>
                 {/* Studio 3D */}
                 <li className="footer-link-item"><Link to="/3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">Studio 3D</Link></li>
-                {/* Links originales */}
+                {/* Link Nosotros debajo de Studio 3D */}
                 <li className="footer-link-item"><Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">Nosotros</Link></li>
+                {/* Links originales (sin Nosotros aquí) */}
                 <li className="footer-link-item"><Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">Proveedores</Link></li>
                 <li className="footer-link-item"><Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">Trabajá con nosotros</Link></li>
                 <li className="footer-link-item"><Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">Franquicias</Link></li>
                 <li className="footer-link-item"><Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">Venta Corporativa</Link></li>
                 <li className="footer-link-item"><Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">Legales</Link></li>
+                {/* Link Defensa al consumidor debajo de Legales */}
+                <li className="footer-link-item"><a href="https://www.argentina.gob.ar/defensadelconsumidor" className="footer-link" target="_blank" rel="noopener noreferrer" tabIndex={0} aria-label="Ir a Defensa al consumidor">Defensa al consumidor</a></li>
               </ul>
             </div>
           ) : (
@@ -105,17 +108,18 @@ const Footer: React.FC = () => {
                       Studio 3D
                     </Link>
                   </li>
-                </ul>
-              </div>
-
-              {/* Enlaces existentes */}
-              <div className="footer-col-md-3">
-                <ul className="footer-links-list">
+                  {/* Link Nosotros debajo de Studio 3D */}
                   <li className="footer-link-item">
                     <Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">
                       Nosotros
                     </Link>
                   </li>
+                </ul>
+              </div>
+
+              {/* Segunda columna de enlaces */}
+              <div className="footer-col-md-3">
+                <ul className="footer-links-list">
                   <li className="footer-link-item">
                     <Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">
                       Proveedores
@@ -140,6 +144,12 @@ const Footer: React.FC = () => {
                     <Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">
                       Legales
                     </Link>
+                  </li>
+                  {/* Link Defensa al consumidor debajo de Legales */}
+                  <li className="footer-link-item">
+                    <a href="https://www.argentina.gob.ar/defensadelconsumidor" className="footer-link" target="_blank" rel="noopener noreferrer" tabIndex={0} aria-label="Ir a Defensa al consumidor">
+                      Defensa al consumidor
+                    </a>
                   </li>
                 </ul>
               </div>
