@@ -34,4 +34,51 @@
     color: #fff;
     opacity: 0.7;
     pointer-events: none;
+}
+
+/* --- Animación de aparición del buscador --- */
+.buscador-container.animate {
+  animation: buscadorFadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes buscadorFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Efecto de luz animada en el borde del input --- */
+.buscador-input.borde-luz {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 0 #ffd700;
+  border: 2px solid #fff;
+  background-clip: padding-box;
+  animation: bordeLuzAnimado 1.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes bordeLuzAnimado {
+  0% {
+    box-shadow: 0 0 0 0 #ffd700, 0 0 0 0 #fff;
+    border-color: #fff;
+  }
+  20% {
+    box-shadow: 0 0 8px 2px #ffd700, 0 0 0 0 #fff;
+    border-color: #ffd700;
+  }
+  40% {
+    box-shadow: 0 0 16px 4px #ffd700, 0 0 0 0 #fff;
+    border-color: #ffd700;
+  }
+  60% {
+    box-shadow: 0 0 8px 2px #ffd700, 0 0 0 0 #fff;
+    border-color: #ffd700;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #ffd700, 0 0 0 0 #fff;
+    border-color: #fff;
+  }
 } 

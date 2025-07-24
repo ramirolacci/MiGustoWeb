@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import NavBar from './NavBar';
+import Buscador from './Buscador';
 
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
@@ -181,18 +182,11 @@ export default function Productos() {
                 <h2 className="productos-titulo">Conocé nuestros productos</h2>
 
                 <div className="productos-busqueda">
-                    <input
-                        type="text"
-                        placeholder="Buscar productos..."
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                        className="productos-input-busqueda"
-                    />
-                    <i className="fas fa-search buscador-icon"></i>
+                    <Buscador filtro={busqueda} setFiltro={setBusqueda} />
                 </div>
 
                 <div className="productos-categorias">
-                    {categorias.map((cat) => (
+                    {categorias.map((cat, idx) => (
                         <button
                             key={cat}
                             onClick={() => {
@@ -201,8 +195,9 @@ export default function Productos() {
                             }}
                             className={`productos-btn ${filtro === cat ? "active" : ""}`}
                             type="button"
+                            style={{ '--cat-index': idx } as React.CSSProperties }
                         >
-                            {cat}
+                            <span>{cat}</span>
                         </button>
                     ))}
                 </div>
@@ -212,15 +207,19 @@ export default function Productos() {
                         <button
                             onClick={() => setTipoProducto("Premium")}
                             className={`subfiltro-btn ${tipoProducto === "Premium" ? "active" : ""}`}
+                            style={{ '--subfiltro-index': 0 } as React.CSSProperties }
                         >
-                            PREMIUM
+                            <span className="subfiltro-icon" role="img" aria-label="estrella">★</span>
+                            <span>PREMIUM</span>
                         </button>
                         <span className="subfiltro-separator">|</span>
                         <button
                             onClick={() => setTipoProducto("Clasicas")}
                             className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
+                            style={{ '--subfiltro-index': 1 } as React.CSSProperties }
                         >
-                            CLÁSICAS
+                            <span className="subfiltro-icon" role="img" aria-label="clasica">●</span>
+                            <span>CLÁSICAS</span>
                         </button>
                     </div>
                 )}

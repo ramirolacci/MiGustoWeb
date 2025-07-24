@@ -504,49 +504,82 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 }
 
 /* --- Animación sutil y continua para los botones del navbar --- */
-@keyframes navButtonFloat {
+@keyframes navButtonPulseSwing {
   0% {
-    transform: translateY(0) scale(1) rotate(-1deg);
-    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.08);
+    transform: scale(1) rotate(-1deg);
     filter: brightness(1);
   }
-  20% {
-    transform: translateY(-2px) scale(1.04) rotate(1deg);
-    box-shadow: 0 4px 16px 0 rgba(255,215,0,0.12);
-    filter: brightness(1.08);
+  15% {
+    transform: scale(1.025) rotate(1.5deg);
+    filter: brightness(1.04);
   }
-  40% {
-    transform: translateY(1px) scale(0.98) rotate(-2deg);
-    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.10);
+  30% {
+    transform: scale(0.99) rotate(-2deg);
     filter: brightness(0.98);
   }
-  60% {
-    transform: translateY(-1px) scale(1.03) rotate(2deg);
-    box-shadow: 0 6px 18px 0 rgba(255,215,0,0.13);
-    filter: brightness(1.05);
+  50% {
+    transform: scale(1.018) rotate(2deg);
+    filter: brightness(1.03);
   }
-  80% {
-    transform: translateY(0.5px) scale(1.01) rotate(-1deg);
-    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.09);
-    filter: brightness(1.01);
+  70% {
+    transform: scale(0.995) rotate(-1.5deg);
+    filter: brightness(1);
+  }
+  85% {
+    transform: scale(1.012) rotate(1deg);
+    filter: brightness(1.02);
   }
   100% {
-    transform: translateY(0) scale(1) rotate(-1deg);
-    box-shadow: 0 2px 8px 0 rgba(255,215,0,0.08);
+    transform: scale(1) rotate(-1deg);
     filter: brightness(1);
   }
 }
 
+/* Elimino la animación general de los nav-link y side-menu-link */
 .nav-link, .side-menu-link {
-  animation: navButtonFloat 4.5s ease-in-out infinite;
-  animation-delay: calc(var(--nav-index, 0) * 0.18s);
-  /* El delay permite que cada botón se mueva desfasado */
+  animation: none !important;
+}
+
+/* Mantengo la animación solo en el botón 'Hace tu pedido' */
+.nav-link-pedir .btn-hacer-pedido-img {
+  animation: pedidoPulseGlow 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.nav-link-active {
+  animation: none !important;
 }
 
 /* Para que el botón activo también tenga la animación */
 .nav-link-active {
-  animation: navButtonFloat 4.5s ease-in-out infinite;
+  animation: navButtonPulseSwing 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   animation-delay: calc(var(--nav-index, 0) * 0.18s);
+}
+
+@keyframes pedidoPulseGlow {
+  0% {
+    filter: drop-shadow(0 0 0px #ffd700) brightness(1);
+    transform: scale(1);
+  }
+  20% {
+    filter: drop-shadow(0 0 8px #ffd700) brightness(1.08);
+    transform: scale(1.04);
+  }
+  40% {
+    filter: drop-shadow(0 0 16px #ffd700) brightness(1.13);
+    transform: scale(1.08);
+  }
+  60% {
+    filter: drop-shadow(0 0 8px #ffd700) brightness(1.08);
+    transform: scale(1.04);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px #ffd700) brightness(1);
+    transform: scale(1);
+  }
+}
+
+.nav-link-pedir .btn-hacer-pedido-img {
+  animation: pedidoPulseGlow 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* --- Fin animación navbar --- */
