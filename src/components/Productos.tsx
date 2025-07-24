@@ -230,7 +230,7 @@ export default function Productos() {
                             No se encontraron productos que coincidan con tu búsqueda
                         </div>
                     ) : (
-                        productosFiltrados.map((prod) => {
+                        productosFiltrados.map((prod, idx) => {
                             const tiene3D = EMPANADAS_3D.includes(prod.titulo);
                             const isBigBurger = prod.titulo.toLowerCase().includes("big burg");
                             if (isMobile) {
@@ -248,7 +248,7 @@ export default function Productos() {
                                     'Panceta y Ciruela'
                                 ];
                                 return (
-                                    <div className="producto-row-mobile" key={prod.titulo + '-' + prod.categoria} onClick={() => setProductoSeleccionado(prod)}>
+                                    <div className="producto-row-mobile" key={prod.titulo + '-' + prod.categoria} onClick={() => setProductoSeleccionado(prod)} style={{ '--card-index': idx } as React.CSSProperties}>
                                         <img src={prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
                                         <div className="producto-info-mobile">
                                             <h3>{prod.titulo}</h3>
@@ -267,7 +267,7 @@ export default function Productos() {
                                     key={prod.titulo + '-' + prod.categoria}
                                     onClick={() => setProductoSeleccionado(prod)}
                                     data-categoria={filtro}
-                                    style={{ position: 'relative' }}
+                                    style={{ position: 'relative', '--card-index': idx } as React.CSSProperties }
                                     onMouseEnter={isBigBurger ? () => setHoveredBigBurger(true) : undefined}
                                     onMouseLeave={isBigBurger ? () => setHoveredBigBurger(false) : undefined}
                                 >
