@@ -141,6 +141,7 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+    border-radius: 18px;
 }
 
 .productos-btn.active {
@@ -183,15 +184,76 @@ body {
 }
 
 .subfiltro-btn {
-    background: transparent;
-    color: #fff;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: color 0.18s, background-color 0.18s, border-color 0.18s;
-    font-weight: 600;
+    background: transparent !important;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    border-radius: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-shadow: 0 1px 8px #FFD70033;
+    box-shadow: 0 0 0 0 #FFD700;
     position: relative;
-    padding: 0 0.5rem;
+    overflow: visible;
+    padding-left: 2.2em;
+    transition: border-color 0.3s, color 0.3s, box-shadow 0.3s, filter 0.3s;
+    animation: subfiltroAppearGlow 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes subfiltroAppearGlow {
+  0% { box-shadow: 0 0 0 0 #FFD700, 0 0 0 0 #fff; border-color: #fff; filter: brightness(1.2); opacity: 0; }
+  40% { box-shadow: 0 0 12px 4px #FFD700cc, 0 0 0 0 #fff; border-color: #FFD700; filter: brightness(1.08); opacity: 1; }
+  100% { box-shadow: 0 0 0 0 #FFD700, 0 0 0 0 #fff; border-color: #FFD700; filter: none; opacity: 1; }
+}
+.subfiltro-btn::after {
+  content: '';
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 6px;
+  height: 2.5px;
+  background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0.2);
+  transition: opacity 0.3s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+.subfiltro-btn:hover::after, .subfiltro-btn.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.subfiltro-btn .subfiltro-icon {
+  position: absolute;
+  left: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #FFD700;
+  filter: drop-shadow(0 0 4px #FFD70099);
+  pointer-events: none;
+  z-index: 3;
+}
+.subfiltro-btn span {
+  position: relative;
+  z-index: 2;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.subfiltro-btn {
+  color: #fff;
+  background: #181818 !important;
+}
+.subfiltro-btn .subfiltro-icon {
+  color: #fff;
+}
+.subfiltro-btn.active {
+  color: #FFD700;
+  background: #181818 !important;
+  box-shadow: none;
+  filter: none;
+}
+.subfiltro-btn.active .subfiltro-icon {
+  color: #FFD700;
 }
 
 .subfiltro-btn:hover {
@@ -200,10 +262,6 @@ body {
     box-shadow: none !important;
     text-decoration: none !important;
     filter: none !important;
-}
-
-.subfiltro-btn.active {
-    color: #ffd700;
 }
 
 .subfiltro-btn.active::after {
@@ -1987,4 +2045,147 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   .titulo-card-desktop[style*='font-size: 1.05rem'] {
     font-size: 1.05rem !important;
   }
+}
+
+/* --- Efecto reveal épico para las categorías de productos --- */
+@keyframes categoriaReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95) skewX(-8deg);
+    filter: blur(6px) brightness(1.2);
+    text-shadow: 0 0 24px #FFD70088, 0 0 0 #fff;
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04) skewX(2deg);
+    filter: blur(0.5px) brightness(1.08);
+    text-shadow: 0 0 32px #FFD700cc, 0 0 8px #fff;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) skewX(0deg);
+    filter: none;
+    text-shadow: 0 2px 8px #FFD70044, 0 0 0 #fff;
+  }
+}
+.productos-btn {
+  opacity: 0;
+  animation: categoriaReveal 0.85s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: calc(var(--cat-index, 0) * 0.13s);
+  position: relative;
+  overflow: hidden;
+  background-clip: text;
+}
+
+.productos-btn::before {
+  content: '';
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 220%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.08) 100%);
+  filter: blur(2px);
+  z-index: 1;
+  pointer-events: none;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.productos-btn:hover::before {
+  left: 60%;
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.productos-btn span {
+  position: relative;
+  z-index: 2;
+}
+/* --- Fin efecto reveal épico --- */
+
+@keyframes subfiltroReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.95) skewX(-6deg);
+    filter: blur(4px) brightness(1.15);
+    text-shadow: 0 0 18px #FFD70066, 0 0 0 #fff;
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.03) skewX(2deg);
+    filter: blur(0.5px) brightness(1.06);
+    text-shadow: 0 0 24px #FFD700aa, 0 0 6px #fff;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) skewX(0deg);
+    filter: none;
+    text-shadow: 0 2px 6px #FFD70033, 0 0 0 #fff;
+  }
+}
+.subfiltro-btn {
+  opacity: 0;
+  animation: subfiltroReveal 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: calc(var(--subfiltro-index, 0) * 0.18s);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  background-clip: text;
+}
+.subfiltro-btn::before {
+  content: '';
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 220%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.08) 100%);
+  filter: blur(2px);
+  z-index: 1;
+  pointer-events: none;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.subfiltro-btn:hover::before {
+  left: 60%;
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.subfiltro-btn span {
+  position: relative;
+  z-index: 2;
+}
+.subfiltro-btn {
+  padding: 0.45em 1.1em 0.45em 2.1em;
+  min-height: 2.1em;
+  font-size: 1rem;
+  gap: 0.5em;
+}
+.subfiltro-btn .subfiltro-icon {
+  left: 0.7em;
+  font-size: 1.15em;
+}
+.subfiltro-btn {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+@keyframes subfiltroEpicReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.95) skewX(-6deg);
+    filter: blur(4px) brightness(1.15);
+    text-shadow: 0 0 18px #FFD70066, 0 0 0 #fff;
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.03) skewX(2deg);
+    filter: blur(0.5px) brightness(1.06);
+    text-shadow: 0 0 24px #FFD700aa, 0 0 6px #fff;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) skewX(0deg);
+    filter: none;
+    text-shadow: 0 2px 6px #FFD70033, 0 0 0 #fff;
+  }
+}
+.subfiltro-btn {
+  animation: subfiltroEpicReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: calc(var(--subfiltro-index, 0) * 0.18s);
 }
