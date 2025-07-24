@@ -14,6 +14,7 @@ const NavBar: React.FC = () => {
   const navRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +58,7 @@ const NavBar: React.FC = () => {
 
   const isHomePage = location.pathname === '/';
 
-  // Elimino los ítems solicitados del menú desktop
+  
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/carta', label: 'Carta' },
@@ -84,6 +85,13 @@ const NavBar: React.FC = () => {
   const sideMenuLinks = isDesktop
     ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Sucursales', 'Legales'].includes(link.label))
     : allSideMenuLinks;
+
+  // Cuando se cierra el menú, limpiar hoveredMenu
+  useEffect(() => {
+    if (!isMenuOpen) {
+      setHoveredMenu(null);
+    }
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -244,52 +252,85 @@ const NavBar: React.FC = () => {
             {/* Botón cerrar menú hamburguesa */}
             <button
               className="side-menu-close"
-              style={{
-                position: 'absolute',
-                top: 18,
-                left: 18,
-                background: 'none',
-                border: 'none',
-                color: '#fff',
-                fontSize: 32,
-                zIndex: 10001,
-                cursor: 'pointer',
-                display: 'block',
-              }}
               aria-label="Cerrar menú"
               onClick={() => setIsMenuOpen(false)}
             >
               &times;
             </button>
-            {/* Logo solo visible en mobile, arriba a la derecha */}
-            <div className="side-menu-logo-mobile">
-              <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                <img
-                  src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
-                  alt="Mi Gusto"
-                  className="side-menu-logo-img"
-                />
-              </Link>
+            <div className="side-menu-left">
+              <ul className="side-menu-list">
+                {sideMenuLinks.map((link, idx) => (
+                  <li key={link.path} className="side-menu-item" style={{ '--nav-index': idx } as React.CSSProperties }>
+                    <Link
+                      className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
+                      to={link.path}
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      tabIndex={0}
+                      aria-current={location.pathname === link.path ? 'page' : undefined}
+                      onMouseEnter={() => setHoveredMenu(link.label)}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="side-menu-list">
-              {sideMenuLinks.map((link, idx) => (
-                <li key={link.path} className="side-menu-item">
-                  <Link
-                    className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
-                    to={link.path}
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    tabIndex={0}
-                    aria-current={location.pathname === link.path ? 'page' : undefined}
-                    style={{ '--nav-index': idx } as React.CSSProperties }
+            <div className="side-menu-right">
+              {/* Ejemplo de imágenes animadas por sección */}
+              {hoveredMenu && hoveredMenu.trim().toLowerCase() === 'nosotros' ? (
+                <img
+                  src="/side-menu/localMiGusto.webp"
+                  alt="Local Mi Gusto"
+                  className="side-menu-img-fade anim-nosotros"
+                  style={{ animationDelay: '0.05s' }}
+                />
+              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'proveedores' ? (
+                <img
+                  src="/side-menu/proveedor.png"
+                  alt="Proveedores"
+                  className="side-menu-img-fade anim-proveedores"
+                  style={{ animationDelay: '0.05s' }}
+                />
+              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'trabaja con nosotros' ? (
+                <img
+                  src="/side-menu/staff.png"
+                  alt="Trabaja con nosotros"
+                  className="side-menu-img-fade anim-trabaja"
+                  style={{ animationDelay: '0.05s' }}
+                />
+              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'franquicias' ? (
+                <img
+                  src="/side-menu/franquicia.png"
+                  alt="Franquicias"
+                  className="side-menu-img-fade anim-franquicias"
+                  style={{ animationDelay: '0.05s' }}
+                />
+              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'venta corporativa' ? (
+                <img
+                  src="/side-menu/corporativa.png"
+                  alt="Venta Corporativa"
+                  className="side-menu-img-fade anim-corporativa"
+                  style={{ animationDelay: '0.05s' }}
+                />
+              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'studio 3d' ? (
+                <div style={{position: 'relative', width: '100%', height: '100%'}}>
+                  <img
+                    src="/side-menu/EstudioFondo.png"
+                    alt="Studio 3D"
+                    className="side-menu-img-fade anim-3d"
+                    style={{ animationDelay: '0.05s' }}
+                  />
+                  <span
+                    className="studio3d-question-animated"
                   >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                    ?
+                  </span>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </nav>
