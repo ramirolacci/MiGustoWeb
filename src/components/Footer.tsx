@@ -46,6 +46,7 @@ const Footer: React.FC = () => {
         <div className="footer-row">
           {/* Logo y marca */}
           <div className="footer-col-md-3">
+            <div className="footer-logo-divider-vertical" aria-hidden="true"></div>
             <a href="#top" className="footer-logo-link" onClick={handleLinkClick} aria-label="Ir al inicio de la página">
               <img
                 src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
@@ -53,104 +54,58 @@ const Footer: React.FC = () => {
                 className="footer-logo-img"
               />
             </a>
+            <div className="footer-logo-divider-vertical-bottom" aria-hidden="true"></div>
+            <div className="footer-logo-divider" aria-hidden="true"></div>
           </div>
 
-          {/* Links: mobile juntos, desktop en dos columnas */}
+          {/* Links: mobile juntos, desktop en columnas de 4 links */}
           {isMobile ? (
             <div className="footer-col-md-3" style={{ width: '100%' }}>
               <ul className="footer-links-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.2rem' }}>
-                {/* Nuevos links */}
+                {/* Columna 1 */}
                 <li className="footer-link-item"><Link to="/" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Home">Home</Link></li>
                 <li className="footer-link-item"><Link to="/carta" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Carta">Carta</Link></li>
                 <li className="footer-link-item"><Link to="/productos" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Productos">Productos</Link></li>
                 <li className="footer-link-item"><Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">Sucursales</Link></li>
-                {/* Studio 3D */}
+                {/* Columna 2 */}
                 <li className="footer-link-item"><Link to="/3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">Studio 3D</Link></li>
-                {/* Link Nosotros debajo de Studio 3D */}
                 <li className="footer-link-item"><Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">Nosotros</Link></li>
-                {/* Links originales (sin Nosotros aquí) */}
                 <li className="footer-link-item"><Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">Proveedores</Link></li>
                 <li className="footer-link-item"><Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">Trabajá con nosotros</Link></li>
+                {/* Columna 3 */}
                 <li className="footer-link-item"><Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">Franquicias</Link></li>
                 <li className="footer-link-item"><Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">Venta Corporativa</Link></li>
                 <li className="footer-link-item"><Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">Legales</Link></li>
-                {/* Link Defensa al consumidor debajo de Legales */}
                 <li className="footer-link-item"><a href="https://www.argentina.gob.ar/defensadelconsumidor" className="footer-link" target="_blank" rel="noopener noreferrer" tabIndex={0} aria-label="Ir a Defensa al consumidor">Defensa al consumidor</a></li>
               </ul>
             </div>
           ) : (
             <>
-              {/* Nueva columna de enlaces a la izquierda */}
+              {/* Columna 1 */}
               <div className="footer-col-md-3">
                 <ul className="footer-links-list">
-                  <li className="footer-link-item">
-                    <Link to="/" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Home">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/carta" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Carta">
-                      Carta
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/productos" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Productos">
-                      Productos
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">
-                      Sucursales
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">
-                      Studio 3D
-                    </Link>
-                  </li>
-                  {/* Link Nosotros debajo de Studio 3D */}
-                  <li className="footer-link-item">
-                    <Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">
-                      Nosotros
-                    </Link>
-                  </li>
+                  <li className="footer-link-item"><Link to="/" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Home">Home</Link></li>
+                  <li className="footer-link-item"><Link to="/carta" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Carta">Carta</Link></li>
+                  <li className="footer-link-item"><Link to="/productos" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Productos">Productos</Link></li>
+                  <li className="footer-link-item"><Link to="/sucursales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Sucursales">Sucursales</Link></li>
                 </ul>
               </div>
-
-              {/* Segunda columna de enlaces */}
+              {/* Columna 2 */}
               <div className="footer-col-md-3">
                 <ul className="footer-links-list">
-                  <li className="footer-link-item">
-                    <Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">
-                      Proveedores
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">
-                      Trabajá con nosotros
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">
-                      Franquicias
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">
-                      Venta Corporativa
-                    </Link>
-                  </li>
-                  <li className="footer-link-item">
-                    <Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">
-                      Legales
-                    </Link>
-                  </li>
-                  {/* Link Defensa al consumidor debajo de Legales */}
-                  <li className="footer-link-item">
-                    <a href="https://www.argentina.gob.ar/defensadelconsumidor" className="footer-link" target="_blank" rel="noopener noreferrer" tabIndex={0} aria-label="Ir a Defensa al consumidor">
-                      Defensa al consumidor
-                    </a>
-                  </li>
+                  <li className="footer-link-item"><Link to="/3d" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Studio 3D">Studio 3D</Link></li>
+                  <li className="footer-link-item"><Link to="/nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Nosotros">Nosotros</Link></li>
+                  <li className="footer-link-item"><Link to="/proveedores" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Proveedores">Proveedores</Link></li>
+                  <li className="footer-link-item"><Link to="/trabaja-con-nosotros" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Trabajá con nosotros">Trabajá con nosotros</Link></li>
+                </ul>
+              </div>
+              {/* Columna 3 */}
+              <div className="footer-col-md-3">
+                <ul className="footer-links-list">
+                  <li className="footer-link-item"><Link to="/franquicias" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Franquicias">Franquicias</Link></li>
+                  <li className="footer-link-item"><Link to="/venta-corporativa" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Venta Corporativa">Venta Corporativa</Link></li>
+                  <li className="footer-link-item"><Link to="/legales" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} tabIndex={0} aria-label="Ir a Legales">Legales</Link></li>
+                  <li className="footer-link-item"><a href="https://www.argentina.gob.ar/defensadelconsumidor" className="footer-link" target="_blank" rel="noopener noreferrer" tabIndex={0} aria-label="Ir a Defensa al consumidor">Defensa al consumidor</a></li>
                 </ul>
               </div>
             </>
@@ -219,15 +174,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <hr className="footer-divider" />
-
         <div className="footer-row">
           <div className="footer-col-12">
             <p className="footer-final-text">
-              Desarrollado por el Departamento de Sistemas de <strong>Mi Gusto</strong>
-            </p>
-            <p className="footer-final-text">
-              <strong>La Honoria Alimentos S.A.</strong> – Argentina CUIT: 30-71558654-8
+              Desarrollado por el Departamento de Sistemas de <strong>Mi Gusto</strong> | <strong>La Honoria Alimentos S.A.</strong> – Argentina CUIT: 30-71558654-8
             </p>
           </div>
         </div>
