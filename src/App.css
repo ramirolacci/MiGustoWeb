@@ -15,6 +15,14 @@ body.lovers-page .main {
     padding-top: 0 !important;
 }
 
+/* Oculta el widget de Botmaker cuando el side menu está abierto */
+body.side-menu-open iframe[src*="botmaker"],
+body.side-menu-open div[id*="botmaker"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* Botón flotante de ir arriba: tamaño y forma circular en todos los dispositivos */
 .boton-scroll-top, .scroll-to-top, .go-top-btn {
   width: 48px !important;

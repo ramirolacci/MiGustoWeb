@@ -57,6 +57,18 @@ const NavBar: React.FC = () => {
     };
   }, [location.pathname]);
 
+  // Ocultar botmaker cuando el side menu está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('side-menu-open');
+    } else {
+      document.body.classList.remove('side-menu-open');
+    }
+    return () => {
+      document.body.classList.remove('side-menu-open');
+    };
+  }, [isMenuOpen]);
+
   useEffect(() => {
     if (!navRevealPlayed) {
       const timer = setTimeout(() => setNavRevealPlayed(true), 1800);
