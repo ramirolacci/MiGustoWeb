@@ -15,6 +15,7 @@ const NavBar: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [navRevealPlayed, setNavRevealPlayed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +57,25 @@ const NavBar: React.FC = () => {
     };
   }, [location.pathname]);
 
+  // Ocultar botmaker cuando el side menu está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('side-menu-open');
+    } else {
+      document.body.classList.remove('side-menu-open');
+    }
+    return () => {
+      document.body.classList.remove('side-menu-open');
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!navRevealPlayed) {
+      const timer = setTimeout(() => setNavRevealPlayed(true), 1800);
+      return () => clearTimeout(timer);
+    }
+  }, [navRevealPlayed]);
+
   const isHomePage = location.pathname === '/';
 
   
@@ -85,13 +105,6 @@ const NavBar: React.FC = () => {
   const sideMenuLinks = isDesktop
     ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Sucursales', 'Legales'].includes(link.label))
     : allSideMenuLinks;
-
-  // Cuando se cierra el menú, limpiar hoveredMenu
-  useEffect(() => {
-    if (!isMenuOpen) {
-      setHoveredMenu(null);
-    }
-  }, [isMenuOpen]);
 
   return (
     <>
@@ -172,6 +185,7 @@ const NavBar: React.FC = () => {
             {/* Botón Lovers al lado del logo */}
             <LoversButton
               isOn={isSwitchOn}
+              autoConfetti={location.pathname === '/lovers'}
               onClick={() => {
                 setIsSwitchOn(true);
                 setTimeout(() => {
@@ -213,7 +227,7 @@ const NavBar: React.FC = () => {
                   {navLinks.map((link, idx) => (
                     <li key={link.path} className="nav-item">
                       <Link
-                        className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
+                        className={`nav-link text-white epic-reveal${navRevealPlayed ? ' animation-played' : ''}${location.pathname === link.path ? ' nav-link-active' : ''}`}
                         to={link.path}
                         onClick={() => {
                           setIsMenuOpen(false);
@@ -253,24 +267,32 @@ const NavBar: React.FC = () => {
             <button
               className="side-menu-close"
               aria-label="Cerrar menú"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                setHoveredMenu(null); // Desactivar hover al cerrar
+              }}
             >
               &times;
             </button>
             <div className="side-menu-left">
               <ul className="side-menu-list">
                 {sideMenuLinks.map((link, idx) => (
-                  <li key={link.path} className="side-menu-item" style={{ '--nav-index': idx } as React.CSSProperties }>
+                  <li key={link.path + '-' + isMenuOpen} className="side-menu-item" style={{ '--nav-index': idx } as React.CSSProperties }>
                     <Link
                       className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
                       to={link.path}
                       onClick={() => {
                         setIsMenuOpen(false);
+                        setHoveredMenu(null); // Desactivar hover al cerrar
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                       tabIndex={0}
                       aria-current={location.pathname === link.path ? 'page' : undefined}
                       onMouseEnter={() => setHoveredMenu(link.label)}
+                      onMouseLeave={() => {
+                        // Si el menú está abierto, mantener el último hoveredMenu
+                        if (!isMenuOpen) setHoveredMenu(null);
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -279,57 +301,42 @@ const NavBar: React.FC = () => {
               </ul>
             </div>
             <div className="side-menu-right">
-              {/* Ejemplo de imágenes animadas por sección */}
-              {hoveredMenu && hoveredMenu.trim().toLowerCase() === 'nosotros' ? (
-                <img
-                  src="/side-menu/localMiGusto.webp"
-                  alt="Local Mi Gusto"
-                  className="side-menu-img-fade anim-nosotros"
-                  style={{ animationDelay: '0.05s' }}
-                />
-              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'proveedores' ? (
-                <img
-                  src="/side-menu/proveedor.png"
-                  alt="Proveedores"
-                  className="side-menu-img-fade anim-proveedores"
-                  style={{ animationDelay: '0.05s' }}
-                />
-              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'trabaja con nosotros' ? (
-                <img
-                  src="/side-menu/staff.png"
-                  alt="Trabaja con nosotros"
-                  className="side-menu-img-fade anim-trabaja"
-                  style={{ animationDelay: '0.05s' }}
-                />
-              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'franquicias' ? (
-                <img
-                  src="/side-menu/franquicia.png"
-                  alt="Franquicias"
-                  className="side-menu-img-fade anim-franquicias"
-                  style={{ animationDelay: '0.05s' }}
-                />
-              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'venta corporativa' ? (
-                <img
-                  src="/side-menu/corporativa.png"
-                  alt="Venta Corporativa"
-                  className="side-menu-img-fade anim-corporativa"
-                  style={{ animationDelay: '0.05s' }}
-                />
-              ) : hoveredMenu && hoveredMenu.trim().toLowerCase() === 'studio 3d' ? (
-                <div style={{position: 'relative', width: '100%', height: '100%'}}>
-                  <img
-                    src="/side-menu/EstudioFondo.png"
-                    alt="Studio 3D"
-                    className="side-menu-img-fade anim-3d"
-                    style={{ animationDelay: '0.05s' }}
-                  />
-                  <span
-                    className="studio3d-question-animated"
-                  >
-                    ?
-                  </span>
-                </div>
-              ) : null}
+              {/* Mostrar imagen aunque hoveredMenu sea null, si el menú está abierto */}
+              {hoveredMenu && (
+                (() => {
+                  const label = hoveredMenu;
+                  if (!label) return null;
+                  switch (label.trim().toLowerCase()) {
+                    case 'nosotros':
+                      return <img key="/side-menu/localMiGusto.webp" src="/side-menu/localMiGusto.webp" alt="Local Mi Gusto" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
+                    case 'proveedores':
+                      return <img key="/side-menu/proveedor.png" src="/side-menu/proveedor.png" alt="Proveedores" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
+                    case 'trabaja con nosotros':
+                      return <img key="/side-menu/staff.png" src="/side-menu/staff.png" alt="Trabaja con nosotros" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
+                    case 'franquicias':
+                      return <img key="/side-menu/franquicia.png" src="/side-menu/franquicia.png" alt="Franquicias" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
+                    case 'venta corporativa':
+                      return <img key="/side-menu/corporativa.png" src="/side-menu/corporativa.png" alt="Venta Corporativa" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
+                    case 'studio 3d':
+                      return (
+                        <div style={{position: 'relative', width: '100%', height: '100%'}}>
+                          <img
+                            key="/side-menu/EstudioFondo.png"
+                            src="/side-menu/EstudioFondo.png"
+                            alt="Studio 3D"
+                            className="side-menu-img-fade"
+                            style={{ animationDelay: '0.05s' }}
+                          />
+                          <div className="giant-question-mark" key={hoveredMenu + '-' + isMenuOpen}>
+                            ?
+                          </div>
+                        </div>
+                      );
+                    default:
+                      return null;
+                  }
+                })()
+              )}
             </div>
           </div>
         </div>
