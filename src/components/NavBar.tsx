@@ -15,6 +15,7 @@ const NavBar: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [navRevealPlayed, setNavRevealPlayed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +56,13 @@ const NavBar: React.FC = () => {
       document.body.classList.remove('ruta-3d');
     };
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (!navRevealPlayed) {
+      const timer = setTimeout(() => setNavRevealPlayed(true), 1800);
+      return () => clearTimeout(timer);
+    }
+  }, [navRevealPlayed]);
 
   const isHomePage = location.pathname === '/';
 
@@ -165,6 +173,7 @@ const NavBar: React.FC = () => {
             {/* Botón Lovers al lado del logo */}
             <LoversButton
               isOn={isSwitchOn}
+              autoConfetti={location.pathname === '/lovers'}
               onClick={() => {
                 setIsSwitchOn(true);
                 setTimeout(() => {
@@ -206,7 +215,7 @@ const NavBar: React.FC = () => {
                   {navLinks.map((link, idx) => (
                     <li key={link.path} className="nav-item">
                       <Link
-                        className={`nav-link text-white${location.pathname === link.path ? ' nav-link-active' : ''}`}
+                        className={`nav-link text-white epic-reveal${navRevealPlayed ? ' animation-played' : ''}${location.pathname === link.path ? ' nav-link-active' : ''}`}
                         to={link.path}
                         onClick={() => {
                           setIsMenuOpen(false);
@@ -256,7 +265,7 @@ const NavBar: React.FC = () => {
             <div className="side-menu-left">
               <ul className="side-menu-list">
                 {sideMenuLinks.map((link, idx) => (
-                  <li key={link.path} className="side-menu-item" style={{ '--nav-index': idx } as React.CSSProperties }>
+                  <li key={link.path + '-' + isMenuOpen} className="side-menu-item" style={{ '--nav-index': idx } as React.CSSProperties }>
                     <Link
                       className={`side-menu-link ${location.pathname === link.path ? 'active' : ''}`}
                       to={link.path}
@@ -281,9 +290,9 @@ const NavBar: React.FC = () => {
             </div>
             <div className="side-menu-right">
               {/* Mostrar imagen aunque hoveredMenu sea null, si el menú está abierto */}
-              {(hoveredMenu || isMenuOpen) && (
+              {hoveredMenu && (
                 (() => {
-                  const label = hoveredMenu || (sideMenuLinks[0] && sideMenuLinks[0].label);
+                  const label = hoveredMenu;
                   if (!label) return null;
                   switch (label.trim().toLowerCase()) {
                     case 'nosotros':
