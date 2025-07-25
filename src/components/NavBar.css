@@ -443,6 +443,9 @@
     left: 18px;
     font-size: 32px;
   }
+  .side-menu-item {
+    margin-bottom: 14px !important;
+  }
 }
 
 .btn-hacer-pedido-img {
