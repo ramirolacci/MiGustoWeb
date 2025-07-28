@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../pages/Contacto.css';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
@@ -45,6 +45,25 @@ const sucursalesList = [
 ];
 
 const TrabajaConNosotros: React.FC = () => {
+  useEffect(() => {
+    import('scrollreveal').then((module) => {
+      const sr = module.default ? module.default : module;
+      sr().reveal('.trabaja-img', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'left',
+        opacity: 0,
+        reset: false
+      });
+      sr().reveal('.contacto-form-container', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'right',
+        opacity: 0,
+        reset: false
+      });
+    });
+  }, []);
   const [formData, setFormData] = useState({
     nombre: '',
     edad: '',
@@ -228,7 +247,7 @@ const TrabajaConNosotros: React.FC = () => {
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <img src="/staff.png" alt="Imagen staff" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: '80px', position: 'relative', zIndex: 2 }} />
+          <img src="/staff.png" alt="Imagen staff" className="trabaja-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: '80px', position: 'relative', zIndex: 2 }} />
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '100px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: (typeof window !== 'undefined' && window.innerWidth > 900) ? '-40px' : '0' }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
