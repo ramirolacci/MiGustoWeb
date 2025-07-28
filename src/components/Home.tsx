@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, memo } from 'react';
+
 import './Home.css';
 import IphoneWhatsapp from './Iphone';
 
@@ -111,12 +112,53 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
     );
 });
 
+
 function Home() {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 700);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // ScrollReveal para navbar, slider y bloques de app
+    useEffect(() => {
+        import('scrollreveal').then((module) => {
+            const sr = module.default ? module.default : module;
+            // Navbar (ajusta el selector según tu proyecto)
+            sr().reveal('.navbar', {
+                distance: '20px',
+                duration: 1400,
+                origin: 'top',
+                opacity: 0,
+                reset: false
+            });
+            // Slider principal
+            sr().reveal('.home-slider', {
+                distance: '30px',
+                duration: 1600,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false
+            });
+            // Bloques de app
+            sr().reveal('.home-app-descarga', {
+                distance: '30px',
+                duration: 1600,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                origin: 'left',
+                opacity: 0,
+                reset: false
+            });
+            sr().reveal('.home-app-iphone', {
+                distance: '30px',
+                duration: 1600,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                origin: 'right',
+                opacity: 0,
+                reset: false
+            });
+        });
     }, []);
 
     return (
