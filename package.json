@@ -30,6 +30,7 @@
     "react-medium-image-zoom": "^5.2.14",
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.6.1",
+    "scrollreveal": "^4.0.9",
     "sweetalert2": "^11.22.2",
     "swiper": "^11.2.10"
   },
