@@ -37,14 +37,12 @@ function formatearPrecio(precio: string | number) {
 const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
 const EMPANADAS_3D = [
-    "Big Burger",
     "Big burger",
     "Mexican Pibil pork",
     "Mexican pibil pork",
     "Mexican Veggie",
     "Mexican veggie",
     "Matambre a la pizza",
-    "Cheese Burger",
     "Cheese burger",
     "American Chicken",
     "American chicken",

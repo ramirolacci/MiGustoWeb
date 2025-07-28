@@ -319,10 +319,10 @@ function App() {
   const sabores = [
     'Mexican Pibil Pork',
     'Mexican Veggie',
-    'Big Burger',
+    'Big burger',
     'Vacio y provoleta',
     'Matambre a la pizza',
-    'CheeseBurger',
+    'Cheese burger',
     'Jamon y queso',
     'American Chicken',
     'Jamon, queso y huevo',

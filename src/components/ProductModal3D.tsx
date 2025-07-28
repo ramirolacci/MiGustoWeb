@@ -22,15 +22,15 @@ interface ProductModal3DProps {
 }
 
 const RUTAS_3D: Record<string, string> = {
-    "Big Burguer": "/3D/big-burger-3D.glb",
-    "Big burguer": "/3D/big-burger-3D.glb",
+    "Big burger": "/3D/big-burger-3D.glb",
+    "Big Burger": "/3D/big-burger-3D.glb",
     "Mexican Pibil pork": "/3D/mexican-veggie-3D.glb", 
     "Mexican pibil pork": "/3D/mexican-veggie-3D.glb", 
     "Mexican Veggie": "/3D/mexican-veggie-3D.glb",
     "Mexican veggie": "/3D/mexican-veggie-3D.glb",
     "Matambre a la pizza": "/3D/Matambre-a-la-Pizza-3D.glb",
-    "Cheese Burguer": "/3D/cheese-burger-3D.glb",
-    "Cheese burguer": "/3D/cheese-burger-3D.glb",
+    "Cheese burger": "/3D/cheese-burger-3D.glb",
+    "Cheese Burger": "/3D/cheese-burger-3D.glb",
     "American Chicken": "/3D/american-chicken-3D.glb",
     "American chicken": "/3D/american-chicken-3D.glb",
     "Vacio y provoleta": "/3D/vacio-provoleta-3D.glb",
@@ -40,15 +40,15 @@ const RUTAS_3D: Record<string, string> = {
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {
-    "Big Burguer": "45deg 65deg 2.7m",
-    "Big burguer": "45deg 65deg 2.7m",
+    "Big burger": "45deg 65deg 2.7m",
+    "Big Burger": "45deg 65deg 2.7m",
     "Mexican Pibil pork": "45deg 65deg 2.7m",
     "Mexican pibil pork": "45deg 65deg 2.7m",
     "Mexican Veggie": "45deg 65deg 2.7m",
     "Mexican veggie": "45deg 65deg 2.7m",
     "Matambre a la pizza": "45deg 65deg 2.7m",
-    "Cheese Burguer": "180deg 65deg 2.7m",
-    "Cheese burguer": "180deg 65deg 2.7m",
+    "Cheese burger": "180deg 65deg 2.7m",
+    "Cheese Burger": "180deg 65deg 2.7m",
     "American Chicken": "90deg 65deg 2.7m",
     "American chicken": "90deg 65deg 2.7m",
     "Vacio y provoleta": "90deg 65deg 2.7m",
