@@ -40,6 +40,25 @@ const Sucursales: React.FC = () => {
         setSucursalesMostradas(6);
     }, [filtro]);
 
+    useEffect(() => {
+        import('scrollreveal').then((module) => {
+            const sr = module.default ? module.default : module;
+            sr().reveal('.productos-titulo', {
+                distance: '20px',
+                duration: 1400,
+                origin: 'top',
+                opacity: 0,
+                reset: false
+            });
+            sr().reveal('.row', {
+                distance: '30px',
+                duration: 1600,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false
+            });
+        });
+    }, []);
     return (
         <div className="sucursales-section">
             <div className="background-overlay"></div>

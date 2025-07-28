@@ -89,6 +89,25 @@ const Nosotros: React.FC = () => {
         };
     }, []);
 
+    useEffect(() => {
+        import('scrollreveal').then((module) => {
+            const sr = module.default ? module.default : module;
+            sr().reveal('.section-card', {
+                distance: '30px',
+                duration: 1600,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false
+            });
+            sr().reveal('.nosotros-video-container', {
+                distance: '30px',
+                duration: 1600,
+                origin: 'right',
+                opacity: 0,
+                reset: false
+            });
+        });
+    }, []);
     return (
         <div className="nosotros-container">
             <div className="background-overlay"></div>
