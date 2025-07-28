@@ -27,38 +27,224 @@
     margin-top: 24px;
 }
 
+/* Estilos base de la revista */
+
+/* Animaciones de partículas épicas */
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-150px) scale(1) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-300px) scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes waveExpand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(8);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* Contenedor principal con animación épica */
 .revista-container {
-    background: none !important;
-    background-color: transparent !important;
+    opacity: 0;
+    transform: scale(0.8) rotateY(20deg);
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    z-index: 1;
+    perspective: 1200px;
+}
+
+.revista-container.container-revealed {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+}
+
+.revista-container.epic-animating {
+    animation: epicContainerPulse 3s ease-in-out;
+}
+
+@keyframes epicContainerPulse {
+    0%, 100% { 
+        transform: scale(1) rotateY(0deg); 
+    }
+    25% { 
+        transform: scale(1.05) rotateY(2deg); 
+    }
+    75% { 
+        transform: scale(1.02) rotateY(-1deg); 
+    }
+}
+
+
+
+
+
+/* Wrapper del contenido */
+.revista-content-wrapper {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    min-height: calc(100vh - 136px);
+    min-height: calc(100vh - 150px);
 }
 
-.revista-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-}
-
+/* Flipbook con efectos mejorados */
 .revista-flipbook {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 0 20px rgba(255, 215, 0, 0.08),
+        0 0 40px rgba(255, 215, 0, 0.05);
+    border-radius: 12px;
     overflow: hidden;
     background-color: #000000;
+    transition: all 0.4s ease;
+    position: relative;
 }
 
+.revista-flipbook::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.revista-flipbook:hover::before {
+    opacity: 1;
+}
+
+.revista-flipbook:hover {
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(255, 215, 0, 0.15),
+        0 0 60px rgba(255, 215, 0, 0.1);
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Swiper con efectos */
+.revista-swiper {
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 0 20px rgba(255, 215, 0, 0.08),
+        0 0 40px rgba(255, 215, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.revista-swiper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.revista-swiper:hover::before {
+    opacity: 1;
+}
+
+.revista-swiper:hover {
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(255, 215, 0, 0.15),
+        0 0 60px rgba(255, 215, 0, 0.1);
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Instrucciones con animación mejorada */
+.revista-instructions {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.8s ease;
+    z-index: 10;
+}
+
+.revista-instructions.instructions-visible {
+    opacity: 1;
+    bottom: -35px;
+    animation: instructionBounce 2s ease-in-out infinite;
+}
+
+@keyframes instructionBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.instruction-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #FFD700;
+    font-size: 1rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    animation: instructionFloat 2s ease-in-out infinite;
+}
+
+.instruction-text i {
+    font-size: 1.1rem;
+    animation: handWave 1.5s ease-in-out infinite;
+}
+
+@keyframes instructionFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes handWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(8deg); }
+    75% { transform: rotate(-8deg); }
+}
+
+/* Efectos de página */
 .revista-pagina {
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 }
 
 .revista-img {
@@ -66,6 +252,11 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: all 0.3s ease;
+}
+
+.revista-pagina:hover .revista-img {
+    transform: scale(1.02);
 }
 
 .revista-arrow-right,
@@ -90,39 +281,41 @@
     100% { transform: translate(-50%, 60px) scale(1);}
 }
 
-/* Responsivo */
+/* Responsivo mejorado */
 @media (max-width: 768px) {
     .revista-container {
         padding: 1rem;
     }
 
-    .revista-flipbook {
+    .revista-flipbook,
+    .revista-swiper {
         width: 100% !important;
         height: auto !important;
     }
     
-    .revista-arrow-left,
-    .revista-arrow-right {
-        font-size: 2rem;
-        left: 50%;
-        bottom: 50%;
-        top: auto;
-        transform: translate(-50%, 50%);
+    .revista-instructions {
+        bottom: -45px;
     }
-
-    .revista-arrow-left {
-        left: 85%;
-        right: auto;
-        transform: translate(-50%, 0);
+    
+    .instruction-text {
+        font-size: 0.9rem;
     }
-
-    .revista-arrow-right {
-        left: 15%;
-        right: auto;
-        transform: translate(-50%, 0);
+    
+    .revista-content-wrapper {
+        min-height: calc(100vh - 120px);
+        padding: 1rem;
     }
+    
 
-    .revista-section {
-        margin-top: 24px !important;
+}
+
+/* Efectos adicionales para móvil */
+@media (max-width: 480px) {
+    .revista-titulo-epico {
+        font-size: 1.8rem;
+    }
+    
+    .title-underline {
+        width: 100px;
     }
 }
