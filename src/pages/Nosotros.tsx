@@ -97,14 +97,14 @@ const Nosotros: React.FC = () => {
                 duration: 1600,
                 origin: 'bottom',
                 opacity: 0,
-                reset: false
+                reset: true
             });
             sr().reveal('.nosotros-video-container', {
                 distance: '30px',
                 duration: 1600,
                 origin: 'right',
                 opacity: 0,
-                reset: false
+                reset: true
             });
         });
     }, []);

@@ -91,14 +91,14 @@ const Proveedores: React.FC = () => {
         duration: 1600,
         origin: 'left',
         opacity: 0,
-        reset: false
+        reset: true
       });
       sr().reveal('.contacto-form-container', {
         distance: '30px',
         duration: 1600,
         origin: 'right',
         opacity: 0,
-        reset: false
+        reset: true
       });
     });
   }, []);
