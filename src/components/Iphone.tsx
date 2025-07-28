@@ -187,31 +187,50 @@ const IphoneStore: React.FC = () => {
                         </div>
                     )}
 
-                    {/* Contenedor para el contenido principal scrollable */}
+                    {/* Contenido principal scrollable: slider o promociones */}
                     <div className="iphone-content-scrollable">
-                        {/* Slider de imágenes */}
-                        <div className="iphone-slider">
-                            {sliderImages.map((image, index) => (
-                                <div 
-                                    key={index} 
-                                    className={`iphone-slide ${index === currentSlide ? 'active' : ''}`}
-                                    style={{ backgroundImage: `url(${image})` }}
-                                >
-                                    {/* Puedes añadir contenido sobre la imagen si es necesario */}
+                        {activeCategory === 'Promociones' ? (
+                            <div style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <img 
+                                    src="/promociones-iphone.jpg" 
+                                    alt="Promociones" 
+                                    style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
+                                />
+                            </div>
+                        ) : activeCategory === 'Mis cupones' ? (
+                            <div style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <img 
+                                    src="/mis-cupones.jpg" 
+                                    alt="Mis cupones" 
+                                    style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
+                                />
+                            </div>
+                        ) : (
+                            <>
+                                {/* Slider de imágenes */}
+                                <div className="iphone-slider">
+                                    {sliderImages.map((image, index) => (
+                                        <div 
+                                            key={index} 
+                                            className={`iphone-slide ${index === currentSlide ? 'active' : ''}`}
+                                            style={{ backgroundImage: `url(${image})` }}
+                                        >
+                                            {/* Puedes añadir contenido sobre la imagen si es necesario */}
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-
-                        {/* Indicadores del slider */}
-                        <div className="slider-indicators">
-                            {sliderImages.map((_, index) => (
-                                <span 
-                                    key={index} 
-                                    className={`indicator ${index === currentSlide ? 'active' : ''}`}
-                                    onClick={() => setCurrentSlide(index)}
-                                ></span>
-                            ))}
-                        </div>
+                                {/* Indicadores del slider */}
+                                <div className="slider-indicators">
+                                    {sliderImages.map((_, index) => (
+                                        <span 
+                                            key={index} 
+                                            className={`indicator ${index === currentSlide ? 'active' : ''}`}
+                                            onClick={() => setCurrentSlide(index)}
+                                        ></span>
+                                    ))}
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     <ul className="footer">
