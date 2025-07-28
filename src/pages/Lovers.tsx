@@ -74,7 +74,7 @@ function EmpanadaRain() {
 }
 
 const saboresEmpanadas = [
-  "Mexican pibil pork","Mexican veggie","Big burguer","Matambre a la pizza","Cheese burguer","Vacio y provoleta","American chicken","Jamón y queso","Jamón, huevo y queso","Carne picante","Carne con aceituna","Carne a cuchillo","Carne Suave","Queso y cebolla","Roquefort con jamón","Jamón, tomate y albahaca","Pollo","Cuatro quesos","Pollo al champignon","Choclo","Verdura","Calabaza","Panceta y ciruela","Carne"
+  "Mexican pibil pork","Mexican veggie","Big burger","Matambre a la pizza","Cheese burger","Vacio y provoleta","American chicken","Jamón y queso","Jamón, huevo y queso","Carne picante","Carne con aceituna","Carne a cuchillo","Carne Suave","Queso y cebolla","Roquefort con jamón","Jamón, tomate y albahaca","Pollo","Cuatro quesos","Pollo al champignon","Choclo","Verdura","Calabaza","Panceta y ciruela","Carne"
 ];
 
 const Lovers = () => {

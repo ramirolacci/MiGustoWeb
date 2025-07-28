@@ -26,7 +26,7 @@ export const empanadas: Empanada[] = [
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/9a2d8724-46bc-4cde-915f-c958c8e25ef4.jpg",
     imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
-    titulo: "Big burguer",
+    titulo: "Big burger",
     precio: 4000,
     descripcion: "Blend de ojo de bife, Tapa de asado, Doble bacon, Cheddar, Pepinillos, Salsa Big.",
     esRecomendado: true,
@@ -43,8 +43,8 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/3a48db8e-4dcd-476c-aa07-2a4503c637e1.jpg",
-    imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burguer.png",
-    titulo: "Cheese burguer",
+    imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burger.png",
+    titulo: "Cheese burger",
     precio: 4000,  
     descripcion: "Blend de ojo de bife y vacio, Doble bacon, Salsa bbq, Mar de cheddar.",
     esRecomendado: true,
