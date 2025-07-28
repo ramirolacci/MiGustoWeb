@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Users, Gift } from 'lucide-react';
 import { Percent, Crown } from 'lucide-react';
 import NavBar from '../components/NavBar';
@@ -7,7 +7,6 @@ import Empanada1 from '../lovers/assets/Empanadas/Mexican-Veggie-demo.png';
 import Empanada2 from '../lovers/assets/Empanadas/Mexican-Pibil-Pork-demo.png';
 import Empanada3 from '../lovers/assets/Empanadas/Matambre a la pizza.png';
 import Empanada4 from '../lovers/assets/Empanadas/burger.png';
-import { useEffect } from 'react';
 import Footer from '../components/Footer';
 
 const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
@@ -78,6 +77,33 @@ const saboresEmpanadas = [
 ];
 
 const Lovers = () => {
+  // ScrollReveal animation
+  useEffect(() => {
+    import('scrollreveal').then((module) => {
+      const sr = module.default ? module.default : module;
+      sr().reveal('.productos-titulo', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'top',
+        opacity: 0,
+        reset: true
+      });
+      sr().reveal('.lovers-beneficios-grid', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'left',
+        opacity: 0,
+        reset: true
+      });
+      sr().reveal('.contacto-form-container', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'right',
+        opacity: 0,
+        reset: true
+      });
+    });
+  }, []);
   // Estado para los sabores seleccionados
   const [formData, setFormData] = useState({
     nombreCompleto: '',
