@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Nosotros.css';
 
 const Legales: React.FC = () => {
+  useEffect(() => {
+    import('scrollreveal').then((module) => {
+      const sr = module.default ? module.default : module;
+      sr().reveal('.section-card', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'bottom',
+        opacity: 0,
+        reset: false
+      });
+    });
+  }, []);
   return (
     <div className="nosotros-container">
       <div className="background-overlay"></div>
