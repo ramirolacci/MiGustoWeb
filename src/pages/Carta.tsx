@@ -13,14 +13,14 @@ const Carta: React.FC = () => {
         duration: 1400,
         origin: 'top',
         opacity: 0,
-        reset: false
+        reset: true
       });
       sr().reveal('.revista-section', {
         distance: '30px',
         duration: 1600,
         origin: 'bottom',
         opacity: 0,
-        reset: false
+        reset: true
       });
     });
   }, []);

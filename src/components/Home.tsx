@@ -131,7 +131,7 @@ function Home() {
                 duration: 1400,
                 origin: 'top',
                 opacity: 0,
-                reset: false
+                reset: true
             });
             // Slider principal
             sr().reveal('.home-slider', {
@@ -139,7 +139,7 @@ function Home() {
                 duration: 1600,
                 origin: 'bottom',
                 opacity: 0,
-                reset: false
+                reset: true
             });
             // Bloques de app
             sr().reveal('.home-app-descarga', {
@@ -148,7 +148,7 @@ function Home() {
                 easing: 'cubic-bezier(0.5, 0, 0, 1)',
                 origin: 'left',
                 opacity: 0,
-                reset: false
+                reset: true
             });
             sr().reveal('.home-app-iphone', {
                 distance: '30px',
@@ -156,7 +156,7 @@ function Home() {
                 easing: 'cubic-bezier(0.5, 0, 0, 1)',
                 origin: 'right',
                 opacity: 0,
-                reset: false
+                reset: true
             });
         });
     }, []);

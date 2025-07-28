@@ -183,14 +183,14 @@ export default function Productos() {
                 duration: 1400,
                 origin: 'top',
                 opacity: 0,
-                reset: false
+                reset: true
             });
             sr().reveal('.productos-lista', {
                 distance: '30px',
                 duration: 1600,
                 origin: 'bottom',
                 opacity: 0,
-                reset: false
+                reset: true
             });
         });
     }, []);

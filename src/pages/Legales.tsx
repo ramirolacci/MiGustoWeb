@@ -10,7 +10,7 @@ const Legales: React.FC = () => {
         duration: 1600,
         origin: 'bottom',
         opacity: 0,
-        reset: false
+        reset: true
       });
     });
   }, []);
