@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { sucursales } from '../data/sucursalesData';
 import SucursalCard from '../components/SucursalCard';
 import './SucursalCard.css';
@@ -6,9 +6,10 @@ import './Sucursales.css';
 
 const Sucursales: React.FC = () => {
     const [filtro, setFiltro] = useState('');
-    const [sucursalesMostradas, setSucursalesMostradas] = useState(10);
+    const [sucursalesMostradas, setSucursalesMostradas] = useState(6); // Reducido de 10 a 6
     const [aparecer, setAparecer] = useState(false);
     const [bordeLuz, setBordeLuz] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setAparecer(true);
@@ -26,9 +27,18 @@ const Sucursales: React.FC = () => {
     const sucursalesVisibles = sucursalesFiltradas.slice(0, sucursalesMostradas);
     const hayMasSucursales = sucursalesFiltradas.length > sucursalesMostradas;
 
-    const cargarMasSucursales = () => {
-        setSucursalesMostradas(prev => prev + 10);
-    };
+    const cargarMasSucursales = useCallback(async () => {
+        setIsLoading(true);
+        // Simular un pequeño delay para mejor UX
+        await new Promise(resolve => setTimeout(resolve, 300));
+        setSucursalesMostradas(prev => prev + 6); // Cargar 6 en lugar de 10
+        setIsLoading(false);
+    }, []);
+
+    // Resetear contador cuando cambia el filtro
+    useEffect(() => {
+        setSucursalesMostradas(6);
+    }, [filtro]);
 
     return (
         <div className="sucursales-section">
@@ -58,11 +68,28 @@ const Sucursales: React.FC = () => {
                     {hayMasSucursales && (
                         <div className="text-center mt-4">
                             <button 
-                                className="btn-ver-mas"
+                                className={`btn-ver-mas${isLoading ? ' loading' : ''}`}
                                 onClick={cargarMasSucursales}
+                                disabled={isLoading}
                             >
-                                Ver Más Sucursales
+                                {isLoading ? (
+                                    <>
+                                        <i className="fas fa-spinner fa-spin"></i>
+                                        Cargando...
+                                    </>
+                                ) : (
+                                    'Ver Más Sucursales'
+                                )}
                             </button>
+                        </div>
+                    )}
+
+                    {sucursalesFiltradas.length === 0 && (
+                        <div className="text-center mt-4">
+                            <p className="no-results">
+                                <i className="fas fa-search"></i>
+                                No se encontraron sucursales con ese criterio de búsqueda.
+                            </p>
                         </div>
                     )}
                 </div>
