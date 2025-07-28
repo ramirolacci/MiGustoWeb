@@ -56,12 +56,20 @@ const Footer: React.FC = () => {
               />
             </a>
             <div className="footer-logo-divider-vertical-bottom" aria-hidden="true"></div>
-            <div className="footer-logo-divider" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-              <div style={{ position: 'relative', width: '100%' }}>
-                <div style={{ height: '2px', background: 'rgba(255,255,255,0.4)', width: '100%' }}></div>
-                <span className="footer-divider-point subfiltro-icon" role="img" aria-label="clasica" style={{ position: 'absolute', right: -20, top: '-48%', transform: 'translateY(-50%)', fontSize: '1.4em' }}>●</span>
+            {/* Línea y punto: desktop a la derecha, mobile debajo */}
+            {isMobile ? (
+              <>
+                <div className="footer-logo-divider" aria-hidden="true"></div>
+                <div className="footer-logo-dot" aria-hidden="true"></div>
+              </>
+            ) : (
+              <div className="footer-logo-divider" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                <div style={{ position: 'relative', width: '100%' }}>
+                  <div style={{ height: '2px', background: 'rgba(255,255,255,0.4)', width: '100%' }}></div>
+                  <span className="footer-divider-point subfiltro-icon" role="img" aria-label="clasica" style={{ position: 'absolute', right: -20, top: '-48%', transform: 'translateY(-50%)', fontSize: '1.4em' }}>●</span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Links: mobile juntos, desktop en columnas de 4 links */}

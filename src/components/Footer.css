@@ -1,3 +1,75 @@
+@media (max-width: 768px) {
+  .footer-social-block {
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 4rem;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    padding: 0;
+  }
+  .footer-social-title {
+    text-align: center !important;
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .footer-social-icons {
+    justify-content: center !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .footer-app-links {
+    justify-content: center !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+/*
+IMPORTANTE: Para que el punto quede debajo de la línea en mobile,
+asegúrate de que el HTML/JSX tenga esta estructura:
+
+<div className="footer-logo-divider"></div>
+<div className="footer-logo-dot"></div>
+
+Ambos deben estar en el mismo contenedor, uno debajo del otro.
+*/
+/* Punto decorativo debajo de la línea vertical del logo en mobile */
+@media (max-width: 768px) {
+  .footer-logo-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    margin: 0.7rem auto 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .footer-logo-divider {
+    position: static;
+    left: unset;
+    top: unset;
+    width: 2px;
+    height: 80px;
+    margin: 1.5rem auto 0 auto;
+    background: rgb(255, 255, 255);
+    opacity: 0.5;
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .footer-logo-link {
+    margin-top: 2.5rem;
+  }
+}
 /* Posiciona el bloque SocialBlock más a la derecha */
 .footer-social-block {
     margin-left: auto;
@@ -121,7 +193,7 @@ max-width: 1200px;
 .footer-col-md-3, .footer-col-md-4 {
     flex: 0 0 auto;
     width: auto;
-    margin-bottom: 2rem;
+    margin-bottom: -4rem;
     /* transition: transform 0.3s ease; */
 }
 
