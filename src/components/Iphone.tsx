@@ -93,9 +93,9 @@ const IphoneStore: React.FC = () => {
                                 <div className="island-sensor"></div>
                             </div>
                             <div className="icons">
-                                <img className="icon" src="https://raw.githubusercontent.com/khatri2002/codepen/30b52de44864248b0617b059a7fc7c0ebbcc0eda/iphone-whatsapp/assets/images/icons/network-icon.svg" alt="network-icon" />
-                                <img className="icon" src="https://raw.githubusercontent.com/khatri2002/codepen/30b52de44864248b0617b059a7fc7c0ebbcc0eda/iphone-whatsapp/assets/images/icons/wifi-icon.svg" alt="wifi-icon" />
-                                <img className="icon" src="https://raw.githubusercontent.com/khatri2002/codepen/30b52de44864248b0617b059a7fc7c0ebbcc0eda/iphone-whatsapp/assets/images/icons/battery-icon.svg" alt="battery-icon" />
+                                <i className="fa-solid fa-signal icon" style={{fontSize: '0.95rem'}} aria-label="signal"></i>
+                                <i className="fa-solid fa-wifi icon" style={{fontSize: '0.95rem'}} aria-label="wifi"></i>
+                                <i className="fa-solid fa-battery-full icon" style={{fontSize: '0.95rem'}} aria-label="battery"></i>
                             </div>
                         </div>
                         <div className="appstore-header">
@@ -155,11 +155,11 @@ const IphoneStore: React.FC = () => {
                                          <span>Mis direcciones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Cupones')}>
-                                         <i className="fa-solid fa-ticket-alt"></i> {/* Icono placeholder */}
+                                         <i className="fa-solid fa-ticket"></i> {/* Icono actualizado */}
                                          <span>Cupones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Mis cupones')}>
-                                         <i className="fa-solid fa-ticket-alt"></i> {/* Icono placeholder */}
+                                         <i className="fa-solid fa-ticket"></i> {/* Icono actualizado */}
                                          <span>Mis cupones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Promociones')}>
@@ -179,7 +179,7 @@ const IphoneStore: React.FC = () => {
                                          <span>Perfil</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Sobre la app')}>
-                                         <i className="fa-solid fa-info-circle"></i> {/* Icono placeholder */}
+                                         <i className="fa-solid fa-circle-info"></i> {/* Icono actualizado */}
                                          <span>Sobre la app</span>
                                     </li>
                                 </ul>
