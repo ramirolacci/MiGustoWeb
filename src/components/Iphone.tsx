@@ -16,6 +16,7 @@ const IphoneStore: React.FC = () => {
     const [isDynamicIslandExpanded, setIsDynamicIslandExpanded] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showWhatsAppNotification, setShowWhatsAppNotification] = useState(false);
+    const [showPedidoModal, setShowPedidoModal] = useState(false);
 
     useEffect(() => {
         const updateTime = () => {
@@ -49,12 +50,18 @@ const IphoneStore: React.FC = () => {
         return () => clearInterval(slideInterval);
     }, [sliderImages.length]);
 
+
     const handleCategoryClick = (category: string) => {
         setActiveCategory(category);
+        if (category === 'Pedir') {
+            setShowPedidoModal(true);
+        }
         // Lógica de navegación o acción según la categoría
         console.log(`Clicked on: ${category}`);
         // setIsMenuOpen(false); // Cerrar menú al seleccionar opción
     };
+
+    const closePedidoModal = () => setShowPedidoModal(false);
 
     const handleDynamicIslandClick = () => {
         setIsDynamicIslandExpanded(!isDynamicIslandExpanded);
@@ -230,6 +237,17 @@ const IphoneStore: React.FC = () => {
                                     ))}
                                 </div>
                             </>
+                        )}
+                        {/* Modal para Pedir */}
+                        {showPedidoModal && (
+                            <div className="pedido-modal-overlay">
+                                <div className="pedido-modal">
+                                    <div className="pedido-modal-title">Elegí una opción</div>
+                                    <button className="pedido-modal-option" onClick={closePedidoModal}>Delivery</button>
+                                    <button className="pedido-modal-option" onClick={closePedidoModal}>Retiro en local</button>
+                                    <button className="pedido-modal-cancel" onClick={closePedidoModal}>Cancelar</button>
+                                </div>
+                            </div>
                         )}
                     </div>
 
