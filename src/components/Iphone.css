@@ -1,3 +1,92 @@
+/* Modal Pedido dentro del iPhone */
+.pedido-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.pedido-modal {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 260px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.pedido-modal-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #111;
+}
+
+/* Líneas sutiles entre las opciones del modal */
+.pedido-modal-option {
+  background: #f5f5f5;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+}
+.pedido-modal-option:not(:last-of-type)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: -0.35rem;
+  height: 1px;
+  background: #d9d3d3;
+  opacity: 0.8;
+}
+
+.pedido-modal-option {
+  background: #f5f5f5;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pedido-modal-option:hover {
+  background: #e0e0e0;
+}
+
+.pedido-modal-cancel {
+  background: transparent;
+  border: none;
+  color: #d32f2f;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  transition: background 0.2s;
+}
+.pedido-modal-cancel:hover {
+  background: #fbe9e7;
+}
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* Encapsula todos los estilos bajo .iphone-wrapper para evitar afectar el resto del sitio */
