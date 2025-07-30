@@ -197,7 +197,7 @@ const IphoneStore: React.FC = () => {
                     {/* Contenido principal scrollable: slider o promociones */}
                     <div className="iphone-content-scrollable">
                         {activeCategory === 'Promociones' ? (
-                            <div style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <div className="promociones-scroll" style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <img 
                                     src="/promociones-iphone.jpg" 
                                     alt="Promociones" 

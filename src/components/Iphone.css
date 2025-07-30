@@ -1,3 +1,8 @@
+/* Scroll solo para la opción Promociones dentro del iPhone */
+.promociones-scroll {
+  overflow-y: auto;
+  height: 100%;
+}
 /* Modal Pedido dentro del iPhone */
 .pedido-modal-overlay {
   position: absolute;
