@@ -1,3 +1,28 @@
+/* Efecto scroll reveal para todo el navbar */
+.navbar-scrollreveal {
+  opacity: 0;
+  transform: translateY(-32px) scale(0.98);
+  filter: blur(8px) brightness(1.1);
+  animation: navbarScrollReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes navbarScrollReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-32px) scale(0.98);
+    filter: blur(8px) brightness(1.1);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.04);
+    filter: blur(2px) brightness(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+}
 .nav-link-active {
   position: relative;
   font-weight: 600;
@@ -45,6 +70,15 @@
   width: 100%;
   transform: scaleY(1);
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Eliminar subrayado animado de los links del navbar */
+.nav-link-active::after,
+.nav-link:not(.nav-link-active)::after,
+.nav-link:not(.nav-link-active):hover::after,
+.nav-link:not(.nav-link-active):focus::after {
+  content: none !important;
+  display: none !important;
 }
 
 @media (max-width: 700px) {
@@ -103,21 +137,28 @@
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0 0.75rem;
-  padding: 0.5rem 0;
-  color: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem 1.25rem; /* Más generoso */
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.95;
   display: inline-block;
+  border-radius: 1.5rem; /* Bordes redondeados */
+  background: rgba(30, 30, 40, 0.18); /* Fondo translúcido */
+  backdrop-filter: blur(6px); /* Blur moderno */
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10); /* Sombra suave */
+  outline: none;
 }
 
-.nav-link:hover {
-  transform: translateY(-2px);
+.nav-link:hover, .nav-link:focus {
+  transform: scale(1.08) translateY(-2px);
   opacity: 1;
-  color: #ffffff;
+  color: #fff;
+  background: rgba(40, 40, 60, 0.32); /* Fondo más visible al hover */
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.16);
 }
 
 .navbar-toggler {
@@ -395,8 +436,8 @@
   color: #FFD700;
   background: none;
   transform: scale(1.07) translateX(8px) skewX(-2deg);
-  box-shadow: 0 4px 32px 0 #FFD70033, 0 1px 8px #FFD70022;
-  text-shadow: 0 2px 16px #FFD70099, 0 1px 4px #fff8;
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 .side-menu-link:hover::after, .side-menu-link.active::after {
   opacity: 1;
@@ -682,7 +723,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   height: 90vh;
   max-height: 90vh;
   border-radius: 32px;
-  box-shadow: 0 8px 48px 0 #FFD70033, 0 2px 12px #0008;
+  box-shadow: none !important;
   opacity: 0;
   animation: sideMenuImgFadeIn 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
   z-index: 10;
@@ -761,19 +802,35 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 }
 
 .epic-reveal {
-  opacity: 0;
-  filter: blur(10px) brightness(1.2);
-  transform: translateX(-80px) scale(0.92) skewY(-6deg) rotateZ(-8deg);
-  animation: proNavLeftReveal 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: calc(var(--nav-index, 0) * 0.14s + 0.22s);
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
   position: relative;
-  color: transparent;
-  background: linear-gradient(90deg, #fff 0%, #ffd700 60%, #ff9800cc 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  text-shadow: 0 0 24px #ffd70088, 0 0 8px #fff8;
-  letter-spacing: 0.12em;
+  color: #fff;
+  background: none;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  text-shadow: none;
+  letter-spacing: 0.01em;
 }
+
+/* Fuerzo que todos los links principales del navbar tengan el mismo estilo base que Home */
+.navbar-nav .nav-link.epic-reveal,
+.navbar-nav .nav-link.epic-reveal.animation-played,
+.navbar-nav .nav-link.nav-link-active {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  animation: none !important;
+  color: #fff !important;
+  background: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: none !important;
+  letter-spacing: 0.01em !important;
+}
+
 .epic-reveal::after {
   content: '';
   display: block;
