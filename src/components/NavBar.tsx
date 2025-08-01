@@ -273,7 +273,7 @@ const NavBar: React.FC = () => {
             >
               &times;
             </button>
-            <div className="side-menu-left">
+            <div className="side-menu-left side-menu-centered">
               <ul className="side-menu-list">
                 {sideMenuLinks.map((link, idx) => (
                   <li key={link.path + '-' + isMenuOpen} className="side-menu-item" style={{ '--nav-index': idx } as React.CSSProperties }>
@@ -287,55 +287,12 @@ const NavBar: React.FC = () => {
                       }}
                       tabIndex={0}
                       aria-current={location.pathname === link.path ? 'page' : undefined}
-                      onMouseEnter={() => setHoveredMenu(link.label)}
-                      onMouseLeave={() => {
-                        // Si el menú está abierto, mantener el último hoveredMenu
-                        if (!isMenuOpen) setHoveredMenu(null);
-                      }}
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="side-menu-right">
-              {/* Mostrar imagen aunque hoveredMenu sea null, si el menú está abierto */}
-              {hoveredMenu && (
-                (() => {
-                  const label = hoveredMenu;
-                  if (!label) return null;
-                  switch (label.trim().toLowerCase()) {
-                    case 'nosotros':
-                      return <img key="/side-menu/localMiGusto.webp" src="/side-menu/localMiGusto.webp" alt="Local Mi Gusto" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
-                    case 'proveedores':
-                      return <img key="/side-menu/proveedor.png" src="/side-menu/proveedor.png" alt="Proveedores" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
-                    case 'trabaja con nosotros':
-                      return <img key="/side-menu/staff.png" src="/side-menu/staff.png" alt="Trabaja con nosotros" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
-                    case 'franquicias':
-                      return <img key="/side-menu/franquicia.png" src="/side-menu/franquicia.png" alt="Franquicias" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
-                    case 'venta corporativa':
-                      return <img key="/side-menu/corporativa.png" src="/side-menu/corporativa.png" alt="Venta Corporativa" className="side-menu-img-fade" style={{ animationDelay: '0.05s' }} />;
-                    case 'studio 3d':
-                      return (
-                        <div style={{position: 'relative', width: '100%', height: '100%'}}>
-                          <img
-                            key="/side-menu/EstudioFondo.png"
-                            src="/side-menu/EstudioFondo.png"
-                            alt="Studio 3D"
-                            className="side-menu-img-fade"
-                            style={{ animationDelay: '0.05s' }}
-                          />
-                          <div className="giant-question-mark" key={hoveredMenu + '-' + isMenuOpen}>
-                            ?
-                          </div>
-                        </div>
-                      );
-                    default:
-                      return null;
-                  }
-                })()
-              )}
             </div>
           </div>
         </div>
