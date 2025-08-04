@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import NavBar from './NavBar';
@@ -65,6 +65,7 @@ export default function Productos() {
     const [showPrecioModal, setShowPrecioModal] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [hoveredBigBurger, setHoveredBigBurger] = useState(false);
+    const scrollRevealRef = useRef<any>(null);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -173,25 +174,98 @@ export default function Productos() {
         return () => window.removeEventListener('keydown', handleEscape);
     }, []);
 
+    // Efecto para inicializar ScrollReveal
     useEffect(() => {
-        import('scrollreveal').then((module) => {
-            const sr = module.default ? module.default : module;
-            sr().reveal('.productos-titulo', {
+        const initScrollReveal = async () => {
+            const ScrollReveal = (await import('scrollreveal')).default;
+            
+            scrollRevealRef.current = ScrollReveal({
                 distance: '20px',
-                duration: 1400,
-                origin: 'top',
-                opacity: 0,
-                reset: true
-            });
-            sr().reveal('.productos-lista', {
-                distance: '30px',
-                duration: 1600,
+                duration: 1000,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
                 origin: 'bottom',
+                reset: false,
+                scale: 0.95,
                 opacity: 0,
-                reset: true
+                cleanup: true,
+                container: document.documentElement
             });
-        });
+
+            // Configurar elementos específicos con efectos sutiles
+            scrollRevealRef.current.reveal('.productos-titulo', {
+                distance: '15px',
+                duration: 1000,
+                origin: 'top',
+                delay: 200,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            scrollRevealRef.current.reveal('.productos-busqueda', {
+                distance: '20px',
+                duration: 1200,
+                origin: 'bottom',
+                delay: 400,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            scrollRevealRef.current.reveal('.productos-categorias', {
+                distance: '25px',
+                duration: 1000,
+                origin: 'bottom',
+                delay: 600,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            scrollRevealRef.current.reveal('.productos-subfiltros', {
+                distance: '20px',
+                duration: 1000,
+                origin: 'bottom',
+                delay: 800,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            scrollRevealRef.current.reveal('.producto-card', {
+                distance: '25px',
+                duration: 800,
+                origin: 'bottom',
+                interval: 150,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            scrollRevealRef.current.reveal('.producto-row-mobile', {
+                distance: '20px',
+                duration: 800,
+                origin: 'bottom',
+                interval: 100,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+        };
+
+        initScrollReveal();
+
+        // Cleanup function
+        return () => {
+            if (scrollRevealRef.current) {
+                scrollRevealRef.current.destroy();
+            }
+        };
     }, []);
+
+    // Efecto para sincronizar ScrollReveal cuando cambian los productos filtrados
+    useEffect(() => {
+        if (scrollRevealRef.current) {
+            setTimeout(() => {
+                scrollRevealRef.current.sync();
+            }, 100);
+        }
+    }, [productosFiltrados]);
+
     return (
         <div className="productos-section">
             <div className="background-overlay"></div>
@@ -226,7 +300,6 @@ export default function Productos() {
                             className={`subfiltro-btn ${tipoProducto === "Premium" ? "active" : ""}`}
                             style={{ '--subfiltro-index': 0 } as React.CSSProperties }
                         >
-                            <span className="subfiltro-icon" role="img" aria-label="estrella">★</span>
                             <span>PREMIUM</span>
                         </button>
                         <span className="subfiltro-separator">|</span>
@@ -235,7 +308,6 @@ export default function Productos() {
                             className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
                             style={{ '--subfiltro-index': 1 } as React.CSSProperties }
                         >
-                            <span className="subfiltro-icon" role="img" aria-label="clasica">●</span>
                             <span>CLÁSICAS</span>
                         </button>
                     </div>
@@ -441,9 +513,9 @@ export default function Productos() {
                                             </div>
                                         </>
                                     ) : (
-                                        <>
-                                            <img src={prod.imagen} alt={prod.titulo} />
-                                            <div className="producto-info">
+                                                                                   <>
+                                               <img src={prod.imagen} alt={prod.titulo} />
+                                               <div className="producto-info">
                                                 <h3
                                                     className="titulo-card-desktop"
                                                     style={{
