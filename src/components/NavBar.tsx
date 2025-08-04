@@ -164,17 +164,17 @@ const NavBar: React.FC = () => {
 
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
-    { path: '/', label: 'Home', image: 'https://picsum.photos/600/400?random=1' },
-    { path: '/carta', label: 'Carta', image: 'https://picsum.photos/600/400?random=2' },
-    { path: '/productos', label: 'Productos', image: 'https://picsum.photos/600/400?random=3' },
-    { path: '/sucursales', label: 'Sucursales', image: 'https://picsum.photos/600/400?random=4' },
-    { path: '/nosotros', label: 'Nosotros', image: 'https://picsum.photos/600/400?random=5' },
-    { path: '/proveedores', label: 'Proveedores', image: 'https://picsum.photos/600/400?random=6' },
-    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: 'https://picsum.photos/600/400?random=7' },
-    { path: '/franquicias', label: 'Franquicias', image: 'https://picsum.photos/600/400?random=8' },
-    { path: '/venta-corporativa', label: 'Venta corporativa', image: 'https://picsum.photos/600/400?random=9' },
-    { path: '/legales', label: 'Legales', image: 'https://picsum.photos/600/400?random=10' },
-    { path: '/3d', label: 'Studio 3D', image: 'https://picsum.photos/600/400?random=11' },
+    { path: '/', label: 'Home', image: '' },
+    { path: '/carta', label: 'Carta', image: '' },
+    { path: '/productos', label: 'Productos', image: '' },
+    { path: '/sucursales', label: 'Sucursales', image: '' },
+    { path: '/nosotros', label: 'Nosotros', image: '/side-menu/localMiGusto.webp' },
+    { path: '/proveedores', label: 'Proveedores', image: '/side-menu/proveedor.png' },
+    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/side-menu/staff.png' },
+    { path: '/franquicias', label: 'Franquicias', image: '/side-menu/franquicia.png' },
+    { path: '/venta-corporativa', label: 'Venta corporativa', image: '/side-menu/corporativa.png' },
+    { path: '/legales', label: 'Legales', image: '' },
+    { path: '/3d', label: 'Studio 3D', image: '/side-menu/EstudioFondo.png' },
   ];
 
   // En desktop oculto los links pedidos, en mobile muestro todos
