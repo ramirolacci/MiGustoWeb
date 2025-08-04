@@ -683,22 +683,23 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   animation-delay: calc(var(--nav-index, 0) * 0.18s);
 }
 
+
 @keyframes pedidoPulseGlow {
   0% {
     filter: drop-shadow(0 0 0px #ffd700) brightness(1);
     transform: scale(1);
   }
-  25% {
-    filter: drop-shadow(0 0 12px #ffd700) brightness(1.12);
-    transform: scale(1.06);
+  30% {
+    filter: drop-shadow(0 0 16px #ffd700) brightness(1.13);
+    transform: scale(1.08);
   }
   50% {
-    filter: drop-shadow(0 0 20px #ffd700) brightness(1.18);
-    transform: scale(1.12);
+    filter: drop-shadow(0 0 28px #ffd700) brightness(1.19);
+    transform: scale(1.13);
   }
-  75% {
-    filter: drop-shadow(0 0 12px #ffd700) brightness(1.12);
-    transform: scale(1.06);
+  70% {
+    filter: drop-shadow(0 0 16px #ffd700) brightness(1.13);
+    transform: scale(1.08);
   }
   100% {
     filter: drop-shadow(0 0 0px #ffd700) brightness(1);
@@ -706,8 +707,10 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   }
 }
 
+  
+
 .nav-link-pedir .btn-hacer-pedido-img {
-  animation: pedidoPulseGlow 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: pedidoPulseGlow 2.8s ease-in-out infinite;
 }
 
 /* --- Fin animación navbar --- */
