@@ -4,7 +4,6 @@
   background: #000000;
   overflow-x: hidden;
   position: relative;
-  margin-top: -80px;
   padding-top: 80px;
 }
 
@@ -28,7 +27,7 @@
   height: calc(100vh + 80px);
   position: relative;
   overflow: hidden;
-  margin-top: -80px;
+  z-index: 1;
 }
 
 .home-slider-track {
@@ -60,7 +59,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 1000;
   background: rgba(212, 175, 55, 0.2);
   border: 2px solid #D4AF37;
   border-radius: 50%;
@@ -321,6 +320,12 @@
     width: 100vw !important;
     overflow-x: hidden !important;
     box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding-top: 54px;
   }
 }
 
