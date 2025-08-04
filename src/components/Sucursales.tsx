@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { sucursales } from '../data/sucursalesData';
 import SucursalCard from '../components/SucursalCard';
 import './SucursalCard.css';
@@ -10,6 +10,7 @@ const Sucursales: React.FC = () => {
     const [aparecer, setAparecer] = useState(false);
     const [bordeLuz, setBordeLuz] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const scrollRevealRef = useRef<any>(null);
 
     useEffect(() => {
         setAparecer(true);
@@ -43,22 +44,44 @@ const Sucursales: React.FC = () => {
     useEffect(() => {
         import('scrollreveal').then((module) => {
             const sr = module.default ? module.default : module;
-            sr().reveal('.productos-titulo', {
+            scrollRevealRef.current = sr();
+            
+            // Configurar scroll reveal solo una vez
+            scrollRevealRef.current.reveal('.productos-titulo', {
                 distance: '20px',
                 duration: 1400,
                 origin: 'top',
                 opacity: 0,
-                reset: true
+                reset: false // Cambiado a false para evitar que desaparezcan
             });
-            sr().reveal('.row', {
+            
+            scrollRevealRef.current.reveal('.row', {
                 distance: '30px',
                 duration: 1600,
                 origin: 'bottom',
                 opacity: 0,
-                reset: true
+                reset: false // Cambiado a false para evitar que desaparezcan
             });
         });
+
+        // Cleanup function
+        return () => {
+            if (scrollRevealRef.current) {
+                scrollRevealRef.current.destroy();
+            }
+        };
     }, []);
+
+    // Efecto para manejar nuevas cards cuando se cargan más sucursales
+    useEffect(() => {
+        if (scrollRevealRef.current && sucursalesMostradas > 6) {
+            // Pequeño delay para asegurar que las nuevas cards estén renderizadas
+            setTimeout(() => {
+                scrollRevealRef.current.sync();
+            }, 100);
+        }
+    }, [sucursalesMostradas]);
+
     return (
         <div className="sucursales-section">
             <div className="background-overlay"></div>
@@ -78,7 +101,7 @@ const Sucursales: React.FC = () => {
 
                     <div className="row">
                         {sucursalesVisibles.map((sucursal, index) => (
-                            <div className="col-md-6" key={index} style={{ '--card-index': index } as React.CSSProperties}>
+                            <div className="col-md-6" key={`${sucursal.nombre}-${index}`} style={{ '--card-index': index } as React.CSSProperties}>
                                 <SucursalCard sucursal={sucursal} />
                             </div>
                         ))}

@@ -995,12 +995,14 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   transform: translate3d(0, 101%, 0);
   transition: transform 0.6s cubic-bezier(0.19,1,0.22,1);
   z-index: 2;
+  padding: 0;
 }
 .marquee__inner-wrap {
   height: 100%;
   width: 200%;
   display: flex;
   transform: translateX(0);
+  align-items: center;
 }
 .marquee__inner {
   display: flex;
@@ -1010,6 +1012,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   width: 200%;
   will-change: transform;
   animation: flowing-menu-marquee 15s linear infinite;
+  gap: 2rem;
 }
 .marquee span {
   color: #060010;
@@ -1018,16 +1021,16 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   font-weight: 400;
   font-size: 2.2rem;
   line-height: 1.2;
-  padding: 1vh 1vw 0;
+  padding: 0 1.5vw;
 }
 .marquee__img {
-  width: 180px;
-  height: 72px;
-  margin: 1.5em 1.5vw;
-  padding: 0.75em 0;
-  border-radius: 40px;
-  background-size: cover;
-  background-position: 50% 50%;
+  width: 180px !important;
+  height: 72px !important;
+  margin: 0 1.5vw !important;
+  padding: 0.5em 0 !important;
+  border-radius: 36px !important;
+  background-size: cover !important;
+  background-position: 50% 50% !important;
 }
 .menu__item-link:hover + .marquee {
   transform: translate3d(0, 0%, 0);
