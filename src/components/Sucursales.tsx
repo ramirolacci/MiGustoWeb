@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { sucursales } from '../data/sucursalesData';
 import SucursalCard from '../components/SucursalCard';
 import './SucursalCard.css';
@@ -10,6 +10,7 @@ const Sucursales: React.FC = () => {
     const [aparecer, setAparecer] = useState(false);
     const [bordeLuz, setBordeLuz] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const scrollRevealRef = useRef<any>(null);
 
     useEffect(() => {
         setAparecer(true);
@@ -40,25 +41,75 @@ const Sucursales: React.FC = () => {
         setSucursalesMostradas(6);
     }, [filtro]);
 
+    // Configurar Scroll Reveal fluido y sutil
     useEffect(() => {
         import('scrollreveal').then((module) => {
             const sr = module.default ? module.default : module;
-            sr().reveal('.productos-titulo', {
-                distance: '20px',
-                duration: 1400,
+            scrollRevealRef.current = sr();
+            
+            // Configuración sutil para el título
+            scrollRevealRef.current.reveal('.productos-titulo', {
+                distance: '15px',
+                duration: 1000,
                 origin: 'top',
                 opacity: 0,
-                reset: true
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                delay: 200
             });
-            sr().reveal('.row', {
-                distance: '30px',
-                duration: 1600,
+            
+            // Configuración sutil para el buscador
+            scrollRevealRef.current.reveal('.productos-busqueda', {
+                distance: '20px',
+                duration: 1200,
                 origin: 'bottom',
                 opacity: 0,
-                reset: true
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                delay: 400
+            });
+            
+            // Configuración sutil para las cards por filas (pares)
+            scrollRevealRef.current.reveal('.col-md-6', {
+                distance: '25px',
+                duration: 800,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                interval: 100 // Delay más corto entre cada par de cards
+            });
+            
+            // Configuración sutil para el botón "Ver más"
+            scrollRevealRef.current.reveal('.btn-ver-mas', {
+                distance: '20px',
+                duration: 1000,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                delay: 200
             });
         });
+
+        // Cleanup function
+        return () => {
+            if (scrollRevealRef.current) {
+                scrollRevealRef.current.destroy();
+            }
+        };
     }, []);
+
+    // Efecto para manejar nuevas cards cuando se cargan más sucursales
+    useEffect(() => {
+        if (scrollRevealRef.current && sucursalesMostradas > 6) {
+            // Pequeño delay para asegurar que las nuevas cards estén renderizadas
+            setTimeout(() => {
+                scrollRevealRef.current.sync();
+            }, 100);
+        }
+    }, [sucursalesMostradas]);
+
     return (
         <div className="sucursales-section">
             <div className="background-overlay"></div>
@@ -78,7 +129,7 @@ const Sucursales: React.FC = () => {
 
                     <div className="row">
                         {sucursalesVisibles.map((sucursal, index) => (
-                            <div className="col-md-6" key={index} style={{ '--card-index': index } as React.CSSProperties}>
+                            <div className="col-md-6" key={`${sucursal.nombre}-${index}`}>
                                 <SucursalCard sucursal={sucursal} />
                             </div>
                         ))}
