@@ -24,7 +24,7 @@
 
 .home-slider {
   width: 100vw;
-  height: calc(100vh + 80px);
+  height: calc(100vh - 80px);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -32,14 +32,14 @@
 
 .home-slider-track {
   display: flex;
-  height: calc(100vh + 80px);
+  height: calc(100vh - 80px);
   width: auto;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .home-slide {
   flex: 0 0 100vw;
-  height: calc(100vh + 80px);
+  height: calc(100vh - 80px);
   transition: all 0.7s ease;
   position: relative;
 }
