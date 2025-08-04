@@ -44,22 +44,9 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientAnimation 3s ease infinite;
     background-size: 200% 200%;
     font-weight: 600;
     letter-spacing: 0.5px;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
 }
 
 .sucursal-logo {
@@ -253,29 +240,4 @@
     color: #fff;
     padding: 1rem;
     font-size: 1rem;
-}
-
-@keyframes sucursalCardEpicReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(32px) scale(0.97) skewX(-8deg);
-    filter: blur(8px) brightness(1.18);
-    box-shadow: 0 0 32px #FFD70033, 0 0 0 #fff;
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-4px) scale(1.03) skewX(2deg);
-    filter: blur(1px) brightness(1.08);
-    box-shadow: 0 8px 40px #FFD70055, 0 0 12px #fff;
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1) skewX(0deg);
-    filter: none;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-}
-.sucursal-card {
-  animation: sucursalCardEpicReveal 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
-  animation-delay: calc(var(--card-index, 0) * 0.11s);
 } 

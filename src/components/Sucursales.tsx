@@ -41,26 +41,54 @@ const Sucursales: React.FC = () => {
         setSucursalesMostradas(6);
     }, [filtro]);
 
+    // Configurar Scroll Reveal fluido y sutil
     useEffect(() => {
         import('scrollreveal').then((module) => {
             const sr = module.default ? module.default : module;
             scrollRevealRef.current = sr();
             
-            // Configurar scroll reveal solo una vez
+            // Configuración sutil para el título
             scrollRevealRef.current.reveal('.productos-titulo', {
-                distance: '20px',
-                duration: 1400,
+                distance: '15px',
+                duration: 1000,
                 origin: 'top',
                 opacity: 0,
-                reset: false // Cambiado a false para evitar que desaparezcan
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                delay: 200
             });
             
-            scrollRevealRef.current.reveal('.row', {
-                distance: '30px',
-                duration: 1600,
+            // Configuración sutil para el buscador
+            scrollRevealRef.current.reveal('.productos-busqueda', {
+                distance: '20px',
+                duration: 1200,
                 origin: 'bottom',
                 opacity: 0,
-                reset: false // Cambiado a false para evitar que desaparezcan
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                delay: 400
+            });
+            
+            // Configuración sutil para las cards por filas (pares)
+            scrollRevealRef.current.reveal('.col-md-6', {
+                distance: '25px',
+                duration: 800,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                interval: 100 // Delay más corto entre cada par de cards
+            });
+            
+            // Configuración sutil para el botón "Ver más"
+            scrollRevealRef.current.reveal('.btn-ver-mas', {
+                distance: '20px',
+                duration: 1000,
+                origin: 'bottom',
+                opacity: 0,
+                reset: false,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                delay: 200
             });
         });
 
@@ -101,7 +129,7 @@ const Sucursales: React.FC = () => {
 
                     <div className="row">
                         {sucursalesVisibles.map((sucursal, index) => (
-                            <div className="col-md-6" key={`${sucursal.nombre}-${index}`} style={{ '--card-index': index } as React.CSSProperties}>
+                            <div className="col-md-6" key={`${sucursal.nombre}-${index}`}>
                                 <SucursalCard sucursal={sucursal} />
                             </div>
                         ))}
