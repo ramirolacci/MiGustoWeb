@@ -108,6 +108,132 @@ const Nosotros: React.FC = () => {
             });
         });
     }, []);
+    // --- DRAG-TO-SCROLL PARA CARRUSEL DE VALORES ---
+    // Estado para drag horizontal (usando refs para listeners globales)
+    const [isDragging, setIsDragging] = useState(false);
+    const isDraggingRef = useRef(false);
+    const startXRef = useRef(0);
+    const scrollLeftRef = useRef(0);
+
+    // Valores del carrusel (fijos, no reordenables)
+    const valores = [
+        {
+            key: 'excelencia1',
+            titulo: 'EXCELENCIA',
+            texto: 'Es tener una actitud comprometida para hacer las cosas bien la primera vez, siempre, y todos. "Somos lo que hacemos cada día, de modo que la excelencia no es un acto, sino un hábito" - Aristóteles.'
+        },
+        {
+            key: 'calidad1',
+            titulo: 'CALIDAD',
+            texto: 'Es el premio a la excelencia, es hacer bien las cosas que hay que hacer. La calidad no se negocia.'
+        },
+        {
+            key: 'humanidad1',
+            titulo: 'HUMANIDAD',
+            texto: 'Invertimos en el desarrollo de nuestros colaboradores e incentivamos a tratar a otro como nos gustaría que nos traten.'
+        },
+        {
+            key: 'innovacion1',
+            titulo: 'INNOVACIÓN CONTINUA',
+            texto: 'Somos disruptivos y escuchamos ideas para mejorar lo que tenemos y para crear lo que aún no existe.'
+        },
+        {
+            key: 'cliente1',
+            titulo: 'ORIENTACIÓN AL CLIENTE',
+            texto: 'Nuestra atención garantiza al cliente una experiencia premium para un producto premium.'
+        },
+        {
+            key: 'compromiso1',
+            titulo: 'COMPROMISO',
+            texto: 'Trabajamos con dedicación y pasión para superar las expectativas de nuestros clientes en cada visita.'
+        },
+        {
+            key: 'excelencia2',
+            titulo: 'EXCELENCIA',
+            texto: 'Es tener una actitud comprometida para hacer las cosas bien la primera vez, siempre, y todos. Somos lo que hacemos cada día, de modo que la excelencia no es un acto, sino un hábito.'
+        },
+        {
+            key: 'calidad2',
+            titulo: 'CALIDAD',
+            texto: 'Es el premio a la excelencia, es hacer bien las cosas que hay que hacer. La calidad no se negocia.'
+        },
+        {
+            key: 'humanidad2',
+            titulo: 'HUMANIDAD',
+            texto: 'Invertimos en el desarrollo de nuestros colaboradores e incentivamos a tratar a otro como nos gustaría que nos traten.'
+        },
+        {
+            key: 'innovacion2',
+            titulo: 'INNOVACIÓN CONTINUA',
+            texto: 'Somos disruptivos y escuchamos ideas para mejorar lo que tenemos y para crear lo que aún no existe.'
+        },
+        {
+            key: 'cliente2',
+            titulo: 'ORIENTACIÓN AL CLIENTE',
+            texto: 'Nuestra atención garantiza al cliente una experiencia premium para un producto premium.'
+        },
+        {
+            key: 'compromiso2',
+            titulo: 'COMPROMISO',
+            texto: 'Trabajamos con dedicación y pasión para superar las expectativas de nuestros clientes en cada visita.'
+        }
+    ];
+    // Drag-to-scroll mejorado: listeners globales
+    const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
+        setIsDragging(true);
+        isDraggingRef.current = true;
+        const startX = e.pageX - (carouselRef.current?.offsetLeft || 0);
+        startXRef.current = startX;
+        const scrollLeft = carouselRef.current?.scrollLeft || 0;
+        scrollLeftRef.current = scrollLeft;
+        window.addEventListener('mousemove', handleWindowMouseMove);
+        window.addEventListener('mouseup', handleWindowMouseUp);
+    };
+
+    const handleWindowMouseMove = (e: MouseEvent) => {
+        if (!isDraggingRef.current || !carouselRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - carouselRef.current.offsetLeft;
+        const walk = (x - startXRef.current) * 1.2;
+        carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
+    };
+
+    const handleWindowMouseUp = () => {
+        setIsDragging(false);
+        isDraggingRef.current = false;
+        window.removeEventListener('mousemove', handleWindowMouseMove);
+        window.removeEventListener('mouseup', handleWindowMouseUp);
+    };
+
+    // Limpieza por si el componente se desmonta durante drag
+    useEffect(() => {
+        return () => {
+            window.removeEventListener('mousemove', handleWindowMouseMove);
+            window.removeEventListener('mouseup', handleWindowMouseUp);
+        };
+        // eslint-disable-next-line
+    }, []);
+    // Touch events para mobile (usando refs también)
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        setIsDragging(true);
+        isDraggingRef.current = true;
+        const startX = e.touches[0].pageX - (carouselRef.current?.offsetLeft || 0);
+        startXRef.current = startX;
+        const scrollLeft = carouselRef.current?.scrollLeft || 0;
+        scrollLeftRef.current = scrollLeft;
+    };
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!isDraggingRef.current || !carouselRef.current) return;
+        const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
+        const walk = (x - startXRef.current) * 1.2;
+        carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
+    };
+    const handleTouchEnd = () => {
+        setIsDragging(false);
+        isDraggingRef.current = false;
+    };
+
+
     return (
         <div className="nosotros-container">
             <div className="background-overlay"></div>
@@ -236,93 +362,25 @@ const Nosotros: React.FC = () => {
                 <div className="section-card">
                     <h2>VALORES</h2>
                     <div className="valores-carousel-container">
-                        <div className="valores-carousel-track">
-                            <div className="valor-item excelencia-card">
-                                <h4>EXCELENCIA</h4>
-                                <p>
-                                    Es tener una actitud comprometida para hacer las cosas bien la primera vez, 
-                                    siempre, y todos. "Somos lo que hacemos cada día, de modo que la excelencia 
-                                    no es un acto, sino un hábito" - Aristóteles.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>CALIDAD</h4>
-                                <p>
-                                    Es el premio a la excelencia, es hacer bien las cosas que hay que hacer. 
-                                    La calidad no se negocia.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>HUMANIDAD</h4>
-                                <p>
-                                    Invertimos en el desarrollo de nuestros colaboradores e incentivamos a tratar 
-                                    a otro como nos gustaría que nos traten.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>INNOVACIÓN CONTINUA</h4>
-                                <p>
-                                    Somos disruptivos y escuchamos ideas para mejorar lo que tenemos y para 
-                                    crear lo que aún no existe.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>ORIENTACIÓN AL CLIENTE</h4>
-                                <p>
-                                    Nuestra atención garantiza al cliente una experiencia premium para un 
-                                    producto premium.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>COMPROMISO</h4>
-                                <p>
-                                    Trabajamos con dedicación y pasión para superar las expectativas de 
-                                    nuestros clientes en cada visita.
-                                </p>
-                            </div>
-                            <div className="valor-item excelencia-card">
-                                <h4>EXCELENCIA</h4>
-                                <p>
-                                    Es tener una actitud comprometida para hacer las cosas bien la primera vez, 
-                                    siempre, y todos. Somos lo que hacemos cada día, de modo que la excelencia 
-                                    no es un acto, sino un hábito.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>CALIDAD</h4>
-                                <p>
-                                    Es el premio a la excelencia, es hacer bien las cosas que hay que hacer. 
-                                    La calidad no se negocia.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>HUMANIDAD</h4>
-                                <p>
-                                    Invertimos en el desarrollo de nuestros colaboradores e incentivamos a tratar 
-                                    a otro como nos gustaría que nos traten.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>INNOVACIÓN CONTINUA</h4>
-                                <p>
-                                    Somos disruptivos y escuchamos ideas para mejorar lo que tenemos y para 
-                                    crear lo que aún no existe.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>ORIENTACIÓN AL CLIENTE</h4>
-                                <p>
-                                    Nuestra atención garantiza al cliente una experiencia premium para un 
-                                    producto premium.
-                                </p>
-                            </div>
-                            <div className="valor-item">
-                                <h4>COMPROMISO</h4>
-                                <p>
-                                    Trabajamos con dedicación y pasión para superar las expectativas de 
-                                    nuestros clientes en cada visita.
-                                </p>
-                            </div>
+                        <div
+                            className="valores-carousel-track"
+                            ref={carouselRef}
+                            onMouseDown={handleDragStart}
+                            // onMouseMove, onMouseUp y onMouseLeave ya no son necesarios aquí
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                        >
+                            {valores.map((valor) => (
+                                <div
+                                    key={valor.key}
+                                    className={`valor-item${valor.titulo === 'EXCELENCIA' ? ' excelencia-card' : ''}`}
+                                >
+                                    <h4>{valor.titulo}</h4>
+                                    <p>{valor.texto}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

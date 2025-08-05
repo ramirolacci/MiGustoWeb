@@ -798,20 +798,32 @@
     font-weight: bold;
 }
 
+
 .valores-carousel-container {
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: visible;
     position: relative;
     margin-top: 2rem;
     padding: 5px 0;
+    /* Para ocultar scrollbars en navegadores modernos */
+    scrollbar-width: none; /* Firefox */
+}
+.valores-carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .valores-carousel-track {
     display: flex;
     gap: 2rem;
-    animation: scroll-carousel 35s linear infinite;
-    width: max-content;
+    /* width: max-content;  Eliminar esto para permitir scroll */
+    min-width: 100%;
     padding: 5px 0;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+    scroll-behavior: smooth;
 }
 
 .valores-carousel-track .valor-item {
