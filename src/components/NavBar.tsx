@@ -258,17 +258,19 @@ const NavBar: React.FC = () => {
                 }}
               />
             </Link>
-            {/* Botón Lovers al lado del logo */}
-            <LoversButton
-              isOn={isSwitchOn}
-              autoConfetti={location.pathname === '/lovers'}
-              onClick={() => {
-                setIsSwitchOn(true);
-                setTimeout(() => {
-                  navigate('/lovers');
-                }, 350);
-              }}
-            />
+            {/* Botón Lovers al lado del logo (oculto por requerimiento) */}
+            {false && (
+              <LoversButton
+                isOn={isSwitchOn}
+                autoConfetti={location.pathname === '/lovers'}
+                onClick={() => {
+                  setIsSwitchOn(true);
+                  setTimeout(() => {
+                    navigate('/lovers');
+                  }, 350);
+                }}
+              />
+            )}
             {/* Switch al lado del logo */}
             {/* Eliminar o comentar la línea:
             <Switch
