@@ -139,16 +139,10 @@
     z-index: 1;
 }
 
-.revista-flipbook:hover::before {
-    opacity: 1;
-}
+
 
 .revista-flipbook:hover {
-    box-shadow: 
-        0 12px 35px rgba(0, 0, 0, 0.2),
-        0 0 30px rgba(255, 215, 0, 0.15),
-        0 0 60px rgba(255, 215, 0, 0.1);
-    transform: translateY(-5px) scale(1.02);
+    /* Sin iluminación ni efecto al hacer hover */
 }
 
 /* Swiper con efectos */
@@ -177,16 +171,10 @@
     z-index: 1;
 }
 
-.revista-swiper:hover::before {
-    opacity: 1;
-}
+
 
 .revista-swiper:hover {
-    box-shadow: 
-        0 12px 35px rgba(0, 0, 0, 0.2),
-        0 0 30px rgba(255, 215, 0, 0.15),
-        0 0 60px rgba(255, 215, 0, 0.1);
-    transform: translateY(-5px) scale(1.02);
+    /* Sin iluminación ni efecto al hacer hover */
 }
 
 /* Instrucciones con animación mejorada */
