@@ -243,9 +243,6 @@
     transition: all 0.3s ease;
 }
 
-.revista-pagina:hover .revista-img {
-    transform: scale(1.02);
-}
 
 .revista-arrow-right,
 .revista-arrow-left {
