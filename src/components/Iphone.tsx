@@ -82,7 +82,7 @@ const IphoneStore: React.FC = () => {
         <main>
             <div 
                 id="iPhone" 
-                className="iphone-wrapper animate" 
+                className="iphone-wrapper animate iphone-reveal" 
                 ref={iphoneRef}
             >
                 <div className="iPhone">

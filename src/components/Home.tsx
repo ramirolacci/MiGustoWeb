@@ -158,6 +158,33 @@ function Home() {
                 opacity: 0,
                 reset: true
             });
+            // iPhone específico para asegurar el efecto
+            sr().reveal('.iphone-wrapper', {
+                distance: '30px',
+                duration: 1600,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                origin: 'right',
+                opacity: 0,
+                reset: true
+            });
+            // iPhone con selector más específico
+            sr().reveal('#iPhone', {
+                distance: '30px',
+                duration: 1600,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                origin: 'right',
+                opacity: 0,
+                reset: true
+            });
+            // iPhone con la nueva clase
+            sr().reveal('.iphone-reveal-container', {
+                distance: '30px',
+                duration: 1600,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                origin: 'right',
+                opacity: 0,
+                reset: true
+            });
         });
     }, []);
 
@@ -188,7 +215,7 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="home-app-iphone">
+                <div className="home-app-iphone iphone-reveal-container">
                     <IphoneWhatsapp />
                 </div>
             </section>
