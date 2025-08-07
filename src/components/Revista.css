@@ -114,10 +114,7 @@
 
 /* Flipbook con efectos mejorados */
 .revista-flipbook {
-    box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.15),
-        0 0 20px rgba(255, 215, 0, 0.08),
-        0 0 40px rgba(255, 215, 0, 0.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     overflow: hidden;
     background-color: #000000;
@@ -139,18 +136,13 @@
     z-index: 1;
 }
 
-
-
 .revista-flipbook:hover {
     /* Sin iluminación ni efecto al hacer hover */
 }
 
 /* Swiper con efectos */
 .revista-swiper {
-    box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.15),
-        0 0 20px rgba(255, 215, 0, 0.08),
-        0 0 40px rgba(255, 215, 0, 0.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.4s ease;
@@ -170,8 +162,6 @@
     pointer-events: none;
     z-index: 1;
 }
-
-
 
 .revista-swiper:hover {
     /* Sin iluminación ni efecto al hacer hover */
