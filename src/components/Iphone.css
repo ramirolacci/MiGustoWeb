@@ -1073,3 +1073,21 @@
     pointer-events: none;
     z-index: 3;
 }
+
+/* Estilos para el efecto reveal del iPhone */
+.iphone-reveal {
+  /* Solo para ScrollReveal, no ocultar el elemento */
+}
+
+.iphone-reveal.reveal-active {
+  /* Estado activo para ScrollReveal */
+}
+
+/* Asegurar que el iPhone tenga el efecto reveal */
+.iphone-wrapper {
+  /* Solo para ScrollReveal, no ocultar el elemento */
+}
+
+.iphone-wrapper.reveal-active {
+  /* Estado activo para ScrollReveal */
+}
