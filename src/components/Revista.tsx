@@ -46,11 +46,9 @@ const Revista = () => {
                     setIsAnimating(true);
                     setShowParticles(true);
                     
-                    // Crear efecto de partículas doradas
-                    createGoldenParticles();
-                    
-                    // Crear ondas de expansión
-                    createExpansionWaves();
+                    // Remover las animaciones de partículas y ondas
+                    // createGoldenParticles();
+                    // createExpansionWaves();
                     
                     // Resetear estados después de las animaciones
                     setTimeout(() => {
@@ -72,88 +70,88 @@ const Revista = () => {
         return () => observer.disconnect();
     }, [isVisible]);
 
-    const createGoldenParticles = () => {
-        const particlesContainer = document.createElement('div');
-        particlesContainer.className = 'golden-particles-container';
-        particlesContainer.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        `;
-        document.body.appendChild(particlesContainer);
+    // const createGoldenParticles = () => {
+    //     const particlesContainer = document.createElement('div');
+    //     particlesContainer.className = 'golden-particles-container';
+    //     particlesContainer.style.cssText = `
+    //         position: fixed;
+    //         top: 0;
+    //         left: 0;
+    //         width: 100%;
+    //         height: 100%;
+    //         pointer-events: none;
+    //         z-index: 9999;
+    //     `;
+    //     document.body.appendChild(particlesContainer);
 
-        // Crear múltiples tipos de partículas
-        for (let i = 0; i < 80; i++) {
-            const particle = document.createElement('div');
-            const size = Math.random() * 6 + 2;
-            const delay = Math.random() * 2;
+    //     // Crear múltiples tipos de partículas
+    //     for (let i = 0; i < 80; i++) {
+    //         const particle = document.createElement('div');
+    //         const size = Math.random() * 6 + 2;
+    //         const delay = Math.random() * 2;
             
-            particle.className = 'golden-particle';
-            particle.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                background: ${i % 3 === 0 ? 'radial-gradient(circle, #FFD700, #FFA500)' : 
-                           i % 3 === 1 ? 'radial-gradient(circle, #FFA500, #FF8C00)' : 
-                           'radial-gradient(circle, #FFD700, #FFF)'};
-                border-radius: 50%;
-                box-shadow: 0 0 ${size * 2}px #FFD700;
-                animation: particleFloat 3s ease-out ${delay}s forwards;
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                opacity: 0;
-            `;
-            particlesContainer.appendChild(particle);
-        }
+    //         particle.className = 'golden-particle';
+    //         particle.style.cssText = `
+    //             position: absolute;
+    //             width: ${size}px;
+    //             height: ${size}px;
+    //             background: ${i % 3 === 0 ? 'radial-gradient(circle, #FFD700, #FFA500)' : 
+    //                        i % 3 === 1 ? 'radial-gradient(circle, #FFA500, #FF8C00)' : 
+    //                        'radial-gradient(circle, #FFD700, #FFF)'};
+    //             border-radius: 50%;
+    //             box-shadow: 0 0 ${size * 2}px #FFD700;
+    //             animation: particleFloat 3s ease-out ${delay}s forwards;
+    //             left: ${Math.random() * 100}%;
+    //             top: ${Math.random() * 100}%;
+    //             opacity: 0;
+    //         `;
+    //         particlesContainer.appendChild(particle);
+    //     }
 
-        // Limpiar partículas
-        setTimeout(() => {
-            if (particlesContainer.parentNode) {
-                particlesContainer.parentNode.removeChild(particlesContainer);
-            }
-        }, 4000);
-    };
+    //     // Limpiar partículas
+    //     setTimeout(() => {
+    //         if (particlesContainer.parentNode) {
+    //             particlesContainer.parentNode.removeChild(particlesContainer);
+    //         }
+    //     }, 4000);
+    // };
 
-    const createExpansionWaves = () => {
-        const wavesContainer = document.createElement('div');
-        wavesContainer.className = 'expansion-waves-container';
-        wavesContainer.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9998;
-        `;
-        document.body.appendChild(wavesContainer);
+    // const createExpansionWaves = () => {
+    //     const wavesContainer = document.createElement('div');
+    //     wavesContainer.className = 'expansion-waves-container';
+    //     wavesContainer.style.cssText = `
+    //         position: fixed;
+    //         top: 50%;
+    //         left: 50%;
+    //         transform: translate(-50%, -50%);
+    //         pointer-events: none;
+    //         z-index: 9998;
+    //     `;
+    //     document.body.appendChild(wavesContainer);
 
-        // Crear ondas de expansión
-        for (let i = 0; i < 5; i++) {
-            const wave = document.createElement('div');
-            wave.className = 'expansion-wave';
-            wave.style.cssText = `
-                position: absolute;
-                width: 100px;
-                height: 100px;
-                border: 2px solid #FFD700;
-                border-radius: 50%;
-                animation: waveExpand 2s ease-out ${i * 0.2}s forwards;
-                opacity: 0;
-            `;
-            wavesContainer.appendChild(wave);
-        }
+    //     // Crear ondas de expansión
+    //     for (let i = 0; i < 5; i++) {
+    //         const wave = document.createElement('div');
+    //         wave.className = 'expansion-wave';
+    //         wave.style.cssText = `
+    //             position: absolute;
+    //             width: 100px;
+    //             height: 100px;
+    //             border: 2px solid #FFD700;
+    //             border-radius: 50%;
+    //             animation: waveExpand 2s ease-out ${i * 0.2}s forwards;
+    //             opacity: 0;
+    //         `;
+    //         wavesContainer.appendChild(wave);
+    //     }
 
-        // Limpiar ondas
-        setTimeout(() => {
-            if (wavesContainer.parentNode) {
-                wavesContainer.parentNode.removeChild(wavesContainer);
-            }
-        }, 3000);
-    };
+    //     // Limpiar ondas
+    //     setTimeout(() => {
+    //         if (wavesContainer.parentNode) {
+    //             wavesContainer.parentNode.removeChild(wavesContainer);
+    //         }
+    //     }, 3000);
+    // };
 
     const handleFlip = (e: any) => {
         setPaginaActual(e.data);
