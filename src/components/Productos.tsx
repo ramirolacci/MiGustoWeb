@@ -443,7 +443,6 @@ export default function Productos() {
                                             {/* Nombre de la empanada fuera de la card, debajo */}
                                             <div style={{
                                                 width: '100%',
-                                                // Sin fondo negro
                                                 background: 'none',
                                                 color: '#FFD700',
                                                 fontWeight: 900,
@@ -513,9 +512,9 @@ export default function Productos() {
                                             </div>
                                         </>
                                     ) : (
-                                                                                   <>
-                                               <img src={prod.imagen} alt={prod.titulo} />
-                                               <div className="producto-info">
+                                        <>
+                                            <img src={prod.imagen} alt={prod.titulo} />
+                                            <div className="producto-info">
                                                 <h3
                                                     className="titulo-card-desktop"
                                                     style={{
