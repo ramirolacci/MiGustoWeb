@@ -310,6 +310,7 @@ const TrabajaConNosotros: React.FC = () => {
                         value={formData.nombre}
                         onChange={handleChange}
                         placeholder="Ingrese su nombre"
+                        className="contacto-form input"
                       />
                       {errors.nombre && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombre}</div>}
                     </div>
@@ -322,6 +323,7 @@ const TrabajaConNosotros: React.FC = () => {
                         value={formData.apellido}
                         onChange={handleChange}
                         placeholder="Ingrese su apellido"
+                        className="contacto-form input"
                       />
                       {errors.apellido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.apellido}</div>}
                     </div>
@@ -338,6 +340,7 @@ const TrabajaConNosotros: React.FC = () => {
                         placeholder="Ingrese su edad"
                         min="16"
                         max="99"
+                        className="contacto-form input"
                       />
                       {errors.edad && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.edad}</div>}
                     </div>
@@ -369,6 +372,7 @@ const TrabajaConNosotros: React.FC = () => {
                         value={formData.telefono}
                         onChange={handleChange}
                         placeholder="+54 9 11 1234-5678"
+                        className="contacto-form input"
                       />
                       {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
                     </div>
@@ -381,6 +385,7 @@ const TrabajaConNosotros: React.FC = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="ejemplo@correo.com"
+                        className="contacto-form input"
                       />
                       {errors.email && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.email}</div>}
                     </div>
