@@ -53,6 +53,7 @@ const Proveedores: React.FC = () => {
                       value={formData.nombreEmpresa}
                       onChange={handleChange}
                       required
+                      className="contacto-form input"
                     />
                   </div>
                   <div className="form-group half-width">
@@ -64,6 +65,7 @@ const Proveedores: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      className="contacto-form input"
                     />
                   </div>
                 </div>
@@ -77,6 +79,7 @@ const Proveedores: React.FC = () => {
                       value={formData.razonSocial}
                       onChange={handleChange}
                       required
+                      className="contacto-form input"
                     />
                   </div>
                   <div className="form-group half-width">
@@ -88,8 +91,20 @@ const Proveedores: React.FC = () => {
                       value={formData.telefono}
                       onChange={handleChange}
                       required
+                      className="contacto-form input"
                     />
                   </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="descripcion">Descripción de productos/servicios</label>
+                  <textarea
+                    id="descripcion"
+                    name="descripcion"
+                    rows={5}
+                    value={formData.descripcion}
+                    onChange={handleChange}
+                    className="contacto-form textarea"
+                  ></textarea>
                 </div>
                 <div className="form-group">
                   <label htmlFor="descripcion">Descripción de productos/servicios</label>
