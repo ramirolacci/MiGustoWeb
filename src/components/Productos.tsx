@@ -365,134 +365,71 @@ export default function Productos() {
                                         </span>
                                     )}
                                     {/* Renderizado estándar para todas las cards, incluyendo Big burger */}
-                                    <>
-                                        <img src={prod.imagen} alt={prod.titulo} />
-                                        <div className="producto-info">
-                                            <h3
-                                                className="titulo-card-desktop"
-                                                style={{
-                                                    fontSize: ([
+                                        <>
+                                            <img src={prod.imagen} alt={prod.titulo} />
+                                            <div className="producto-info">
+                                                <h3
+                                                    className="titulo-card-desktop"
+                                                    style={{
+                                                        fontSize: ([
+                                                            'Jamón, Tomate, Huevo, Roquefort',
+                                                            'Jamón, tomate, huevo y roquefort',
+                                                            'Jamón crudo, rúcula y stracciatella INDI',
+                                                            'Mortadela, pistacho y stracciatella INDI',
+                                                            'Fitzza mortadela, pistacho y stracciatella',
+                                                            'Fitzza jamón crudo, rúcula y stracciatella',
+                                                            'Fitzza Jamón crudo, rúcula y stracciatella'
+                                                        ].includes(prod.titulo)
+                                                            ? '1.45rem'
+                                                            : (prod.titulo.length > 28 ? (prod.titulo.length > 38 ? '1.05rem' : '1.18rem') : '1.45rem')),
+                                                        fontWeight: 600,
+                                                        margin: '-1.3rem 0 0.4rem 0',
+                                                        letterSpacing: '0.03em',
+                                                        lineHeight: 1.18,
+                                                        textAlign: 'center',
+                                                        textShadow: 'rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px',
+                                                        padding: '0.18em 0.1em',
+                                                        borderRadius: '12px',
+                                                        position: 'relative',
+                                                        overflow: 'hidden',
+                                                        background: 'transparent',
+                                                        backgroundClip: 'text',
+                                                        WebkitBackgroundClip: 'text',
+                                                        WebkitTextFillColor: 'transparent',
+                                                        backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
+                                                        animation: 'brilloTituloCard 2.5s linear infinite',
+                                                        whiteSpace: 'nowrap',
+                                                        textOverflow: 'ellipsis',
+                                                        display: 'block',
+                                                        maxWidth: '100%',
+                                                    }}
+                                                    title={prod.titulo}
+                                                >
+                                                    {prod.titulo}
+                                                </h3>
+                                                {/* Descripción e ingredientes debajo del título */}
+                                                {prod.descripcion && (() => {
+                                                    // Cards especiales a corregir
+                                                    const especiales = [
+                                                        'Carne con aceituna',
+                                                        'Pollo',
+                                                        'Verdura'
+                                                    ];
+                                                    // Cards que necesitan mostrar bien el segundo renglón
+                                                    const mostrarDosRenglones = [
                                                         'Jamón, Tomate, Huevo, Roquefort',
-                                                        'Jamón, tomate, huevo y roquefort',
-                                                        'Jamón crudo, rúcula y stracciatella INDI',
-                                                        'Mortadela, pistacho y stracciatella INDI',
-                                                        'Fitzza mortadela, pistacho y stracciatella',
-                                                        'Fitzza jamón crudo, rúcula y stracciatella',
-                                                        'Fitzza Jamón crudo, rúcula y stracciatella'
-                                                    ].includes(prod.titulo)
-                                                        ? '1.45rem'
-                                                        : (prod.titulo.length > 28 ? (prod.titulo.length > 38 ? '1.05rem' : '1.18rem') : '1.45rem')),
-                                                    fontWeight: 600,
-                                                    margin: '-1.3rem 0 0.4rem 0',
-                                                    letterSpacing: '0.03em',
-                                                    lineHeight: 1.18,
-                                                    textAlign: 'center',
-                                                    textShadow: 'rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px',
-                                                    padding: '0.18em 0.1em',
-                                                    borderRadius: '12px',
-                                                    position: 'relative',
-                                                    overflow: 'hidden',
-                                                    background: 'transparent',
-                                                    backgroundClip: 'text',
-                                                    WebkitBackgroundClip: 'text',
-                                                    WebkitTextFillColor: 'transparent',
-                                                    backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
-                                                    animation: 'brilloTituloCard 2.5s linear infinite',
-                                                    whiteSpace: 'nowrap',
-                                                    textOverflow: 'ellipsis',
-                                                    display: 'block',
-                                                    maxWidth: '100%',
-                                                }}
-                                                title={prod.titulo}
-                                            >
-                                                {prod.titulo}
-                                            </h3>
-                                            {/* Descripción e ingredientes debajo del título */}
-                                            {prod.descripcion && (() => {
-                                                // Cards especiales a corregir
-                                                const especiales = [
-                                                    'Carne con aceituna',
-                                                    'Pollo',
-                                                    'Verdura'
-                                                ];
-                                                // Cards que necesitan mostrar bien el segundo renglón
-                                                const mostrarDosRenglones = [
-                                                    'Jamón, Tomate, Huevo, Roquefort',
-                                                    'Provolone, Jamón y Longaniza',
-                                                    'Provolone, Jamón y Morrón'
-                                                ];
-                                                if (especiales.includes(prod.titulo)) {
-                                                    return (
-                                                        <p style={{
-                                                            color: '#fff',
-                                                            fontSize: '1rem',
-                                                            margin: '0 0 0.3rem 0',
-                                                            textAlign: 'left',
-                                                            opacity: 0.85,
-                                                            lineHeight: 1.4,
-                                                            fontWeight: 400,
-                                                            display: '-webkit-box',
-                                                            WebkitLineClamp: 2,
-                                                            WebkitBoxOrient: 'vertical',
-                                                            overflow: 'hidden',
-                                                            textOverflow: 'ellipsis',
-                                                            maxHeight: '2.8em',
-                                                        }}>{prod.descripcion}</p>
-                                                    );
-                                                }
-                                                if (mostrarDosRenglones.includes(prod.titulo)) {
-                                                    return (
-                                                        <p style={{
-                                                            color: '#fff',
-                                                            fontSize: '0.93rem',
-                                                            margin: '0 0 0.3rem 0',
-                                                            textAlign: 'left',
-                                                            opacity: 0.85,
-                                                            lineHeight: 1.35,
-                                                            fontWeight: 400,
-                                                            display: '-webkit-box',
-                                                            WebkitLineClamp: 2,
-                                                            WebkitBoxOrient: 'vertical',
-                                                            overflow: 'hidden',
-                                                            textOverflow: 'ellipsis',
-                                                            maxHeight: '2.7em',
-                                                        }}>{prod.descripcion}</p>
-                                                    );
-                                                }
-                                                // Resto de las cards
-                                                return (
-                                                    <>
-                                                        <p style={{
-                                                            color: '#fff',
-                                                            fontSize: '1rem',
-                                                            margin: '0 0 0.3rem 0',
-                                                            textAlign: 'left',
-                                                            opacity: 0.85,
-                                                            lineHeight: 1.4,
-                                                            fontWeight: 400,
-                                                            display: '-webkit-box',
-                                                            WebkitLineClamp: 2,
-                                                            WebkitBoxOrient: 'vertical',
-                                                            overflow: 'hidden',
-                                                            textOverflow: 'ellipsis',
-                                                            maxHeight: '2.8em',
-                                                        }}>{prod.descripcion}</p>
-                                                        {prod.ingredientes && prod.ingredientes.length > 0 && ![
-                                                            'Cuatro Quesos',
-                                                            'Cuatro quesos',
-                                                            'Pollo al champignon',
-                                                            'Choclo',
-                                                            'Calabaza',
-                                                            'Panceta y Ciruela',
-                                                            'Panceta y ciruela'
-                                                        ].includes(prod.titulo) && (
+                                                        'Provolone, Jamón y Longaniza',
+                                                        'Provolone, Jamón y Morrón'
+                                                    ];
+                                                    if (especiales.includes(prod.titulo)) {
+                                                        return (
                                                             <p style={{
-                                                                color: '#FFD700',
-                                                                fontSize: '0.98rem',
-                                                                margin: '0 0 0.5rem 0',
-                                                                textAlign: 'center',
+                                                                color: '#fff',
+                                                                fontSize: '1rem',
+                                                                margin: '0 0 0.3rem 0',
+                                                                textAlign: 'left',
                                                                 opacity: 0.85,
-                                                                lineHeight: 1.3,
+                                                                lineHeight: 1.4,
                                                                 fontWeight: 400,
                                                                 display: '-webkit-box',
                                                                 WebkitLineClamp: 2,
@@ -500,24 +437,87 @@ export default function Productos() {
                                                                 overflow: 'hidden',
                                                                 textOverflow: 'ellipsis',
                                                                 maxHeight: '2.8em',
-                                                            }}>
-                                                                {prod.ingredientes.join(', ')}
-                                                            </p>
-                                                        )}
-                                                    </>
-                                                );
-                                            })()}
-                                            <div style={{
-                                                width: '80%',
-                                                height: '0.7em',
-                                                margin: '-0.3em auto 0 auto',
-                                                background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.01) 100%)',
-                                                opacity: 0.7,
-                                                borderRadius: '50%',
-                                                filter: 'blur(2.5px)',
-                                            }}></div>
-                                        </div>
-                                    </>
+                                                            }}>{prod.descripcion}</p>
+                                                        );
+                                                    }
+                                                    if (mostrarDosRenglones.includes(prod.titulo)) {
+                                                        return (
+                                                            <p style={{
+                                                                color: '#fff',
+                                                                fontSize: '0.93rem',
+                                                                margin: '0 0 0.3rem 0',
+                                                                textAlign: 'left',
+                                                                opacity: 0.85,
+                                                                lineHeight: 1.35,
+                                                                fontWeight: 400,
+                                                                display: '-webkit-box',
+                                                                WebkitLineClamp: 2,
+                                                                WebkitBoxOrient: 'vertical',
+                                                                overflow: 'hidden',
+                                                                textOverflow: 'ellipsis',
+                                                                maxHeight: '2.7em',
+                                                            }}>{prod.descripcion}</p>
+                                                        );
+                                                    }
+                                                    // Resto de las cards
+                                                    return (
+                                                        <>
+                                                            <p style={{
+                                                                color: '#fff',
+                                                                fontSize: '1rem',
+                                                                margin: '0 0 0.3rem 0',
+                                                                textAlign: 'left',
+                                                                opacity: 0.85,
+                                                                lineHeight: 1.4,
+                                                                fontWeight: 400,
+                                                                display: '-webkit-box',
+                                                                WebkitLineClamp: 2,
+                                                                WebkitBoxOrient: 'vertical',
+                                                                overflow: 'hidden',
+                                                                textOverflow: 'ellipsis',
+                                                                maxHeight: '2.8em',
+                                                            }}>{prod.descripcion}</p>
+                                                            {prod.ingredientes && prod.ingredientes.length > 0 && ![
+                                                                'Cuatro Quesos',
+                                                                'Cuatro quesos',
+                                                                'Pollo al champignon',
+                                                                'Choclo',
+                                                                'Calabaza',
+                                                                'Panceta y Ciruela',
+                                                                'Panceta y ciruela'
+                                                            ].includes(prod.titulo) && (
+                                                                <p style={{
+                                                                    color: '#FFD700',
+                                                                    fontSize: '0.98rem',
+                                                                    margin: '0 0 0.5rem 0',
+                                                                    textAlign: 'center',
+                                                                    opacity: 0.85,
+                                                                    lineHeight: 1.3,
+                                                                    fontWeight: 400,
+                                                                    display: '-webkit-box',
+                                                                    WebkitLineClamp: 2,
+                                                                    WebkitBoxOrient: 'vertical',
+                                                                    overflow: 'hidden',
+                                                                    textOverflow: 'ellipsis',
+                                                                    maxHeight: '2.8em',
+                                                                }}>
+                                                                    {prod.ingredientes.join(', ')}
+                                                                </p>
+                                                            )}
+                                                        </>
+                                                    );
+                                                })()}
+                                                <div style={{
+                                                    width: '80%',
+                                                    height: '0.7em',
+                                                    margin: '-0.3em auto 0 auto',
+                                                    background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.01) 100%)',
+                                                    opacity: 0.7,
+                                                    borderRadius: '50%',
+                                                    filter: 'blur(2.5px)',
+                                                }}></div>
+                                            </div>
+                                        </>
                                 </div>
                             );
                         })
