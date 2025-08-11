@@ -198,13 +198,23 @@ const Nosotros: React.FC = () => {
         carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
     };
 
+    const handleSnapToCard = () => {
+        if (!carouselRef.current) return;
+        const track = carouselRef.current;
+        const cardWidth = 260 + 32; // 260px width + 2rem (32px) gap
+        const scroll = track.scrollLeft;
+        const idx = Math.round(scroll / cardWidth);
+        const targetScroll = idx * cardWidth;
+        track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    };
+
     const handleWindowMouseUp = () => {
         setIsDragging(false);
         isDraggingRef.current = false;
         window.removeEventListener('mousemove', handleWindowMouseMove);
         window.removeEventListener('mouseup', handleWindowMouseUp);
+        handleSnapToCard();
     };
-
     // Limpieza por si el componente se desmonta durante drag
     useEffect(() => {
         return () => {
@@ -231,6 +241,7 @@ const Nosotros: React.FC = () => {
     const handleTouchEnd = () => {
         setIsDragging(false);
         isDraggingRef.current = false;
+        handleSnapToCard();
     };
 
 
@@ -366,7 +377,8 @@ const Nosotros: React.FC = () => {
                             className="valores-carousel-track"
                             ref={carouselRef}
                             onMouseDown={handleDragStart}
-                            // onMouseMove, onMouseUp y onMouseLeave ya no son necesarios aquí
+                            onMouseMove={isDragging ? (e) => handleWindowMouseMove(e.nativeEvent) : undefined}
+                            onMouseLeave={isDragging ? handleWindowMouseUp : undefined}
                             onTouchStart={handleTouchStart}
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
@@ -376,6 +388,7 @@ const Nosotros: React.FC = () => {
                                 <div
                                     key={valor.key}
                                     className={`valor-item${valor.titulo === 'EXCELENCIA' ? ' excelencia-card' : ''}`}
+                                    onMouseDown={e => e.preventDefault()}
                                 >
                                     <h4>{valor.titulo}</h4>
                                     <p>{valor.texto}</p>
