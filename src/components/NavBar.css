@@ -1,3 +1,12 @@
+@media (max-width: 600px) {
+  .side-menu-list .menu__item-link {
+    font-size: 1.5rem !important;
+    padding: 16px 0 !important;
+    min-height: 44px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.03em !important;
+  }
+}
 /* Efecto scroll reveal para todo el navbar */
 .navbar-scrollreveal {
   opacity: 0;
