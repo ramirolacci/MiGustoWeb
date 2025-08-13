@@ -359,11 +359,7 @@ export default function Productos() {
                                     data-categoria={filtro}
                                     style={{ position: 'relative', '--card-index': idx } as React.CSSProperties }
                                 >
-                                    {tiene3D && (
-                                        <span className="icono-3d" title="Vista 3D disponible" style={{position:'absolute',top:10,right:10,zIndex:2}}>
-                                            <span className="icono-3d-minimal">3D</span>
-                                        </span>
-                                    )}
+                                    {/* Ícono 3D eliminado por requerimiento */}
                                     {/* Renderizado estándar para todas las cards, incluyendo Big burger */}
                                         <>
                                             <img src={prod.imagen} alt={prod.titulo} />
