@@ -97,10 +97,10 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                         alt={`slide-${idx + 1}`}
                         className="home-slide"
                         style={{
-                            width: isMobile ? '100vw' : '100%',
-                            height: isMobile ? '100vh' : '100%',
+                            width: '100vw',
+                            height: '100%',
                             objectFit: 'cover',
-                            objectPosition: 'center',
+                            objectPosition: 'center 85%',
                             display: 'block'
                         }}
                         loading="lazy"
