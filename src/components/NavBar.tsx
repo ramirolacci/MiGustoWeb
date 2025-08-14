@@ -286,7 +286,7 @@ const NavBar: React.FC = () => {
 
             <div className="mobile-pedir-button">
               <a
-                className="nav-link text-white"
+                className="mobile-pedir-link"
                 href="https://pedir.migusto.com.ar/"
                 target="_blank"
                 rel="noopener noreferrer"

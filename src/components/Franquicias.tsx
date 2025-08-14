@@ -119,6 +119,99 @@ const Franquicias: React.FC = () => {
                 <div className="form-row">
                   <div className="form-group half-width">
                     <label htmlFor="tipoDocumento">Tipo de Documento <span className="required">*</span></label>
+                    <input type="text" id="tipoDocumento" name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="numeroDocumento">Número de Documento <span className="required">*</span></label>
+                    <input type="text" id="numeroDocumento" name="numeroDocumento" value={formData.numeroDocumento} onChange={handleChange} required />
+                  </div>
+                </div>
+                <button type="button" className="btn-ver-mas" onClick={nextStep}>Continuar</button>
+              </div>
+            )}
+            {currentStep === 2 && (
+              <div className="form-step">
+                <h3>Paso 2: Residencia y Contacto</h3>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="paisResidencia">País de Residencia <span className="required">*</span></label>
+                    <input type="text" id="paisResidencia" name="paisResidencia" value={formData.paisResidencia} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="provinciaResidencia">Provincia <span className="required">*</span></label>
+                    <input type="text" id="provinciaResidencia" name="provinciaResidencia" value={formData.provinciaResidencia} onChange={handleChange} required />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="localidadResidencia">Localidad <span className="required">*</span></label>
+                    <input type="text" id="localidadResidencia" name="localidadResidencia" value={formData.localidadResidencia} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="domicilio">Domicilio <span className="required">*</span></label>
+                    <input type="text" id="domicilio" name="domicilio" value={formData.domicilio} onChange={handleChange} required />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="telefonoCelular">Teléfono Celular <span className="required">*</span></label>
+                    <input type="text" id="telefonoCelular" name="telefonoCelular" value={formData.telefonoCelular} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="telefonoAlternativo">Teléfono Alternativo</label>
+                    <input type="text" id="telefonoAlternativo" name="telefonoAlternativo" value={formData.telefonoAlternativo} onChange={handleChange} />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="email">E-mail <span className="required">*</span></label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="emailAlternativo">E-mail Alternativo</label>
+                    <input type="email" id="emailAlternativo" name="emailAlternativo" value={formData.emailAlternativo} onChange={handleChange} />
+                  </div>
+                </div>
+                <button type="button" className="btn-ver-mas" onClick={nextStep}>Continuar</button>
+                <button type="button" className="btn-ver-mas" onClick={prevStep}>Volver</button>
+              </div>
+            )}
+            {currentStep === 3 && (
+              <div className="form-step">
+                <h3>Paso 3: Preferencias y Garantía</h3>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="paisPreferencia">País de Preferencia</label>
+                    <input type="text" id="paisPreferencia" name="paisPreferencia" value={formData.paisPreferencia} onChange={handleChange} />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="provinciaPreferencia">Provincia de Preferencia</label>
+                    <input type="text" id="provinciaPreferencia" name="provinciaPreferencia" value={formData.provinciaPreferencia} onChange={handleChange} />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group half-width">
+                    <label htmlFor="localidadPreferencia">Localidad de Preferencia</label>
+                    <input type="text" id="localidadPreferencia" name="localidadPreferencia" value={formData.localidadPreferencia} onChange={handleChange} />
+                  </div>
+                  <div className="form-group half-width">
+                    <label htmlFor="inmuebleGarantia">¿Posee inmueble en garantía?</label>
+                    <select id="inmuebleGarantia" name="inmuebleGarantia" value={formData.inmuebleGarantia} onChange={handleChange}>
+                      <option value="">Selecciona</option>
+                      <option value="si">Sí</option>
+                      <option value="no">No</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" className="btn-ver-mas">Enviar</button>
+                <button type="button" className="btn-ver-mas" onClick={prevStep}>Volver</button>
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </div>
+                    <label htmlFor="tipoDocumento">Tipo de Documento <span className="required">*</span></label>
                     <select id="tipoDocumento" name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} required>
                       <option value="">Selecciona</option>
                       <option value="DNI">DNI</option>
