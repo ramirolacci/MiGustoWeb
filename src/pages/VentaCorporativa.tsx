@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './VentaCorporativa.css';
+import '../pages/Contacto.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -25,6 +25,27 @@ const VentaCorporativa: React.FC = () => {
         descripcionEvento: '',
         observaciones: '',
     });
+
+    // ScrollReveal para animaciones
+    useEffect(() => {
+        import('scrollreveal').then((module) => {
+            const sr = module.default ? module.default : module;
+            sr().reveal('.venta-corporativa-img', {
+                distance: '30px',
+                duration: 1600,
+                origin: 'left',
+                opacity: 0,
+                reset: true
+            });
+            sr().reveal('.contacto-form-container', {
+                distance: '30px',
+                duration: 1600,
+                origin: 'right',
+                opacity: 0,
+                reset: true
+            });
+        });
+    }, []);
 
     const validate = () => {
         const newErrors: any = {};
@@ -98,13 +119,6 @@ const VentaCorporativa: React.FC = () => {
         }
     };
 
-    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 600);
-    useEffect(() => {
-      const handleResize = () => setIsMobile(window.innerWidth <= 600);
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     // Antes del return, defino la fecha mínima para el input de fecha
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -113,105 +127,142 @@ const VentaCorporativa: React.FC = () => {
     const minDate = `${yyyy}-${mm}-${dd}`;
 
     return (
-        <>
-            <nav className="navbar-corporativa">
-                <a href="https://www.migusto.com.ar/?gad_source=1&gad_campaignid=21522046218&gclid=CjwKCAjw1dLDBhBoEiwAQNRiQZmhl6UsJh3HcV3WRq5ip6gpuIfDQCJPpZUsT1RWBzVYdqpsi8vXWBoCb9EQAvD_BwE" target="_blank" rel="noopener noreferrer">
-                    <img src="/corp/icono.png" alt="Mi Gusto Icono" className="logo-navbar-corporativa" loading="lazy" />
-                </a>
-            </nav>
-            <div className="venta-corporativa-section">
-                <div className="corporativa-layout">
-                    {/* Imagen "Venta corporativa" arriba de todo SOLO en mobile */}
-                    {isMobile && (
-                      <div className="venta-corporativa-header-mobile">
-                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ width: '100%', maxWidth: 420, margin: '16px auto 12px', display: 'block' }} loading="lazy" />
-                      </div>
-                    )}
-                    {/* Columna izquierda: Imagen y beneficios */}
-                    <div className="corporativa-col corporativa-col-img">
-                        {/* Imagen de título SOLO en escritorio, arriba de la imagen principal */}
-                        {!isMobile && (
-                          <img src="/corp/venta corporativa.png" alt="Venta Corporativa" className="venta-corporativa-header-desktop" loading="lazy" />
-                        )}
-                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" className="img-corporativa" loading="lazy" />
-                        <div className="beneficios-corporativa">
-                            <div className="beneficio-item">
-                                <img src="/corp/descuento.png" alt="Descuento" className="icono-beneficio" loading="lazy" />
-                                <span>Packs corporativos anticipados con hasta 25% OFF</span>
+        <div className="sucursales-section" style={{ marginTop: '40px' }}>
+            <div className="background-overlay"></div>
+            <div className="sucursales-container">
+                <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+                    {/* PARTE IZQUIERDA: Imagen de Venta Corporativa */}
+                    <div className="venta-corporativa-img" style={{ 
+                        width: '50vw', 
+                        height: '100%', 
+                        maxHeight: '100vh', 
+                        display: 'flex', 
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        marginTop: '0px', 
+                        position: 'relative', 
+                        zIndex: 2,
+                        padding: '40px'
+                    }}>
+                        {/* Título Venta Corporativa */}
+                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ 
+                            width: '280px', 
+                            marginBottom: '40px', 
+                            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
+                            zIndex: 3
+                        }} />
+                        
+                        {/* Imagen de fondo */}
+                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" style={{ 
+                            width: '100%', 
+                            height: 'auto',
+                            maxHeight: 'calc(100vh - 200px)',
+                            objectFit: 'cover',
+                            borderRadius: '12px', 
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                            zIndex: 2,
+                            marginBottom: '32px'
+                        }} />
+                        
+                        {/* Bloque de beneficios */}
+                        <div style={{ 
+                            textAlign: 'left',
+                            zIndex: 3,
+                            padding: '20px'
+                        }}>
+                            <div style={{ fontWeight: 700, fontSize: '1.8rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                                Beneficios Corporativos
                             </div>
-                            <div className="beneficio-item">
-                                <img src="/corp/entrega.png" alt="Entrega" className="icono-beneficio" loading="lazy" />
-                                <span>Entregas en <b>CABA</b> y <b>GBA</b></span>
-                            </div>
-                            <div className="beneficio-item">
-                                <img src="/corp/servicio.png" alt="Servicio" className="icono-beneficio" loading="lazy" />
-                                <span>Atención personalizada, adaptada a tus necesidades</span>
+                            <div style={{ fontSize: '1.4rem', lineHeight: '1.6', color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+• Packs corporativos anticipados con hasta 25% OFF
+
+• Entregas en CABA y GBA
+
+• Atención personalizada, adaptada a tus necesidades
+
+• Servicio de catering profesional para eventos
                             </div>
                         </div>
                     </div>
-                    {/* Columna derecha: Formulario */}
-                    <div className="corporativa-col corporativa-col-form">
-                        <div className="glass-form-container">
-                            <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, textAlign: 'center', marginBottom: 28, letterSpacing: 1 }}>
-                                Eventos Corporativos: solicitá tu propuesta personalizada
-                            </h2>
-                            {/* Formulario original */}
-                            <form onSubmit={handleSubmit} className="contacto-form">
-                                <div className="form-row">
-                                    <div className="form-group half-width">
-                                        <label htmlFor="nombreApellido">Nombre y apellido: <span className="required">*</span></label>
-                                        <input
-                                            type="text"
-                                            id="nombreApellido"
-                                            name="nombreApellido"
-                                            value={formData.nombreApellido}
-                                            onChange={handleChange}
-                                            placeholder="Ingrese su nombre y apellido"
-                                        />
-                                        {errors.nombreApellido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreApellido}</div>}
+
+                    {/* PARTE DERECHA: Formulario */}
+                    <div className="contacto-container" style={{ 
+                        width: '50vw', 
+                        minHeight: '100vh', 
+                        display: 'flex', 
+                        alignItems: 'stretch', 
+                        justifyContent: 'center', 
+                        marginTop: '100px' 
+                    }}>
+                        <div className="contacto-content" style={{ 
+                            width: '100%', 
+                            marginTop: (typeof window !== 'undefined' && window.innerWidth > 900) ? '-40px' : '0' 
+                        }}>
+                            <div className="contacto-form-container" style={{ 
+                                background: 'rgba(30, 30, 30, 0.65)', 
+                                backdropFilter: 'blur(5px)'
+                            }}>
+                                <h2 style={{ textAlign: 'center', marginBottom: '16px', color: '#ffd700' }}>Venta Corporativa</h2>
+                                <p style={{ textAlign: 'center', fontSize: '1.3rem', marginBottom: '24px' }}>
+                                    Eventos Corporativos: solicitá tu propuesta personalizada
+                                </p>
+                                
+                                <form onSubmit={handleSubmit} className="contacto-form">
+                                    <div className="form-row">
+                                        <div className="form-group half-width">
+                                            <label htmlFor="nombreApellido">Nombre y apellido: <span className="required">*</span></label>
+                                            <input
+                                                type="text"
+                                                id="nombreApellido"
+                                                name="nombreApellido"
+                                                value={formData.nombreApellido}
+                                                onChange={handleChange}
+                                                placeholder="Ingrese su nombre y apellido"
+                                            />
+                                            {errors.nombreApellido && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.nombreApellido}</div>}
+                                        </div>
+                                        <div className="form-group half-width">
+                                            <label htmlFor="mailCorporativo">Mail corporativo: <span className="required">*</span></label>
+                                            <input
+                                                type="email"
+                                                id="mailCorporativo"
+                                                name="mailCorporativo"
+                                                value={formData.mailCorporativo}
+                                                onChange={handleChange}
+                                                placeholder="Ingrese su mail corporativo"
+                                            />
+                                            {errors.mailCorporativo && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.mailCorporativo}</div>}
+                                        </div>
                                     </div>
-                                    <div className="form-group half-width">
-                                        <label htmlFor="mailCorporativo">Mail corporativo: <span className="required">*</span></label>
-                                        <input
-                                            type="email"
-                                            id="mailCorporativo"
-                                            name="mailCorporativo"
-                                            value={formData.mailCorporativo}
-                                            onChange={handleChange}
-                                            placeholder="Ingrese su mail corporativo"
-                                        />
-                                        {errors.mailCorporativo && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.mailCorporativo}</div>}
+                                    <div className="form-row">
+                                        <div className="form-group half-width">
+                                            <label htmlFor="telefono">Teléfono: <span className="required">*</span></label>
+                                            <input
+                                                type="tel"
+                                                id="telefono"
+                                                name="telefono"
+                                                value={formData.telefono}
+                                                onChange={handleChange}
+                                                placeholder="Ingrese su teléfono"
+                                            />
+                                            {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
+                                        </div>
+                                        <div className="form-group half-width">
+                                            <label htmlFor="fechaEvento">Fecha del evento: <span className="required">*</span></label>
+                                            <input
+                                                type="date"
+                                                id="fechaEvento"
+                                                name="fechaEvento"
+                                                value={formData.fechaEvento}
+                                                onChange={handleChange}
+                                                autoComplete="off"
+                                                min={minDate}
+                                            />
+                                            {errors.fechaEvento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.fechaEvento}</div>}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="form-group half-width">
-                                        <label htmlFor="telefono">Teléfono: <span className="required">*</span></label>
-                                        <input
-                                            type="tel"
-                                            id="telefono"
-                                            name="telefono"
-                                            value={formData.telefono}
-                                            onChange={handleChange}
-                                            placeholder="Ingrese su teléfono"
-                                        />
-                                        {errors.telefono && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.telefono}</div>}
-                                    </div>
-                                    <div className="form-group half-width">
-                                        <label htmlFor="fechaEvento">Fecha del evento: <span className="required">*</span></label>
-                                        <input
-                                            type="date"
-                                            id="fechaEvento"
-                                            name="fechaEvento"
-                                            value={formData.fechaEvento}
-                                            onChange={handleChange}
-                                            autoComplete="off"
-                                            min={minDate}
-                                        />
-                                        {errors.fechaEvento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.fechaEvento}</div>}
-                                    </div>
-                                </div>
-                                <div className="form-row" style={{ maxWidth: 556, width: '100%' }}>
-                                    <div className="form-group" style={{ width: '100%' }}>
+                                    <div className="form-group">
                                         <label htmlFor="cantidadComensales">Cantidad de comensales: <span className="required">*</span></label>
                                         <input
                                             type="number"
@@ -220,14 +271,11 @@ const VentaCorporativa: React.FC = () => {
                                             value={formData.cantidadComensales}
                                             onChange={handleChange}
                                             min="1"
-                                            style={{ width: '100%' }}
                                             placeholder="Ingrese la cantidad de comensales"
                                         />
                                         {errors.cantidadComensales && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.cantidadComensales}</div>}
                                     </div>
-                                </div>
-                                <div className="form-row" style={{ maxWidth: 556, width: '100%' }}>
-                                    <div className="form-group" style={{ width: '100%' }}>
+                                    <div className="form-group">
                                         <label htmlFor="descripcionEvento">Breve descripción del evento: <span className="required">*</span></label>
                                         <textarea
                                             id="descripcionEvento"
@@ -235,14 +283,11 @@ const VentaCorporativa: React.FC = () => {
                                             value={formData.descripcionEvento}
                                             onChange={handleChange}
                                             placeholder="Describa brevemente el evento"
-                                            rows={2}
-                                            style={{ width: '100%', height: 48, minHeight: 48, padding: '12px 16px', resize: 'none' }}
+                                            rows={3}
                                         />
                                         {errors.descripcionEvento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.descripcionEvento}</div>}
                                     </div>
-                                </div>
-                                <div className="form-row" style={{ maxWidth: 556, width: '100%' }}>
-                                    <div className="form-group" style={{ width: '100%' }}>
+                                    <div className="form-group">
                                         <label htmlFor="observaciones">Observaciones especiales:</label>
                                         <textarea
                                             id="observaciones"
@@ -250,31 +295,51 @@ const VentaCorporativa: React.FC = () => {
                                             value={formData.observaciones}
                                             onChange={handleChange}
                                             placeholder="Detalle aquí cualquier requerimiento especial"
-                                            rows={2}
-                                            style={{ width: '100%', height: 48, minHeight: 48, padding: '12px 16px', resize: 'none' }}
+                                            rows={3}
                                         />
                                     </div>
-                                </div>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '18px', gap: '8px' }}>
-                                    <div className="contact-links" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0', whiteSpace: 'nowrap' }}>
-                                        <a href="mailto:eventos@migusto.com.ar" style={{ color: '#D4AF37', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
-                                        Email: eventos@migusto.com.ar
-                                        </a>
-                                        <a href="https://wa.me/541163704522" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
-                                        Contactanos por Whatsapp
-                                        </a>
+                                    
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '18px', gap: '8px' }}>
+                                        <div className="contact-links" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0', whiteSpace: 'nowrap' }}>
+                                            <a href="mailto:eventos@migusto.com.ar" style={{ color: '#D4AF37', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
+                                            Email: eventos@migusto.com.ar
+                                            </a>
+                                            <a href="https://wa.me/541163704522" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
+                                            Contactanos por Whatsapp
+                                            </a>
+                                        </div>
+                                        <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+                                            {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+                                        </button>
                                     </div>
-                                    <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
-                                        {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
-                                    </button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
-export default VentaCorporativa; 
+export default VentaCorporativa;
+
+// Solo para mobile: reducir el margen superior del contenido
+if (typeof window !== 'undefined') {
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @media (max-width: 900px) {
+            .sucursales-section {
+                margin-top: 0px !important;
+            }
+            .contacto-container {
+                margin-top: 32px !important;
+            }
+            .responsive-row img {
+                margin-top: 8px !important;
+                margin-bottom: 32px !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+} 
