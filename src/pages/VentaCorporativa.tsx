@@ -173,8 +173,41 @@ const VentaCorporativa: React.FC = () => {
                         zIndex: 2,
                         padding: '40px'
                     }}>
+                        <style>{`
+                            @media (max-width: 900px) {
+                                .venta-corporativa-img {
+                                    width: 100vw !important;
+                                    padding: 16px !important;
+                                    margin-top: 8px !important;
+                                }
+                                .venta-corporativa-img .corp-title-img {
+                                    width: min(72vw, 340px) !important;
+                                    margin-bottom: 16px !important;
+                                }
+                                .venta-corporativa-img .corp-hero-img {
+                                    width: 92vw !important;
+                                    max-width: 520px !important;
+                                    margin-bottom: 16px !important;
+                                }
+                                .venta-corporativa-img .corp-text {
+                                    padding: 0 8px !important;
+                                }
+                                .venta-corporativa-img .corp-text-title {
+                                    font-size: 1.35rem !important;
+                                    margin-bottom: 12px !important;
+                                }
+                                .venta-corporativa-img .corp-text-body {
+                                    font-size: 1.12rem !important;
+                                    line-height: 1.55 !important;
+                                }
+                                .venta-corporativa-img .corp-icon {
+                                    width: 32px !important;
+                                    height: 32px !important;
+                                }
+                            }
+                        `}</style>
                         {/* Título Venta Corporativa */}
-                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ 
+                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" className="corp-title-img" style={{ 
                             width: '420px', 
                             marginBottom: '40px', 
                             filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
@@ -182,7 +215,7 @@ const VentaCorporativa: React.FC = () => {
                         }} />
                         
                         {/* Imagen de fondo */}
-                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" style={{ 
+                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" className="corp-hero-img" style={{ 
                             width: '100%', 
                             maxWidth: '680px',
                             height: 'auto',
@@ -195,30 +228,30 @@ const VentaCorporativa: React.FC = () => {
                         }} />
                         
                         {/* Bloque de beneficios */}
-                        <div style={{ 
+                        <div className="corp-text" style={{ 
                             textAlign: 'left',
                             zIndex: 3,
                             padding: '20px'
                         }}>
-                            <div style={{ fontWeight: 700, fontSize: '2.4rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                            <div className="corp-text-title" style={{ fontWeight: 700, fontSize: '2.4rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                                 Beneficios Corporativos
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/corp/descuento.png" alt="Descuento" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
-                                    <span style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                    <img src="/corp/descuento.png" alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <span className="corp-text-body" style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Packs corporativos anticipados con hasta 25% OFF
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/corp/entrega.png" alt="Entrega" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
-                                    <span style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                    <img src="/corp/entrega.png" alt="Entrega" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <span className="corp-text-body" style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Entregas en CABA y GBA
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/corp/servicio.png" alt="Servicio" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
-                                    <span style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                    <img src="/corp/servicio.png" alt="Servicio" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <span className="corp-text-body" style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Atención personalizada, adaptada a tus necesidades
                                     </span>
                                 </div>
@@ -405,7 +438,7 @@ const VentaCorporativa: React.FC = () => {
                                     </div>
                                     
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '18px', gap: '8px' }}>
-                                        <div className="contact-links" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0', whiteSpace: 'nowrap' }}>
+                                        <div className="contact-links" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0' }}>
                                             <a href="mailto:eventos@migusto.com.ar" style={{ color: '#D4AF37', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
                                             Email: eventos@migusto.com.ar
                                             </a>
