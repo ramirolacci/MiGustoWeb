@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../pages/Contacto.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -24,7 +24,7 @@ const CalendarInput = React.forwardRef<HTMLInputElement, any>(({ value, onClick,
       pattern="[0-9/]*"
       placeholder={placeholder}
       className="contacto-form input datepicker-match"
-      style={{ paddingRight: '48px' }}
+      style={{ paddingRight: '48px', width: '100%', boxSizing: 'border-box' }}
       autoComplete="off"
     />
   </div>
@@ -73,6 +73,27 @@ const Franquicias: React.FC = () => {
     localidadPreferencia: '',
     inmuebleGarantia: '',
   });
+
+  // ScrollReveal para animaciones
+  useEffect(() => {
+    import('scrollreveal').then((module) => {
+      const sr = module.default ? module.default : module;
+      sr().reveal('.franquicias-img', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'left',
+        opacity: 0,
+        reset: true
+      });
+      sr().reveal('.contacto-form-container', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'right',
+        opacity: 0,
+        reset: true
+      });
+    });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -189,102 +210,102 @@ const Franquicias: React.FC = () => {
     <div className="sucursales-section" style={{ marginTop: '40px' }}>
       <div className="background-overlay"></div>
       <div className="sucursales-container">
-        <div className="responsive-row" style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          width: '100vw',
-          minHeight: '100vh',
-          margin: 0,
-          padding: 0,
-          gap: '24px',
-          boxSizing: 'border-box',
-          marginTop: '64px',
-        }}>
-          <style>{`
-            @media (max-width: 1100px) {
-              .responsive-row {
-                flex-direction: column !important;
-                gap: 32px !important;
-                height: auto !important;
-                min-height: 100vh !important;
-                justify-content: center !important;
-                align-items: center !important;
-              }
-              .franq-col-izq, .franq-col-der {
-                max-width: 95vw !important;
-                min-width: 320px !important;
-              }
-            }
-          `}</style>
-          {/* PARTE IZQUIERDA: Mockup Franquicias */}
-          <div className="franq-col-izq" style={{
-            height: '100%',
-            background: `url('/background-text.jpg') center center / cover no-repeat`,
-            color: '#fff',
-            display: 'flex',
+        <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+          {/* PARTE IZQUIERDA: Imagen de Franquicias */}
+          <div className="franquicias-img" style={{ 
+            width: '50vw', 
+            height: '100%', 
+            maxHeight: '100vh', 
+            display: 'flex', 
             flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            textAlign: 'left',
-            padding: 0,
-            position: 'relative',
-            overflow: 'hidden',
-            maxWidth: '560px',
-            width: '100%',
-            minWidth: '320px',
-            boxSizing: 'border-box',
-            marginTop: '-20px',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            marginTop: '0px', 
+            position: 'relative', 
+            zIndex: 2,
+            padding: '40px'
           }}>
+            {/* Título Franquicias */}
+            <img src="/franq/Franquicias.png" alt="Franquicias" style={{ 
+              width: '280px', 
+              marginBottom: '40px', 
+              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
+              zIndex: 3
+            }} />
+            
+            {/* Imagen de fondo */}
+            <img src="/franq/sucursal.png" alt="Sucursal Mi Gusto" style={{ 
+              width: '100%', 
+              height: 'auto',
+              maxHeight: 'calc(100vh - 200px)',
+              objectFit: 'cover',
+              borderRadius: '12px', 
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+              zIndex: 2,
+              marginBottom: '32px'
+            }} />
+            
+                        {/* Bloque de texto explicativo */}
             <div style={{
-              position: 'relative',
-              zIndex: 1,
-              width: '100%',
-              maxWidth: 560,
-              margin: '0 auto',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              padding: 0,
+              textAlign: 'left',
+              zIndex: 3,
+              padding: '20px'
             }}>
-              <div style={{ position: 'relative', width: '100%' }}>
-                <img src="/franq/Franquicias.png" alt="Franquicias" style={{ width: '340px', marginBottom: '24px', marginTop: 0, display: 'block', marginLeft: '0' }} />
-                <img src="/franq/sucursal.png" alt="Sucursal Mi Gusto" style={{ width: '100%', borderRadius: '8px', marginBottom: '32px', boxShadow: '0 2px 12px rgba(0,0,0,0.18)', zIndex: 1, display: 'block' }} />
+              <div style={{ fontWeight: 700, fontSize: '1.8rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                ¿Por qué elegir Mi Gusto?
               </div>
-              {/* Bloque de texto */}
-              <div style={{ zIndex: 1, background: 'rgba(0,0,0,0.38)', padding: '24px 0', borderRadius: '8px', width: '100%', boxShadow: '0 2px 12px rgba(0,0,0,0.18)', textAlign: 'left' }}>
-                <div style={{ fontWeight: 700, fontSize: '1.18rem', marginBottom: '12px' }}>¿Por qué elegir Mi Gusto?</div>
-                <div style={{ fontSize: '1.05rem', lineHeight: 1.6, whiteSpace: 'pre-line' }}>
+              <div style={{ fontSize: '1.4rem', lineHeight: 1.6, color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
 Porque llevamos más de 25 años en el mercado y sabemos cómo
 hacer que un negocio funcione. Tenemos un modelo probado,
 pensado para vender en volumen y con procesos simples de 
 operar.
+
 Invertimos en tecnología, tenemos app propia y presencia en 
 todas las plataformas de delivery.
+
 Ofrecemos una amplia variedad de productos y un sistema de
 atención 360 que acompaña cada punto de venta.
+
 Si buscás una marca con experiencia real, respaldo y potencial de
 crecimiento, este es el momento de sumarte.
-                </div>
               </div>
             </div>
           </div>
-          {/* PARTE DERECHA: Formulario (no tocar) */}
-          <div className="franq-col-der contacto-container" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, margin: 0, maxWidth: '520px', width: '100%', minWidth: '320px', boxSizing: 'border-box' }}>
-            <div className="contacto-content" style={{ width: '100%', maxWidth: '520px', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0', alignSelf: 'flex-start' }}>
-              <div className="contacto-form-container" style={{ maxWidth: '520px', width: '100%', margin: 0, padding: '40px 36px', boxShadow: '0 2px 12px rgba(0,0,0,0.18)', borderRadius: '12px', background: 'rgba(0,0,0,0.45)' }}>
-                <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en abrir una franquicia de Mi Gusto.</p>
-                <div style={{ textAlign: 'center', marginBottom: '10px', fontSize: '1.1rem', color: '#ffc107' }}>
+
+          {/* PARTE DERECHA: Formulario */}
+          <div className="contacto-container" style={{ 
+            width: '50vw', 
+            minHeight: '100vh', 
+            display: 'flex', 
+            alignItems: 'stretch', 
+            justifyContent: 'center', 
+            marginTop: '150px' 
+          }}>
+            <div className="contacto-content" style={{ 
+              width: '100%', 
+              marginTop: (typeof window !== 'undefined' && window.innerWidth > 900) ? '-40px' : '0' 
+            }}>
+              <div className="contacto-form-container" style={{ 
+                background: 'rgba(30, 30, 30, 0.65)', 
+                backdropFilter: 'blur(5px)'
+              }}>
+                <p style={{ textAlign: 'center', fontSize: '1.3rem', marginBottom: '24px' }}>Completa el siguiente formulario si estás interesado en abrir una franquicia de Mi Gusto.</p>
+                <div style={{ textAlign: 'center', marginBottom: '16px', fontSize: '1.1rem', color: '#ffc107' }}>
                   Paso {currentStep} de 3
                 </div>
                 <div className="progress-bar-container">
                   <div className="progress-bar" style={{ width: `${progressBarWidth}%` }}></div>
                 </div>
+                
                 <form className="contacto-form" onSubmit={handleSubmit}>
+                  {/* Estilos personalizados para react-datepicker */}
                   <style>{`
-                    .contacto-form .select-match-input {
+                    .datepicker-match {
+                      width: 100% !important;
+                      min-width: 100% !important;
+                      max-width: 100% !important;
+                      box-sizing: border-box !important;
+                      height: auto !important;
                       padding: 15px !important;
                       border: 1px solid rgba(255, 255, 255, 0.2) !important;
                       border-radius: 5px !important;
@@ -292,47 +313,23 @@ crecimiento, este es el momento de sumarte.
                       background-color: rgba(255, 255, 255, 0.1) !important;
                       color: #f8f9fa !important;
                       transition: all 0.3s ease !important;
-                      appearance: none !important;
-                      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
-                      background-repeat: no-repeat !important;
-                      background-position: right 1.5rem center !important;
-                      background-size: 1.5rem !important;
-                      cursor: pointer !important;
-                      width: 100% !important;
-                      min-width: 120px !important;
-                      box-sizing: border-box !important;
+                      display: block !important;
                     }
-                    .contacto-form .select-match-input:focus {
+                    
+                    .form-group.half-width .datepicker-match {
+                      width: 100% !important;
+                      min-width: 100% !important;
+                      max-width: 100% !important;
+                      display: block !important;
+                    }
+                    
+                    .datepicker-match:focus {
                       outline: none !important;
                       border-color: #ffc107 !important;
                       box-shadow: 0 0 12px rgba(255, 193, 7, 0.6) !important;
                       background-color: rgba(255, 255, 255, 0.2) !important;
                     }
-                    .contacto-form .select-match-input option[value=''] {
-                      color: rgba(248, 249, 250, 0.6) !important;
-                    }
-                    .contacto-form .select-match-input option,
-                    .contacto-form .select-match-input option:checked,
-                    .contacto-form .select-match-input option:focus,
-                    .contacto-form .select-match-input option:hover {
-                      color: #f8f9fa !important;
-                      background-color: #1a1a1a !important;
-                    }
-                    .form-group.half-width .contacto-form.input {
-                      width: 100% !important;
-                      min-width: 0 !important;
-                      max-width: 100% !important;
-                      display: block;
-                    }
-                    .form-group.half-width .datepicker-match {
-                      width: 100% !important;
-                      min-width: 0 !important;
-                      max-width: 100% !important;
-                      display: block !important;
-                    }
-                  `}</style>
-                  {/* Estilos personalizados para react-datepicker */}
-                  <style>{`
+                    
                     .react-datepicker {
                       background: #181818 !important;
                       border: 1px solid #333 !important;
@@ -340,6 +337,8 @@ crecimiento, este es el momento de sumarte.
                       font-family: inherit !important;
                       border-radius: 8px !important;
                       box-shadow: 0 4px 24px rgba(0,0,0,0.25) !important;
+                      left: -100px !important;
+                      position: relative !important;
                     }
                     .react-datepicker__header {
                       background: #222 !important;
@@ -384,15 +383,13 @@ crecimiento, este es el momento de sumarte.
                       background: #ffc107 !important;
                       color: #222 !important;
                     }
-                  `}</style>
-                  {/* Estilo para el placeholder del DatePicker */}
-                  <style>{`
                     .datepicker-match::placeholder {
                       color: #bbb !important;
                       opacity: 1 !important;
                       font-style: normal !important;
                     }
                   `}</style>
+
                   {currentStep === 1 && (
                     <div className="form-step">
                       <div className="form-row">
@@ -404,43 +401,38 @@ crecimiento, este es el momento de sumarte.
                         <div className="form-group half-width">
                           <label htmlFor="fechaNacimiento">Fecha de Nacimiento: <span className="required">*</span></label>
                           {errors.fechaNacimiento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.fechaNacimiento}</div>}
-                          <div style={{ position: 'relative', width: '100%' }}>
-                            <DatePicker
-                              selected={formData.fechaNacimiento ? new Date(formData.fechaNacimiento.split('/').reverse().join('-')) : null}
-                              onChange={(date, event) => {
-                                handleDateChange(date, event);
-                                setCalendarOpen(false);
-                              }}
-                              dateFormat="dd/MM/yy"
-                              placeholderText="dd/mm/aaaa"
-                              customInput={<CalendarInput onChange={handleInputChange} onClick={() => setCalendarOpen(true)} />}
-                              id="fechaNacimiento"
-                              name="fechaNacimiento"
-                              showMonthDropdown
-                              showYearDropdown
-                              dropdownMode="select"
-                              maxDate={new Date()}
-                              onClickOutside={() => setCalendarOpen(false)}
-                              shouldCloseOnSelect={true}
-                              open={calendarOpen}
-                              ref={datePickerRef}
-                            />
-                            <span
-                              style={{
-                                position: 'absolute',
-                                right: '15px',
-                                top: '35%',
-                                transform: 'translateY(-50%)',
-                                cursor: 'pointer',
-                                color: 'rgba(248, 249, 250, 0.6)',
-                                fontSize: '1.3em',
-                                zIndex: 2
-                              }}
-                              onClick={() => setCalendarOpen(true)}
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" stroke="rgba(248, 249, 250, 0.6)" strokeWidth="2"/><path d="M16 3v4M8 3v4" stroke="rgba(248, 249, 250, 0.6)" strokeWidth="2" strokeLinecap="round"/><path d="M3 9h18" stroke="rgba(248, 249, 250, 0.6)" strokeWidth="2"/></svg>
-                            </span>
-                          </div>
+                          <input
+                            type="text"
+                            id="fechaNacimiento"
+                            name="fechaNacimiento"
+                            value={formData.fechaNacimiento}
+                            onChange={handleInputChange}
+                            onClick={() => setCalendarOpen(true)}
+                            required
+                            placeholder="dd/mm/aaaa"
+                            className="contacto-form input"
+                            readOnly
+                          />
+                          <DatePicker
+                            selected={formData.fechaNacimiento ? new Date(formData.fechaNacimiento.split('/').reverse().join('-')) : null}
+                            onChange={(date, event) => {
+                              handleDateChange(date, event);
+                              setCalendarOpen(false);
+                            }}
+                            dateFormat="dd/MM/yy"
+                            placeholderText="dd/mm/aaaa"
+                            customInput={<input style={{ display: 'none' }} />}
+                            id="fechaNacimiento-hidden"
+                            name="fechaNacimiento-hidden"
+                            showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            maxDate={new Date()}
+                            onClickOutside={() => setCalendarOpen(false)}
+                            shouldCloseOnSelect={true}
+                            open={calendarOpen}
+                            ref={datePickerRef}
+                          />
                         </div>
                       </div>
                       <div className="form-row">
@@ -599,4 +591,24 @@ crecimiento, este es el momento de sumarte.
   );
 };
 
-export default Franquicias; 
+export default Franquicias;
+
+// Solo para mobile: reducir el margen superior del contenido
+if (typeof window !== 'undefined') {
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @media (max-width: 900px) {
+      .sucursales-section {
+        margin-top: 0px !important;
+      }
+      .contacto-container {
+        margin-top: 32px !important;
+      }
+      .responsive-row img {
+        margin-top: 8px !important;
+        margin-bottom: 32px !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+} 
