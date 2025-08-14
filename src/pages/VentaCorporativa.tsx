@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../pages/Contacto.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const VentaCorporativa: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -15,6 +17,7 @@ const VentaCorporativa: React.FC = () => {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [calendarOpenEvento, setCalendarOpenEvento] = useState(false);
 
     const [errors, setErrors] = useState({
         nombreApellido: '',
@@ -70,6 +73,31 @@ const VentaCorporativa: React.FC = () => {
             [name]: value
         }));
         setErrors(prev => ({ ...prev, [name]: '' }));
+    };
+
+    const autoResizeTextarea = (event: React.FormEvent<HTMLTextAreaElement>) => {
+        const textarea = event.currentTarget;
+        textarea.style.height = 'auto';
+        const newHeight = Math.max(48, textarea.scrollHeight);
+        textarea.style.height = `${newHeight}px`;
+    };
+
+    useEffect(() => {
+        const ids = ['descripcionEvento', 'observaciones'];
+        ids.forEach((id) => {
+            const el = document.getElementById(id) as HTMLTextAreaElement | null;
+            if (el) {
+                el.style.height = 'auto';
+                el.style.height = Math.max(48, el.scrollHeight) + 'px';
+            }
+        });
+    }, []);
+
+    const handleFechaEventoChange = (date: Date | null) => {
+        setFormData(prev => ({
+            ...prev,
+            fechaEvento: date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 10) : ''
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -147,7 +175,7 @@ const VentaCorporativa: React.FC = () => {
                     }}>
                         {/* Título Venta Corporativa */}
                         <img src="/corp/venta corporativa.png" alt="Venta Corporativa" style={{ 
-                            width: '280px', 
+                            width: '420px', 
                             marginBottom: '40px', 
                             filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
                             zIndex: 3
@@ -156,6 +184,7 @@ const VentaCorporativa: React.FC = () => {
                         {/* Imagen de fondo */}
                         <img src="/corp/foto f-100.jpg" alt="Venta corporativa" style={{ 
                             width: '100%', 
+                            maxWidth: '680px',
                             height: 'auto',
                             maxHeight: 'calc(100vh - 200px)',
                             objectFit: 'cover',
@@ -171,17 +200,28 @@ const VentaCorporativa: React.FC = () => {
                             zIndex: 3,
                             padding: '20px'
                         }}>
-                            <div style={{ fontWeight: 700, fontSize: '1.8rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                            <div style={{ fontWeight: 700, fontSize: '2.4rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                                 Beneficios Corporativos
                             </div>
-                            <div style={{ fontSize: '1.4rem', lineHeight: '1.6', color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-• Packs corporativos anticipados con hasta 25% OFF
-
-• Entregas en CABA y GBA
-
-• Atención personalizada, adaptada a tus necesidades
-
-• Servicio de catering profesional para eventos
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <img src="/corp/descuento.png" alt="Descuento" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <span style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                        Packs corporativos anticipados con hasta 25% OFF
+                                    </span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <img src="/corp/entrega.png" alt="Entrega" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <span style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                        Entregas en CABA y GBA
+                                    </span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <img src="/corp/servicio.png" alt="Servicio" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <span style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                        Atención personalizada, adaptada a tus necesidades
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -203,12 +243,58 @@ const VentaCorporativa: React.FC = () => {
                                 background: 'rgba(30, 30, 30, 0.65)', 
                                 backdropFilter: 'blur(5px)'
                             }}>
-                                <h2 style={{ textAlign: 'center', marginBottom: '16px', color: '#ffd700' }}>Venta Corporativa</h2>
-                                <p style={{ textAlign: 'center', fontSize: '1.3rem', marginBottom: '24px' }}>
+                                <p style={{ textAlign: 'center', fontSize: '1.4rem', marginBottom: '24px' }}>
                                     Eventos Corporativos: solicitá tu propuesta personalizada
                                 </p>
                                 
                                 <form onSubmit={handleSubmit} className="contacto-form">
+                                    <style>{`
+										.react-datepicker {
+											background: #181818 !important;
+											border: 1px solid #333 !important;
+											color: #fff !important;
+											font-family: inherit !important;
+											border-radius: 8px !important;
+											box-shadow: 0 4px 24px rgba(0,0,0,0.25) !important;
+											left: -100px !important;
+											position: relative !important;
+										}
+										.react-datepicker__header {
+											background: #222 !important;
+											border-bottom: 1px solid #333 !important;
+											color: #fff !important;
+											border-radius: 8px 8px 0 0 !important;
+										}
+										.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+											color: #ffc107 !important;
+											font-weight: bold !important;
+										}
+										.react-datepicker__day, .react-datepicker__day-name {
+											color: #fff !important;
+											font-size: 1rem !important;
+											border-radius: 4px !important;
+										}
+										.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+											background: #ffc107 !important;
+											color: #222 !important;
+										}
+										.react-datepicker__day:hover {
+											background: #333 !important;
+											color: #ffc107 !important;
+										}
+										.react-datepicker__triangle { display: none !important; }
+										.react-datepicker__navigation { top: 12px !important; }
+										.react-datepicker__navigation-icon::before { border-color: #ffc107 !important; }
+										.react-datepicker__month-dropdown, .react-datepicker__year-dropdown {
+											background: #181818 !important;
+											color: #fff !important;
+										}
+										.react-datepicker__month-option, .react-datepicker__year-option { color: #fff !important; }
+										.react-datepicker__month-option--selected, .react-datepicker__year-option--selected {
+											background: #ffc107 !important;
+											color: #222 !important;
+										}
+									`}</style>
                                     <div className="form-row">
                                         <div className="form-group half-width">
                                             <label htmlFor="nombreApellido">Nombre y apellido: <span className="required">*</span></label>
@@ -251,13 +337,28 @@ const VentaCorporativa: React.FC = () => {
                                         <div className="form-group half-width">
                                             <label htmlFor="fechaEvento">Fecha del evento: <span className="required">*</span></label>
                                             <input
-                                                type="date"
+                                                type="text"
                                                 id="fechaEvento"
                                                 name="fechaEvento"
                                                 value={formData.fechaEvento}
-                                                onChange={handleChange}
-                                                autoComplete="off"
-                                                min={minDate}
+                                                onClick={() => setCalendarOpenEvento(true)}
+                                                readOnly
+                                                placeholder="dd/mm/aaaa"
+                                                className="contacto-form input"
+                                            />
+                                            <DatePicker
+                                                selected={formData.fechaEvento ? new Date(formData.fechaEvento) : null}
+                                                onChange={(date) => { handleFechaEventoChange(date); setCalendarOpenEvento(false); }}
+                                                dateFormat="yyyy-MM-dd"
+                                                minDate={new Date(minDate)}
+                                                showMonthDropdown
+                                                showYearDropdown
+                                                dropdownMode="select"
+                                                onSelect={() => setCalendarOpenEvento(false)}
+                                                onClickOutside={() => setCalendarOpenEvento(false)}
+                                                shouldCloseOnSelect={true}
+                                                open={calendarOpenEvento}
+                                                customInput={<input style={{ display: 'none' }} />}
                                             />
                                             {errors.fechaEvento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.fechaEvento}</div>}
                                         </div>
@@ -282,8 +383,10 @@ const VentaCorporativa: React.FC = () => {
                                             name="descripcionEvento"
                                             value={formData.descripcionEvento}
                                             onChange={handleChange}
+                                            onInput={autoResizeTextarea}
                                             placeholder="Describa brevemente el evento"
-                                            rows={3}
+                                            rows={1}
+                                            style={{ width: '100%', height: 48, minHeight: 48, padding: '12px 16px', resize: 'none' }}
                                         />
                                         {errors.descripcionEvento && <div style={{ color: 'red', fontSize: '0.95rem', marginTop: 4 }}>{errors.descripcionEvento}</div>}
                                     </div>
@@ -294,8 +397,10 @@ const VentaCorporativa: React.FC = () => {
                                             name="observaciones"
                                             value={formData.observaciones}
                                             onChange={handleChange}
+                                            onInput={autoResizeTextarea}
                                             placeholder="Detalle aquí cualquier requerimiento especial"
-                                            rows={3}
+                                            rows={1}
+                                            style={{ width: '100%', height: 48, minHeight: 48, padding: '12px 16px', resize: 'none' }}
                                         />
                                     </div>
                                     
