@@ -225,8 +225,37 @@ const Franquicias: React.FC = () => {
             zIndex: 2,
             padding: '40px'
           }}>
+            <style>{`
+              @media (max-width: 900px) {
+                .franquicias-img {
+                  width: 100vw !important;
+                  padding: 16px !important;
+                  margin-top: 8px !important;
+                }
+                .franquicias-img .franq-title-img {
+                  width: min(72vw, 320px) !important;
+                  margin-bottom: 16px !important;
+                }
+                .franquicias-img .franq-hero-img {
+                  width: 92vw !important;
+                  max-width: 520px !important;
+                  margin-bottom: 16px !important;
+                }
+                .franquicias-img .franq-text {
+                  padding: 0 8px !important;
+                }
+                .franquicias-img .franq-text-title {
+                  font-size: 1.3rem !important;
+                  margin-bottom: 12px !important;
+                }
+                .franquicias-img .franq-text-body {
+                  font-size: 1.05rem !important;
+                  line-height: 1.55 !important;
+                }
+              }
+            `}</style>
             {/* Título Franquicias */}
-            <img src="/franq/Franquicias.png" alt="Franquicias" style={{ 
+            <img src="/franq/Franquicias.png" alt="Franquicias" className="franq-title-img" style={{ 
               width: '280px', 
               marginBottom: '40px', 
               filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
@@ -234,7 +263,7 @@ const Franquicias: React.FC = () => {
             }} />
             
             {/* Imagen de fondo */}
-            <img src="/franq/sucursal.png" alt="Sucursal Mi Gusto" style={{ 
+            <img src="/franq/sucursal.png" alt="Sucursal Mi Gusto" className="franq-hero-img" style={{ 
               width: '100%', 
               height: 'auto',
               maxHeight: 'calc(100vh - 200px)',
@@ -246,15 +275,15 @@ const Franquicias: React.FC = () => {
             }} />
             
                         {/* Bloque de texto explicativo */}
-            <div style={{
+            <div className="franq-text" style={{
               textAlign: 'left',
               zIndex: 3,
               padding: '20px'
             }}>
-              <div style={{ fontWeight: 700, fontSize: '1.8rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+              <div className="franq-text-title" style={{ fontWeight: 700, fontSize: '1.8rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                 ¿Por qué elegir Mi Gusto?
               </div>
-              <div style={{ fontSize: '1.4rem', lineHeight: 1.6, color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+              <div className="franq-text-body" style={{ fontSize: '1.4rem', lineHeight: 1.6, color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
 Porque llevamos más de 25 años en el mercado y sabemos cómo
 hacer que un negocio funcione. Tenemos un modelo probado,
 pensado para vender en volumen y con procesos simples de 
