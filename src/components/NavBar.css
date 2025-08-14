@@ -325,11 +325,16 @@
 }
 
 @media (max-width: 991px) {
-  .nav-link-venta-corporativa,
-  .nav-link-pedir {
+  .nav-link-venta-corporativa {
     margin: 0.5rem 0 !important;
     text-align: center !important;
     display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-link-pedir {
+    display: none !important;
   }
 }
 
@@ -591,7 +596,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
     align-items: flex-start;
     justify-content: flex-end;
     position: fixed;
-    top: 2px;
+    top: 8px;
     right: 12px;
     left: auto;
     width: auto;
@@ -613,6 +618,38 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
     height: auto;
     margin: 0;
     display: block;
+    animation: pedidoPulseGlow 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  
+  .mobile-pedir-link {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: all 0.3s ease !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    position: relative;
+  }
+  
+  .mobile-pedir-link::after {
+    display: none !important;
+  }
+  
+  .mobile-pedir-link:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+  
+  .mobile-pedir-link:hover::after {
+    display: none !important;
   }
 }
 
