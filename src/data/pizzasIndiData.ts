@@ -23,12 +23,6 @@ export const pizzasIndi: PizzaIndi[] = [
     esRecomendado: true
   },
   {
-    imagen: "https://i.postimg.cc/g0xhWzm1/Indi-Burger-Photoroom.png",
-    titulo: "Burger INDI",
-    descripcion: "Pizza individual con hamburguesa, queso cheddar, cebolla caramelizada y salsa especial.",
-    esRecomendado: true
-  },
-  {
     imagen: "https://i.postimg.cc/BZPG1dns/INDI-Pepperonni-Photoroom.png",
     titulo: "Pepperoni INDI",
     descripcion: "Pizza individual con pepperoni y queso mozzarella."
