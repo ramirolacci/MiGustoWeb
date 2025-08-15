@@ -256,7 +256,7 @@ const Franquicias: React.FC = () => {
             `}</style>
             {/* Título Franquicias */}
             <img src="/franq/Franquicias.png" alt="Franquicias" className="franq-title-img" style={{ 
-              width: '280px', 
+              width: '340px', 
               marginBottom: '40px', 
               filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
               zIndex: 3
@@ -631,7 +631,7 @@ if (typeof window !== 'undefined') {
         margin-top: 0px !important;
       }
       .contacto-container {
-        margin-top: 32px !important;
+        margin-top: 56px !important;
       }
       .responsive-row img {
         margin-top: 8px !important;
