@@ -21,6 +21,7 @@ const VentaCorporativa = lazy(() => import('./pages/VentaCorporativa'));
 const Revista = lazy(() => import('./components/Revista'));
 const Lovers = lazy(() => import('./pages/Lovers.tsx'));
 const Legales = lazy(() => import('./pages/Legales'));
+const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 
 import './App.css';
 
@@ -64,6 +65,7 @@ const AppContent: React.FC = () => {
               <Route path="/lovers/*" element={<Lovers />} />
               <Route path="/3d" element={<Viewer3D />} />
               <Route path="/legales" element={<Legales />} />
+              <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
             </Routes>
           </Suspense>
         </main>
