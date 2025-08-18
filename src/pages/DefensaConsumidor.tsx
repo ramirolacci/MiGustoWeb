@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import './Nosotros.css';
 
-// Estilos base
+// Estilos base (match estilo glass/blur de Legales)
 const cardStyle: React.CSSProperties = {
-  background: 'rgba(30, 30, 30, 0.85)',
-  borderRadius: '18px',
-  boxShadow: '0 4px 24px 0 rgba(0,0,0,0.18)',
-  padding: '2.2rem 2rem 1.5rem 2rem',
-  marginBottom: '2.5rem',
-  borderLeft: '1.5px solid #FFD70022',
-  borderRight: '1.5px solid #FFD70022',
-  borderBottom: '1.5px solid #FFD70022',
-  borderTop: 'none !important',
+  background: 'rgba(255, 255, 255, 0.05)',
+  borderRadius: '20px',
+  backdropFilter: 'blur(10px)',
+  border: '1px solid rgba(255, 255, 255, 0.1)',
+  padding: '2.5rem',
   maxWidth: 980,
   marginLeft: 'auto',
   marginRight: 'auto',
