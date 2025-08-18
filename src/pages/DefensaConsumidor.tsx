@@ -12,7 +12,7 @@ const cardStyle: React.CSSProperties = {
   borderRight: '1.5px solid #FFD70022',
   borderBottom: '1.5px solid #FFD70022',
   borderTop: 'none !important',
-  maxWidth: 520,
+  maxWidth: 980,
   marginLeft: 'auto',
   marginRight: 'auto',
 };
@@ -80,6 +80,13 @@ const phoneStyle: React.CSSProperties = {
   marginTop: 4,
 };
 
+const rowStyle: React.CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '1rem',
+  marginBottom: '1.5rem',
+};
+
 // Estilos locales y responsivos
 const responsiveCSS = `
 /* Eliminar cualquier línea automática agregada por h2.defensa-title::after */
@@ -113,6 +120,9 @@ h2.defensa-title::after { content: none !important; display: none !important; wi
     padding: 0.7rem 0.5rem 0.7rem 0.5rem !important;
     font-size: 0.98rem !important;
     margin-bottom: 0.9rem !important;
+  }
+  .defensa-row {
+    grid-template-columns: 1fr !important;
   }
 }
 `;
@@ -169,26 +179,53 @@ const DefensaConsumidor: React.FC = () => {
           <h2 className="defensa-title" style={titleStyle}>DEFENSA AL CONSUMIDOR</h2>
           <div className="defensa-divider" style={dividerStyle}></div>
           <div style={{color: 'rgba(255,255,255,0.92)', fontSize: '1.08rem'}}>
-            <h3 className="defensa-subtitle" style={subtitleStyle}>Organismos disponibles</h3>
-            <div className="organismo-block organismo-block" style={organismoBlock}>
-              <h4 style={organismoTitle}>Nacional</h4>
-              <p style={{marginBottom: '4px'}}>Dirección Nacional de Defensa del Consumidor</p>
-              <p style={{marginBottom: '4px'}}>
-                <a href="https://www.argentina.gob.ar/defensadelconsumidor" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>
-                  www.argentina.gob.ar/defensadelconsumidor
-                </a>
-              </p>
-              <p style={phoneStyle}>Tel: 0800-666-1518</p>
+            <div className="defensa-row" style={rowStyle}>
+              <div className="organismo-block organismo-block" style={organismoBlock}>
+                <h4 style={organismoTitle}>DERECHOS DEL TITULAR</h4>
+                <p style={{marginBottom: '4px'}}>Los titulares pueden solicitar acceso, rectificación, actualización o supresión de sus datos mediante contacto formal a: <a href="mailto:info@migusto.com.ar" style={linkStyle} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>info@migusto.com.ar</a></p>
+              </div>
+              <div className="organismo-block organismo-block" style={organismoBlock}>
+                <h4 style={organismoTitle}>INFORMACIÓN SOBRE ALÉRGENOS</h4>
+                <p style={{marginBottom: '4px'}}>Nuestros productos pueden contener gluten, lactosa, huevo, soja, frutos secos, entre otros. El consumidor declara conocer esto y exime de responsabilidad a Mi Gusto Empanadas si no informa previamente restricciones alimentarias.</p>
+              </div>
+            </div>
+            <div className="defensa-row" style={rowStyle}>
+              <div className="organismo-block organismo-block" style={organismoBlock}>
+                <h4 style={organismoTitle}>PEDIDOS A TRAVÉS DE PLATAFORMAS EXTERNAS</h4>
+                <p style={{marginBottom: '4px'}}>Los reclamos por pedidos realizados en apps externas deberán gestionarse prioritariamente con dichas plataformas. Mi Gusto Empanadas podrá intervenir en casos vinculados a la calidad si se verifica responsabilidad directa.</p>
+              </div>
+              <div className="organismo-block organismo-block" style={organismoBlock}>
+                <h4 style={organismoTitle}>POLÍTICA DE COOKIES</h4>
+                <p style={{marginBottom: '4px'}}>Nuestro sitio utiliza cookies propias y de terceros para mejorar la experiencia y análisis estadísticos. El usuario puede aceptar, rechazar o configurar su uso.</p>
+              </div>
             </div>
             <div className="organismo-block organismo-block" style={organismoBlock}>
-              <h4 style={organismoTitle}>Ciudad Autónoma de Buenos Aires</h4>
-              <p style={{marginBottom: '4px'}}>Dirección General de Defensa y Protección al Consumidor</p>
-              <p style={{marginBottom: '4px'}}>
-                <a href="https://www.buenosaires.gob.ar/defensaconsumidor" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>
-                  www.buenosaires.gob.ar/defensaconsumidor
-                </a>
-              </p>
-              <p style={phoneStyle}>Tel: 147</p>
+              <h4 style={organismoTitle}>CONTACTO LEGAL Y DEFENSA DEL CONSUMIDOR</h4>
+              <p style={{marginBottom: '4px'}}>Contacto</p>
+              <p style={{marginBottom: '4px'}}>Para consultas o reclamos legales, puede comunicarse al correo: <a href="mailto:info@migusto.com.ar" style={linkStyle} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>info@migusto.com.ar</a></p>
+            </div>
+            <h3 className="defensa-subtitle" style={subtitleStyle}>Organismos disponibles</h3>
+            <div className="defensa-row" style={rowStyle}>
+              <div className="organismo-block organismo-block" style={organismoBlock}>
+                <h4 style={organismoTitle}>Nacional</h4>
+                <p style={{marginBottom: '4px'}}>Dirección Nacional de Defensa del Consumidor</p>
+                <p style={{marginBottom: '4px'}}>
+                  <a href="https://www.argentina.gob.ar/defensadelconsumidor" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>
+                    www.argentina.gob.ar/defensadelconsumidor
+                  </a>
+                </p>
+                <p style={phoneStyle}>Tel: 0800-666-1518</p>
+              </div>
+              <div className="organismo-block organismo-block" style={organismoBlock}>
+                <h4 style={organismoTitle}>Ciudad Autónoma de Buenos Aires</h4>
+                <p style={{marginBottom: '4px'}}>Dirección General de Defensa y Protección al Consumidor</p>
+                <p style={{marginBottom: '4px'}}>
+                  <a href="https://www.buenosaires.gob.ar/defensaconsumidor" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>
+                    www.buenosaires.gob.ar/defensaconsumidor
+                  </a>
+                </p>
+                <p style={phoneStyle}>Tel: 147</p>
+              </div>
             </div>
             <div className="organismo-block organismo-block" style={organismoBlock}>
               <h4 style={organismoTitle}>Provincia de Buenos Aires</h4>
