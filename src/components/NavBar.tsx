@@ -174,12 +174,13 @@ const NavBar: React.FC = () => {
     { path: '/franquicias', label: 'Franquicias', image: '/side-menu/franquicia.png' },
     { path: '/venta-corporativa', label: 'Venta corporativa', image: '/side-menu/corporativa.png' },
     { path: '/legales', label: 'Legales', image: '' },
+    { path: '/defensa-consumidor', label: 'Defensa al consumidor', image: '' },
     { path: '/3d', label: 'Studio 3D', image: '/side-menu/EstudioFondo.png' },
   ];
 
   // En desktop oculto los links pedidos, en mobile muestro todos
   const sideMenuLinks = isDesktop
-    ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Sucursales', 'Legales'].includes(link.label))
+    ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Sucursales', 'Legales', 'Defensa al consumidor'].includes(link.label))
     : allSideMenuLinks;
 
   return (
