@@ -526,8 +526,8 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.4) !important;
   }
   .side-menu-close {
-    top: 18px;
-    left: 18px;
+    top: -2px;
+    left: 16px;
     font-size: 32px;
   }
   .side-menu-item {
