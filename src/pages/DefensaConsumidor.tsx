@@ -69,35 +69,41 @@ const rowStyle: React.CSSProperties = {
 
 // Estilos locales y responsivos
 const responsiveCSS = `
-/* Ensanchar solo en esta página y evitar saltos de línea en títulos de las cards */
+/* Ensanchar solo en esta página (desktop) y evitar saltos de línea en títulos de las cards (desktop) */
 .defensa-content { max-width: 1800px !important; }
 .defensa-card { max-width: 1700px !important; }
 .organismo-block h2 { white-space: nowrap; }
 /* Anular la línea ::after de Legales solo en el título principal de esta página */
 .defensa-title::after { content: none !important; display: none !important; width: 0 !important; height: 0 !important; }
 
+/* Ajustes móviles generales */
+@media (max-width: 768px) {
+  .defensa-content { padding: 0.5rem 0.75rem !important; max-width: 100vw !important; }
+  .defensa-card { max-width: 100% !important; padding: 1.1rem 0.85rem !important; }
+  .defensa-title { font-size: 2rem !important; margin-bottom: 0.5rem !important; letter-spacing: 0.02em !important; }
+  .defensa-divider { margin: 0.3rem auto 1rem auto !important; width: 64px !important; height: 4px !important; }
+  .defensa-row { grid-template-columns: 1fr !important; gap: 0.9rem !important; margin-bottom: 1rem !important; }
+  .organismo-block { padding: 0.9rem 0.7rem !important; margin-bottom: 0.9rem !important; }
+  .organismo-block h2 { white-space: normal !important; word-break: break-word !important; overflow-wrap: anywhere !important; font-size: 1.25rem !important; line-height: 1.2 !important; }
+  .defensa-card p, .organismo-block p { font-size: 1rem !important; line-height: 1.6 !important; }
+  .defensa-card a { word-break: break-word !important; overflow-wrap: anywhere !important; }
+}
+
+/* Ajustes finos para pantallas pequeñas */
 @media (max-width: 600px) {
   .defensa-card {
-    padding: 1.2rem 0.7rem 1rem 0.7rem !important;
+    padding: 1rem 0.7rem 0.9rem 0.7rem !important;
     max-width: 96vw !important;
-    margin-bottom: 1.2rem !important;
+    margin-bottom: 1rem !important;
     margin-left: auto !important;
     margin-right: auto !important;
     left: 0; right: 0;
     display: block;
   }
-  .defensa-subtitle {
-    font-size: 1.02rem !important;
-    margin-bottom: 1.1rem !important;
-  }
-  .organismo-block {
-    padding: 0.7rem 0.5rem 0.7rem 0.5rem !important;
-    font-size: 0.98rem !important;
-    margin-bottom: 0.9rem !important;
-  }
-  .defensa-row {
-    grid-template-columns: 1fr !important;
-  }
+  .defensa-title { font-size: 1.85rem !important; }
+  .defensa-subtitle { font-size: 1.05rem !important; margin-bottom: 0.9rem !important; }
+  .organismo-block { padding: 0.8rem 0.6rem !important; }
+  .organismo-block h2 { font-size: 1.15rem !important; }
 }
 `;
 
