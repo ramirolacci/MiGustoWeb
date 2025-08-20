@@ -49,7 +49,7 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
     tl.to(marqueeRef.current, animationDefaults.duration, { y: edge === 'top' ? '-101%' : '101%', ease: animationDefaults.ease })
       .to(marqueeInnerRef.current, animationDefaults.duration, { y: edge === 'top' ? '101%' : '-101%', ease: animationDefaults.ease });
   };
-  const repeatedMarqueeContent = Array.from({ length: 4 }).map((_, idx) => (
+  const groupContent = Array.from({ length: 10 }).map((_, idx) => (
     <React.Fragment key={idx}>
       <span>{text}</span>
       {image && (
@@ -72,8 +72,13 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
       </a>
       <div className="marquee" ref={marqueeRef}>
         <div className="marquee__inner-wrap" ref={marqueeInnerRef}>
-          <div className="marquee__inner" aria-hidden="true">
-            {repeatedMarqueeContent}
+          <div className="marquee__inner">
+            <div className="marquee__group">
+              {groupContent}
+            </div>
+            <div className="marquee__group" aria-hidden="true">
+              {groupContent}
+            </div>
           </div>
         </div>
       </div>
