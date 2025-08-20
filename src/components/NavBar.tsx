@@ -216,7 +216,7 @@ const NavBar: React.FC = () => {
       `}</style>
       <nav
         ref={navRef}
-        className="navbar navbar-expand-lg"
+        className={`navbar navbar-expand-lg navbar-scrollreveal`}
         style={{
           backgroundColor: 'rgba(0, 0, 0, 0.95)',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
@@ -313,9 +313,13 @@ const NavBar: React.FC = () => {
                       <Link
                         className={`nav-link text-white epic-reveal${navRevealPlayed ? ' animation-played' : ''}${location.pathname === link.path ? ' nav-link-active' : ''}`}
                         to={link.path}
-                        onClick={() => {
+                        onClick={e => {
                           setIsMenuOpen(false);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
+                          // Efecto de click animado
+                          const target = e.currentTarget;
+                          target.classList.add('nav-link-clicked');
+                          setTimeout(() => target.classList.remove('nav-link-clicked'), 350);
                         }}
                         tabIndex={0}
                         aria-current={location.pathname === link.path ? 'page' : undefined}
@@ -331,7 +335,13 @@ const NavBar: React.FC = () => {
                       href="https://pedir.migusto.com.ar/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={e => {
+                        setIsMenuOpen(false);
+                        // Efecto de click animado
+                        const target = e.currentTarget;
+                        target.classList.add('nav-link-clicked');
+                        setTimeout(() => target.classList.remove('nav-link-clicked'), 350);
+                      }}
                       tabIndex={0}
                       aria-label="Pedir online (se abre en nueva pestaña)"
                     >
