@@ -15,13 +15,14 @@ const Carta: React.FC = () => {
         opacity: 0,
         reset: true
       });
-      sr().reveal('.revista-section', {
-        distance: '30px',
-        duration: 1600,
-        origin: 'bottom',
-        opacity: 0,
-        reset: true
-      });
+      // Elimino el reveal sobre .revista-section para evitar doble animación
+      // sr().reveal('.revista-section', {
+      //   distance: '30px',
+      //   duration: 1600,
+      //   origin: 'bottom',
+      //   opacity: 0,
+      //   reset: true
+      // });
     });
   }, []);
   return (
