@@ -200,6 +200,11 @@ const DefensaConsumidor: React.FC = () => {
               <p>Contacto</p>
               <p>Para consultas o reclamos legales, puede comunicarse al correo: <a href="mailto:info@migusto.com.ar" style={{...linkStyle, textDecoration: 'underline'}} onMouseOver={e => (e.currentTarget.style.color = '#fff')} onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}>info@migusto.com.ar</a></p>
             </div>
+          </div>
+        </div>
+
+        <div className="section-card defensa-card" style={cardStyle}>
+          <div className="organismos-container">
             <h2 className="defensa-title" style={titleStyle}>Organismos disponibles</h2>
             <div className="defensa-divider" style={dividerStyle}></div>
             <div className="defensa-row" style={rowStyle}>
