@@ -1096,7 +1096,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 }
 .marquee__inner-wrap {
   height: 100%;
-  width: 200%;
+  width: 100%;
   display: flex;
   transform: translateX(0);
   align-items: center;
@@ -1106,9 +1106,13 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   align-items: center;
   position: relative;
   height: 100%;
-  width: 200%;
+  width: max-content;
   will-change: transform;
-  animation: flowing-menu-marquee 15s linear infinite;
+  animation: flowing-menu-marquee 22s linear infinite;
+}
+.marquee__group {
+  display: inline-flex;
+  align-items: center;
   gap: 2rem;
 }
 .marquee span {
@@ -1133,8 +1137,8 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   transform: translate3d(0, 0%, 0);
 }
 @keyframes flowing-menu-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 .flowing-menu-list {
   width: 100%;
