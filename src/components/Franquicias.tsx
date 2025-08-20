@@ -40,9 +40,7 @@ const Franquicias: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Datos del formulario de franquicias:', formData);
-    // Aquí se manejaría el envío de datos, por ejemplo, a una API
     alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
-    // Reset form after submission
     setFormData({
       nombre: '',
       fechaNacimiento: '',
@@ -205,121 +203,6 @@ const Franquicias: React.FC = () => {
                 </div>
                 <button type="submit" className="btn-ver-mas">Enviar</button>
                 <button type="button" className="btn-ver-mas" onClick={prevStep}>Volver</button>
-              </div>
-            )}
-          </form>
-        </div>
-      </div>
-    </div>
-                    <label htmlFor="tipoDocumento">Tipo de Documento <span className="required">*</span></label>
-                    <select id="tipoDocumento" name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} required>
-                      <option value="">Selecciona</option>
-                      <option value="DNI">DNI</option>
-                      <option value="LC">LC</option>
-                      <option value="LE">LE</option>
-                    </select>
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="numeroDocumento">Número de Documento <span className="required">*</span></label>
-                    <input type="text" id="numeroDocumento" name="numeroDocumento" value={formData.numeroDocumento} onChange={handleChange} required />
-                  </div>
-                </div>
-                <div className="form-buttons">
-                  <button type="button" className="btn-ver-mas" onClick={nextStep}>Continuar</button>
-                  <button type="button" className="btn-ver-mas" onClick={() => alert('Cancelado')}>Cancelar</button>
-                </div>
-              </div>
-            )}
-
-            {currentStep === 2 && (
-              <div className="form-step">
-                <h3>Paso 2: Datos de Contacto y Residencia</h3>
-                <div className="form-row">
-                  <div className="form-group half-width">
-                    <label htmlFor="paisResidencia">País de Residencia <span className="required">*</span></label>
-                    <select id="paisResidencia" name="paisResidencia" value={formData.paisResidencia} onChange={handleChange} required>
-                      <option value="">Selecciona</option>
-                      <option value="argentina">Argentina</option>
-                      <option value="otros">Otros</option>
-                    </select>
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="provinciaResidencia">Provincia de Residencia <span className="required">*</span></label>
-                    <input type="text" id="provinciaResidencia" name="provinciaResidencia" value={formData.provinciaResidencia} onChange={handleChange} required />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group half-width">
-                    <label htmlFor="localidadResidencia">Localidad de Residencia <span className="required">*</span></label>
-                    <input type="text" id="localidadResidencia" name="localidadResidencia" value={formData.localidadResidencia} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="domicilio">Domicilio <span className="required">*</span></label>
-                    <input type="text" id="domicilio" name="domicilio" value={formData.domicilio} onChange={handleChange} required />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group half-width">
-                    <label htmlFor="telefonoCelular">Teléfono Celular <span className="required">*</span></label>
-                    <input type="tel" id="telefonoCelular" name="telefonoCelular" value={formData.telefonoCelular} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="telefonoAlternativo">Teléfono Alternativo</label>
-                    <input type="tel" id="telefonoAlternativo" name="telefonoAlternativo" value={formData.telefonoAlternativo} onChange={handleChange} />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group half-width">
-                    <label htmlFor="email">E-mail <span className="required">*</span></label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="emailAlternativo">E-mail Alternativo</label>
-                    <input type="email" id="emailAlternativo" name="emailAlternativo" value={formData.emailAlternativo} onChange={handleChange} />
-                  </div>
-                </div>
-                <div className="form-buttons">
-                  <button type="button" className="btn-ver-mas" onClick={prevStep}>Volver</button>
-                  <button type="button" className="btn-ver-mas" onClick={nextStep}>Continuar</button>
-                </div>
-              </div>
-            )}
-
-            {currentStep === 3 && (
-              <div className="form-step">
-                <h3>Paso 3: Preferencias de Franquicia</h3>
-                <div className="form-row">
-                  <div className="form-group half-width">
-                    <label htmlFor="paisPreferencia">País de Preferencia <span className="required">*</span></label>
-                    <select id="paisPreferencia" name="paisPreferencia" value={formData.paisPreferencia} onChange={handleChange} required>
-                      <option value="">Selecciona</option>
-                      <option value="argentina">Argentina</option>
-                      <option value="otros">Otros</option>
-                    </select>
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="provinciaPreferencia">Provincia de Preferencia <span className="required">*</span></label>
-                    <input type="text" id="provinciaPreferencia" name="provinciaPreferencia" value={formData.provinciaPreferencia} onChange={handleChange} required />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group half-width">
-                    <label htmlFor="localidadPreferencia">Localidad de Preferencia <span className="required">*</span></label>
-                    <input type="text" id="localidadPreferencia" name="localidadPreferencia" value={formData.localidadPreferencia} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group half-width">
-                    <label htmlFor="inmuebleGarantia">¿Dispone de Inmueble para Garantía? <span className="required">*</span></label>
-                    <select id="inmuebleGarantia" name="inmuebleGarantia" value={formData.inmuebleGarantia} onChange={handleChange} required>
-                      <option value="">Selecciona</option>
-                      <option value="si">Sí</option>
-                      <option value="no">No</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form-buttons">
-                  <button type="button" className="btn-ver-mas" onClick={prevStep}>Volver</button>
-                  <button type="submit" className="btn-ver-mas">Finalizar</button>
-                </div>
               </div>
             )}
           </form>

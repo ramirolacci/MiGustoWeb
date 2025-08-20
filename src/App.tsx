@@ -6,6 +6,8 @@ import LoadingSpinner from './components/LoadingSpinner';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import BotmakerChat from './components/BotmakerChat';
 import Viewer3D from './components/Viewer3D';
+import CookieConsent from './components/CookieConsent';
+import GoogleAnalytics from './components/GoogleAnalytics';
 import LoversForm from './pages/LoversForm';
 import Carta from './pages/Carta';
 
@@ -48,6 +50,7 @@ const AppContent: React.FC = () => {
       {loading && <LoadingSpinner isLoading={loading} />}
       {!isLovers && !isViewer3D && <BotmakerChat />}
       <div className="app">
+        <GoogleAnalytics />
         {!isLovers && <header><NavBar /></header>}
         <main className='main'>
           <Suspense>
@@ -70,6 +73,7 @@ const AppContent: React.FC = () => {
           </Suspense>
         </main>
         {!isLovers && !isViewer3D && <footer><Footer /></footer>}
+        {!isLovers && !isViewer3D && <CookieConsent />}
       </div>
     </>
   );
