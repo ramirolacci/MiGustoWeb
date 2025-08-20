@@ -129,7 +129,7 @@ const Sucursales: React.FC = () => {
 
                     <div className="row">
                         {sucursalesVisibles.map((sucursal, index) => (
-                            <div className="col-md-6" key={`${sucursal.nombre}-${index}`}>
+                            <div className="col-md-6" key={`${sucursal.nombre}-${index}`} style={{ '--card-index': index } as React.CSSProperties}>
                                 <SucursalCard sucursal={sucursal} />
                             </div>
                         ))}

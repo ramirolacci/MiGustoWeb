@@ -241,3 +241,32 @@
     padding: 1rem;
     font-size: 1rem;
 } 
+
+/* --- Animación reveal épica para las cards de sucursales --- */
+.sucursal-card {
+    opacity: 0;
+    transform: scale(0.92) translateY(32px) skewY(2deg);
+    filter: blur(10px) brightness(1.15);
+    animation: sucursalCardEpicReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.22s + 0.35s);
+}
+@keyframes sucursalCardEpicReveal {
+    0% {
+        opacity: 0;
+        filter: blur(10px) brightness(1.15);
+        transform: scale(0.92) translateY(32px) skewY(2deg);
+        box-shadow: 0 0 0px 0 #FFD70000;
+    }
+    60% {
+        opacity: 1;
+        filter: blur(2px) brightness(1.08);
+        transform: scale(1.06) translateY(-8px) skewY(-1deg);
+        box-shadow: 0 0 60px 0 #FFD70055;
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+        transform: scale(1) translateY(0) skewY(0deg);
+        box-shadow: 0 0 24px 0 #FFD70022;
+    }
+} 
