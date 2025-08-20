@@ -76,9 +76,104 @@
     perspective: 1200px;
 }
 
+/* --- Animación reveal épica para la revista --- */
 .revista-container.container-revealed {
     opacity: 1;
-    transform: scale(1) rotateY(0deg);
+    transform: scale(1.04) rotateY(0deg) skewY(-1deg);
+    box-shadow: 0 0 80px 0 #FFD70055, 0 0 0px 0 #fff0;
+    animation: revistaEpicReveal 1.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes revistaEpicReveal {
+    0% {
+        opacity: 0;
+        filter: blur(16px) brightness(1.2);
+        transform: scale(0.7) rotateY(18deg) skewY(6deg);
+        box-shadow: 0 0 0px 0 #FFD70000;
+    }
+    60% {
+        opacity: 1;
+        filter: blur(2px) brightness(1.08);
+        transform: scale(1.08) rotateY(-2deg) skewY(-2deg);
+        box-shadow: 0 0 120px 0 #FFD70099;
+    }
+    80% {
+        filter: blur(0.5px) brightness(1.01);
+        transform: scale(0.98) rotateY(1deg) skewY(1deg);
+        box-shadow: 0 0 60px 0 #FFD70055;
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+        transform: scale(1.04) rotateY(0deg) skewY(-1deg);
+        box-shadow: 0 0 80px 0 #FFD70055, 0 0 0px 0 #fff0;
+    }
+}
+
+/* --- Partículas doradas reveal --- */
+.revista-container.container-revealed::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 900px;
+    height: 900px;
+    pointer-events: none;
+    z-index: 3;
+    background: radial-gradient(circle, #FFD70055 0%, #FFD70011 60%, transparent 100%);
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(0.7);
+    animation: revistaParticlesGlow 2.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes revistaParticlesGlow {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+        filter: blur(32px);
+    }
+    60% {
+        opacity: 0.8;
+        filter: blur(8px);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 0.7;
+        filter: blur(0px);
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+}
+
+/* --- Ondas expansivas doradas reveal --- */
+.revista-container.container-revealed::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    border: 3px solid #FFD700cc;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 4;
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(0.2);
+    animation: revistaWavesEpic 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+@keyframes revistaWavesEpic {
+    0% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(0.2);
+        filter: blur(8px);
+    }
+    60% {
+        opacity: 0.4;
+        filter: blur(2px);
+        transform: translate(-50%, -50%) scale(2.5);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(0px);
+        transform: translate(-50%, -50%) scale(4.5);
+    }
 }
 
 .revista-container.epic-animating {
@@ -178,15 +273,28 @@
     z-index: 10;
 }
 
+/* --- Reveal para instrucciones --- */
 .revista-instructions.instructions-visible {
     opacity: 1;
     bottom: -35px;
-    animation: instructionBounce 2s ease-in-out infinite;
+    animation: instructionBounce 2s ease-in-out infinite, revistaInstructionsReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
 }
-
-@keyframes instructionBounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-5px); }
+@keyframes revistaInstructionsReveal {
+    0% {
+        opacity: 0;
+        filter: blur(12px) brightness(1.2);
+        transform: translateX(-50%) translateY(40px) scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        filter: blur(2px) brightness(1.08);
+        transform: translateX(-50%) translateY(-8px) scale(1.08);
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
 }
 
 .instruction-text {
@@ -223,6 +331,31 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+}
+
+/* --- Reveal para portada de la revista --- */
+.revista-pagina:first-child .revista-img {
+    opacity: 0;
+    filter: blur(16px) brightness(1.2);
+    transform: scale(0.7) rotate(-8deg);
+    animation: portadaEpicReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+@keyframes portadaEpicReveal {
+    0% {
+        opacity: 0;
+        filter: blur(16px) brightness(1.2);
+        transform: scale(0.7) rotate(-8deg);
+    }
+    60% {
+        opacity: 1;
+        filter: blur(2px) brightness(1.08);
+        transform: scale(1.08) rotate(2deg);
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+        transform: scale(1) rotate(0deg);
+    }
 }
 
 .revista-img {
