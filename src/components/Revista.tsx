@@ -45,12 +45,10 @@ const Revista = () => {
                     setIsVisible(true);
                     setIsAnimating(true);
                     setShowParticles(true);
-                    
-                    // Remover las animaciones de partículas y ondas
-                    // createGoldenParticles();
-                    // createExpansionWaves();
-                    
-                    // Resetear estados después de las animaciones
+
+                    // Solo animar una vez
+                    observer.disconnect();
+
                     setTimeout(() => {
                         setIsAnimating(false);
                         setShowParticles(false);
@@ -63,7 +61,7 @@ const Revista = () => {
             }
         );
 
-        if (revistaRef.current) {
+        if (revistaRef.current && !isVisible) {
             observer.observe(revistaRef.current);
         }
 
