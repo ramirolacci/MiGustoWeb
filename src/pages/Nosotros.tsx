@@ -5,7 +5,6 @@ const Nosotros: React.FC = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isVideoVisible, setIsVideoVisible] = useState(true);
     const [franquiciasCount, setFranquiciasCount] = useState(0);
     const franquiciasRef = useRef<HTMLDivElement>(null);
 
@@ -25,30 +24,17 @@ const Nosotros: React.FC = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setIsVideoVisible(entry.isIntersecting);
-                if (videoRef.current) {
-                    if (!entry.isIntersecting) {
-                        videoRef.current.pause();
-                        videoRef.current.muted = true;
-                        setIsPlaying(false);
-                    }
+                if (videoRef.current && !entry.isIntersecting) {
+                    videoRef.current.pause();
+                    videoRef.current.muted = true;
+                    setIsPlaying(false);
                 }
             },
-            {
-                threshold: 0.5
-            }
+            { threshold: 0.5 }
         );
-
         const videoElement = videoRef.current;
-        if (videoElement) {
-            observer.observe(videoElement);
-        }
-
-        return () => {
-            if (videoElement) {
-                observer.unobserve(videoElement);
-            }
-        };
+        if (videoElement) observer.observe(videoElement);
+        return () => { if (videoElement) observer.unobserve(videoElement); };
     }, []);
 
     useEffect(() => {
@@ -114,6 +100,7 @@ const Nosotros: React.FC = () => {
     const isDraggingRef = useRef(false);
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
+    const valoresContainerRef = useRef<HTMLDivElement>(null);
 
     // Valores del carrusel (fijos, no reordenables)
     const valores = [
@@ -180,32 +167,35 @@ const Nosotros: React.FC = () => {
     ];
     // Drag-to-scroll mejorado: listeners globales
     const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
+        const container = valoresContainerRef.current;
+        if (!container) return;
         setIsDragging(true);
         isDraggingRef.current = true;
-        const startX = e.pageX - (carouselRef.current?.offsetLeft || 0);
+        const startX = e.pageX - (container.offsetLeft || 0);
         startXRef.current = startX;
-        const scrollLeft = carouselRef.current?.scrollLeft || 0;
+        const scrollLeft = container.scrollLeft || 0;
         scrollLeftRef.current = scrollLeft;
         window.addEventListener('mousemove', handleWindowMouseMove);
         window.addEventListener('mouseup', handleWindowMouseUp);
     };
 
     const handleWindowMouseMove = (e: MouseEvent) => {
-        if (!isDraggingRef.current || !carouselRef.current) return;
+        const container = valoresContainerRef.current;
+        if (!isDraggingRef.current || !container) return;
         e.preventDefault();
-        const x = e.pageX - carouselRef.current.offsetLeft;
+        const x = e.pageX - container.offsetLeft;
         const walk = (x - startXRef.current) * 1.2;
-        carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
+        container.scrollLeft = scrollLeftRef.current - walk;
     };
 
     const handleSnapToCard = () => {
-        if (!carouselRef.current) return;
-        const track = carouselRef.current;
-        const cardWidth = 260 + 32; // 260px width + 2rem (32px) gap
-        const scroll = track.scrollLeft;
+        const container = valoresContainerRef.current;
+        if (!container) return;
+        const cardWidth = 260 + 32; // 260px + gap (2rem)
+        const scroll = container.scrollLeft;
         const idx = Math.round(scroll / cardWidth);
         const targetScroll = idx * cardWidth;
-        track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+        container.scrollTo({ left: targetScroll, behavior: 'smooth' });
     };
 
     const handleWindowMouseUp = () => {
@@ -225,24 +215,57 @@ const Nosotros: React.FC = () => {
     }, []);
     // Touch events para mobile (usando refs también)
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        const container = valoresContainerRef.current;
+        if (!container) return;
         setIsDragging(true);
         isDraggingRef.current = true;
-        const startX = e.touches[0].pageX - (carouselRef.current?.offsetLeft || 0);
+        const startX = e.touches[0].pageX - (container.offsetLeft || 0);
         startXRef.current = startX;
-        const scrollLeft = carouselRef.current?.scrollLeft || 0;
+        const scrollLeft = container.scrollLeft || 0;
         scrollLeftRef.current = scrollLeft;
     };
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-        if (!isDraggingRef.current || !carouselRef.current) return;
-        const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
+        const container = valoresContainerRef.current;
+        if (!isDraggingRef.current || !container) return;
+        const x = e.touches[0].pageX - container.offsetLeft;
         const walk = (x - startXRef.current) * 1.2;
-        carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
+        container.scrollLeft = scrollLeftRef.current - walk;
     };
     const handleTouchEnd = () => {
         setIsDragging(false);
         isDraggingRef.current = false;
         handleSnapToCard();
     };
+
+    // Auto-scroll infinito y lento
+    useEffect(() => {
+        const container = valoresContainerRef.current;
+        const track = carouselRef.current;
+        if (!container || !track) return;
+
+        let rafId = 0;
+        let last = performance.now();
+        const SPEED_PX_PER_SEC = 12; // velocidad lenta para lectura
+
+        const loop = (now: number) => {
+            const dt = now - last;
+            last = now;
+
+            if (!isDraggingRef.current) {
+                container.scrollLeft += (SPEED_PX_PER_SEC * dt) / 1000;
+
+                const half = track.scrollWidth / 2;
+                if (half > 0 && container.scrollLeft >= half) {
+                    container.scrollLeft -= half;
+                }
+            }
+
+            rafId = requestAnimationFrame(loop);
+        };
+
+        rafId = requestAnimationFrame(loop);
+        return () => cancelAnimationFrame(rafId);
+    }, []);
 
 
     return (
@@ -372,21 +395,24 @@ const Nosotros: React.FC = () => {
 
                 <div className="section-card">
                     <h2>VALORES</h2>
-                    <div className="valores-carousel-container">
+                    <div
+                        className="valores-carousel-container"
+                        ref={valoresContainerRef}
+                        onMouseDown={handleDragStart}
+                        onMouseMove={isDragging ? (e) => handleWindowMouseMove(e.nativeEvent) : undefined}
+                        onMouseLeave={isDragging ? handleWindowMouseUp : undefined}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                    >
                         <div
                             className="valores-carousel-track"
                             ref={carouselRef}
-                            onMouseDown={handleDragStart}
-                            onMouseMove={isDragging ? (e) => handleWindowMouseMove(e.nativeEvent) : undefined}
-                            onMouseLeave={isDragging ? handleWindowMouseUp : undefined}
-                            onTouchStart={handleTouchStart}
-                            onTouchMove={handleTouchMove}
-                            onTouchEnd={handleTouchEnd}
-                            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
                         >
-                            {valores.map((valor) => (
+                            {[...valores, ...valores].map((valor, idx) => (
                                 <div
-                                    key={valor.key}
+                                    key={`${valor.key}-${idx}`}
                                     className={`valor-item${valor.titulo === 'EXCELENCIA' ? ' excelencia-card' : ''}`}
                                     onMouseDown={e => e.preventDefault()}
                                 >
