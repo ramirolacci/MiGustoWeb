@@ -5,12 +5,42 @@ const Legales: React.FC = () => {
   useEffect(() => {
     import('scrollreveal').then((module) => {
       const sr = module.default ? module.default : module;
+      // Cards
       sr().reveal('.section-card', {
-        distance: '30px',
-        duration: 1600,
+        distance: '28px',
+        duration: 900,
         origin: 'bottom',
         opacity: 0,
-        reset: true
+        reset: false,
+        easing: 'ease',
+        interval: 160,
+        viewFactor: 0.15,
+        mobile: true,
+      });
+      // Títulos dentro de cada card
+      sr().reveal('.section-card h2', {
+        distance: '16px',
+        duration: 800,
+        origin: 'bottom',
+        opacity: 0,
+        reset: false,
+        easing: 'ease',
+        delay: 120,
+        viewFactor: 0.1,
+        mobile: true,
+      });
+      // Contenido (p, ul, li) con efecto en cascada
+      sr().reveal('.section-card p, .section-card ul, .section-card li', {
+        distance: '10px',
+        duration: 800,
+        origin: 'bottom',
+        opacity: 0,
+        reset: false,
+        easing: 'ease',
+        interval: 90,
+        delay: 180,
+        viewFactor: 0.12,
+        mobile: true,
       });
     });
   }, []);
