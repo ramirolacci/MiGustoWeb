@@ -1972,6 +1972,157 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 }
 /* --- Fin efecto reveal épico --- */
 
+/* --- Animación reveal épica y aún más impresionante para las cards de productos --- */
+.producto-card {
+    opacity: 0;
+    transform: scale(0.85) translateY(60px) skewY(4deg) rotateZ(-2deg);
+    filter: blur(18px) brightness(1.22) drop-shadow(0 0 0 #FFD700);
+    box-shadow: 0 0 0px 0 #FFD70000;
+    animation: productoCardEpicReveal 1.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.13s + 0.2s);
+    position: relative;
+    overflow: visible;
+}
+@keyframes productoCardEpicReveal {
+    0% {
+        opacity: 0;
+        filter: blur(18px) brightness(1.22) drop-shadow(0 0 0 #FFD700);
+        transform: scale(0.85) translateY(60px) skewY(4deg) rotateZ(-2deg);
+        box-shadow: 0 0 0px 0 #FFD70000;
+    }
+    40% {
+        opacity: 1;
+        filter: blur(8px) brightness(1.12) drop-shadow(0 0 32px #FFD700cc);
+        transform: scale(1.12) translateY(-12px) skewY(-2deg) rotateZ(1deg);
+        box-shadow: 0 0 80px 0 #FFD70099;
+    }
+    70% {
+        filter: blur(2px) brightness(1.04) drop-shadow(0 0 16px #FFD70088);
+        transform: scale(0.98) translateY(4px) skewY(1deg) rotateZ(-1deg);
+        box-shadow: 0 0 40px 0 #FFD70055;
+    }
+    85% {
+        filter: blur(0.5px) brightness(1.01) drop-shadow(0 0 8px #FFD70044);
+        transform: scale(1.04) translateY(0) skewY(0deg) rotateZ(0deg);
+        box-shadow: 0 0 24px 0 #FFD70022;
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+        transform: scale(1) translateY(0) skewY(0deg) rotateZ(0deg);
+        box-shadow: 0 0 24px 0 #FFD70022;
+    }
+}
+
+.producto-card::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 180%;
+    height: 180%;
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(circle, #FFD70044 0%, #FFD70011 60%, transparent 100%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    animation: productoCardGlow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.13s + 0.5s);
+}
+@keyframes productoCardGlow {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+        filter: blur(32px);
+    }
+    60% {
+        opacity: 0.7;
+        filter: blur(8px);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 0.3;
+        filter: blur(0px);
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+}
+
+.producto-card::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120%;
+    height: 8px;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(90deg, transparent 0%, #FFD700cc 50%, transparent 100%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scaleX(0.2);
+    animation: productoCardFlash 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.13s + 0.7s);
+}
+@keyframes productoCardFlash {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scaleX(0.2);
+        filter: blur(8px);
+    }
+    40% {
+        opacity: 1;
+        filter: blur(2px);
+        transform: translate(-50%, -50%) scaleX(1.2);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(0px);
+        transform: translate(-50%, -50%) scaleX(0.7);
+    }
+}
+
+@media (max-width: 768px) {
+  .producto-row-mobile {
+    opacity: 0;
+    transform: scale(0.85) translateY(60px) skewY(4deg) rotateZ(-2deg);
+    filter: blur(18px) brightness(1.22) drop-shadow(0 0 0 #FFD700);
+    box-shadow: 0 0 0px 0 #FFD70000;
+    animation: productoCardEpicReveal 1.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.13s + 0.2s);
+    position: relative;
+    overflow: visible;
+  }
+  .producto-row-mobile::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 180%;
+    height: 180%;
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(circle, #FFD70044 0%, #FFD70011 60%, transparent 100%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    animation: productoCardGlow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.13s + 0.5s);
+  }
+  .producto-row-mobile::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120%;
+    height: 8px;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(90deg, transparent 0%, #FFD700cc 50%, transparent 100%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scaleX(0.2);
+    animation: productoCardFlash 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--card-index, 0) * 0.13s + 0.7s);
+  }
+}
+
 
 
 

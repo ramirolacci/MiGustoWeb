@@ -26,10 +26,10 @@ const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
-    const [showParticles, setShowParticles] = useState(false);
     const flipBook = useRef<any>(null);
     const revistaRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
+    const hasRevealed = useRef(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 900);
@@ -39,20 +39,16 @@ const Revista = () => {
     }, []);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
+        const observer = new window.IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !isVisible) {
+                if (entry.isIntersecting && !hasRevealed.current) {
+                    hasRevealed.current = true;
                     setIsVisible(true);
                     setIsAnimating(true);
-                    setShowParticles(true);
-
-                    // Solo animar una vez
-                    observer.disconnect();
-
                     setTimeout(() => {
                         setIsAnimating(false);
-                        setShowParticles(false);
                     }, 4000);
+                    observer.disconnect();
                 }
             },
             {
@@ -60,13 +56,13 @@ const Revista = () => {
                 rootMargin: '0px 0px -100px 0px'
             }
         );
-
-        if (revistaRef.current && !isVisible) {
+        if (revistaRef.current && !hasRevealed.current) {
             observer.observe(revistaRef.current);
         }
-
         return () => observer.disconnect();
-    }, [isVisible]);
+    }, []);
+
+    // Elimino el useEffect del observer
 
     // const createGoldenParticles = () => {
     //     const particlesContainer = document.createElement('div');
@@ -158,7 +154,7 @@ const Revista = () => {
     return (
         <div className="revista-section" ref={revistaRef}>
             {/* Contenedor principal con animación épica */}
-            <div className={`revista-container ${isVisible ? 'container-revealed' : ''} ${isAnimating ? 'epic-animating' : ''}`}>
+            <div className={`revista-container${isVisible ? ' container-revealed' : ''}${isAnimating ? ' epic-animating' : ''}`}> 
                 <div className="revista-content-wrapper">
                     {isMobile ? (
                         <Swiper
@@ -230,7 +226,7 @@ const Revista = () => {
                 </div>
 
                 {/* Instrucciones con animación mejorada */}
-                <div className={`revista-instructions ${isVisible ? 'instructions-visible' : ''}`}>
+                <div className={`revista-instructions${isVisible ? ' instructions-visible' : ''}`}>
                     <div className="instruction-text">
                         <i className="fas fa-hand-pointer"></i>
                         <span>Deslizá para explorar</span>

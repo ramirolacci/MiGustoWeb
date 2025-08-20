@@ -110,7 +110,7 @@
 }
 
 /* --- Partículas doradas reveal --- */
-.revista-container.container-revealed::after {
+/* .revista-container.container-revealed::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -141,6 +141,7 @@
         transform: translate(-50%, -50%) scale(0.7);
     }
 }
+*/
 
 /* --- Ondas expansivas doradas reveal --- */
 .revista-container.container-revealed::before {
