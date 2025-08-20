@@ -20,17 +20,33 @@ const cleanBotmaker = () => {
 
 const BotmakerChat = () => {
   useEffect(() => {
-    // Limpieza agresiva al montar
-    cleanBotmaker();
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = 'https://go.botmaker.com/rest/webchat/p/HH4I2M0BVY/init.js';
-    script.id = 'botmaker-webchat-script';
-    document.body.appendChild(script);
-    return () => {
-      // Limpieza agresiva al desmontar
+    const init = () => {
       cleanBotmaker();
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://go.botmaker.com/rest/webchat/p/HH4I2M0BVY/init.js';
+      script.id = 'botmaker-webchat-script';
+      document.body.appendChild(script);
+    };
+
+    const teardown = () => cleanBotmaker();
+
+    const shouldLoad = (localStorage.getItem('cookieConsent') || 'unset') === 'accepted';
+    if (shouldLoad) init();
+
+    const handler = (event: Event) => {
+      const detail = (event as CustomEvent<string>).detail;
+      if (detail === 'accepted') {
+        init();
+      } else if (detail === 'rejected') {
+        teardown();
+      }
+    };
+    window.addEventListener('cookie-consent-changed', handler as EventListener);
+    return () => {
+      window.removeEventListener('cookie-consent-changed', handler as EventListener);
+      teardown();
     };
   }, []);
   return null;

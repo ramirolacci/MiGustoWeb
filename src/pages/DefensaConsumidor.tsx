@@ -176,7 +176,23 @@ const DefensaConsumidor: React.FC = () => {
               </div>
               <div className="organismo-block organismo-block" style={organismoBlock}>
                 <h2>POLÍTICA DE COOKIES</h2>
-                <p>Nuestro sitio utiliza cookies propias y de terceros para mejorar la experiencia y análisis estadísticos. El usuario puede aceptar, rechazar o configurar su uso.</p>
+                <p>
+                  Nuestro sitio utiliza cookies propias y de terceros para mejorar la experiencia y análisis estadísticos.
+                  Podés aceptar todas o rechazar las no esenciales.
+                  {' '}<a
+                    href="#cookies"
+                    onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-cookie-consent')); }}
+                    style={{...linkStyle, textDecoration: 'underline'}}
+                    onMouseOver={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}
+                  >Administrar cookies</a> o ver más detalle en {' '}
+                  <a
+                    href="/legales"
+                    style={{...linkStyle, textDecoration: 'underline'}}
+                    onMouseOver={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={e => (e.currentTarget.style.color = '#FFD700')}
+                  >Legales</a>.
+                </p>
               </div>
             </div>
             <div className="organismo-block organismo-block" style={organismoBlock}>
