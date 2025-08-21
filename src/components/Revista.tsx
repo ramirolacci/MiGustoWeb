@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './Revista.css'
 import HTMLFlipBook from 'react-pageflip';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,7 +27,12 @@ const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [showTipModal, setShowTipModal] = useState(false);
+    const [flipbookNode, setFlipbookNode] = useState<HTMLElement | null>(null);
+    const [flipbookDimensions, setFlipbookDimensions] = useState<{ width: number; height: number }>({ width: 680, height: 980 });
+    const [verticalGap, setVerticalGap] = useState<number>(8);
     const flipBook = useRef<any>(null);
+    const flipbookWrapperRef = useRef<HTMLDivElement>(null);
     const revistaRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
     const hasRevealed = useRef(false);
@@ -37,6 +43,66 @@ const Revista = () => {
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    // Mostrar modal de ayuda automáticamente cuando se entra en Carta (solo desktop)
+    useEffect(() => {
+        if (!isMobile) {
+            setShowTipModal(true);
+        }
+    }, [isMobile]);
+
+    // Capturar nodo real del flipbook para insertar el modal dentro con portal
+    useEffect(() => {
+        if (flipbookWrapperRef.current) {
+            const node = flipbookWrapperRef.current.querySelector('.revista-flipbook') as HTMLElement | null;
+            if (node) {
+                setFlipbookNode(node);
+            }
+        }
+    }, [isMobile]);
+
+    // Calcular dimensiones disponibles para el flipbook (desktop) para no sobrepasar header/footer
+    useEffect(() => {
+        if (isMobile) return;
+        const aspectRatio = 480 / 760; // ancho/alto aproximado
+
+        const compute = () => {
+            const header = document.querySelector('header') as HTMLElement | null;
+            const footer = document.querySelector('footer') as HTMLElement | null;
+            const headerH = header ? header.offsetHeight : 0;
+            const footerH = footer ? footer.offsetHeight : 0;
+            const baseGap = 2; // margen mínimo deseado en top y bottom
+            const horizontalPadding = 16; // padding lateral reducido
+
+            const viewportHeight = window.innerHeight;
+            const availableHeightRaw = Math.max(380, viewportHeight - headerH - footerH);
+            const availableWidth = Math.max(320, window.innerWidth - horizontalPadding);
+
+            // Máximo alto/ancho permitidos para el flipbook
+            const maxFlipbookHeight = Math.max(300, availableHeightRaw - 2 * baseGap);
+            const maxFlipbookWidth = Math.min(Math.floor(availableWidth * 0.82), 980);
+
+            // Calcular ancho desde alto máximo y limitar por ancho disponible
+            let targetWidth = Math.min(Math.floor(maxFlipbookHeight * aspectRatio), maxFlipbookWidth);
+            targetWidth = Math.max(420, targetWidth);
+            let targetHeight = Math.floor(targetWidth / aspectRatio);
+            // Asegurar que no exceda el alto máximo disponible
+            if (targetHeight > maxFlipbookHeight) {
+                targetHeight = maxFlipbookHeight;
+                targetWidth = Math.floor(targetHeight * aspectRatio);
+            }
+
+            // Calcular gap simétrico exacto según altura final
+            const computedGap = Math.max(baseGap, Math.floor((availableHeightRaw - targetHeight) / 2));
+
+            setFlipbookDimensions({ width: targetWidth, height: targetHeight });
+            setVerticalGap(computedGap);
+        };
+
+        compute();
+        window.addEventListener('resize', compute);
+        return () => window.removeEventListener('resize', compute);
+    }, [isMobile]);
 
     useEffect(() => {
         const observer = new window.IntersectionObserver(
@@ -154,8 +220,8 @@ const Revista = () => {
     return (
         <div className="revista-section" ref={revistaRef}>
             {/* Contenedor principal con animación épica */}
-            <div className={`revista-container${isVisible ? ' container-revealed' : ''}${isAnimating ? ' epic-animating' : ''}`}> 
-                <div className="revista-content-wrapper">
+            <div className={`revista-container${isVisible ? ' container-revealed' : ''}`}>
+                <div className="revista-content-wrapper" style={{ marginTop: isMobile ? undefined : verticalGap, marginBottom: isMobile ? undefined : verticalGap }}>
                     {isMobile ? (
                         <Swiper
                             modules={[EffectFlip]}
@@ -184,44 +250,64 @@ const Revista = () => {
                             ))}
                         </Swiper>
                     ) : (
-                        <HTMLFlipBook
-                            ref={flipBook}
-                            width={480}
-                            height={760}
-                            size="stretch"
-                            minWidth={300}
-                            maxWidth={600}
-                            minHeight={480}
-                            maxHeight={950}
-                            drawShadow={true}
-                            showCover={true}
-                            mobileScrollSupport={true}
-                            className="revista-flipbook"
-                            style={{}}
-                            startPage={0}
-                            flippingTime={300}
-                            usePortrait={true}
-                            startZIndex={0}
-                            maxShadowOpacity={0.5}
-                            useMouseEvents={true}
-                            clickEventForward={true}
-                            disableFlipByClick={true}
-                            onFlip={handleFlip}
-                            onChangeOrientation={() => { }}
-                            onChangeState={() => { }}
-                            autoSize={true}
-                            swipeDistance={10}
-                            showPageCorners={true}
-                        >
-                            <div className="revista-pagina">
-                                <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
-                            </div>
-                            {catalogoFotos.map((src, i) => (
-                                <div className="revista-pagina" key={i + 1}>
-                                    <img src={src} alt={`catalogo-${i + 2}`} className="revista-img" loading="lazy" />
+                        <div className="flipbook-wrapper" ref={flipbookWrapperRef}>
+                            <HTMLFlipBook
+                                ref={flipBook}
+                                width={flipbookDimensions.width}
+                                height={flipbookDimensions.height}
+                                size="stretch"
+                                minWidth={400}
+                                maxWidth={flipbookDimensions.width}
+                                minHeight={560}
+                                maxHeight={flipbookDimensions.height}
+                                drawShadow={true}
+                                showCover={true}
+                                mobileScrollSupport={true}
+                                className="revista-flipbook"
+                                style={{}}
+                                startPage={0}
+                                flippingTime={300}
+                                usePortrait={true}
+                                startZIndex={0}
+                                maxShadowOpacity={0.5}
+                                useMouseEvents={true}
+                                clickEventForward={true}
+                                disableFlipByClick={true}
+                                onFlip={handleFlip}
+                                onChangeOrientation={() => { }}
+                                onChangeState={() => { }}
+                                autoSize={true}
+                                swipeDistance={10}
+                                showPageCorners={true}
+                            >
+                                <div className="revista-pagina">
+                                    <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
                                 </div>
-                            ))}
-                        </HTMLFlipBook>
+                                {catalogoFotos.map((src, i) => (
+                                    <div className="revista-pagina" key={i + 1}>
+                                        <img src={src} alt={`catalogo-${i + 2}`} className="revista-img" loading="lazy" />
+                                    </div>
+                                ))}
+                            </HTMLFlipBook>
+
+                            {/* Modal informativo anclado a la punta de la revista (dentro del flipbook) */}
+                            {showTipModal && flipbookNode && createPortal(
+                                <div className="revista-tip-modal" role="dialog" aria-live="polite">
+                                    <button
+                                        type="button"
+                                        className="revista-tip-close"
+                                        aria-label="Cerrar"
+                                        onClick={() => setShowTipModal(false)}
+                                    >
+                                        ×
+                                    </button>
+                                    <div className="revista-tip-content">
+                                        Para poder navegar por nuestra carta, debes arrastrar on el mouse desde la punta de las hojas de la Carta!
+                                    </div>
+                                </div>,
+                                flipbookNode
+                            )}
+                        </div>
                     )}
                 </div>
 

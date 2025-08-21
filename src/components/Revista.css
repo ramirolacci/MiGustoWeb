@@ -24,7 +24,7 @@
     background-repeat: no-repeat;
     overflow: hidden;
     isolation: isolate;
-    margin-top: 24px;
+    margin-top: 8px;
 }
 
 /* Estilos base de la revista */
@@ -70,7 +70,7 @@
 /* Contenedor principal con animación épica */
 .revista-container {
     opacity: 0;
-    transform: scale(0.8) rotateY(20deg);
+    transform: none;
     transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     perspective: 1200px;
@@ -79,33 +79,33 @@
 /* --- Animación reveal épica para la revista --- */
 .revista-container.container-revealed {
     opacity: 1;
-    transform: scale(1.04) rotateY(0deg) skewY(-1deg);
-    box-shadow: 0 0 80px 0 #FFD70055, 0 0 0px 0 #fff0;
-    animation: revistaEpicReveal 1.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform: none;
+    box-shadow: none;
+    animation: revistaEpicReveal 0.8s ease both;
 }
 @keyframes revistaEpicReveal {
     0% {
         opacity: 0;
         filter: blur(16px) brightness(1.2);
-        transform: scale(0.7) rotateY(18deg) skewY(6deg);
-        box-shadow: 0 0 0px 0 #FFD70000;
+        transform: none;
+        box-shadow: none;
     }
     60% {
         opacity: 1;
         filter: blur(2px) brightness(1.08);
-        transform: scale(1.08) rotateY(-2deg) skewY(-2deg);
-        box-shadow: 0 0 120px 0 #FFD70099;
+        transform: none;
+        box-shadow: none;
     }
     80% {
         filter: blur(0.5px) brightness(1.01);
-        transform: scale(0.98) rotateY(1deg) skewY(1deg);
-        box-shadow: 0 0 60px 0 #FFD70055;
+        transform: none;
+        box-shadow: none;
     }
     100% {
         opacity: 1;
         filter: none;
-        transform: scale(1.04) rotateY(0deg) skewY(-1deg);
-        box-shadow: 0 0 80px 0 #FFD70055, 0 0 0px 0 #fff0;
+        transform: none;
+        box-shadow: none;
     }
 }
 
@@ -145,19 +145,8 @@
 
 /* --- Ondas expansivas doradas reveal --- */
 .revista-container.container-revealed::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 120px;
-    height: 120px;
-    border: 3px solid #FFD700cc;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 4;
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(0.2);
-    animation: revistaWavesEpic 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    content: none;
+    display: none;
 }
 @keyframes revistaWavesEpic {
     0% {
@@ -178,7 +167,7 @@
 }
 
 .revista-container.epic-animating {
-    animation: epicContainerPulse 3s ease-in-out;
+    animation: none;
 }
 
 @keyframes epicContainerPulse {
@@ -186,10 +175,10 @@
         transform: scale(1) rotateY(0deg); 
     }
     25% { 
-        transform: scale(1.05) rotateY(2deg); 
+        transform: scale(1) rotateY(2deg); 
     }
     75% { 
-        transform: scale(1.02) rotateY(-1deg); 
+        transform: scale(1) rotateY(-1deg); 
     }
 }
 
@@ -204,8 +193,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    min-height: calc(100vh - 150px);
+    padding: 0 16px;
 }
 
 /* Flipbook con efectos mejorados */
@@ -232,8 +220,70 @@
     z-index: 1;
 }
 
-.revista-flipbook:hover {
-    /* Sin iluminación ni efecto al hacer hover */
+
+
+/* Wrapper para posicionar elementos como el modal de ayuda */
+.flipbook-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Modal informativo anclado a la punta (esquina superior derecha) de la revista */
+.revista-tip-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    max-width: 320px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    border: 1px solid #D4AF37;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    padding: 12px 40px 12px 14px;
+    z-index: 50;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    animation: tipFadeIn 300ms ease-out both;
+}
+
+.revista-tip-modal::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 100%;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.9) transparent transparent;
+}
+
+@keyframes tipFadeIn {
+    0% { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.revista-tip-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.revista-tip-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.revista-tip-content {
+    font-weight: 500;
+    color: #f6f6f6;
 }
 
 /* Swiper con efectos */
@@ -259,9 +309,7 @@
     z-index: 1;
 }
 
-.revista-swiper:hover {
-    /* Sin iluminación ni efecto al hacer hover */
-}
+
 
 /* Instrucciones con animación mejorada */
 .revista-instructions {
@@ -414,6 +462,9 @@
         min-height: calc(100vh - 120px);
         padding: 1rem;
     }
+    
+    /* No mostrar modal en mobile */
+    .revista-tip-modal { display: none; }
     
 
 }
