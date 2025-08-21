@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Revista from '../components/Revista';
 import '../components/Productos.css';
 import backgroundText from '../assets/background-text.jpg';
-import NavBar from '../components/NavBar';
+// NavBar se renderiza globalmente en App; no es necesario aquí
 
 const Carta: React.FC = () => {
   useEffect(() => {
@@ -27,7 +27,6 @@ const Carta: React.FC = () => {
   }, []);
   return (
     <>
-      <NavBar />
       <div
         style={{
           minHeight: '100vh',
@@ -37,7 +36,7 @@ const Carta: React.FC = () => {
         }}
       >
         <div className="background-overlay"></div>
-        <div className="carta-container" style={{ marginTop: '-2.5rem' }}>
+        <div className="carta-container">
           {/* <h2 className="productos-titulo">Deslizá para explorar nuestra carta</h2> */}
           <Revista />
         </div>
