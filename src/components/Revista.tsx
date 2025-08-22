@@ -28,6 +28,7 @@ const Revista = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const [showTipModal, setShowTipModal] = useState(false);
+    const [tipClosing, setTipClosing] = useState(false);
     const [flipbookNode, setFlipbookNode] = useState<HTMLElement | null>(null);
     const [flipbookDimensions, setFlipbookDimensions] = useState<{ width: number; height: number }>({ width: 680, height: 980 });
     const [verticalGap, setVerticalGap] = useState<number>(8);
@@ -48,6 +49,7 @@ const Revista = () => {
     useEffect(() => {
         if (!isMobile) {
             setShowTipModal(true);
+            setTipClosing(false);
         }
     }, [isMobile]);
 
@@ -292,15 +294,22 @@ const Revista = () => {
 
                             {/* Modal informativo anclado a la punta de la revista (dentro del flipbook) */}
                             {showTipModal && flipbookNode && createPortal(
-                                <div className="revista-tip-modal" role="dialog" aria-live="polite">
+                                <div className={`revista-tip-modal${tipClosing ? ' closing' : ''}`} role="dialog" aria-live="polite">
                                     <button
                                         type="button"
                                         className="revista-tip-close"
                                         aria-label="Cerrar"
-                                        onClick={() => setShowTipModal(false)}
+                                        onClick={() => {
+                                            if (tipClosing) return;
+                                            setTipClosing(true);
+                                            setTimeout(() => {
+                                                setShowTipModal(false);
+                                            }, 380);
+                                        }}
                                     >
                                         ×
                                     </button>
+                                    <h3 className="revista-tip-title productos-titulo">Atención</h3>
                                     <div className="revista-tip-content">
                                         Para poder navegar por nuestra carta, debes arrastrar on el mouse desde la punta de las hojas de la Carta!
                                     </div>

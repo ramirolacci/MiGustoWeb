@@ -235,17 +235,24 @@
     position: absolute;
     top: 8px;
     right: 8px;
-    max-width: 320px;
-    background: rgba(0, 0, 0, 0.9);
+    max-width: 260px;
+    background: rgba(30, 30, 30, 0.98);
     color: #fff;
-    border: 1px solid #D4AF37;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    border-radius: 10px;
-    padding: 12px 40px 12px 14px;
+    border: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+    padding: 1.8rem 1.4rem 1.3rem 1.4rem;
     z-index: 50;
     font-size: 0.95rem;
     line-height: 1.35;
-    animation: tipFadeIn 300ms ease-out both;
+    animation: tipFadeIn 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 2s;
+    transition: opacity 0.25s, transform 0.25s;
+}
+
+.revista-tip-modal.closing {
+    animation: tipFadeOut 380ms cubic-bezier(0.4, 0, 0.2, 1) both !important;
+    animation-delay: 0s !important;
 }
 
 .revista-tip-modal::after {
@@ -259,19 +266,26 @@
 }
 
 @keyframes tipFadeIn {
-    0% { opacity: 0; transform: translateY(-6px) scale(0.98); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+    0% { opacity: 0; transform: translateY(-10px) scale(0.98); filter: blur(6px); }
+    60% { opacity: 1; transform: translateY(-2px) scale(1.02); filter: blur(2px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: none; }
+}
+
+@keyframes tipFadeOut {
+    0% { opacity: 1; transform: translateY(0) scale(1); filter: none; }
+    100% { opacity: 0; transform: translateY(-6px) scale(0.98); filter: blur(4px); }
 }
 
 .revista-tip-close {
     position: absolute;
     top: 6px;
-    right: 8px;
-    background: transparent;
+    right: 12px;
+    background: none;
     border: none;
-    color: #fff;
+    color: #888;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 28px;
+    font-weight: 900;
     line-height: 1;
     padding: 4px;
     border-radius: 4px;
@@ -284,6 +298,18 @@
 .revista-tip-content {
     font-weight: 500;
     color: #f6f6f6;
+}
+
+.revista-tip-title {
+    margin: 0 0 0.6rem 0;
+    padding: 0 0 0.3rem 0;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+/* Forzar tamaño dentro del modal, sobreescribiendo productos-titulo */
+.revista-tip-modal .revista-tip-title {
+    font-size: 1.5rem !important;
 }
 
 /* Swiper con efectos */
@@ -384,27 +410,10 @@
 
 /* --- Reveal para portada de la revista --- */
 .revista-pagina:first-child .revista-img {
-    opacity: 0;
-    filter: blur(16px) brightness(1.2);
-    transform: scale(0.7) rotate(-8deg);
-    animation: portadaEpicReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-}
-@keyframes portadaEpicReveal {
-    0% {
-        opacity: 0;
-        filter: blur(16px) brightness(1.2);
-        transform: scale(0.7) rotate(-8deg);
-    }
-    60% {
-        opacity: 1;
-        filter: blur(2px) brightness(1.08);
-        transform: scale(1.08) rotate(2deg);
-    }
-    100% {
-        opacity: 1;
-        filter: none;
-        transform: scale(1) rotate(0deg);
-    }
+    opacity: 1;
+    filter: none;
+    transform: none;
+    animation: none;
 }
 
 .revista-img {
