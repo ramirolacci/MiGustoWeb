@@ -4,13 +4,11 @@ import './Home.css';
 import IphoneWhatsapp from './Iphone';
 
 const slidesDesktop = [
-    '/sliders/desktop1.jpg',
     '/sliders/desktop2.jpg',
     '/sliders/desktop3.jpg',
 ];
 
 const slidesMobile = [
-    '/sliders/mobile1.jpg',
     '/sliders/mobile2.jpg',
     '/sliders/mobile3.jpg',
 ];
