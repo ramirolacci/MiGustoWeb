@@ -167,6 +167,9 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
+  // Flag local para habilitar el botón Lovers solo en desarrollo/preview
+  const loversEnabled = import.meta.env.VITE_LOVERS_ENABLED === 'true';
+
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
     { path: '/', label: 'Home', image: '' },
@@ -264,8 +267,8 @@ const NavBar: React.FC = () => {
                 }}
               />
             </Link>
-            {/* Botón Lovers al lado del logo (oculto por requerimiento) */}
-            {false && (
+            {/* Botón Lovers al lado del logo (controlado por flag) */}
+            {loversEnabled && (
               <LoversButton
                 isOn={isSwitchOn}
                 autoConfetti={location.pathname === '/lovers'}
