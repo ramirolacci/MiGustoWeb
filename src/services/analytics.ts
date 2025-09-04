@@ -17,6 +17,14 @@ function hasScript(id: string): boolean {
 	return !!document.getElementById(id);
 }
 
+export function isConsentAccepted(): boolean {
+	try {
+		return (localStorage.getItem('cookieConsent') || 'unset') === 'accepted';
+	} catch {
+		return false;
+	}
+}
+
 export function initGoogleAnalytics(): void {
 	const measurementId = getMeasurementId();
 	if (!measurementId) return; // no configurado aún
@@ -36,7 +44,7 @@ export function initGoogleAnalytics(): void {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', '${measurementId}', { anonymize_ip: true });
+		gtag('config', '${measurementId}', { anonymize_ip: true, send_page_view: false });
 	`;
 	document.head.appendChild(initScript);
 }
@@ -57,10 +65,35 @@ export function isGAConfigured(): boolean {
 	return !!getMeasurementId();
 }
 
+export function trackPageView(page_path?: string, page_title?: string): void {
+	if (!isConsentAccepted() || !isGAConfigured()) return;
+	const g = (window as any).gtag;
+	if (typeof g !== 'function') return;
+	try {
+		g('event', 'page_view', {
+			page_path: page_path || (window.location ? window.location.pathname : undefined),
+			page_title: page_title || document.title,
+			page_location: window.location?.href
+		});
+	} catch {}
+}
+
+export function trackEvent(event_name: string, params?: Record<string, any>): void {
+	if (!isConsentAccepted() || !isGAConfigured()) return;
+	const g = (window as any).gtag;
+	if (typeof g !== 'function') return;
+	try {
+		g('event', event_name, params || {});
+	} catch {}
+}
+
 export default {
 	initGoogleAnalytics,
 	cleanupGoogleAnalytics,
 	isGAConfigured,
+	isConsentAccepted,
+	trackPageView,
+	trackEvent,
 };
 
 
