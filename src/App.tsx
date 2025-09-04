@@ -10,6 +10,7 @@ import CookieConsent from './components/CookieConsent';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import LoversForm from './pages/LoversForm';
 import Carta from './pages/Carta';
+import { trackPageView } from './services/analytics';
 
 const Home = lazy(() => import('./components/Home'));
 const Productos = lazy(() => import('./components/Productos'));
@@ -23,6 +24,8 @@ const VentaCorporativa = lazy(() => import('./pages/VentaCorporativa'));
 const Revista = lazy(() => import('./components/Revista'));
 const Lovers = lazy(() => import('./pages/Lovers.tsx'));
 const Legales = lazy(() => import('./pages/Legales'));
+const Login = lazy(() => import('./pages/Login'));
+import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 
 import './App.css';
@@ -34,6 +37,8 @@ const AppContent: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
+      // Disparar pageview cuando termina la transición de ruta
+      trackPageView(location.pathname, document.title);
     }, 1000);
 
     return () => {
@@ -68,6 +73,9 @@ const AppContent: React.FC = () => {
               <Route path="/lovers/*" element={<Lovers />} />
               <Route path="/3d" element={<Viewer3D />} />
               <Route path="/legales" element={<Legales />} />
+              <Route path="/login" element={<Login />} />
+              {/* Ejemplo de ruta protegida: */}
+              <Route path="/admin" element={<ProtectedRoute><div style={{color:'#fff', padding:'2rem'}}>Área Privada</div></ProtectedRoute>} />
               <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
             </Routes>
           </Suspense>

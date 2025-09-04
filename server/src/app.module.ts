@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MailModule } from './mails/mail.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MailModule } from './mails/mail.module';
       envFilePath: '.env.local',
     }),
     MailModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
