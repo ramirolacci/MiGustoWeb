@@ -15,6 +15,10 @@ export function clearToken() {
   localStorage.removeItem(TOKEN_KEY);
 }
 
+export function logout() {
+  clearToken();
+}
+
 export async function login(email: string, password: string) {
   const { data } = await axios.post(`${API_BASE}/auth/login`, { email, password });
   if (data?.accessToken) setToken(data.accessToken);
@@ -28,6 +32,12 @@ export async function getProfile() {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data?.user;
+}
+
+export async function register(email: string, password: string, name?: string) {
+  const { data } = await axios.post(`${API_BASE}/auth/register`, { email, password, name });
+  if (data?.accessToken) setToken(data.accessToken);
+  return data;
 }
 
 

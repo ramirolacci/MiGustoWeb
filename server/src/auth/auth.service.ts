@@ -50,6 +50,19 @@ export class AuthService {
   public async getProfileFromPayload(payload: { sub: number; email: string; name: string }) {
     return { id: payload.sub, email: payload.email, name: payload.name };
   }
+
+  public async register(email: string, password: string, name?: string) {
+    // Registro sin persistencia (para pruebas): devuelve un JWT con los datos ingresados
+    const normalizedEmail = email.toLowerCase().trim();
+    // Validación simple: si coincide con el admin, permitir igualmente pero no colisiona con su id fijo
+    const id = Date.now();
+    // Hash local no persistido (meramente demostrativo)
+    await bcrypt.hash(password, 10);
+    const user = { id, email: normalizedEmail, name: name?.trim() || 'Usuario' };
+    const payload = { sub: user.id, email: user.email, name: user.name };
+    const accessToken = await this.jwt.signAsync(payload);
+    return { accessToken, user };
+  }
 }
 
 

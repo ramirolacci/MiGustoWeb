@@ -25,6 +25,9 @@ const Revista = lazy(() => import('./components/Revista'));
 const Lovers = lazy(() => import('./pages/Lovers.tsx'));
 const Legales = lazy(() => import('./pages/Legales'));
 const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Account = lazy(() => import('./pages/Account'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 
@@ -74,6 +77,9 @@ const AppContent: React.FC = () => {
               <Route path="/3d" element={<Viewer3D />} />
               <Route path="/legales" element={<Legales />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="/mi-cuenta" element={<ProtectedRoute><Account /></ProtectedRoute>} />
               {/* Ejemplo de ruta protegida: */}
               <Route path="/admin" element={<ProtectedRoute><div style={{color:'#fff', padding:'2rem'}}>Área Privada</div></ProtectedRoute>} />
               <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
