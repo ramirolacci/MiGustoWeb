@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getMyLoyalty, getRedeemableProducts, redeemProduct } from '../services/loyalty';
 import type { LoyaltyProduct } from '../services/loyalty';
 import '../components/Productos.css';
 import './Canje.css';
+import { getToken } from '../services/auth';
 
 const Canje: React.FC = () => {
+  const navigate = useNavigate();
+  const token = getToken();
   const STARTING_POINTS = 1003560;
   const [points, setPoints] = useState<number>(STARTING_POINTS);
   const [products, setProducts] = useState<LoyaltyProduct[]>([]);
@@ -14,6 +18,7 @@ const Canje: React.FC = () => {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!token) return; // No cargar datos si no está logueado
     (async () => {
       try {
         const [loyalty, redeemables] = await Promise.all([
@@ -28,7 +33,7 @@ const Canje: React.FC = () => {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [token]);
 
   const canRedeem = (cost: number) => points >= cost;
 
@@ -55,6 +60,33 @@ const Canje: React.FC = () => {
       setRedeemingId(null);
     }
   };
+
+  if (!token) {
+    return (
+      <div className="canje-section">
+        <div className="background-overlay"></div>
+        <div className="container canje-container py-5" style={{ minHeight: '70vh', marginTop: 64 }}>
+          <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+            <div className="card p-4 text-center" style={{ maxWidth: 720, width: '100%', borderRadius: 16, boxShadow: '0 10px 30px rgba(0,0,0,0.35)', background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)', backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <img
+                src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
+                alt="Mi Gusto"
+                style={{ height: 48, width: 'auto', maxWidth: '80%', objectFit: 'contain', display: 'block', margin: '0 auto 12px', filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.6))' }}
+              />
+              <p className="mb-4" style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem' }}>
+                Crea una cuenta o ingresa si es que ya tienes una para que puedas canjear tus Puntos! Haz click en el botón de abajo para más detalles sobre MiGusto Coins.
+              </p>
+              <div className="d-flex justify-content-center">
+                <button className="btn btn-mg" onClick={() => navigate('/login')}>
+                  Mi MG
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="canje-section">
