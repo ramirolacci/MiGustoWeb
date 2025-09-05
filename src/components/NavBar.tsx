@@ -323,6 +323,7 @@ const NavBar: React.FC = () => {
     { path: '/carta', label: 'Carta', image: '' },
     { path: '/productos', label: 'Productos', image: '' },
     { path: '/sucursales', label: 'Sucursales', image: '' },
+    { path: '/canje', label: 'Canje', image: '/side-menu/rewards.png' },
     { path: '/nosotros', label: 'Nosotros', image: '/side-menu/localMiGusto.webp' },
     { path: '/proveedores', label: 'Proveedores', image: '/side-menu/proveedor.png' },
     { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/side-menu/staff.png' },

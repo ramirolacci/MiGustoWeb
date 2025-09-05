@@ -1,6 +1,9 @@
 {
   "id": 1,
   "email": "admin@migusto.com",
-  "name": "Administrador",
-  "mgid": "MG-6RJXFY"
+  "name": "Turromantico",
+  "mgid": "MG-6RJXFY",
+  "phone": "3876117799",
+  "birthdate": "1997-07-19",
+  "documentId": "40524521"
 }
