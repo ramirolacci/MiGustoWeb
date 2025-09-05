@@ -754,9 +754,9 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 }
 
 /* Elimino la animación general de los nav-link y side-menu-link */
-/* .nav-link, .side-menu-link {
+.nav-link, .side-menu-link {
   animation: none !important;
-} */
+}
 
 /* Mantengo la animación solo en el botón 'Hace tu pedido' */
 .nav-link-pedir .btn-hacer-pedido-img {
@@ -773,49 +773,6 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   animation-delay: calc(var(--nav-index, 0) * 0.18s);
 }
 
-/* --- Animación de click para los links del navbar --- */
-.nav-link.nav-link-clicked, .nav-link-pedir.nav-link-clicked {
-  animation: navLinkClickPop 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-}
-@keyframes navLinkClickPop {
-  0% { transform: scale(1) translateY(0); filter: brightness(1); }
-  30% { transform: scale(0.96) translateY(2px); filter: brightness(0.95); }
-  60% { transform: scale(1.08) translateY(-4px); filter: brightness(1.08); }
-  100% { transform: scale(1) translateY(0); filter: brightness(1); }
-}
-
-/* --- Reveal animado para los links del navbar --- */
-.nav-link.epic-reveal {
-  opacity: 0;
-  filter: blur(8px) brightness(1.1);
-  transform: translateY(-24px) scale(0.98);
-  animation: proNavReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: calc(var(--nav-index, 0) * 0.13s + 0.3s);
-}
-.nav-link.epic-reveal.animation-played {
-  opacity: 1;
-  filter: none;
-  transform: none;
-  animation: none;
-}
-
-/* --- Hover animado más sutil para los links del navbar --- */
-.nav-link:hover, .nav-link:focus {
-  transform: scale(1.10) translateY(-3px) skewX(-1deg);
-  opacity: 1;
-  color: #ffd700;
-  background: rgba(40, 40, 60, 0.38);
-  box-shadow: 0 6px 24px 0 rgba(255,215,0,0.10);
-  filter: brightness(1.08);
-}
-
-/* --- Reveal animado para el navbar principal --- */
-.navbar-scrollreveal {
-  opacity: 0;
-  transform: translateY(-32px) scale(0.98);
-  filter: blur(8px) brightness(1.1);
-  animation: navbarScrollReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
 
 @keyframes pedidoPulseGlow {
   0% {
@@ -939,7 +896,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 }
 
 /* Fuerzo que todos los links principales del navbar tengan el mismo estilo base que Home */
-/* .navbar-nav .nav-link.epic-reveal,
+.navbar-nav .nav-link.epic-reveal,
 .navbar-nav .nav-link.epic-reveal.animation-played,
 .navbar-nav .nav-link.nav-link-active {
   opacity: 1 !important;
@@ -952,7 +909,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   -webkit-background-clip: unset !important;
   text-shadow: none !important;
   letter-spacing: 0.01em !important;
-} */
+}
 
 .epic-reveal::after {
   content: '';
