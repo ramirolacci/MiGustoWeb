@@ -545,10 +545,12 @@ const NavBar: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              {/* Botón de perfil también en el menú mobile */}
-              <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0' }}>
-                <ProfileButton />
-              </div>
+              {/* Botón de perfil solo en mobile dentro del menú colapsable */}
+              {!isDesktop && (
+                <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0' }}>
+                  <ProfileButton />
+                </div>
+              )}
             </div>
           </div>
         </div>
