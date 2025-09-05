@@ -115,4 +115,24 @@
   box-shadow: 0 4px 18px rgba(212, 175, 55, 0.2) !important;
 }
 
+/* Botón CTA estilo Mi Gusto */
+.btn-mg {
+  height: 44px;
+  padding: 0 22px !important;
+  border-radius: 999px !important;
+  background-color: #ffbf1f !important;
+  border-color: #ffbf1f !important;
+  color: #1b1b1b !important;
+  font-weight: 800 !important;
+  box-shadow: 0 6px 20px rgba(255,191,31,0.25) !important;
+}
+.btn-mg:hover, .btn-mg:focus {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+.btn-mg:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
 
