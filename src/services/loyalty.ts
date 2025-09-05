@@ -67,7 +67,7 @@ export async function getMyLoyalty(): Promise<LoyaltySummary> {
     const { data } = await axios.get(`${API_BASE}/loyalty/me`);
     return data;
   } catch {
-    return { userId: 0, totalPoints: 888 };
+    return { userId: 0, totalPoints: 1003560 };
   }
 }
 

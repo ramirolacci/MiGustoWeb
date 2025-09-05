@@ -5,7 +5,8 @@ import '../components/Productos.css';
 import './Canje.css';
 
 const Canje: React.FC = () => {
-  const [points, setPoints] = useState<number>(0);
+  const STARTING_POINTS = 1003560;
+  const [points, setPoints] = useState<number>(STARTING_POINTS);
   const [products, setProducts] = useState<LoyaltyProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [redeemingId, setRedeemingId] = useState<string | null>(null);
@@ -19,7 +20,7 @@ const Canje: React.FC = () => {
           getMyLoyalty(),
           getRedeemableProducts(),
         ]);
-        setPoints(loyalty.totalPoints || 0);
+        setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : STARTING_POINTS);
         setProducts(redeemables);
       } catch (err) {
         setError('No pudimos cargar el programa de canje.');
@@ -97,7 +98,7 @@ const Canje: React.FC = () => {
             </svg>
             <div>
               <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13 }}>Tus puntos</div>
-              <div style={{ color: '#ffbf1f', fontSize: 22, fontWeight: 800 }}>{points}</div>
+              <div style={{ color: '#ffbf1f', fontSize: 22, fontWeight: 800 }}>{new Intl.NumberFormat('es-AR').format(points)}</div>
             </div>
           </div>
           </div>
