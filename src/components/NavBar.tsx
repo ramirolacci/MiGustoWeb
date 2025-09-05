@@ -314,8 +314,8 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
-  // Flag local para habilitar el botón Lovers solo en desarrollo/preview
-  const loversEnabled = import.meta.env.VITE_LOVERS_ENABLED === 'true';
+  // Mostrar siempre el botón Lovers
+  const loversEnabled = true;
 
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
