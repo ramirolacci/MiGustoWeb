@@ -113,7 +113,7 @@ function ProfileButton() {
                 {/* Brillo */}
                 <path d="M8 8.5c1-.6 2.1-.9 3.2-1" stroke="#ffe9bf" strokeWidth="1" fill="none" strokeLinecap="round"/>
               </svg>
-              <strong>MiGusto Coins: 888</strong>
+              <strong>MiGusto Coins: {new Intl.NumberFormat('es-AR').format(1003560)}</strong>
             </div>
           )}
           {token ? (
