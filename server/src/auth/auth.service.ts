@@ -1,7 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
+import { UsersService } from '../users/users.service';
 
 interface UserRecord {
   id: number;
@@ -14,7 +15,11 @@ interface UserRecord {
 export class AuthService {
   private readonly adminUser: UserRecord;
 
-  constructor(private readonly jwt: JwtService, private readonly config: ConfigService) {
+  constructor(
+    private readonly jwt: JwtService,
+    private readonly config: ConfigService,
+    private readonly users: UsersService,
+  ) {
     const defaultEmail = this.config.get<string>('ADMIN_EMAIL') || 'admin@migusto.com';
     const defaultPasswordHash =
       this.config.get<string>('ADMIN_PASSWORD_HASH') ||
@@ -41,7 +46,20 @@ export class AuthService {
   }
 
   public async login(email: string, password: string) {
-    const user = await this.validateUser(email, password);
+    // Intentar contra adminUser primero
+    let user = null as null | { id: number; email: string; name: string };
+    try {
+      user = await this.validateUser(email, password);
+    } catch {
+      // Si no coincide con admin, buscar en users.json
+      const candidate = await this.users.findByEmail(email);
+      if (!candidate || !candidate.passwordHash) {
+        throw new UnauthorizedException('Credenciales inválidas');
+      }
+      const ok = await bcrypt.compare(password, candidate.passwordHash);
+      if (!ok) throw new UnauthorizedException('Credenciales inválidas');
+      user = { id: candidate.id, email: candidate.email, name: candidate.name };
+    }
     const payload = { sub: user.id, email: user.email, name: user.name };
     const accessToken = await this.jwt.signAsync(payload);
     return { accessToken, user };
@@ -52,13 +70,9 @@ export class AuthService {
   }
 
   public async register(email: string, password: string, name?: string) {
-    // Registro sin persistencia (para pruebas): devuelve un JWT con los datos ingresados
-    const normalizedEmail = email.toLowerCase().trim();
-    // Validación simple: si coincide con el admin, permitir igualmente pero no colisiona con su id fijo
-    const id = Date.now();
-    // Hash local no persistido (meramente demostrativo)
-    await bcrypt.hash(password, 10);
-    const user = { id, email: normalizedEmail, name: name?.trim() || 'Usuario' };
+    if (!email || !password) throw new BadRequestException('Email y contraseña requeridos');
+    const passwordHash = await bcrypt.hash(password, 10);
+    const user = await this.users.registerUser(email.toLowerCase(), name?.trim() || 'Usuario', passwordHash);
     const payload = { sub: user.id, email: user.email, name: user.name };
     const accessToken = await this.jwt.signAsync(payload);
     return { accessToken, user };

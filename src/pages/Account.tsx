@@ -8,6 +8,7 @@ const Account: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [documentId, setDocumentId] = useState('');
+  const [mgid, setMgid] = useState('MG-000000');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -22,6 +23,7 @@ const Account: React.FC = () => {
         setPhone(user?.phone || '');
         setBirthdate(user?.birthdate || '');
         setDocumentId(user?.documentId || '');
+        setMgid(user?.mgid || 'MG-000000');
       } catch {}
     })();
   }, []);
@@ -38,9 +40,14 @@ const Account: React.FC = () => {
       setPhone(updated?.phone || phone);
       setBirthdate(updated?.birthdate || birthdate);
       setDocumentId(updated?.documentId || documentId);
+      setMgid(updated?.mgid || mgid);
       setSaved(true);
       setSuccessMsg('Cambios guardados correctamente');
       setTimeout(() => setSaved(false), 1600);
+      // Notificar a toda la app (navbar) que el perfil cambió
+      try {
+        window.dispatchEvent(new CustomEvent('mg_profile_updated', { detail: { name: updated?.name, mgid: updated?.mgid } }));
+      } catch {}
     } catch (err: any) {
       const apiMsg = err?.response?.data?.message || 'No se pudo guardar los cambios';
       setErrorMsg(apiMsg);
@@ -49,6 +56,8 @@ const Account: React.FC = () => {
       setSaving(false);
     }
   };
+
+  const firstName = (fullName || '').split(' ')[0] || 'Usuario';
 
   return (
     <div className="container py-4" style={{ color: '#111' }}>
@@ -71,11 +80,11 @@ const Account: React.FC = () => {
           <div className="card-elevated p-0">
             <div style={{ background: '#ffbf1f', padding: 16, position: 'relative', minHeight: 132 }}>
               <div style={{ fontWeight: 800, fontSize: 14, color: '#2b2100', opacity: 0.9 }}>Hola</div>
-              <div style={{ fontWeight: 800, fontSize: 20, color: '#2b2100' }}>Facu</div>
-              <div style={{ fontSize: 12, color: '#5b4a00', opacity: 0.75 }}>MgID: MG-6RJXFY</div>
+              <div style={{ fontWeight: 800, fontSize: 20, color: '#2b2100' }}>{firstName}</div>
+              <div style={{ fontSize: 12, color: '#5b4a00', opacity: 0.75 }}>MgID: {mgid}</div>
               {/* QR (temporal, service público) */}
               <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=96x96&data=${encodeURIComponent('MG-6RJXFY')}`}
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=96x96&data=${encodeURIComponent(mgid)}`}
                 alt="MgID QR"
                 style={{ position: 'absolute', right: 16, top: 16, width: 96, height: 96, background: '#fff', borderRadius: 12 }}
               />

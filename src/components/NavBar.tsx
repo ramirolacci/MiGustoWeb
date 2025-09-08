@@ -4,12 +4,10 @@ import './NavBar.css';
 import LoversButton from './LoversButton';
 import { TimelineLite } from 'gsap';
 import { getToken, logout } from '../services/auth';
-import { useLoyalty } from '../context/LoyaltyContext';
 import { getMe } from '../services/user';
 
 function ProfileButton() {
   const navigate = useNavigate();
-  const { points } = useLoyalty();
   const [showProfile, setShowProfile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
@@ -43,6 +41,15 @@ function ProfileButton() {
       }
     })();
   }, [token]);
+
+  // Escuchar actualizaciones del perfil para refrescar el nombre mostrado
+  useEffect(() => {
+    const handler = (e: any) => {
+      if (e?.detail?.name) setUserName(e.detail.name);
+    };
+    window.addEventListener('mg_profile_updated', handler as EventListener);
+    return () => window.removeEventListener('mg_profile_updated', handler as EventListener);
+  }, []);
 
   const avatar = (
     <div
@@ -115,7 +122,7 @@ function ProfileButton() {
                 {/* Brillo */}
                 <path d="M8 8.5c1-.6 2.1-.9 3.2-1" stroke="#ffe9bf" strokeWidth="1" fill="none" strokeLinecap="round"/>
               </svg>
-              <strong>MiGusto Coins: {new Intl.NumberFormat('es-AR').format(points)}</strong>
+              <strong>MiGusto Coins: 888</strong>
             </div>
           )}
           {token ? (
@@ -316,8 +323,8 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
-  // Mostrar siempre el botón Lovers
-  const loversEnabled = true;
+  // Flag local para habilitar el botón Lovers solo en desarrollo/preview
+  const loversEnabled = import.meta.env.VITE_LOVERS_ENABLED === 'true';
 
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
@@ -325,7 +332,6 @@ const NavBar: React.FC = () => {
     { path: '/carta', label: 'Carta', image: '' },
     { path: '/productos', label: 'Productos', image: '' },
     { path: '/sucursales', label: 'Sucursales', image: '' },
-    { path: '/canje', label: 'Canje', image: '/side-menu/rewards.png' },
     { path: '/nosotros', label: 'Nosotros', image: '/side-menu/localMiGusto.webp' },
     { path: '/proveedores', label: 'Proveedores', image: '/side-menu/proveedor.png' },
     { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/side-menu/staff.png' },
@@ -547,12 +553,10 @@ const NavBar: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              {/* Botón de perfil solo en mobile dentro del menú colapsable */}
-              {!isDesktop && (
-                <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0' }}>
-                  <ProfileButton />
-                </div>
-              )}
+              {/* Botón de perfil también en el menú mobile */}
+              <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0' }}>
+                <ProfileButton />
+              </div>
             </div>
           </div>
         </div>

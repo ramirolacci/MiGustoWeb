@@ -4,11 +4,13 @@ import './Home.css';
 import IphoneWhatsapp from './Iphone';
 
 const slidesDesktop = [
+    '/sliders/desktop1.jpg',
     '/sliders/desktop2.jpg',
     '/sliders/desktop3.jpg',
 ];
 
 const slidesMobile = [
+    '/sliders/mobile1.jpg',
     '/sliders/mobile2.jpg',
     '/sliders/mobile3.jpg',
 ];
@@ -188,6 +190,71 @@ function Home() {
 
     return (
         <div className="home">
+            {/* Nueva sección hero principal */}
+            <section
+                className="home-hero"
+                style={{
+                    position: 'relative',
+                    height: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundImage: 'url(/sliders/mainpain.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            >
+                <div
+                    style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.15) 100%)'
+                    }}
+                />
+                <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1200, padding: '0 24px' }}>
+                    <h1 style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
+                        Disfrutá hoy tu experiencia de verdad
+                    </h1>
+                    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                        <a
+                            href="https://pedir.migusto.com.ar/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn"
+                            style={{
+                                backgroundColor: '#ffbf1f',
+                                borderColor: '#ffbf1f',
+                                color: '#1b1b1b',
+                                fontWeight: 700,
+                                padding: '12px 18px',
+                                borderRadius: 10,
+                                textDecoration: 'none'
+                            }}
+                        >
+                            Pedí y Retirá
+                        </a>
+                        <a
+                            href="https://pedir.migusto.com.ar/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-outline-light"
+                            style={{
+                                backdropFilter: 'blur(2px)',
+                                border: '2px solid rgba(255,255,255,0.85)',
+                                color: '#fff',
+                                fontWeight: 700,
+                                padding: '10px 18px',
+                                borderRadius: 10,
+                                textDecoration: 'none'
+                            }}
+                        >
+                            Delivery
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Sliders existentes debajo del hero */}
             <HomeSlider isMobile={isMobile} />
             <section className="home-app-section-row">
                 <div className="home-app-descarga">

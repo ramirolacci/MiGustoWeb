@@ -30,10 +30,8 @@ const Profile = lazy(() => import('./pages/Profile'));
 const Account = lazy(() => import('./pages/Account'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
-const Canje = lazy(() => import('./pages/Canje'));
 
 import './App.css';
-import { LoyaltyProvider } from './context/LoyaltyContext';
 
 const AppContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -80,7 +78,6 @@ const AppContent: React.FC = () => {
               <Route path="/legales" element={<Legales />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/canje" element={<Canje />} />
               <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
               <Route path="/mi-cuenta" element={<ProtectedRoute><Account /></ProtectedRoute>} />
               {/* Ejemplo de ruta protegida: */}
@@ -99,9 +96,7 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <LoyaltyProvider>
-        <AppContent />
-      </LoyaltyProvider>
+      <AppContent />
     </Router>
   );
 };
