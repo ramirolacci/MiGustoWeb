@@ -33,6 +33,7 @@ const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 const Canje = lazy(() => import('./pages/Canje'));
 
 import './App.css';
+import { LoyaltyProvider } from './context/LoyaltyContext';
 
 const AppContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -98,7 +99,9 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <AppContent />
+      <LoyaltyProvider>
+        <AppContent />
+      </LoyaltyProvider>
     </Router>
   );
 };

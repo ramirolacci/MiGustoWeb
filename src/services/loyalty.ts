@@ -57,7 +57,7 @@ const mockProducts: LoyaltyProduct[] = [
     id: 'car-006',
     name: 'Auto 0 km',
     shortDescription: 'Gran premio especial del programa de canje',
-    pointsCost: 100000,
+    pointsCost: 1000000,
     imageUrl: '/canjes/auto.jpg',
   },
 ];
@@ -85,7 +85,7 @@ export async function redeemProduct(productId: string): Promise<{ ok: boolean; n
     const { data } = await axios.post(`${API_BASE}/loyalty/redeem`, { productId });
     return data;
   } catch {
-    // Mock: descontar puntos localmente no es persistente, solo feedback de UI
+    // Mock: solo confirmamos el canje; la UI descontará en memoria.
     return { ok: true };
   }
 }

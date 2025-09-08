@@ -4,10 +4,12 @@ import './NavBar.css';
 import LoversButton from './LoversButton';
 import { TimelineLite } from 'gsap';
 import { getToken, logout } from '../services/auth';
+import { useLoyalty } from '../context/LoyaltyContext';
 import { getMe } from '../services/user';
 
 function ProfileButton() {
   const navigate = useNavigate();
+  const { points } = useLoyalty();
   const [showProfile, setShowProfile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
@@ -113,7 +115,7 @@ function ProfileButton() {
                 {/* Brillo */}
                 <path d="M8 8.5c1-.6 2.1-.9 3.2-1" stroke="#ffe9bf" strokeWidth="1" fill="none" strokeLinecap="round"/>
               </svg>
-              <strong>MiGusto Coins: {new Intl.NumberFormat('es-AR').format(1003560)}</strong>
+              <strong>MiGusto Coins: {new Intl.NumberFormat('es-AR').format(points)}</strong>
             </div>
           )}
           {token ? (

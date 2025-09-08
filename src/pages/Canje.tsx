@@ -5,12 +5,12 @@ import type { LoyaltyProduct } from '../services/loyalty';
 import '../components/Productos.css';
 import './Canje.css';
 import { getToken } from '../services/auth';
+import { useLoyalty } from '../context/LoyaltyContext';
 
 const Canje: React.FC = () => {
   const navigate = useNavigate();
   const token = getToken();
-  const STARTING_POINTS = 1003560;
-  const [points, setPoints] = useState<number>(STARTING_POINTS);
+  const { points, setPoints, canRedeem, deductPoints } = useLoyalty();
   const [products, setProducts] = useState<LoyaltyProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [redeemingId, setRedeemingId] = useState<string | null>(null);
@@ -25,7 +25,7 @@ const Canje: React.FC = () => {
           getMyLoyalty(),
           getRedeemableProducts(),
         ]);
-        setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : STARTING_POINTS);
+        setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : 1003560);
         setProducts(redeemables);
       } catch (err) {
         setError('No pudimos cargar el programa de canje.');
@@ -34,8 +34,6 @@ const Canje: React.FC = () => {
       }
     })();
   }, [token]);
-
-  const canRedeem = (cost: number) => points >= cost;
 
   const handleRedeem = async (product: LoyaltyProduct) => {
     setError(null);
@@ -48,8 +46,8 @@ const Canje: React.FC = () => {
       setRedeemingId(product.id);
       const res = await redeemProduct(product.id);
       if (res.ok) {
-        const newPoints = typeof res.newPoints === 'number' ? res.newPoints : (points - product.pointsCost);
-        setPoints(Math.max(newPoints, 0));
+        // Descuento inmediato y sincronizado con NavBar mediante contexto
+        deductPoints(product.pointsCost);
         setSuccessMsg(`¡Canjeaste "${product.name}" correctamente!`);
       } else {
         setError('No se pudo completar el canje.');
