@@ -195,15 +195,35 @@ function Home() {
                 className="home-hero"
                 style={{
                     position: 'relative',
-                    height: '100vh',
+                    height: '100svh',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundImage: 'url(/sliders/mainpain.png)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    overflow: 'hidden',
                 }}
             >
+                <video
+                    className="home-hero-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%) scale(1.25)',
+                        width: 'auto',
+                        height: '100svh',
+                        minWidth: '100vw',
+                        minHeight: '100svh',
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                    }}
+                    src="/sliders/VideoFlash.mp4"
+                    poster="/sliders/mainpain.png"
+                />
                 <div
                     style={{
                         position: 'absolute',
