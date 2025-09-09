@@ -1,9 +1,18 @@
-{
-  "id": 1,
-  "email": "admin@migusto.com",
-  "name": "Turromantico",
-  "mgid": "MG-6RJXFY",
-  "phone": "3876117799",
-  "birthdate": "1997-07-19",
-  "documentId": "40524521"
-}
+[
+  {
+    "id": 1,
+    "email": "admin@migusto.com",
+    "name": "Turromantico",
+    "mgid": "MG-6RJXFY",
+    "phone": "3876117799",
+    "birthdate": "1997-07-19",
+    "documentId": "40524521"
+  },
+  {
+    "id": 2,
+    "email": "facu14carrizo@gmail.com",
+    "name": "Facu Carrizo",
+    "mgid": "MG-2DIX7",
+    "passwordHash": "$2b$10$ht7Bv6I4e5QmDhLfZ4/2A.DYfKi5owCgVaM2JMb3qIjR/DVUXc5K."
+  }
+]

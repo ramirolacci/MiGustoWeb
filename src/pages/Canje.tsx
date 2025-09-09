@@ -249,7 +249,23 @@ const Canje: React.FC = () => {
                         const name = (p.name || '').toLowerCase();
                         const isCap = p.id === 'cap-001' || name.includes('gorra');
                         const isCar = p.id === 'car-006' || name.includes('auto');
-                        const src = isCap ? '/canjes/Gorra.mp4' : isCar ? '/canjes/Auto.mp4' : null;
+                        const isShirt = p.id === 'tshirt-003' || name.includes('remera');
+                        const isCup = p.id === 'cup-002' || name.includes('vaso');
+                        const isThermoMate = p.id === 'coupon-004' || name.includes('termo') || name.includes('mate');
+                        const isBoard = p.id === 'board-005' || name.includes('tabla');
+                        const src = isCap
+                          ? '/canjes/Gorra.mp4'
+                          : isCar
+                          ? '/canjes/Auto.mp4'
+                          : isShirt
+                          ? '/canjes/Remera.mp4'
+                          : isCup
+                          ? '/canjes/vaso.mp4'
+                          : isThermoMate
+                          ? '/canjes/termoymate.mp4'
+                          : isBoard
+                          ? '/canjes/tabla.mp4'
+                          : null;
                         return src ? (
                           <motion.video
                             key={`video-${p.id}`}
