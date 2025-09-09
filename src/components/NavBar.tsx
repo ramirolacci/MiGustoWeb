@@ -88,8 +88,8 @@ function ProfileButton() {
       {showProfile && (
         <div
           ref={profileRef}
-          className="card"
-          style={{ position: 'absolute', right: 0, top: 60, width: 320, zIndex: 1100, overflow: 'hidden' }}
+          className="card profile-panel"
+          style={{ position: 'absolute', left: 0, top: 60, width: 320, zIndex: 11000, overflow: 'hidden' }}
           role="dialog"
           aria-modal="true"
         >
@@ -569,10 +569,7 @@ const NavBar: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              {/* Botón de perfil también en el menú mobile */}
-              <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0' }}>
-                <ProfileButton />
-              </div>
+              {/* Ícono de cuenta removido del menú mobile */}
             </div>
           </div>
         </div>

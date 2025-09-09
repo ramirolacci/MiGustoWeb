@@ -1,3 +1,12 @@
+.profile-panel {
+  transform-origin: left top;
+  animation: slideRightPanel 0.28s cubic-bezier(0.22,1,0.36,1) both;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+@keyframes slideRightPanel {
+  0% { opacity: 0; transform: translateX(-12px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
 @media (max-width: 600px) {
   .side-menu-list .menu__item-link {
     font-size: 1.5rem !important;
@@ -350,7 +359,7 @@
   height: 40px;
   margin-right: 6px;
   position: relative;
-  z-index: 4000;
+  z-index: 10001;
   color: #ffffff; /* asegura el color del ícono via currentColor */
   background: rgba(0,0,0,0.0);
   border-radius: 8px;
@@ -411,7 +420,7 @@
   width: 100vw;
   height: 100vh;
   background: rgba(10,10,10,0.98);
-  z-index: 9999;
+  z-index: 8000; /* debajo del perfil */
   padding: 0;
   margin: 0;
   display: flex;
@@ -609,13 +618,14 @@
   align-items: center;
   justify-content: center;
   pointer-events: auto;
-  z-index: 1;
+  z-index: 0;
 }
 
 /* Asegurar que el grupo izquierdo esté por encima del logo centrado */
 .navbar-left-group {
   position: relative;
-  z-index: 3;
+  z-index: 9000;
+  pointer-events: auto;
 }
 
 @media (max-width: 768px) {
@@ -669,7 +679,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
     width: auto;
     height: auto;
     margin: 0;
-    z-index: 900;
+    z-index: 7000; /* por debajo del perfil */
     pointer-events: none;
   }
   .mobile-pedir-button a {
