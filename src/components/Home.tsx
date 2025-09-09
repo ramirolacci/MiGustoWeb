@@ -334,10 +334,6 @@ function Home() {
                     }}
                 />
                 <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1200, padding: '0 24px' }}>
-<<<<<<< HEAD
-                    <h1 className="home-hero-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
-                        Disfrutá hoy tu experiencia de verdad
-=======
                     <h1 className="hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
                         {(() => {
                           const line1 = 'Disfrutá hoy tu';
@@ -361,7 +357,6 @@ function Home() {
                             </>
                           );
                         })()}
->>>>>>> 90240ac7d5ef2c8ad1e77e82ae4e68fc7beb352f
                     </h1>
                     <div className="home-hero-cta" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                         <a
