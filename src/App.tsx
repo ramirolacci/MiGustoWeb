@@ -11,6 +11,7 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import LoversForm from './pages/LoversForm';
 import Carta from './pages/Carta';
 import { trackPageView } from './services/analytics';
+import { LoyaltyProvider } from './context/LoyaltyContext';
 
 const Home = lazy(() => import('./components/Home'));
 const Productos = lazy(() => import('./components/Productos'));
@@ -28,6 +29,7 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Account = lazy(() => import('./pages/Account'));
+const Canje = lazy(() => import('./pages/Canje'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 
@@ -80,6 +82,7 @@ const AppContent: React.FC = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
               <Route path="/mi-cuenta" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+              <Route path="/canje" element={<Canje />} />
               {/* Ejemplo de ruta protegida: */}
               <Route path="/admin" element={<ProtectedRoute><div style={{color:'#fff', padding:'2rem'}}>Área Privada</div></ProtectedRoute>} />
               <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
@@ -96,7 +99,9 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <AppContent />
+      <LoyaltyProvider>
+        <AppContent />
+      </LoyaltyProvider>
     </Router>
   );
 };
