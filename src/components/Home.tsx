@@ -219,6 +219,29 @@ function Home() {
                 opacity: 0,
                 reset: true
             });
+            // Hero: video, título y CTAs
+            sr().reveal('.home-hero-video', {
+                distance: '0px',
+                duration: 1400,
+                scale: 0.96,
+                opacity: 0,
+                reset: true
+            });
+            sr().reveal('.home-hero-title', {
+                distance: '24px',
+                duration: 1400,
+                origin: 'left',
+                opacity: 0,
+                reset: true
+            });
+            sr().reveal('.home-hero-cta a', {
+                distance: '20px',
+                duration: 1300,
+                origin: 'bottom',
+                opacity: 0,
+                interval: 120,
+                reset: true
+            });
             // Bloques de app
             sr().reveal('.home-app-descarga', {
                 distance: '30px',
@@ -311,6 +334,10 @@ function Home() {
                     }}
                 />
                 <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1200, padding: '0 24px' }}>
+<<<<<<< HEAD
+                    <h1 className="home-hero-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
+                        Disfrutá hoy tu experiencia de verdad
+=======
                     <h1 className="hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
                         {(() => {
                           const line1 = 'Disfrutá hoy tu';
@@ -334,8 +361,9 @@ function Home() {
                             </>
                           );
                         })()}
+>>>>>>> 90240ac7d5ef2c8ad1e77e82ae4e68fc7beb352f
                     </h1>
-                    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                    <div className="home-hero-cta" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                         <a
                             href="https://pedir.migusto.com.ar/"
                             target="_blank"
