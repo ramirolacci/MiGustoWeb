@@ -113,6 +113,76 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 });
 
 
+function PromoCards() {
+    const cards = [
+        { img: '/sliders/desktop2.jpg', cta: 'Ver promos', href: 'https://pedir.migusto.com.ar/' },
+        { img: '/sliders/desktop3.jpg', cta: 'Descargar app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
+    ];
+    return (
+        <section className="home-cards" style={{ padding: '56px 16px' }}>
+            <div style={{ maxWidth: 1440, margin: '0 auto' }}>
+                <div className="home-cards-grid" style={{ display: 'grid', gap: 24, alignItems: 'stretch' }}>
+                    {cards.map((card, idx) => (
+                        <div
+                            key={idx}
+                            className="home-card sr-card"
+                            style={{
+                                borderRadius: 20,
+                                overflow: 'visible',
+                                background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04))',
+                                padding: 2,
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                boxShadow: '0 16px 40px rgba(0,0,0,0.25)'
+                            }}
+                        >
+                            <div style={{
+                                position: 'relative',
+                                width: '100%',
+                                aspectRatio: '4 / 3',
+                                background: 'radial-gradient(circle at 30% 20%, #1a1a1a, #0b0b0b)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: 18,
+                                overflow: 'hidden'
+                            }}>
+                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} loading="lazy" />
+                                <a
+                                  href={card.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="btn"
+                                  style={{
+                                    position: 'absolute',
+                                    left: 24,
+                                    bottom: 24,
+                                    backgroundColor: '#ffbf1f',
+                                    borderColor: '#ffbf1f',
+                                    color: '#1b1b1b',
+                                    fontWeight: 700,
+                                    padding: '14px 24px',
+                                    borderRadius: 16,
+                                    textDecoration: 'none'
+                                  }}
+                                >
+                                  {card.cta}
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <style>{`
+              .home-cards-grid { grid-template-columns: 1fr; }
+              @media (min-width: 768px) {
+                .home-cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+              }
+              .home-card:hover { box-shadow: 0 14px 32px rgba(0,0,0,0.18); transform: translateY(-2px); transition: all .25s ease; }
+            `}</style>
+        </section>
+    );
+}
+
 function Home() {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
     useEffect(() => {
@@ -125,16 +195,24 @@ function Home() {
     useEffect(() => {
         import('scrollreveal').then((module) => {
             const sr = module.default ? module.default : module;
-            // Navbar (ajusta el selector según tu proyecto)
-            sr().reveal('.navbar', {
-                distance: '20px',
-                duration: 1400,
-                origin: 'top',
-                opacity: 0,
-                reset: true
+            // Navbar reveals (suaves y sin reset para no ocultar elementos al scroll)
+            sr().reveal('.navbar .navbar-brand', {
+                distance: '10px', duration: 600, origin: 'top', opacity: 0, reset: false
             });
-            // Slider principal
-            sr().reveal('.home-slider', {
+            sr().reveal('.navbar .hamburger-menu', {
+                distance: '10px', duration: 600, origin: 'left', opacity: 0, reset: false, delay: 80
+            });
+            sr().reveal('.navbar .nav-item', {
+                interval: 70, distance: '10px', duration: 650, origin: 'top', opacity: 0, reset: false, delay: 120
+            });
+            sr().reveal('.navbar .nav-link-pedir', {
+                distance: '10px', duration: 650, origin: 'top', opacity: 0, reset: false, delay: 180
+            });
+            sr().reveal('.navbar .navbar-profile', {
+                distance: '10px', duration: 650, origin: 'top', opacity: 0, reset: false, delay: 220
+            });
+            // Cards del medio
+            sr().reveal('.home-card', {
                 distance: '30px',
                 duration: 1600,
                 origin: 'bottom',
@@ -223,6 +301,7 @@ function Home() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     overflow: 'hidden',
+                    paddingTop: 64
                 }}
             >
                 <video
@@ -255,8 +334,24 @@ function Home() {
                     }}
                 />
                 <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1200, padding: '0 24px' }}>
+<<<<<<< HEAD
                     <h1 className="home-hero-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
                         Disfrutá hoy tu experiencia de verdad
+=======
+                    <h1 className="hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
+                        {(() => {
+                          const text = 'Disfrutá hoy tu experiencia de verdad';
+                          return Array.from(text).map((ch, idx) => (
+                            <span
+                              key={idx}
+                              className="hero-letter"
+                              style={{ animationDelay: `${idx * 0.06}s` }}
+                            >
+                              {ch === ' ' ? '\u00A0' : ch}
+                            </span>
+                          ));
+                        })()}
+>>>>>>> 90240ac7d5ef2c8ad1e77e82ae4e68fc7beb352f
                     </h1>
                     <div className="home-hero-cta" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                         <a
@@ -297,8 +392,8 @@ function Home() {
                 </div>
             </section>
 
-            {/* Sliders existentes debajo del hero */}
-            <HomeSlider isMobile={isMobile} />
+            {/* Cards tipo slider debajo del hero */}
+            <PromoCards />
             <section className="home-app-section-row">
                 <div className="home-app-descarga">
                     <h2>Descargá nuestra app</h2>

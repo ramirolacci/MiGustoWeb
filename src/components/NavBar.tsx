@@ -83,7 +83,7 @@ function ProfileButton() {
   );
 
   return (
-    <div className="ms-3 position-relative" ref={dropdownRef}>
+    <div className="ms-3 position-relative navbar-profile" ref={dropdownRef}>
       {avatar}
       {showProfile && (
         <div
@@ -246,6 +246,7 @@ const NavBar: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -256,9 +257,10 @@ const NavBar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // setIsScrolled(window.scrollY > 50); // Eliminado
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -323,8 +325,8 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
-  // Flag local para habilitar el botón Lovers solo en desarrollo/preview
-  const loversEnabled = import.meta.env.VITE_LOVERS_ENABLED === 'true';
+  // Flag para habilitar el botón Lovers: por defecto activado salvo que se ponga explícitamente 'false'
+  const loversEnabled = (import.meta.env.VITE_LOVERS_ENABLED ?? 'true') === 'true';
 
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
@@ -385,10 +387,18 @@ const NavBar: React.FC = () => {
       `}</style>
       <nav
         ref={navRef}
-        className={`navbar navbar-expand-lg navbar-scrollreveal`}
+        className={`navbar navbar-expand-lg`}
         style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.95)',
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+          backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.76)' : 'rgba(0, 0, 0, 0.92)',
+          backdropFilter: isScrolled ? 'blur(6px)' : undefined,
+          WebkitBackdropFilter: isScrolled ? 'blur(6px)' : undefined,
+          transition: 'background-color 0.25s ease, backdrop-filter 0.25s ease',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 1000
         }}
         role="navigation"
         aria-label="Menú principal"
@@ -434,18 +444,35 @@ const NavBar: React.FC = () => {
               />
             </Link>
             {/* Botón Lovers al lado del logo (controlado por flag) */}
-            {loversEnabled && (
-              <LoversButton
-                isOn={isSwitchOn}
-                autoConfetti={location.pathname === '/lovers'}
-                onClick={() => {
-                  setIsSwitchOn(true);
-                  setTimeout(() => {
-                    navigate('/lovers');
-                  }, 350);
+            <div className="d-flex align-items-center" style={{ gap: 8 }}>
+              {loversEnabled && (
+                <LoversButton
+                  isOn={isSwitchOn}
+                  autoConfetti={location.pathname === '/lovers'}
+                  onClick={() => {
+                    setIsSwitchOn(true);
+                    setTimeout(() => {
+                      navigate('/lovers');
+                    }, 350);
+                  }}
+                />
+              )}
+              <button
+                className="btn btn-sm"
+                onClick={() => navigate('/canje')}
+                style={{
+                  height: 32,
+                  padding: '0 12px',
+                  borderRadius: 999,
+                  backgroundColor: '#ffbf1f',
+                  borderColor: '#ffbf1f',
+                  color: '#1b1b1b',
+                  fontWeight: 800
                 }}
-              />
-            )}
+              >
+                Canje
+              </button>
+            </div>
             {/* Switch al lado del logo */}
             {/* Eliminar o comentar la línea:
             <Switch
