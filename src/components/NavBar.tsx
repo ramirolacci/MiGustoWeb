@@ -83,7 +83,7 @@ function ProfileButton() {
   );
 
   return (
-    <div className="ms-3 position-relative navbar-profile" ref={dropdownRef}>
+    <div className="position-relative navbar-profile" ref={dropdownRef}>
       {avatar}
       {showProfile && (
         <div
@@ -319,7 +319,6 @@ const NavBar: React.FC = () => {
   // const isHomePage = location.pathname === '/';
   
   const navLinks = [
-    { path: '/', label: 'Home' },
     { path: '/carta', label: 'Carta' },
     { path: '/productos', label: 'Productos' },
     { path: '/sucursales', label: 'Sucursales' }
@@ -404,7 +403,7 @@ const NavBar: React.FC = () => {
         aria-label="Menú principal"
       >
         <div className="container-fluid">
-          <div className="d-flex align-items-center navbar-flex-responsive">
+          <div className="d-flex align-items-center navbar-flex-responsive navbar-left-group">
             <button
               className="hamburger-menu"
               type="button"
@@ -414,37 +413,12 @@ const NavBar: React.FC = () => {
               aria-controls="main-navbar-menu"
               ref={menuButtonRef}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hamburger-icon">
-                <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
-              </svg>
+              <i className="fa-solid fa-bars hamburger-fa" aria-hidden="true" />
+              <span className="visually-hidden">Abrir menú</span>
             </button>
-
-            {/* Logo solo visible en desktop */}
-            <Link
-              className="navbar-brand d-flex align-items-center navbar-brand-desktop"
-              to="/"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              style={{
-                transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                opacity: isHovered ? 1 : 0.9,
-              }}
-            >
-              <img
-                src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
-                alt="Mi Gusto"
-                height="40"
-                className="me-2"
-                style={{
-                  transition: 'all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  transform: 'translateZ(30px)',
-                  willChange: 'transform'
-                }}
-              />
-            </Link>
-            {/* Botón Lovers al lado del logo (controlado por flag) */}
+            {/* Orden izquierda: Cuenta, Lovers, Canje */}
             <div className="d-flex align-items-center" style={{ gap: 8 }}>
+              <ProfileButton />
               {loversEnabled && (
                 <LoversButton
                   isOn={isSwitchOn}
@@ -458,17 +432,8 @@ const NavBar: React.FC = () => {
                 />
               )}
               <button
-                className="btn btn-sm"
+                className={`btn btn-sm btn-canje${location.pathname === '/canje' ? ' btn-canje-active' : ''}`}
                 onClick={() => navigate('/canje')}
-                style={{
-                  height: 32,
-                  padding: '0 12px',
-                  borderRadius: 999,
-                  backgroundColor: '#ffbf1f',
-                  borderColor: '#ffbf1f',
-                  color: '#1b1b1b',
-                  fontWeight: 800
-                }}
               >
                 Canje
               </button>
@@ -498,6 +463,33 @@ const NavBar: React.FC = () => {
                 <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
               </a>
             </div>
+          </div>
+
+          {/* Logo centrado (solo desktop) */}
+          <div className="navbar-center-logo">
+            <Link
+              className="navbar-brand d-flex align-items-center navbar-brand-desktop"
+              to="/"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              style={{
+                transform: isHovered ? 'scale(1.12)' : 'scale(1)',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                opacity: isHovered ? 1 : 0.9,
+              }}
+            >
+              <img
+                src="/assets/Logo Mi Gusto 2025.png"
+                alt="Mi Gusto"
+                height="40"
+                className={`me-2 navbar-logo-img${isHovered ? ' navbar-logo-img-hover' : ''}`}
+                style={{
+                  transition: 'all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  transform: 'translateZ(30px)',
+                  willChange: 'transform'
+                }}
+              />
+            </Link>
           </div>
 
             {/* Renderizo el menú colapsable solo en desktop/web */}
@@ -544,10 +536,7 @@ const NavBar: React.FC = () => {
                       <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
                     </a>
                   </li>
-                  {/* Botón de perfil al extremo derecho */}
-                  <li className="nav-item d-flex align-items-center">
-                    <ProfileButton />
-                  </li>
+                  
                 </ul>
               </div>
             )}
