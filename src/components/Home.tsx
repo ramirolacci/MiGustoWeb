@@ -334,43 +334,28 @@ function Home() {
                     }}
                 />
                 <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1200, padding: '0 24px' }}>
-<<<<<<< HEAD
                     <h1 className="home-hero-title hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
                         {(() => {
-                            const text = 'Disfrutá hoy tu experiencia de verdad';
-                            return Array.from(text).map((ch, idx) => (
-                                <span
-                                    key={idx}
-                                    className="hero-letter"
-                                    style={{ animationDelay: `${idx * 0.06}s` }}
-                                >
-                                    {ch === ' ' ? '\u00A0' : ch}
-                                </span>
-                            ));
-=======
-                    <h1 className="hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
-                        {(() => {
-                          const line1 = 'Disfrutá hoy tu';
-                          const line2 = 'experiencia de verdad';
-                          const renderLine = (text: string, startIndex: number = 0) => (
-                            Array.from(text).map((ch, idx) => (
-                              <span
-                                key={startIndex + idx}
-                                className="hero-letter"
-                                style={{ animationDelay: `${(startIndex + idx) * 0.06}s` }}
-                              >
-                                {ch === ' ' ? '\u00A0' : ch}
-                              </span>
-                            ))
-                          );
-                          return (
-                            <>
-                              {renderLine(line1, 0)}
-                              <br />
-                              {renderLine(line2, Array.from(line1).length)}
-                            </>
-                          );
->>>>>>> 8668457d0f996fd9fc81d17bc3b1d0f0175ca149
+                            const line1 = 'Disfrutá hoy tu';
+                            const line2 = 'experiencia de verdad';
+                            const renderLine = (text: string, startIndex: number = 0) => (
+                                Array.from(text).map((ch, idx) => (
+                                    <span
+                                        key={startIndex + idx}
+                                        className="hero-letter"
+                                        style={{ animationDelay: `${(startIndex + idx) * 0.06}s` }}
+                                    >
+                                        {ch === ' ' ? '\u00A0' : ch}
+                                    </span>
+                                ))
+                            );
+                            return (
+                                <>
+                                    {renderLine(line1, 0)}
+                                    <br />
+                                    {renderLine(line2, Array.from(line1).length)}
+                                </>
+                            );
                         })()}
                     </h1>
                     <div className="home-hero-cta" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
