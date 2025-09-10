@@ -38,6 +38,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Pedir"
         >
           <img src="/icons/tab-pedir.svg" alt="Pedir" />
+          <span>Pedir</span>
         </button>
 
         <button 
