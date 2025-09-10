@@ -1,0 +1,198 @@
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Buscador from '../components/Buscador';
+import './HomeMobile.css';
+import { combosImperdibles, promosDestacadas, type MobilePromoSlide } from '../data/mobilePromos';
+import OptimizedImage from '../components/OptimizedImage';
+
+type Slide = MobilePromoSlide & { bg?: string };
+
+const useIsMobile = (breakpoint: number = 768) => {
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < breakpoint);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [breakpoint]);
+  return isMobile;
+};
+
+function PromoCarousel({ title, slides, isDestacadas = false }: { title: string; slides: Slide[]; isDestacadas?: boolean }) {
+  const [lightbox, setLightbox] = useState<string | null>(null);
+  return (
+    <section className="hm-section">
+      <h3 className="hm-section-title">{title}</h3>
+      <div className="hm-carousel" aria-label={title}>
+        {slides.map((s) => (
+          <a
+            key={s.id}
+            href={s.href || '#'}
+            className={isDestacadas ? "hm-card hm-card-destacadas" : "hm-card hm-card-other"}
+            aria-label={s.title || 'Promo'}
+            onClick={(e) => { e.preventDefault(); if (s.image) setLightbox(s.image.replace('/sliders/desktop', '/sliders/mobile')); }}
+          >
+            {s.image && (
+              <OptimizedImage
+                src={s.image}
+                alt={s.title || 'Promo'}
+                className="hm-card-img"
+                sizes="(max-width: 480px) 66vw, 420px"
+                srcSet={`
+                  ${s.image} 800w
+                `}
+              />
+            )}
+            {/* Ocultamos texto sobre las promos destacadas por pedido */}
+          </a>
+        ))}
+      </div>
+      {lightbox && (
+        <div className="hm-lightbox" onClick={() => setLightbox(null)}>
+          <div className="hm-lightbox-inner">
+            <img src={lightbox} alt="Promo" />
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+// Generar empanadas una sola vez para evitar que cambien de posición
+const generateEmpanadas = () => {
+  const imgs = [
+    'https://i.postimg.cc/9FTt4mc3/burger.png',
+    'https://i.postimg.cc/9Ftb8mKd/cheese-burger.png',
+    'https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png',
+    'https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png'
+  ];
+  
+  return Array.from({ length: 22 }).map((_, i) => {
+    const left = Math.random() * 100;
+    const size = 42 + Math.random() * 46;
+    const delay = -Math.random() * 10;
+    const duration = 8 + Math.random() * 10;
+    const img = imgs[Math.floor(Math.random() * imgs.length)];
+    
+    return {
+      id: `rain-${i}`,
+      src: img,
+      left,
+      size,
+      delay,
+      duration
+    };
+  });
+};
+
+const EMPANADAS_DATA = generateEmpanadas();
+
+export default function HomeMobile() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isMobile = useIsMobile();
+  const [filtro, setFiltro] = useState('');
+
+  const promoSlides = useMemo<Slide[]>(() => promosDestacadas, []);
+
+  const moreSlides = useMemo<Slide[]>(() => combosImperdibles, []);
+
+  const handleCategory = (key: string) => {
+    navigate(`/productos#${key}`);
+  };
+
+  // Asegura que en desktop se redirija al Home clásico
+  useEffect(() => {
+    if (!isMobile) navigate('/', { replace: true });
+  }, [isMobile]);
+
+  return (
+    <div className="hm-root">
+      <div className="hm-content">
+        <div className="hm-search">
+          <Buscador
+            filtro={filtro}
+            setFiltro={setFiltro}
+            onSubmit={(q) => {
+              if (!q) return;
+              const query = q.toLowerCase();
+              // Sucursales
+              const branchKeywords = ['pilar', 'palermo', 'belgrano', 'tigre', 'escobar', 'campana', 'san miguel', 'san martin', 'devoto', 'balvanera'];
+              if (branchKeywords.some(k => query.includes(k))) {
+                navigate(`/sucursales?q=${encodeURIComponent(q)}`);
+                return;
+              }
+              // Productos
+              navigate(`/productos?search=${encodeURIComponent(q)}`);
+            }}
+          />
+        </div>
+
+        <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
+
+         <section className="hm-banner">
+           <div className="hm-banner-inner">
+             <div className="hm-banner-title">Unite a Lovers Club</div>
+             <div className="hm-banner-sub">Beneficios y promos exclusivas</div>
+             <button className="hm-banner-btn" onClick={() => navigate('/lovers')}>Conocer más</button>
+             <div className="hm-rain">
+               {EMPANADAS_DATA.map((empanada) => (
+                 <img
+                   key={empanada.id}
+                   src={empanada.src}
+                   alt="empanada"
+                   loading="lazy"
+                   style={{
+                     position: 'absolute',
+                     left: `${empanada.left}%`,
+                     width: empanada.size,
+                     height: empanada.size,
+                     objectFit: 'contain',
+                     animation: `emp-fall ${empanada.duration}s linear infinite`,
+                     animationDelay: `${empanada.delay}s`,
+                     pointerEvents: 'none',
+                     opacity: .6,
+                     zIndex: -1,
+                     filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                   }}
+                 />
+               ))}
+             </div>
+           </div>
+         </section>
+
+        <section className="hm-categories">
+          <div className="hm-cat" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
+            <img src="/icons/empanadas-premium.svg" alt="Empanadas Premium" />
+            <span>Premium</span>
+          </div>
+          <div className="hm-cat" onClick={() => navigate('/productos?tab=Empanadas&type=Clasicas')}>
+            <img src="/icons/empanadas-clasicas.svg" alt="Empanadas Clásicas" />
+            <span>Clásicas</span>
+          </div>
+          <div className="hm-cat" onClick={() => navigate('/productos?tab=Pizzas')}>
+            <img src="/icons/pizza.svg" alt="Pizzas" />
+            <span>Pizzas</span>
+          </div>
+          <div className="hm-cat" onClick={() => navigate('/productos?tab=Fitzzas')}>
+            <img src="/icons/fitzza.svg" alt="Fitzza" />
+            <span>Fitzza</span>
+          </div>
+          <div className="hm-cat" onClick={() => navigate('/productos?tab=Postres')}>
+            <img src="/icons/postres.svg" alt="Postres" />
+            <span>Postres</span>
+          </div>
+          <div className="hm-cat" onClick={() => navigate('/productos?tab=Salsas')}>
+            <img src="/icons/aderezos.svg" alt="Aderezos" />
+            <span>Aderezos</span>
+          </div>
+        </section>
+
+        <PromoCarousel title="Combos imperdibles" slides={moreSlides} />
+        <PromoCarousel title="Para compartir" slides={moreSlides} />
+      </div>
+
+    </div>
+  );
+}
+
+

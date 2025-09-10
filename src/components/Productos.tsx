@@ -3,6 +3,7 @@ import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import NavBar from './NavBar';
 import Buscador from './Buscador';
+import { useLocation } from 'react-router-dom';
 
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
@@ -57,6 +58,7 @@ const RUTA_3D_BIG_BURGER = "/3D/big-burger-3D.glb";
 const ORBIT_3D_BIG_BURGER = "45deg 65deg 1.7m";
 
 export default function Productos() {
+    const location = useLocation();
     const [filtro, setFiltro] = useState(categorias[1]);
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
@@ -66,6 +68,17 @@ export default function Productos() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [hoveredBigBurger, setHoveredBigBurger] = useState(false);
     const scrollRevealRef = useRef<any>(null);
+
+    useEffect(() => {
+        // Sincronizar desde query params si llegan desde HomeMobile
+        const params = new URLSearchParams(location.search);
+        const tab = params.get('tab');
+        const type = params.get('type');
+        const search = params.get('search');
+        if (tab && categorias.includes(tab)) setFiltro(tab);
+        if (type === 'Premium' || type === 'Clasicas') setTipoProducto(type);
+        if (typeof search === 'string' && search.length > 0) setBusqueda(search);
+    }, [location.search]);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);

@@ -1,0 +1,12 @@
+/* Estilos globales para layout móvil */
+@media (max-width: 767px) {
+  /* Agregar espacio para el tabbar móvil en todas las páginas */
+  .main {
+    padding-bottom: 88px;
+  }
+  
+  /* Asegurar que el contenido no se oculte detrás del tabbar */
+  body {
+    padding-bottom: 0;
+  }
+}

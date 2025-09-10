@@ -10,3 +10,13 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 )
+
+// Registrar Service Worker para PWA (solo en producción y si el navegador lo soporta)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    const swUrl = '/service-worker.js';
+    navigator.serviceWorker.register(swUrl).catch(() => {
+      // Ignorar errores de registro silenciosamente
+    });
+  });
+}

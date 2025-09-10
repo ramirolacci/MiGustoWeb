@@ -1,16 +1,19 @@
 // src/components/Buscador.tsx
 
 import React, { useEffect, useState } from 'react';
+import { useAnimatedPlaceholder } from '../hooks/useAnimatedPlaceholder';
 import './Buscador.css';
 
 interface Props {
     filtro: string;
     setFiltro: (filtro: string) => void;
+    onSubmit?: (valor: string) => void;
 }
 
-const Buscador: React.FC<Props> = ({ filtro, setFiltro }) => {
+const Buscador: React.FC<Props> = ({ filtro, setFiltro, onSubmit }) => {
     const [aparecer, setAparecer] = useState(false);
     const [bordeLuz, setBordeLuz] = useState(false);
+    const animatedPlaceholder = useAnimatedPlaceholder(3000);
 
     useEffect(() => {
         setAparecer(true);
@@ -23,11 +26,25 @@ const Buscador: React.FC<Props> = ({ filtro, setFiltro }) => {
             <input
                 type="text"
                 className={`buscador-input${bordeLuz ? ' borde-luz' : ''}`}
-                placeholder="Buscar productos..."
+                placeholder={animatedPlaceholder}
                 value={filtro}
                 onChange={(e) => setFiltro(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' && onSubmit) {
+                        onSubmit(filtro.trim());
+                    }
+                }}
             />
-            <i className="fas fa-search buscador-icon"></i>
+            <i
+              className="fas fa-search buscador-icon"
+              onClick={() => onSubmit && onSubmit(filtro.trim())}
+              role={onSubmit ? 'button' : undefined}
+              aria-label={onSubmit ? 'Buscar' : undefined}
+              tabIndex={onSubmit ? 0 : -1}
+              onKeyDown={(e) => {
+                  if (onSubmit && (e.key === 'Enter' || e.key === ' ')) onSubmit(filtro.trim());
+              }}
+            ></i>
         </div>
     );
 };
