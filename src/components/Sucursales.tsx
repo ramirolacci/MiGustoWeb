@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { sucursales } from '../data/sucursalesData';
 import SucursalCard from '../components/SucursalCard';
 import './SucursalCard.css';
@@ -11,6 +12,15 @@ const Sucursales: React.FC = () => {
     const [bordeLuz, setBordeLuz] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const scrollRevealRef = useRef<any>(null);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        // Tomar ?q= de la URL para búsqueda directa (desde HomeMobile)
+        const params = new URLSearchParams(location.search);
+        const q = params.get('q');
+        if (q) setFiltro(q);
+    }, [location.search]);
 
     useEffect(() => {
         setAparecer(true);

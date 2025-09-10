@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
+import MobileTabbar from './components/MobileTabbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import BotmakerChat from './components/BotmakerChat';
 import Viewer3D from './components/Viewer3D';
@@ -12,8 +13,10 @@ import LoversForm from './pages/LoversForm';
 import Carta from './pages/Carta';
 import { trackPageView } from './services/analytics';
 import { LoyaltyProvider } from './context/LoyaltyContext';
+import { useIsMobile } from './hooks/useIsMobile';
 
-const Home = lazy(() => import('./components/Home'));
+const ResponsiveHome = lazy(() => import('./components/ResponsiveHome'));
+const HomeMobile = lazy(() => import('./pages/HomeMobile'));
 const Productos = lazy(() => import('./components/Productos'));
 const Sucursales = lazy(() => import('./components/Sucursales'));
 const Nosotros = lazy(() => import('./pages/Nosotros'));
@@ -32,12 +35,15 @@ const Account = lazy(() => import('./pages/Account'));
 const Canje = lazy(() => import('./pages/Canje'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
+import InstallPWAButton from './components/InstallPWAButton';
 
 import './App.css';
+import './styles/mobile-layout.css';
 
 const AppContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,6 +60,11 @@ const AppContent: React.FC = () => {
 
   const isLovers = location.pathname.startsWith('/lovers');
   const isViewer3D = location.pathname === '/3d';
+  const isHomeMobile = location.pathname === '/m';
+  
+  // Determinar si mostrar el tabbar móvil - solo excluir lovers y viewer3d
+  const showMobileTabbar = isMobile && !isLovers && !isViewer3D;
+  
 
   return (
     <>
@@ -61,11 +72,13 @@ const AppContent: React.FC = () => {
       {!isLovers && !isViewer3D && <BotmakerChat />}
       <div className="app">
         <GoogleAnalytics />
-        {!isLovers && <header><NavBar /></header>}
+        {!isLovers && !isMobile && <header><NavBar /></header>}
         <main className='main'>
           <Suspense>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<ResponsiveHome />} />
+              {/* Home mobile dedicado */}
+              <Route path="/m" element={<HomeMobile />} />
               <Route path="/carta" element={<Carta />} />
               <Route path="/productos" element={<Productos />} />
               <Route path="/sucursales" element={<Sucursales />} />
@@ -89,8 +102,10 @@ const AppContent: React.FC = () => {
             </Routes>
           </Suspense>
         </main>
-        {!isLovers && !isViewer3D && <footer><Footer /></footer>}
+        {!isLovers && !isViewer3D && !isMobile && <footer><Footer /></footer>}
+        {showMobileTabbar && <MobileTabbar />}
         {!isLovers && !isViewer3D && <CookieConsent />}
+        <InstallPWAButton />
       </div>
     </>
   );

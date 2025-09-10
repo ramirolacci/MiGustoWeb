@@ -18,6 +18,7 @@
 
 .buscador-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
+    transition: opacity 0.5s ease;
 }
 
 .buscador-input:focus {
