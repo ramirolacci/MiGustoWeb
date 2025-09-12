@@ -672,7 +672,7 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
     .productos-container {
-        padding-top: 90px !important;
+        padding-top: 60px !important;
         padding-left: 1rem;
         padding-right: 1rem;
         margin-top: 0 !important;
@@ -683,6 +683,7 @@ body {
 
     .productos-titulo {
         font-size: 1.8rem;
+        margin-top: -2rem;
         margin-bottom: 0.5rem;
         padding-bottom: 0.5rem;
     }
@@ -693,6 +694,7 @@ body {
     }
 
     .productos-busqueda {
+        margin-top: 1.5rem;
         margin-bottom: 0.5rem;
     }
 
