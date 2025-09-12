@@ -215,4 +215,23 @@ body {
 .no-results i {
     margin-right: 8px;
     color: #D4AF37;
+}
+
+/* Estilos responsivos para móvil */
+@media (max-width: 768px) {
+    .sucursales-container {
+        padding: 2rem 0;
+        padding-top: 60px;
+    }
+    
+    .productos-titulo {
+        font-size: 1.8rem;
+        margin-top: -2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .productos-busqueda {
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+    }
 } 
