@@ -1778,6 +1778,14 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   padding-top: 0 !important;
 }
 
+/* Ajuste específico para móvil - subir la revista */
+@media (max-width: 768px) {
+  .carta-container .revista-container {
+    margin-top: -4rem !important;
+    padding-top: 0 !important;
+  }
+}
+
 .modal-product-title {
     font-size: 2.7rem;
     font-weight: 900;

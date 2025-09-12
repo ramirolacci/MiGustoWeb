@@ -469,7 +469,7 @@
     
     .revista-content-wrapper {
         min-height: calc(100vh - 120px);
-        padding: 1rem;
+        padding: 0.2rem 1rem 1rem 1rem;
     }
     
     /* No mostrar modal en mobile */
