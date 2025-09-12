@@ -115,14 +115,18 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 
 function PromoCards() {
     const cards = [
-        { img: '/sliders/desktop2.jpg', cta: 'Ver promos', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/sliders/desktop3.jpg', cta: 'Descargar app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
+        { img: '/sliders/desktop1.jpg', cta: 'Jugá y Ganá', href: 'https://pedir.migusto.com.ar/' },
+        { img: '/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
+        { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
     ];
+
+    // Crear múltiples copias para el efecto infinito
+    const extendedCards = [...cards, ...cards, ...cards];
     return (
-        <section className="home-cards" style={{ padding: '56px 16px' }}>
+        <section className="home-cards" style={{ padding: '56px 16px', overflow: 'hidden' }}>
             <div style={{ maxWidth: 1440, margin: '0 auto' }}>
-                <div className="home-cards-grid" style={{ display: 'grid', gap: 24, alignItems: 'stretch' }}>
-                    {cards.map((card, idx) => (
+                <div className="home-cards-carousel" style={{ display: 'flex', gap: 32, alignItems: 'stretch' }}>
+                    {extendedCards.map((card, idx) => (
                         <div
                             key={idx}
                             className="home-card sr-card"
@@ -132,13 +136,15 @@ function PromoCards() {
                                 background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04))',
                                 padding: 2,
                                 border: '1px solid rgba(255,255,255,0.08)',
-                                boxShadow: '0 16px 40px rgba(0,0,0,0.25)'
+                                boxShadow: '0 16px 40px rgba(0,0,0,0.25)',
+                                minWidth: '380px',
+                                flexShrink: 0
                             }}
                         >
                             <div style={{
                                 position: 'relative',
                                 width: '100%',
-                                aspectRatio: '4 / 3',
+                                aspectRatio: '16 / 9',
                                 background: 'radial-gradient(circle at 30% 20%, #1a1a1a, #0b0b0b)',
                                 display: 'flex',
                                 alignItems: 'center',
@@ -146,7 +152,7 @@ function PromoCards() {
                                 borderRadius: 18,
                                 overflow: 'hidden'
                             }}>
-                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} loading="lazy" />
+                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} loading="lazy" />
                                 <a
                                   href={card.href}
                                   target="_blank"
@@ -173,11 +179,54 @@ function PromoCards() {
                 </div>
             </div>
             <style>{`
-              .home-cards-grid { grid-template-columns: 1fr; }
-              @media (min-width: 768px) {
-                .home-cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+              .home-cards-carousel {
+                animation: carousel 30s linear infinite;
               }
-              .home-card:hover { box-shadow: 0 14px 32px rgba(0,0,0,0.18); transform: translateY(-2px); transition: all .25s ease; }
+              
+              @keyframes carousel {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-33.333%); }
+              }
+              
+              .home-cards-carousel:hover {
+                animation-play-state: paused;
+              }
+              
+              .home-card { 
+                min-width: 350px;
+                max-width: 450px;
+                width: 100%;
+              }
+              
+              @media (min-width: 768px) {
+                .home-card { 
+                  min-width: 400px;
+                  max-width: 520px;
+                }
+              }
+              
+              @media (min-width: 1200px) {
+                .home-card { 
+                  min-width: 450px;
+                  max-width: 600px;
+                }
+              }
+              
+              .home-card:hover { 
+                box-shadow: 0 20px 48px rgba(0,0,0,0.25); 
+                transform: translateY(-4px) scale(1.02); 
+                transition: all .3s cubic-bezier(0.4, 0, 0.2, 1); 
+                z-index: 10;
+                position: relative;
+              }
+              
+              .home-card img {
+                transition: transform 0.3s ease;
+              }
+              
+              .home-card:hover img {
+                transform: scale(1.02);
+              }
             `}</style>
         </section>
     );
@@ -195,21 +244,57 @@ function Home() {
     useEffect(() => {
         import('scrollreveal').then((module) => {
             const sr = module.default ? module.default : module;
-            // Navbar reveals (suaves y sin reset para no ocultar elementos al scroll)
+            // Navbar reveals (más exagerados)
             sr().reveal('.navbar .navbar-brand', {
-                distance: '10px', duration: 600, origin: 'top', opacity: 0, reset: false
+                distance: '28px',
+                duration: 1000,
+                origin: 'top',
+                opacity: 0,
+                scale: 0.9,
+                easing: 'cubic-bezier(0.22,1,0.36,1)',
+                reset: false
             });
             sr().reveal('.navbar .hamburger-menu', {
-                distance: '10px', duration: 600, origin: 'left', opacity: 0, reset: false, delay: 80
+                distance: '32px',
+                duration: 1000,
+                origin: 'left',
+                opacity: 0,
+                scale: 0.9,
+                rotate: { x: 0, y: 0, z: -3 },
+                easing: 'cubic-bezier(0.22,1,0.36,1)',
+                reset: false,
+                delay: 120
             });
             sr().reveal('.navbar .nav-item', {
-                interval: 70, distance: '10px', duration: 650, origin: 'top', opacity: 0, reset: false, delay: 120
+                interval: 120,
+                distance: '28px',
+                duration: 950,
+                origin: 'top',
+                opacity: 0,
+                scale: 0.95,
+                easing: 'cubic-bezier(0.22,1,0.36,1)',
+                reset: false,
+                delay: 160
             });
             sr().reveal('.navbar .nav-link-pedir', {
-                distance: '10px', duration: 650, origin: 'top', opacity: 0, reset: false, delay: 180
+                distance: '32px',
+                duration: 1000,
+                origin: 'top',
+                opacity: 0,
+                scale: 0.95,
+                easing: 'cubic-bezier(0.22,1,0.36,1)',
+                reset: false,
+                delay: 220
             });
             sr().reveal('.navbar .navbar-profile', {
-                distance: '10px', duration: 650, origin: 'top', opacity: 0, reset: false, delay: 220
+                distance: '36px',
+                duration: 1100,
+                origin: 'top',
+                opacity: 0,
+                scale: 0.95,
+                easing: 'cubic-bezier(0.22,1,0.36,1)',
+                reset: false,
+                delay: 260
             });
             // Cards del medio
             sr().reveal('.home-card', {

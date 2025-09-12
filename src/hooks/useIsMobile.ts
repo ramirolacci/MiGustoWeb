@@ -14,3 +14,5 @@ export const useIsMobile = (): boolean => {
 
   return isMobile;
 };
+
+

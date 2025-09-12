@@ -161,28 +161,40 @@ export default function HomeMobile() {
          </section>
 
         <section className="hm-categories">
-          <div className="hm-cat" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
-            <img src="/icons/empanadas-premium.svg" alt="Empanadas Premium" />
+          <div className="hm-cat hm-cat-premium" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
+            <div className="hm-cat-img-wrap-premium">
+              <img className="hm-cat-img-premium" src="https://i.postimg.cc/9FTt4mc3/burger.png" alt="Empanadas Premium" />
+            </div>
             <span>Premium</span>
           </div>
-          <div className="hm-cat" onClick={() => navigate('/productos?tab=Empanadas&type=Clasicas')}>
-            <img src="/icons/empanadas-clasicas.svg" alt="Empanadas Clásicas" />
+          <div className="hm-cat hm-cat-clasicas" onClick={() => navigate('/productos?tab=Empanadas&type=Clasicas')}>
+            <div className="hm-cat-img-wrap-clasicas">
+              <img className="hm-cat-img-clasicas" src="https://i.postimg.cc/rmGWykxP/champi.png" alt="Empanadas Clásicas" />
+            </div>
             <span>Clásicas</span>
           </div>
-          <div className="hm-cat" onClick={() => navigate('/productos?tab=Pizzas')}>
-            <img src="/icons/pizza.svg" alt="Pizzas" />
+          <div className="hm-cat hm-cat-pizzas" onClick={() => navigate('/productos?tab=Pizzas')}>
+            <div className="hm-cat-img-wrap-pizzas">
+              <img className="hm-cat-img-pizzas" src="https://i.postimg.cc/MGwpT9Yq/Caprese-Photoroom.png" alt="Pizzas" />
+            </div>
             <span>Pizzas</span>
           </div>
-          <div className="hm-cat" onClick={() => navigate('/productos?tab=Fitzzas')}>
-            <img src="/icons/fitzza.svg" alt="Fitzza" />
+          <div className="hm-cat hm-cat-fitzzas" onClick={() => navigate('/productos?tab=Fitzzas')}>
+            <div className="hm-cat-img-wrap-fitzzas">
+              <img className="hm-cat-img-fitzzas" src="https://i.postimg.cc/sgW23vtF/890ba29d-3b08-4651-b10f-dc3f6462b940-Photoroom.png" alt="Fitzza" />
+            </div>
             <span>Fitzza</span>
           </div>
-          <div className="hm-cat" onClick={() => navigate('/productos?tab=Postres')}>
-            <img src="/icons/postres.svg" alt="Postres" />
+          <div className="hm-cat hm-cat-postres" onClick={() => navigate('/productos?tab=Postres')}>
+            <div className="hm-cat-img-wrap-postres">
+              <img className="hm-cat-img-postres" src="https://i.postimg.cc/3wDKXLCG/Franu-Chocolate-Amargo.png" alt="Postres" />
+            </div>
             <span>Postres</span>
           </div>
-          <div className="hm-cat" onClick={() => navigate('/productos?tab=Salsas')}>
-            <img src="/icons/aderezos.svg" alt="Aderezos" />
+          <div className="hm-cat hm-cat-aderezos" onClick={() => navigate('/productos?tab=Salsas')}>
+            <div className="hm-cat-img-wrap-aderezos">
+              <img className="hm-cat-img-aderezos" src="https://i.postimg.cc/HL2fXvFj/BBQ.png" alt="Aderezos" />
+            </div>
             <span>Aderezos</span>
           </div>
         </section>

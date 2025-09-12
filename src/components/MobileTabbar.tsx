@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import MobileSideMenu from './MobileSideMenu';
+import { getToken } from '../services/auth';
 import './MobileTabbar.css';
 
 const MobileTabbar: React.FC = () => {
@@ -43,12 +44,16 @@ const MobileTabbar: React.FC = () => {
 
         <button 
           className="hm-tab" 
-          onClick={() => navigate('/sucursales')} 
-          aria-label="Sucursales" 
-          aria-current={location.pathname.startsWith('/sucursales') ? 'page' : undefined}
+          onClick={() => {
+            const token = getToken();
+            if (token) navigate('/perfil');
+            else navigate('/login');
+          }} 
+          aria-label="Cuenta" 
+          aria-current={(location.pathname.startsWith('/mi-cuenta') || location.pathname.startsWith('/perfil')) ? 'page' : undefined}
         >
-          <img src="/icons/tab-sucursales.svg" alt="Sucursales" />
-          <span>Sucursales</span>
+          <img src="/icons/tab-cuenta.svg" alt="Cuenta" />
+          <span>Cuenta</span>
         </button>
         
         <button 

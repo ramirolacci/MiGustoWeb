@@ -35,7 +35,6 @@ const Account = lazy(() => import('./pages/Account'));
 const Canje = lazy(() => import('./pages/Canje'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
-import InstallPWAButton from './components/InstallPWAButton';
 
 import './App.css';
 import './styles/mobile-layout.css';
@@ -62,8 +61,8 @@ const AppContent: React.FC = () => {
   const isViewer3D = location.pathname === '/3d';
   const isHomeMobile = location.pathname === '/m';
   
-  // Determinar si mostrar el tabbar móvil - solo excluir lovers y viewer3d
-  const showMobileTabbar = isMobile && !isLovers && !isViewer3D;
+  // Determinar si mostrar el tabbar móvil - no excluir lovers
+  const showMobileTabbar = isMobile && !isViewer3D;
   
 
   return (
@@ -105,7 +104,6 @@ const AppContent: React.FC = () => {
         {!isLovers && !isViewer3D && !isMobile && <footer><Footer /></footer>}
         {showMobileTabbar && <MobileTabbar />}
         {!isLovers && !isViewer3D && <CookieConsent />}
-        <InstallPWAButton />
       </div>
     </>
   );

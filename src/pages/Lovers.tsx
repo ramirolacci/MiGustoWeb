@@ -8,6 +8,7 @@ import Empanada2 from '../lovers/assets/Empanadas/Mexican-Pibil-Pork-demo.png';
 import Empanada3 from '../lovers/assets/Empanadas/Matambre a la pizza.png';
 import Empanada4 from '../lovers/assets/Empanadas/burger.png';
 import Footer from '../components/Footer';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
 
@@ -77,6 +78,7 @@ const saboresEmpanadas = [
 ];
 
 const Lovers = () => {
+  const isMobile = useIsMobile();
   // ScrollReveal animation
   useEffect(() => {
     import('scrollreveal').then((module) => {
@@ -312,7 +314,7 @@ const Lovers = () => {
           opacity: 1 !important;
         }
       `}</style>
-      <NavBar />
+      {!isMobile && <NavBar />}
       <style>{`
         @media (max-width: 900px) {
           .lovers-flex {
