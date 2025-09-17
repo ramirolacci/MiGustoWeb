@@ -295,20 +295,58 @@ export default function Productos() {
                 {isMobile ? (
                     <div className="ml-categories-wrapper">
                         <div className="ml-categories" role="tablist" aria-label="Categorías de productos">
-                            {categorias.map((cat) => {
+                            {[
+                                'Promociones',
+                                'Premium',
+                                'Clasicas',
+                                'Pizzas',
+                                'Pizzas INDI',
+                                'Fitzzas',
+                                'Salsas',
+                                'Postres',
+                            ].map((cat) => {
                                 const iconSrc = (() => {
                                     switch (cat) {
-                                        case 'Empanadas': return '/icons/empanadas-premium.svg';
-                                        case 'Pizzas': return '/icons/pizza.svg';
-                                        case 'Pizzas INDI': return '/icons/pizza.svg';
-                                        case 'Fitzzas': return '/icons/fitzza.svg';
-                                        case 'Salsas': return '/icons/aderezos.svg';
-                                        case 'Postres': return '/icons/postres.svg';
-                                        case 'Promociones': return '/icons/tab-pedir.svg';
+                                        case 'Premium': {
+                                            return '/burgerLoading.png';
+                                        }
+                                        case 'Clasicas': {
+                                            const clasicaImg = empanadas.find(e => !e.esPremium)?.imagen;
+                                            return clasicaImg || '/icons/empanadas-clasicas.svg';
+                                        }
+                                        case 'Pizzas': {
+                                            const caprese = pizzas.find(p => p.titulo === 'Caprese')?.imagen;
+                                            return caprese || '/icons/pizza.svg';
+                                        }
+                                        case 'Pizzas INDI': {
+                                            const indiImg = pizzasIndi.find(p => p.titulo === 'Mortadela, pistacho y stracciatella INDI')?.imagen;
+                                            return indiImg || '/icons/pizza.svg';
+                                        }
+                                        case 'Fitzzas': {
+                                            const fitzzaImg = fitzzas.find(f => f.titulo.toLowerCase().includes('jamón crudo') || f.titulo.toLowerCase().includes('jamon crudo'))?.imagen;
+                                            return fitzzaImg || '/icons/fitzza.svg';
+                                        }
+                                        case 'Salsas': {
+                                            const bbq = salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen;
+                                            return bbq || '/icons/aderezos.svg';
+                                        }
+                                        case 'Postres': {
+                                            const amargo = postres.find(p => p.titulo.toLowerCase().includes('franuí chocolate amargo') || p.titulo.toLowerCase().includes('franu') && p.titulo.toLowerCase().includes('amargo'))?.imagen;
+                                            return amargo || '/icons/postres.svg';
+                                        }
+                                        case 'Promociones': {
+                                            const img = promociones.find(p => p.titulo === 'Pack 12 Empanadas')?.imagen;
+                                            return img || '/icons/tab-pedir.svg';
+                                        }
                                         default: return undefined;
                                     }
                                 })();
-                                const isActive = filtro === cat;
+                                const isActive = (() => {
+                                    if (cat === 'Premium') return filtro === 'Empanadas' && tipoProducto === 'Premium';
+                                    if (cat === 'Clasicas') return filtro === 'Empanadas' && tipoProducto === 'Clasicas';
+                                    return filtro === cat;
+                                })();
+                                const label = cat === 'Clasicas' ? 'Clásicas' : cat;
                                 return (
                                     <button
                                         key={cat}
@@ -317,20 +355,27 @@ export default function Productos() {
                                         aria-selected={isActive}
                                         className={`ml-cat-item${isActive ? ' active' : ''}`}
                                         onClick={() => {
-                                            setFiltro(cat);
-                                            setTipoProducto(null);
-                                            // Desplazar al inicio para ver resultados
+                                            if (cat === 'Premium') {
+                                                setFiltro('Empanadas');
+                                                setTipoProducto('Premium');
+                                            } else if (cat === 'Clasicas') {
+                                                setFiltro('Empanadas');
+                                                setTipoProducto('Clasicas');
+                                            } else {
+                                                setFiltro(cat);
+                                                setTipoProducto(null);
+                                            }
                                             try { window.scrollTo({ top: (document.querySelector('.productos-busqueda')?.getBoundingClientRect().top || 0) + window.scrollY - 12, behavior: 'smooth' }); } catch {}
                                         }}
                                     >
                                         <div className="ml-cat-circle">
                                             {iconSrc ? (
-                                                <img src={iconSrc} alt={cat} />
+                                                <img src={iconSrc} alt={label} />
                                             ) : (
                                                 <i className="fa fa-tag" aria-hidden="true" />
                                             )}
                                         </div>
-                                        <span className="ml-cat-label">{cat}</span>
+                                        <span className="ml-cat-label">{label}</span>
                                     </button>
                                 );
                             })}
@@ -355,7 +400,7 @@ export default function Productos() {
                     </div>
                 )}
 
-                {filtro === "Empanadas" && (
+                {!isMobile && filtro === "Empanadas" && (
                     <div className="productos-subfiltros">
                         <button
                             onClick={() => setTipoProducto("Premium")}

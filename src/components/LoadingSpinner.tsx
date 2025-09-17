@@ -1,7 +1,8 @@
 import React, { useMemo, useEffect, useState, useRef } from 'react';
 import './LoadingSpinner.css';
+import { empanadas } from '../data/empanadasData';
 
-const burgerLoading = '/burgerLoading.png';
+const burgerLoading = empanadas.find(e => e.esPremium)?.imagen || '/burgerLoading.png';
 const logoLoading = '/loadIcon.png';
 
 interface LoadingSpinnerProps {
