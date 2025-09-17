@@ -2,12 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import './LoadingSpinner.css';
 import { empanadas } from '../data/empanadasData';
 
-<<<<<<< HEAD
 const burgerLoading = empanadas.find(e => e.esPremium)?.imagen || '/burgerLoading.png';
-const logoLoading = '/loadIcon.png';
-=======
-const burgerLoading = '/burgerLoading.png';
->>>>>>> 49f34303ee74085c0eda9d75c6a3a0a4bce043ae
 
 interface LoadingSpinnerProps {
   isLoading: boolean;

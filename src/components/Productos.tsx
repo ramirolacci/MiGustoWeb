@@ -355,6 +355,7 @@ export default function Productos() {
                                         role="tab"
                                         aria-selected={isActive}
                                         className={`ml-cat-item${isActive ? ' active' : ''}`}
+                                        data-cat={cat}
                                         onClick={() => {
                                             if (cat === 'Premium') {
                                                 setFiltro('Empanadas');
