@@ -292,22 +292,69 @@ export default function Productos() {
                     <Buscador filtro={busqueda} setFiltro={setBusqueda} />
                 </div>
 
-                <div className="productos-categorias">
-                    {categorias.map((cat, idx) => (
-                        <button
-                            key={cat}
-                            onClick={() => {
-                                setFiltro(cat);
-                                setTipoProducto(null);
-                            }}
-                            className={`productos-btn ${filtro === cat ? "active" : ""}`}
-                            type="button"
-                            style={{ '--cat-index': idx } as React.CSSProperties }
-                        >
-                            <span>{cat}</span>
-                        </button>
-                    ))}
-                </div>
+                {/* Categorías estilo Mercado Libre para mobile */}
+                {isMobile ? (
+                    <div className="ml-categories-wrapper">
+                        <div className="ml-categories" role="tablist" aria-label="Categorías de productos">
+                            {categorias.map((cat) => {
+                                const iconSrc = (() => {
+                                    switch (cat) {
+                                        case 'Empanadas': return '/icons/empanadas-premium.svg';
+                                        case 'Pizzas': return '/icons/pizza.svg';
+                                        case 'Pizzas INDI': return '/icons/pizza.svg';
+                                        case 'Fitzzas': return '/icons/fitzza.svg';
+                                        case 'Salsas': return '/icons/aderezos.svg';
+                                        case 'Postres': return '/icons/postres.svg';
+                                        case 'Promociones': return '/icons/tab-pedir.svg';
+                                        default: return undefined;
+                                    }
+                                })();
+                                const isActive = filtro === cat;
+                                return (
+                                    <button
+                                        key={cat}
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={isActive}
+                                        className={`ml-cat-item${isActive ? ' active' : ''}`}
+                                        onClick={() => {
+                                            setFiltro(cat);
+                                            setTipoProducto(null);
+                                            // Desplazar al inicio para ver resultados
+                                            try { window.scrollTo({ top: (document.querySelector('.productos-busqueda')?.getBoundingClientRect().top || 0) + window.scrollY - 12, behavior: 'smooth' }); } catch {}
+                                        }}
+                                    >
+                                        <div className="ml-cat-circle">
+                                            {iconSrc ? (
+                                                <img src={iconSrc} alt={cat} />
+                                            ) : (
+                                                <i className="fa fa-tag" aria-hidden="true" />
+                                            )}
+                                        </div>
+                                        <span className="ml-cat-label">{cat}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="productos-categorias">
+                        {categorias.map((cat, idx) => (
+                            <button
+                                key={cat}
+                                onClick={() => {
+                                    setFiltro(cat);
+                                    setTipoProducto(null);
+                                }}
+                                className={`productos-btn ${filtro === cat ? "active" : ""}`}
+                                type="button"
+                                style={{ '--cat-index': idx } as React.CSSProperties }
+                            >
+                                <span>{cat}</span>
+                            </button>
+                        ))}
+                    </div>
+                )}
 
                 {filtro === "Empanadas" && (
                     <div className="productos-subfiltros">

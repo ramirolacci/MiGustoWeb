@@ -14,12 +14,25 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-// Registrar Service Worker para PWA (solo en producción y si el navegador lo soporta)
+// Registrar Service Worker solo en producción; en desarrollo, desregistrar para evitar caché
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    const swUrl = '/service-worker.js';
-    navigator.serviceWorker.register(swUrl).catch(() => {
-      // Ignorar errores de registro silenciosamente
+  if (import.meta.env.PROD) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').catch(() => {
+        // Ignorar errores de registro silenciosamente
+      });
     });
-  });
+  } else {
+    // En desarrollo: desregistrar cualquier SW previo y limpiar cachés
+    navigator.serviceWorker.getRegistrations?.()
+      .then((regs) => {
+        for (const reg of regs) reg.unregister();
+      })
+      .catch(() => {});
+    // Borrar caches si están disponibles
+    try {
+      // @ts-ignore: caches está disponible en navegadores modernos
+      caches?.keys?.().then((keys: string[]) => Promise.all(keys.map((k) => caches.delete(k)))).catch(() => {});
+    } catch {}
+  }
 }

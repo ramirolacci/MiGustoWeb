@@ -105,7 +105,7 @@ const VentaCorporativa: React.FC = () => {
         if (!validate()) return;
         setIsSubmitting(true);
         try {
-            await axios.post('/api/mail/corporativa', formData);
+            await axios.post('REACT_APP_API_BASE/api/mail/corporativa', formData);
             Swal.fire({
                 icon: 'success',
                 title: '<span style="color:#fff;font-family:inherit;font-size:1.5rem;font-weight:600;">¡Éxito!</span>',

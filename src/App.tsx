@@ -40,6 +40,7 @@ const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 
 import './App.css';
 import './styles/mobile-layout.css';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const AppContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -75,8 +76,9 @@ const AppContent: React.FC = () => {
         <GoogleAnalytics />
         {!isLovers && !isMobile && <header><NavBar /></header>}
         <main className='main'>
-          <Suspense>
-            <Routes>
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner isLoading={true} />}> 
+              <Routes>
               <Route path="/" element={<ResponsiveHome />} />
               {/* Home mobile dedicado */}
               <Route path="/m" element={<HomeMobile />} />
@@ -101,8 +103,9 @@ const AppContent: React.FC = () => {
               {/* Ejemplo de ruta protegida: */}
               <Route path="/admin" element={<ProtectedRoute><div style={{color:'#fff', padding:'2rem'}}>Área Privada</div></ProtectedRoute>} />
               <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
-            </Routes>
-          </Suspense>
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </main>
         {!isLovers && !isViewer3D && !isMobile && <footer><Footer /></footer>}
         {showMobileTabbar && <MobileTabbar />}
