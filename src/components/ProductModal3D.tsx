@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './ProductModal3D.css';
 import { useCart } from '../context/CartContext';
+import { flyToCart } from '../utils/flyToCart';
 
 interface ProductModal3DProps {
     producto: {
@@ -445,6 +446,14 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                                   price: numericPrice,
                                                   category: producto.categoria,
                                                 });
+                                                // Animación hacia el carrito en el navbar
+                                                try {
+                                                  const imgEl = document.querySelector('.modal-image-container img');
+                                                  const cartBtn = document.getElementById('nav-cart-button');
+                                                  if (imgEl instanceof HTMLElement && cartBtn instanceof HTMLElement) {
+                                                    flyToCart(imgEl, cartBtn);
+                                                  }
+                                                } catch {}
                                             }}
                                         >
                                             Agregar al carrito

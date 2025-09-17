@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Buscador from './Buscador';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { flyToCart } from '../utils/flyToCart';
 
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
@@ -637,35 +638,38 @@ export default function Productos() {
                                                           price: numericPrice,
                                                           category: prod.categoria,
                                                         });
-                                                        // Disparar animación épica hacia el FAB
-                                                        try {
-                                                          const img = document.createElement('img');
-                                                          img.src = prod.imagen;
-                                                          img.alt = 'flying';
-                                                          img.style.position = 'fixed';
-                                                          img.style.width = '96px';
-                                                          img.style.height = '96px';
-                                                          img.style.objectFit = 'cover';
-                                                          img.style.borderRadius = '12px';
-                                                          img.style.boxShadow = '0 10px 24px rgba(0,0,0,.35)';
-                                                          const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                                                          img.style.left = rect.left + 'px';
-                                                          img.style.top = rect.top + 'px';
-                                                          img.style.zIndex = '99999';
-                                                          document.body.appendChild(img);
-                                                          const fab = document.getElementById('cart-fab');
-                                                          const dest = fab ? fab.getBoundingClientRect() : { left: window.innerWidth - 16, top: window.innerHeight - 80 } as any;
-                                                          const translateX = dest.left - rect.left;
-                                                          const translateY = dest.top - rect.top;
-                                                          img.animate([
-                                                            { transform: 'translate(0,0) scale(1)', opacity: 1 },
-                                                            { offset: 0.6, transform: `translate(${translateX * .7}px, ${translateY * .7}px) scale(.8) rotate(10deg)`, opacity: .9 },
-                                                            { transform: `translate(${translateX}px, ${translateY}px) scale(.2) rotate(25deg)`, opacity: 0 }
-                                                          ], { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = () => {
-                                                            img.remove();
-                                                            window.dispatchEvent(new Event('mg_cart_added'));
-                                                          };
-                                                        } catch {}
+                                                    // Animación hacia el botón del carrito en el navbar
+                                                    try {
+                                                      const card = (e.currentTarget as HTMLElement).closest('.producto-card');
+                                                      const imgEl = card?.querySelector('img');
+                                                      const cartBtn = document.getElementById('nav-cart-button');
+                                                      if (imgEl instanceof HTMLElement && cartBtn instanceof HTMLElement) {
+                                                        flyToCart(imgEl, cartBtn);
+                                                      } else {
+                                                        // Fallback: volar hacia esquina superior derecha
+                                                        const phantom = document.createElement('img');
+                                                        phantom.src = prod.imagen;
+                                                        phantom.style.position = 'fixed';
+                                                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                                                        phantom.style.left = rect.left + 'px';
+                                                        phantom.style.top = rect.top + 'px';
+                                                        phantom.style.width = '96px';
+                                                        phantom.style.height = '96px';
+                                                        phantom.style.objectFit = 'cover';
+                                                        phantom.style.borderRadius = '12px';
+                                                        phantom.style.zIndex = '99999';
+                                                        document.body.appendChild(phantom);
+                                                        const endLeft = window.innerWidth - 24;
+                                                        const endTop = 16;
+                                                        const dx = endLeft - rect.left;
+                                                        const dy = endTop - rect.top;
+                                                        phantom.animate([
+                                                          { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                                                          { offset: 0.6, transform: `translate(${dx * .7}px, ${dy * .7}px) scale(.8)`, opacity: .9 },
+                                                          { transform: `translate(${dx}px, ${dy}px) scale(.2)`, opacity: 0 }
+                                                        ], { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = () => phantom.remove();
+                                                      }
+                                                    } catch {}
                                                     }}
                                                     style={{
                                                         position: 'absolute',

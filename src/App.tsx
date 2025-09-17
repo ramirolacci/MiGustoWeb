@@ -77,7 +77,7 @@ const AppContent: React.FC = () => {
         {!isLovers && !isMobile && <header><NavBar /></header>}
         <main className='main'>
           <ErrorBoundary>
-            <Suspense fallback={<LoadingSpinner isLoading={true} />}> 
+            <Suspense fallback={null}> 
               <Routes>
               <Route path="/" element={<ResponsiveHome />} />
               {/* Home mobile dedicado */}

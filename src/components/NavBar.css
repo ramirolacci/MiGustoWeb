@@ -1287,3 +1287,275 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   border-color: #ffbf1f !important;
   color: #1b1b1b !important;
 }
+
+/* ============================================================================= */
+/* ANIMACIONES HOVER ELEGANTES Y FORMALES PARA NAVBAR DESKTOP                 */
+/* ============================================================================= */
+
+/* Base limpia y profesional */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Underline sutil que aparece al hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgba(255, 215, 0, 0.7);
+  transition: width 0.3s ease;
+}
+
+/* Estado hover - elegancia y sutileza */
+.nav-link:hover {
+  color: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+  text-shadow: 0 1px 4px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* Activar underline al hover */
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Sombra suave al hover */
+.nav-link:hover {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Cambio de opacidad sutil */
+.nav-link {
+  opacity: 0.9;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+/* Estado focus para accesibilidad */
+.nav-link:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.5);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Transiciones suaves para todas las propiedades */
+.nav-link {
+  transition: 
+    color 0.3s ease,
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+/* Efecto hover con contorno redondeado (solo desktop) */
+@media (min-width: 769px) {
+  .navbar-nav .nav-link:not(.nav-link-pedir) {
+    border-radius: 999px;
+  }
+  .navbar-nav .nav-link:not(.nav-link-pedir)::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    padding: 1.5px; /* grosor del contorno */
+    opacity: 0;
+    transform: scale(0.985);
+    transition: opacity 0.22s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.9), transparent);
+    background-size: 200% 100%;
+    /* máscara para mostrar solo el borde (content-box vs border-box) */
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.12);
+    pointer-events: none;
+  }
+  .navbar-nav .nav-link:not(.nav-link-pedir):hover::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: mgBorderSweep 900ms ease-out both;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.16);
+  }
+  .navbar-nav .nav-link:not(.nav-link-pedir):focus-visible::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: mgBorderSweep 900ms ease-out both;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.16);
+  }
+  /* Evitar subrayado simultáneo para un look más limpio */
+  .navbar-nav .nav-link:not(.nav-link-pedir):hover::after {
+    display: none !important;
+  }
+}
+
+@keyframes mgBorderSweep {
+  from { background-position: 0% 0; }
+  to   { background-position: 200% 0; }
+}
+
+/* Respeto de prefers-reduced-motion: sin animación, solo borde estático */
+@media (prefers-reduced-motion: reduce) {
+  @media (min-width: 769px) {
+    .navbar-nav .nav-link:not(.nav-link-pedir):hover::before,
+    .navbar-nav .nav-link:not(.nav-link-pedir):focus-visible::before {
+      animation: none !important;
+      background-position: 100% 0;
+    }
+  }
+}
+
+/* Microinteracciones refinadas adicionales */
+
+/* Efecto de cambio de color delicado en el fondo */
+.nav-link {
+  background: transparent;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1.25rem !important;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Escalado muy sutil */
+.nav-link:hover {
+  transform: translateY(-1px) scale(1.01) !important;
+}
+
+/* Estado activo mejorado */
+.nav-link:active {
+  transform: translateY(0) scale(1) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* Animación del underline desde el centro */
+.nav-link::after {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+}
+
+.nav-link:hover::after {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+}
+
+/* Efecto de brillo sutil en el texto */
+.nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 500;
+}
+
+/* Optimización responsive elegante */
+
+/* Tablets */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .nav-link:hover {
+    transform: translateY(-0.5px) !important;
+  }
+  
+  .nav-link::after {
+    height: 1.5px;
+  }
+}
+
+/* Móviles - sin efectos de hover */
+@media (max-width: 768px) {
+  .nav-link:hover {
+    transform: none !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+  
+  .nav-link::after {
+    display: none;
+  }
+}
+
+/* Accesibilidad - movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link {
+    transition: color 0.2s ease, background 0.2s ease !important;
+  }
+  
+  .nav-link:hover {
+    transform: none !important;
+  }
+  
+  .nav-link::after {
+    transition: width 0.2s ease !important;
+  }
+}
+
+/* Comportamiento del botón activo - elegante y sutil */
+.nav-link-active {
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 215, 0, 0.9);
+}
+
+.nav-link-active:hover {
+  transform: none !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* --- Correcciones de compatibilidad (reactivar hover en desktop) --- */
+/* Algunas reglas antiguas neutralizaban transform/::after con !important cuando existe 'epic-reveal'.
+   A continuación, restauramos un comportamiento elegante SOLO en desktop. */
+@media (min-width: 769px) {
+  /* Volver a permitir transformaciones y filtros en links con 'epic-reveal' */
+  .navbar-nav .nav-link.epic-reveal,
+  .navbar-nav .nav-link.epic-reveal.animation-played {
+    transform: none !important; /* estado base */
+    animation: none !important;
+    filter: none !important;
+    background: transparent !important;
+    color: inherit !important;
+  }
+  /* Hover elegante restaurado aun si hay 'epic-reveal' */
+  .navbar-nav .nav-link.epic-reveal:hover {
+    transform: translateY(-1px) scale(1.01) !important;
+    opacity: 1 !important;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+  /* Reactivar el pseudo-elemento ::after en desktop */
+  .navbar-nav .nav-link::after {
+    content: none !important;
+    display: none !important; /* ocultar subrayado en desktop */
+  }
+  /* Asegurar que no reaparezca el subrayado en hover */
+  .navbar-nav .nav-link:hover::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+/* ============================================================================= */
+/* FIN DE ANIMACIONES HOVER ELEGANTES                                         */
+/* ============================================================================= */
