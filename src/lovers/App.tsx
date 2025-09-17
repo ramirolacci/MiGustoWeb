@@ -642,8 +642,13 @@ function App() {
   return (
     <div className="app lovers-app" style={{ overflow: 'hidden', height: '100vh', background: "url('/assets/background-text.jpg') center center / cover no-repeat" }}>
       <NavBar />
+      <style>{`
+        @media (max-width: 900px) {
+          .navbar { display: none !important; }
+        }
+      `}</style>
       <style>{modalStyles}</style>
-      <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 48, minHeight: 0, height: 'auto', overflow: 'visible' }}>
+      <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 12, minHeight: 0, height: 'auto', overflow: 'visible' }}>
         {/* Bloque principal original aquí: */}
         <ParticlesBG />
         <section
@@ -706,7 +711,7 @@ function App() {
               fontFamily: 'Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif',
               textShadow: '0 1px 3px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6)'
             }}>
-              Únete a nuestro programa exclusivo y disfruta de beneficios únicos, descuentos especiales y experiencias gastronómicas irrepetibles en todas nuestras sucursales.
+              Unite a nuestro programa especial para fanaticos, disfruta de beneficios unicos y experiencias imperdibles, canjea puntos y ganá los premios exclusivos de la marca
             </p>
             {/* Tarjetas de beneficios */}
             <div style={{
@@ -721,28 +726,28 @@ function App() {
               alignItems: 'center',
             }}>
               {/* Card 1 */}
-              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12, opacity: 0.75 }}>
                 <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><Star color="#FFD700" size={22} /></div>
                 <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Descuentos</h3>
                 <p style={{ color: '#fff', fontSize: '0.92rem' }}>Hasta 25% de descuento y promos especiales.</p>
                   </div>
               {/* Card 2 */}
-              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12, opacity: 0.75 }}>
                 <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><Users color="#FFD700" size={22} /></div>
-                <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Eventos</h3>
-                <p style={{ color: '#fff', fontSize: '0.92rem' }}>Cenas, catas y eventos únicos.</p>
+                <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Premios</h3>
+                <p style={{ color: '#fff', fontSize: '0.92rem' }}>Canjea puntos por premios únicos.</p>
                 </div>
               {/* Card 3 */}
-              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12, opacity: 0.75 }}>
                 <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><Gift color="#FFD700" size={22} /></div>
                 <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>VIP</h3>
-                <p style={{ color: '#fff', fontSize: '0.92rem' }}>Reservas y atención prioritaria.</p>
+                <p style={{ color: '#fff', fontSize: '0.92rem' }}>Atención prioritaria.</p>
                   </div>
               {/* Card 4 */}
-              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12 }}>
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12, opacity: 0.75 }}>
                 <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><ChevronDown color="#FFD700" size={22} /></div>
-                <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem' }}>Sorteos y Premios</h3>
-                <p style={{ color: '#fff', fontSize: '0.92rem' }}>Participa por premios y experiencias exclusivas.</p>
+                <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem', whiteSpace: 'pre-line' }}>Novedades\nimpedibles</h3>
+                <p style={{ color: '#fff', fontSize: '0.92rem' }}>Vivi experiencias unicas de sabor.</p>
                 </div>
             </div>
           </div>

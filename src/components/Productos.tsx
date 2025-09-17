@@ -4,6 +4,7 @@ import ProductModal3D from './ProductModal3D';
 import NavBar from './NavBar';
 import Buscador from './Buscador';
 import { useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 import { pizzas } from '../data/pizzasData';
 import { empanadas } from '../data/empanadasData';
@@ -59,6 +60,7 @@ const ORBIT_3D_BIG_BURGER = "45deg 65deg 1.7m";
 
 export default function Productos() {
     const location = useLocation();
+    const { addItem } = useCart();
     const [filtro, setFiltro] = useState(categorias[1]);
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
@@ -525,6 +527,77 @@ export default function Productos() {
                                                     borderRadius: '50%',
                                                     filter: 'blur(2.5px)',
                                                 }}></div>
+                                                {/* Botón sutil con ícono (overlay) */}
+                                                <button
+                                                    aria-label="Agregar al carrito"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        const numericPrice = (() => {
+                                                          if (prod.categoria === 'Empanada' && prod.precio) {
+                                                            const n = parseInt(String(prod.precio).replace(/\D/g, ''));
+                                                            return isNaN(n) ? 0 : n;
+                                                          }
+                                                          return 0;
+                                                        })();
+                                                        addItem({
+                                                          title: prod.titulo,
+                                                          image: prod.imagen,
+                                                          price: numericPrice,
+                                                          category: prod.categoria,
+                                                        });
+                                                        // Disparar animación épica hacia el FAB
+                                                        try {
+                                                          const img = document.createElement('img');
+                                                          img.src = prod.imagen;
+                                                          img.alt = 'flying';
+                                                          img.style.position = 'fixed';
+                                                          img.style.width = '96px';
+                                                          img.style.height = '96px';
+                                                          img.style.objectFit = 'cover';
+                                                          img.style.borderRadius = '12px';
+                                                          img.style.boxShadow = '0 10px 24px rgba(0,0,0,.35)';
+                                                          const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                                                          img.style.left = rect.left + 'px';
+                                                          img.style.top = rect.top + 'px';
+                                                          img.style.zIndex = '99999';
+                                                          document.body.appendChild(img);
+                                                          const fab = document.getElementById('cart-fab');
+                                                          const dest = fab ? fab.getBoundingClientRect() : { left: window.innerWidth - 16, top: window.innerHeight - 80 } as any;
+                                                          const translateX = dest.left - rect.left;
+                                                          const translateY = dest.top - rect.top;
+                                                          img.animate([
+                                                            { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                                                            { offset: 0.6, transform: `translate(${translateX * .7}px, ${translateY * .7}px) scale(.8) rotate(10deg)`, opacity: .9 },
+                                                            { transform: `translate(${translateX}px, ${translateY}px) scale(.2) rotate(25deg)`, opacity: 0 }
+                                                          ], { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = () => {
+                                                            img.remove();
+                                                            window.dispatchEvent(new Event('mg_cart_added'));
+                                                          };
+                                                        } catch {}
+                                                    }}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        right: 12,
+                                                        bottom: 12,
+                                                        width: 44,
+                                                        height: 44,
+                                                        borderRadius: 22,
+                                                        background: '#ffbf1f',
+                                                        color: '#111',
+                                                        border: 'none',
+                                                        boxShadow: '0 8px 18px rgba(0,0,0,.35)',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        cursor: 'pointer',
+                                                        transition: 'transform .15s ease, box-shadow .15s ease',
+                                                    }}
+                                                    onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.96)')}
+                                                    onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                                                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                                                >
+                                                    <span className="fa fa-cart-plus" style={{ fontSize: 18 }} />
+                                                </button>
                                             </div>
                                         </>
                                 </div>

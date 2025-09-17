@@ -9,7 +9,7 @@ interface LoyaltyContextValue {
   deductPoints: (cost: number) => void;
 }
 
-const DEFAULT_POINTS = 1003560;
+const DEFAULT_POINTS = 0;
 
 const LoyaltyContext = createContext<LoyaltyContextValue | undefined>(undefined);
 

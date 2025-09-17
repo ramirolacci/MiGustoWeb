@@ -236,7 +236,7 @@
 /* Carruseles */
 .hm-section { margin-top: 12px; }
 .hm-section-title { font-size: 16px; font-weight: 700; padding: 0 2px 8px; }
-.hm-section-title { animation: hm-title-glow 3.8s ease-in-out infinite; }
+.hm-section-title { /* Animación removida - títulos estáticos */ }
 .hm-carousel { display: grid; grid-auto-flow: column; grid-auto-columns: 66%; gap: 12px; overflow-x: auto; padding: 2px; scroll-snap-type: x mandatory; }
 .hm-card { 
   position: relative; border-radius: 16px; scroll-snap-align: start; display:block; border: 1px solid #242424; overflow: hidden; 
@@ -244,9 +244,9 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(0) scale(1);
 }
-.hm-carousel .hm-card { animation: hm-card-float 4.2s ease-in-out infinite; }
-.hm-carousel .hm-card:nth-child(odd) { animation-duration: 4.8s; }
-.hm-carousel .hm-card:nth-child(even) { animation-duration: 3.9s; }
+.hm-carousel .hm-card { /* Animación removida - tarjetas estáticas */ }
+.hm-carousel .hm-card:nth-child(odd) { /* Animación removida */ }
+.hm-carousel .hm-card:nth-child(even) { /* Animación removida */ }
 .hm-card:active {
   transform: translateY(1px) scale(0.98);
   border-color: rgba(255, 191, 31, 0.4);
@@ -256,7 +256,7 @@
 .hm-card-img {
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.hm-card-img { animation: hm-kenburns 12s ease-in-out infinite; }
+.hm-card-img { /* Animación removida - imágenes estáticas */ }
 
 .hm-card:active .hm-card-img {
   transform: scale(1.02);

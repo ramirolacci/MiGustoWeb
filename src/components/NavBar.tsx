@@ -5,6 +5,7 @@ import LoversButton from './LoversButton';
 import { TimelineLite } from 'gsap';
 import { getToken, logout } from '../services/auth';
 import { getMe } from '../services/user';
+import { useCart } from '../context/CartContext';
 
 function ProfileButton() {
   const navigate = useNavigate();
@@ -243,6 +244,7 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
 }
 
 const NavBar: React.FC = () => {
+  const { totalItems } = useCart();
   const [isHovered, setIsHovered] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -254,6 +256,7 @@ const NavBar: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
   const [navRevealPlayed, setNavRevealPlayed] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -437,6 +440,7 @@ const NavBar: React.FC = () => {
               >
                 Canje
               </button>
+              {/* Botón de carrito movido al lado derecho del navbar */}
             </div>
             {/* Switch al lado del logo */}
             {/* Eliminar o comentar la línea:
@@ -537,6 +541,35 @@ const NavBar: React.FC = () => {
                     </a>
                   </li>
                   
+                  {/* Botón de carrito: al lado del botón de "Hacé tu pedido" */}
+                  <li className="nav-item d-flex align-items-center">
+                    <button
+                      className="btn btn-sm btn-light position-relative ms-2"
+                      onClick={() => setIsCartOpen(true)}
+                      aria-label="Abrir carrito"
+                    >
+                      <i className="fa-solid fa-cart-shopping"></i>
+                      {totalItems > 0 && (
+                        <span
+                          style={{
+                            position: 'absolute',
+                            top: -6,
+                            right: -6,
+                            background: '#dc3545',
+                            color: '#fff',
+                            borderRadius: 12,
+                            fontSize: 10,
+                            padding: '2px 6px',
+                            lineHeight: 1,
+                            minWidth: 18,
+                            textAlign: 'center'
+                          }}
+                        >
+                          {totalItems}
+                        </span>
+                      )}
+                    </button>
+                  </li>
                 </ul>
               </div>
             )}
@@ -574,8 +607,86 @@ const NavBar: React.FC = () => {
           </div>
         </div>
       </nav>
+      {isCartOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsCartOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.45)',
+            zIndex: 11000,
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              width: 'min(420px, 95vw)',
+              height: '100%',
+              background: '#111',
+              color: '#fff',
+              padding: 16,
+              boxShadow: '-8px 0 24px rgba(0,0,0,0.35)',
+              overflowY: 'auto'
+            }}
+          >
+            <CartPanel onClose={() => setIsCartOpen(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
 export default NavBar;
+
+function CartPanel({ onClose }: { onClose: () => void }) {
+  const { items, subtotal, removeItem, updateQuantity } = useCart();
+  const navigate = useNavigate();
+  return (
+    <div>
+      <div className="d-flex align-items-center justify-content-between mb-3">
+        <h5 className="mb-0">Tu carrito</h5>
+        <button className="btn btn-sm btn-outline-light" onClick={onClose} aria-label="Cerrar">×</button>
+      </div>
+      {items.length === 0 ? (
+        <p style={{ opacity: 0.8 }}>Aún no agregaste productos.</p>
+      ) : (
+        <div>
+          {items.map(it => (
+            <div key={it.id} className="d-flex align-items-center mb-3" style={{ gap: 12 }}>
+              <img src={it.image} alt={it.title} width={56} height={56} style={{ objectFit: 'cover', borderRadius: 8 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 600 }}>{it.title}</div>
+                <div style={{ opacity: 0.85 }}>{new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(it.price)}</div>
+                <div className="d-flex align-items-center mt-1" style={{ gap: 8 }}>
+                  <button className="btn btn-sm btn-secondary" onClick={() => updateQuantity(it.id, it.quantity - 1)} aria-label="Disminuir">-</button>
+                  <span>{it.quantity}</span>
+                  <button className="btn btn-sm btn-secondary" onClick={() => updateQuantity(it.id, it.quantity + 1)} aria-label="Aumentar">+</button>
+                </div>
+              </div>
+              <div className="text-end">
+                <div style={{ fontWeight: 600 }}>{new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(it.price * it.quantity)}</div>
+                <button className="btn btn-sm btn-outline-danger mt-1" onClick={() => removeItem(it.id)}>Quitar</button>
+              </div>
+            </div>
+          ))}
+          <hr style={{ borderColor: '#333' }} />
+          <div className="d-flex align-items-center justify-content-between">
+            <strong>Subtotal</strong>
+            <strong>{new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(subtotal)}</strong>
+          </div>
+          <button
+            className="btn btn-warning w-100 mt-3"
+            onClick={() => { onClose(); navigate('/checkout'); }}
+          >
+            Continuar a pagar
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}

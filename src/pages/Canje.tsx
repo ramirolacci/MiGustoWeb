@@ -74,7 +74,7 @@ const Canje: React.FC = () => {
           getMyLoyalty(),
           getRedeemableProducts(),
         ]);
-        setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : 1003560);
+        setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : 0);
         setProducts(redeemables);
       } catch (err) {
         setError('No pudimos cargar el programa de canje.');

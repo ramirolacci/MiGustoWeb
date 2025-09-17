@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './ProductModal3D.css';
+import { useCart } from '../context/CartContext';
 
 interface ProductModal3DProps {
     producto: {
@@ -58,6 +59,7 @@ const CAMERA_ORBITS_3D: Record<string, string> = {
 };
 
 const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tiene3D }) => {
+    const { addItem } = useCart();
     const modalRef = useRef<HTMLDivElement>(null);
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -311,9 +313,19 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                         'shadow-intensity': '1.5',
                                         'shadow-softness': '1',
                                         exposure: '2',
-                                        'camera-orbit': CAMERA_ORBITS_3D[producto.titulo] || '0deg 75deg 2.5m',
-                                        'min-camera-orbit': 'auto auto 3m',
-                                        'max-camera-orbit': 'auto auto 3m',
+                                        'camera-orbit': (() => {
+                                            const base = CAMERA_ORBITS_3D[producto.titulo] || '0deg 75deg 2.5m';
+                                            if (!isMobile) return base;
+                                            const parts = base.split(' ');
+                                            if (parts.length >= 3) {
+                                                parts[2] = '1.9m';
+                                                return parts.join(' ');
+                                            }
+                                            return '0deg 75deg 1.9m';
+                                        })(),
+                                        'min-camera-orbit': isMobile ? 'auto auto 1.8m' : 'auto auto 3m',
+                                        'max-camera-orbit': isMobile ? 'auto auto 2.1m' : 'auto auto 3m',
+                                        'field-of-view': isMobile ? '20deg' : undefined,
                                         'interaction-prompt': 'none',
                                         'disable-pan': true,
                                         onLoad: () => setLoading3D(false),
@@ -416,6 +428,28 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             <p>{producto.calorias}</p>
                                         </div>
                                     )}
+                                    <div style={{ marginTop: 12 }}>
+                                        <button
+                                            className="btn btn-warning"
+                                            onClick={() => {
+                                                const numericPrice = (() => {
+                                                  if (producto.categoria === 'Empanada' && producto.precio) {
+                                                    const n = parseInt(String(producto.precio).replace(/\D/g, ''));
+                                                    return isNaN(n) ? 0 : n;
+                                                  }
+                                                  return 0;
+                                                })();
+                                                addItem({
+                                                  title: producto.titulo,
+                                                  image: producto.imagenDetalle || producto.imagen,
+                                                  price: numericPrice,
+                                                  category: producto.categoria,
+                                                });
+                                            }}
+                                        >
+                                            Agregar al carrito
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

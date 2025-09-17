@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState, useRef } from 'react';
 import './LoadingSpinner.css';
 
 const burgerLoading = '/burgerLoading.png';
@@ -11,6 +11,26 @@ interface LoadingSpinnerProps {
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   // Elegir aleatoriamente qué imagen mostrar al montar
   const showBurger = useMemo(() => Math.random() < 0.5, []);
+
+  // Detectar mobile para usar video de carga
+  const [isMobile, setIsMobile] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Forzar velocidad del video en mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const v = videoRef.current;
+    if (!v) return;
+    const setRate = () => { try { v.playbackRate = 0.7; } catch {} };
+    if (v.readyState >= 1) setRate();
+    v.addEventListener('loadedmetadata', setRate, { once: true });
+    return () => v.removeEventListener('loadedmetadata', setRate);
+  }, [isMobile, isLoading]);
 
   // Prevenir scroll cuando el spinner está activo
   useEffect(() => {
@@ -59,18 +79,39 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   return (
     <div className="loading-spinner-overlay">
       <div className="loading-spinner">
-        {showBurger ? (
-          <img
-            src={burgerLoading}
-            alt="Cargando Big Burger..."
-            className="spinner-image spinner-burger"
+        {isMobile ? (
+          <video
+            ref={videoRef}
+            className="spinner-video"
+            src="/loadVideo.mp4"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            loop
+            onCanPlay={() => { if (videoRef.current) { try { videoRef.current.playbackRate = 0.7; } catch {} } }}
+            onError={() => {
+              const fallback = document.querySelector('.spinner-fallback') as HTMLImageElement | null;
+              if (fallback) fallback.style.display = 'block';
+            }}
           />
         ) : (
-          <img
-            src={logoLoading}
-            alt="Cargando..."
-            className="spinner-image"
-          />
+          <>
+            {showBurger ? (
+              <img
+                src={burgerLoading}
+                alt="Cargando Big Burger..."
+                className="spinner-image spinner-burger"
+              />
+            ) : (
+              <img
+                src={logoLoading}
+                alt="Cargando..."
+                className="spinner-image spinner-fallback"
+                style={{ display: 'block' }}
+              />
+            )}
+          </>
         )}
       </div>
     </div>

@@ -46,7 +46,7 @@ const MobileTabbar: React.FC = () => {
           className="hm-tab" 
           onClick={() => {
             const token = getToken();
-            if (token) navigate('/perfil');
+            if (token) navigate('/mi-cuenta');
             else navigate('/login');
           }} 
           aria-label="Cuenta" 

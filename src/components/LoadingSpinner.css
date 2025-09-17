@@ -149,6 +149,16 @@ body.loading-active .hamburger-menu * {
   animation: pulse 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
 }
 
+/* Video de carga para mobile */
+.spinner-video {
+  width: 86vw !important;
+  height: auto !important;
+  max-height: 80vh !important;
+  object-fit: contain !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4) !important;
+}
+
 .loading-text {
   color: #ffffff !important;
   font-size: 1.5rem !important;

@@ -202,6 +202,30 @@
   box-shadow: 0 12px 28px rgba(255,191,31,0.45);
 }
 
+/* Estado suficiente: amarillo marca */
+.btn-warning.btn-canje {
+  background-color: #ffbf1f !important;
+  border-color: #ffbf1f !important;
+  color: #1b1b1b !important;
+}
+.btn-warning.btn-canje:hover,
+.btn-warning.btn-canje:focus {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+.btn-warning.btn-canje:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* Estado insuficiente: gris neutro */
+.btn-secondary.btn-canje {
+  background-color: #444 !important;
+  border-color: #444 !important;
+  color: #ddd !important;
+  box-shadow: none !important;
+}
+
 /* Animación de carga (tres puntos) dentro del botón */
 .loading-dots {
   display: inline-flex;

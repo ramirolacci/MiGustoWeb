@@ -13,6 +13,7 @@ import LoversForm from './pages/LoversForm';
 import Carta from './pages/Carta';
 import { trackPageView } from './services/analytics';
 import { LoyaltyProvider } from './context/LoyaltyContext';
+// Carrito provisto desde main.tsx
 import { useIsMobile } from './hooks/useIsMobile';
 
 const ResponsiveHome = lazy(() => import('./components/ResponsiveHome'));
@@ -21,6 +22,7 @@ const Productos = lazy(() => import('./components/Productos'));
 const Sucursales = lazy(() => import('./components/Sucursales'));
 const Nosotros = lazy(() => import('./pages/Nosotros'));
 const Contacto = lazy(() => import('./pages/Contacto'));
+const Checkout = lazy(() => import('./pages/Checkout'));
 const Proveedores = lazy(() => import('./pages/Proveedores'));
 const TrabajaConNosotros = lazy(() => import('./pages/TrabajaConNosotros'));
 const Franquicias = lazy(() => import('./pages/Franquicias'));
@@ -90,6 +92,7 @@ const AppContent: React.FC = () => {
               <Route path="/lovers/*" element={<Lovers />} />
               <Route path="/3d" element={<Viewer3D />} />
               <Route path="/legales" element={<Legales />} />
+              <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />

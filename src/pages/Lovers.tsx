@@ -8,7 +8,6 @@ import Empanada2 from '../lovers/assets/Empanadas/Mexican-Pibil-Pork-demo.png';
 import Empanada3 from '../lovers/assets/Empanadas/Matambre a la pizza.png';
 import Empanada4 from '../lovers/assets/Empanadas/burger.png';
 import Footer from '../components/Footer';
-import { useIsMobile } from '../hooks/useIsMobile';
 
 const empanadas = [Empanada1, Empanada2, Empanada3, Empanada4];
 
@@ -78,7 +77,6 @@ const saboresEmpanadas = [
 ];
 
 const Lovers = () => {
-  const isMobile = useIsMobile();
   // ScrollReveal animation
   useEffect(() => {
     import('scrollreveal').then((module) => {
@@ -314,7 +312,13 @@ const Lovers = () => {
           opacity: 1 !important;
         }
       `}</style>
-      {!isMobile && <NavBar />}
+      <NavBar />
+      <style>{`
+        @media (max-width: 900px) {
+          .navbar { display: none !important; }
+          .lovers-flex { padding-top: 1rem !important; }
+        }
+      `}</style>
       <style>{`
         @media (max-width: 900px) {
           .lovers-flex {
@@ -386,7 +390,7 @@ const Lovers = () => {
               textAlign: 'center',
               alignSelf: 'center',
             }}>
-              Únete a nuestro programa exclusivo y disfruta de beneficios únicos descuentos especiales y experiencias gastronómicas irrepetibles en todas nuestras sucursales.
+              Unite a nuestro programa especial para fanaticos, disfruta de beneficios unicos y experiencias imperdibles, canjea puntos y ganá los premios exclusivos de la marca
             </p>
             {/* Cards de beneficios */}
             <div
@@ -417,6 +421,7 @@ const Lovers = () => {
                 alignItems: 'center',
                 backdropFilter: 'blur(5px)',
                 WebkitBackdropFilter: 'blur(5px)',
+                opacity: 0.75,
               }}>
                 <Percent color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Descuentos</span>
@@ -439,11 +444,12 @@ const Lovers = () => {
                 alignItems: 'center',
                 backdropFilter: 'blur(5px)',
                 WebkitBackdropFilter: 'blur(5px)',
+                opacity: 0.75,
               }}>
                 <Users color="#ffc107" size={28} style={{ marginBottom: 10 }} />
-                <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Eventos</span>
+                <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Premios</span>
                 <span style={{ color: '#fff', fontWeight: 400, fontSize: '0.98rem', marginTop: 16, textAlign: 'center', display: 'block', lineHeight: 1.35, opacity: 0.92 }}>
-                  Cenas, catas y eventos únicos.
+                  Canjea puntos por premios únicos.
                 </span>
               </div>
               {/* Card 3: VIP */}
@@ -461,11 +467,12 @@ const Lovers = () => {
                 alignItems: 'center',
                 backdropFilter: 'blur(5px)',
                 WebkitBackdropFilter: 'blur(5px)',
+                opacity: 0.75,
               }}>
                 <Crown color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>VIP</span>
                 <span style={{ color: '#fff', fontWeight: 400, fontSize: '0.98rem', marginTop: 16, textAlign: 'center', display: 'block', lineHeight: 1.35, opacity: 0.92 }}>
-                  Reservas y atención prioritaria.
+                  Atención prioritaria.
                 </span>
               </div>
               {/* Card 4: Sorteos y Premios */}
@@ -483,11 +490,12 @@ const Lovers = () => {
                 alignItems: 'center',
                 backdropFilter: 'blur(5px)',
                 WebkitBackdropFilter: 'blur(5px)',
+                opacity: 0.75,
               }}>
                 <Gift color="#ffc107" size={28} style={{ marginBottom: 10 }} />
-                <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Sorteos y Premios</span>
+                <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'pre-line', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Novedades\nimpedibles</span>
                 <span style={{ color: '#fff', fontWeight: 400, fontSize: '0.98rem', marginTop: 16, textAlign: 'center', display: 'block', lineHeight: 1.35, opacity: 0.92 }}>
-                  Participa por premios y experiencias exclusivas.
+                  Vivi experiencias unicas de sabor.
                 </span>
               </div>
             </div>
