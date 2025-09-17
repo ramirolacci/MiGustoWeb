@@ -547,6 +547,7 @@ const NavBar: React.FC = () => {
                       className="btn btn-sm btn-light position-relative ms-2"
                       onClick={() => setIsCartOpen(true)}
                       aria-label="Abrir carrito"
+                      id="nav-cart-button"
                     >
                       <i className="fa-solid fa-cart-shopping"></i>
                       {totalItems > 0 && (

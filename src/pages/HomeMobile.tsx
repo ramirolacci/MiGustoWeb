@@ -64,7 +64,7 @@ const generateEmpanadas = () => {
     'https://i.postimg.cc/9Ftb8mKd/cheese-burger.png',
     'https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png',
     'https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png'
-  ];
+  ];  
   
   return Array.from({ length: 22 }).map((_, i) => {
     const left = Math.random() * 100;
