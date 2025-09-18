@@ -141,7 +141,8 @@ body {
 }
 
 .productos-busqueda {
-    margin-bottom: 1rem;
+    margin-top: 2rem; /* separarlo del navbar en desktop */
+    margin-bottom: 0.3rem; /* acercar los chips un poco más */
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -186,6 +187,7 @@ body {
     gap: 10px;
     padding: 8px 12px;
     min-width: max-content;
+    margin-bottom: 1rem; /* separar de las cards en mobile/desktop */
   }
 
   .ml-cat-item {
@@ -196,7 +198,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 78px;
+    min-width: 92px; /* ligeramente más grande */
     outline: none;
     cursor: pointer;
     text-decoration: none;
@@ -217,8 +219,8 @@ body {
   }
 
   .ml-cat-circle {
-    width: 64px;
-    height: 64px;
+    width: 72px; /* aumentar tamaño del botón */
+    height: 72px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255,255,255,0.08);
@@ -231,8 +233,8 @@ body {
   .ml-cat-circle img,
   .ml-cat-circle svg,
   .ml-cat-circle i {
-    width: 48px; /* un poco más grande */
-    height: 48px;
+    width: 52px; /* acompaña el crecimiento del botón */
+    height: 52px;
     object-fit: contain;
   }
 
@@ -296,11 +298,24 @@ body {
 
   .ml-cat-label {
     margin-top: 6px;
-    font-size: 0.75rem;
+    font-size: 0.8rem; /* leve aumento */
     color: #e6e6e6;
     text-align: center;
     line-height: 1.1;
-    max-width: 90px;
+    max-width: 100px;
+  }
+}
+
+/* Centrar los chips en desktop */
+@media (min-width: 769px) {
+  .ml-categories-wrapper {
+    overflow: visible;
+  }
+  .ml-categories {
+    justify-content: center;
+    min-width: 0;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem; /* un poco más de espacio en desktop */
   }
 }
 
