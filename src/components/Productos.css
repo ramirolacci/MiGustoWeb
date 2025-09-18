@@ -1,3 +1,78 @@
+  /* Pizzas: solo imagen a 60x60, sin fondo ni borde */
+  .ml-cat-item[data-cat="Pizzas"] .ml-cat-circle img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .ml-cat-item[data-cat="Pizzas"] .ml-cat-circle,
+  .ml-cat-item[data-cat="Pizzas"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Pizzas"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Pizzas"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Pizzas INDI: solo imagen a 60x60, sin fondo ni borde */
+  .ml-cat-item[data-cat="Pizzas INDI"] .ml-cat-circle img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .ml-cat-item[data-cat="Pizzas INDI"] .ml-cat-circle,
+  .ml-cat-item[data-cat="Pizzas INDI"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Pizzas INDI"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Pizzas INDI"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Fitzzas: solo imagen a 60x60, sin fondo ni borde */
+  .ml-cat-item[data-cat="Fitzzas"] .ml-cat-circle img {
+    width: 56px; /* ligeramente más chica */
+    height: 56px;
+    object-fit: contain;
+  }
+  .ml-cat-item[data-cat="Fitzzas"] .ml-cat-circle,
+  .ml-cat-item[data-cat="Fitzzas"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Fitzzas"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Fitzzas"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Salsas: solo imagen a 60x60, sin fondo ni borde */
+  .ml-cat-item[data-cat="Salsas"] .ml-cat-circle img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .ml-cat-item[data-cat="Salsas"] .ml-cat-circle,
+  .ml-cat-item[data-cat="Salsas"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Salsas"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Salsas"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Postres: solo imagen a 60x60, sin fondo ni borde */
+  .ml-cat-item[data-cat="Postres"] .ml-cat-circle img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  .ml-cat-item[data-cat="Postres"] .ml-cat-circle,
+  .ml-cat-item[data-cat="Postres"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Postres"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Postres"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
 body {
     background-color: #000;
 }
@@ -16,8 +91,8 @@ body {
     padding: 2rem;
     position: relative;
     z-index: 1;
-    padding-top: 5.5rem;
-    padding-bottom: 2rem;
+    padding-top: 3rem; /* subir contenido */
+    padding-bottom: 1.5rem;
 }
 
 .background-overlay {
@@ -102,7 +177,7 @@ body {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin: 0.25rem 0 1rem 0;
+    margin: 0 0 0.5rem 0; /* menos separación superior */
   }
 
   .ml-categories {
@@ -128,14 +203,25 @@ body {
   }
 
   .ml-cat-item.active .ml-cat-circle {
-    box-shadow: 0 0 0 2px #ffd400 inset, 0 6px 14px rgba(0,0,0,.35);
+    background: rgba(0, 0, 0, 0.4); /* mismo tono que las cards */
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.03) inset, 0 6px 16px rgba(0,0,0,.5);
+  }
+
+  /* Hover/focus: sutil variación en negro, sin dorado */
+  .ml-cat-item:hover .ml-cat-circle,
+  .ml-cat-item:focus-visible .ml-cat-circle {
+    background: rgba(0, 0, 0, 0.4); /* mantener el mismo tono */
+    border-color: rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset, 0 8px 18px rgba(0,0,0,.5);
   }
 
   .ml-cat-circle {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255,255,255,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,9 +231,67 @@ body {
   .ml-cat-circle img,
   .ml-cat-circle svg,
   .ml-cat-circle i {
-    width: 36px;
-    height: 36px;
+    width: 48px; /* un poco más grande */
+    height: 48px;
     object-fit: contain;
+  }
+
+  /* Promociones: ocupar por completo el círculo */
+  .ml-cat-item[data-cat="Promociones"] .ml-cat-circle img {
+    width: 44px; /* ligeramente más chico */
+    height: 44px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Promociones: sin fondo ni borde, solo imagen */
+  .ml-cat-item[data-cat="Promociones"] .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  .ml-cat-item[data-cat="Promociones"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Promociones"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Promociones"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Premium: un poco más grande que el resto */
+  .ml-cat-item[data-cat="Premium"] .ml-cat-circle img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  /* Premium: sin fondo ni borde, solo imagen */
+  .ml-cat-item[data-cat="Premium"] .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  .ml-cat-item[data-cat="Premium"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Premium"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Premium"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Clásicas: solo imagen a 60x60, sin fondo ni borde */
+  .ml-cat-item[data-cat="Clasicas"] .ml-cat-circle img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .ml-cat-item[data-cat="Clasicas"] .ml-cat-circle,
+  .ml-cat-item[data-cat="Clasicas"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Clasicas"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Clasicas"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
 
   .ml-cat-label {
@@ -736,7 +880,7 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
     .productos-container {
-        padding-top: 60px !important;
+        padding-top: 32px !important; /* subir contenido en mobile */
         padding-left: 1rem;
         padding-right: 1rem;
         margin-top: 0 !important;
@@ -758,8 +902,8 @@ body {
     }
 
     .productos-busqueda {
-        margin-top: 1.5rem;
-        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
     }
 
     .productos-input-busqueda {

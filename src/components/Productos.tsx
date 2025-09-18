@@ -286,7 +286,7 @@ export default function Productos() {
         <div className="productos-section">
             <div className="background-overlay"></div>
             <div className="productos-container">
-                <h2 className="productos-titulo">Conocé nuestros productos</h2>
+                {/* Título removido a pedido: "Conocé nuestros productos" */}
 
                 <div className="productos-busqueda">
                     <Buscador filtro={busqueda} setFiltro={setBusqueda} />
@@ -312,7 +312,8 @@ export default function Productos() {
                                             return '/burgerLoading.png';
                                         }
                                         case 'Clasicas': {
-                                            const clasicaImg = empanadas.find(e => !e.esPremium)?.imagen;
+                                            const champi = empanadas.find(e => e.titulo.toLowerCase() === 'pollo al champignon');
+                                            const clasicaImg = champi?.imagen || empanadas.find(e => !e.esPremium)?.imagen;
                                             return clasicaImg || '/icons/empanadas-clasicas.svg';
                                         }
                                         case 'Pizzas': {
