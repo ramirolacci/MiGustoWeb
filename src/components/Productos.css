@@ -171,8 +171,8 @@ body {
     border-color: #D4AF37;
 }
 
-/* --- Estilos categorías mobile estilo Mercado Libre --- */
-@media (max-width: 768px) {
+/* --- Estilos categorías estilo chips (mobile y desktop) --- */
+@media (min-width: 0px) {
   .ml-categories-wrapper {
     width: 100%;
     overflow-x: auto;

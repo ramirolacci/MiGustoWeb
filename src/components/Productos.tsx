@@ -292,10 +292,9 @@ export default function Productos() {
                     <Buscador filtro={busqueda} setFiltro={setBusqueda} />
                 </div>
 
-                {/* Categorías estilo Mercado Libre para mobile */}
-                {isMobile ? (
-                    <div className="ml-categories-wrapper">
-                        <div className="ml-categories" role="tablist" aria-label="Categorías de productos">
+                {/* Categorías estilo Mercado Libre en mobile y desktop */}
+                <div className="ml-categories-wrapper">
+                    <div className="ml-categories" role="tablist" aria-label="Categorías de productos">
                             {[
                                 'Promociones',
                                 'Premium',
@@ -382,46 +381,10 @@ export default function Productos() {
                                     </button>
                                 );
                             })}
-                        </div>
                     </div>
-                ) : (
-                    <div className="productos-categorias">
-                        {categorias.map((cat, idx) => (
-                            <button
-                                key={cat}
-                                onClick={() => {
-                                    setFiltro(cat);
-                                    setTipoProducto(null);
-                                }}
-                                className={`productos-btn ${filtro === cat ? "active" : ""}`}
-                                type="button"
-                                style={{ '--cat-index': idx } as React.CSSProperties }
-                            >
-                                <span>{cat}</span>
-                            </button>
-                        ))}
-                    </div>
-                )}
+                </div>
 
-                {!isMobile && filtro === "Empanadas" && (
-                    <div className="productos-subfiltros">
-                        <button
-                            onClick={() => setTipoProducto("Premium")}
-                            className={`subfiltro-btn ${tipoProducto === "Premium" ? "active" : ""}`}
-                            style={{ '--subfiltro-index': 0 } as React.CSSProperties }
-                        >
-                            <span>PREMIUM</span>
-                        </button>
-                        <span className="subfiltro-separator">|</span>
-                        <button
-                            onClick={() => setTipoProducto("Clasicas")}
-                            className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
-                            style={{ '--subfiltro-index': 1 } as React.CSSProperties }
-                        >
-                            <span>CLÁSICAS</span>
-                        </button>
-                    </div>
-                )}
+                {/* Subfiltros antiguos (Premium | CLÁSICAS) eliminados en desktop */}
 
                 <div className="productos-lista">
                     {productosFiltrados.length === 0 ? (
