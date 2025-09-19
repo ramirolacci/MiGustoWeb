@@ -367,7 +367,13 @@ export default function Productos() {
                                                 setFiltro(cat);
                                                 setTipoProducto(null);
                                             }
-                                            try { window.scrollTo({ top: (document.querySelector('.productos-busqueda')?.getBoundingClientRect().top || 0) + window.scrollY - 12, behavior: 'smooth' }); } catch {}
+                                            // Solo hacemos scroll suave en mobile para evitar saltos en desktop
+                                            try {
+                                                if (window.innerWidth <= 768) {
+                                                    const targetTop = (document.querySelector('.productos-busqueda')?.getBoundingClientRect().top || 0) + window.scrollY - 12;
+                                                    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                                                }
+                                            } catch {}
                                         }}
                                     >
                                         <div className="ml-cat-circle">
