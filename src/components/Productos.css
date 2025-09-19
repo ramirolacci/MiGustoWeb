@@ -222,7 +222,7 @@ body {
   .ml-cat-circle img,
   .ml-cat-circle svg,
   .ml-cat-circle i {
-    transition: transform 0.18s ease;
+    transition: transform 0.18s ease, filter 0.25s ease;
   }
   .ml-cat-item:hover .ml-cat-circle img,
   .ml-cat-item:focus-visible .ml-cat-circle img {
@@ -314,6 +314,75 @@ body {
     text-align: center;
     line-height: 1.1;
     max-width: 100px;
+  }
+}
+
+/* Hover épico y moderno para los botones de categorías */
+@media (min-width: 0px) {
+  .ml-cat-item {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform .25s cubic-bezier(.22,1,.36,1), filter .25s ease;
+    will-change: transform;
+  }
+  .ml-cat-item:hover,
+  .ml-cat-item:focus-visible {
+    transform: translateY(-4px);
+  }
+  .ml-cat-item:active {
+    transform: translateY(-1px) scale(.98);
+  }
+
+  /* Halo dinámico detrás del icono (funciona incluso cuando el círculo es transparente) */
+  /* Desactivado: halo/brillo de fondo */
+  .ml-cat-item::after { content: none !important; }
+
+  /* Anillo degradado fino alrededor del círculo */
+  .ml-cat-circle {
+    position: relative;
+    z-index: 1;
+    transition: transform .25s cubic-bezier(.22,1,.36,1);
+  }
+  /* Desactivado: anillo degradado */
+  .ml-cat-circle::before { content: none !important; }
+
+  /* Elevación/escala del icono */
+  .ml-cat-item:hover .ml-cat-circle,
+  .ml-cat-item:focus-visible .ml-cat-circle {
+    transform: scale(1.26);
+  }
+  .ml-cat-item:hover .ml-cat-circle img,
+  .ml-cat-item:focus-visible .ml-cat-circle img,
+  .ml-cat-item:hover .ml-cat-circle svg,
+  .ml-cat-item:focus-visible .ml-cat-circle svg,
+  .ml-cat-item:hover .ml-cat-circle i,
+  .ml-cat-item:focus-visible .ml-cat-circle i {
+    transform: scale(1.34);
+    filter: drop-shadow(0 10px 22px rgba(0,0,0,.5)) brightness(1.08) saturate(1.08);
+  }
+
+  /* Etiqueta con brillo sutil */
+  .ml-cat-item:hover .ml-cat-label,
+  .ml-cat-item:focus-visible .ml-cat-label {
+    color: #f5f5f5;
+    text-shadow: none;
+    transform: translateY(1px);
+    transition: color .2s ease, transform .25s ease;
+  }
+}
+
+@keyframes ml-cat-glow-pulse {
+  from { filter: blur(10px); opacity: .6; }
+  to   { filter: blur(14px); opacity: .9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ml-cat-item,
+  .ml-cat-item::after,
+  .ml-cat-circle,
+  .ml-cat-circle::before {
+    transition: none !important;
+    animation: none !important;
   }
 }
 
