@@ -241,6 +241,10 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,.25);
   }
 
+  /* Variación leve del desplazamiento del vapor por item */
+  .ml-cat-item:nth-child(odd) .ml-cat-circle { --steam-dx: -8px; --steam-delay1: -.45s; --steam-delay2: -.9s; }
+  .ml-cat-item:nth-child(even) .ml-cat-circle { --steam-dx: 8px; --steam-delay1: -.2s; --steam-delay2: -.6s; }
+
   .ml-cat-circle img,
   .ml-cat-circle svg,
   .ml-cat-circle i {
@@ -343,7 +347,7 @@ body {
     z-index: 1;
     transition: transform .25s cubic-bezier(.22,1,.36,1);
   }
-  /* Desactivado: anillo degradado */
+  /* Desactivado: anillo degradado (lo reutilizamos luego como vapor en una regla posterior) */
   .ml-cat-circle::before { content: none !important; }
 
   /* Elevación/escala del icono */
@@ -374,6 +378,91 @@ body {
 @keyframes ml-cat-glow-pulse {
   from { filter: blur(10px); opacity: .6; }
   to   { filter: blur(14px); opacity: .9; }
+}
+
+/* Vapor/humo sutil sobre los iconos al hacer hover */
+@media (min-width: 0px) {
+  .ml-cat-circle::before {
+    content: '' !important; /* vapor capa 1 */
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 74px;
+    height: 48px;
+    transform: translateX(calc(-50% + var(--steam-dx, 0))) translateY(14px) scale(.8);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 50%;
+    filter: blur(16px) contrast(1.12) brightness(1.22);
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+    background:
+      radial-gradient(40% 60% at 22% 82%, rgba(255,255,255,.72), rgba(255,255,255,0) 70%),
+      radial-gradient(46% 64% at 52% 82%, rgba(255,255,255,.62), rgba(255,255,255,0) 72%),
+      radial-gradient(40% 60% at 82% 82%, rgba(255,255,255,.56), rgba(255,255,255,0) 70%),
+      radial-gradient(30% 50% at 35% 90%, rgba(255,255,255,.45), rgba(255,255,255,0) 70%),
+      radial-gradient(30% 50% at 65% 90%, rgba(255,255,255,.45), rgba(255,255,255,0) 70%);
+  }
+  .ml-cat-item:hover .ml-cat-circle::before,
+  .ml-cat-item:focus-visible .ml-cat-circle::before {
+    animation: ml-steam-rise 3s ease-out infinite;
+    animation-delay: var(--steam-delay1, 0s);
+    opacity: .95;
+  }
+  /* Vapor capa 2 para mayor realismo */
+  .ml-cat-circle::after {
+    content: '';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    width: 58px;
+    height: 36px;
+    transform: translateX(calc(-50% - var(--steam-dx, 0))) translateY(18px) scale(.72);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 50%;
+    filter: blur(18px) contrast(1.1) brightness(1.25);
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+    background:
+      radial-gradient(52% 74% at 50% 82%, rgba(255,255,255,.68), rgba(255,255,255,0) 70%);
+  }
+  .ml-cat-item:hover .ml-cat-circle::after,
+  .ml-cat-item:focus-visible .ml-cat-circle::after {
+    animation: ml-steam-rise-2 3.8s ease-out infinite;
+    animation-delay: var(--steam-delay2, 0s);
+    opacity: .85;
+  }
+}
+
+/* Desactivar solo el vapor en categorías específicas: Promociones, Salsas y Postres */
+@media (min-width: 0px) {
+  .ml-cat-item[data-cat="Promociones"] .ml-cat-circle::before,
+  .ml-cat-item[data-cat="Promociones"] .ml-cat-circle::after,
+  .ml-cat-item[data-cat="Salsas"] .ml-cat-circle::before,
+  .ml-cat-item[data-cat="Salsas"] .ml-cat-circle::after,
+  .ml-cat-item[data-cat="Postres"] .ml-cat-circle::before,
+  .ml-cat-item[data-cat="Postres"] .ml-cat-circle::after {
+    content: none !important;
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+@keyframes ml-steam-rise {
+  0%   { transform: translateX(calc(-50% + var(--steam-dx, 0))) translateY(14px) scale(.8); opacity: 0; }
+  18%  { opacity: .55; }
+  60%  { transform: translateX(calc(-50% + var(--steam-dx, 0))) translateY(-22px) scale(1.05); opacity: .95; }
+  100% { transform: translateX(calc(-50% + var(--steam-dx, 0))) translateY(-64px) scale(1.25); opacity: 0; }
+}
+
+@keyframes ml-steam-rise-2 {
+  0%   { transform: translateX(calc(-50% - var(--steam-dx, 0))) translateY(18px) scale(.72); opacity: 0; }
+  22%  { opacity: .48; }
+  65%  { transform: translateX(calc(-50% - var(--steam-dx, 0))) translateY(-18px) scale(1.02); opacity: .95; }
+  100% { transform: translateX(calc(-50% - var(--steam-dx, 0))) translateY(-58px) scale(1.2); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

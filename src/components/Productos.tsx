@@ -235,6 +235,30 @@ export default function Productos() {
                 easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
             });
 
+            // Nuevo: reveal impresionante para las categorías (Mercado Libre style)
+            scrollRevealRef.current.reveal('.ml-categories', {
+                distance: '22px',
+                duration: 900,
+                origin: 'bottom',
+                delay: 200,
+                reset: false,
+                scale: 0.92,
+                opacity: 0,
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+            });
+
+            scrollRevealRef.current.reveal('.ml-cat-item', {
+                distance: '18px',
+                duration: 800,
+                origin: 'bottom',
+                interval: 80,
+                reset: false,
+                scale: 0.9,
+                opacity: 0,
+                rotate: { x: 8, y: 0, z: 0 },
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+            });
+
             scrollRevealRef.current.reveal('.productos-subfiltros', {
                 distance: '20px',
                 duration: 1000,
@@ -336,8 +360,7 @@ export default function Productos() {
                                             return amargo || '/icons/postres.svg';
                                         }
                                         case 'Promociones': {
-                                            const img = promociones.find(p => p.titulo === 'Pack 12 Empanadas')?.imagen;
-                                            return img || '/icons/tab-pedir.svg';
+                                            return '/promoIcon.png';
                                         }
                                         default: return undefined;
                                     }
