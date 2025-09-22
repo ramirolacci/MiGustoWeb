@@ -97,7 +97,9 @@ const Nosotros: React.FC = () => {
     // --- DRAG-TO-SCROLL PARA CARRUSEL DE VALORES ---
     // Estado para drag horizontal (usando refs para listeners globales)
     const [isDragging, setIsDragging] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
     const isDraggingRef = useRef(false);
+    const isHoveringRef = useRef(false);
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
     const valoresContainerRef = useRef<HTMLDivElement>(null);
@@ -237,7 +239,18 @@ const Nosotros: React.FC = () => {
         handleSnapToCard();
     };
 
-    // Auto-scroll infinito y lento
+    // Handlers para hover
+    const handleMouseEnter = () => {
+        setIsHovering(true);
+        isHoveringRef.current = true;
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovering(false);
+        isHoveringRef.current = false;
+    };
+
+    // Auto-scroll infinito mejorado tipo pasarela
     useEffect(() => {
         const container = valoresContainerRef.current;
         const track = carouselRef.current;
@@ -245,15 +258,16 @@ const Nosotros: React.FC = () => {
 
         let rafId = 0;
         let last = performance.now();
-        const SPEED_PX_PER_SEC = 12; // velocidad lenta para lectura
-
+        const SPEED_PX_PER_SEC = 25; // velocidad aumentada para efecto pasarela
+        
         const loop = (now: number) => {
             const dt = now - last;
             last = now;
 
-            if (!isDraggingRef.current) {
+            if (!isDraggingRef.current && !isHoveringRef.current) {
                 container.scrollLeft += (SPEED_PX_PER_SEC * dt) / 1000;
 
+                // Reiniciar cuando llegue a la mitad para scroll infinito
                 const half = track.scrollWidth / 2;
                 if (half > 0 && container.scrollLeft >= half) {
                     container.scrollLeft -= half;
@@ -400,7 +414,8 @@ const Nosotros: React.FC = () => {
                         ref={valoresContainerRef}
                         onMouseDown={handleDragStart}
                         onMouseMove={isDragging ? (e) => handleWindowMouseMove(e.nativeEvent) : undefined}
-                        onMouseLeave={isDragging ? handleWindowMouseUp : undefined}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={isDragging ? handleWindowMouseUp : handleMouseLeave}
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}

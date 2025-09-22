@@ -8,7 +8,15 @@
 
 .main {
     flex: 1;
-    padding-top: 0 !important;
+    padding-top: var(--nav-height, 64px) !important; /* separa el contenido del navbar fijo solo cuando hay navbar */
+}
+
+/* Altura del navbar según dispositivo */
+@media (min-width: 769px) {
+  :root { --nav-height: 64px; }
+}
+@media (max-width: 768px) {
+  :root { --nav-height: 0px; }
 }
 
 body.lovers-page .main {

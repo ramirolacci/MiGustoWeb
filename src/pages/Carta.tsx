@@ -32,7 +32,7 @@ const Carta: React.FC = () => {
           minHeight: '100vh',
           position: 'relative',
           backgroundColor: '#000',
-          paddingTop: '104px',
+          paddingTop: '72px',
         }}
       >
         <div className="background-overlay"></div>

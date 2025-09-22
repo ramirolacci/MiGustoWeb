@@ -24,14 +24,14 @@ const catalogoFotos = [
 ];
 
 const Revista = () => {
-    const [paginaActual, setPaginaActual] = useState(0);
+    const [paginaActual, setPaginaActual] = useState(1);
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const [showTipModal, setShowTipModal] = useState(false);
     const [tipClosing, setTipClosing] = useState(false);
     const [flipbookNode, setFlipbookNode] = useState<HTMLElement | null>(null);
     const [flipbookDimensions, setFlipbookDimensions] = useState<{ width: number; height: number }>({ width: 680, height: 980 });
-    const [verticalGap, setVerticalGap] = useState<number>(8);
+    const [verticalGap, setVerticalGap] = useState<number>(2);
     const flipBook = useRef<any>(null);
     const flipbookWrapperRef = useRef<HTMLDivElement>(null);
     const revistaRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,7 @@ const Revista = () => {
             const footer = document.querySelector('footer') as HTMLElement | null;
             const headerH = header ? header.offsetHeight : 0;
             const footerH = footer ? footer.offsetHeight : 0;
-            const baseGap = 2; // margen mínimo deseado en top y bottom
+            const baseGap = 1; // margen mínimo deseado en top y bottom
             const horizontalPadding = 16; // padding lateral reducido
 
             const viewportHeight = window.innerHeight;
@@ -94,8 +94,8 @@ const Revista = () => {
                 targetWidth = Math.floor(targetHeight * aspectRatio);
             }
 
-            // Calcular gap simétrico exacto según altura final
-            const computedGap = Math.max(baseGap, Math.floor((availableHeightRaw - targetHeight) / 2));
+            // Calcular gap simétrico exacto según altura final (mínimo para estar pegado al navbar)
+            const computedGap = Math.max(baseGap, Math.floor((availableHeightRaw - targetHeight) / 4));
 
             setFlipbookDimensions({ width: targetWidth, height: targetHeight });
             setVerticalGap(computedGap);
@@ -230,6 +230,7 @@ const Revista = () => {
                             effect="flip"
                             spaceBetween={0}
                             slidesPerView={1}
+                            initialSlide={1}
                             onSlideChange={(swiper) => setPaginaActual(swiper.activeIndex)}
                             style={{ width: '100%', maxWidth: 480, minHeight: 380 }}
                             className="revista-swiper"
@@ -267,7 +268,7 @@ const Revista = () => {
                                 mobileScrollSupport={true}
                                 className="revista-flipbook"
                                 style={{}}
-                                startPage={0}
+                                startPage={1}
                                 flippingTime={300}
                                 usePortrait={true}
                                 startZIndex={0}

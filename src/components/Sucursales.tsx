@@ -126,16 +126,7 @@ const Sucursales: React.FC = () => {
             <div className="sucursales-container">
                 <div className="container">
                     <h2 className="productos-titulo">Encontrá tu sucursal más cercana</h2>
-                    <div className={`productos-busqueda${aparecer ? ' animate' : ''}`}>
-                        <input
-                            type="text"
-                            placeholder="Buscar sucursales..."
-                            value={filtro}
-                            onChange={(e) => setFiltro(e.target.value)}
-                            className={`productos-input-busqueda${bordeLuz ? ' borde-luz' : ''}`}
-                        />
-                        <i className="fas fa-search buscador-icon"></i>
-                    </div>
+                    {/* Buscador removido: usar la barra global del navbar */}
 
                     <div className="row">
                         {sucursalesVisibles.map((sucursal, index) => (

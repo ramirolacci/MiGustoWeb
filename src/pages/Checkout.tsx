@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import './Checkout.css';
 
 const Checkout: React.FC = () => {
   const { items, subtotal, updateQuantity, removeItem, clearCart } = useCart();
@@ -14,46 +15,75 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div style={{ paddingTop: 104, paddingBottom: 40, minHeight: '100vh', background: '#000', color: '#fff' }}>
+    <div className="checkout-container">
       <div className="container">
-        <h2 className="mb-4">Checkout</h2>
+        <h2 className="checkout-title">Checkout</h2>
         {items.length === 0 ? (
-          <p>Tu carrito está vacío.</p>
+          <p className="checkout-empty">Tu carrito está vacío.</p>
         ) : (
           <div className="row g-4">
             <div className="col-12 col-lg-8">
               {items.map(it => (
-                <div key={it.id} className="card mb-3" style={{ background: '#111', borderColor: '#222' }}>
-                  <div className="card-body d-flex align-items-center" style={{ gap: 16 }}>
-                    <img src={it.image} alt={it.title} width={72} height={72} style={{ objectFit: 'cover', borderRadius: 8 }} />
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 700 }}>{it.title}</div>
-                      <div style={{ opacity: .85 }}>
+                <div key={it.id} className="card checkout-item-card">
+                  <div className="card-body checkout-item-body">
+                    <img 
+                      src={it.image} 
+                      alt={it.title} 
+                      className="checkout-item-image"
+                    />
+                    <div className="checkout-item-info">
+                      <div className="checkout-item-title">{it.title}</div>
+                      <div className="checkout-item-price">
                         {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(it.price)}
                       </div>
                     </div>
-                    <div className="d-flex align-items-center" style={{ gap: 8 }}>
-                      <button className="btn btn-sm btn-secondary" onClick={() => updateQuantity(it.id, it.quantity - 1)}>-</button>
-                      <span>{it.quantity}</span>
-                      <button className="btn btn-sm btn-secondary" onClick={() => updateQuantity(it.id, it.quantity + 1)}>+</button>
+                    <div className="checkout-quantity-controls">
+                      <button 
+                        className="btn checkout-quantity-btn" 
+                        onClick={() => updateQuantity(it.id, it.quantity - 1)}
+                        aria-label="Disminuir cantidad"
+                      >
+                        −
+                      </button>
+                      <span className="checkout-quantity-number">{it.quantity}</span>
+                      <button 
+                        className="btn checkout-quantity-btn" 
+                        onClick={() => updateQuantity(it.id, it.quantity + 1)}
+                        aria-label="Aumentar cantidad"
+                      >
+                        +
+                      </button>
                     </div>
-                    <div style={{ width: 120, textAlign: 'right', fontWeight: 700 }}>
+                    <div className="checkout-total-price">
                       {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(it.price * it.quantity)}
                     </div>
-                    <button className="btn btn-sm btn-outline-danger" onClick={() => removeItem(it.id)}>Quitar</button>
+                    <button 
+                      className="btn checkout-remove-btn" 
+                      onClick={() => removeItem(it.id)}
+                      aria-label="Quitar producto"
+                    >
+                      Quitar
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
             <div className="col-12 col-lg-4">
-              <div className="card" style={{ background: '#111', borderColor: '#222' }}>
-                <div className="card-body">
-                  <h5 className="card-title">Resumen</h5>
-                  <div className="d-flex align-items-center justify-content-between mb-2">
-                    <span>Subtotal</span>
-                    <strong>{new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(subtotal)}</strong>
+              <div className="card checkout-summary-card">
+                <div className="card-body checkout-summary-body">
+                  <h5 className="checkout-summary-title">Resumen del Pedido</h5>
+                  <div className="checkout-summary-row">
+                    <span className="checkout-summary-label">Subtotal</span>
+                    <span className="checkout-summary-value">
+                      {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(subtotal)}
+                    </span>
                   </div>
-                  <button className="btn btn-warning w-100 mt-3" onClick={handleConfirm}>Confirmar compra</button>
+                  <button 
+                    className="btn checkout-confirm-btn" 
+                    onClick={handleConfirm}
+                  >
+                    Confirmar Compra
+                  </button>
                 </div>
               </div>
             </div>

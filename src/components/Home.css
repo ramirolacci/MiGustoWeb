@@ -36,7 +36,6 @@
   background: #000000;
   overflow-x: hidden;
   position: relative;
-  padding-top: 70px;
 }
 
 .home::before {
@@ -337,7 +336,6 @@
   }
   .home {
     margin-top: 0 !important;
-    padding-top: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     width: 100vw !important;
@@ -357,7 +355,7 @@
 
 @media (max-width: 768px) {
   .home {
-    padding-top: 54px;
+    /* sin padding adicional; el espacio lo maneja .main */
   }
 }
 

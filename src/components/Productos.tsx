@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect, useRef } from "react";
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import NavBar from './NavBar';
-import Buscador from './Buscador';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { flyToCart } from '../utils/flyToCart';
@@ -312,9 +311,7 @@ export default function Productos() {
             <div className="productos-container">
                 {/* Título removido a pedido: "Conocé nuestros productos" */}
 
-                <div className="productos-busqueda">
-                    <Buscador filtro={busqueda} setFiltro={setBusqueda} />
-                </div>
+                {/* Buscador removido: ahora se usa el buscador global del navbar */}
 
                 {/* Categorías estilo Mercado Libre en mobile y desktop */}
                 <div className="ml-categories-wrapper">

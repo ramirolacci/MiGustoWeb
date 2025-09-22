@@ -6,6 +6,15 @@ import { TimelineLite } from 'gsap';
 import { getToken, logout } from '../services/auth';
 import { getMe } from '../services/user';
 import { useCart } from '../context/CartContext';
+import { trackEvent } from '../services/analytics';
+import { pizzas } from '../data/pizzasData';
+import { empanadas } from '../data/empanadasData';
+import { fitzzas } from '../data/fitzzasData';
+import { pizzasIndi } from '../data/pizzasIndiData';
+import { salsas } from '../data/salsasData';
+import { postres } from '../data/postresData';
+import { promociones } from '../data/promocionesData';
+import { sucursales as sucursalesData } from '../data/sucursalesData';
 
 function ProfileButton() {
   const navigate = useNavigate();
@@ -243,6 +252,21 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
   );
 }
 
+function FullPizzaIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="#f5c16c" stroke="#b87333" strokeWidth="1.2" />
+      <circle cx="12" cy="12" r="7.6" fill="#ffd35c" />
+      <circle cx="9" cy="8.8" r="1.1" fill="#d94c48" />
+      <circle cx="15.3" cy="9.6" r="1.1" fill="#d94c48" />
+      <circle cx="12.6" cy="14.2" r="1.1" fill="#d94c48" />
+      <line x1="12" y1="12" x2="20" y2="12" stroke="#b87333" strokeWidth="0.9" />
+      <line x1="12" y1="12" x2="16.8" y2="5.5" stroke="#b87333" strokeWidth="0.9" />
+      <line x1="12" y1="12" x2="6.8" y2="17.8" stroke="#b87333" strokeWidth="0.9" />
+    </svg>
+  );
+}
+
 const NavBar: React.FC = () => {
   const { totalItems } = useCart();
   const [isHovered, setIsHovered] = useState(false);
@@ -257,6 +281,16 @@ const NavBar: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
   const [navRevealPlayed, setNavRevealPlayed] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchFormRef = useRef<HTMLFormElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const [logoLeftPx, setLogoLeftPx] = useState<number | null>(null);
+  const [suggestions, setSuggestions] = useState<Array<{ id: string; type: 'producto' | 'sucursal'; label: string; meta?: string; query: string; score: number }>>([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const suggestionsCloseTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -285,6 +319,50 @@ const NavBar: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Enfocar input al abrir búsqueda
+  useEffect(() => {
+    if (isSearchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 50);
+    }
+  }, [isSearchOpen]);
+
+  // Recalcular posición del logo para que quede a la izquierda del buscador
+  useEffect(() => {
+    const recalcLogo = () => {
+      try {
+        if (!isSearchOpen) {
+          setLogoLeftPx(null);
+          return;
+        }
+        const container = containerRef.current;
+        const searchForm = searchFormRef.current;
+        const logo = logoRef.current;
+        if (!container || !searchForm || !logo) return;
+        const containerRect = container.getBoundingClientRect();
+        const searchRect = searchForm.getBoundingClientRect();
+        const logoRect = logo.getBoundingClientRect();
+        const gap = 32;
+        const desiredLeftViewport = Math.max(8, searchRect.left - gap - logoRect.width);
+        const desiredLeft = desiredLeftViewport - containerRect.left;
+        setLogoLeftPx(desiredLeft);
+      } catch {}
+    };
+    const timer = setTimeout(recalcLogo, 140);
+    window.addEventListener('resize', recalcLogo);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', recalcLogo);
+    };
+  }, [isSearchOpen]);
+
+  // Cerrar búsqueda al cambiar de ruta
+  useEffect(() => {
+    setIsSearchOpen(false);
+    setSearchQuery('');
+    setSuggestions([]);
+    setActiveIndex(-1);
+  }, [location.pathname]);
+
   useEffect(() => {
     // Solo en mobile y solo en la ruta '/3d'
     const isMobile = window.innerWidth <= 768;
@@ -310,6 +388,105 @@ const NavBar: React.FC = () => {
       document.body.classList.remove('side-menu-open');
     };
   }, [isMenuOpen]);
+
+  // Calcular sugerencias con debounce cuando cambia el query
+  useEffect(() => {
+    if (!isSearchOpen) {
+      setSuggestions([]);
+      setActiveIndex(-1);
+      return;
+    }
+    const q = searchQuery.trim();
+    if (q.length === 0) {
+      setSuggestions([]);
+      setActiveIndex(-1);
+      return;
+    }
+
+    const handle = window.setTimeout(() => {
+      const normalize = (str: string) => str
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}+/gu, '');
+      const qn = normalize(q);
+
+      const mkProductSuggestion = (item: any, categoria: string) => {
+        const label = String(item.titulo || '').trim() || String(item.nombre || '').trim() || categoria;
+        const meta = categoria;
+        const texto = [
+          item.titulo,
+          item.descripcion,
+          Array.isArray(item.ingredientes) ? item.ingredientes.join(' ') : '',
+          categoria,
+        ].filter(Boolean).join(' ');
+        const t = normalize(String(texto));
+        let score = 0;
+        if (t.includes(qn)) score += 2;
+        if (normalize(String(item.titulo || '')).startsWith(qn)) score += 2;
+        if (normalize(String(categoria)).includes(qn)) score += 1;
+        return { id: `p-${label}-${categoria}`, type: 'producto' as const, label, meta, query: label, score };
+      };
+
+      const productSuggestions: Array<{ id: string; type: 'producto'; label: string; meta?: string; query: string; score: number }> = [];
+      const datasets: Array<{ data: any[]; categoria: string }> = [
+        { data: empanadas as any[], categoria: 'Empanadas' },
+        { data: pizzas as any[], categoria: 'Pizzas' },
+        { data: pizzasIndi as any[], categoria: 'Pizzas INDI' },
+        { data: fitzzas as any[], categoria: 'Fitzzas' },
+        { data: salsas as any[], categoria: 'Salsas' },
+        { data: postres as any[], categoria: 'Postres' },
+        { data: promociones as any[], categoria: 'Promociones' },
+      ];
+      for (const { data, categoria } of datasets) {
+        for (const it of data) {
+          const s = mkProductSuggestion(it, categoria);
+          if (s.score > 0) productSuggestions.push(s);
+        }
+      }
+
+      const branchSuggestions = sucursalesData.map(s => {
+        const texto = [s.nombre, s.localidad, s.provincia, s.direccion].filter(Boolean).join(' ');
+        const t = normalize(String(texto));
+        let score = 0;
+        if (t.includes(qn)) score += 2;
+        if (normalize(String(s.nombre)).startsWith(qn)) score += 2;
+        const hints = ['sucursal', 'local', 'tienda', 'direccion', 'dirección', 'mapa'];
+        if (hints.some(h => qn.includes(normalize(h)))) score += 1;
+        return { id: `s-${s.nombre}-${s.localidad}`, type: 'sucursal' as const, label: s.nombre, meta: [s.localidad, s.provincia].filter(Boolean).join(', '), query: s.nombre, score };
+      }).filter(s => s.score > 0);
+
+      const combined = [...productSuggestions, ...branchSuggestions]
+        .sort((a, b) => b.score - a.score || a.label.length - b.label.length)
+        .slice(0, 8);
+
+      setSuggestions(combined);
+      try {
+        if (combined.length > 0) {
+          trackEvent('view_search_results', {
+            search_term: q,
+            results: combined.length,
+          });
+        }
+      } catch {}
+      setActiveIndex(combined.length > 0 ? 0 : -1);
+    }, 180);
+
+    return () => window.clearTimeout(handle);
+  }, [searchQuery, isSearchOpen]);
+
+  // Cerrar dropdown de sugerencias al hacer click fuera del formulario de búsqueda
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (!searchFormRef.current) return;
+      if (!searchFormRef.current.contains(target)) {
+        setSuggestions([]);
+        setActiveIndex(-1);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   useEffect(() => {
     if (!navRevealPlayed) {
@@ -372,6 +549,67 @@ const NavBar: React.FC = () => {
           animation: coinPulse 2.4s ease-in-out infinite;
           border-radius: 50%;
         }
+        @keyframes cartBadgePulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+        @keyframes cartIconHover {
+          0% { transform: translateY(0) rotate(0deg); }
+          25% { transform: translateY(-2px) rotate(-2deg); }
+          50% { transform: translateY(-3px) rotate(0deg); }
+          75% { transform: translateY(-2px) rotate(2deg); }
+          100% { transform: translateY(0) rotate(0deg); }
+        }
+        .btn-cart {
+          background: linear-gradient(135deg, 
+            rgba(255,255,255,0.98) 0%, 
+            rgba(255,255,255,0.95) 50%, 
+            rgba(255,255,255,0.92) 100%);
+          border: 1.5px solid rgba(255,255,255,0.5);
+          color: #2c3e50;
+          border-radius: 16px;
+          padding: 12px 16px;
+          transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          backdrop-filter: blur(20px) saturate(1.3) brightness(1.1);
+          box-shadow: 
+            0 6px 25px rgba(0,0,0,0.08),
+            0 2px 8px rgba(0,0,0,0.04),
+            0 1px 3px rgba(0,0,0,0.06),
+            inset 0 1px 0 rgba(255,255,255,0.8),
+            inset 0 -1px 0 rgba(0,0,0,0.02);
+          position: relative;
+          overflow: visible;
+        }
+        .btn-cart:hover {
+          background: linear-gradient(135deg, 
+            rgba(255,255,255,1) 0%, 
+            rgba(255,255,255,0.98) 50%, 
+            rgba(255,255,255,0.96) 100%);
+          border-color: rgba(255,255,255,0.8);
+          transform: translateY(-4px) scale(1.03);
+          box-shadow: 
+            0 15px 40px rgba(0,0,0,0.12),
+            0 6px 16px rgba(0,0,0,0.08),
+            0 2px 8px rgba(0,0,0,0.06),
+            inset 0 1px 0 rgba(255,255,255,0.9),
+            inset 0 -1px 0 rgba(0,0,0,0.03);
+          color: #1a252f;
+        }
+        .btn-cart:hover .cart-icon {
+          animation: cartIconHover 0.7s ease-in-out;
+          color: #e74c3c;
+        }
+        .btn-cart:active {
+          transform: translateY(-1px) scale(0.98);
+          transition: all 0.15s ease;
+          box-shadow: 
+            0 6px 20px rgba(0,0,0,0.1),
+            0 2px 6px rgba(0,0,0,0.06);
+        }
+        .cart-icon {
+          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
         @media (max-width: 600px) {
           .switch-lovers {
             width: 64px !important;
@@ -405,7 +643,7 @@ const NavBar: React.FC = () => {
         role="navigation"
         aria-label="Menú principal"
       >
-        <div className="container-fluid">
+        <div className="container-fluid" ref={containerRef}>
           <div className="d-flex align-items-center navbar-flex-responsive navbar-left-group">
             <button
               className="hamburger-menu"
@@ -416,8 +654,20 @@ const NavBar: React.FC = () => {
               aria-controls="main-navbar-menu"
               ref={menuButtonRef}
             >
-              <i className="fa-solid fa-bars hamburger-fa" aria-hidden="true" />
+              <svg
+                className="hamburger-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                aria-hidden="true"
+              >
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
               <span className="visually-hidden">Abrir menú</span>
+              <span className="hamburger-fallback">
+                <i className="fa-solid fa-bars hamburger-fa" aria-hidden="true" />
+              </span>
             </button>
             {/* Orden izquierda: Cuenta, Lovers, Canje */}
             <div className="d-flex align-items-center" style={{ gap: 8 }}>
@@ -470,7 +720,15 @@ const NavBar: React.FC = () => {
           </div>
 
           {/* Logo centrado (solo desktop) */}
-          <div className="navbar-center-logo">
+          <div
+            className="navbar-center-logo"
+            ref={logoRef}
+            style={{
+              left: logoLeftPx !== null ? logoLeftPx : undefined,
+              transform: logoLeftPx !== null ? 'translate(0, -50%)' : undefined,
+              transition: 'left 0.28s ease, transform 0.28s ease'
+            }}
+          >
             <Link
               className="navbar-brand d-flex align-items-center navbar-brand-desktop"
               to="/"
@@ -500,6 +758,227 @@ const NavBar: React.FC = () => {
             {isDesktop && (
               <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="main-navbar-menu">
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                  {/* Buscador de navbar: ícono de lupa + input expansible hacia la izquierda */}
+                  <li className="nav-item navbar-search-item">
+                    <form
+                      className={`navbar-search ${isSearchOpen ? 'open' : ''}`}
+                      role="search"
+                      ref={searchFormRef}
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const q = searchQuery.trim();
+                        if (!q) return setIsSearchOpen(false);
+                        // Búsqueda global: decidir destino según matching con productos vs sucursales
+                        const normalize = (str: string) => str
+                          .toLowerCase()
+                          .normalize('NFD')
+                          .replace(/\p{Diacritic}+/gu, '');
+                        const qn = normalize(q);
+
+                        const productDatasets: Array<any[]> = [
+                          empanadas as any[],
+                          pizzas as any[],
+                          pizzasIndi as any[],
+                          fitzzas as any[],
+                          salsas as any[],
+                          postres as any[],
+                          promociones as any[],
+                        ];
+
+                        const productScore = (() => {
+                          let score = 0;
+                          for (const dataset of productDatasets) {
+                            for (const item of dataset) {
+                              const texto = [
+                                item.titulo,
+                                item.descripcion,
+                                Array.isArray(item.ingredientes) ? item.ingredientes.join(' ') : '',
+                                item.categoria,
+                              ].filter(Boolean).join(' ');
+                              if (normalize(String(texto)).includes(qn)) score++;
+                            }
+                          }
+                          return score;
+                        })();
+
+                        const branchScore = (() => {
+                          let score = 0;
+                          for (const s of sucursalesData) {
+                            const texto = [s.nombre, s.localidad, s.provincia, s.direccion].filter(Boolean).join(' ');
+                            if (normalize(String(texto)).includes(qn)) score++;
+                          }
+                          // boost si el usuario menciona palabras clave de sucursales
+                          const branchHints = ['sucursal', 'local', 'tienda', 'direccion', 'dirección', 'mapa'];
+                          if (branchHints.some(h => qn.includes(normalize(h)))) score += 2;
+                          return score;
+                        })();
+
+                        const destination = branchScore > productScore ? 'sucursales' : 'productos';
+                        try {
+                          trackEvent('search', {
+                            search_term: q,
+                            destination
+                          });
+                        } catch {}
+                        if (destination === 'sucursales') {
+                          navigate(`/sucursales?q=${encodeURIComponent(q)}`);
+                        } else {
+                          navigate(`/productos?search=${encodeURIComponent(q)}`);
+                        }
+                        setIsSearchOpen(false);
+                      }}
+                    >
+                      <button
+                        type="button"
+                        className="btn btn-link p-0 navbar-search-toggle"
+                        aria-label={isSearchOpen ? 'Cerrar búsqueda' : 'Buscar'}
+                        title={isSearchOpen ? 'Cerrar búsqueda' : 'Buscar'}
+                        aria-expanded={isSearchOpen}
+                        onClick={() => {
+                          const hasQuery = searchQuery.trim().length > 0;
+                          if (isSearchOpen && hasQuery) {
+                            try { searchFormRef.current?.requestSubmit(); } catch { /* fallback abajo */ }
+                            return;
+                          }
+                          setIsSearchOpen((prev) => {
+                            const next = !prev;
+                            if (!next) setSearchQuery('');
+                            return next;
+                          });
+                        }}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                      </button>
+                      <input
+                        ref={searchInputRef}
+                        type="search"
+                        className="navbar-search-input"
+                        placeholder={'Buscar productos o sucursales...'}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (!isSearchOpen) return;
+                          if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            if (suggestions.length === 0) return;
+                            setActiveIndex((idx) => (idx + 1) % suggestions.length);
+                          } else if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            if (suggestions.length === 0) return;
+                            setActiveIndex((idx) => (idx - 1 + suggestions.length) % suggestions.length);
+                          } else if (e.key === 'Enter') {
+                            // Si hay sugerencia activa, seleccionar; si no, dejar que onSubmit maneje
+                            if (activeIndex >= 0 && activeIndex < suggestions.length) {
+                              e.preventDefault();
+                              const s = suggestions[activeIndex];
+                              if (s.type === 'sucursal') {
+                                navigate(`/sucursales?q=${encodeURIComponent(s.query)}`);
+                              } else {
+                                navigate(`/productos?search=${encodeURIComponent(s.query)}`);
+                              }
+                              setIsSearchOpen(false);
+                              setSuggestions([]);
+                              setActiveIndex(-1);
+                            }
+                          } else if (e.key === 'Escape') {
+                            if (suggestions.length > 0) {
+                              setSuggestions([]);
+                              setActiveIndex(-1);
+                            } else {
+                              setIsSearchOpen(false);
+                            }
+                          }
+                        }}
+                        aria-label="Campo de búsqueda"
+                      />
+                      {isSearchOpen && suggestions.length > 0 && (
+                        <div
+                          role="listbox"
+                          aria-label="Sugerencias de búsqueda"
+                          className="navbar-search-suggestions"
+                          style={{
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            right: 0,
+                            background: '#111',
+                            border: '1px solid rgba(255,255,255,0.12)',
+                            borderRadius: 8,
+                            marginTop: 8,
+                            padding: 6,
+                            zIndex: 1200,
+                            boxShadow: '0 8px 24px rgba(0,0,0,0.35)'
+                          }}
+                        >
+                          {suggestions.map((s, idx) => (
+                            <div
+                              key={s.id}
+                              role="option"
+                              aria-selected={idx === activeIndex}
+                              onMouseEnter={() => setActiveIndex(idx)}
+                              onMouseDown={(e) => e.preventDefault()}
+                              onClick={() => {
+                              if (s.type === 'sucursal') {
+                                  navigate(`/sucursales?q=${encodeURIComponent(s.query)}`);
+                                } else {
+                                  navigate(`/productos?search=${encodeURIComponent(s.query)}`);
+                                }
+                              try {
+                                trackEvent('select_item', {
+                                  item_list_name: 'navbar_search_suggestions',
+                                  content_type: s.type,
+                                  item_name: s.label,
+                                  search_term: searchQuery.trim(),
+                                });
+                              } catch {}
+                                setIsSearchOpen(false);
+                                setSuggestions([]);
+                                setActiveIndex(-1);
+                              }}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                gap: 12,
+                                padding: '10px 12px',
+                                cursor: 'pointer',
+                                borderRadius: 6,
+                                background: idx === activeIndex ? 'rgba(255,255,255,0.08)' : 'transparent',
+                                color: '#fff'
+                              }}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+                                <span style={{ opacity: 0.9, display: 'inline-flex', alignItems: 'center' }}>
+                                  {s.type === 'sucursal' ? (
+                                    '📍'
+                                  ) : String(s.meta || '').toLowerCase().includes('empanada') ? (
+                                    '🥟'
+                                  ) : String(s.meta || '').toLowerCase().includes('salsa') ? (
+                                    '🫕'
+                                  ) : String(s.meta || '').toLowerCase().includes('indi') ? (
+                                    '🍕'
+                                  ) : (
+                                    <FullPizzaIcon size={16} />
+                                  )}
+                                </span>
+                                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                                  <span style={{ fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.label}</span>
+                                  {s.meta && (
+                                    <span style={{ fontSize: 12, opacity: 0.8, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.meta}</span>
+                                  )}
+                                </div>
+                              </div>
+                              <span style={{ fontSize: 12, opacity: 0.7 }}>{s.type === 'sucursal' ? 'Sucursales' : 'Productos'}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {/* Botón de cerrar removido: la lupa ahora abre/cierra */}
+                    </form>
+                  </li>
                   {navLinks.map((link, idx) => (
                     <li key={link.path} className="nav-item">
                       <Link
@@ -544,26 +1023,181 @@ const NavBar: React.FC = () => {
                   {/* Botón de carrito: al lado del botón de "Hacé tu pedido" */}
                   <li className="nav-item d-flex align-items-center">
                     <button
-                      className="btn btn-sm btn-light position-relative ms-2"
+                      className="btn btn-sm btn-cart position-relative ms-2"
                       onClick={() => setIsCartOpen(true)}
                       aria-label="Abrir carrito"
                       id="nav-cart-button"
                     >
-                      <i className="fa-solid fa-cart-shopping"></i>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="cart-icon"
+                      >
+                        {/* Gradientes premium para un look profesional */}
+                        <defs>
+                          <linearGradient id="cartMainStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="currentColor" stopOpacity="1"/>
+                            <stop offset="50%" stopColor="currentColor" stopOpacity="0.95"/>
+                            <stop offset="100%" stopColor="currentColor" stopOpacity="0.85"/>
+                          </linearGradient>
+                          <linearGradient id="cartBodyFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="currentColor" stopOpacity="0.12"/>
+                            <stop offset="100%" stopColor="currentColor" stopOpacity="0.06"/>
+                          </linearGradient>
+                          <radialGradient id="wheelGradient" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stopColor="currentColor" stopOpacity="0.2"/>
+                            <stop offset="70%" stopColor="currentColor" stopOpacity="0.8"/>
+                            <stop offset="100%" stopColor="currentColor" stopOpacity="1"/>
+                          </radialGradient>
+                          <filter id="softGlow">
+                            <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+                            <feMerge> 
+                              <feMergeNode in="coloredBlur"/>
+                              <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                          </filter>
+                        </defs>
+                        
+                        {/* Sombra suave del carrito */}
+                        <path 
+                          d="M3.2 3.2h2l2.27 13.4c.15.95.94 1.6 1.92 1.6h8.91c.98 0 1.77-.65 1.92-1.6L21.2 6.2H6.2" 
+                          stroke="currentColor" 
+                          strokeWidth="2.2" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round"
+                          fill="none"
+                          opacity="0.15"
+                        />
+                        
+                        {/* Cuerpo principal del carrito con elegancia */}
+                        <path 
+                          d="M3 3h2l2.27 13.4c.15.95.94 1.6 1.92 1.6h8.91c.98 0 1.77-.65 1.92-1.6L21 6H6" 
+                          stroke="url(#cartMainStroke)" 
+                          strokeWidth="2" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round"
+                          fill="none"
+                        />
+                        
+                        {/* Área interior del carrito con gradiente */}
+                        <path 
+                          d="M6 6h13.4l-1.1 6.8c-.1.6-.6 1.2-1.3 1.2H8.5L6 6z" 
+                          fill="url(#cartBodyFill)"
+                          stroke="none"
+                        />
+                        
+                        {/* Highlight interno para simular profundidad */}
+                        <path 
+                          d="M6.5 6.5h12.5l-.9 5.8c-.08.4-.4.7-.8.7H9L6.5 6.5z" 
+                          stroke="currentColor" 
+                          strokeWidth="0.5" 
+                          strokeLinecap="round"
+                          fill="none"
+                          opacity="0.3"
+                        />
+                        
+                        {/* Ruedas con diseño profesional y profundidad */}
+                        <circle 
+                          cx="9" 
+                          cy="20" 
+                          r="1.8" 
+                          fill="url(#wheelGradient)"
+                        />
+                        <circle 
+                          cx="9" 
+                          cy="20" 
+                          r="1.6" 
+                          stroke="currentColor" 
+                          strokeWidth="1.2" 
+                          fill="none"
+                          opacity="0.8"
+                        />
+                        <circle 
+                          cx="9" 
+                          cy="20" 
+                          r="0.5" 
+                          fill="currentColor"
+                        />
+                        
+                        <circle 
+                          cx="18" 
+                          cy="20" 
+                          r="1.8" 
+                          fill="url(#wheelGradient)"
+                        />
+                        <circle 
+                          cx="18" 
+                          cy="20" 
+                          r="1.6" 
+                          stroke="currentColor" 
+                          strokeWidth="1.2" 
+                          fill="none"
+                          opacity="0.8"
+                        />
+                        <circle 
+                          cx="18" 
+                          cy="20" 
+                          r="0.5" 
+                          fill="currentColor"
+                        />
+                        
+                        {/* Manija ergonómica con detalles premium */}
+                        <path 
+                          d="M3 3l.8 3.2" 
+                          stroke="currentColor" 
+                          strokeWidth="1.8" 
+                          strokeLinecap="round"
+                          opacity="0.6"
+                        />
+                        
+                        {/* Brillo sutil en el borde superior del carrito */}
+                        <path 
+                          d="M6 6h13" 
+                          stroke="currentColor" 
+                          strokeWidth="1" 
+                          strokeLinecap="round"
+                          opacity="0.4"
+                        />
+                        
+                        {/* Detalle decorativo en el lateral */}
+                        <path 
+                          d="M8 10h8M8.5 12h7" 
+                          stroke="currentColor" 
+                          strokeWidth="0.8" 
+                          strokeLinecap="round"
+                          opacity="0.2"
+                        />
+                      </svg>
                       {totalItems > 0 && (
                         <span
+                          className="cart-badge"
                           style={{
                             position: 'absolute',
-                            top: -6,
-                            right: -6,
-                            background: '#dc3545',
+                            top: '-12px',
+                            right: '-12px',
+                            background: 'linear-gradient(135deg, #ff4757, #ff3742)',
                             color: '#fff',
-                            borderRadius: 12,
-                            fontSize: 10,
-                            padding: '2px 6px',
+                            borderRadius: '50%',
+                            fontSize: '12px',
+                            padding: '0',
                             lineHeight: 1,
-                            minWidth: 18,
-                            textAlign: 'center'
+                            width: '26px',
+                            height: '26px',
+                            textAlign: 'center',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: '700',
+                            border: '3px solid #fff',
+                            boxShadow: 
+                              '0 4px 15px rgba(255,71,87,0.5), ' +
+                              '0 2px 8px rgba(0,0,0,0.2)',
+                            animation: 'cartBadgePulse 1.5s ease-in-out infinite',
+                            zIndex: 9999,
+                            pointerEvents: 'none'
                           }}
                         >
                           {totalItems}
