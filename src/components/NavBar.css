@@ -379,9 +379,14 @@
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
   margin-right: 6px; /* queda justo a la izquierda de 'Carta' */
 }
-.navbar-search-toggle:hover { opacity: 1; background: rgba(255,255,255,0.12); }
+.navbar-search-toggle:hover { opacity: 1; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.78) !important; }
+.navbar-search-toggle:hover,
+.navbar-search-toggle:focus,
+.navbar-search-toggle:active { border-color: rgba(255,255,255,0.4) !important; outline: none !important; box-shadow: none !important; }
+.btn-link.navbar-search-toggle:hover,
+.btn-link.navbar-search-toggle:focus { color: rgba(255,255,255,0.78) !important; }
 .navbar-search-toggle:active { transform: scale(0.98); }
-.navbar-search.open .navbar-search-toggle { border-color: rgba(255,215,0,0.65); box-shadow: 0 0 0 1px rgba(255,215,0,0.35) inset; }
+.navbar-search.open .navbar-search-toggle { border-color: rgba(255,255,255,0.4) !important; box-shadow: none !important; }
 
 .navbar-search-input {
   width: 0;
@@ -409,8 +414,8 @@
 /* Borde dorado dinámico al foco */
 .navbar-search-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(255,215,0,0.3), 0 8px 28px rgba(0,0,0,0.28);
-  border-color: rgba(255,215,0,0.65);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.2), 0 8px 28px rgba(0,0,0,0.28);
+  border-color: rgba(255,255,255,0.45);
 }
 
 /* Placeholder elegante */
