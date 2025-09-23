@@ -1630,3 +1630,67 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
 /* ============================================================================= */
 /* FIN DE ANIMACIONES HOVER ELEGANTES                                         */
 /* ============================================================================= */
+
+/* Hover de navbar igual al del footer (solo desktop) */
+@media (min-width: 992px) {
+  .navbar-nav .nav-link:not(.nav-link-pedir) {
+    position: relative;
+    padding-left: 1.9em !important; /* más espacio para separar el punto del texto */
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    display: inline-flex; /* asegurar alineación vertical del punto */
+    align-items: center;
+    vertical-align: middle; /* evitar que el pseudo-elemento se posicione encima */
+    line-height: 1.2; /* altura consistente */
+  }
+
+  .navbar-nav .nav-link:not(.nav-link-pedir)::before {
+    content: '';
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    margin-left: -0.7em; /* desplazar un poco más hacia la izquierda */
+    margin-right: 0.6em; /* mantener separación del texto */
+    background: transparent;
+    border-radius: 50%;
+    transform: scale(0);
+    transform-origin: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    vertical-align: middle;
+    /* Resetear máscaras/efectos previos para que no quede hueco negro */
+    -webkit-mask: none !important;
+            mask: none !important;
+    -webkit-mask-composite: initial !important;
+            mask-composite: initial !important;
+    background-clip: border-box !important;
+    padding: 0 !important;
+    inset: auto !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+
+  .navbar-nav .nav-link:not(.nav-link-pedir):hover::before {
+    background: #fff;
+    transform: scale(1);
+  }
+
+  .navbar-nav .nav-link:not(.nav-link-pedir):hover,
+  .navbar-nav .nav-link:not(.nav-link-pedir):focus {
+    color: #fff !important;
+    transform: translateX(5px) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Desactivar cualquier subrayado previo en desktop */
+  .navbar-nav .nav-link:not(.nav-link-pedir)::after,
+  .navbar-nav .nav-link:not(.nav-link-pedir):hover::after,
+  .navbar-nav .nav-link:not(.nav-link-pedir):focus::after {
+    content: none !important;
+    display: none !important;
+  }
+}
