@@ -47,10 +47,10 @@ const AppContent: React.FC = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
 
+  // Mantener overlay de carga y registrar pageview al finalizar transición
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-      // Disparar pageview cuando termina la transición de ruta
       trackPageView(location.pathname, document.title);
     }, 1000);
 

@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './LoadingSpinner.css';
-
-const burgerLoading = '/burgerLoading.png';
 
 interface LoadingSpinnerProps {
   isLoading: boolean;
@@ -12,9 +10,8 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   // Detectar mobile para usar video de carga
   const [isMobile, setIsMobile] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  // En desktop, alternar aleatoriamente entre video e imagen
-  const showVideoDesktop = useMemo(() => Math.random() < 0.5, []);
-  const isVideoActive = isMobile || showVideoDesktop;
+  // Forzar uso de video siempre; quitamos imagen de empanada
+  const isVideoActive = true;
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', onResize);
@@ -91,13 +88,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
             loop
             onCanPlay={() => { if (videoRef.current) { try { videoRef.current.playbackRate = 0.7; } catch {} } }}
           />
-        ) : (
-          <img
-            src={burgerLoading}
-            alt="Cargando Big Burger..."
-            className="spinner-image spinner-burger"
-          />
-        )}
+        ) : null}
       </div>
     </div>
   );
