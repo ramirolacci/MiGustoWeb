@@ -367,7 +367,7 @@ const Lovers = () => {
         width: '100%',
         maxWidth: 1300,
         margin: '0 auto',
-        paddingTop: '8.5rem',
+        paddingTop: '6rem',
         zIndex: 10,
         position: 'relative',
         gap: '2.5rem',
