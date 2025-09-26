@@ -493,7 +493,7 @@ const Lovers = () => {
                 opacity: 0.75,
               }}>
                 <Gift color="#ffc107" size={28} style={{ marginBottom: 10 }} />
-                <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'pre-line', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Novedades\nimpedibles</span>
+                <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'pre-line', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Novedades</span>
                 <span style={{ color: '#fff', fontWeight: 400, fontSize: '0.98rem', marginTop: 16, textAlign: 'center', display: 'block', lineHeight: 1.35, opacity: 0.92 }}>
                   Vivi experiencias unicas de sabor.
                 </span>

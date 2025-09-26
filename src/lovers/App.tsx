@@ -746,7 +746,7 @@ function App() {
               {/* Card 4 */}
               <div style={{ width: 180, minWidth: 180, maxWidth: 180, minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', border: '1.5px solid #FFD700', boxShadow: '0 2px 12px 0 rgba(255,215,0,0.10)', padding: '1.1rem 0.7rem', background: 'rgba(24,24,24,0.82)', borderRadius: 12, opacity: 0.75 }}>
                 <div style={{ width: 32, height: 32, background: 'rgba(255,215,0,0.13)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.7rem auto' }}><ChevronDown color="#FFD700" size={22} /></div>
-                <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem', whiteSpace: 'pre-line' }}>Novedades\nimpedibles</h3>
+                <h3 style={{ color: '#FFD700', fontWeight: 700, marginBottom: 7, fontSize: '1.05rem', whiteSpace: 'pre-line' }}>Novedades</h3>
                 <p style={{ color: '#fff', fontSize: '0.92rem' }}>Vivi experiencias unicas de sabor.</p>
                 </div>
             </div>
