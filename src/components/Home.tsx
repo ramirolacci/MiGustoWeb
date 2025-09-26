@@ -115,10 +115,12 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 
 function PromoCards() {
     const cards = [
+        { type: 'lovers', cta: 'Conocer más', href: '/lovers' },
         { img: '/sliders/desktop1.jpg', cta: 'Jugá y Ganá', href: 'https://pedir.migusto.com.ar/' },
         { img: '/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
-    ];
+        { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' },
+        { img: '/sliders/desktop2.jpg', cta: 'Ver producto', href: '/productos' }
+    ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
     // Carrusel infinito en desktop
     const trackRef = useRef<HTMLDivElement>(null);
@@ -204,34 +206,106 @@ function PromoCards() {
                             position: 'relative',
                             width: '100%',
                             aspectRatio: '16 / 9',
-                            background: 'radial-gradient(circle at 30% 20%, #1a1a1a, #0b0b0b)',
+                            background: card.type === 'lovers'
+                              ? 'linear-gradient(135deg, rgba(255,215,0,0.18), rgba(255,165,0,0.08))'
+                              : 'radial-gradient(circle at 30% 20%, #1a1a1a, #0b0b0b)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             borderRadius: 18,
                             overflow: 'hidden'
                           }}>
-                            <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} loading="lazy" />
-                            <a
-                              href={card.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="btn"
-                              style={{
-                                position: 'absolute',
-                                left: 24,
-                                bottom: 24,
-                                backgroundColor: '#ffbf1f',
-                                borderColor: '#ffbf1f',
-                                color: '#1b1b1b',
-                                fontWeight: 700,
-                                padding: '14px 24px',
-                                borderRadius: 16,
-                                textDecoration: 'none'
-                              }}
-                            >
-                              {card.cta}
-                            </a>
+                            {card.type === 'lovers' ? (
+                              <>
+                                {/* Lluvia de empanadas */}
+                                <div style={{ 
+                                  position: 'absolute', 
+                                  inset: 0, 
+                                  overflow: 'hidden', 
+                                  pointerEvents: 'none',
+                                  zIndex: 1
+                                }}>
+                                  {Array.from({ length: 15 }).map((_, i) => {
+                                    const left = Math.random() * 100;
+                                    const size = 40 + Math.random() * 30;
+                                    const delay = -Math.random() * 8;
+                                    const duration = 6 + Math.random() * 8;
+                                    const empanadas = [
+                                      'https://i.postimg.cc/9Ftb8mKd/cheese-burger.png',
+                                      'https://i.postimg.cc/9FTt4mc3/burger.png',
+                                      'https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png',
+                                      'https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png'
+                                    ];
+                                    const img = empanadas[Math.floor(Math.random() * empanadas.length)];
+                                    
+                                    return (
+                                      <img
+                                        key={i}
+                                        src={img}
+                                        alt="empanada"
+                                        style={{
+                                          position: 'absolute',
+                                          left: `${left}%`,
+                                          width: size,
+                                          height: size,
+                                          objectFit: 'contain',
+                                          animation: `empanada-fall-desktop ${duration}s linear infinite`,
+                                          animationDelay: `${delay}s`,
+                                          opacity: 0.6,
+                                          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                                        }}
+                                      />
+                                    );
+                                  })}
+                                </div>
+                                
+                                {/* Contenido de la card */}
+                                <div style={{ position: 'absolute', inset: 0, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', zIndex: 2 }}>
+                                  <div style={{ color: '#ffbf1f', fontWeight: 800, fontSize: '1.6rem', marginBottom: 6 }}>Unite a Lovers Club</div>
+                                  <div style={{ color: '#fff', opacity: 0.9, marginBottom: 12 }}>Beneficios y promos exclusivas</div>
+                                  <a
+                                    href={card.href}
+                                    className="btn"
+                                    style={{
+                                      alignSelf: 'flex-start',
+                                      backgroundColor: '#ffbf1f',
+                                      borderColor: '#ffbf1f',
+                                      color: '#1b1b1b',
+                                      fontWeight: 700,
+                                      padding: '12px 20px',
+                                      borderRadius: 14,
+                                      textDecoration: 'none'
+                                    }}
+                                  >
+                                    {card.cta}
+                                  </a>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} loading="lazy" />
+                                <a
+                                  href={card.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="btn"
+                                  style={{
+                                    position: 'absolute',
+                                    left: 24,
+                                    bottom: 24,
+                                    backgroundColor: '#ffbf1f',
+                                    borderColor: '#ffbf1f',
+                                    color: '#1b1b1b',
+                                    fontWeight: 700,
+                                    padding: '14px 24px',
+                                    borderRadius: 16,
+                                    textDecoration: 'none'
+                                  }}
+                                >
+                                  {card.cta}
+                                </a>
+                              </>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -278,6 +352,34 @@ function PromoCards() {
               
               .home-card:hover img {
                 transform: scale(1.02);
+              }
+              
+              /* Animación de lluvia de empanadas para desktop */
+              @keyframes empanada-fall-desktop {
+                0% {
+                  opacity: 0;
+                  transform: translateY(-100px) rotate(0deg) scale(0.8);
+                }
+                5% {
+                  opacity: 0.6;
+                  transform: translateY(-80px) rotate(45deg) scale(0.9);
+                }
+                15% {
+                  opacity: 0.8;
+                  transform: translateY(-40px) rotate(90deg) scale(1);
+                }
+                85% {
+                  opacity: 0.8;
+                  transform: translateY(calc(100% + 40px)) rotate(315deg) scale(1);
+                }
+                95% {
+                  opacity: 0.4;
+                  transform: translateY(calc(100% + 80px)) rotate(350deg) scale(0.9);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translateY(calc(100% + 100px)) rotate(360deg) scale(0.8);
+                }
               }
             `}</style>
         </section>
