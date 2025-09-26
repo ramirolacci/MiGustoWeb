@@ -658,8 +658,13 @@ const Lovers = () => {
                      Quiero recibir novedades y beneficios exclusivos.
                    </label>
                  </div>
-                  {/* Texto de términos y condiciones debajo del checkbox */}
-                  <div style={{ marginTop: 18, marginBottom: 0 }}>
+                  {/* Texto de términos y condiciones se moverá a la derecha (columna del botón) */}
+                </div>
+                <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
+                  {/* Botón Unirme ahora en la segunda columna, sin cambiar tamaño */}
+                  <button type="submit" className="btn-ver-mas" style={{ marginTop: 12 }}>Unirme ahora</button>
+                  {/* Texto de términos y condiciones posicionado a la derecha */}
+                  <div style={{ marginTop: 26, marginBottom: 0, textAlign: 'right', width: '100%', paddingRight: '38px' }}>
                     <span
                       style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer', fontSize: '1rem' }}
                       onClick={() => setShowModal(true)}
@@ -667,10 +672,6 @@ const Lovers = () => {
                       Ver términos y condiciones.
                     </span>
                   </div>
-                </div>
-                <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
-                  {/* Botón Unirme ahora en la segunda columna, sin cambiar tamaño */}
-                  <button type="submit" className="btn-ver-mas" style={{ marginTop: 18 }}>Unirme ahora</button>
                 </div>
               </div>
             </form>
