@@ -1214,17 +1214,6 @@ const NavBar: React.FC = () => {
             className={`side-menu ${isMenuOpen ? 'open' : ''}`}
             id="side-menu"
           >
-            {/* Botón cerrar menú hamburguesa */}
-            <button
-              className="side-menu-close"
-              aria-label="Cerrar menú"
-              onClick={() => {
-                setIsMenuOpen(false);
-                // setHoveredMenu(null); // Eliminado
-              }}
-            >
-              &times;
-            </button>
             <div className="side-menu-left side-menu-centered">
               <ul className="side-menu-list flowing-menu-list">
                 {sideMenuLinks.map((link) => (
