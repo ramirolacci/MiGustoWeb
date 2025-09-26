@@ -1649,11 +1649,19 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
     padding-left: 1.9em !important; /* más espacio para separar el punto del texto */
     background: transparent !important;
     box-shadow: none !important;
-    transform: none !important;
+    transform: none !important; /* evitar conflictos con hover */
+    top: 6px; /* bajar visualmente sin cambiar altura del navbar */
     display: inline-flex; /* asegurar alineación vertical del punto */
     align-items: center;
     vertical-align: middle; /* evitar que el pseudo-elemento se posicione encima */
     line-height: 1.2; /* altura consistente */
+    margin: 0 0.15rem !important; /* juntar aún más los links */
+    padding-right: 0.5rem !important; /* reducir espacio interno derecho */
+  }
+
+  /* Asegurar desplazamiento del contenedor del link */
+  .navbar-nav > li.nav-item { /* revertir altura del navbar */
+    margin-top: 0 !important;
   }
 
   .navbar-nav .nav-link:not(.nav-link-pedir)::before {
