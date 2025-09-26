@@ -125,28 +125,15 @@ function PromoCards() {
     const setRef = useRef<HTMLDivElement>(null);
     const isDesktopRef = useRef<boolean>(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
     const posRef = useRef<number>(0);
-    const setWidthRef = useRef<number>(0);
     const rafRef = useRef<number | null>(null);
     const lastTsRef = useRef<number>(0);
     const pausedRef = useRef<boolean>(false);
 
-    const recomputeSetWidth = () => {
-        const track = trackRef.current;
-        const set = setRef.current;
-        if (!track || !set) return;
-        const styles = window.getComputedStyle(track);
-        const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
-        const base = set.getBoundingClientRect().width;
-        setWidthRef.current = base + gap; // incluir separación entre sets
-    };
-
     useEffect(() => {
         const onResize = () => {
             isDesktopRef.current = window.innerWidth >= 1024;
-            recomputeSetWidth();
         };
         window.addEventListener('resize', onResize);
-        recomputeSetWidth();
         return () => window.removeEventListener('resize', onResize);
     }, []);
 
@@ -162,9 +149,26 @@ function PromoCards() {
             if (!pausedRef.current) {
                 const speed = 80; // px/s (más fluido)
                 posRef.current += (speed * dt) / 1000;
-                const setWidth = setWidthRef.current || 0;
-                if (setWidth > 0 && posRef.current >= setWidth) posRef.current -= setWidth;
-                trackRef.current.style.transform = `translateX(-${posRef.current}px)`;
+                // Reordenar el primer elemento al final cuando se consume su ancho para un loop infinito sin duplicados
+                const setEl = setRef.current;
+                if (setEl) {
+                    const styles = window.getComputedStyle(setEl);
+                    const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
+                    let first = setEl.firstElementChild as HTMLElement | null;
+                    let guard = 0;
+                    while (first && guard < 3) { // safety guard
+                        const w = first.getBoundingClientRect().width;
+                        if (posRef.current >= w + gap - 0.5) {
+                            posRef.current -= (w + gap);
+                            setEl.appendChild(first);
+                            first = setEl.firstElementChild as HTMLElement | null;
+                            guard++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                trackRef.current.style.transform = `translate3d(-${Math.round(posRef.current)}px, 0, 0)`;
             }
             rafRef.current = requestAnimationFrame(step);
         };
@@ -177,8 +181,6 @@ function PromoCards() {
                 <div
                   className="home-cards-carousel"
                   ref={trackRef}
-                  onMouseEnter={() => { pausedRef.current = true; }}
-                  onMouseLeave={() => { pausedRef.current = false; }}
                   style={{ display: 'flex', gap: 32, alignItems: 'stretch', willChange: 'transform' }}
                 >
                     {/* Set 1 */}
@@ -234,59 +236,7 @@ function PromoCards() {
                         </div>
                       ))}
                     </div>
-                    {/* Set 2 (clon) */}
-                    <div aria-hidden="true" style={{ display: 'flex', gap: 32 }}>
-                      {cards.map((card, idx) => (
-                        <div
-                          key={`set2-${idx}`}
-                          className="home-card sr-card"
-                          style={{
-                            borderRadius: 20,
-                            overflow: 'visible',
-                            background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04))',
-                            padding: 2,
-                            border: '1px solid rgba(255,255,255,0.08)',
-                            boxShadow: '0 16px 40px rgba(0,0,0,0.25)',
-                            minWidth: '380px',
-                            flexShrink: 0
-                          }}
-                        >
-                          <div style={{
-                            position: 'relative',
-                            width: '100%',
-                            aspectRatio: '16 / 9',
-                            background: 'radial-gradient(circle at 30% 20%, #1a1a1a, #0b0b0b)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: 18,
-                            overflow: 'hidden'
-                          }}>
-                            <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} loading="lazy" />
-                            <a
-                              href={card.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="btn"
-                              style={{
-                                position: 'absolute',
-                                left: 24,
-                                bottom: 24,
-                                backgroundColor: '#ffbf1f',
-                                borderColor: '#ffbf1f',
-                                color: '#1b1b1b',
-                                fontWeight: 700,
-                                padding: '14px 24px',
-                                borderRadius: 16,
-                                textDecoration: 'none'
-                              }}
-                            >
-                              {card.cta}
-                            </a>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    {/* Set 2 eliminado: el loop es real reordenando elementos */}
                 </div>
             </div>
             <style>{`
