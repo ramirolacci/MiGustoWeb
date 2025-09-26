@@ -434,6 +434,7 @@
   width: 40px;
   height: 40px;
   margin-right: 6px;
+  margin-left: 12px; /* desplazar un poco hacia la derecha */
   position: relative;
   z-index: 10001;
   color: #ffffff; /* asegura el color del ícono via currentColor */
@@ -677,6 +678,11 @@
 /* Ajustes para el navbar */
 .navbar {
   padding: 10px 20px;
+}
+
+/* Mover ligeramente a la izquierda el bloque de perfil (icono + texto "Mi cuenta") */
+.navbar-profile {
+  margin-left: -8px; /* ajustar desplazamiento sutil hacia la izquierda */
 }
 
 /* Contenedor relativo para centrar el logo */
