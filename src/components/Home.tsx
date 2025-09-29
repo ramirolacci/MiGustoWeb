@@ -118,8 +118,7 @@ function PromoCards() {
         { type: 'lovers', cta: 'Conocer más', href: '/lovers' },
         { img: '/sliders/desktop1.jpg', cta: 'Jugá y Ganá', href: 'https://pedir.migusto.com.ar/' },
         { img: '/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' },
-        { img: '/sliders/desktop2.jpg', cta: 'Ver producto', href: '/productos' }
+        { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
     ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
     // Carrusel infinito en desktop
@@ -149,7 +148,7 @@ function PromoCards() {
             const dt = Math.min(64, ts - (lastTsRef.current || ts));
             lastTsRef.current = ts;
             if (!pausedRef.current) {
-                const speed = 80; // px/s (más fluido)
+                const speed = 40; // px/s (más lento para ver todas las cards)
                 posRef.current += (speed * dt) / 1000;
                 // Reordenar el primer elemento al final cuando se consume su ancho para un loop infinito sin duplicados
                 const setEl = setRef.current;
@@ -158,7 +157,7 @@ function PromoCards() {
                     const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
                     let first = setEl.firstElementChild as HTMLElement | null;
                     let guard = 0;
-                    while (first && guard < 3) { // safety guard
+                    while (first && guard < 2) { // safety guard más conservador
                         const w = first.getBoundingClientRect().width;
                         if (posRef.current >= w + gap - 0.5) {
                             posRef.current -= (w + gap);
