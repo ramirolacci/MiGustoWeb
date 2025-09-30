@@ -419,8 +419,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(5px)',
-                WebkitBackdropFilter: 'blur(5px)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 opacity: 0.75,
               }}>
                 <Percent color="#ffc107" size={28} style={{ marginBottom: 10 }} />
@@ -442,8 +442,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(5px)',
-                WebkitBackdropFilter: 'blur(5px)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 opacity: 0.75,
               }}>
                 <Users color="#ffc107" size={28} style={{ marginBottom: 10 }} />
@@ -465,8 +465,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(5px)',
-                WebkitBackdropFilter: 'blur(5px)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 opacity: 0.75,
               }}>
                 <Crown color="#ffc107" size={28} style={{ marginBottom: 10 }} />
@@ -488,8 +488,8 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(5px)',
-                WebkitBackdropFilter: 'blur(5px)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 opacity: 0.75,
               }}>
                 <Gift color="#ffc107" size={28} style={{ marginBottom: 10 }} />
@@ -503,7 +503,7 @@ const Lovers = () => {
         </div>
         {/* Formulario alineado a la derecha */}
         <div className="lovers-form" style={{ flex: '0 1 700px', minWidth: 420, maxWidth: 700 }}>
-          <div className="contacto-form-container" style={{ margin: 0, background: 'rgba(30,30,30,0.65)', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)', marginBottom: 48 }}>
+          <div className="contacto-form-container" style={{ margin: 0, background: 'rgba(30,30,30,0.65)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', marginBottom: 48 }}>
             <h2 style={{ color: '#ffc107', textAlign: 'center', marginBottom: 8, fontWeight: 700, fontSize: '2rem' }}>Mi Gusto Lovers</h2>
             <p style={{ color: '#fff', textAlign: 'center', marginBottom: 34, fontSize: '1.05rem', opacity: 0.92 }}>
               Completa el siguiente formulario para ponerte en contacto con Mi Gusto Lovers.
@@ -663,7 +663,7 @@ const Lovers = () => {
                 <div className="form-group half-width" style={{ minWidth: 260, maxWidth: 400 }}>
                   {/* Botón Unirme ahora en la segunda columna, sin cambiar tamaño */}
                   <button type="submit" className="btn-ver-mas" style={{ marginTop: 12 }}>Unirme ahora</button>
-                  {/* Texto de términos y condiciones posicionado a la derecha */}
+                  {/* Texto de términos y condiciones posicionado a la derecha en desktop, centrado en mobile */}
                   <div style={{ marginTop: 26, marginBottom: 0, textAlign: 'right', width: '100%', paddingRight: '38px' }}>
                     <span
                       style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer', fontSize: '1rem' }}
@@ -684,6 +684,15 @@ const Lovers = () => {
         @media (max-width: 900px) {
           .terminos-desktop { display: none !important; }
           .terminos-mobile { display: block !important; }
+        }
+        
+        /* Centrar texto de términos y condiciones en mobile */
+        @media (max-width: 900px) {
+          .lovers-form .form-group:last-child div {
+            text-align: center !important;
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+          }
         }
       `}</style>
       <Footer />
