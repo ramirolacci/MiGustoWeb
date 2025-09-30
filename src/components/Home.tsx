@@ -121,14 +121,14 @@ function PromoCards() {
         { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
     ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
-    // Carrusel infinito en desktop
+    // Carrusel con arrastre manual
     const trackRef = useRef<HTMLDivElement>(null);
     const setRef = useRef<HTMLDivElement>(null);
     const isDesktopRef = useRef<boolean>(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
     const posRef = useRef<number>(0);
-    const rafRef = useRef<number | null>(null);
-    const lastTsRef = useRef<number>(0);
-    const pausedRef = useRef<boolean>(false);
+    const isDraggingRef = useRef<boolean>(false);
+    const startXRef = useRef<number>(0);
+    const startPosRef = useRef<number>(0);
 
     useEffect(() => {
         const onResize = () => {
@@ -138,51 +138,99 @@ function PromoCards() {
         return () => window.removeEventListener('resize', onResize);
     }, []);
 
-    useEffect(() => {
-        const step = (ts: number) => {
-            if (!trackRef.current || !isDesktopRef.current) {
-                rafRef.current = requestAnimationFrame(step);
-                lastTsRef.current = ts;
-                return;
-            }
-            const dt = Math.min(64, ts - (lastTsRef.current || ts));
-            lastTsRef.current = ts;
-            if (!pausedRef.current) {
-                const speed = 40; // px/s (más lento para ver todas las cards)
-                posRef.current += (speed * dt) / 1000;
-                // Reordenar el primer elemento al final cuando se consume su ancho para un loop infinito sin duplicados
-                const setEl = setRef.current;
-                if (setEl) {
-                    const styles = window.getComputedStyle(setEl);
-                    const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
-                    let first = setEl.firstElementChild as HTMLElement | null;
-                    let guard = 0;
-                    while (first && guard < 2) { // safety guard más conservador
-                        const w = first.getBoundingClientRect().width;
-                        if (posRef.current >= w + gap - 0.5) {
-                            posRef.current -= (w + gap);
-                            setEl.appendChild(first);
-                            first = setEl.firstElementChild as HTMLElement | null;
-                            guard++;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-                trackRef.current.style.transform = `translate3d(-${Math.round(posRef.current)}px, 0, 0)`;
-            }
-            rafRef.current = requestAnimationFrame(step);
-        };
-        rafRef.current = requestAnimationFrame(step);
-        return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-    }, []);
+    // Funciones para manejar el arrastre
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!isDesktopRef.current) return;
+        isDraggingRef.current = true;
+        startXRef.current = e.clientX;
+        startPosRef.current = posRef.current;
+        e.preventDefault();
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDraggingRef.current || !trackRef.current || !setRef.current) return;
+        
+        const deltaX = e.clientX - startXRef.current;
+        const newPos = startPosRef.current + deltaX;
+        
+        // Aplicar límites para evitar arrastrar demasiado lejos
+        const setEl = setRef.current;
+        const containerEl = trackRef.current.parentElement;
+        if (!containerEl) return;
+        
+        const styles = window.getComputedStyle(setEl);
+        const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
+        const containerWidth = containerEl.getBoundingClientRect().width;
+        const totalCardsWidth = Array.from(setEl.children).reduce((total, child) => {
+            return total + (child as HTMLElement).getBoundingClientRect().width + gap;
+        }, -gap); // -gap porque el último elemento no tiene gap después
+        
+        // Permitir arrastrar hasta que la última card sea completamente visible
+        const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth);
+        
+        posRef.current = Math.max(-maxScrollDistance, Math.min(0, newPos));
+        trackRef.current.style.transform = `translate3d(${Math.round(posRef.current)}px, 0, 0)`;
+    };
+
+    const handleMouseUp = () => {
+        isDraggingRef.current = false;
+    };
+
+    const handleMouseLeave = () => {
+        isDraggingRef.current = false;
+    };
+
+    // Funciones para manejar touch en dispositivos móviles
+    const handleTouchStart = (e: React.TouchEvent) => {
+        if (isDesktopRef.current) return;
+        isDraggingRef.current = true;
+        startXRef.current = e.touches[0].clientX;
+        startPosRef.current = posRef.current;
+        e.preventDefault();
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (!isDraggingRef.current || !trackRef.current || !setRef.current || isDesktopRef.current) return;
+        
+        const deltaX = e.touches[0].clientX - startXRef.current;
+        const newPos = startPosRef.current + deltaX;
+        
+        // Aplicar límites para evitar arrastrar demasiado lejos
+        const setEl = setRef.current;
+        const containerEl = trackRef.current.parentElement;
+        if (!containerEl) return;
+        
+        const styles = window.getComputedStyle(setEl);
+        const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
+        const containerWidth = containerEl.getBoundingClientRect().width;
+        const totalCardsWidth = Array.from(setEl.children).reduce((total, child) => {
+            return total + (child as HTMLElement).getBoundingClientRect().width + gap;
+        }, -gap); // -gap porque el último elemento no tiene gap después
+        
+        // Permitir arrastrar hasta que la última card sea completamente visible
+        const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth);
+        
+        posRef.current = Math.max(-maxScrollDistance, Math.min(0, newPos));
+        trackRef.current.style.transform = `translate3d(${Math.round(posRef.current)}px, 0, 0)`;
+    };
+
+    const handleTouchEnd = () => {
+        isDraggingRef.current = false;
+    };
     return (
         <section className="home-cards" style={{ padding: '56px 16px', overflow: 'hidden' }}>
             <div style={{ maxWidth: 1440, margin: '0 auto' }}>
                 <div
                   className="home-cards-carousel"
                   ref={trackRef}
-                  style={{ display: 'flex', gap: 32, alignItems: 'stretch', willChange: 'transform' }}
+                  style={{ display: 'flex', gap: 32, alignItems: 'stretch', willChange: 'transform', cursor: 'grab' }}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseLeave}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
                     {/* Set 1 */}
                     <div ref={setRef} style={{ display: 'flex', gap: 32 }}>
@@ -314,7 +362,14 @@ function PromoCards() {
             </div>
             <style>{`
               .home-cards-carousel {
-                /* Animación impulsada por JS (requestAnimationFrame) para pasarela infinita en desktop */
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+              }
+              
+              .home-cards-carousel:active {
+                cursor: grabbing;
               }
               
               .home-card { 
