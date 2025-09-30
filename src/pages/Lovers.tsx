@@ -316,7 +316,7 @@ const Lovers = () => {
       <style>{`
         @media (max-width: 900px) {
           .navbar { display: none !important; }
-          .lovers-flex { padding-top: 1rem !important; }
+          .lovers-flex { padding-top: 0 !important; }
         }
       `}</style>
       <style>{`

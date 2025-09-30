@@ -66,19 +66,37 @@ const Account: React.FC = () => {
         .card-elevated { background: #ffffff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 26px rgba(0,0,0,0.12); border-radius: 16px; }
         .list-clean .list-group-item { padding: 14px 16px; display: flex; align-items: center; }
         .list-clean .list-group-item + .list-group-item { border-top: 1px solid rgba(0,0,0,0.06); }
-        .heading-dark { color: #0f0f0f; }
+        .heading-dark { color: #ffffff; }
         .muted { color: #666; }
         /* Offset para evitar solaparse con el navbar fijo */
         .account-offset { margin-top: 128px; }
         @media (min-width: 992px) {
           .account-offset { margin-top: 64px; }
         }
+        
+        /* Reducir margen superior en mobile para subir el contenido */
+        @media (max-width: 991px) {
+          .account-offset { margin-top: 45px !important; }
+        }
+        
+        /* Asegurar bordes redondeados en mobile para el cuadro de usuario */
+        @media (max-width: 991px) {
+          .card-elevated {
+            border-radius: 16px !important;
+          }
+          .card-elevated .user-info-section {
+            border-radius: 16px 16px 0 0 !important;
+          }
+          .card-elevated .user-buttons-section {
+            border-radius: 0 0 16px 16px !important;
+          }
+        }
       `}</style>
       <div className="row g-4 account-max align-items-start">
         <div className="col-12 col-lg-4 account-offset">
           {/* Tarjeta amarilla */}
           <div className="card-elevated p-0">
-            <div style={{ background: '#ffbf1f', padding: 16, position: 'relative', minHeight: 132 }}>
+            <div className="user-info-section" style={{ background: '#ffbf1f', padding: 16, position: 'relative', minHeight: 132, borderRadius: '16px 16px 0 0' }}>
               <div style={{ fontWeight: 800, fontSize: 14, color: '#2b2100', opacity: 0.9 }}>Hola</div>
               <div style={{ fontWeight: 800, fontSize: 20, color: '#2b2100' }}>{firstName}</div>
               <div style={{ fontSize: 12, color: '#5b4a00', opacity: 0.75 }}>MgID: {mgid}</div>
@@ -89,7 +107,7 @@ const Account: React.FC = () => {
                 style={{ position: 'absolute', right: 16, top: 16, width: 96, height: 96, background: '#fff', borderRadius: 12 }}
               />
             </div>
-            <div className="list-group list-group-flush list-clean">
+            <div className="list-group list-group-flush list-clean user-buttons-section" style={{ borderRadius: '0 0 16px 16px' }}>
               <button className="list-group-item list-group-item-action" onClick={() => datosRef.current?.scrollIntoView({ behavior: 'smooth' })}>
                 <span className="me-3">📄</span>
                 <span>Datos personales</span>

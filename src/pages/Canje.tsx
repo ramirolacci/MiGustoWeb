@@ -153,6 +153,7 @@ const Canje: React.FC = () => {
         }
         @media (max-width: 991.98px) {
           .canje-points-abs { position: static; margin-left: auto; margin-top: 12px; }
+          .canje-container { margin-top: 32px !important; }
         }
       `}</style>
       <div className="d-flex flex-wrap align-items-center justify-content-between mb-4 canje-header">
