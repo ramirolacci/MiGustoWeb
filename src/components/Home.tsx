@@ -382,6 +382,36 @@ function PromoCards() {
                 cursor: grabbing;
               }
               
+              /* Estilos de hover para botones */
+              .btn:hover {
+                color: #fff !important;
+                transition: color 0.3s ease;
+              }
+              
+              .btn:hover {
+                background-color: #ffbf1f !important;
+                border-color: #ffbf1f !important;
+                color: #fff !important;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(255, 191, 31, 0.3);
+                transition: all 0.3s ease;
+              }
+              
+              /* Estilos específicos para el botón Delivery (btn-outline-light) */
+              .btn-outline-light:hover {
+                background-color: #fff !important;
+                border-color: #fff !important;
+                color: #000 !important;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease;
+              }
+              
+              /* Estilos para el triángulo 3D del iPhone */
+              .iphone-triangle-bg {
+                /* Sin animación - triángulo estático */
+              }
+              
               .home-card { 
                 min-width: 350px;
                 max-width: 500px;
@@ -726,8 +756,27 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="home-app-iphone iphone-reveal-container">
-                    <IphoneWhatsapp />
+                <div className="home-app-iphone iphone-reveal-container" style={{ position: 'relative' }}>
+                    {/* Triángulo amarillo de fondo para efecto 3D */}
+                    <div 
+                        className="iphone-triangle-bg"
+                        style={{
+                            position: 'absolute',
+                            top: '55%',
+                            left: '35%',
+                            transform: 'translate(-50%, -50%) rotate(-20deg) skew(-5deg, 3deg)',
+                            width: '800px',
+                            height: '700px',
+                            background: '#ffbf1f',
+                            clipPath: 'polygon(30% 10%, 95% 45%, 25% 95%)',
+                            zIndex: 1,
+                            opacity: 0.9,
+                            boxShadow: '0 0 40px rgba(255, 191, 31, 0.6)'
+                        }}
+                    />
+                    <div style={{ position: 'relative', zIndex: 2 }}>
+                        <IphoneWhatsapp />
+                    </div>
                 </div>
             </section>
         </div>
