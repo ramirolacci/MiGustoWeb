@@ -123,7 +123,6 @@ function PromoCards() {
 
     // Carrusel con arrastre manual
     const trackRef = useRef<HTMLDivElement>(null);
-    const setRef = useRef<HTMLDivElement>(null);
     const isDesktopRef = useRef<boolean>(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
     const posRef = useRef<number>(0);
     const isDraggingRef = useRef<boolean>(false);
@@ -148,25 +147,32 @@ function PromoCards() {
     };
 
     const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDraggingRef.current || !trackRef.current || !setRef.current) return;
+        if (!isDraggingRef.current || !trackRef.current) return;
         
         const deltaX = e.clientX - startXRef.current;
         const newPos = startPosRef.current + deltaX;
         
-        // Aplicar límites para evitar arrastrar demasiado lejos
-        const setEl = setRef.current;
+        // Aplicar límites suaves para una buena experiencia de usuario
         const containerEl = trackRef.current.parentElement;
         if (!containerEl) return;
         
-        const styles = window.getComputedStyle(setEl);
+        const styles = window.getComputedStyle(trackRef.current);
         const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
-        const containerWidth = containerEl.getBoundingClientRect().width;
-        const totalCardsWidth = Array.from(setEl.children).reduce((total, child) => {
-            return total + (child as HTMLElement).getBoundingClientRect().width + gap;
-        }, -gap); // -gap porque el último elemento no tiene gap después
+        const containerWidth = window.innerWidth; // Usar el ancho completo de la ventana
         
-        // Permitir arrastrar hasta que la última card sea completamente visible
-        const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth);
+        // Calcular el ancho total de todas las cards
+        let totalCardsWidth = 0;
+        const cards = Array.from(trackRef.current.children);
+        cards.forEach((child, index) => {
+            const cardWidth = (child as HTMLElement).getBoundingClientRect().width;
+            totalCardsWidth += cardWidth;
+            if (index < cards.length - 1) { // No agregar gap al último elemento
+                totalCardsWidth += gap;
+            }
+        });
+        
+        // Permitir arrastrar libremente con límites suaves
+        const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth + 200); // +200px para más libertad
         
         posRef.current = Math.max(-maxScrollDistance, Math.min(0, newPos));
         trackRef.current.style.transform = `translate3d(${Math.round(posRef.current)}px, 0, 0)`;
@@ -190,25 +196,32 @@ function PromoCards() {
     };
 
     const handleTouchMove = (e: React.TouchEvent) => {
-        if (!isDraggingRef.current || !trackRef.current || !setRef.current || isDesktopRef.current) return;
+        if (!isDraggingRef.current || !trackRef.current || isDesktopRef.current) return;
         
         const deltaX = e.touches[0].clientX - startXRef.current;
         const newPos = startPosRef.current + deltaX;
         
-        // Aplicar límites para evitar arrastrar demasiado lejos
-        const setEl = setRef.current;
+        // Aplicar límites suaves para una buena experiencia de usuario
         const containerEl = trackRef.current.parentElement;
         if (!containerEl) return;
         
-        const styles = window.getComputedStyle(setEl);
+        const styles = window.getComputedStyle(trackRef.current);
         const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
-        const containerWidth = containerEl.getBoundingClientRect().width;
-        const totalCardsWidth = Array.from(setEl.children).reduce((total, child) => {
-            return total + (child as HTMLElement).getBoundingClientRect().width + gap;
-        }, -gap); // -gap porque el último elemento no tiene gap después
+        const containerWidth = window.innerWidth; // Usar el ancho completo de la ventana
         
-        // Permitir arrastrar hasta que la última card sea completamente visible
-        const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth);
+        // Calcular el ancho total de todas las cards
+        let totalCardsWidth = 0;
+        const cards = Array.from(trackRef.current.children);
+        cards.forEach((child, index) => {
+            const cardWidth = (child as HTMLElement).getBoundingClientRect().width;
+            totalCardsWidth += cardWidth;
+            if (index < cards.length - 1) { // No agregar gap al último elemento
+                totalCardsWidth += gap;
+            }
+        });
+        
+        // Permitir arrastrar libremente con límites suaves
+        const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth + 200); // +200px para más libertad
         
         posRef.current = Math.max(-maxScrollDistance, Math.min(0, newPos));
         trackRef.current.style.transform = `translate3d(${Math.round(posRef.current)}px, 0, 0)`;
@@ -218,8 +231,8 @@ function PromoCards() {
         isDraggingRef.current = false;
     };
     return (
-        <section className="home-cards" style={{ padding: '56px 16px', overflow: 'hidden' }}>
-            <div style={{ maxWidth: 1440, margin: '0 auto' }}>
+        <section className="home-cards" style={{ padding: '56px 0', width: '100%' }}>
+            <div style={{ width: '100%', position: 'relative' }}>
                 <div
                   className="home-cards-carousel"
                   ref={trackRef}
@@ -232,9 +245,7 @@ function PromoCards() {
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
-                    {/* Set 1 */}
-                    <div ref={setRef} style={{ display: 'flex', gap: 32 }}>
-                      {cards.map((card, idx) => (
+                  {cards.map((card, idx) => (
                         <div
                           key={`set1-${idx}`}
                           className="home-card sr-card"
@@ -245,7 +256,8 @@ function PromoCards() {
                             padding: 2,
                             border: '1px solid rgba(255,255,255,0.08)',
                             boxShadow: '0 16px 40px rgba(0,0,0,0.25)',
-                            minWidth: '380px',
+                            minWidth: '400px',
+                            width: '25vw',
                             flexShrink: 0
                           }}
                         >
@@ -355,9 +367,7 @@ function PromoCards() {
                             )}
                           </div>
                         </div>
-                      ))}
-                    </div>
-                    {/* Set 2 eliminado: el loop es real reordenando elementos */}
+                  ))}
                 </div>
             </div>
             <style>{`
@@ -374,21 +384,21 @@ function PromoCards() {
               
               .home-card { 
                 min-width: 350px;
-                max-width: 450px;
-                width: 100%;
+                max-width: 500px;
+                width: 25vw;
               }
               
               @media (min-width: 768px) {
                 .home-card { 
                   min-width: 400px;
-                  max-width: 520px;
+                  width: 25vw;
                 }
               }
               
               @media (min-width: 1200px) {
                 .home-card { 
                   min-width: 450px;
-                  max-width: 600px;
+                  width: 25vw;
                 }
               }
               
