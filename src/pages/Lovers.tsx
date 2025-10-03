@@ -419,9 +419,9 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                opacity: 0.75,
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                opacity: 0.85,
               }}>
                 <Percent color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Descuentos</span>
@@ -442,9 +442,9 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                opacity: 0.75,
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                opacity: 0.85,
               }}>
                 <Users color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Premios</span>
@@ -465,9 +465,9 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                opacity: 0.75,
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                opacity: 0.85,
               }}>
                 <Crown color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>VIP</span>
@@ -488,9 +488,9 @@ const Lovers = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                opacity: 0.75,
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                opacity: 0.85,
               }}>
                 <Gift color="#ffc107" size={28} style={{ marginBottom: 10 }} />
                 <span style={{ color: '#ffc107', fontWeight: 700, fontSize: '1.01rem', letterSpacing: 0.5, textTransform: 'uppercase', textAlign: 'center', whiteSpace: 'pre-line', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>Novedades</span>
