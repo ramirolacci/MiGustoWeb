@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
-import LoversButton from './LoversButton';
 import { TimelineLite } from 'gsap';
 import { getToken, logout } from '../services/auth';
 import { getMe } from '../services/user';
@@ -271,7 +270,6 @@ const NavBar: React.FC = () => {
   const { totalItems } = useCart();
   const [isHovered, setIsHovered] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -504,8 +502,6 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales' }
   ];
 
-  // Flag para habilitar el botón Lovers: por defecto activado salvo que se ponga explícitamente 'false'
-  const loversEnabled = (import.meta.env.VITE_LOVERS_ENABLED ?? 'true') === 'true';
 
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
@@ -669,21 +665,9 @@ const NavBar: React.FC = () => {
                 <i className="fa-solid fa-bars hamburger-fa" aria-hidden="true" />
               </span>
             </button>
-            {/* Orden izquierda: Cuenta, Lovers, Canje */}
+            {/* Orden izquierda: Cuenta, Canje */}
             <div className="d-flex align-items-center" style={{ gap: 8 }}>
               <ProfileButton />
-              {loversEnabled && (
-                <LoversButton
-                  isOn={isSwitchOn}
-                  autoConfetti={location.pathname === '/lovers'}
-                  onClick={() => {
-                    setIsSwitchOn(true);
-                    setTimeout(() => {
-                      navigate('/lovers');
-                    }, 350);
-                  }}
-                />
-              )}
               <button
                 className={`btn btn-sm btn-canje${location.pathname === '/canje' ? ' btn-canje-active' : ''}`}
                 onClick={() => navigate('/canje')}
