@@ -146,7 +146,7 @@ body {
 }
 @media (max-width: 768px) {
   .carta-container .carta-entry-wrapper {
-    margin: 0 0 0.8rem 0 !important;
+    margin: 0.3rem 0 1.2rem 0 !important; /* pequeño espacio arriba, buen aire abajo */
   }
 }
 
@@ -2230,7 +2230,7 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 /* Ajuste específico para móvil - subir la revista */
 @media (max-width: 768px) {
   .carta-container .revista-container {
-    margin-top: -4rem !important;
+    margin-top: 1.2rem !important; /* evitar que se superponga con el botón en mobile */
     padding-top: 0 !important;
   }
 }

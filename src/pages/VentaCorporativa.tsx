@@ -155,7 +155,7 @@ const VentaCorporativa: React.FC = () => {
     const minDate = `${yyyy}-${mm}-${dd}`;
 
     return (
-        <div className="sucursales-section" style={{ marginTop: '40px' }}>
+        <div className="sucursales-section" style={{ marginTop: '0px' }}>
             <div className="background-overlay"></div>
             <div className="sucursales-container">
                 <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
@@ -168,7 +168,7 @@ const VentaCorporativa: React.FC = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'flex-start',
-                        marginTop: '0px', 
+                        marginTop: '56px', 
                         position: 'relative', 
                         zIndex: 2,
                         padding: '40px'
@@ -266,11 +266,11 @@ const VentaCorporativa: React.FC = () => {
                         display: 'flex', 
                         alignItems: 'stretch', 
                         justifyContent: 'center', 
-                        marginTop: '100px' 
+                        marginTop: '56px' 
                     }}>
                         <div className="contacto-content" style={{ 
                             width: '100%', 
-                            marginTop: (typeof window !== 'undefined' && window.innerWidth > 900) ? '-40px' : '0' 
+                            marginTop: 0 
                         }}>
                             <div className="contacto-form-container" style={{ 
                                 background: 'rgba(30, 30, 30, 0.65)', 
