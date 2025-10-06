@@ -665,17 +665,19 @@ const NavBar: React.FC = () => {
                 <i className="fa-solid fa-bars hamburger-fa" aria-hidden="true" />
               </span>
             </button>
-            {/* Orden izquierda: Cuenta, Canje */}
-            <div className="d-flex align-items-center" style={{ gap: 8 }}>
-              <ProfileButton />
-              <button
-                className={`btn btn-sm btn-canje${location.pathname === '/canje' ? ' btn-canje-active' : ''}`}
-                onClick={() => navigate('/canje')}
-              >
-                Canje
-              </button>
-              {/* Botón de carrito movido al lado derecho del navbar */}
-            </div>
+            {/* Orden izquierda: ocultar Cuenta y Canje cuando el menú está abierto/colapsado */}
+            {!isMenuOpen && (
+              <div className="d-flex align-items-center" style={{ gap: 8 }}>
+                <ProfileButton />
+                <button
+                  className={`btn btn-sm btn-canje${location.pathname === '/canje' ? ' btn-canje-active' : ''}`}
+                  onClick={() => navigate('/canje')}
+                >
+                  Canje
+                </button>
+                {/* Botón de carrito movido al lado derecho del navbar */}
+              </div>
+            )}
             {/* Switch al lado del logo */}
             {/* Eliminar o comentar la línea:
             <Switch

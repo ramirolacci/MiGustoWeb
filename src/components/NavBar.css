@@ -450,6 +450,22 @@
   display: block;
 }
 
+/* Asegurar icono perfectamente recto en desktop y mover SOLO el gráfico */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    transform: none !important;
+    rotate: 0deg !important;
+    translate: 0 !important;
+    scale: 1 !important;
+  }
+  /* Desplazar únicamente el ícono interno hacia la izquierda sin afectar layout */
+  .hamburger-menu .hamburger-icon,
+  .hamburger-menu .hamburger-fa {
+    display: inline-block;
+    transform: translateX(-8px) !important;
+  }
+}
+
 /* Ícono de Font Awesome como fallback principal */
 .hamburger-fa {
   font-size: 22px;
@@ -458,8 +474,10 @@
   display: inline-block;
 }
 
-.hamburger-menu:hover {
-    background: rgba(255,255,255,0.06) !important;
+.hamburger-menu:hover,
+.hamburger-menu:focus,
+.hamburger-menu:active {
+    background: transparent !important; /* sin fondo en hover */
     color: #ffffff !important; /* mantener blanco al hover */
     fill: currentColor !important;
     box-shadow: none !important;

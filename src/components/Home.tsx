@@ -118,7 +118,7 @@ function PromoCards() {
         { type: 'lovers', cta: 'Conocer más', href: '/lovers' },
         { img: '/sliders/desktop1.jpg', cta: 'Jugá y Ganá', href: 'https://pedir.migusto.com.ar/' },
         { img: '/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/sliders/desktop3.jpg', cta: 'Descargá la app', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
+        { img: '/sliders/desktop3.jpg', cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
     ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
     // Carrusel con arrastre manual
