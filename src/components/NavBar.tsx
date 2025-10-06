@@ -497,7 +497,6 @@ const NavBar: React.FC = () => {
   // const isHomePage = location.pathname === '/';
   
   const navLinks = [
-    { path: '/carta', label: 'Carta' },
     { path: '/productos', label: 'Productos' },
     { path: '/sucursales', label: 'Sucursales' }
   ];
@@ -506,7 +505,7 @@ const NavBar: React.FC = () => {
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
     { path: '/', label: 'Home', image: '' },
-    { path: '/carta', label: 'Carta', image: '' },
+    // Carta removido del side menu
     { path: '/productos', label: 'Productos', image: '' },
     { path: '/sucursales', label: 'Sucursales', image: '' },
     { path: '/nosotros', label: 'Nosotros', image: '/side-menu/localMiGusto.webp' },

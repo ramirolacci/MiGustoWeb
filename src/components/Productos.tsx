@@ -313,6 +313,23 @@ export default function Productos() {
 
                 {/* Buscador removido: ahora se usa el buscador global del navbar */}
 
+                {/* Botón sutil para abrir CARTA */}
+                <div className="carta-entry-wrapper" aria-label="Acceso a Carta">
+                    <button
+                        type="button"
+                        className="btn-carta-sutil"
+                        onClick={() => {
+                            try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
+                            window.history.pushState({}, '', '/carta');
+                            // Fuerza navegación SPA si existe router
+                            try { (window as any).dispatchEvent(new Event('popstate')); } catch {}
+                        }}
+                    >
+                        <span className="btn-carta-icon" aria-hidden>📖</span>
+                        <span className="btn-carta-text">Carta</span>
+                    </button>
+                </div>
+
                 {/* Categorías estilo Mercado Libre en mobile y desktop */}
                 <div className="ml-categories-wrapper">
                     <div className="ml-categories" role="tablist" aria-label="Categorías de productos">

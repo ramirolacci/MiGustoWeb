@@ -4,15 +4,15 @@
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.85) 100%) !important;
+  background: #000 !important; /* pantalla negra sólida */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   z-index: 2147483647 !important; /* Máximo z-index posible */
   opacity: 1 !important;
   transition: opacity 0.3s ease-out !important;
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   /* Asegurar que cubra toda la pantalla */
   min-height: 100vh !important;
   min-width: 100vw !important;

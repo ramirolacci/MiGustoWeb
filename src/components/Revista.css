@@ -337,6 +337,50 @@
 
 
 
+.revista-swiper-wrapper,
+.flipbook-wrapper {
+    position: relative;
+}
+
+/* Botones de navegación laterales */
+.revista-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+    transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    backdrop-filter: blur(3px);
+}
+
+.revista-nav-button:hover {
+    background: rgba(0,0,0,0.5);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.revista-nav-button.left { left: -18px; }
+.revista-nav-button.right { right: -18px; }
+
+.revista-nav-button.disabled,
+.revista-nav-button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.revista-nav-button i {
+    font-size: 22px;
+}
+
 /* Instrucciones con animación mejorada */
 .revista-instructions {
     position: absolute;
@@ -476,6 +520,12 @@
     .revista-tip-modal { display: none; }
     
 
+    .revista-nav-button {
+        width: 48px;
+        height: 48px;
+    }
+    .revista-nav-button.left { left: -10px; }
+    .revista-nav-button.right { right: -10px; }
 }
 
 /* Efectos adicionales para móvil */

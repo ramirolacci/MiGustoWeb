@@ -95,6 +95,61 @@ body {
     padding-bottom: 1.5rem;
 }
 
+.carta-entry-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0.25rem 0 1rem 0; /* acercar al navbar y subir la revista */
+}
+
+.btn-carta-sutil {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+}
+.btn-carta-sutil:hover {
+    transform: translateY(-2px);
+    background: rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.24);
+}
+.btn-carta-icon {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+.btn-carta-text {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    background: linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .carta-entry-wrapper { margin: 0.2rem 0 0.6rem 0; }
+  .btn-carta-sutil { padding: 7px 12px; gap: 8px; }
+}
+
+/* Ajuste específico para la página Carta: pegar más el botón al navbar */
+.carta-container .carta-entry-wrapper {
+  margin: 0 0 1rem 0 !important; /* más separación de la revista */
+}
+@media (max-width: 768px) {
+  .carta-container .carta-entry-wrapper {
+    margin: 0 0 0.8rem 0 !important;
+  }
+}
+
 .background-overlay {
     content: '';
     position: absolute;

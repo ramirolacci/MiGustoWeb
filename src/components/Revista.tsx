@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import './Revista.css'
 import HTMLFlipBook from 'react-pageflip';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -27,12 +26,10 @@ const Revista = () => {
     const [paginaActual, setPaginaActual] = useState(1);
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
-    const [showTipModal, setShowTipModal] = useState(false);
-    const [tipClosing, setTipClosing] = useState(false);
-    const [flipbookNode, setFlipbookNode] = useState<HTMLElement | null>(null);
     const [flipbookDimensions, setFlipbookDimensions] = useState<{ width: number; height: number }>({ width: 680, height: 980 });
     const [verticalGap, setVerticalGap] = useState<number>(2);
     const flipBook = useRef<any>(null);
+    const swiperRef = useRef<any>(null);
     const flipbookWrapperRef = useRef<HTMLDivElement>(null);
     const revistaRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
@@ -45,23 +42,7 @@ const Revista = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Mostrar modal de ayuda automáticamente cuando se entra en Carta (solo desktop)
-    useEffect(() => {
-        if (!isMobile) {
-            setShowTipModal(true);
-            setTipClosing(false);
-        }
-    }, [isMobile]);
-
-    // Capturar nodo real del flipbook para insertar el modal dentro con portal
-    useEffect(() => {
-        if (flipbookWrapperRef.current) {
-            const node = flipbookWrapperRef.current.querySelector('.revista-flipbook') as HTMLElement | null;
-            if (node) {
-                setFlipbookNode(node);
-            }
-        }
-    }, [isMobile]);
+    // Modal de ayuda eliminado
 
     // Calcular dimensiones disponibles para el flipbook (desktop) para no sobrepasar header/footer
     useEffect(() => {
@@ -219,39 +200,88 @@ const Revista = () => {
         setPaginaActual(e.data);
     };
 
+    const totalPaginas = 1 + catalogoFotos.length;
+    const canGoPrev = paginaActual > 0;
+    const canGoNext = paginaActual < totalPaginas - 1;
+
+    const handlePrev = () => {
+        if (isMobile) {
+            if (swiperRef.current) {
+                swiperRef.current.slidePrev();
+            }
+            return;
+        }
+        try {
+            flipBook.current?.pageFlip()?.flipPrev();
+        } catch {}
+    };
+
+    const handleNext = () => {
+        if (isMobile) {
+            if (swiperRef.current) {
+                swiperRef.current.slideNext();
+            }
+            return;
+        }
+        try {
+            flipBook.current?.pageFlip()?.flipNext();
+        } catch {}
+    };
+
     return (
         <div className="revista-section" ref={revistaRef}>
             {/* Contenedor principal con animación épica */}
             <div className={`revista-container${isVisible ? ' container-revealed' : ''}`}>
                 <div className="revista-content-wrapper" style={{ marginTop: isMobile ? undefined : verticalGap, marginBottom: isMobile ? undefined : verticalGap }}>
                     {isMobile ? (
-                        <Swiper
-                            modules={[EffectFlip]}
-                            effect="flip"
-                            spaceBetween={0}
-                            slidesPerView={1}
-                            initialSlide={1}
-                            onSlideChange={(swiper) => setPaginaActual(swiper.activeIndex)}
-                            style={{ width: '100%', maxWidth: 480, minHeight: 380 }}
-                            className="revista-swiper"
-                        >
-                            <SwiperSlide key="portada">
-                                <div className="revista-pagina">
-                                    <Zoom>
-                                        <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
-                                    </Zoom>
-                                </div>
-                            </SwiperSlide>
-                            {catalogoFotos.map((src, i) => (
-                                <SwiperSlide key={i + 1}>
+                        <div className="revista-swiper-wrapper">
+                            <Swiper
+                                modules={[EffectFlip]}
+                                effect="flip"
+                                spaceBetween={0}
+                                slidesPerView={1}
+                                initialSlide={1}
+                                onSwiper={(swiper) => { swiperRef.current = swiper; }}
+                                onSlideChange={(swiper) => setPaginaActual(swiper.activeIndex)}
+                                style={{ width: '100%', maxWidth: 480, minHeight: 380 }}
+                                className="revista-swiper"
+                            >
+                                <SwiperSlide key="portada">
                                     <div className="revista-pagina">
                                         <Zoom>
-                                            <img src={src} alt={`catalogo-${i + 2}`} className="revista-img" loading="lazy" />
+                                            <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
                                         </Zoom>
                                     </div>
                                 </SwiperSlide>
-                            ))}
-                        </Swiper>
+                                {catalogoFotos.map((src, i) => (
+                                    <SwiperSlide key={i + 1}>
+                                        <div className="revista-pagina">
+                                            <Zoom>
+                                                <img src={src} alt={`catalogo-${i + 2}`} className="revista-img" loading="lazy" />
+                                            </Zoom>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                            <button
+                                type="button"
+                                className={`revista-nav-button left${canGoPrev ? '' : ' disabled'}`}
+                                aria-label="Página anterior"
+                                onClick={handlePrev}
+                                disabled={!canGoPrev}
+                            >
+                                <i className="fas fa-chevron-left" />
+                            </button>
+                            <button
+                                type="button"
+                                className={`revista-nav-button right${canGoNext ? '' : ' disabled'}`}
+                                aria-label="Página siguiente"
+                                onClick={handleNext}
+                                disabled={!canGoNext}
+                            >
+                                <i className="fas fa-chevron-right" />
+                            </button>
+                        </div>
                     ) : (
                         <div className="flipbook-wrapper" ref={flipbookWrapperRef}>
                             <HTMLFlipBook
@@ -281,7 +311,7 @@ const Revista = () => {
                                 onChangeState={() => { }}
                                 autoSize={true}
                                 swipeDistance={10}
-                                showPageCorners={true}
+                                showPageCorners={false}
                             >
                                 <div className="revista-pagina">
                                     <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
@@ -292,31 +322,26 @@ const Revista = () => {
                                     </div>
                                 ))}
                             </HTMLFlipBook>
+                            <button
+                                type="button"
+                                className={`revista-nav-button left${canGoPrev ? '' : ' disabled'}`}
+                                aria-label="Página anterior"
+                                onClick={handlePrev}
+                                disabled={!canGoPrev}
+                            >
+                                <i className="fas fa-chevron-left" />
+                            </button>
+                            <button
+                                type="button"
+                                className={`revista-nav-button right${canGoNext ? '' : ' disabled'}`}
+                                aria-label="Página siguiente"
+                                onClick={handleNext}
+                                disabled={!canGoNext}
+                            >
+                                <i className="fas fa-chevron-right" />
+                            </button>
 
-                            {/* Modal informativo anclado a la punta de la revista (dentro del flipbook) */}
-                            {showTipModal && flipbookNode && createPortal(
-                                <div className={`revista-tip-modal${tipClosing ? ' closing' : ''}`} role="dialog" aria-live="polite">
-                                    <button
-                                        type="button"
-                                        className="revista-tip-close"
-                                        aria-label="Cerrar"
-                                        onClick={() => {
-                                            if (tipClosing) return;
-                                            setTipClosing(true);
-                                            setTimeout(() => {
-                                                setShowTipModal(false);
-                                            }, 380);
-                                        }}
-                                    >
-                                        ×
-                                    </button>
-                                    <h3 className="revista-tip-title productos-titulo">Atención</h3>
-                                    <div className="revista-tip-content">
-                                        Para poder navegar por nuestra carta, debes arrastrar on el mouse desde la punta de las hojas de la Carta!
-                                    </div>
-                                </div>,
-                                flipbookNode
-                            )}
+                            
                         </div>
                     )}
                 </div>

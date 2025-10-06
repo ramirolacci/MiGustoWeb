@@ -35,6 +35,10 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
       // Bloquear scroll
       document.body.style.overflow = 'hidden';
       document.body.classList.add('loading-active');
+      // Fondo del body completamente negro
+      const prevBg = document.body.style.backgroundColor;
+      document.body.setAttribute('data-prev-bg', prevBg || '');
+      document.body.style.backgroundColor = '#000';
       
       // Cerrar el menú hamburguesa de forma más agresiva
       const closeMenu = () => {
@@ -63,11 +67,15 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
     } else {
       document.body.style.overflow = 'unset';
       document.body.classList.remove('loading-active');
+      const prevBg = document.body.getAttribute('data-prev-bg') || '';
+      document.body.style.backgroundColor = prevBg;
     }
 
     return () => {
       document.body.style.overflow = 'unset';
       document.body.classList.remove('loading-active');
+      const prevBg = document.body.getAttribute('data-prev-bg') || '';
+      document.body.style.backgroundColor = prevBg;
     };
   }, [isLoading]);
 

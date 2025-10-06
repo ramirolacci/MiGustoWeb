@@ -32,11 +32,25 @@ const Carta: React.FC = () => {
           minHeight: '100vh',
           position: 'relative',
           backgroundColor: '#000',
-          paddingTop: '72px',
+          paddingTop: '60px',
         }}
       >
         <div className="background-overlay"></div>
         <div className="carta-container">
+          <div className="carta-entry-wrapper" aria-label="Volver a Productos">
+            <button
+              type="button"
+              className="btn-carta-sutil"
+              onClick={() => {
+                try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
+                window.history.pushState({}, '', '/productos');
+                try { (window as any).dispatchEvent(new Event('popstate')); } catch {}
+              }}
+            >
+              <span className="btn-carta-icon" aria-hidden>←</span>
+              <span className="btn-carta-text">Productos</span>
+            </button>
+          </div>
           {/* <h2 className="productos-titulo">Deslizá para explorar nuestra carta</h2> */}
           <Revista />
         </div>
