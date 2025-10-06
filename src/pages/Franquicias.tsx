@@ -220,10 +220,10 @@ const Franquicias: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            marginTop: '56px',
+            marginTop: '0px',
             position: 'relative', 
             zIndex: 2,
-            padding: '40px'
+            padding: '20px'
           }}>
             <style>{`
               @media (max-width: 900px) {
@@ -257,7 +257,7 @@ const Franquicias: React.FC = () => {
             {/* Título Franquicias */}
             <img src="/franq/Franquicias.png" alt="Franquicias" className="franq-title-img" style={{ 
               width: '340px', 
-              marginBottom: '40px', 
+              marginBottom: '12px', 
               filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
               zIndex: 3
             }} />
@@ -271,7 +271,7 @@ const Franquicias: React.FC = () => {
               borderRadius: '12px', 
               boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
               zIndex: 2,
-              marginBottom: '32px'
+              marginBottom: '12px'
             }} />
             
                         {/* Bloque de texto explicativo */}
@@ -280,10 +280,10 @@ const Franquicias: React.FC = () => {
               zIndex: 3,
               padding: '20px'
             }}>
-              <div className="franq-text-title" style={{ fontWeight: 700, fontSize: '1.8rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+              <div className="franq-text-title" style={{ fontWeight: 700, fontSize: '1.6rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                 ¿Por qué elegir Mi Gusto?
               </div>
-              <div className="franq-text-body" style={{ fontSize: '1.4rem', lineHeight: 1.6, color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+              <div className="franq-text-body" style={{ fontSize: '1.25rem', lineHeight: 1.6, color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
 Porque llevamos más de 25 años en el mercado y sabemos cómo
 hacer que un negocio funcione. Tenemos un modelo probado,
 pensado para vender en volumen y con procesos simples de 
