@@ -376,6 +376,8 @@ body {
   }
 }
 
+/* Revert: mantener scroll horizontal en mobile, sin wrap forzado */
+
 /* Hover épico y moderno para los botones de categorías */
 @media (min-width: 0px) {
   .ml-cat-item {

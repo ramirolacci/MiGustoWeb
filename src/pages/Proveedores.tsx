@@ -3,6 +3,7 @@ import '../pages/Contacto.css';
 import emailjs from '@emailjs/browser';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const Proveedores: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -102,12 +103,13 @@ const Proveedores: React.FC = () => {
       });
     });
   }, []);
+  const isMobile = useIsMobile();
   return (
     <div className="sucursales-section" style={{ marginTop: '0px' }}>
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <img src="/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: '56px', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
+          <img src="/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: isMobile ? '0px' : '56px', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
@@ -200,15 +202,15 @@ export default Proveedores;
 if (typeof window !== 'undefined') {
   const style = document.createElement('style');
   style.innerHTML = `
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .sucursales-section {
         margin-top: 0px !important;
       }
       .contacto-container {
         margin-top: 32px !important;
       }
-      .responsive-row img {
-        margin-top: 8px !important;
+      .responsive-row img.proveedor-img {
+        margin-top: 0px !important;
         margin-bottom: 32px !important;
       }
     }
