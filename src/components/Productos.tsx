@@ -60,10 +60,10 @@ const ORBIT_3D_BIG_BURGER = "45deg 65deg 1.7m";
 export default function Productos() {
     const location = useLocation();
     const { addItem } = useCart();
-    const [filtro, setFiltro] = useState(categorias[1]);
+    const [filtro, setFiltro] = useState<'Empanadas' | typeof categorias[number]>('Empanadas');
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
-    const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
+    const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>('Premium');
     const [esVegetariano, setEsVegetariano] = useState<boolean>(false);
     const [showPrecioModal, setShowPrecioModal] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -76,7 +76,13 @@ export default function Productos() {
         const tab = params.get('tab');
         const type = params.get('type');
         const search = params.get('search');
-        if (tab && categorias.includes(tab)) setFiltro(tab);
+        if (tab && categorias.includes(tab)) {
+            setFiltro(tab as any);
+        } else {
+            // Default: Empanadas Premium
+            setFiltro('Empanadas');
+            setTipoProducto('Premium');
+        }
         if (type === 'Premium' || type === 'Clasicas') setTipoProducto(type);
         if (typeof search === 'string' && search.length > 0) setBusqueda(search);
     }, [location.search]);
