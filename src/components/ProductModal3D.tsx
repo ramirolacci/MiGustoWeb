@@ -357,17 +357,10 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                             <div className="modal-horizontal-left">
                                 <div className="modal-header-3d">
                                     <div className="modal-image-container"
-                                        {...(!esPromocion ? {
-                                            onMouseMove: handleMouseMove,
-                                            onMouseEnter: handleMouseEnter,
-                                            onMouseLeave: handleMouseLeave,
-                                            onTouchStart: handleTouchStart,
-                                            onTouchMove: handleTouchMove,
-                                            onTouchEnd: handleTouchEnd,
-                                        } : {})}
                                         style={{
-                                            transform: !esPromocion ? `translateZ(200px) translateX(${position.x * 0.15}px) translateY(${position.y * 0.15}px)` : 'none',
-                                            transition: isHovered && !isDragging && !esPromocion ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                                            // Parallax OFF
+                                            transform: 'none',
+                                            transition: 'none',
                                             marginTop: '-16px',
                                             marginBottom: '8px'
                                         }}>
@@ -380,8 +373,9 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                     </div>
                                     <div className="modal-badges"
                                         style={{
-                                            transform: `translateZ(180px) translateX(${position.x * 0.12}px) translateY(${position.y * 0.12}px)`,
-                                            transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                            // Parallax OFF
+                                            transform: 'none',
+                                            transition: 'none'
                                         }}>
                                         {producto.esSinGluten && (
                                             <span className="badge badge-sin-gluten">Sin Gluten</span>
@@ -412,8 +406,9 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                     {producto.tiempoPreparacion && (
                                         <div className="detalle-item"
                                             style={{
-                                                transform: `translateZ(155px) translateX(${position.x * 0.105}px) translateY(${position.y * 0.105}px)`,
-                                                transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                                // Parallax OFF
+                                                transform: 'none',
+                                                transition: 'none'
                                             }}>
                                             <h3>Tiempo de Preparación</h3>
                                             <p>{producto.tiempoPreparacion}</p>
@@ -422,13 +417,15 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                     {producto.calorias && (
                                         <div className="detalle-item"
                                             style={{
-                                                transform: `translateZ(150px) translateX(${position.x * 0.1}px) translateY(${position.y * 0.1}px)`,
-                                                transition: isHovered && !isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                                                // Parallax OFF
+                                                transform: 'none',
+                                                transition: 'none'
                                             }}>
                                             <h3>Información Nutricional</h3>
                                             <p>{producto.calorias}</p>
                                         </div>
                                     )}
+                                    {/** Botón "Agregar al carrito" oculto temporalmente
                                     <div style={{ marginTop: 12 }}>
                                         <button
                                             className="btn btn-warning"
@@ -459,6 +456,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             Agregar al carrito
                                         </button>
                                     </div>
+                                    **/}
                                 </div>
                             </div>
                         </div>

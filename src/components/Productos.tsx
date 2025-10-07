@@ -49,9 +49,8 @@ const EMPANADAS_3D = [
     "American Chicken",
     "American chicken",
     "Vacio y provoleta",
-    // Agregado para Franuí chocolate amargo y con leche
-    "Franuí chocolate amargo",
-    "Franuí chocolate con leche",
+    // "Franuí chocolate amargo", // 3D deshabilitado: usar imagen estática
+    // "Franuí chocolate con leche", // 3D deshabilitado: usar imagen estática
 ];
 
 // Copia local de rutas y orbits para Big Burger
@@ -716,7 +715,7 @@ export default function Productos() {
                     <ProductModal3D
                         producto={productoSeleccionado}
                         onClose={() => setProductoSeleccionado(null)}
-                        tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase()) || productoSeleccionado.titulo === "Franuí chocolate amargo" || productoSeleccionado.titulo === "Franuí chocolate con leche"}
+                        tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
                     />
                 )}
 
