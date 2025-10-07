@@ -628,7 +628,8 @@ export default function Productos() {
                                                     borderRadius: '50%',
                                                     filter: 'blur(2.5px)',
                                                 }}></div>
-                                                {/* Botón sutil con ícono (overlay) */}
+                                                {/* Botón sutil con ícono (overlay) - oculto temporalmente */}
+                                                {/**
                                                 <button
                                                     aria-label="Agregar al carrito"
                                                     onClick={(e) => {
@@ -702,6 +703,7 @@ export default function Productos() {
                                                 >
                                                     <span className="fa fa-cart-plus" style={{ fontSize: 18 }} />
                                                 </button>
+                                                **/}
                                             </div>
                                         </>
                                 </div>
