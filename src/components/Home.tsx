@@ -245,7 +245,10 @@ function PromoCards() {
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
-                  {cards.map((card, idx) => (
+                  {/** Oculto temporalmente la card de "Unite a Lovers Club" **/}
+                  {cards
+                    .filter(card => card.type !== 'lovers')
+                    .map((card, idx) => (
                         <div
                           key={`set1-${idx}`}
                           className="home-card sr-card"
@@ -265,84 +268,21 @@ function PromoCards() {
                             position: 'relative',
                             width: '100%',
                             aspectRatio: '16 / 9',
-                            background: card.type === 'lovers'
-                              ? 'linear-gradient(135deg, rgba(255,215,0,0.18), rgba(255,165,0,0.08))'
-                              : 'radial-gradient(circle at 30% 20%, #1a1a1a, #0b0b0b)',
+                            // Fondo transparente para evitar marcas detrás de la imagen
+                            background: 'transparent',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             borderRadius: 18,
                             overflow: 'hidden'
                           }}>
+                            {/** Card Lovers comentada
                             {card.type === 'lovers' ? (
-                              <>
-                                {/* Lluvia de empanadas */}
-                                <div style={{ 
-                                  position: 'absolute', 
-                                  inset: 0, 
-                                  overflow: 'hidden', 
-                                  pointerEvents: 'none',
-                                  zIndex: 1
-                                }}>
-                                  {Array.from({ length: 15 }).map((_, i) => {
-                                    const left = Math.random() * 100;
-                                    const size = 40 + Math.random() * 30;
-                                    const delay = -Math.random() * 8;
-                                    const duration = 6 + Math.random() * 8;
-                                    const empanadas = [
-                                      'https://i.postimg.cc/9Ftb8mKd/cheese-burger.png',
-                                      'https://i.postimg.cc/9FTt4mc3/burger.png',
-                                      'https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png',
-                                      'https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png'
-                                    ];
-                                    const img = empanadas[Math.floor(Math.random() * empanadas.length)];
-                                    
-                                    return (
-                                      <img
-                                        key={i}
-                                        src={img}
-                                        alt="empanada"
-                                        style={{
-                                          position: 'absolute',
-                                          left: `${left}%`,
-                                          width: size,
-                                          height: size,
-                                          objectFit: 'contain',
-                                          animation: `empanada-fall-desktop ${duration}s linear infinite`,
-                                          animationDelay: `${delay}s`,
-                                          opacity: 0.6,
-                                          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
-                                        }}
-                                      />
-                                    );
-                                  })}
-                                </div>
-                                
-                                {/* Contenido de la card */}
-                                <div style={{ position: 'absolute', inset: 0, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', zIndex: 2 }}>
-                                  <div style={{ color: '#ffbf1f', fontWeight: 800, fontSize: '1.6rem', marginBottom: 6 }}>Unite a Lovers Club</div>
-                                  <div style={{ color: '#fff', opacity: 0.9, marginBottom: 12 }}>Beneficios y promos exclusivas</div>
-                                  <a
-                                    href={card.href}
-                                    className="btn"
-                                    style={{
-                                      alignSelf: 'flex-start',
-                                      backgroundColor: '#ffbf1f',
-                                      borderColor: '#ffbf1f',
-                                      color: '#1b1b1b',
-                                      fontWeight: 700,
-                                      padding: '12px 20px',
-                                      borderRadius: 14,
-                                      textDecoration: 'none'
-                                    }}
-                                  >
-                                    {card.cta}
-                                  </a>
-                                </div>
-                              </>
+                              <> ... contenido ... </>
                             ) : (
+                            **/}
                               <>
-                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} loading="lazy" />
+                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} loading="lazy" />
                                 <a
                                   href={card.href}
                                   target="_blank"
@@ -364,7 +304,6 @@ function PromoCards() {
                                   {card.cta}
                                 </a>
                               </>
-                            )}
                           </div>
                         </div>
                   ))}

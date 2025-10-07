@@ -129,6 +129,8 @@ export default function HomeMobile() {
 
         <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
 
+        {/** Oculto temporalmente el banner "Unite a Lovers Club" en mobile **/}
+        {/**
          <section className="hm-banner">
            <div className="hm-banner-inner">
              <div className="hm-banner-title">Unite a Lovers Club</div>
@@ -159,6 +161,7 @@ export default function HomeMobile() {
              </div>
            </div>
          </section>
+        **/}
 
         <section className="hm-categories">
           <div className="hm-cat hm-cat-premium" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
