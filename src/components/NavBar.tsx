@@ -667,13 +667,17 @@ const NavBar: React.FC = () => {
             {/* Orden izquierda: ocultar Cuenta y Canje cuando el menú está abierto/colapsado */}
             {!isMenuOpen && (
               <div className="d-flex align-items-center" style={{ gap: 8 }}>
-                <ProfileButton />
+                {/** Oculto temporalmente el icono/menú de perfil (Mi cuenta) **/}
+                {/** <ProfileButton /> **/}
+                {/** Oculto temporalmente el botón Canje **/}
+                {/**
                 <button
                   className={`btn btn-sm btn-canje${location.pathname === '/canje' ? ' btn-canje-active' : ''}`}
                   onClick={() => navigate('/canje')}
                 >
                   Canje
                 </button>
+                **/}
                 {/* Botón de carrito movido al lado derecho del navbar */}
               </div>
             )}
@@ -1005,7 +1009,8 @@ const NavBar: React.FC = () => {
                     </a>
                   </li>
                   
-                  {/* Botón de carrito: al lado del botón de "Hacé tu pedido" */}
+                  {/* Botón de carrito: al lado del botón de "Hacé tu pedido" (oculto temporalmente) */}
+                  {/**
                   <li className="nav-item d-flex align-items-center">
                     <button
                       className="btn btn-sm btn-cart position-relative ms-2"
@@ -1013,183 +1018,10 @@ const NavBar: React.FC = () => {
                       aria-label="Abrir carrito"
                       id="nav-cart-button"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        className="cart-icon"
-                      >
-                        {/* Gradientes premium para un look profesional */}
-                        <defs>
-                          <linearGradient id="cartMainStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="currentColor" stopOpacity="1"/>
-                            <stop offset="50%" stopColor="currentColor" stopOpacity="0.95"/>
-                            <stop offset="100%" stopColor="currentColor" stopOpacity="0.85"/>
-                          </linearGradient>
-                          <linearGradient id="cartBodyFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="currentColor" stopOpacity="0.12"/>
-                            <stop offset="100%" stopColor="currentColor" stopOpacity="0.06"/>
-                          </linearGradient>
-                          <radialGradient id="wheelGradient" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stopColor="currentColor" stopOpacity="0.2"/>
-                            <stop offset="70%" stopColor="currentColor" stopOpacity="0.8"/>
-                            <stop offset="100%" stopColor="currentColor" stopOpacity="1"/>
-                          </radialGradient>
-                          <filter id="softGlow">
-                            <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
-                            <feMerge> 
-                              <feMergeNode in="coloredBlur"/>
-                              <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                          </filter>
-                        </defs>
-                        
-                        {/* Sombra suave del carrito */}
-                        <path 
-                          d="M3.2 3.2h2l2.27 13.4c.15.95.94 1.6 1.92 1.6h8.91c.98 0 1.77-.65 1.92-1.6L21.2 6.2H6.2" 
-                          stroke="currentColor" 
-                          strokeWidth="2.2" 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round"
-                          fill="none"
-                          opacity="0.15"
-                        />
-                        
-                        {/* Cuerpo principal del carrito con elegancia */}
-                        <path 
-                          d="M3 3h2l2.27 13.4c.15.95.94 1.6 1.92 1.6h8.91c.98 0 1.77-.65 1.92-1.6L21 6H6" 
-                          stroke="url(#cartMainStroke)" 
-                          strokeWidth="2" 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round"
-                          fill="none"
-                        />
-                        
-                        {/* Área interior del carrito con gradiente */}
-                        <path 
-                          d="M6 6h13.4l-1.1 6.8c-.1.6-.6 1.2-1.3 1.2H8.5L6 6z" 
-                          fill="url(#cartBodyFill)"
-                          stroke="none"
-                        />
-                        
-                        {/* Highlight interno para simular profundidad */}
-                        <path 
-                          d="M6.5 6.5h12.5l-.9 5.8c-.08.4-.4.7-.8.7H9L6.5 6.5z" 
-                          stroke="currentColor" 
-                          strokeWidth="0.5" 
-                          strokeLinecap="round"
-                          fill="none"
-                          opacity="0.3"
-                        />
-                        
-                        {/* Ruedas con diseño profesional y profundidad */}
-                        <circle 
-                          cx="9" 
-                          cy="20" 
-                          r="1.8" 
-                          fill="url(#wheelGradient)"
-                        />
-                        <circle 
-                          cx="9" 
-                          cy="20" 
-                          r="1.6" 
-                          stroke="currentColor" 
-                          strokeWidth="1.2" 
-                          fill="none"
-                          opacity="0.8"
-                        />
-                        <circle 
-                          cx="9" 
-                          cy="20" 
-                          r="0.5" 
-                          fill="currentColor"
-                        />
-                        
-                        <circle 
-                          cx="18" 
-                          cy="20" 
-                          r="1.8" 
-                          fill="url(#wheelGradient)"
-                        />
-                        <circle 
-                          cx="18" 
-                          cy="20" 
-                          r="1.6" 
-                          stroke="currentColor" 
-                          strokeWidth="1.2" 
-                          fill="none"
-                          opacity="0.8"
-                        />
-                        <circle 
-                          cx="18" 
-                          cy="20" 
-                          r="0.5" 
-                          fill="currentColor"
-                        />
-                        
-                        {/* Manija ergonómica con detalles premium */}
-                        <path 
-                          d="M3 3l.8 3.2" 
-                          stroke="currentColor" 
-                          strokeWidth="1.8" 
-                          strokeLinecap="round"
-                          opacity="0.6"
-                        />
-                        
-                        {/* Brillo sutil en el borde superior del carrito */}
-                        <path 
-                          d="M6 6h13" 
-                          stroke="currentColor" 
-                          strokeWidth="1" 
-                          strokeLinecap="round"
-                          opacity="0.4"
-                        />
-                        
-                        {/* Detalle decorativo en el lateral */}
-                        <path 
-                          d="M8 10h8M8.5 12h7" 
-                          stroke="currentColor" 
-                          strokeWidth="0.8" 
-                          strokeLinecap="round"
-                          opacity="0.2"
-                        />
-                      </svg>
-                      {totalItems > 0 && (
-                        <span
-                          className="cart-badge"
-                          style={{
-                            position: 'absolute',
-                            top: '-12px',
-                            right: '-12px',
-                            background: 'linear-gradient(135deg, #ff4757, #ff3742)',
-                            color: '#fff',
-                            borderRadius: '50%',
-                            fontSize: '12px',
-                            padding: '0',
-                            lineHeight: 1,
-                            width: '26px',
-                            height: '26px',
-                            textAlign: 'center',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontWeight: '700',
-                            border: '3px solid #fff',
-                            boxShadow: 
-                              '0 4px 15px rgba(255,71,87,0.5), ' +
-                              '0 2px 8px rgba(0,0,0,0.2)',
-                            animation: 'cartBadgePulse 1.5s ease-in-out infinite',
-                            zIndex: 9999,
-                            pointerEvents: 'none'
-                          }}
-                        >
-                          {totalItems}
-                        </span>
-                      )}
+                      ... (SVG y badge)
                     </button>
                   </li>
+                  **/}
                 </ul>
               </div>
             )}
