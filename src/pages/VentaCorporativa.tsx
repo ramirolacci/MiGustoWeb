@@ -266,7 +266,7 @@ const VentaCorporativa: React.FC = () => {
                         display: 'flex', 
                         alignItems: 'stretch', 
                         justifyContent: 'center', 
-                        marginTop: '56px' 
+                        marginTop: '20px' 
                     }}>
                         <div className="contacto-content" style={{ 
                             width: '100%', 
@@ -437,8 +437,8 @@ const VentaCorporativa: React.FC = () => {
                                         />
                                     </div>
                                     
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '18px', gap: '8px' }}>
-                                        <div className="contact-links" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '0' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '18px', gap: '8px' }}>
+                                        <div className="contact-links" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', justifyContent: 'flex-start', marginBottom: '0', width: '100%' }}>
                                             <a href="mailto:eventos@migusto.com.ar" style={{ color: '#D4AF37', textDecoration: 'underline', fontWeight: 500, fontSize: '0.98rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', opacity: 0.8, marginBottom: 0, whiteSpace: 'nowrap' }}>
                                             Email: eventos@migusto.com.ar
                                             </a>
