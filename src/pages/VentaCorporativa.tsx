@@ -178,15 +178,17 @@ const VentaCorporativa: React.FC = () => {
                                 .venta-corporativa-img {
                                     width: 100vw !important;
                                     padding: 16px !important;
-                                    margin-top: 8px !important;
+                                    margin-top: 0px !important;
                                 }
                                 .venta-corporativa-img .corp-title-img {
                                     width: min(72vw, 340px) !important;
+                                    margin-top: -32px !important;
                                     margin-bottom: 16px !important;
                                 }
                                 .venta-corporativa-img .corp-hero-img {
                                     width: 92vw !important;
                                     max-width: 520px !important;
+                                    margin-top: 0px !important;
                                     margin-bottom: 16px !important;
                                 }
                                 .venta-corporativa-img .corp-text {
@@ -209,6 +211,7 @@ const VentaCorporativa: React.FC = () => {
                         {/* Título Venta Corporativa */}
                         <img src="/corp/venta corporativa.png" alt="Venta Corporativa" className="corp-title-img" style={{ 
                             width: '420px', 
+                            marginTop: '-70px',
                             marginBottom: '40px', 
                             filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
                             zIndex: 3
@@ -224,6 +227,7 @@ const VentaCorporativa: React.FC = () => {
                             borderRadius: '12px', 
                             boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
                             zIndex: 2,
+                            marginTop: '0px',
                             marginBottom: '32px'
                         }} />
                         
@@ -233,25 +237,25 @@ const VentaCorporativa: React.FC = () => {
                             zIndex: 3,
                             padding: '20px'
                         }}>
-                            <div className="corp-text-title" style={{ fontWeight: 700, fontSize: '2.4rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                            <div className="corp-text-title" style={{ fontWeight: 700, fontSize: '1.6rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                                 Beneficios Corporativos
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     <img src="/corp/descuento.png" alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
-                                    <span className="corp-text-body" style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                    <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Packs corporativos anticipados con hasta 25% OFF
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     <img src="/corp/entrega.png" alt="Entrega" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
-                                    <span className="corp-text-body" style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                    <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Entregas en CABA y GBA
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     <img src="/corp/servicio.png" alt="Servicio" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
-                                    <span className="corp-text-body" style={{ fontSize: '1.6rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                                    <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Atención personalizada, adaptada a tus necesidades
                                     </span>
                                 </div>
@@ -266,7 +270,7 @@ const VentaCorporativa: React.FC = () => {
                         display: 'flex', 
                         alignItems: 'stretch', 
                         justifyContent: 'center', 
-                        marginTop: '20px' 
+                        marginTop: '24px' 
                     }}>
                         <div className="contacto-content" style={{ 
                             width: '100%', 
@@ -471,7 +475,7 @@ if (typeof window !== 'undefined') {
                 margin-top: 0px !important;
             }
             .contacto-container {
-                margin-top: 32px !important;
+                margin-top: 16px !important;
             }
             .responsive-row img {
                 margin-top: 8px !important;
