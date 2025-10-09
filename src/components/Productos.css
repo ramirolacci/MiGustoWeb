@@ -330,6 +330,46 @@ body {
     box-shadow: none;
   }
 
+  /* Carta: forma rectangular como tapa de catálogo, sin efecto vapor */
+  .ml-cat-item[data-cat="Carta"] .ml-cat-circle {
+    width: 50px;
+    height: 70px;
+    border-radius: 6px;
+    background: transparent;
+    border: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .ml-cat-item[data-cat="Carta"] .ml-cat-circle img {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  .ml-cat-item[data-cat="Carta"].active .ml-cat-circle,
+  .ml-cat-item[data-cat="Carta"]:hover .ml-cat-circle,
+  .ml-cat-item[data-cat="Carta"]:focus-visible .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transform: scale(1.05) !important; /* Hover más sutil para Carta */
+  }
+  /* Hover más leve para el item completo de Carta */
+  .ml-cat-item[data-cat="Carta"]:hover,
+  .ml-cat-item[data-cat="Carta"]:focus-visible {
+    transform: translateY(-2px) !important; /* Más sutil que -4px */
+  }
+  /* Hover más leve para la imagen de Carta */
+  .ml-cat-item[data-cat="Carta"]:hover .ml-cat-circle img,
+  .ml-cat-item[data-cat="Carta"]:focus-visible .ml-cat-circle img {
+    transform: scale(1.08) !important; /* Más sutil que 1.34 */
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.4)) brightness(1.03) saturate(1.02) !important;
+  }
+  /* Desactivar efecto de vapor para Carta */
+  .ml-cat-item[data-cat="Carta"] .ml-cat-circle::before,
+  .ml-cat-item[data-cat="Carta"] .ml-cat-circle::after {
+    content: none !important;
+  }
+
   /* Premium: un poco más grande que el resto */
   .ml-cat-item[data-cat="Premium"] .ml-cat-circle img {
     width: 60px;

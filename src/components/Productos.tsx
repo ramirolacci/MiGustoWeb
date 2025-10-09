@@ -339,6 +339,7 @@ export default function Productos() {
                 <div className="ml-categories-wrapper">
                     <div className="ml-categories" role="tablist" aria-label="Categorías de productos">
                             {[
+                                'Carta',
                                 'Promociones',
                                 'Premium',
                                 'Clasicas',
@@ -350,6 +351,9 @@ export default function Productos() {
                             ].map((cat) => {
                                 const iconSrc = (() => {
                                     switch (cat) {
+                                        case 'Carta': {
+                                            return '/catalogo/tapa1.jpeg';
+                                        }
                                         case 'Premium': {
                                             return '/burgerLoading.png';
                                         }
@@ -385,6 +389,7 @@ export default function Productos() {
                                     }
                                 })();
                                 const isActive = (() => {
+                                    if (cat === 'Carta') return false;
                                     if (cat === 'Premium') return filtro === 'Empanadas' && tipoProducto === 'Premium';
                                     if (cat === 'Clasicas') return filtro === 'Empanadas' && tipoProducto === 'Clasicas';
                                     return filtro === cat;
@@ -399,7 +404,11 @@ export default function Productos() {
                                         className={`ml-cat-item${isActive ? ' active' : ''}`}
                                         data-cat={cat}
                                         onClick={() => {
-                                            if (cat === 'Premium') {
+                                            if (cat === 'Carta') {
+                                                try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
+                                                window.history.pushState({}, '', '/carta');
+                                                try { (window as any).dispatchEvent(new Event('popstate')); } catch {}
+                                            } else if (cat === 'Premium') {
                                                 setFiltro('Empanadas');
                                                 setTipoProducto('Premium');
                                             } else if (cat === 'Clasicas') {
