@@ -19,7 +19,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Inicio" 
           aria-current={location.pathname === '/' ? 'page' : undefined}
         >
-          <img src="/icons/tab-home.svg" alt="Inicio" />
+          <img src="/icons/navigation/tab-home.svg" alt="Inicio" />
           <span>Inicio</span>
         </button>
         
@@ -44,7 +44,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Productos" 
           aria-current={location.pathname.startsWith('/productos') ? 'page' : undefined}
         >
-          <img src="/icons/empanadas-clasicas.svg" alt="Productos" />
+          <img src="/icons/products/empanadas-clasicas.svg" alt="Productos" />
           <span>Productos</span>
         </button>
 
@@ -53,7 +53,7 @@ const MobileTabbar: React.FC = () => {
           onClick={() => window.open('https://pedir.migusto.com.ar/', '_blank')} 
           aria-label="Pedir"
         >
-          <img src="/icons/tab-pedir.svg" alt="Pedir" />
+          <img src="/icons/navigation/tab-pedir.svg" alt="Pedir" />
           <span>Pedir</span>
         </button>
 
@@ -82,7 +82,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Sucursales" 
           aria-current={location.pathname.startsWith('/sucursales') ? 'page' : undefined}
         >
-          <img src="/icons/tab-sucursales.svg" alt="Sucursales" />
+          <img src="/icons/navigation/tab-sucursales.svg" alt="Sucursales" />
           <span>Sucursales</span>
         </button>
         
@@ -92,7 +92,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Menú" 
           aria-current={menuOpen ? 'page' : undefined}
         >
-          <img src="/icons/tab-menu.svg" alt="Menú" />
+          <img src="/icons/navigation/tab-menu.svg" alt="Menú" />
           <span>Menú</span>
         </button>
       </nav>

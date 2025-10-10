@@ -209,7 +209,7 @@ const VentaCorporativa: React.FC = () => {
                             }
                         `}</style>
                         {/* Título Venta Corporativa */}
-                        <img src="/corp/venta corporativa.png" alt="Venta Corporativa" className="corp-title-img" style={{ 
+                        <img src="/images/corporate/venta corporativa.png" alt="Venta Corporativa" className="corp-title-img" style={{ 
                             width: '420px', 
                             marginTop: '-70px',
                             marginBottom: '40px', 
@@ -218,7 +218,7 @@ const VentaCorporativa: React.FC = () => {
                         }} />
                         
                         {/* Imagen de fondo */}
-                        <img src="/corp/foto f-100.jpg" alt="Venta corporativa" className="corp-hero-img" style={{ 
+                        <img src="/images/corporate/foto f-100.jpg" alt="Venta corporativa" className="corp-hero-img" style={{ 
                             width: '100%', 
                             maxWidth: '680px',
                             height: 'auto',
@@ -242,19 +242,19 @@ const VentaCorporativa: React.FC = () => {
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/corp/descuento.png" alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <img src="/images/corporate/descuento.png" alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Packs corporativos anticipados con hasta 25% OFF
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/corp/entrega.png" alt="Entrega" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <img src="/images/corporate/entrega.png" alt="Entrega" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Entregas en CABA y GBA
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/corp/servicio.png" alt="Servicio" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <img src="/images/corporate/servicio.png" alt="Servicio" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Atención personalizada, adaptada a tus necesidades
                                     </span>

@@ -45,7 +45,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/background-text.jpg');
+  background-image: url('/images/corporate/background-text.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -199,7 +199,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../assets/background-text.jpg');
+  background-image: url('/images/corporate/background-text.jpg');
   background-size: 120% auto;
   background-position: center;
   background-repeat: repeat;
@@ -375,7 +375,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/background-pattern.png'); /* Optional pattern */
+  background-image: url('/images/corporate/background-pattern.png'); /* Optional pattern */
   background-size: cover;
   opacity: 0.05;
   z-index: 1;

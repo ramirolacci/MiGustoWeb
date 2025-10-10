@@ -4,15 +4,15 @@ import './Home.css';
 import IphoneWhatsapp from './Iphone';
 
 const slidesDesktop = [
-    '/sliders/desktop1.jpg',
-    '/sliders/desktop2.jpg',
-    '/sliders/desktop3.jpg',
+    '/images/sliders/desktop1.jpg',
+    '/images/sliders/desktop2.jpg',
+    '/images/sliders/desktop3.jpg',
 ];
 
 const slidesMobile = [
-    '/sliders/mobile1.jpg',
-    '/sliders/mobile2.jpg',
-    '/sliders/mobile3.jpg',
+    '/images/sliders/mobile1.jpg',
+    '/images/sliders/mobile2.jpg',
+    '/images/sliders/mobile3.jpg',
 ];
 
 const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean }) {
@@ -116,9 +116,9 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 function PromoCards() {
     const cards = [
         { type: 'lovers', cta: 'Conocer más', href: '/lovers' },
-        { img: '/sliders/desktop1.jpg', cta: 'Jugá y Ganá', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/sliders/desktop3.jpg', cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
+        { img: '/images/sliders/desktop1.jpg', cta: 'Jugá y Ganá', href: 'https://pedir.migusto.com.ar/' },
+        { img: '/images/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
+        { img: '/images/sliders/desktop3.jpg', cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
     ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
     // Carrusel con arrastre manual
@@ -595,8 +595,8 @@ function Home() {
                         objectFit: 'cover',
                         objectPosition: 'center'
                     }}
-                    src="/sliders/VideoFlash.mp4"
-                    poster="/sliders/mainpain.png"
+                    src="/videos/promotional/VideoFlash.mp4"
+                    poster="/images/sliders/mainpain.png"
                 />
                 <div
                     style={{
@@ -684,14 +684,14 @@ function Home() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="src/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} loading="lazy" />
+                            <img src="/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} loading="lazy" />
                         </a>
                         <a
                             href="https://apps.apple.com/ar/app/mi-gusto/id1487319586"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="src/assets/app-store-apple-logo.svg" alt="App Store" style={{ height: 60 }} loading="lazy" />
+                            <img src="/assets/app-store-apple-logo.svg" alt="App Store" style={{ height: 60 }} loading="lazy" />
                         </a>
                     </div>
                 </div>

@@ -518,14 +518,14 @@ const NavBar: React.FC = () => {
     // Carta removido del side menu
     { path: '/productos', label: 'Productos', image: '' },
     { path: '/sucursales', label: 'Sucursales', image: '' },
-    { path: '/nosotros', label: 'Nosotros', image: '/side-menu/localMiGusto.webp' },
-    { path: '/proveedores', label: 'Proveedores', image: '/side-menu/proveedor.png' },
-    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/side-menu/staff.png' },
-    { path: '/franquicias', label: 'Franquicias', image: '/side-menu/franquicia.png' },
-    { path: '/venta-corporativa', label: 'Venta corporativa', image: '/side-menu/corporativa.png' },
+    { path: '/nosotros', label: 'Nosotros', image: '/images/side-menu/localMiGusto.webp' },
+    { path: '/proveedores', label: 'Proveedores', image: '/images/side-menu/proveedor.png' },
+    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/images/side-menu/staff.png' },
+    { path: '/franquicias', label: 'Franquicias', image: '/images/side-menu/franquicia.png' },
+    { path: '/venta-corporativa', label: 'Venta corporativa', image: '/images/side-menu/corporativa.png' },
     { path: '/legales', label: 'Legales', image: '' },
     { path: '/defensa-consumidor', label: 'Defensa al consumidor', image: '' },
-    { path: '/3d', label: 'MG EXPERIENCE', image: '/side-menu/EstudioFondo.png' },
+    { path: '/3d', label: 'MG EXPERIENCE', image: '/images/side-menu/EstudioFondo.png' },
   ];
 
   // En desktop oculto los links pedidos, en mobile muestro todos
@@ -713,7 +713,7 @@ const NavBar: React.FC = () => {
                 tabIndex={0}
                 aria-label="Pedir online (se abre en nueva pestaña)"
               >
-                <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+                <img src="/images/promotions/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
               </a>
             </div>
           </div>
@@ -1015,7 +1015,7 @@ const NavBar: React.FC = () => {
                       tabIndex={0}
                       aria-label="Pedir online (se abre en nueva pestaña)"
                     >
-                      <img src="/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+                      <img src="/images/promotions/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
                     </a>
                   </li>
                   

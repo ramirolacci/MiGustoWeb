@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Revista from '../components/Revista';
 import '../components/Productos.css';
-import backgroundText from '../assets/background-text.jpg';
+import backgroundText from '/images/corporate/background-text.jpg';
 // NavBar se renderiza globalmente en App; no es necesario aquí
 
 const Carta: React.FC = () => {

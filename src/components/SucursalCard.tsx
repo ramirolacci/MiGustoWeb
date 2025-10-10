@@ -53,7 +53,7 @@ const SucursalCard: React.FC<Props> = ({ sucursal }) => {
                 <div className="sucursal-header">
                     <h5 className="sucursal-title">
                         <img
-                            src="logo.jpg"
+                            src="/images/logos/logo.jpg"
                             alt="Logo"
                             className="sucursal-logo"
                         />

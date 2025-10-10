@@ -9,7 +9,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../assets/background-text.jpg');
+  background-image: url('/images/corporate/background-text.jpg');
   background-size: 120% auto;
   background-position: center;
   background-repeat: repeat;

@@ -199,7 +199,7 @@ const Viewer3D: React.FC = () => {
       style={{ 
         width: '100vw', 
         height: '100dvh', 
-        background: `url('/EstudioFondo.png') center center / cover no-repeat, #181818`,
+        background: `url('/images/EstudioFondo.png') center center / cover no-repeat, #181818`,
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
@@ -327,7 +327,7 @@ const Viewer3D: React.FC = () => {
       )}
       {/* Model Viewer */}
       {React.createElement('model-viewer' as any, {
-        src: '/3D/Doritos-3D.glb',
+        src: '/models/Doritos-3D.glb',
         alt: 'Doritos 3D',
         'camera-controls': true,
         'auto-rotate': true,

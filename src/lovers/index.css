@@ -22,7 +22,7 @@ body {
 
 body.lovers-page {
   min-height: 100vh;
-  background: url('/assets/background-text.jpg') center center / cover no-repeat !important;
+  background: url('/images/corporate/background-text.jpg') center center / cover no-repeat !important;
   background-color: #181818cc !important;
   color: #fff;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;

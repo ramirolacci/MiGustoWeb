@@ -18,12 +18,12 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({ isOpen, onClose }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const sideMenuLinks: SideMenuLink[] = [
-    { path: '/nosotros', label: 'Nosotros', image: '/side-menu/localMiGusto.webp' },
-    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/side-menu/staff.png' },
-    { path: '/proveedores', label: 'Proveedores', image: '/side-menu/proveedor.png' },
-    { path: '/franquicias', label: 'Franquicias', image: '/side-menu/franquicia.png' },
-    { path: '/venta-corporativa', label: 'Venta corporativa', image: '/side-menu/corporativa.png' },
-    { path: '/3d', label: 'MG EXPERIENCE', image: '/side-menu/EstudioFondo.png' },
+    { path: '/nosotros', label: 'Nosotros', image: '/images/side-menu/localMiGusto.webp' },
+    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/images/side-menu/staff.png' },
+    { path: '/proveedores', label: 'Proveedores', image: '/images/side-menu/proveedor.png' },
+    { path: '/franquicias', label: 'Franquicias', image: '/images/side-menu/franquicia.png' },
+    { path: '/venta-corporativa', label: 'Venta corporativa', image: '/images/side-menu/corporativa.png' },
+    { path: '/3d', label: 'MG EXPERIENCE', image: '/images/side-menu/EstudioFondo.png' },
   ];
 
   const handleLinkClick = (path: string) => {

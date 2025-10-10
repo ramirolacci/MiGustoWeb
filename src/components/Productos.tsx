@@ -54,7 +54,7 @@ const EMPANADAS_3D = [
 ];
 
 // Copia local de rutas y orbits para Big Burger
-const RUTA_3D_BIG_BURGER = "/3D/big-burger-3D.glb";
+const RUTA_3D_BIG_BURGER = "/models/big-burger-3D.glb";
 const ORBIT_3D_BIG_BURGER = "45deg 65deg 1.7m";
 
 export default function Productos() {
@@ -364,15 +364,15 @@ export default function Productos() {
                     <div className="categories-container">
                         <div className="categories-scroll">
                             {[
-                                { key: 'Carta', label: 'Carta', icon: '/carta.svg' },
-                                { key: 'Promociones', label: 'Promociones', icon: '/promoIcon.png' },
-                                { key: 'Premium', label: 'Premium', icon: '/burgerLoading.png' },
-                                { key: 'Clasicas', label: 'Clásicas', icon: empanadas.find(e => !e.esPremium)?.imagen || '/icons/empanadas-clasicas.svg' },
-                                { key: 'Pizzas', label: 'Pizzas', icon: pizzas.find(p => p.titulo === 'Caprese')?.imagen || '/icons/pizza.svg' },
-                                { key: 'Pizzas INDI', label: 'Pizzas INDI', icon: pizzasIndi[0]?.imagen || '/icons/pizza.svg' },
-                                { key: 'Fitzzas', label: 'Fitzzas', icon: fitzzas[0]?.imagen || '/icons/fitzza.svg' },
-                                { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || '/icons/aderezos.svg' },
-                                { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || '/icons/postres.svg' },
+                                { key: 'Carta', label: 'Carta', icon: '/images/carta.svg' },
+                                { key: 'Promociones', label: 'Promociones', icon: '/images/promotions/promoIcon.png' },
+                                { key: 'Premium', label: 'Premium', icon: '/images/burgerLoading.png' },
+                                { key: 'Clasicas', label: 'Clásicas', icon: empanadas.find(e => !e.esPremium)?.imagen || '/icons/products/empanadas-clasicas.svg' },
+                                { key: 'Pizzas', label: 'Pizzas', icon: pizzas.find(p => p.titulo === 'Caprese')?.imagen || '/icons/products/pizza.svg' },
+                                { key: 'Pizzas INDI', label: 'Pizzas INDI', icon: pizzasIndi[0]?.imagen || '/icons/products/pizza.svg' },
+                                { key: 'Fitzzas', label: 'Fitzzas', icon: fitzzas[0]?.imagen || '/icons/products/fitzza.svg' },
+                                { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || '/icons/products/aderezos.svg' },
+                                { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || '/icons/products/postres.svg' },
                             ].map((category) => {
                                 const isActive = (() => {
                                     if (category.key === 'Carta') return false;
@@ -381,7 +381,7 @@ export default function Productos() {
                                     return filtro === category.key;
                                 })();
                                 
-                                return (
+                                        return (
                                     <button
                                         key={category.key}
                                         className={`category-chip ${isActive ? 'active' : ''}`}

@@ -9,17 +9,17 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 
 const catalogoFotos = [
-    '/catalogo/2.jpg',
-    '/catalogo/3.jpg',
-    '/catalogo/4.jpg',
-    '/catalogo/5.jpg',
-    '/catalogo/6.jpg',
-    '/catalogo/7.jpg',
-    '/catalogo/8.jpg',
-    '/catalogo/9.jpg',
-    '/catalogo/10.jpg',
-    '/catalogo/11.jpg',
-    '/catalogo/12.jpg',
+    '/images/products/2.jpg',
+    '/images/products/3.jpg',
+    '/images/products/4.jpg',
+    '/images/products/5.jpg',
+    '/images/products/6.jpg',
+    '/images/products/7.jpg',
+    '/images/products/8.jpg',
+    '/images/products/9.jpg',
+    '/images/products/10.jpg',
+    '/images/products/11.jpg',
+    '/images/products/12.jpg',
 ];
 
 const Revista = () => {
@@ -249,7 +249,7 @@ const Revista = () => {
                                 <SwiperSlide key="portada">
                                     <div className="revista-pagina">
                                         <Zoom>
-                                            <img src="/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
+                                            <img src="/images/products/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
                                         </Zoom>
                                     </div>
                                 </SwiperSlide>

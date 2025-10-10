@@ -24,21 +24,21 @@ interface ProductModal3DProps {
 }
 
 const RUTAS_3D: Record<string, string> = {
-    "Big burger": "/3D/big-burger-3D.glb",
-    "Big Burger": "/3D/big-burger-3D.glb",
-    "Mexican Pibil pork": "/3D/mexican-veggie-3D.glb", 
-    "Mexican pibil pork": "/3D/mexican-veggie-3D.glb", 
-    "Mexican Veggie": "/3D/mexican-veggie-3D.glb",
-    "Mexican veggie": "/3D/mexican-veggie-3D.glb",
-    "Matambre a la pizza": "/3D/Matambre-a-la-Pizza-3D.glb",
-    "Cheese burger": "/3D/cheese-burger-3D.glb",
-    "Cheese Burger": "/3D/cheese-burger-3D.glb",
-    "American Chicken": "/3D/american-chicken-3D.glb",
-    "American chicken": "/3D/american-chicken-3D.glb",
-    "Vacio y provoleta": "/3D/vacio-provoleta-3D.glb",
+    "Big burger": "/models/big-burger-3D.glb",
+    "Big Burger": "/models/big-burger-3D.glb",
+    "Mexican Pibil pork": "/models/mexican-veggie-3D.glb", 
+    "Mexican pibil pork": "/models/mexican-veggie-3D.glb", 
+    "Mexican Veggie": "/models/mexican-veggie-3D.glb",
+    "Mexican veggie": "/models/mexican-veggie-3D.glb",
+    "Matambre a la pizza": "/models/Matambre-a-la-Pizza-3D.glb",
+    "Cheese burger": "/models/cheese-burger-3D.glb",
+    "Cheese Burger": "/models/cheese-burger-3D.glb",
+    "American Chicken": "/models/american-chicken-3D.glb",
+    "American chicken": "/models/american-chicken-3D.glb",
+    "Vacio y provoleta": "/models/vacio-provoleta-3D.glb",
     // Modelos de Franui
-    "Franuí chocolate amargo": "/3D/Franui-Dark-3D.glb",
-    "Franuí chocolate con leche": "/3D/Franui-Milk-3D.glb",
+    "Franuí chocolate amargo": "/models/Franui-Dark-3D.glb",
+    "Franuí chocolate con leche": "/models/Franui-Milk-3D.glb",
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {
