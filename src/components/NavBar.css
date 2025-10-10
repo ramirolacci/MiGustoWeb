@@ -745,6 +745,36 @@
     /* box-shadow: 0 2px 8px rgba(0,0,0,0.18); */
     box-shadow: none !important;
   }
+  .mobile-sticky-search {
+    position: sticky;
+    top: 54px; /* debajo del navbar fijo */
+    z-index: 1900;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(8px);
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .mobile-sticky-search input[type="search"] {
+    width: 100%;
+    border-radius: 25px;
+    padding: 12px 18px;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+  .mobile-sticky-search input[type="search"]:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    background: rgba(0,0,0,0.6);
+  }
+  .mobile-sticky-search input[type="search"]::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
   .navbar-brand-desktop {
     height: 40px !important;
     min-height: 40px !important;
@@ -1292,6 +1322,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   align-items: center;
   gap: 2rem;
 }
+.marquee[data-images-only="true"] .marquee__group { gap: 1.25rem; }
 .marquee span {
   color: #060010;
   white-space: nowrap;
@@ -1301,6 +1332,7 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   line-height: 1.0;
   padding: 0;
 }
+.marquee[data-images-only="true"] span { display: none !important; }
 .marquee__img {
   width: 180px;
   height: 72px;
@@ -1309,6 +1341,11 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   border-radius: 40px;
   background-size: cover;
   background-position: 50% 50%;
+}
+.marquee[data-images-only="true"] .marquee__img { width: 260px; height: 110px; border-radius: 22px; }
+@media (max-width: 700px) {
+  .marquee[data-images-only="true"] .marquee__img { width: 210px; height: 92px; border-radius: 18px; }
+  .marquee[data-images-only="true"] .marquee__group { gap: 1rem; }
 }
 .menu__item-link:hover + .marquee {
   transform: translate3d(0, 0%, 0);

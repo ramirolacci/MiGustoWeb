@@ -29,7 +29,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({ isOpen, onClose }) => {
     { path: '/venta-corporativa', label: 'Venta corporativa', image: '/side-menu/corporativa.png' },
     { path: '/legales', label: 'Legales', image: '' },
     { path: '/defensa-consumidor', label: 'Defensa al consumidor', image: '' },
-    { path: '/3d', label: 'Studio 3D', image: '/side-menu/EstudioFondo.png' },
+    { path: '/3d', label: 'MG EXPERIENCE', image: '/side-menu/EstudioFondo.png' },
   ];
 
   const handleLinkClick = (path: string) => {

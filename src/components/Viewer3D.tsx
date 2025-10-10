@@ -106,6 +106,7 @@ const Viewer3D: React.FC = () => {
   const navigate = useNavigate();
   const [smokeScale, setSmokeScale] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
+  const bottomReserve = !isMobile ? 96 : 0; // espacio para instrucciones en desktop
 
   useEffect(() => {
     if (!scriptLoaded.current) {
@@ -197,14 +198,15 @@ const Viewer3D: React.FC = () => {
       ref={containerRef}
       style={{ 
         width: '100vw', 
-        height: '100vh', 
+        height: '100dvh', 
         background: `url('/EstudioFondo.png') center center / cover no-repeat, #181818`,
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
         position: 'relative',
         transition: 'opacity 0.7s cubic-bezier(.4,1.3,.6,1)',
-        opacity: 1
+        opacity: 1,
+        paddingBottom: `calc(${bottomReserve}px + env(safe-area-inset-bottom, 0px))`,
       }}
     >
       {/* Efecto de humo detrás del modelo */}
@@ -305,10 +307,10 @@ const Viewer3D: React.FC = () => {
       {!isMobile && (
         <div style={{
           position: 'absolute',
-          bottom: 32,
+          bottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
-          zIndex: 20,
+          zIndex: 40,
           background: 'rgba(24,24,24,0.85)',
           color: '#FFD700',
           borderRadius: 12,
@@ -335,7 +337,7 @@ const Viewer3D: React.FC = () => {
           width: '100%',
           height: '100%',
           maxWidth: '98vw',
-          maxHeight: '92vh',
+          maxHeight: `calc(92vh - ${bottomReserve}px)`,
           background: 'transparent',
           boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)',
           borderRadius: 24,

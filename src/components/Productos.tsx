@@ -63,7 +63,7 @@ export default function Productos() {
     const [filtro, setFiltro] = useState<'Empanadas' | typeof categorias[number]>('Empanadas');
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
     const [busqueda, setBusqueda] = useState("");
-    const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>('Premium');
+    const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
     const [esVegetariano, setEsVegetariano] = useState<boolean>(false);
     const [showPrecioModal, setShowPrecioModal] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -79,12 +79,17 @@ export default function Productos() {
         if (tab && categorias.includes(tab)) {
             setFiltro(tab as any);
         } else {
-            // Default: Empanadas Premium
+            // Default: Empanadas sin subfiltro (mostrar todas)
             setFiltro('Empanadas');
-            setTipoProducto('Premium');
+            setTipoProducto(null);
         }
         if (type === 'Premium' || type === 'Clasicas') setTipoProducto(type);
-        if (typeof search === 'string' && search.length > 0) setBusqueda(search);
+        if (typeof search === 'string' && search.length > 0) {
+            setBusqueda(search);
+        } else {
+            // Al no venir ?search, aseguramos limpiar la búsqueda previa
+            setBusqueda('');
+        }
     }, [location.search]);
 
     useEffect(() => {
@@ -92,6 +97,7 @@ export default function Productos() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
 
     useEffect(() => {
         // Cargar model-viewer solo si hay hover en Big Burger
@@ -318,126 +324,98 @@ export default function Productos() {
 
                 {/* Buscador removido: ahora se usa el buscador global del navbar */}
 
-                {/* Botón sutil para abrir CARTA */}
-                <div className="carta-entry-wrapper" aria-label="Acceso a Carta">
-                    <button
-                        type="button"
-                        className="btn-carta-sutil"
-                        onClick={() => {
-                            try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
-                            window.history.pushState({}, '', '/carta');
-                            // Fuerza navegación SPA si existe router
-                            try { (window as any).dispatchEvent(new Event('popstate')); } catch {}
-                        }}
-                    >
-                        <span className="btn-carta-icon" aria-hidden>📖</span>
-                        <span className="btn-carta-text">Carta</span>
-                    </button>
-                </div>
+                {/* Botón sutil "Carta" removido a pedido */}
 
-                {/* Categorías estilo Mercado Libre en mobile y desktop */}
-                <div className="ml-categories-wrapper">
-                    <div className="ml-categories" role="tablist" aria-label="Categorías de productos">
+                {/* Nueva implementación de categorías - Simple y funcional */}
+                <div className="categories-section">
+                    {/* Barra de búsqueda móvil integrada */}
+                    {isMobile && (
+                        <div className="mobile-search-bar">
+                            <div className="search-input-container">
+                                <div className="search-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.35-4.35"></path>
+                                    </svg>
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Buscar productos..."
+                                    value={busqueda}
+                                    onChange={(e) => setBusqueda(e.target.value)}
+                                    className="mobile-search-input"
+                                />
+                                {busqueda && (
+                                    <button 
+                                        className="clear-search-btn"
+                                        onClick={() => setBusqueda('')}
+                                    >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                    
+                    {/* Contenedor de categorías con scroll horizontal */}
+                    <div className="categories-container">
+                        <div className="categories-scroll">
                             {[
-                                'Carta',
-                                'Promociones',
-                                'Premium',
-                                'Clasicas',
-                                'Pizzas',
-                                'Pizzas INDI',
-                                'Fitzzas',
-                                'Salsas',
-                                'Postres',
-                            ].map((cat) => {
-                                const iconSrc = (() => {
-                                    switch (cat) {
-                                        case 'Carta': {
-                                            return '/catalogo/tapa1.jpeg';
-                                        }
-                                        case 'Premium': {
-                                            return '/burgerLoading.png';
-                                        }
-                                        case 'Clasicas': {
-                                            const champi = empanadas.find(e => e.titulo.toLowerCase() === 'pollo al champignon');
-                                            const clasicaImg = champi?.imagen || empanadas.find(e => !e.esPremium)?.imagen;
-                                            return clasicaImg || '/icons/empanadas-clasicas.svg';
-                                        }
-                                        case 'Pizzas': {
-                                            const caprese = pizzas.find(p => p.titulo === 'Caprese')?.imagen;
-                                            return caprese || '/icons/pizza.svg';
-                                        }
-                                        case 'Pizzas INDI': {
-                                            const indiImg = pizzasIndi.find(p => p.titulo === 'Mortadela, pistacho y stracciatella INDI')?.imagen;
-                                            return indiImg || '/icons/pizza.svg';
-                                        }
-                                        case 'Fitzzas': {
-                                            const fitzzaImg = fitzzas.find(f => f.titulo.toLowerCase().includes('jamón crudo') || f.titulo.toLowerCase().includes('jamon crudo'))?.imagen;
-                                            return fitzzaImg || '/icons/fitzza.svg';
-                                        }
-                                        case 'Salsas': {
-                                            const bbq = salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen;
-                                            return bbq || '/icons/aderezos.svg';
-                                        }
-                                        case 'Postres': {
-                                            const amargo = postres.find(p => p.titulo.toLowerCase().includes('franuí chocolate amargo') || p.titulo.toLowerCase().includes('franu') && p.titulo.toLowerCase().includes('amargo'))?.imagen;
-                                            return amargo || '/icons/postres.svg';
-                                        }
-                                        case 'Promociones': {
-                                            return '/promoIcon.png';
-                                        }
-                                        default: return undefined;
-                                    }
-                                })();
+                                { key: 'Carta', label: 'Carta', icon: '/carta.svg' },
+                                { key: 'Promociones', label: 'Promociones', icon: '/promoIcon.png' },
+                                { key: 'Premium', label: 'Premium', icon: '/burgerLoading.png' },
+                                { key: 'Clasicas', label: 'Clásicas', icon: empanadas.find(e => !e.esPremium)?.imagen || '/icons/empanadas-clasicas.svg' },
+                                { key: 'Pizzas', label: 'Pizzas', icon: pizzas.find(p => p.titulo === 'Caprese')?.imagen || '/icons/pizza.svg' },
+                                { key: 'Pizzas INDI', label: 'Pizzas INDI', icon: pizzasIndi[0]?.imagen || '/icons/pizza.svg' },
+                                { key: 'Fitzzas', label: 'Fitzzas', icon: fitzzas[0]?.imagen || '/icons/fitzza.svg' },
+                                { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || '/icons/aderezos.svg' },
+                                { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || '/icons/postres.svg' },
+                            ].map((category) => {
                                 const isActive = (() => {
-                                    if (cat === 'Carta') return false;
-                                    if (cat === 'Premium') return filtro === 'Empanadas' && tipoProducto === 'Premium';
-                                    if (cat === 'Clasicas') return filtro === 'Empanadas' && tipoProducto === 'Clasicas';
-                                    return filtro === cat;
+                                    if (category.key === 'Carta') return false;
+                                    if (category.key === 'Premium') return filtro === 'Empanadas' && tipoProducto === 'Premium';
+                                    if (category.key === 'Clasicas') return filtro === 'Empanadas' && tipoProducto === 'Clasicas';
+                                    return filtro === category.key;
                                 })();
-                                const label = cat === 'Clasicas' ? 'Clásicas' : cat;
+                                
                                 return (
                                     <button
-                                        key={cat}
-                                        type="button"
-                                        role="tab"
-                                        aria-selected={isActive}
-                                        className={`ml-cat-item${isActive ? ' active' : ''}`}
-                                        data-cat={cat}
+                                        key={category.key}
+                                        className={`category-chip ${isActive ? 'active' : ''}`}
                                         onClick={() => {
-                                            if (cat === 'Carta') {
-                                                try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
+                                            if (category.key === 'Carta') {
+                                                window.scrollTo({ top: 0, behavior: 'smooth' });
                                                 window.history.pushState({}, '', '/carta');
-                                                try { (window as any).dispatchEvent(new Event('popstate')); } catch {}
-                                            } else if (cat === 'Premium') {
+                                                (window as any).dispatchEvent(new Event('popstate'));
+                                            } else if (category.key === 'Premium') {
                                                 setFiltro('Empanadas');
                                                 setTipoProducto('Premium');
-                                            } else if (cat === 'Clasicas') {
+                                                setBusqueda('');
+                                                window.history.replaceState({}, '', '/productos?tab=Empanadas&type=Premium');
+                                            } else if (category.key === 'Clasicas') {
                                                 setFiltro('Empanadas');
                                                 setTipoProducto('Clasicas');
+                                                setBusqueda('');
+                                                window.history.replaceState({}, '', '/productos?tab=Empanadas&type=Clasicas');
                                             } else {
-                                                setFiltro(cat);
+                                                setFiltro(category.key);
                                                 setTipoProducto(null);
+                                                setBusqueda('');
+                                                window.history.replaceState({}, '', `/productos?tab=${encodeURIComponent(category.key)}`);
                                             }
-                                            // Solo hacemos scroll suave en mobile para evitar saltos en desktop
-                                            try {
-                                                if (window.innerWidth <= 768) {
-                                                    const targetTop = (document.querySelector('.productos-busqueda')?.getBoundingClientRect().top || 0) + window.scrollY - 12;
-                                                    window.scrollTo({ top: targetTop, behavior: 'smooth' });
-                                                }
-                                            } catch {}
                                         }}
                                     >
-                                        <div className="ml-cat-circle">
-                                            {iconSrc ? (
-                                                <img src={iconSrc} alt={label} />
-                                            ) : (
-                                                <i className="fa fa-tag" aria-hidden="true" />
-                                            )}
+                                        <div className="category-icon">
+                                            <img src={category.icon} alt={category.label} />
                                         </div>
-                                        <span className="ml-cat-label">{label}</span>
+                                        <span className="category-label">{category.label}</span>
                                     </button>
                                 );
                             })}
+                        </div>
                     </div>
                 </div>
 

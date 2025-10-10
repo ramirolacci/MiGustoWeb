@@ -214,17 +214,26 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
     tl.to(marqueeRef.current, animationDefaults.duration, { y: edge === 'top' ? '-101%' : '101%', ease: animationDefaults.ease })
       .to(marqueeInnerRef.current, animationDefaults.duration, { y: edge === 'top' ? '101%' : '-101%', ease: animationDefaults.ease });
   };
-  const groupContent = Array.from({ length: 10 }).map((_, idx) => (
-    <React.Fragment key={idx}>
-      <span>{text}</span>
-      {image && (
+  const imagesOnly = !!image; // usar solo imágenes para todos los ítems que tengan imagen
+  const groupContent = imagesOnly
+    ? Array.from({ length: 14 }).map((_, idx) => (
         <div
+          key={`img-only-${idx}`}
           className="marquee__img"
           style={{ backgroundImage: `url(${image})` }}
         />
-      )}
-    </React.Fragment>
-  ));
+      ))
+    : Array.from({ length: 10 }).map((_, idx) => (
+        <React.Fragment key={idx}>
+          <span>{text}</span>
+          {image && (
+            <div
+              className="marquee__img"
+              style={{ backgroundImage: `url(${image})` }}
+            />
+          )}
+        </React.Fragment>
+      ));
   return (
     <div className="menu__item" ref={itemRef}>
       <a
@@ -235,7 +244,7 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
       >
         {text}
       </a>
-      <div className="marquee" ref={marqueeRef}>
+      <div className="marquee" ref={marqueeRef} data-images-only={imagesOnly ? 'true' : 'false'}>
         <div className="marquee__inner-wrap" ref={marqueeInnerRef}>
           <div className="marquee__inner">
             <div className="marquee__group">
@@ -281,6 +290,7 @@ const NavBar: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [mobileSearchQuery, setMobileSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchFormRef = useRef<HTMLFormElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -515,7 +525,7 @@ const NavBar: React.FC = () => {
     { path: '/venta-corporativa', label: 'Venta corporativa', image: '/side-menu/corporativa.png' },
     { path: '/legales', label: 'Legales', image: '' },
     { path: '/defensa-consumidor', label: 'Defensa al consumidor', image: '' },
-    { path: '/3d', label: 'Studio 3D', image: '/side-menu/EstudioFondo.png' },
+    { path: '/3d', label: 'MG EXPERIENCE', image: '/side-menu/EstudioFondo.png' },
   ];
 
   // En desktop oculto los links pedidos, en mobile muestro todos
@@ -1048,6 +1058,27 @@ const NavBar: React.FC = () => {
           </div>
         </div>
       </nav>
+      {/* Buscador móvil persistente solo para Sucursales */}
+      {!isDesktop && location.pathname.startsWith('/sucursales') && (
+        <form
+          role="search"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const q = mobileSearchQuery.trim();
+            if (!q) return;
+            navigate(`/sucursales?q=${encodeURIComponent(q)}`);
+          }}
+          className="mobile-sticky-search"
+        >
+          <input
+            type="search"
+            placeholder="Buscar sucursales..."
+            value={mobileSearchQuery}
+            onChange={(e) => setMobileSearchQuery(e.target.value)}
+            aria-label="Buscar"
+          />
+        </form>
+      )}
       {isCartOpen && (
         <div
           role="dialog"

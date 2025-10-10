@@ -234,6 +234,14 @@ body {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin: 0 0 0.5rem 0; /* menos separación superior */
+    position: sticky; /* mantener visible al hacer scroll/búsqueda */
+    top: calc(54px + 68px + env(safe-area-inset-top, 0px)); /* navbar + buscador móvil */
+    z-index: 5; /* sobre el contenido de productos */
+    background: rgba(0,0,0,0.9); /* fondo para legibilidad cuando se fija */
+    backdrop-filter: blur(4px);
+  }
+  @media (min-width: 769px) {
+    .ml-categories-wrapper { top: 64px; }
   }
 
   .ml-categories {
@@ -257,6 +265,13 @@ body {
     outline: none;
     cursor: pointer;
     text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .ml-cat-item {
+      min-width: 88px; /* ajustado para móvil */
+      padding: 4px;
+    }
   }
 
   .ml-cat-item.active .ml-cat-circle {
@@ -294,6 +309,17 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .ml-cat-circle {
+      width: 64px; /* ligeramente más pequeño en móvil */
+      height: 64px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
   }
 
   /* Variación leve del desplazamiento del vapor por item */
@@ -306,6 +332,15 @@ body {
     width: 52px; /* acompaña el crecimiento del botón */
     height: 52px;
     object-fit: contain;
+  }
+  
+  @media (max-width: 768px) {
+    .ml-cat-circle img,
+    .ml-cat-circle svg,
+    .ml-cat-circle i {
+      width: 44px; /* más pequeño en móvil */
+      height: 44px;
+    }
   }
 
   /* Promociones: ocupar por completo el círculo */
@@ -413,6 +448,15 @@ body {
     text-align: center;
     line-height: 1.1;
     max-width: 100px;
+  }
+  
+  @media (max-width: 768px) {
+    .ml-cat-label {
+      font-size: 0.75rem; /* ligeramente más pequeño en móvil */
+      margin-top: 4px;
+      max-width: 88px;
+      font-weight: 500;
+    }
   }
 }
 
@@ -746,6 +790,60 @@ body {
 }
 
 @media (max-width: 768px) {
+  .ml-categories-wrapper {
+    position: sticky;
+    top: calc(54px + 68px + env(safe-area-inset-top, 0px)); /* navbar (54px) + buscador móvil (68px) */
+    z-index: 5;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    background: rgba(0,0,0,0.95); /* fondo más sólido para mejor legibilidad */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 0; /* más padding vertical */
+    position: relative;
+  }
+  
+  /* Indicador de scroll a la derecha */
+  .ml-categories-wrapper {
+    --scroll-indicator-opacity: 1;
+  }
+  
+  .ml-categories-wrapper::after {
+    content: '→';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 215, 0, 0.8);
+    font-size: 1.2rem;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10;
+    background: linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 100%);
+    padding-left: 20px;
+    animation: scrollHint 2s ease-in-out infinite;
+    opacity: var(--scroll-indicator-opacity);
+    transition: opacity 0.3s ease;
+  }
+  
+  @keyframes scrollHint {
+    0%, 100% { opacity: 0.6; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 1; transform: translateY(-50%) translateX(-4px); }
+  }
+  .ml-categories-wrapper::-webkit-scrollbar { display: none; }
+  .ml-categories {
+    scroll-padding-left: 12px;
+    scroll-padding-right: 12px;
+    padding: 8px 12px; /* aumentar padding */
+    gap: 12px; /* más espacio entre botones */
+  }
+  .ml-cat-item {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    min-width: 88px; /* asegurar ancho mínimo */
+  }
     .productos-lista>* {
         flex: 0 1 100%;
     }
@@ -2507,6 +2605,237 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
     filter: blur(10px) brightness(1.15);
     animation: productoCardEpicReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
     animation-delay: calc(var(--card-index, 0) * 0.13s + 0.2s);
+  }
+}
+
+/* ===== NUEVA IMPLEMENTACIÓN DE CATEGORÍAS - SIMPLE Y FUNCIONAL ===== */
+
+.categories-section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Barra de búsqueda móvil integrada - Transparente */
+.mobile-search-bar {
+  padding: 16px;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  position: sticky;
+  top: 54px; /* debajo del navbar */
+  z-index: 1000;
+  box-shadow: none;
+}
+
+.search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  color: rgba(255, 215, 0, 0.8);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mobile-search-input {
+  width: 100%;
+  padding: 14px 18px 14px 48px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 30px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(30, 30, 30, 0.8) 100%);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-search-input:focus {
+  border-color: #D4AF37;
+  box-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(40, 40, 40, 0.9) 100%);
+  transform: translateY(-1px);
+}
+
+.mobile-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 12px;
+  background: rgba(255, 215, 0, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 215, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.clear-search-btn:hover {
+  background: rgba(255, 215, 0, 0.3);
+  color: #D4AF37;
+  transform: scale(1.1);
+}
+
+/* Contenedor de categorías */
+.categories-container {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  padding: 16px 0;
+  position: sticky;
+  top: 118px; /* debajo del navbar + barra de búsqueda móvil */
+  z-index: 999;
+}
+
+@media (min-width: 769px) {
+  .categories-container {
+    position: static;
+    background: transparent;
+    border-bottom: none;
+    padding: 24px 0;
+  }
+}
+
+.categories-scroll {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .categories-scroll {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding: 0;
+  }
+}
+
+/* Chips de categorías - Solo imágenes sin fondo */
+.category-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+  flex-shrink: 0;
+  text-decoration: none;
+  outline: none;
+  scroll-snap-align: start;
+}
+
+.category-chip:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.category-chip:hover .category-icon img {
+  filter: brightness(1.1) drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+}
+
+.category-chip.active .category-icon img {
+  filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+}
+
+.category-chip.active .category-label {
+  color: #D4AF37;
+  font-weight: 600;
+}
+
+/* Iconos de categorías - Solo la imagen PNG */
+.category-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  overflow: visible;
+}
+
+.category-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Ajuste específico para el ícono de Carta */
+.category-chip:first-child .category-icon img {
+  width: 52px;
+  height: 52px;
+  margin-top: -2px; /* Ajuste para centrar mejor el ícono cortado */
+}
+
+/* Labels de categorías */
+.category-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.3s ease;
+}
+
+/* Ajustes para desktop */
+@media (min-width: 769px) {
+  .category-chip {
+    min-width: 100px;
+    padding: 12px;
+  }
+  
+  .category-icon {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .category-icon img {
+    width: 64px;
+    height: 64px;
+  }
+  
+  /* Ajuste específico para el ícono de Carta en desktop */
+  .category-chip:first-child .category-icon img {
+    width: 68px;
+    height: 68px;
+    margin-top: -3px; /* Ajuste para centrar mejor el ícono cortado */
+  }
+  
+  .category-label {
+    font-size: 0.85rem;
   }
 }
 
