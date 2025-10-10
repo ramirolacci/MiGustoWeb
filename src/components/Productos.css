@@ -91,7 +91,7 @@ body {
     padding: 2rem;
     position: relative;
     z-index: 1;
-    padding-top: 3rem; /* subir contenido */
+    padding-top: 1rem; /* padding mínimo en la parte superior */
     padding-bottom: 1.5rem;
 }
 
@@ -1259,7 +1259,7 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
     .productos-container {
-        padding-top: 32px !important; /* subir contenido en mobile */
+        padding-top: 0 !important; /* sin padding superior en móvil */
         padding-left: 1rem;
         padding-right: 1rem;
         margin-top: 0 !important;
@@ -2612,17 +2612,19 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 
 .categories-section {
   width: 100%;
-  margin-bottom: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 /* Barra de búsqueda móvil integrada - Transparente */
 .mobile-search-bar {
-  padding: 16px;
+  padding: 4px 12px 4px 12px; /* padding mínimo absoluto */
+  margin: 0;
   background: transparent;
   backdrop-filter: none;
   border-bottom: none;
   position: sticky;
-  top: 54px; /* debajo del navbar */
+  top: 0; /* completamente pegado arriba */
   z-index: 1000;
   box-shadow: none;
 }
@@ -2697,9 +2699,10 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   background: transparent;
   backdrop-filter: none;
   border-bottom: none;
-  padding: 16px 0;
+  padding: 2px 0 8px 0; /* padding mínimo absoluto */
+  margin: 0;
   position: sticky;
-  top: 118px; /* debajo del navbar + barra de búsqueda móvil */
+  top: 52px; /* ajustado para estar pegado a la barra de búsqueda */
   z-index: 999;
 }
 
