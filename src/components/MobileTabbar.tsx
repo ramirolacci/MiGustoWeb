@@ -44,7 +44,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Productos" 
           aria-current={location.pathname.startsWith('/productos') ? 'page' : undefined}
         >
-          <img src="/icons/pizza.svg" alt="Productos" />
+          <img src="/icons/empanadas-clasicas.svg" alt="Productos" />
           <span>Productos</span>
         </button>
 
