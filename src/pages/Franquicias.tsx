@@ -255,7 +255,7 @@ const Franquicias: React.FC = () => {
               }
             `}</style>
             {/* Título Franquicias */}
-            <img src="/images/franchises/Franquicias.png" alt="Franquicias" className="franq-title-img" style={{ 
+            <img src="/images/franquicias/Franquicias.png" alt="Franquicias" className="franq-title-img" style={{ 
               width: '340px', 
               marginBottom: '12px', 
               filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
@@ -263,7 +263,7 @@ const Franquicias: React.FC = () => {
             }} />
             
             {/* Imagen de fondo */}
-            <img src="/images/franchises/sucursal.png" alt="Sucursal Mi Gusto" className="franq-hero-img" style={{ 
+            <img src="/images/side-menu/franquicia.png" alt="Sucursal Mi Gusto" className="franq-hero-img" style={{ 
               width: '100%', 
               height: 'auto',
               maxHeight: 'calc(100vh - 200px)',
