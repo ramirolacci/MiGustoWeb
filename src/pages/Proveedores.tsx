@@ -109,7 +109,7 @@ const Proveedores: React.FC = () => {
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <img src="/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: isMobile ? '0px' : '56px', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
+          <img src="/images/side-menu/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: isMobile ? '56px' : '144px', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
