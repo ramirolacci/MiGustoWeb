@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Nosotros.css';
+import './Legales.css';
 
 const Legales: React.FC = () => {
   useEffect(() => {
@@ -45,9 +45,9 @@ const Legales: React.FC = () => {
     });
   }, []);
   return (
-    <div className="nosotros-container">
-      <div className="background-overlay"></div>
-      <div className="nosotros-content">
+    <div className="legales-container">
+      <div className="legales-background-overlay"></div>
+      <div className="legales-content">
         <div className="section-card">
           <h2>TÉRMINOS Y CONDICIONES</h2>
           <p>
