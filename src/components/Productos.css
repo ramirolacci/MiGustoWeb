@@ -345,10 +345,10 @@ body {
 
   /* Promociones: ocupar por completo el círculo */
   .ml-cat-item[data-cat="Promociones"] .ml-cat-circle img {
-    width: 44px; /* ligeramente más chico */
-    height: 44px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 36px !important; /* más pequeño */
+    height: 36px !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
   }
 
   /* Promociones: sin fondo ni borde, solo imagen */
@@ -2762,7 +2762,7 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 }
 
 .category-chip:hover .category-icon img {
-  filter: brightness(1.1) drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+  filter: none;
 }
 
 .category-chip.active .category-icon img {
@@ -2801,6 +2801,18 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   width: 52px;
   height: 52px;
   margin-top: -2px; /* Ajuste para centrar mejor el ícono cortado */
+}
+
+/* Ajuste específico para Promociones */
+.category-chip.promociones-chip .category-icon img {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+/* Ajuste específico para Carta */
+.category-chip.carta-chip .category-icon img {
+  width: 46px !important;
+  height: 46px !important;
 }
 
 /* Labels de categorías */

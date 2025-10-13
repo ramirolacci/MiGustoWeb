@@ -384,7 +384,7 @@ export default function Productos() {
                                         return (
                                     <button
                                         key={category.key}
-                                        className={`category-chip ${isActive ? 'active' : ''}`}
+                                        className={`category-chip ${isActive ? 'active' : ''} ${category.key === 'Promociones' ? 'promociones-chip' : ''} ${category.key === 'Carta' ? 'carta-chip' : ''}`}
                                         onClick={() => {
                                             if (category.key === 'Carta') {
                                                 window.scrollTo({ top: 0, behavior: 'smooth' });
