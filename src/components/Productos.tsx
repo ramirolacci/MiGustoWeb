@@ -384,7 +384,7 @@ export default function Productos() {
                                         return (
                                     <button
                                         key={category.key}
-                                        className={`category-chip ${isActive ? 'active' : ''} ${category.key === 'Promociones' ? 'promociones-chip' : ''} ${category.key === 'Carta' ? 'carta-chip' : ''}`}
+                                        className={`category-chip ${isActive ? 'active' : ''} ${category.key === 'Promociones' ? 'promociones-chip' : ''} ${category.key === 'Carta' ? 'carta-chip' : ''} ${category.key === 'Premium' ? 'premium-chip' : ''} ${category.key === 'Clasicas' ? 'clasicas-chip' : ''} ${category.key === 'Pizzas' ? 'pizzas-chip' : ''} ${category.key === 'Pizzas INDI' ? 'pizzas-indi-chip' : ''} ${category.key === 'Fitzzas' ? 'fitzzas-chip' : ''}`}
                                         onClick={() => {
                                             if (category.key === 'Carta') {
                                                 window.scrollTo({ top: 0, behavior: 'smooth' });

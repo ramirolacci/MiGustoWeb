@@ -2816,6 +2816,56 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   height: 46px !important;
 }
 
+/* Efecto de vapor para botones específicos */
+.category-chip.premium-chip .category-icon,
+.category-chip.clasicas-chip .category-icon,
+.category-chip.pizzas-chip .category-icon,
+.category-chip.pizzas-indi-chip .category-icon,
+.category-chip.fitzzas-chip .category-icon {
+  position: relative;
+}
+
+.category-chip.premium-chip .category-icon::before,
+.category-chip.clasicas-chip .category-icon::before,
+.category-chip.pizzas-chip .category-icon::before,
+.category-chip.pizzas-indi-chip .category-icon::before,
+.category-chip.fitzzas-chip .category-icon::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 60px;
+  height: 40px;
+  transform: translateX(-50%) translateY(14px) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 50%;
+  filter: blur(16px) contrast(1.12) brightness(1.22);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  background:
+    radial-gradient(40% 60% at 22% 82%, rgba(255,255,255,.72), rgba(255,255,255,0) 70%),
+    radial-gradient(46% 64% at 52% 82%, rgba(255,255,255,.62), rgba(255,255,255,0) 72%),
+    radial-gradient(40% 60% at 82% 82%, rgba(255,255,255,.56), rgba(255,255,255,0) 70%);
+}
+
+.category-chip.premium-chip:hover .category-icon::before,
+.category-chip.clasicas-chip:hover .category-icon::before,
+.category-chip.pizzas-chip:hover .category-icon::before,
+.category-chip.pizzas-indi-chip:hover .category-icon::before,
+.category-chip.fitzzas-chip:hover .category-icon::before {
+  animation: vapor-rise 3s ease-out infinite;
+  opacity: .95;
+}
+
+@keyframes vapor-rise {
+  0%   { transform: translateX(-50%) translateY(14px) scale(0.8); opacity: 0; }
+  18%  { opacity: .55; }
+  60%  { transform: translateX(-50%) translateY(-22px) scale(1.05); opacity: .95; }
+  100% { transform: translateX(-50%) translateY(-64px) scale(1.25); opacity: 0; }
+}
+
 /* Labels de categorías */
 .category-label {
   font-size: 0.75rem;
