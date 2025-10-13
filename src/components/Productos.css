@@ -2821,7 +2821,8 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 .category-chip.clasicas-chip .category-icon,
 .category-chip.pizzas-chip .category-icon,
 .category-chip.pizzas-indi-chip .category-icon,
-.category-chip.fitzzas-chip .category-icon {
+.category-chip.fitzzas-chip .category-icon,
+.category-chip.productos-chip .category-icon {
   position: relative;
 }
 
@@ -2829,7 +2830,8 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 .category-chip.clasicas-chip .category-icon::before,
 .category-chip.pizzas-chip .category-icon::before,
 .category-chip.pizzas-indi-chip .category-icon::before,
-.category-chip.fitzzas-chip .category-icon::before {
+.category-chip.fitzzas-chip .category-icon::before,
+.category-chip.productos-chip .category-icon::before {
   content: '';
   position: absolute;
   top: -12px;
@@ -2854,7 +2856,8 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 .category-chip.clasicas-chip:hover .category-icon::before,
 .category-chip.pizzas-chip:hover .category-icon::before,
 .category-chip.pizzas-indi-chip:hover .category-icon::before,
-.category-chip.fitzzas-chip:hover .category-icon::before {
+.category-chip.fitzzas-chip:hover .category-icon::before,
+.category-chip.productos-chip:hover .category-icon::before {
   animation: vapor-rise 3s ease-out infinite;
   opacity: .95;
 }
