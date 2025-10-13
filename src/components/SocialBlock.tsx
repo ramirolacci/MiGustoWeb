@@ -52,7 +52,7 @@ const SocialBlock: React.FC = () => (
         rel="noopener noreferrer"
       >
         <img
-          src="src/assets/google-play-logo.svg"
+          src="/assets/google-play-logo.svg"
           alt="Google Play"
           width="120"
         />
@@ -66,7 +66,7 @@ const SocialBlock: React.FC = () => (
         rel="noopener noreferrer"
       >
         <img
-          src="src/assets/app-store-apple-logo.svg"
+          src="/assets/app-store-apple-logo.svg"
           alt="App Store"
           width="120"
         />
