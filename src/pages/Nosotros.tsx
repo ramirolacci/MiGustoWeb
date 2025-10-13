@@ -328,7 +328,7 @@ const Nosotros: React.FC = () => {
                                         objectFit: 'cover'
                                     }}
                                 >
-                                    <source src="/MiGusto_Pabloyjesica.mp4" type="video/mp4" />
+                                    <source src="/videos/corporate/MiGusto_Pabloyjesica.mp4" type="video/mp4" />
                                 </video>
                                 {!isPlaying && (
                                     <div className="play-overlay">
@@ -338,7 +338,7 @@ const Nosotros: React.FC = () => {
                                 <div className="tiktok-overlay">
                                     <div className="tiktok-user-info">
                                         <img 
-                                            src="/logo.jpg" 
+                                            src="/images/logos/logoBot.png" 
                                             alt="Mi Gusto" 
                                             className="tiktok-avatar"
                                         />
