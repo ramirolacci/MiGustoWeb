@@ -168,7 +168,7 @@ const VentaCorporativa: React.FC = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'flex-start',
-                        marginTop: '56px', 
+                        marginTop: '88px', 
                         position: 'relative', 
                         zIndex: 2,
                         padding: '40px'
@@ -218,7 +218,7 @@ const VentaCorporativa: React.FC = () => {
                         }} />
                         
                         {/* Imagen de fondo */}
-                        <img src="/images/corporate/foto f-100.jpg" alt="Venta corporativa" className="corp-hero-img" style={{ 
+                        <img src="/images/side-menu/corporativa.png" alt="Venta corporativa" className="corp-hero-img" style={{ 
                             width: '100%', 
                             maxWidth: '680px',
                             height: 'auto',
