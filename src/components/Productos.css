@@ -2758,11 +2758,12 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 }
 
 .category-chip:hover {
-  transform: translateY(-2px) scale(1.05);
+  transform: none;
 }
 
 .category-chip:hover .category-icon img {
   filter: none;
+  transform: scale(1.4);
 }
 
 .category-chip.active .category-icon img {
