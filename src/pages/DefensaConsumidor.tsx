@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Nosotros.css';
+import './DefensaConsumidor.css';
 
 // Estilos base (match estilo glass/blur de Legales)
 const cardStyle: React.CSSProperties = {
@@ -50,7 +50,7 @@ const organismoBlock: React.CSSProperties = {
   boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
   padding: '1.4rem 1.6rem 1.4rem 1.6rem',
   marginBottom: '1.8rem',
-  border: '1px solid #FFD70022',
+  border: '1px solid rgba(255, 255, 255, 0.1)',
 };
 
 const linkStyle: React.CSSProperties = {
@@ -151,10 +151,10 @@ const DefensaConsumidor: React.FC = () => {
   }, []);
 
   return (
-    <div className="nosotros-container">
+    <div className="defensa-container">
       <style>{responsiveCSS}</style>
-      <div className="background-overlay"></div>
-      <div className="nosotros-content defensa-content">
+      <div className="defensa-background-overlay"></div>
+      <div className="defensa-content">
         <div className="section-card defensa-card" style={cardStyle}>
           <h2 className="defensa-title" style={titleStyle}>DEFENSA AL CONSUMIDOR</h2>
           <div className="defensa-divider" style={dividerStyle}></div>
