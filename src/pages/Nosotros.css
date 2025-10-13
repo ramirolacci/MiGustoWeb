@@ -13,6 +13,7 @@
     overflow: visible; /* permitir que los brillos no se recorten */
     isolation: isolate;
     font-family: 'Poppins', sans-serif;
+    padding-top: 20px;
 }
 
 .background-overlay {
