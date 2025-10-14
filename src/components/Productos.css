@@ -2767,7 +2767,7 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 }
 
 .category-chip.active .category-icon img {
-  filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+  filter: none;
 }
 
 .category-chip.active .category-label {
