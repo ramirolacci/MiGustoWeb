@@ -19,6 +19,7 @@ interface Producto {
     descripcion: string;
     imagen: string;
     imagenDetalle?: string;
+    imagenCard?: string;
     ingredientes?: string[];
     tiempoPreparacion?: string;
     calorias?: string;
@@ -447,7 +448,7 @@ export default function Productos() {
                                 ];
                                 return (
                                     <div className="producto-row-mobile" key={prod.titulo + '-' + prod.categoria} onClick={() => setProductoSeleccionado(prod)} style={{ '--card-index': idx } as React.CSSProperties}>
-                                        <img src={prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
+                                        <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
                                         <div className="producto-info-mobile">
                                             <h3>{prod.titulo}</h3>
                                             <p>{prod.descripcion}</p>
@@ -470,7 +471,7 @@ export default function Productos() {
                                     {/* Ícono 3D eliminado por requerimiento */}
                                     {/* Renderizado estándar para todas las cards, incluyendo Big burger */}
                                         <>
-                                            <img src={prod.imagen} alt={prod.titulo} />
+                                            <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} />
                                             <div className="producto-info">
                                                 <h3
                                                     className="titulo-card-desktop"

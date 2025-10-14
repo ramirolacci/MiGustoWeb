@@ -3,6 +3,7 @@
 export interface Empanada {
   imagen: string;
   imagenDetalle?: string;
+  imagenCard?: string;
   titulo: string;
   precio?: number;
   descripcion: string;
@@ -69,6 +70,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png",
+    imagenCard: "https://i.postimg.cc/yYKCxRG3/jamonyqueso.jpg",
     titulo: "Jamón y queso",
     precio: 3700,
     descripcion: "Jamón cocido feteado, Abundante muzzarella seleccionada.",
@@ -76,6 +78,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
+    imagenCard: "https://i.postimg.cc/BZrx3sMT/jamonquesoyhuevo.jpg",
     titulo: "Jamón, huevo y queso",
     precio: 3700,
     descripcion: "Jamón cocido en cubos, Colmado de muzzarella seleccionada, Huevo duro.",
@@ -83,6 +86,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/fLCSdvyz/Carne-picante.png",
+    imagenCard: "https://i.postimg.cc/VLszd07h/carnepicante.jpg",
     titulo: "Carne picante",
     precio: 3700,
     descripcion: "Corte de paleta premium, Salteado de cebolla y morrón, Verdeo y huevo duro, Especias y ají picante.",
@@ -90,6 +94,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/MHHWPC0L/con-aceitunas.png",
+    imagenCard: "https://i.postimg.cc/dVkPy28V/carneyaceituna.jpg",
     titulo: "Carne con aceituna",
     precio: 3700,
     descripcion: "Corte de paleta premium, salteado de cebolla, morrón, verdeo con huevo duro, abundantes rodajas de aceitunas verdes y delicadas especias.",
@@ -103,6 +108,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/d12LYjrR/Carne-a-cuchillo.png",
+    imagenCard: "https://i.postimg.cc/GpFfFq9n/cortadaacuchillo.jpg",
     titulo: "Carne a cuchillo",
     precio: 3700,
     descripcion: "Carne cuadrada premium con corte a cuchillo artesanal, Mix de morrón y huevo, Toque secreto salteño.",
@@ -110,13 +116,15 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/NMjmpnW9/Carne-Suave.png",
-    titulo: "Carne Suave",
+    imagenCard: "https://i.postimg.cc/qqwh2VHT/carnesuave.jpg",
+    titulo: "Carne suave",
     precio: 3700,
     descripcion: "Corte de paleta premium, Salteado con cebolla y morrón, Huevo duro, Delicadas especias de nuestra tradición.",
     esPremium: false
   },
   {
     imagen: "https://i.postimg.cc/1XtxRybm/Cebolla.png",
+    imagenCard: "https://i.postimg.cc/FzVcGk39/cebollayqueso.jpg",
     titulo: "Queso y cebolla",
     precio: 3700,
     descripcion: "Perfecta union muzzarella seleccionada, Salteado de cebolla, Toque de quesardo estacionado.",
@@ -125,6 +133,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png",
+    imagenCard: "https://i.postimg.cc/wjfr07Qs/roquefortyjamon.jpg",
     titulo: "Roquefort con jamón",
     precio: 3700,
     descripcion: "Jamon cocido feteado, Intenso queso roquefort premium.",
@@ -132,6 +141,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/FRJDQZbH/tomate-y-albahaca.png",
+    imagenCard: "https://i.postimg.cc/5tzmL07d/jamontomateyalbhaca.jpg",
     titulo: "Jamón, tomate y albahaca",
     precio: 3700,
     descripcion: "Jamón cocido en cubos, Tomates cherry asados, Albahaca fresca, Abundante queso muzzarella.",
@@ -139,6 +149,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/NGS2HDk4/pollo.png",
+    imagenCard: "https://i.postimg.cc/ZRMKmbm0/pollo.jpg",
     titulo: "Pollo",
     precio: 3700,
     descripcion: "Suprema de pollo cortada en trozos a base de cebolla, morrón y salsa de especias, cocinado a fuego lento y finalizado con huevo duro.",
@@ -152,6 +163,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/rw1NF3W3/cuatro-quesos.png",
+    imagenCard: "https://i.postimg.cc/43rHvQ7N/cuatroquesos.jpg",
     titulo: "Cuatro quesos",
     precio: 3700,
     descripcion: "Blend de abundante queso muzzarella, quesardo seleccionado, roquefort intenso y provolone estacionado.",
@@ -166,6 +178,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/rmGWykxP/champi.png",
+    imagenCard: "https://i.postimg.cc/50C7pgs0/polloychampignon.jpg",
     titulo: "Pollo al champignon",
     precio: 3700,
     descripcion: "Suprema de pollo cortada en trozos, cremosa salsa bechamel y champignon fresco salteado.",
@@ -178,6 +191,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/t40x6JkM/choclo.png",
+    imagenCard: "https://i.postimg.cc/HLpdqJqQ/choclo.jpg",
     titulo: "Choclo",
     precio: 3700,
     descripcion: "Deliciosa mezcla de choclo entero, choclo cremoso, especias y abundante queso muzzarella.",
@@ -192,6 +206,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/zGcQZVmp/verdura.png",
+    imagenCard: "https://i.postimg.cc/1z54pY5D/verdura.jpg",
     titulo: "Verdura",
     precio: 3700,
     descripcion: "Salteado de espinaca, cebolla, morrón, puerro y verdeo, cremosa salsa bechamel, rebosada de abundante muzzarella y queso sardo estacionado.",
@@ -206,6 +221,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/brr5kQtn/Calabaza.png",
+    imagenCard: "https://i.postimg.cc/kXQ5LdV9/calabaza.jpg",
     titulo: "Calabaza",
     precio: 3700,
     descripcion: "Calabaza horneada especiada, abundante muzzarella en tapa integral y semillas.",
@@ -219,6 +235,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png",
+    imagenCard: "https://i.postimg.cc/HLc1DQSj/pancetayciruela.jpg",
     titulo: "Panceta y ciruela",
     precio: 3700,
     descripcion: "Panceta ahumada feteada, abundante queso muzzarella y ciruelas en pasas.",
