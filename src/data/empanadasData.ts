@@ -245,13 +245,5 @@ export const empanadas: Empanada[] = [
       "Ciruelas en pasas"
     ],
     esPremium: false
-  },
-  {
-    imagen: "https://i.postimg.cc/hGt9VnSD/carne.png",
-    titulo: "Carne",
-    precio: 3700,
-    descripcion: "Rellenas con carne picada, cebolla, huevo duro y especias clásicas.",
-    esRecomendado: true,
-    esPremium: false
   }
 ];
