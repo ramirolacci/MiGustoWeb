@@ -263,8 +263,8 @@
 }
 .hm-card-destacadas { height: 160px; }
 .hm-card-destacadas .hm-card-img { width:100%; height:100%; object-fit: cover; object-position: top; }
-.hm-card-other { height: auto; }
-.hm-card-other .hm-card-img { width:100%; height: auto; object-fit: cover; object-position: top; }
+.hm-card-other { height: 160px; }
+.hm-card-other .hm-card-img { width:100%; height:100%; object-fit: cover; object-position: top; }
 .hm-lightbox { position: fixed; inset:0; background: rgba(0,0,0,.8); display:flex; align-items:center; justify-content:center; z-index: 50; }
 .hm-lightbox-inner { max-width: 100vw; max-height: 86vh; padding: 10px; }
 .hm-lightbox img { width: 100%; height: auto; border-radius: 14px; }

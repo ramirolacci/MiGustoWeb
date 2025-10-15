@@ -14,9 +14,11 @@ export const promosDestacadas: MobilePromoSlide[] = [
 ];
 
 export const combosImperdibles: MobilePromoSlide[] = [
-  { id: 'i1', image: '/images/promotions/Miniaturas promos 2025-04.jpg', title: 'Promos 2025-04' },
-  { id: 'i2', image: '/images/promotions/Miniaturas promos 2025-05.jpg', title: 'Promos 2025-05' },
-  { id: 'i3', image: '/images/promotions/Miniaturas promos 2025-07.jpg', title: 'Promos 2025-07' },
+  { id: 'i1', image: 'https://i.postimg.cc/JhGSfFLS/pack-6.jpg', title: 'Pack 6' },
+  { id: 'i2', image: 'https://i.postimg.cc/2j2FWSvx/promo-sugerida.jpg', title: 'Promo Sugerida' },
+  { id: 'i3', image: 'https://i.postimg.cc/43ghMDtj/pack-18.jpg', title: 'Pack 18' },
+  { id: 'i4', image: 'https://i.postimg.cc/3rvY4dzm/pack-3.jpg', title: 'Pack 3' },
+  { id: 'i5', image: 'https://i.postimg.cc/gJBjYQXW/promo-ideal.jpg', title: 'Promo Ideal' },
 ];
 
 
