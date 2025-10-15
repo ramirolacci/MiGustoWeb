@@ -70,17 +70,6 @@ export const pizzas: Pizza[] = [
         descripcion: "Pizza grande de queso muzzarella, queso roquefort y jamón cocido."
     },
     {
-        imagen: "https://i.postimg.cc/Gm3fmdnK/Calabresa-Photoroom.png",
-        titulo: "Calabresa",
-        descripcion: "Pizza grande de queso Muzzarella y fetas de calabresa.",
-        esRecomendado: true
-    },
-    {
-        imagen: "https://i.postimg.cc/NFfXrJs3/Calabresa-con-Jaon-Photoroom.png",
-        titulo: "Calabresa con jamón",
-        descripcion: "Pizza grande de queso Muzzarella, fetas de calabresa y jamón cocido."
-    },
-    {
         imagen: "https://i.postimg.cc/9MqmgyxD/Cuatro-Quesos-Photoroom.png",
         titulo: "Cuatro quesos",
         descripcion: "Pizza 4 quesos mezcla de queso muzzarella elaborada con queso roquefort y provolone.",
@@ -110,16 +99,6 @@ export const pizzas: Pizza[] = [
         descripcion: "Pizza grande de queso Muzzarella elaborada con cebolla blanca, jamón cocido y provolone."
     },
     {
-        imagen: "https://i.postimg.cc/90ZkrYbH/Anchoas-Photoroom.png",
-        titulo: "Anchoas",
-        descripcion: "Pizza grande de queso Muzzarella elaborada con salsa de tomate, anchoas y alcaparras."
-    },
-    {
-        imagen: "https://i.postimg.cc/W36rzDZf/Jamon-con-Anana-Photoroom.png",
-        titulo: "Jamón con ananá",
-        descripcion: "Pizza grande de queso Muzzarella elaborada con salsa de tomate, jamón cocido, ananá en rodajas, orégano y cerezas."
-    },
-    {
         imagen: "https://i.postimg.cc/MGwpT9Yq/Caprese-Photoroom.png",
         titulo: "Caprese",
         descripcion: "Pizza grande de queso Muzzarella elaborada con hojas de albahaca, tomate y aceite de oliva.",
@@ -145,11 +124,6 @@ export const pizzas: Pizza[] = [
         imagen: "https://i.postimg.cc/3NMHWRgV/Jamon-tomate-huevo-y-roquefort-Photoroom.png",
         titulo: "Jamón, tomate, huevo y roquefort",
         descripcion: "Pizza grande de queso Muzzarella elaborada con queso roquefort, tomate fresco y huevo cocido."
-    },
-    {
-        imagen: "https://i.postimg.cc/15fpy3Ws/Provo-Jamon-y-Longaniza-Photoroom.png",
-        titulo: "Provolone, jamón y longaniza",
-        descripcion: "Pizza grande de queso Muzzarella elaborada con queso provolone, jamón cocido y fetas de longaniza."
     },
     {
         imagen: "https://i.postimg.cc/c4BryyW0/Provolone-Jamon-y-Morron-Photoroom.png",
