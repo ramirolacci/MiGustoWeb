@@ -2821,8 +2821,16 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 /* Forzar visibilidad plena en Carta */
 .carta-container .category-icon img {
   opacity: 1 !important;
-  /* Refuerzo visual para Carta: más brillo y saturación por defecto */
-  filter: brightness(1.18) saturate(1.2) contrast(1.05) !important;
+  /* Igualar a Productos con leve refuerzo de contraste para evitar aspecto lavado sin sobre-brillo */
+  filter: contrast(1.06) saturate(1.05) !important;
+}
+
+/* Ajustes sutiles por categoría solo en Carta */
+.carta-container .category-chip.promociones-chip .category-icon img,
+.carta-container .category-chip.aderezos-chip .category-icon img,
+.carta-container .category-chip.postres-chip .category-icon img,
+.carta-container .category-chip.carta-chip .category-icon img {
+  filter: contrast(1.08) saturate(1.08) !important;
 }
 
 .carta-container .category-label {
