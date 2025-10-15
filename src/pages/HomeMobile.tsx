@@ -163,6 +163,8 @@ export default function HomeMobile() {
          </section>
         **/}
 
+        {/* Botones de categorías ocultos en móvil por solicitud del usuario */}
+        {false && (
         <section className="hm-categories">
           <div className="hm-cat hm-cat-premium" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
             <div className="hm-cat-img-wrap-premium">
@@ -201,6 +203,7 @@ export default function HomeMobile() {
             <span>Aderezos</span>
           </div>
         </section>
+        )}
 
         <PromoCarousel title="Combos imperdibles" slides={moreSlides} />
         <PromoCarousel title="Para compartir" slides={moreSlides} />
