@@ -127,6 +127,21 @@ export default function HomeMobile() {
           />
         </div>
 
+        {/* Video hero section */}
+        <section className="hm-video-hero">
+          <video
+            className="hm-video-bg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            src="/videos/promotional/VideoFlash.mp4"
+            poster="/images/sliders/mainpain.png"
+          />
+          <div className="hm-video-overlay" />
+        </section>
+
         <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
 
         {/** Oculto temporalmente el banner "Unite a Lovers Club" en mobile **/}
