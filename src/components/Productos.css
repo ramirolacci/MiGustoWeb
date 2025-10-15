@@ -88,10 +88,10 @@ body {
     width: 85%;
     max-width: 1800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.25rem; /* reducir padding para acercar al navbar */
     position: relative;
     z-index: 1;
-    padding-top: 1rem; /* padding mínimo en la parte superior */
+    padding-top: 0; /* subir un poquito más */
     padding-bottom: 1.5rem;
 }
 
@@ -2699,10 +2699,10 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   background: transparent;
   backdrop-filter: none;
   border-bottom: none;
-  padding: 2px 0 8px 0; /* padding mínimo absoluto */
+  padding: 0 0 6px 0; /* menos padding superior */
   margin: 0;
   position: sticky;
-  top: 52px; /* ajustado para estar pegado a la barra de búsqueda */
+  top: 40px; /* subir un poco más respecto del navbar */
   z-index: 999;
 }
 
