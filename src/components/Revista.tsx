@@ -243,7 +243,7 @@ const Revista = () => {
                                 initialSlide={1}
                                 onSwiper={(swiper) => { swiperRef.current = swiper; }}
                                 onSlideChange={(swiper) => setPaginaActual(swiper.activeIndex)}
-                                style={{ width: '100%', maxWidth: 480, minHeight: 380 }}
+                                style={{ width: '100%', maxWidth: 420, minHeight: 340 }}
                                 className="revista-swiper"
                             >
                                 <SwiperSlide key="portada">

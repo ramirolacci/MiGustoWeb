@@ -140,6 +140,13 @@ export default function HomeMobile() {
             poster="/images/sliders/mainpain.png"
           />
           <div className="hm-video-overlay" />
+          <div className="hm-video-content">
+            <h1 className="hm-hero-title">
+              Disfrutá hoy tu
+              <br />
+              experiencia de verdad
+            </h1>
+          </div>
         </section>
 
         <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
