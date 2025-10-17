@@ -91,7 +91,7 @@
   inset: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   z-index: 2;
   padding: 20px;
 }
@@ -101,10 +101,14 @@
   font-weight: 800;
   font-size: 28px;
   line-height: 1.1;
-  text-align: center;
+  text-align: justify;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: -0.5px;
+}
+
+.hm-hero-highlight {
+  color: #ffbf1f;
 }
 
 /* Banners/CTA Lovers */

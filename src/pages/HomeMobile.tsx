@@ -183,7 +183,7 @@ export default function HomeMobile() {
           <div className="hm-video-overlay" />
           <div className="hm-video-content">
             <h1 className="hm-hero-title">
-              Disfrutá hoy tu
+              <span className="hm-hero-highlight">Disfrutá</span> hoy tu
               <br />
               experiencia de verdad
             </h1>
