@@ -8,9 +8,10 @@ interface Props {
     filtro: string;
     setFiltro: (filtro: string) => void;
     onSubmit?: (valor: string) => void;
+    placeholder?: string;
 }
 
-const Buscador: React.FC<Props> = ({ filtro, setFiltro, onSubmit }) => {
+const Buscador: React.FC<Props> = ({ filtro, setFiltro, onSubmit, placeholder }) => {
     const [aparecer, setAparecer] = useState(false);
     const [bordeLuz, setBordeLuz] = useState(false);
     const animatedPlaceholder = useAnimatedPlaceholder(3000);
@@ -27,7 +28,7 @@ const Buscador: React.FC<Props> = ({ filtro, setFiltro, onSubmit }) => {
             <input
                 type="text"
                 className="buscador-input"
-                placeholder={animatedPlaceholder}
+                placeholder={placeholder || animatedPlaceholder}
                 value={filtro}
                 onChange={(e) => setFiltro(e.target.value)}
                 onKeyDown={(e) => {

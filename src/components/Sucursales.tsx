@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { sucursales } from '../data/sucursalesData';
 import SucursalCard from '../components/SucursalCard';
+import Buscador from '../components/Buscador';
 import './SucursalCard.css';
 import './Sucursales.css';
 
@@ -125,8 +126,16 @@ const Sucursales: React.FC = () => {
             <div className="background-overlay"></div>
             <div className="sucursales-container">
                 <div className="container">
+                    {/* Buscador para móvil */}
+                    <div className="sucursales-buscador">
+                        <Buscador 
+                            filtro={filtro} 
+                            setFiltro={setFiltro}
+                            placeholder="Buscar sucursales cercanas"
+                        />
+                    </div>
+                    
                     <h2 className="productos-titulo">Encontrá tu sucursal más cercana</h2>
-                    {/* Buscador removido: usar la barra global del navbar */}
 
                     <div className="row">
                         {sucursalesVisibles.map((sucursal, index) => (

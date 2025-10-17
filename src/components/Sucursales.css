@@ -7,12 +7,12 @@ body {
     background-color: #000;
     overflow: hidden;
     isolation: isolate;
-    padding: 2rem 0;
+    padding: 0.5rem 0; /* reducido para subir el contenido en móvil */
 }
 
 .sucursales-container {
     position: relative;
-    padding: 4rem 0;
+    padding: 1rem 0; /* reducido para subir el contenido en móvil */
     z-index: 1;
     min-height: 100vh;
 }
@@ -220,18 +220,31 @@ body {
 /* Estilos responsivos para móvil */
 @media (max-width: 768px) {
     .sucursales-container {
-        padding: 2rem 0;
-        padding-top: 60px;
+        padding: 0.5rem 0 !important; /* reducido para subir el contenido */
+        padding-top: 20px !important; /* reducido para subir el contenido */
+    }
+    
+    /* Buscador en móvil */
+    .sucursales-buscador {
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
     }
     
     .productos-titulo {
         font-size: 1.8rem;
-        margin-top: -2rem;
-        margin-bottom: 1.5rem;
+        margin-top: -1rem !important; /* reducido para subir el título */
+        margin-bottom: 1rem !important; /* reducido para subir el contenido */
     }
     
     .productos-busqueda {
-        margin-top: 2rem;
-        margin-bottom: 1.5rem;
+        margin-top: 1rem !important; /* reducido para subir el contenido */
+        margin-bottom: 1rem !important; /* reducido para subir el contenido */
+    }
+}
+
+/* Ocultar buscador en desktop */
+@media (min-width: 769px) {
+    .sucursales-buscador {
+        display: none;
     }
 } 
