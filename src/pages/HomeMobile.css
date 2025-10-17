@@ -9,7 +9,19 @@
 .hm-content { padding: 12px 0 0 0; }
 
 /* Buscador */
-.hm-search { position: sticky; top: 0; z-index: 5; background: #0a0a0a; padding: 10px 16px 0 16px; }
+.hm-search { 
+  position: sticky; 
+  top: 0; 
+  z-index: 5; 
+  background: #0a0a0a; 
+  padding: 10px 16px 0 16px; 
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.hm-search-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
 
 /* Video Hero Section */
 .hm-video-hero {

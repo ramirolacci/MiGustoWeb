@@ -91,6 +91,7 @@ export default function HomeMobile() {
   const location = useLocation();
   const isMobile = useIsMobile();
   const [filtro, setFiltro] = useState('');
+  const [isSearchVisible, setIsSearchVisible] = useState(true);
 
   const promoSlides = useMemo<Slide[]>(() => promosDestacadas, []);
 
@@ -105,10 +106,42 @@ export default function HomeMobile() {
     if (!isMobile) navigate('/', { replace: true });
   }, [isMobile]);
 
+  // Controlar visibilidad del buscador al hacer scroll
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateSearchVisibility = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Si el scroll es hacia abajo y hemos scrolleado más de 50px, ocultar
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsSearchVisible(false);
+      } 
+      // Si el scroll es hacia arriba, mostrar
+      else if (currentScrollY < lastScrollY) {
+        setIsSearchVisible(true);
+      }
+      
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateSearchVisibility);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="hm-root">
       <div className="hm-content">
-        <div className="hm-search">
+        <div className={`hm-search ${!isSearchVisible ? 'hm-search-hidden' : ''}`}>
           <Buscador
             filtro={filtro}
             setFiltro={setFiltro}
