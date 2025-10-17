@@ -87,7 +87,7 @@ body {
 .productos-container {
     width: 85%;
     max-width: 1800px;
-    margin: 0 auto;
+    margin: 15px auto 0 auto !important; /* margen superior ajustado */
     padding: 1.25rem; /* reducir padding para acercar al navbar */
     position: relative;
     z-index: 1;
@@ -233,9 +233,9 @@ body {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin: 0 0 0.5rem 0; /* menos separación superior */
+    margin: 15px 0 0.5rem 0 !important; /* margen superior ajustado */
     position: sticky; /* mantener visible al hacer scroll/búsqueda */
-    top: calc(54px + 68px + env(safe-area-inset-top, 0px)); /* navbar + buscador móvil */
+    top: calc(54px + 85px + env(safe-area-inset-top, 0px)) !important; /* navbar + buscador móvil */
     z-index: 5; /* sobre el contenido de productos */
     background: rgba(0,0,0,0.9); /* fondo para legibilidad cuando se fija */
     backdrop-filter: blur(4px);
@@ -792,7 +792,7 @@ body {
 @media (max-width: 768px) {
   .ml-categories-wrapper {
     position: sticky;
-    top: calc(54px + 68px + env(safe-area-inset-top, 0px)); /* navbar (54px) + buscador móvil (68px) */
+    top: calc(54px + 85px + env(safe-area-inset-top, 0px)) !important; /* navbar (54px) + buscador móvil (85px) */
     z-index: 5;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -803,6 +803,7 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding: 8px 0; /* más padding vertical */
     position: relative;
+    margin-top: 15px !important; /* FORZAR margen superior en móvil */
   }
   
   /* Indicador de scroll a la derecha */
@@ -2360,6 +2361,16 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   }
 }
 
+/* FORZAR cambios en móvil - agregado al final para máxima prioridad */
+@media (max-width: 768px) {
+  .ml-categories-wrapper {
+    margin-top: 15px !important;
+  }
+  .productos-container {
+    margin-top: 15px !important;
+  }
+}
+
 .modal-product-title {
     font-size: 2.7rem;
     font-weight: 900;
@@ -2604,8 +2615,8 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   background: transparent;
   backdrop-filter: none;
   border-bottom: none;
-  position: sticky;
-  top: 0; /* completamente pegado arriba */
+  position: sticky !important;
+  top: 15px !important; /* bajar solo un poco el buscador */
   z-index: 1000;
   box-shadow: none;
 }
@@ -2682,8 +2693,8 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   border-bottom: none;
   padding: 0 0 6px 0; /* menos padding superior */
   margin: 0;
-  position: sticky;
-  top: 40px; /* subir un poco más respecto del navbar */
+  position: sticky !important;
+  top: 85px !important; /* ajustar para que no quede pegado al buscador */
   z-index: 999;
 }
 
