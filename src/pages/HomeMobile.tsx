@@ -228,7 +228,8 @@ export default function HomeMobile() {
         )}
 
         <PromoCarousel title="Combos imperdibles" slides={moreSlides} />
-        <PromoCarousel title="Para compartir" slides={moreSlides} />
+        {/* Carrusel "Para compartir" oculto en móvil por solicitud del usuario */}
+        {/* <PromoCarousel title="Para compartir" slides={moreSlides} /> */}
       </div>
 
     </div>
