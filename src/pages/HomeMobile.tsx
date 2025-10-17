@@ -190,42 +190,6 @@ export default function HomeMobile() {
           </div>
         </section>
 
-        <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
-
-        {/** Oculto temporalmente el banner "Unite a Lovers Club" en mobile **/}
-        {/**
-         <section className="hm-banner">
-           <div className="hm-banner-inner">
-             <div className="hm-banner-title">Unite a Lovers Club</div>
-             <div className="hm-banner-sub">Beneficios y promos exclusivas</div>
-             <button className="hm-banner-btn" onClick={() => navigate('/lovers')}>Conocer más</button>
-             <div className="hm-rain">
-               {EMPANADAS_DATA.map((empanada) => (
-                 <img
-                   key={empanada.id}
-                   src={empanada.src}
-                   alt="empanada"
-                   loading="lazy"
-                   style={{
-                     position: 'absolute',
-                     left: `${empanada.left}%`,
-                     width: empanada.size,
-                     height: empanada.size,
-                     objectFit: 'contain',
-                     animation: `emp-fall ${empanada.duration}s linear infinite`,
-                     animationDelay: `${empanada.delay}s`,
-                     pointerEvents: 'none',
-                     opacity: .6,
-                     zIndex: -1,
-                     filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
-                   }}
-                 />
-               ))}
-             </div>
-           </div>
-         </section>
-        **/}
-
         {/* Botones de categorías */}
         {true && (
         <section className="hm-categories">
@@ -267,6 +231,42 @@ export default function HomeMobile() {
           </div>
         </section>
         )}
+
+        <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
+
+        {/** Oculto temporalmente el banner "Unite a Lovers Club" en mobile **/}
+        {/**
+         <section className="hm-banner">
+           <div className="hm-banner-inner">
+             <div className="hm-banner-title">Unite a Lovers Club</div>
+             <div className="hm-banner-sub">Beneficios y promos exclusivas</div>
+             <button className="hm-banner-btn" onClick={() => navigate('/lovers')}>Conocer más</button>
+             <div className="hm-rain">
+               {EMPANADAS_DATA.map((empanada) => (
+                 <img
+                   key={empanada.id}
+                   src={empanada.src}
+                   alt="empanada"
+                   loading="lazy"
+                   style={{
+                     position: 'absolute',
+                     left: `${empanada.left}%`,
+                     width: empanada.size,
+                     height: empanada.size,
+                     objectFit: 'contain',
+                     animation: `emp-fall ${empanada.duration}s linear infinite`,
+                     animationDelay: `${empanada.delay}s`,
+                     pointerEvents: 'none',
+                     opacity: .6,
+                     zIndex: -1,
+                     filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                   }}
+                 />
+               ))}
+             </div>
+           </div>
+         </section>
+        **/}
 
         <PromoCarousel title="Promos imperdibles" slides={moreSlides} />
         {/* Carrusel "Para compartir" oculto en móvil por solicitud del usuario */}
