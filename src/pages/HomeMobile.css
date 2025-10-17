@@ -6,7 +6,7 @@
   padding-bottom: 88px; /* espacio para tabbar global */
 }
 
-.hm-content { padding: 12px 0 0 0; }
+.hm-content { padding: 6px 0 0 0; }
 
 /* Buscador */
 .hm-search { 
@@ -14,7 +14,7 @@
   top: 0; 
   z-index: 5; 
   background: #0a0a0a; 
-  padding: 10px 16px 0 16px; 
+  padding: 8px 16px 0 16px; 
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
@@ -63,12 +63,13 @@
   min-height: 350px;
   max-height: 450px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-top: -8px;
+  margin-bottom: 8px;
 }
 
 .hm-video-bg {
   position: absolute;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1.1);
   width: auto;
