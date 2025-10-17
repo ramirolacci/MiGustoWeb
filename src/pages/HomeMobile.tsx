@@ -226,8 +226,8 @@ export default function HomeMobile() {
          </section>
         **/}
 
-        {/* Botones de categorías ocultos en móvil por solicitud del usuario */}
-        {false && (
+        {/* Botones de categorías */}
+        {true && (
         <section className="hm-categories">
           <div className="hm-cat hm-cat-premium" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
             <div className="hm-cat-img-wrap-premium">
