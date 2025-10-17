@@ -17,15 +17,16 @@ const Buscador: React.FC<Props> = ({ filtro, setFiltro, onSubmit }) => {
 
     useEffect(() => {
         setAparecer(true);
-        setTimeout(() => setBordeLuz(true), 100); // retrasa el borde para que se note
-        setTimeout(() => setBordeLuz(false), 1800); // quita el borde de luz tras la animación
+        // Animación de iluminación removida por solicitud del usuario
+        // setTimeout(() => setBordeLuz(true), 100); // retrasa el borde para que se note
+        // setTimeout(() => setBordeLuz(false), 1800); // quita el borde de luz tras la animación
     }, []);
 
     return (
         <div className={`buscador-container${aparecer ? ' animate' : ''}`}>
             <input
                 type="text"
-                className={`buscador-input${bordeLuz ? ' borde-luz' : ''}`}
+                className="buscador-input"
                 placeholder={animatedPlaceholder}
                 value={filtro}
                 onChange={(e) => setFiltro(e.target.value)}
