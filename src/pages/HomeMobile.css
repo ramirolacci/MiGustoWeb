@@ -23,6 +23,38 @@
   opacity: 0;
 }
 
+/* Contenedor de cada card con su información de precio */
+.hm-card-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Información de precio individual para cada card */
+.hm-card-price-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.hm-card-product {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.hm-card-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffbf1f;
+}
+
 /* Video Hero Section */
 .hm-video-hero {
   position: relative;

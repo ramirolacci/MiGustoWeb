@@ -24,26 +24,34 @@ function PromoCarousel({ title, slides, isDestacadas = false }: { title: string;
       <h3 className="hm-section-title">{title}</h3>
       <div className="hm-carousel" aria-label={title}>
         {slides.map((s) => (
-          <a
-            key={s.id}
-            href={s.href || '#'}
-            className={isDestacadas ? "hm-card hm-card-destacadas" : "hm-card hm-card-other"}
-            aria-label={s.title || 'Promo'}
-            onClick={(e) => { e.preventDefault(); if (s.image) setLightbox(s.image.replace('/sliders/desktop', '/sliders/mobile')); }}
-          >
-            {s.image && (
-              <OptimizedImage
-                src={s.image}
-                alt={s.title || 'Promo'}
-                className="hm-card-img"
-                sizes="(max-width: 480px) 66vw, 420px"
-                srcSet={`
-                  ${s.image} 800w
-                `}
-              />
+          <div key={s.id} className="hm-card-container">
+            <a
+              href={s.href || '#'}
+              className={isDestacadas ? "hm-card hm-card-destacadas" : "hm-card hm-card-other"}
+              aria-label={s.title || 'Promo'}
+              onClick={(e) => { e.preventDefault(); if (s.image) setLightbox(s.image.replace('/sliders/desktop', '/sliders/mobile')); }}
+            >
+              {s.image && (
+                <OptimizedImage
+                  src={s.image}
+                  alt={s.title || 'Promo'}
+                  className="hm-card-img"
+                  sizes="(max-width: 480px) 66vw, 420px"
+                  srcSet={`
+                    ${s.image} 800w
+                  `}
+                />
+              )}
+              {/* Ocultamos texto sobre las promos destacadas por pedido */}
+            </a>
+            {/* Información de producto y precio para cada card */}
+            {s.productName && s.price && (
+              <div className="hm-card-price-info">
+                <span className="hm-card-product">{s.productName}</span>
+                <span className="hm-card-price">{s.price}</span>
+              </div>
             )}
-            {/* Ocultamos texto sobre las promos destacadas por pedido */}
-          </a>
+          </div>
         ))}
       </div>
       {lightbox && (
