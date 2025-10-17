@@ -2608,17 +2608,18 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   padding: 0;
 }
 
-/* Barra de búsqueda móvil integrada - Transparente */
+/* Barra de búsqueda móvil integrada - Igual al HomeMobile */
 .mobile-search-bar {
-  padding: 4px 12px 4px 12px; /* padding mínimo absoluto */
+  padding: 8px 16px 0 16px !important; /* mismo padding que HomeMobile */
   margin: 0;
-  background: transparent;
+  background: #0a0a0a !important; /* mismo fondo que HomeMobile */
   backdrop-filter: none;
   border-bottom: none;
   position: sticky !important;
-  top: 15px !important; /* bajar solo un poco el buscador */
-  z-index: 1000;
+  top: 0 !important; /* mismo top que HomeMobile */
+  z-index: 5; /* mismo z-index que HomeMobile */
   box-shadow: none;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* misma transición */
 }
 
 .search-input-container {
@@ -2629,38 +2630,39 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 
 .search-icon {
   position: absolute;
-  left: 16px;
-  color: rgba(255, 215, 0, 0.8);
-  z-index: 2;
+  right: 1.5rem !important; /* mismo posicionamiento que HomeMobile */
+  top: 50% !important; /* mismo posicionamiento que HomeMobile */
+  transform: translateY(-50%) !important; /* mismo posicionamiento que HomeMobile */
+  color: #fff !important; /* mismo color que HomeMobile */
+  opacity: 0.7 !important; /* misma opacidad que HomeMobile */
   pointer-events: none;
+  z-index: 2;
 }
 
 .mobile-search-input {
   width: 100%;
-  padding: 14px 18px 14px 48px;
-  border: 2px solid rgba(255, 215, 0, 0.3);
-  border-radius: 30px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(30, 30, 30, 0.8) 100%);
+  padding: 1rem 1.5rem !important; /* mismo padding que HomeMobile */
+  padding-right: 3rem !important; /* mismo padding-right que HomeMobile */
+  border: 2px solid #fff !important; /* mismo borde que HomeMobile */
+  border-radius: 25px !important; /* mismo border-radius que HomeMobile */
+  background-color: transparent !important; /* mismo fondo que HomeMobile */
   color: #fff;
-  font-size: 16px;
+  font-size: 1.1rem !important; /* misma fuente que HomeMobile */
   outline: none;
   transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .mobile-search-input:focus {
-  border-color: #D4AF37;
-  box-shadow: 
-    0 0 20px rgba(212, 175, 55, 0.4),
-    inset 0 2px 4px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(40, 40, 40, 0.9) 100%);
-  transform: translateY(-1px);
+  outline: none !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important; /* mismo focus que HomeMobile */
+  border-color: #D4AF37 !important; /* mismo color de focus que HomeMobile */
 }
 
 .mobile-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7) !important; /* mismo color que HomeMobile */
+  transition: opacity 0.5s ease;
 }
 
 .clear-search-btn {
