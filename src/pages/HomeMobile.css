@@ -330,7 +330,7 @@
 }
 
 /* Carruseles */
-.hm-section { margin-top: 12px; padding: 0 16px; }
+.hm-section { margin-top: 24px; padding: 0 16px; }
 .hm-section-title { font-size: 16px; font-weight: 700; padding: 0 2px 8px; }
 .hm-section-title { /* Animación removida - títulos estáticos */ }
 .hm-carousel { display: grid; grid-auto-flow: column; grid-auto-columns: 66%; gap: 12px; overflow-x: auto; padding: 2px; scroll-snap-type: x mandatory; }
