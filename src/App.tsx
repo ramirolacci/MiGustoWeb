@@ -65,7 +65,7 @@ const AppContent: React.FC = () => {
   const isHomeMobile = location.pathname === '/m';
   
   // Determinar si mostrar el tabbar móvil - no excluir lovers
-  const showMobileTabbar = isMobile && !isViewer3D;
+  const showMobileTabbar = isMobile; // mostrar tabbar (y sidebar) también en /3d
   
 
   return (

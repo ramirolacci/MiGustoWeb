@@ -642,11 +642,7 @@ function App() {
   return (
     <div className="app lovers-app" style={{ overflow: 'hidden', height: '100vh', background: "url('/assets/background-text.jpg') center center / cover no-repeat" }}>
       <NavBar />
-      <style>{`
-        @media (max-width: 900px) {
-          .navbar { display: none !important; }
-        }
-      `}</style>
+      
       <style>{modalStyles}</style>
       <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 12, minHeight: 0, height: 'auto', overflow: 'visible' }}>
         {/* Bloque principal original aquí: */}

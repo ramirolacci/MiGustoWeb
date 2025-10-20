@@ -23,6 +23,7 @@ declare global {
 }
 
 import React, { useEffect, useRef, useState } from 'react';
+// Sidebar móvil provisto por MobileTabbar; no montamos uno custom aquí
 import { useNavigate } from 'react-router-dom';
 
 // Componente de humo animado
@@ -106,6 +107,7 @@ const Viewer3D: React.FC = () => {
   const navigate = useNavigate();
   const [smokeScale, setSmokeScale] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
+  // El sidebar se controla desde MobileTabbar global en mobile
   const bottomReserve = !isMobile ? 96 : 0; // espacio para instrucciones en desktop
 
   useEffect(() => {
@@ -209,6 +211,7 @@ const Viewer3D: React.FC = () => {
         paddingBottom: `calc(${bottomReserve}px + env(safe-area-inset-bottom, 0px))`,
       }}
     >
+      {/* Sidebar móvil lo maneja MobileTabbar; sin botón extra aquí */}
       {/* Efecto de humo detrás del modelo */}
       <div style={{
         position: 'absolute',
@@ -280,6 +283,7 @@ const Viewer3D: React.FC = () => {
           {fullscreen ? 'Salir Fullscreen' : 'Fullscreen'}
         </button>
       )}
+      {/* Sidebar provisto por MobileTabbar global */}
       {/* Indicador de carga */}
       {loading && (
         <div style={{
