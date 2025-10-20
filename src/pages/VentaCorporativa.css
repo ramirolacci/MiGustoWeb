@@ -34,7 +34,7 @@ html, body {
 
 @media (max-width: 900px) {
   .venta-corporativa-section {
-    padding-top: 54px;
+    padding-top: 64px; /* bajar un poco el contenido en mobile */
     min-height: unset;
   }
 }

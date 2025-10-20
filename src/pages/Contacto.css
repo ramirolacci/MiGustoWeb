@@ -508,3 +508,17 @@
   object-fit: cover;
   display: block;
 } 
+
+/* Ajustes específicos para la pantalla Franquicias en mobile */
+@media (max-width: 768px) {
+  .contacto-container.franquicias-page {
+    padding-top: 6px; /* subir contenido en móvil */
+    margin-top: 0 !important;
+  }
+  .contacto-container.franquicias-page .contacto-header {
+    margin-bottom: 24px; /* compactar header */
+  }
+  .contacto-container.franquicias-page .contacto-header h1 {
+    margin-bottom: 8px;
+  }
+}

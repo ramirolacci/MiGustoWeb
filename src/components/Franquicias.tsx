@@ -67,7 +67,7 @@ const Franquicias: React.FC = () => {
   const progressBarWidth = ((currentStep - 1) / 2) * 100;
 
   return (
-    <div className="contacto-container">
+    <div className="contacto-container franquicias-page">
       <div className="contacto-header">
         <h1>Franquicias</h1>
         <p>Completa el siguiente formulario para postularte a una franquicia de Mi Gusto.</p>

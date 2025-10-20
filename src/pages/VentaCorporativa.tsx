@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/Contacto.css';
+import './VentaCorporativa.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
@@ -155,7 +156,7 @@ const VentaCorporativa: React.FC = () => {
     const minDate = `${yyyy}-${mm}-${dd}`;
 
     return (
-        <div className="sucursales-section" style={{ marginTop: '0px' }}>
+        <div className="venta-corporativa-section" style={{ marginTop: '0px' }}>
             <div className="background-overlay"></div>
             <div className="sucursales-container">
                 <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
@@ -475,7 +476,7 @@ if (typeof window !== 'undefined') {
                 margin-top: 0px !important;
             }
             .contacto-container {
-                margin-top: 16px !important;
+                margin-top: 24px !important;
             }
             .responsive-row img {
                 margin-top: 8px !important;
