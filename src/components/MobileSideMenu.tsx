@@ -24,6 +24,8 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({ isOpen, onClose }) => {
     { path: '/franquicias', label: 'Franquicias', image: '/images/side-menu/franquicia.png' },
     { path: '/venta-corporativa', label: 'Venta corporativa', image: '/images/side-menu/corporativa.png' },
     { path: '/3d', label: 'MG EXPERIENCE', image: '/images/side-menu/EstudioFondo.png' },
+    { path: '/legales', label: 'Legales', image: '' },
+    { path: '/defensa-consumidor', label: 'Defensa al consumidor', image: '' },
   ];
 
   const handleLinkClick = (path: string) => {
@@ -46,6 +48,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({ isOpen, onClose }) => {
           className="mobile-side-menu-close" 
           onClick={onClose}
           aria-label="Cerrar menú"
+          autoFocus
         >
           ✕
         </button>
