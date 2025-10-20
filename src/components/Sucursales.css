@@ -7,12 +7,12 @@ body {
     background-color: #000;
     overflow: hidden;
     isolation: isolate;
-    padding: 0.5rem 0; /* reducido para subir el contenido en móvil */
+    padding: 2rem 0;
 }
 
 .sucursales-container {
     position: relative;
-    padding: 1rem 0; /* reducido para subir el contenido en móvil */
+    padding: 4rem 0;
     z-index: 1;
     min-height: 100vh;
 }
@@ -220,25 +220,29 @@ body {
 /* Estilos responsivos para móvil */
 @media (max-width: 768px) {
     .sucursales-container {
-        padding: 0.5rem 0 !important; /* reducido para subir el contenido */
-        padding-top: 20px !important; /* reducido para subir el contenido */
+        padding: 1rem 0;
+        padding-top: 16px; /* reducir espacio superior para subir contenido */
     }
     
     /* Buscador en móvil */
     .sucursales-buscador {
-        margin-bottom: 1.5rem;
-        padding: 0 1rem;
+        margin-bottom: 1.75rem; /* más separación del título */
+        padding: 0 0.75rem;
     }
     
     .productos-titulo {
         font-size: 1.8rem;
-        margin-top: -1rem !important; /* reducido para subir el título */
-        margin-bottom: 1rem !important; /* reducido para subir el contenido */
+        margin-top: 0.75rem; /* separar del buscador en mobile */
+        margin-bottom: 1.25rem;
     }
     
     .productos-busqueda {
-        margin-top: 1rem !important; /* reducido para subir el contenido */
-        margin-bottom: 1rem !important; /* reducido para subir el contenido */
+        margin-top: 0.5rem; /* reducir espacio antes del buscador */
+        margin-bottom: 1rem; /* compactar para subir contenido */
+    }
+    
+    .row {
+        margin-top: 0; /* evitar separación extra antes del grid */
     }
 }
 

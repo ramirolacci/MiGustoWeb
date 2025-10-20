@@ -13,7 +13,7 @@
     overflow: visible; /* permitir que los brillos no se recorten */
     isolation: isolate;
     font-family: 'Poppins', sans-serif;
-    padding-top: 20px;
+    padding-top: 5px; /* reducido para subir el contenido en móvil */
 }
 
 .background-overlay {
@@ -41,8 +41,8 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 4rem 2rem;
-    margin-top: 4.5rem;
+    padding: 1rem 2rem; /* reducido para subir el contenido en móvil */
+    margin-top: 2rem; /* reducido para subir el contenido en móvil */
 }
 
 .nosotros-header {
@@ -359,17 +359,17 @@
 
 @media (max-width: 768px) {
     .nosotros-content {
-        padding: 2rem 1rem;
-        margin-top: 2rem;
+        padding: 0.5rem 1rem !important; /* reducido aún más para subir el contenido */
+        margin-top: 1rem !important; /* reducido aún más para subir el contenido */
     }
 
     .nosotros-header h1 {
         font-size: 2.5rem;
-        margin-top: -1rem;
+        margin-top: -1.5rem !important; /* reducido para subir el título */
     }
 
     .section-card {
-        padding: 1.5rem;
+        padding: 1.2rem !important; /* reducido para subir el contenido */
     }
 
     .vision-mision {
@@ -384,23 +384,23 @@
 
 @media (max-width: 480px) {
     .nosotros-content {
-        padding: 1rem;
-        gap: 1.5rem;
+        padding: 0.3rem !important; /* reducido aún más para subir el contenido */
+        gap: 1rem !important; /* reducido para subir el contenido */
     }
 
     .section-card {
-        padding: 1.5rem;
+        padding: 1rem !important; /* reducido para subir el contenido */
     }
 
     .section-card h2 {
         font-size: 1.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem !important; /* reducido para subir el contenido */
     }
 
     .section-card p {
         font-size: 1rem;
         line-height: 1.5;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.6rem !important; /* reducido para subir el contenido */
         text-align: left;
     }
 
@@ -409,12 +409,12 @@
     }
 
     .valor-item {
-        padding: 1.25rem;
+        padding: 1rem !important; /* reducido para subir el contenido */
     }
 
     .valor-item h4 {
         font-size: 1.2rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.6rem !important; /* reducido para subir el contenido */
     }
 
     .valor-item p {
@@ -426,11 +426,11 @@
     .vision-mision {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem !important; /* reducido para subir el contenido */
     }
 
     .mision, .vision {
-        padding: 1.25rem;
+        padding: 1rem !important; /* reducido para subir el contenido */
     }
 
     .mision p, .vision p {
