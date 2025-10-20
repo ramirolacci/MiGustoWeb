@@ -249,7 +249,7 @@ const Revista = () => {
                                 <SwiperSlide key="portada">
                                     <div className="revista-pagina">
                                         <Zoom>
-                                            <img src="/images/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
+                                            <img src="/images/catalogo/tapa1.jpg" alt="portada" className="revista-img" loading="lazy" />
                                         </Zoom>
                                     </div>
                                 </SwiperSlide>
@@ -314,7 +314,7 @@ const Revista = () => {
                                 showPageCorners={false}
                             >
                                 <div className="revista-pagina">
-                                    <img src="/images/catalogo/tapa1.jpeg" alt="portada" className="revista-img" loading="lazy" />
+                                    <img src="/images/catalogo/tapa1.jpg" alt="portada" className="revista-img" loading="lazy" />
                                 </div>
                                 {catalogoFotos.map((src, i) => (
                                     <div className="revista-pagina" key={i + 1}>
