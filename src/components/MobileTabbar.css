@@ -46,6 +46,11 @@
   color: #ffbf1f; 
 }
 
+/* Forzar icono de productos a color blanco en mobile */
+.hm-tab img[src*="empanadas-clasicas"] {
+  filter: brightness(0) invert(1) !important;
+}
+
 .hm-fab { 
   position: absolute; 
   top: -24px; 
