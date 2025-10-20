@@ -316,6 +316,62 @@
 
 /* El tabbar (z-index: 1000) estará por encima del sidemenu (z-index: 999) */
 
+/* Sección social */
+.mobile-side-menu-social {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 0 0;
+}
+
+.mobile-side-menu-social-title {
+  color: #ffc107;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.mobile-side-menu-social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.mobile-side-menu-social-icons a {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.mobile-side-menu-social-icons img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.mobile-side-menu-social-icons svg {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  fill: #fff;
+}
+
+@media (max-width: 480px) {
+  .mobile-side-menu-social-title { font-size: 0.9rem; }
+  .mobile-side-menu-social-icons a { width: 34px; height: 34px; }
+  .mobile-side-menu-social-icons img { width: 18px; height: 18px; }
+  .mobile-side-menu-social-icons svg { width: 18px; height: 18px; }
+}
+
 /* Animación de entrada del overlay */
 @keyframes mobileSideMenuOverlayIn {
   from {
