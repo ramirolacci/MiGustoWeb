@@ -556,6 +556,7 @@ input[type='number'] {
     flex-direction: row !important;
     gap: 12px !important;
     align-items: center !important;
+    justify-content: space-between !important;
   }
 } 
 
