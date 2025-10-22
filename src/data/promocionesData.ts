@@ -7,6 +7,12 @@ interface Promocion {
 
 export const promociones: Promocion[] = [
     {
+        titulo: "Pack 2 Empanadas",
+        descripcion: "2 empanadas a eleccion + Salsa a elección.",
+        imagen: "https://i.postimg.cc/8c4gKDLm/pack-2-salsa.jpg",
+        esRecomendado: true
+    },
+    {
         titulo: "Pack 3 Empanadas",
         descripcion: "Pack especial de 3 empanadas. Ideal para una comida rápida y deliciosa. Incluye 1 salsa a eleccion.",
         imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/c3d7a1d0-89b4-4c47-bf82-f92c5a83f0dc.jpg",
@@ -53,5 +59,47 @@ export const promociones: Promocion[] = [
         descripcion: "Pack de 2 empanadas + 1 Lata de 354ml + 1 salsa a eleccion.",
         imagen: "https://i.postimg.cc/nznVB4tH/Promo-Ideal.jpg",
         esRecomendado: true
-    }
+    },
+    {
+        titulo: "Promo Sugerida",
+        descripcion: "3 empanadas + Salsa + 1 Lata 354ml.",
+        imagen: "https://i.postimg.cc/HxJmkfGq/promo-sugerida.jpg",
+        esRecomendado: true
+    },
+    {
+        titulo: "Pizza INDI Muzzarella + Bebida",
+        descripcion: "Pizza Indi Muzzarella + Coca 354ml.",
+        imagen: "https://i.postimg.cc/mrFfxJvP/pizza-INDI-bebida.jpg",
+        esRecomendado: true
+    },
+    {
+        titulo: "Pizza INDI Napolitana + Bebida",
+        descripcion: "Pizza Indi Napolitana + Coca 354ml.",
+        imagen: "https://i.postimg.cc/RZMNZVPF/pizza-INDI-napo-bebida.jpg",
+        esRecomendado: true
+    },
+    {
+        titulo: "Pizza INDI Jamón y Morrón + Bebida",
+        descripcion: "Pizza Indi Jamón y Morrón + Coca 354ml.",
+        imagen: "https://i.postimg.cc/CKFW6dFM/pizza-INDI-MORRON-BEBIDA.jpg",
+        esRecomendado: true
+    },
+    {
+        titulo: "Pizza INDI Pepperoni + Bebida",
+        descripcion: "Pizza Indi Pepperoni + Coca 354ml.",
+        imagen: "https://i.postimg.cc/RZ0YcyGN/pizza-INDI-peppe-bebida.jpg",
+        esRecomendado: true
+    },
+    {
+        titulo: "Pizza INDI Jamón Crudo, Rúcula y Stracciatella + Bebida",
+        descripcion: "Pizza Indi Jamón Crudo, Rúcula y Stracciatella + Coca 354ml.",
+        imagen: "https://i.postimg.cc/7ZmfRG3P/pizza-INDI-jamon-crudo-bebida.jpg",
+        esRecomendado: true
+    },
+    {
+        titulo: "Pizza INDI Mortadela, Pistacho y Stracciatella + Bebida",
+        descripcion: "Pizza Mortadela, Pistacho y Stracciatella + Coca 354ml.",
+        imagen: "https://i.postimg.cc/bY3Wsq9z/pizza-INDI-mortadela-bebida.jpg",
+        esRecomendado: true
+    },
 ]; 
