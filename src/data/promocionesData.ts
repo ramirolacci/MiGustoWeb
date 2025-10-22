@@ -67,6 +67,12 @@ export const promociones: Promocion[] = [
         esRecomendado: true
     },
     {
+        titulo: "Pack 2 Empanadas + Salsa + Bebida + Vaso",
+        descripcion: "2 Empanadas + 1 salsa + Bebida Fanta Chucky Punch 473ml + Vaso reutilizable de regalo.",
+        imagen: "https://i.postimg.cc/D0r0zz80/MINIATURA.jpg",
+        esRecomendado: true
+    },
+    {
         titulo: "Pizza INDI Muzzarella + Bebida",
         descripcion: "Pizza Indi Muzzarella + Coca 354ml.",
         imagen: "https://i.postimg.cc/mrFfxJvP/pizza-INDI-bebida.jpg",

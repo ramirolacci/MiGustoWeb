@@ -579,4 +579,44 @@ max-width: 1200px;
         margin-top: 2.5rem;
         margin-right: 3.5rem;
     }
+}
+
+/* Ajustes mínimos para notebooks con escala 125% - Footer */
+@media (min-width: 1024px) and (max-width: 1600px) {
+  .footer-container {
+    max-width: 95%;
+    padding: 0 1rem;
+  }
+  
+  .footer-row {
+    gap: 2rem;
+  }
+  
+  .footer-col-md-4 {
+    margin-right: 0;
+    margin-left: -2rem;
+  }
+  
+  .footer-social-block {
+    margin-right: 0;
+    margin-left: 0;
+    align-items: flex-start;
+  }
+  
+  .footer-social-title {
+    text-align: left;
+  }
+  
+  .footer-social-icons {
+    gap: 0.8rem;
+    justify-content: flex-start;
+  }
+  
+  .footer-app-links {
+    justify-content: flex-start;
+  }
+  
+  .footer-app-link img {
+    width: 100px;
+  }
 } 
