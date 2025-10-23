@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             <div className="footer-logo-divider-vertical" aria-hidden="true"></div>
             <a href="#top" className="footer-logo-link" onClick={handleLinkClick} aria-label="Ir al inicio de la página">
               <img
-                src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
+                src="/assets/Logo Mi Gusto 2025.png"
                 alt="Mi Gusto Empanadas de Verdad"
                 className="footer-logo-img"
               />

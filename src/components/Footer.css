@@ -591,4 +591,25 @@ max-width: 1200px;
   .footer-col-md-3 {
     margin-left: 0.5rem !important;
   }
+  
+  /* Ajustar posición del logo para vista con escala 125% */
+  .footer-logo-link {
+    left: 50px !important;
+  }
+  
+  /* Ajustar línea horizontal del logo */
+  .footer-logo-divider {
+    left: 96px !important;
+    width: 25rem !important;
+  }
+  
+  /* Ajustar línea vertical del logo */
+  .footer-logo-divider-vertical {
+    left: 19px !important;
+  }
+  
+  /* Ajustar línea vertical inferior del logo */
+  .footer-logo-divider-vertical-bottom {
+    left: 19px !important;
+  }
 } 
