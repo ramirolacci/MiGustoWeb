@@ -41,6 +41,20 @@ const RUTAS_3D: Record<string, string> = {
     "Franuí chocolate con leche": "/models/Franui-Milk-3D.glb",
 };
 
+// Mapeo de imágenes PNG para empanadas premium
+const IMAGENES_PNG: Record<string, string> = {
+    "Big burger": "/images/final/empanada-big-burger.png",
+    "Big Burger": "/images/final/empanada-big-burger.png",
+    "Mexican Pibil pork": "/images/final/empanada-mexican-pibil-pork.png",
+    "Mexican pibil pork": "/images/final/empanada-mexican-pibil-pork.png",
+    "Matambre a la pizza": "/images/final/empanada-matambre -alapizza.png",
+    "Cheese burger": "/images/final/empanada-cheese-burger.png",
+    "Cheese Burger": "/images/final/empanada-cheese-burger.png",
+    "American Chicken": "/images/final/empanada-american-chicken.png",
+    "American chicken": "/images/final/empanada-american-chicken.png",
+    "Vacio y provoleta": "/images/final/empanada-vacio-yprovoleta.png",
+};
+
 const CAMERA_ORBITS_3D: Record<string, string> = {
     "Big burger": "45deg 65deg 2.7m",
     "Big Burger": "45deg 65deg 2.7m",
@@ -70,6 +84,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     const [transitionStyle, setTransitionStyle] = useState('transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)');
     const [loading3D, setLoading3D] = useState(true);
     const [isMobile, setIsMobile] = useState(false);
+    const [show3D, setShow3D] = useState(false);
 
     useEffect(() => {
         if (tiene3D) {
@@ -81,6 +96,13 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                 document.body.appendChild(script);
             }
             setLoading3D(true); // Reiniciar el loading cada vez que cambia el producto 3D
+        }
+        
+        // Cargar Lottie para el ícono del botón 3D
+        if (!document.querySelector('script[src*="lottie"]')) {
+            const lottieScript = document.createElement('script');
+            lottieScript.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+            document.body.appendChild(lottieScript);
         }
     }, [tiene3D, producto.titulo]);
 
@@ -133,6 +155,10 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    useEffect(() => {
+        setShow3D(false);
+    }, [producto.titulo]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!modalRef.current || isDragging) return;
@@ -252,7 +278,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                 }}
             >
                 {/* Indicador de carga para el modelo 3D */}
-                {tiene3D && RUTAS_3D[producto.titulo] && loading3D && (
+                {show3D && tiene3D && RUTAS_3D[producto.titulo] && loading3D && (
                   <div
                     style={{
                       position: 'absolute',
@@ -286,8 +312,10 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                         <div className="modal-3d-viewer-outer">
                             <div className="modal-3d-viewer-container" style={{background:'none',border:'none',boxShadow:'none', width: '60vw', height: '80vh', minWidth: '320px', minHeight: '320px', maxWidth: '900px', maxHeight: '92vh', position: 'relative'}}>
                                 <div className="model-3d-align-left">
-                                {RUTAS_3D[producto.titulo] ? (
-                                    React.createElement('model-viewer' as any, {
+                                {console.log('show3D:', show3D, 'producto:', producto.titulo, 'tiene3D:', tiene3D, 'IMAGENES_PNG[producto.titulo]:', IMAGENES_PNG[producto.titulo])}
+                                {show3D ? (
+                                    // Mostrar modelo 3D cuando show3D es true
+                                    RUTAS_3D[producto.titulo] && React.createElement('model-viewer' as any, {
                                         src: RUTAS_3D[producto.titulo],
                                         alt: producto.titulo + ' 3D',
                                         'camera-controls': true,
@@ -332,17 +360,82 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                         onLoad: () => setLoading3D(false),
                                     })
                                 ) : (
-                                    <div style={{color:'#FFD700',textAlign:'center'}}>Modelo 3D próximamente</div>
+                                    // Mostrar imagen PNG cuando show3D es false
+                                    <div style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        background: 'transparent'
+                                    }}>
+                                        <img 
+                                            src={IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen} 
+                                            alt={producto.titulo}
+                                            onLoad={() => console.log('✅ Imagen PNG cargada correctamente para:', producto.titulo)}
+                                            onError={() => console.log('❌ Error cargando imagen PNG para:', producto.titulo, 'src:', IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen)}
+                                            style={{
+                                                width: '50%',
+                                                height: '50%',
+                                                objectFit: 'contain',
+                                                borderRadius: '12px'
+                                            }}
+                                        />
+                                    </div>
                                 )}
                                 </div>
                             </div>
                         </div>
-                        <div className="modal-3d-info">
-                            <h2 
-                                className="titulo-impresionante-3d"
-                            >{producto.titulo}</h2>
+                        <div className="modal-3d-info" style={{position: 'relative'}}>
+                            {tiene3D && RUTAS_3D[producto.titulo] && (
+                            <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    console.log('🔄 Botón 3D clickeado, show3D actual:', show3D);
+                                    setShow3D(!show3D);
+                                    console.log('✅ show3D después del click:', !show3D);
+                                }}
+                                style={{
+                                    position: 'absolute',
+                                    bottom: 18,
+                                    right: 18,
+                                    background: 'transparent',
+                                    border: 'none',
+                                    padding: '0',
+                                    cursor: 'pointer',
+                                    transition: 'transform 0.2s ease',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    zIndex: 1000,
+                                    boxShadow: 'none',
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'scale(1.6)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'scale(1)';
+                                }}
+                                title="3D"
+                            >
+                                <iframe
+                                    src="https://lottie.host/embed/7ae74040-aac6-4c39-9ffa-559e8a1f4c60/ZEdWR7FqTN.lottie"
+                                    style={{
+                                        width: '40px',
+                                        height: '40px',
+                                        border: 'none',
+                                        background: 'transparent',
+                                        transform: 'scale(1.5)',
+                                        transformOrigin: 'center',
+                                        pointerEvents: 'none'
+                                    }}
+                                ></iframe>
+                            </button>
+                            )}
+                            <h2 className="titulo-impresionante-3d" style={{margin: 0}}>{producto.titulo}</h2>
                             <div style={{color:'#fff',marginBottom:8}}>
-                                <h3 style={{color:'#FFD700',marginBottom:8}}>Ingredientes</h3>
+                                <h3 style={{color:'#FFD700',margin: 0, marginBottom: 8}}>Ingredientes</h3>
                                 <ul style={{paddingLeft:18}}>
                                     {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
                                         <li key={index} style={{marginBottom:4}}>{ingrediente}</li>
@@ -365,7 +458,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             marginBottom: '8px'
                                         }}>
                                         <img
-                                            src={producto.imagenDetalle || producto.imagen}
+                                            src={IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen}
                                             alt={producto.titulo}
                                             className={`modal-img ${producto.titulo.toLowerCase().includes('vacio') || producto.titulo.toLowerCase().includes('american chicken') ? 'modal-img-large' : ''}`}
                                             draggable="false"
@@ -393,10 +486,53 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             transition: 'box-shadow 0.2s, background 0.2s'
                                         }}
                                     >
-                                        <h2 className="modal-product-title"
-                                            // Aplico el mismo estilo visual que el título de las cards
-                                        >{producto.titulo}</h2>
-                                        <h3>Ingredientes</h3>
+                                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px'}}>
+                                            <h2 className="modal-product-title"
+                                                // Aplico el mismo estilo visual que el título de las cards
+                                                style={{margin: 0}}
+                                            >{producto.titulo}</h2>
+                                            {IMAGENES_PNG[producto.titulo] && (
+                                                <button
+                                                    onClick={() => {
+                                                        console.log('🔄 Botón 3D clickeado (modal normal) para:', producto.titulo);
+                                                        console.log('📊 show3D actual:', show3D);
+                                                        console.log('🖼️ IMAGENES_PNG disponible:', IMAGENES_PNG[producto.titulo]);
+                                                        setShow3D(!show3D);
+                                                        console.log('✅ show3D después del click:', !show3D);
+                                                        console.log('🎯 Debería mostrar:', !show3D ? 'PNG' : '3D');
+                                                    }}
+                                                    style={{
+                                                        background: show3D ? '#FFD700' : 'transparent',
+                                                        color: show3D ? '#000' : '#FFD700',
+                                                        border: '1px solid #FFD700',
+                                                        borderRadius: '6px',
+                                                        padding: '6px 16px',
+                                                        fontSize: '14px',
+                                                        fontWeight: '600',
+                                                        cursor: 'pointer',
+                                                        transition: 'all 0.2s ease',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '4px'
+                                                    }}
+                                                    onMouseEnter={(e) => {
+                                                        if (!show3D) {
+                                                            e.currentTarget.style.background = '#FFD700';
+                                                            e.currentTarget.style.color = '#000';
+                                                        }
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        if (!show3D) {
+                                                            e.currentTarget.style.background = 'transparent';
+                                                            e.currentTarget.style.color = '#FFD700';
+                                                        }
+                                                    }}
+                                                >
+                                                    <span>3D</span>
+                                                </button>
+                                            )}
+                                        </div>
+                                        <h3 style={{margin: 0, marginBottom: 8}}>Ingredientes</h3>
                                         <ul className="ingredientes-lista">
                                             {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
                                                 <li key={index}>{ingrediente}</li>
