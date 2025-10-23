@@ -49,8 +49,6 @@ const Carta: React.FC = () => {
             <div className="categories-container">
               <div className="categories-scroll">
                 {[
-                  { key: 'Carta', label: 'Carta', icon: '/images/carta.svg' },
-                  { key: 'Promociones', label: 'Promociones', icon: '/images/promotions/promoIcon.png' },
                   { key: 'Premium', label: 'Premium', icon: '/images/burgerLoading.png' },
                   { key: 'Clasicas', label: 'Clásicas', icon: empanadas.find(e => !e.esPremium)?.imagen || '/icons/products/empanadas-clasicas.svg' },
                   { key: 'Pizzas', label: 'Pizzas', icon: pizzas.find(p => p.titulo === 'Caprese')?.imagen || '/icons/products/pizza.svg' },
@@ -58,6 +56,8 @@ const Carta: React.FC = () => {
                   { key: 'Fitzzas', label: 'Fitzzas', icon: fitzzas[0]?.imagen || '/icons/products/fitzza.svg' },
                   { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || '/icons/products/aderezos.svg' },
                   { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || '/icons/products/postres.svg' },
+                  { key: 'Carta', label: 'Carta', icon: '/images/carta.svg' },
+                  { key: 'Promociones', label: 'Promociones', icon: '/images/promotions/promoIcon.png' },
                 ].map((category) => {
                   const isActive = category.key === 'Carta';
                   return (

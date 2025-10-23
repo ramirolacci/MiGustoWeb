@@ -5,12 +5,20 @@
     object-fit: contain;
   }
   .ml-cat-item[data-cat="Pizzas"] .ml-cat-circle,
-  .ml-cat-item[data-cat="Pizzas"].active .ml-cat-circle,
   .ml-cat-item[data-cat="Pizzas"]:hover .ml-cat-circle,
   .ml-cat-item[data-cat="Pizzas"]:focus-visible .ml-cat-circle {
     background: transparent;
     border: 0;
     box-shadow: none;
+  }
+  
+  /* Solo aplicar el efecto de agrandamiento cuando está activo */
+  .ml-cat-item[data-cat="Pizzas"].active .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 
   /* Pizzas INDI: solo imagen a 60x60, sin fondo ni borde */
@@ -20,12 +28,20 @@
     object-fit: contain;
   }
   .ml-cat-item[data-cat="Pizzas INDI"] .ml-cat-circle,
-  .ml-cat-item[data-cat="Pizzas INDI"].active .ml-cat-circle,
   .ml-cat-item[data-cat="Pizzas INDI"]:hover .ml-cat-circle,
   .ml-cat-item[data-cat="Pizzas INDI"]:focus-visible .ml-cat-circle {
     background: transparent;
     border: 0;
     box-shadow: none;
+  }
+  
+  /* Solo aplicar el efecto de agrandamiento cuando está activo */
+  .ml-cat-item[data-cat="Pizzas INDI"].active .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 
   /* Fitzzas: solo imagen a 60x60, sin fondo ni borde */
@@ -35,12 +51,20 @@
     object-fit: contain;
   }
   .ml-cat-item[data-cat="Fitzzas"] .ml-cat-circle,
-  .ml-cat-item[data-cat="Fitzzas"].active .ml-cat-circle,
   .ml-cat-item[data-cat="Fitzzas"]:hover .ml-cat-circle,
   .ml-cat-item[data-cat="Fitzzas"]:focus-visible .ml-cat-circle {
     background: transparent;
     border: 0;
     box-shadow: none;
+  }
+  
+  /* Solo aplicar el efecto de agrandamiento cuando está activo */
+  .ml-cat-item[data-cat="Fitzzas"].active .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 
   /* Salsas: solo imagen a 60x60, sin fondo ni borde */
@@ -50,12 +74,20 @@
     object-fit: contain;
   }
   .ml-cat-item[data-cat="Salsas"] .ml-cat-circle,
-  .ml-cat-item[data-cat="Salsas"].active .ml-cat-circle,
   .ml-cat-item[data-cat="Salsas"]:hover .ml-cat-circle,
   .ml-cat-item[data-cat="Salsas"]:focus-visible .ml-cat-circle {
     background: transparent;
     border: 0;
     box-shadow: none;
+  }
+  
+  /* Solo aplicar el efecto de agrandamiento cuando está activo */
+  .ml-cat-item[data-cat="Salsas"].active .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 
   /* Postres: solo imagen a 60x60, sin fondo ni borde */
@@ -66,12 +98,20 @@
     border-radius: 50%;
   }
   .ml-cat-item[data-cat="Postres"] .ml-cat-circle,
-  .ml-cat-item[data-cat="Postres"].active .ml-cat-circle,
   .ml-cat-item[data-cat="Postres"]:hover .ml-cat-circle,
   .ml-cat-item[data-cat="Postres"]:focus-visible .ml-cat-circle {
     background: transparent;
     border: 0;
     box-shadow: none;
+  }
+  
+  /* Solo aplicar el efecto de agrandamiento cuando está activo */
+  .ml-cat-item[data-cat="Postres"].active .ml-cat-circle {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 body {
     background-color: #000;
@@ -265,6 +305,18 @@ body {
     outline: none;
     cursor: pointer;
     text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Agrandar el botón completo cuando está activo */
+  .ml-cat-item.active {
+    transform: scale(1.05);
+  }
+  
+  /* Asegurar que TODOS los botones tengan efecto de agrandamiento cuando están activos */
+  .ml-cat-item.active .ml-cat-circle {
+    transform: scale(1.1) !important;
+    transition: transform 0.3s ease !important;
   }
   
   @media (max-width: 768px) {
@@ -278,6 +330,8 @@ body {
     background: rgba(0, 0, 0, 0.4); /* mismo tono que las cards */
     border: 1px solid rgba(255,255,255,0.12);
     box-shadow: 0 0 0 2px rgba(255,255,255,0.03) inset, 0 6px 16px rgba(0,0,0,.5);
+    transform: scale(1.1); /* Agrandar el botón cuando está activo */
+    transition: transform 0.3s ease;
   }
 
   /* Hover/focus: sutil variación en negro, sin dorado */
@@ -424,6 +478,8 @@ body {
     background: transparent;
     border: 0;
     box-shadow: none;
+    transform: scale(1.1); /* Agrandar el círculo cuando está activo */
+    transition: transform 0.3s ease;
   }
 
   /* Clásicas: solo imagen a 60x60, sin fondo ni borde */
@@ -439,6 +495,8 @@ body {
     background: transparent;
     border: 0;
     box-shadow: none;
+    transform: scale(1.1); /* Agrandar el círculo cuando está activo */
+    transition: transform 0.3s ease;
   }
 
   .ml-cat-label {

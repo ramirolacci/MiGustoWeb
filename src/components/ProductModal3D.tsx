@@ -432,12 +432,12 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                 ></iframe>
                             </button>
                             )}
-                            <h2 className="titulo-impresionante-3d" style={{margin: 0}}>{producto.titulo}</h2>
+                            <h2 className="titulo-impresionante-3d" style={{margin: 0, marginBottom: 16}}>{producto.titulo}</h2>
                             <div style={{color:'#fff',marginBottom:8}}>
-                                <h3 style={{color:'#FFD700',margin: 0, marginBottom: 8}}>Ingredientes</h3>
-                                <ul style={{paddingLeft:18}}>
+                                <h3 style={{color:'#FFD700',margin: 0, marginBottom: 12}}>Ingredientes</h3>
+                                <ul style={{paddingLeft:18, marginTop: 8}}>
                                     {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
-                                        <li key={index} style={{marginBottom:4}}>{ingrediente}</li>
+                                        <li key={index} style={{marginBottom:6}}>{ingrediente}</li>
                                     ))}
                                 </ul>
                             </div>
