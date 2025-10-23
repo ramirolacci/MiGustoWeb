@@ -43,7 +43,7 @@ export const empanadas: Empanada[] = [
     esPremium: true
   },
   {
-    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/3a48db8e-4dcd-476c-aa07-2a4503c637e1.jpg",
+    imagen: "https://i.postimg.cc/brRW2qqg/cheese.jpg",
     imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burger.png",
     titulo: "Cheese burger",
     precio: 4000,  
@@ -52,7 +52,7 @@ export const empanadas: Empanada[] = [
     esPremium: true
   },
   {
-    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/caaf75a1-068c-48f6-8abc-7f5be9f04e7c.jpg",
+    imagen: "https://i.postimg.cc/X77DzSVP/vacio.jpg",
     imagenDetalle: "https://i.postimg.cc/Dz32yH1f/VACIO-Y-PROVOLETA.png",
     titulo: "Vacio y provoleta",
     precio: 4000,
@@ -61,7 +61,7 @@ export const empanadas: Empanada[] = [
     esPremium: true
   },
   {
-    imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/1d3edfbd-33ae-4928-b656-bec8433d486d.jpg",
+    imagen: "https://i.postimg.cc/W3v5mxWG/american.jpg",
     imagenDetalle: "https://i.postimg.cc/bv0qGgRx/AMERICAN.png",
     titulo: "American chicken",
     precio: 4000,

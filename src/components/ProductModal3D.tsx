@@ -56,18 +56,18 @@ const IMAGENES_PNG: Record<string, string> = {
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {
-    "Big burger": "45deg 65deg 2.7m",
-    "Big Burger": "45deg 65deg 2.7m",
-    "Mexican Pibil pork": "45deg 65deg 2.7m",
-    "Mexican pibil pork": "45deg 65deg 2.7m",
+    "Big burger": "50deg 65deg 2.7m",
+    "Big Burger": "50deg 65deg 2.7m",
+    "Mexican Pibil pork": "140deg 50deg 2.7m",
+    "Mexican pibil pork": "140deg 50deg 2.7m",
     "Mexican Veggie": "45deg 65deg 2.7m",
     "Mexican veggie": "45deg 65deg 2.7m",
-    "Matambre a la pizza": "45deg 65deg 2.7m",
-    "Cheese burger": "180deg 65deg 2.7m",
-    "Cheese Burger": "180deg 65deg 2.7m",
-    "American Chicken": "90deg 65deg 2.7m",
-    "American chicken": "90deg 65deg 2.7m",
-    "Vacio y provoleta": "90deg 65deg 2.7m",
+    "Matambre a la pizza": "60deg 60deg 2.7m",
+    "Cheese burger": "180deg 100deg 2.5m",
+    "Cheese Burger": "180deg 100deg 2.5m",
+    "American Chicken": "90deg 90deg 2.7m",
+    "American chicken": "90deg 90deg 2.7m",
+    "Vacio y provoleta": "90deg 95deg 2.7m",
     // Agregado para Franuí chocolate amargo y con leche
     "Franuí chocolate amargo": "45deg 65deg 2.7m",
     "Franuí chocolate con leche": "45deg 65deg 2.7m",
@@ -312,7 +312,6 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                         <div className="modal-3d-viewer-outer">
                             <div className="modal-3d-viewer-container" style={{background:'none',border:'none',boxShadow:'none', width: '60vw', height: '80vh', minWidth: '320px', minHeight: '320px', maxWidth: '900px', maxHeight: '92vh', position: 'relative'}}>
                                 <div className="model-3d-align-left">
-                                {console.log('show3D:', show3D, 'producto:', producto.titulo, 'tiene3D:', tiene3D, 'IMAGENES_PNG[producto.titulo]:', IMAGENES_PNG[producto.titulo])}
                                 {show3D ? (
                                     // Mostrar modelo 3D cuando show3D es true
                                     RUTAS_3D[producto.titulo] && React.createElement('model-viewer' as any, {
