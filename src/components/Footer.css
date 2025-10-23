@@ -582,7 +582,7 @@ max-width: 1200px;
 }
 
 /* Ajustes mínimos solo para notebooks con escala 125% - Footer */
-@media (min-width: 1024px) and (max-width: 1400px) {
+@media (min-width: 1200px) and (max-width: 1600px) {
   .footer-app-link img {
     width: 100px;
   }
@@ -592,24 +592,36 @@ max-width: 1200px;
     margin-left: 0.5rem !important;
   }
   
-  /* Ajustar posición del logo para vista con escala 125% */
-  .footer-logo-link {
-    left: 50px !important;
+  /* Ajustar el footer para que termine después del contenido sin scroll */
+  .main-footer {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding-bottom: 2rem !important;
   }
   
-  /* Ajustar línea horizontal del logo */
+  /* SOBRESCRIBIR la regla existente del logo para vista con escala 125% */
+  .footer-col-md-3:first-child .footer-logo-link {
+    left: -130px !important;
+    position: absolute !important;
+    top: 16rem !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Ajustar línea horizontal del logo para que coincida con la posición del logo */
   .footer-logo-divider {
-    left: 96px !important;
-    width: 25rem !important;
+    left: -10px !important;
+    width: 60rem !important;
   }
   
-  /* Ajustar línea vertical del logo */
+  /* Ajustar línea vertical del logo para que coincida con la posición del logo */
   .footer-logo-divider-vertical {
-    left: 19px !important;
+    left: -80px !important;
   }
   
-  /* Ajustar línea vertical inferior del logo */
+  /* Ajustar línea vertical inferior del logo para que coincida con la posición del logo */
   .footer-logo-divider-vertical-bottom {
-    left: 19px !important;
+    left: -80px !important;
   }
 } 
