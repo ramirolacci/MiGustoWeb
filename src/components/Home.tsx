@@ -118,7 +118,8 @@ function PromoCards() {
         { type: 'lovers', cta: 'Conocer más', href: '/lovers' },
         { img: '/images/sliders/SLIDER 2000X1125 copia.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
         { img: '/images/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/images/sliders/desktop3.jpg', cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' }
+        { img: '/images/sliders/desktop3.jpg', cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' },
+        { img: '/images/sliders/Generico.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' }
     ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
     // Carrusel con arrastre manual

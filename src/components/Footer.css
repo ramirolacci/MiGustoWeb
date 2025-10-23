@@ -514,7 +514,7 @@ max-width: 1200px;
     }
     .footer-logo-link {
         position: absolute;
-        left: -300px;
+        left: -280px;
         top: 16rem;
         margin-left: 0;
         margin-bottom: 0;
@@ -581,42 +581,35 @@ max-width: 1200px;
     }
 }
 
-/* Ajustes mínimos para notebooks con escala 125% - Footer */
-@media (min-width: 1024px) and (max-width: 1600px) {
-  .footer-container {
-    max-width: 95%;
-    padding: 0 1rem;
-  }
-  
-  .footer-row {
-    gap: 2rem;
-  }
-  
-  .footer-col-md-4 {
-    margin-right: 0;
-    margin-left: -2rem;
-  }
-  
-  .footer-social-block {
-    margin-right: 0;
-    margin-left: 0;
-    align-items: flex-start;
-  }
-  
-  .footer-social-title {
-    text-align: left;
-  }
-  
-  .footer-social-icons {
-    gap: 0.8rem;
-    justify-content: flex-start;
-  }
-  
-  .footer-app-links {
-    justify-content: flex-start;
-  }
-  
+/* Ajustes mínimos solo para notebooks con escala 125% - Footer */
+@media (min-width: 1024px) and (max-width: 1400px) {
   .footer-app-link img {
     width: 100px;
+  }
+  
+  /* Mover las tres columnas de links hacia la derecha */
+  .footer-col-md-3 {
+    margin-left: 0.5rem !important;
+  }
+  
+  /* Ajustar posición del logo para vista con escala 125% */
+  .footer-logo-link {
+    left: 50px !important;
+  }
+  
+  /* Ajustar línea horizontal del logo */
+  .footer-logo-divider {
+    left: 96px !important;
+    width: 25rem !important;
+  }
+  
+  /* Ajustar línea vertical del logo */
+  .footer-logo-divider-vertical {
+    left: 19px !important;
+  }
+  
+  /* Ajustar línea vertical inferior del logo */
+  .footer-logo-divider-vertical-bottom {
+    left: 19px !important;
   }
 } 
