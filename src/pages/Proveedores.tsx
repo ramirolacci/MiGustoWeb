@@ -218,15 +218,29 @@ if (typeof window !== 'undefined') {
       .contacto-container {
         margin-top: 32px !important;
       }
+      .responsive-row {
+        flex-direction: column !important;
+      }
+      .responsive-row > div:first-child {
+        width: 100vw !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 20px !important;
+      }
       .responsive-row img.proveedor-img {
         margin-top: 0px !important;
         margin-bottom: 32px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        height: auto !important;
       }
       .proveedores-titulo-img {
-        margin-top: -20px !important;
+        margin-top: 0px !important;
         margin-bottom: 24px !important;
-        width: 90% !important;
-        max-width: 300px !important;
+        width: 100% !important;
+        max-width: 350px !important;
       }
     }
   `;
