@@ -251,7 +251,6 @@ const TrabajaConNosotros: React.FC = () => {
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
-                <h2>Trabajá con nosotros</h2>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en formar parte de nuestro equipo.</p>
                 <form className="contacto-form" onSubmit={handleSubmit}>
                   <style>{`
