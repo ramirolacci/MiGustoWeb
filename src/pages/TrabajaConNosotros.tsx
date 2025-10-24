@@ -48,6 +48,13 @@ const TrabajaConNosotros: React.FC = () => {
   useEffect(() => {
     import('scrollreveal').then((module) => {
       const sr = module.default ? module.default : module;
+      sr().reveal('.trabaja-titulo-img', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'top',
+        opacity: 0,
+        reset: true
+      });
       sr().reveal('.trabaja-img', {
         distance: '30px',
         duration: 1600,
@@ -247,7 +254,10 @@ const TrabajaConNosotros: React.FC = () => {
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <img src="/images/side-menu/staff.png" alt="Imagen staff" className="trabaja-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: '120px', position: 'relative', zIndex: 2 }} />
+          <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: '95%', maxWidth: '600px', marginTop: '40px', marginBottom: '5px', opacity: 1, position: 'relative', zIndex: 2 }} />
+            <img src="/images/side-menu/staff.png" alt="Imagen staff" className="trabaja-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, position: 'relative', zIndex: 2 }} />
+          </div>
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
@@ -506,9 +516,15 @@ if (typeof window !== 'undefined') {
       .contacto-container {
         margin-top: 32px !important;
       }
-      .responsive-row img {
-        margin-top: 8px !important;
+      .responsive-row img.trabaja-img {
+        margin-top: 0px !important;
         margin-bottom: 32px !important;
+      }
+      .trabaja-titulo-img {
+        margin-top: -30px !important;
+        margin-bottom: 4px !important;
+        width: 98% !important;
+        max-width: 400px !important;
       }
     }
   `;
