@@ -255,7 +255,7 @@ const TrabajaConNosotros: React.FC = () => {
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
           <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: '95%', maxWidth: '600px', marginTop: '40px', marginBottom: '5px', opacity: 1, position: 'relative', zIndex: 2 }} />
+            <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: '95%', maxWidth: '600px', marginTop: '60px', marginBottom: '25px', opacity: 1, position: 'relative', zIndex: 2 }} />
             <img src="/images/side-menu/staff.png" alt="Imagen staff" className="trabaja-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, position: 'relative', zIndex: 2 }} />
           </div>
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
@@ -521,8 +521,8 @@ if (typeof window !== 'undefined') {
         margin-bottom: 32px !important;
       }
       .trabaja-titulo-img {
-        margin-top: -30px !important;
-        margin-bottom: 4px !important;
+        margin-top: -10px !important;
+        margin-bottom: 20px !important;
         width: 98% !important;
         max-width: 400px !important;
       }

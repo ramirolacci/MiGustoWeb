@@ -117,7 +117,7 @@ const Proveedores: React.FC = () => {
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
           <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img src="/images/proveedores/Proveedores-titulo.png" alt="Título Proveedores" className="proveedores-titulo-img" style={{ width: '80%', maxWidth: '400px', marginTop: isMobile ? '10px' : '60px', marginBottom: '20px', opacity: 1, position: 'relative', zIndex: 2 }} />
+            <img src="/images/proveedores/Proveedores-titulo.png" alt="Título Proveedores" className="proveedores-titulo-img" style={{ width: '80%', maxWidth: '400px', marginTop: isMobile ? '10px' : '60px', marginBottom: '30px', opacity: 1, position: 'relative', zIndex: 2 }} />
             <img src="/images/side-menu/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
           </div>
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
@@ -224,7 +224,7 @@ if (typeof window !== 'undefined') {
       }
       .proveedores-titulo-img {
         margin-top: -20px !important;
-        margin-bottom: 16px !important;
+        margin-bottom: 24px !important;
         width: 90% !important;
         max-width: 300px !important;
       }
