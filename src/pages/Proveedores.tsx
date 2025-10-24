@@ -87,6 +87,13 @@ const Proveedores: React.FC = () => {
   useEffect(() => {
     import('scrollreveal').then((module) => {
       const sr = module.default ? module.default : module;
+      sr().reveal('.proveedores-titulo-img', {
+        distance: '30px',
+        duration: 1600,
+        origin: 'top',
+        opacity: 0,
+        reset: true
+      });
       sr().reveal('.proveedor-img', {
         distance: '30px',
         duration: 1600,
@@ -109,7 +116,10 @@ const Proveedores: React.FC = () => {
       <div className="background-overlay"></div>
       <div className="sucursales-container">
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <img src="/images/side-menu/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '50vw', height: '100%', maxHeight: '100vh', objectFit: 'cover', display: 'block', marginTop: isMobile ? '56px' : '144px', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
+          <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img src="/images/proveedores/Proveedores-titulo.png" alt="Título Proveedores" className="proveedores-titulo-img" style={{ width: '80%', maxWidth: '400px', marginTop: isMobile ? '10px' : '60px', marginBottom: '20px', opacity: 1, position: 'relative', zIndex: 2 }} />
+            <img src="/images/side-menu/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
+          </div>
           <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
@@ -211,6 +221,12 @@ if (typeof window !== 'undefined') {
       .responsive-row img.proveedor-img {
         margin-top: 0px !important;
         margin-bottom: 32px !important;
+      }
+      .proveedores-titulo-img {
+        margin-top: -20px !important;
+        margin-bottom: 16px !important;
+        width: 90% !important;
+        max-width: 300px !important;
       }
     }
   `;
