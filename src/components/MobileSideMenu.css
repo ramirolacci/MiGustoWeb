@@ -27,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 80px 0 24px 0; /* bajar un poco el bloque de links */
+  padding: 45px 0 24px 0; /* reducir más el padding superior */
   position: relative;
   box-sizing: border-box;
 }
@@ -59,7 +59,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 0 16px;
-  flex: 1;
+  flex: 0 0 auto;
   overflow-y: hidden; /* evitar scroll; todo visible en pantalla */
 }
 
@@ -281,8 +281,12 @@
     right: 16px;
     font-size: 28px;
   }
-  .mobile-side-menu { padding: 68px 0 18px 0; }
+  .mobile-side-menu { 
+    padding: 38px 0 18px 0; 
+    justify-content: flex-start;
+  }
   .mobile-side-menu-list { margin-top: 10px; }
+  .mobile-side-menu-social { padding: 8px 0 12px 0; margin-top: 2px; }
   /* ya ocupa 100vw */
 }
 
@@ -291,8 +295,12 @@
     font-size: 1.6rem !important;
     padding: 12px 0 !important;
   }
-  .mobile-side-menu { padding: 62px 0 12px 0; }
+  .mobile-side-menu { 
+    padding: 35px 0 12px 0; 
+    justify-content: flex-start;
+  }
   .mobile-side-menu-list { margin-top: 10px; }
+  .mobile-side-menu-social { padding: 6px 0 10px 0; margin-top: 1px; }
   /* ya ocupa 100vw */
 }
 
@@ -323,7 +331,9 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 8px 0 0 0;
+  padding: 16px 0 20px 0;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 .mobile-side-menu-social-title {
