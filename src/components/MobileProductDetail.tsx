@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './MobileProductDetail.css';
 
+// Declaración para TypeScript
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'model-viewer': any;
+    }
+  }
+}
+
 type MobileProduct = {
     titulo: string;
     descripcion: string;
@@ -133,31 +142,31 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
                 )}
                 <div className="mpd-image">
                     {show3D && tiene3D && RUTAS_3D[producto.titulo] ? (
-                        <model-viewer
-                            src={RUTAS_3D[producto.titulo]}
-                            alt={producto.titulo + ' 3D'}
-                            camera-controls
-                            auto-rotate
-                            auto-rotate-delay="0"
-                            ar={false}
-                            style={{
+                        React.createElement('model-viewer' as any, {
+                            src: RUTAS_3D[producto.titulo],
+                            alt: producto.titulo + ' 3D',
+                            'camera-controls': true,
+                            'auto-rotate': true,
+                            'auto-rotate-delay': '0',
+                            ar: false,
+                            style: {
                                 width: '100%',
                                 height: '100%',
                                 background: 'transparent',
                                 borderRadius: '12px',
                                 outline: 'none',
                                 pointerEvents: 'none'
-                            }}
-                            shadow-intensity="1.5"
-                            shadow-softness="1"
-                            exposure="2"
-                            camera-orbit={CAMERA_ORBITS_3D[producto.titulo] || "0deg 75deg 2.5m"}
-                            min-camera-orbit="auto auto 1.8m"
-                            max-camera-orbit="auto auto 3m"
-                            field-of-view="25deg"
-                            interaction-prompt="none"
-                            disable-pan={true}
-                        />
+                            },
+                            'shadow-intensity': '1.5',
+                            'shadow-softness': '1',
+                            exposure: '2',
+                            'camera-orbit': CAMERA_ORBITS_3D[producto.titulo] || "0deg 75deg 2.5m",
+                            'min-camera-orbit': 'auto auto 1.8m',
+                            'max-camera-orbit': 'auto auto 3m',
+                            'field-of-view': '25deg',
+                            'interaction-prompt': 'none',
+                            'disable-pan': true
+                        })
                     ) : (
                         <img 
                             src={!show3D && tiene3D ? (IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen) : (producto.imagenDetalle || producto.imagen)} 

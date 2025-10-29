@@ -1,26 +1,3 @@
-// Declarar el elemento personalizado para TypeScript
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        src: string;
-        alt?: string;
-        'camera-controls'?: boolean;
-        'auto-rotate'?: boolean;
-        'auto-rotate-delay'?: string;
-        ar?: boolean;
-        style?: React.CSSProperties;
-        'shadow-intensity'?: string;
-        'shadow-softness'?: string;
-        exposure?: string;
-        'camera-orbit'?: string;
-        'min-camera-orbit'?: string;
-        'max-camera-orbit'?: string;
-        'interaction-prompt'?: string;
-      };
-    }
-  }
-}
 
 import React, { useEffect, useRef, useState } from 'react';
 // Sidebar móvil provisto por MobileTabbar; no montamos uno custom aquí
