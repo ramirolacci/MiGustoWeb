@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
+import MobileProductDetail from './MobileProductDetail';
 import NavBar from './NavBar';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -705,11 +706,17 @@ export default function Productos() {
                     )}
                 </div>
 
-                {productoSeleccionado && (
+                {productoSeleccionado && !isMobile && (
                     <ProductModal3D
                         producto={productoSeleccionado}
                         onClose={() => setProductoSeleccionado(null)}
                         tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
+                    />
+                )}
+                {productoSeleccionado && isMobile && (
+                    <MobileProductDetail
+                        producto={productoSeleccionado}
+                        onClose={() => setProductoSeleccionado(null)}
                     />
                 )}
 

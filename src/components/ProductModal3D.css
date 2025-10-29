@@ -198,7 +198,7 @@
     margin: 0;
     flex: 1;
     overflow-y: auto;
-    max-height: 150px;
+    max-height: 200px;
     padding-right: 5px;
 }
 
@@ -380,7 +380,7 @@
         max-height: none;
         height: auto;
         min-height: 100px;
-        max-height: 150px;
+        max-height: 200px;
         padding-right: 8px;
         margin-top: 5px;
     }
@@ -595,6 +595,28 @@
         padding-left: 18px !important;
         padding-right: 18px !important;
     }
+    /* Ingredientes en mobile (sin 3D): igualar a desktop con viñetas */
+    .modal-mobile-column .ingredientes-lista li {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        padding: 8px 2px !important;
+        border-bottom: none !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        font-size: 1rem !important;
+        line-height: 1.35 !important;
+        letter-spacing: 0.05px !important;
+    }
+    .modal-mobile-column .ingredientes-lista li::before {
+        content: '' !important;
+        flex: 0 0 7px !important;
+        width: 7px !important;
+        height: 7px !important;
+        margin-top: 6px !important;
+        border-radius: 50% !important;
+        background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe28a 40%, #ffbf1f 60%, #e6a91c 100%) !important;
+        box-shadow: 0 0 0 2px rgba(255,191,31,0.16) !important;
+    }
     .modal-mobile-column .modal-close {
         position: fixed !important;
         top: 12px !important;
@@ -624,7 +646,7 @@
     }
 
     .ingredientes-lista {
-        max-height: 180px;
+        max-height: 250px;
     }
 }
 
@@ -638,7 +660,7 @@
     }
 
     .ingredientes-lista {
-        max-height: 200px;
+        max-height: 300px;
     }
 }
 
@@ -649,6 +671,56 @@
     top: 38% !important;
   }
 } 
+
+/* ------------------ NUEVA tarjeta de ingredientes (mobile) ------------------ */
+@media (max-width: 768px) {
+  .ingredientes-card-mobile {
+    width: 100%;
+    margin: -24px 0 16px 0; /* aún más arriba */
+    padding: 14px 14px 12px 14px;
+    background: rgba(20,20,20,0.52); /* aún más transparente */
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    border: 1px solid rgba(255,191,31,0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .ingredientes-card-mobile h3 {
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #ffbf1f;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 8px rgba(255,191,31,0.18);
+  }
+  .ingredientes-card-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .ingredientes-card-mobile li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 2px;
+    color: #f1f1f1;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+  .ingredientes-card-mobile li + li {
+    margin-top: 2px;
+  }
+  .ingredientes-card-mobile li::before {
+    content: '';
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.12);
+  }
+}
 
 .modal-overlay > .modal-close, .modal-overlay > .boton-cerrar-3d {
     position: fixed !important;
@@ -866,7 +938,8 @@
     align-items: flex-start !important;
     gap: 8px !important;
     padding: 8px 8px !important;
-    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    /* Igualar estilo de desktop: viñetas sin líneas divisorias */
+    border-bottom: none !important;
     color: #f1f1f1 !important;
     font-size: 0.98rem !important;
     line-height: 1.35 !important;

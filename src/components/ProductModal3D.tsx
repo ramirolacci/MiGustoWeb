@@ -236,6 +236,13 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
             .filter(item => item.length > 0);
     };
 
+    const obtenerIngredientes = (): string[] => {
+        const listaDesdeProp = Array.isArray(producto.ingredientes) ? producto.ingredientes.filter(i => i && i.trim().length > 0) : [];
+        if (listaDesdeProp.length > 0) return listaDesdeProp;
+        if (producto.descripcion) return extraerIngredientes(producto.descripcion);
+        return [];
+    };
+
     // Determino si el producto es de la categoría Promociones
     const esPromocion = producto.categoria && producto.categoria.toLowerCase().includes('promocion');
 
@@ -433,14 +440,16 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                             </button>
                             )}
                             <h2 className="titulo-impresionante-3d" style={{margin: 0, marginBottom: 16}}>{producto.titulo}</h2>
-                            <div style={{color:'#fff',marginBottom:8}}>
-                                <h3 style={{color:'#FFD700',margin: 0, marginBottom: 12}}>Ingredientes</h3>
-                                <ul style={{paddingLeft:18, marginTop: 8}}>
-                                    {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
-                                        <li key={index} style={{marginBottom:6}}>{ingrediente}</li>
-                                    ))}
-                                </ul>
-                            </div>
+                            {obtenerIngredientes().length > 0 && !isMobile && (
+                                    <div style={{color:'#fff',marginBottom:8}}>
+                                        <h3 style={{color:'#FFD700',margin: 0, marginBottom: 12}}>Ingredientes</h3>
+                                        <ul className="ingredientes-lista" style={{paddingLeft:18, marginTop: 8}}>
+                                            {obtenerIngredientes().map((ingrediente, index) => (
+                                                <li key={index} style={{marginBottom:6}}>{ingrediente}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                            )}
                         </div>
                     </div>
                 ) : (
@@ -531,12 +540,16 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                                 </button>
                                             )}
                                         </div>
-                                        <h3 style={{margin: 0, marginBottom: 8}}>Ingredientes</h3>
-                                        <ul className="ingredientes-lista">
-                                            {extraerIngredientes(producto.descripcion).map((ingrediente, index) => (
-                                                <li key={index}>{ingrediente}</li>
-                                            ))}
-                                        </ul>
+                                        {obtenerIngredientes().length > 0 && !isMobile && (
+                                                <>
+                                                    <h3 style={{ color: '#FFD700', margin: 0, marginBottom: 12 }}>Ingredientes</h3>
+                                                    <ul className="ingredientes-lista">
+                                                        {obtenerIngredientes().map((ingrediente, index) => (
+                                                            <li key={index}>{ingrediente}</li>
+                                                        ))}
+                                                    </ul>
+                                                </>
+                                        )}
                                     </div>
                                     {producto.tiempoPreparacion && (
                                         <div className="detalle-item"
