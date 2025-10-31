@@ -18,7 +18,7 @@ const useIsMobile = (breakpoint: number = 768) => {
 };
 
 function PromoCarousel({ title, slides, isDestacadas = false }: { title: string; slides: Slide[]; isDestacadas?: boolean }) {
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  // Eliminamos estado de lightbox
   return (
     <section className="hm-section">
       <h3 className="hm-section-title">{title}</h3>
@@ -26,10 +26,11 @@ function PromoCarousel({ title, slides, isDestacadas = false }: { title: string;
         {slides.map((s) => (
           <div key={s.id} className="hm-card-container">
             <a
-              href={s.href || '#'}
+              href="https://pedir.migusto.com.ar/"
+              target="_blank"
+              rel="noopener noreferrer"
               className={isDestacadas ? "hm-card hm-card-destacadas" : "hm-card hm-card-other"}
               aria-label={s.title || 'Promo'}
-              onClick={(e) => { e.preventDefault(); if (s.image) setLightbox(s.image.replace('/sliders/desktop', '/sliders/mobile')); }}
             >
               {s.image && (
                 <OptimizedImage
@@ -54,13 +55,6 @@ function PromoCarousel({ title, slides, isDestacadas = false }: { title: string;
           </div>
         ))}
       </div>
-      {lightbox && (
-        <div className="hm-lightbox" onClick={() => setLightbox(null)}>
-          <div className="hm-lightbox-inner">
-            <img src={lightbox} alt="Promo" />
-          </div>
-        </div>
-      )}
     </section>
   );
 }

@@ -10,9 +10,10 @@ export interface MobilePromoSlide {
 // Placeholder: reemplazar imágenes cuando las tengas listas
 // Usamos sliders de la home para las destacadas (desktop en card)
 export const promosDestacadas: MobilePromoSlide[] = [
+  { id: 'd0', image: '/images/sliders/SLIDER 2000X1125 copia.jpg' },
   { id: 'd2', image: '/images/sliders/desktop2.jpg' },
   { id: 'd3', image: '/images/sliders/desktop3.jpg' },
-  { id: 'd1', image: '/images/sliders/desktop1.jpg' },
+  { id: 'd1', image: '/images/sliders/Generico.jpg' }, // antes era desktop1.jpg
 ];
 
 export const combosImperdibles: MobilePromoSlide[] = [

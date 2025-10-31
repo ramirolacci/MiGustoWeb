@@ -4,16 +4,14 @@ import './Home.css';
 import IphoneWhatsapp from './Iphone';
 
 const slidesDesktop = [
-    '/images/sliders/desktop1.jpg',
+    '/images/sliders/SLIDER 2000X1125 copia.jpg',
+    '/images/sliders/Generico.jpg',
     '/images/sliders/desktop2.jpg',
     '/images/sliders/desktop3.jpg',
 ];
 
-const slidesMobile = [
-    '/images/sliders/mobile1.jpg',
-    '/images/sliders/mobile2.jpg',
-    '/images/sliders/mobile3.jpg',
-];
+// Usar las mismas imágenes en mobile
+const slidesMobile = slidesDesktop;
 
 const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean }) {
     const [current, setCurrent] = useState(1);
@@ -91,20 +89,27 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
                 onTransitionEnd={handleTransitionEnd}
             >
                 {extendedSlides.map((src, idx) => (
-                    <img
+                    <a
                         key={`${src}-${idx}`}
-                        src={src}
-                        alt={`slide-${idx + 1}`}
-                        className="home-slide"
-                        style={{
-                            width: '100vw',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'center 85%',
-                            display: 'block'
-                        }}
-                        loading="lazy"
-                    />
+                        href="https://pedir.migusto.com.ar/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ width: '100vw', height: '100%', display: 'block' }}
+                    >
+                        <img
+                            src={src}
+                            alt={`slide-${idx + 1}`}
+                            className="home-slide"
+                            style={{
+                                width: '100vw',
+                                height: '100%',
+                                objectFit: 'cover',
+                                objectPosition: 'center 85%',
+                                display: 'block'
+                            }}
+                            loading="lazy"
+                        />
+                    </a>
                 ))}
             </div>
             {/* Botones de flecha eliminados */}
