@@ -3,6 +3,7 @@ import './Iphone.css';
 
 // Importar las imágenes de los sliders
 const sliderImages = [
+    '/images/sliders/mobile1.jpg',
     '/images/sliders/mobile3.jpg',
     '/images/sliders/mobile2.jpg',
 ];
