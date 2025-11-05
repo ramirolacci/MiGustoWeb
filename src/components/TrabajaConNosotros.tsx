@@ -64,10 +64,10 @@ const TrabajaConNosotros: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'image/jpeg') {
         setFormData(prevData => ({ ...prevData, cv: file }));
       } else {
-        alert('Por favor, sube un archivo PDF, DOC o DOCX.');
+        alert('Por favor, sube un archivo PDF, DOC o JPG.');
         e.target.value = ''; // Clear the input
         setFormData(prevData => ({ ...prevData, cv: null }));
       }
@@ -90,10 +90,10 @@ const TrabajaConNosotros: React.FC = () => {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'image/jpeg') {
         setFormData(prevData => ({ ...prevData, cv: file }));
       } else {
-        alert('Por favor, sube un archivo PDF, DOC o DOCX.');
+        alert('Por favor, sube un archivo PDF, DOC o JPG.');
         setFormData(prevData => ({ ...prevData, cv: null }));
       }
     }
@@ -247,7 +247,7 @@ const TrabajaConNosotros: React.FC = () => {
                   type="file"
                   id="cv-upload"
                   name="cv"
-                  accept=".pdf,.doc,.docx"
+                  accept=".pdf,.doc,.jpg"
                   onChange={handleFileChange}
                   style={{ display: 'none' }}
                   required
@@ -261,7 +261,7 @@ const TrabajaConNosotros: React.FC = () => {
                   <div className="file-drop-content">
                     <i className="fas fa-cloud-upload-alt"></i>
                     <p>Arrastra y suelta tu CV aquí o haz clic para seleccionar</p>
-                    <p className="file-types">(PDF, DOC, DOCX)</p>
+                    <p className="file-types">(PDF, DOC, JPG)</p>
                   </div>
                 )}
               </div>

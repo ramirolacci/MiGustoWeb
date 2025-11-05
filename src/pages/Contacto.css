@@ -296,27 +296,30 @@
 }
 
 .remove-file {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   background-color: transparent !important;
-  color: #ff0000 !important;
-  border: 1px solid #ff0000;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
+  color: #9aa0a6 !important; /* gris */
+  border: none;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 3;
   margin: 0;
   padding: 0;
 }
 
 .remove-file:hover {
-  background-color: #ff0000 !important;
-  color: #fff !important;
-  transform: scale(1.1);
+  color: #5f6368 !important; /* gris más oscuro al hover */
+  transform: scale(1.05);
 }
 
 .progress-bar-container {
