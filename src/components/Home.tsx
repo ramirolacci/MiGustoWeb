@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, memo } from 'react';
+import { gsap } from 'gsap';
 
 import './Home.css';
 import IphoneWhatsapp from './Iphone';
@@ -236,13 +237,98 @@ function PromoCards() {
     const handleTouchEnd = () => {
         isDraggingRef.current = false;
     };
+
+    // Animación GSAP para las cards - efecto de choque desde la derecha
+    const sectionRef = useRef<HTMLElement>(null);
+    const cardsAnimatedRef = useRef<boolean>(false);
+    const animationRef = useRef<gsap.core.Timeline | null>(null);
+    const cardsInitializedRef = useRef<boolean>(false);
+
+    useEffect(() => {
+        if (!sectionRef.current) return;
+
+        const cards = sectionRef.current.querySelectorAll('.home-card');
+        if (cards.length === 0) return;
+
+        // Solo configurar posición inicial una vez
+        if (!cardsInitializedRef.current) {
+            const cardsArray = Array.from(cards) as HTMLElement[];
+            const startX = window.innerWidth + 50;
+            
+            // Posicionar todas las cards fuera de la pantalla a la derecha desde el inicio
+            gsap.set(cardsArray, {
+                x: startX,
+                opacity: 0,
+                force3D: true
+            });
+            
+            cardsInitializedRef.current = true;
+        }
+
+        // Observer para activar la animación SOLO cuando la sección sea visible
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    // Solo animar cuando realmente esté visible en el viewport Y las cards estén inicializadas
+                    if (entry.isIntersecting && !cardsAnimatedRef.current && cardsInitializedRef.current) {
+                        cardsAnimatedRef.current = true;
+                        
+                        const cardsArray = Array.from(cards) as HTMLElement[];
+                        
+                        // Crear timeline simple y eficiente
+                        const tl = gsap.timeline({
+                            defaults: {
+                                force3D: true
+                            }
+                        });
+
+                        // Animar cada card desde la derecha (ya están posicionadas) hacia la izquierda
+                        cardsArray.forEach((card, index) => {
+                            tl.to(card, {
+                                x: 0,
+                                opacity: 1,
+                                duration: 0.8,
+                                ease: 'back.out(1.3)'
+                            }, index * 0.08); // Delay escalonado
+                        });
+                        
+                        animationRef.current = tl;
+                        observer.disconnect();
+                    }
+                });
+            },
+            {
+                threshold: 0.2, // La sección debe estar al menos 20% visible
+                rootMargin: '0px' // Sin margen adicional - solo cuando realmente esté visible
+            }
+        );
+
+        observer.observe(sectionRef.current);
+
+        return () => {
+            observer.disconnect();
+            // Limpiar animación si el componente se desmonta
+            if (animationRef.current) {
+                animationRef.current.kill();
+            }
+        };
+    }, []);
+
     return (
-        <section className="home-cards" style={{ padding: '56px 0', width: '100%' }}>
+        <section ref={sectionRef} className="home-cards" style={{ padding: '56px 0', width: '100%' }}>
             <div style={{ width: '100%', position: 'relative' }}>
                 <div
                   className="home-cards-carousel"
                   ref={trackRef}
-                  style={{ display: 'flex', gap: 32, alignItems: 'stretch', willChange: 'transform', cursor: 'grab' }}
+                  style={{ 
+                    display: 'flex', 
+                    gap: 32, 
+                    alignItems: 'stretch', 
+                    willChange: 'transform', 
+                    cursor: 'grab',
+                    transform: 'translateZ(0)', // GPU acceleration
+                    backfaceVisibility: 'hidden'
+                  }}
                   onMouseDown={handleMouseDown}
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
@@ -489,14 +575,14 @@ function Home() {
                 reset: false,
                 delay: 260
             });
-            // Cards del medio
-            sr().reveal('.home-card', {
-                distance: '30px',
-                duration: 1600,
-                origin: 'bottom',
-                opacity: 0,
-                reset: true
-            });
+            // Cards del medio - Comentado porque ahora usamos GSAP para animación desde la derecha
+            // sr().reveal('.home-card', {
+            //     distance: '30px',
+            //     duration: 1600,
+            //     origin: 'bottom',
+            //     opacity: 0,
+            //     reset: true
+            // });
             // Hero: video, título y CTAs
             sr().reveal('.home-hero-video', {
                 distance: '0px',
