@@ -1,5 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Nosotros.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Nosotros: React.FC = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
@@ -250,21 +254,104 @@ const Nosotros: React.FC = () => {
         isHoveringRef.current = false;
     };
 
-    // Auto-scroll infinito mejorado tipo pasarela
+    // Animación GSAP: vincular scroll vertical con movimiento horizontal del carrusel (suave y sutil)
     useEffect(() => {
         const container = valoresContainerRef.current;
         const track = carouselRef.current;
-        if (!container || !track) return;
+        const valoresSection = valoresContainerRef.current?.closest('.section-card');
+        
+        if (!container || !track || !valoresSection) return;
+
+        const computeMaxScrollPx = () => {
+            const halfWidth = track.scrollWidth / 2;
+            const base = halfWidth * 0.08; // 8% del ancho útil
+            const isMobile = window.innerWidth < 768;
+            const minPx = isMobile ? 40 : 80;
+            const maxPx = isMobile ? 100 : 160;
+            return Math.max(minPx, Math.min(maxPx, Math.round(base)));
+        };
+
+        let maxScrollPx = computeMaxScrollPx();
+        let baseScroll = container.scrollLeft;
+
+        // Setter suave para scrollLeft
+        const setScrollLeft = gsap.quickTo(container, 'scrollLeft', {
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: 'auto'
+        });
+
+        const st = ScrollTrigger.create({
+            trigger: valoresSection,
+            start: 'top 88%',
+            end: 'bottom 12%',
+            scrub: false,
+            invalidateOnRefresh: true,
+            onEnter: () => {
+                track.style.animationPlayState = 'paused';
+                baseScroll = container.scrollLeft;
+            },
+            onEnterBack: () => {
+                track.style.animationPlayState = 'paused';
+                baseScroll = container.scrollLeft;
+            },
+            onLeave: () => {
+                track.style.animationPlayState = 'running';
+            },
+            onLeaveBack: () => {
+                track.style.animationPlayState = 'running';
+            },
+            onUpdate: self => {
+                if (isDraggingRef.current) return;
+                const target = baseScroll + self.progress * maxScrollPx;
+                setScrollLeft(target);
+            },
+            onRefresh: () => {
+                maxScrollPx = computeMaxScrollPx();
+            }
+        });
+
+        const onResize = () => ScrollTrigger.refresh();
+        window.addEventListener('resize', onResize);
+
+        return () => {
+            window.removeEventListener('resize', onResize);
+            st.kill();
+        };
+    }, []);
+
+    // Auto-scroll infinito mejorado tipo pasarela (solo cuando no hay interacción ni scroll activo)
+    useEffect(() => {
+        const container = valoresContainerRef.current;
+        const track = carouselRef.current;
+        const valoresSection = valoresContainerRef.current?.closest('.section-card');
+        
+        if (!container || !track || !valoresSection) return;
 
         let rafId = 0;
         let last = performance.now();
         const SPEED_PX_PER_SEC = 25; // velocidad aumentada para efecto pasarela
         
+        // Variable para trackear si el ScrollTrigger está activo
+        let scrollTriggerActive = false;
+        
+        // Crear un observer para detectar cuando ScrollTrigger está activo
+        const checkScrollTrigger = () => {
+            const triggers = ScrollTrigger.getAll();
+            scrollTriggerActive = triggers.some(trigger => 
+                trigger.trigger === valoresSection && 
+                trigger.isActive
+            );
+        };
+        
         const loop = (now: number) => {
             const dt = now - last;
             last = now;
+            
+            checkScrollTrigger();
 
-            if (!isDraggingRef.current && !isHoveringRef.current) {
+            // Solo auto-scroll si no está arrastrando, no está hover, y ScrollTrigger no está activo
+            if (!isDraggingRef.current && !isHoveringRef.current && !scrollTriggerActive) {
                 container.scrollLeft += (SPEED_PX_PER_SEC * dt) / 1000;
 
                 // Reiniciar cuando llegue a la mitad para scroll infinito
