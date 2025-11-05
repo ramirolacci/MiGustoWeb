@@ -21,6 +21,11 @@
   z-index: 1;
 }
 
+/* Desactivar patrón de fondo en contenedores que lo requieran */
+.contacto-container.no-pattern-bg::before {
+  content: none !important;
+}
+
 .contacto-header {
   text-align: center;
   margin-bottom: 40px;

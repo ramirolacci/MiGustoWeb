@@ -17,6 +17,11 @@ html, body {
   padding-top: 70px; /* igual a la altura del navbar */
 }
 
+/* Evitar doble fondo: ocultar overlay genérico en esta página */
+.venta-corporativa-section .background-overlay {
+  display: none !important;
+}
+
 @media (min-width: 901px) {
   .venta-corporativa-section {
     transform: none;

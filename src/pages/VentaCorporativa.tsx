@@ -265,7 +265,7 @@ const VentaCorporativa: React.FC = () => {
                     </div>
 
                     {/* PARTE DERECHA: Formulario */}
-                    <div className="contacto-container" style={{ 
+                    <div className="contacto-container no-pattern-bg" style={{ 
                         width: '50vw', 
                         minHeight: '100vh', 
                         display: 'flex', 
