@@ -258,7 +258,7 @@ const TrabajaConNosotros: React.FC = () => {
             <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: '95%', maxWidth: '600px', marginTop: '60px', marginBottom: '25px', opacity: 1, position: 'relative', zIndex: 2 }} />
             <img src="/images/side-menu/staff.png" alt="Imagen staff" className="trabaja-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, position: 'relative', zIndex: 2 }} />
           </div>
-          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
+          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '24px' }}>
             <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en formar parte de nuestro equipo.</p>
@@ -470,7 +470,7 @@ const TrabajaConNosotros: React.FC = () => {
                           type="file"
                           id="cv-upload"
                           name="cv"
-                          accept=".pdf,.doc,.docx"
+                          accept=".pdf,.doc,.jpg"
                           onChange={handleFileChange}
                           style={{ display: 'none' }}
                         />
@@ -484,7 +484,7 @@ const TrabajaConNosotros: React.FC = () => {
                           <div className="file-drop-content">
                               <i className="fas fa-cloud-upload-alt"></i>
                               <p>Arrastra y suelta tu CV aquí o haz clic para seleccionar</p>
-                              <p className="file-types">(PDF, DOC, DOCX)</p>
+                              <p className="file-types">(PDF, DOC, JPG)</p>
                           </div>
                         )}
                     </div>
@@ -514,7 +514,7 @@ if (typeof window !== 'undefined') {
         margin-top: 0px !important;
       }
       .contacto-container {
-        margin-top: 32px !important;
+        margin-top: 12px !important;
       }
       .responsive-row img.trabaja-img {
         margin-top: 0px !important;
