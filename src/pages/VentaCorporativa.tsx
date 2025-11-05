@@ -271,7 +271,7 @@ const VentaCorporativa: React.FC = () => {
                         display: 'flex', 
                         alignItems: 'stretch', 
                         justifyContent: 'center', 
-                        marginTop: '24px' 
+                        marginTop: '56px' 
                     }}>
                         <div className="contacto-content" style={{ 
                             width: '100%', 
@@ -476,7 +476,7 @@ if (typeof window !== 'undefined') {
                 margin-top: 0px !important;
             }
             .contacto-container {
-                margin-top: 24px !important;
+                margin-top: 32px !important;
             }
             .responsive-row img {
                 margin-top: 8px !important;
