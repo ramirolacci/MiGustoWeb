@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/Contacto.css';
-import emailjs from '@emailjs/browser';
+import { sendFormEmail } from '../services/emailjs';
 import Swal from 'sweetalert2';
-import axios from 'axios';
 
 const sucursalesList = [
   'Ballester',
@@ -185,26 +184,7 @@ const TrabajaConNosotros: React.FC = () => {
     }
 
     try {
-      const data = new FormData();
-      data.append('nombre', formData.nombre);
-      data.append('edad', formData.edad);
-      data.append('localidad', formData.localidad);
-      data.append('apellido', formData.apellido);
-      data.append('telefono', formData.telefono);
-      data.append('email', formData.email);
-      data.append('puesto', formData.puesto);
-      if (formData.area) data.append('area', formData.area);
-      if (formData.cv) data.append('cv', formData.cv);
-
-      // Si tienes campos extra como area o sucursal, puedes agregarlos aquí si el backend los acepta
-      // data.append('area', formData.area);
-      // data.append('sucursal', formData.sucursal);
-
-      await axios.post('/api/mail/trabaja', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      await sendFormEmail('trabaja-con-nosotros', formData);
 
       Swal.fire({
         icon: 'success',

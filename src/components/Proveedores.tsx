@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
+import { sendFormEmail } from '../services/emailjs';
+import Swal from 'sweetalert2';
 
 const Proveedores: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,23 +12,45 @@ const Proveedores: React.FC = () => {
     descripcion: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Datos del formulario de proveedores:', formData);
-    // Aquí se manejaría el envío de datos, por ejemplo, a una API
-    alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
-    setFormData({
-      nombreEmpresa: '',
-      razonSocial: '',
-      telefono: '',
-      email: '',
-      descripcion: '',
-    });
+    setIsSubmitting(true);
+    
+    try {
+      await sendFormEmail('proveedores', formData);
+      
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: '¡Gracias por tu interés! Nos pondremos en contacto pronto.',
+        confirmButtonColor: '#d4af37',
+      });
+
+      setFormData({
+        nombreEmpresa: '',
+        razonSocial: '',
+        telefono: '',
+        email: '',
+        descripcion: '',
+      });
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.',
+        confirmButtonColor: '#d4af37',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -106,18 +130,8 @@ const Proveedores: React.FC = () => {
                     className="contacto-form textarea"
                   ></textarea>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="descripcion">Descripción de productos/servicios</label>
-                  <textarea
-                    id="descripcion"
-                    name="descripcion"
-                    rows={5}
-                    value={formData.descripcion}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn-ver-mas">
-                  Enviar Postulación
+                <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+                  {isSubmitting ? 'Enviando...' : 'Enviar Postulación'}
                 </button>
               </form>
             </div>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
+import { sendFormEmail } from '../services/emailjs';
+import Swal from 'sweetalert2';
 
 const sucursalesList = [
   'Sucursal Abasto',
@@ -55,6 +57,7 @@ const TrabajaConNosotros: React.FC = () => {
   });
 
   const [dragActive, setDragActive] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -103,21 +106,41 @@ const TrabajaConNosotros: React.FC = () => {
     setFormData(prevData => ({ ...prevData, cv: null }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Datos del formulario Trabajá con Nosotros:', formData);
-    // Aquí se manejaría el envío de datos, por ejemplo, a una API
-    alert('¡Postulación enviada con éxito! Gracias por tu interés.');
-    setFormData({
-      nombre: '',
-      apellido: '',
-      telefono: '',
-      email: '',
-      puesto: '',
-      area: '',
-      sucursal: '',
-      cv: null,
-    });
+    setIsSubmitting(true);
+    
+    try {
+      await sendFormEmail('trabaja-con-nosotros', formData);
+      
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: '¡Postulación enviada con éxito! Gracias por tu interés.',
+        confirmButtonColor: '#d4af37',
+      });
+
+      setFormData({
+        nombre: '',
+        apellido: '',
+        telefono: '',
+        email: '',
+        puesto: '',
+        area: '',
+        sucursal: '',
+        cv: null,
+      });
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.',
+        confirmButtonColor: '#d4af37',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -267,8 +290,8 @@ const TrabajaConNosotros: React.FC = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn-ver-mas">
-              Enviar Postulación
+            <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+              {isSubmitting ? 'Enviando...' : 'Enviar Postulación'}
             </button>
           </form>
         </div>

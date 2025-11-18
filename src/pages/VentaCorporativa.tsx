@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/Contacto.css';
 import './VentaCorporativa.css';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { sendFormEmail } from '../services/emailjs';
 
 const VentaCorporativa: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -106,7 +106,7 @@ const VentaCorporativa: React.FC = () => {
         if (!validate()) return;
         setIsSubmitting(true);
         try {
-            await axios.post('REACT_APP_API_BASE/api/mail/corporativa', formData);
+            await sendFormEmail('venta-corporativa', formData);
             Swal.fire({
                 icon: 'success',
                 title: '<span style="color:#fff;font-family:inherit;font-size:1.5rem;font-weight:600;">¡Éxito!</span>',

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import '../pages/Contacto.css';
+import { sendFormEmail } from '../services/emailjs';
+import Swal from 'sweetalert2';
 
 const Franquicias: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     fechaNacimiento: '',
@@ -37,31 +40,52 @@ const Franquicias: React.FC = () => {
     setCurrentStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Datos del formulario de franquicias:', formData);
-    alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
-    setFormData({
-      nombre: '',
-      fechaNacimiento: '',
-      sexo: '',
-      estadoCivil: '',
-      tipoDocumento: '',
-      numeroDocumento: '',
-      paisResidencia: '',
-      provinciaResidencia: '',
-      localidadResidencia: '',
-      domicilio: '',
-      telefonoCelular: '',
-      telefonoAlternativo: '',
-      email: '',
-      emailAlternativo: '',
-      paisPreferencia: '',
-      provinciaPreferencia: '',
-      localidadPreferencia: '',
-      inmuebleGarantia: '',
-    });
-    setCurrentStep(1);
+    setIsSubmitting(true);
+    
+    try {
+      await sendFormEmail('franquicias', formData);
+      
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: '¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.',
+        confirmButtonColor: '#d4af37',
+      });
+
+      setFormData({
+        nombre: '',
+        fechaNacimiento: '',
+        sexo: '',
+        estadoCivil: '',
+        tipoDocumento: '',
+        numeroDocumento: '',
+        paisResidencia: '',
+        provinciaResidencia: '',
+        localidadResidencia: '',
+        domicilio: '',
+        telefonoCelular: '',
+        telefonoAlternativo: '',
+        email: '',
+        emailAlternativo: '',
+        paisPreferencia: '',
+        provinciaPreferencia: '',
+        localidadPreferencia: '',
+        inmuebleGarantia: '',
+      });
+      setCurrentStep(1);
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.',
+        confirmButtonColor: '#d4af37',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const progressBarWidth = ((currentStep - 1) / 2) * 100;
@@ -201,8 +225,12 @@ const Franquicias: React.FC = () => {
                     </select>
                   </div>
                 </div>
-                <button type="submit" className="btn-ver-mas">Enviar</button>
-                <button type="button" className="btn-ver-mas" onClick={prevStep}>Volver</button>
+                <button type="submit" className="btn-ver-mas" disabled={isSubmitting}>
+                  {isSubmitting ? 'Enviando...' : 'Enviar'}
+                </button>
+                <button type="button" className="btn-ver-mas" onClick={prevStep} disabled={isSubmitting}>
+                  Volver
+                </button>
               </div>
             )}
           </form>

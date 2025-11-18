@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/Contacto.css';
-import emailjs from '@emailjs/browser';
-import axios from 'axios';
+import { sendFormEmail } from '../services/emailjs';
 import Swal from 'sweetalert2';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -56,7 +55,7 @@ const Proveedores: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post('/api/mail/proveedor', formData);
+      await sendFormEmail('proveedores', formData);
       Swal.fire({
         icon: 'success',
         title: '¡Éxito!',
@@ -78,7 +77,12 @@ const Proveedores: React.FC = () => {
       });
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
-      alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.',
+        confirmButtonColor: '#d4af37',
+      });
     } finally {
       setIsSubmitting(false);
     }

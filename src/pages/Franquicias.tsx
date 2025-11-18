@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import '../pages/Contacto.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { sendFormEmail } from '../services/emailjs';
+import Swal from 'sweetalert2';
 
 // Custom input para el datepicker que abre el calendario al hacer clic o foco
 const CalendarInput = React.forwardRef<HTMLInputElement, any>(({ value, onClick, onChange, placeholder }, ref) => (
@@ -164,41 +166,44 @@ const Franquicias: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:3000/mail/franquicia', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      await sendFormEmail('franquicias', formData);
+      
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: '¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.',
+        confirmButtonColor: '#d4af37',
       });
-      if (response.ok) {
-        alert('¡Formulario de franquicia enviado con éxito! Nos pondremos en contacto pronto.');
-        setFormData({
-          nombre: '',
-          fechaNacimiento: '',
-          sexo: '',
-          estadoCivil: '',
-          tipoDocumento: '',
-          numeroDocumento: '',
-          paisResidencia: '',
-          provinciaResidencia: '',
-          localidadResidencia: '',
-          domicilio: '',
-          telefonoCelular: '',
-          telefonoAlternativo: '',
-          email: '',
-          emailAlternativo: '',
-          paisPreferencia: '',
-          provinciaPreferencia: '',
-          localidadPreferencia: '',
-          inmuebleGarantia: '',
-        });
-        setCurrentStep(1);
-      } else {
-        const data = await response.json();
-        alert(data.message || 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
-      }
+
+      setFormData({
+        nombre: '',
+        fechaNacimiento: '',
+        sexo: '',
+        estadoCivil: '',
+        tipoDocumento: '',
+        numeroDocumento: '',
+        paisResidencia: '',
+        provinciaResidencia: '',
+        localidadResidencia: '',
+        domicilio: '',
+        telefonoCelular: '',
+        telefonoAlternativo: '',
+        email: '',
+        emailAlternativo: '',
+        paisPreferencia: '',
+        provinciaPreferencia: '',
+        localidadPreferencia: '',
+        inmuebleGarantia: '',
+      });
+      setCurrentStep(1);
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
-      alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.',
+        confirmButtonColor: '#d4af37',
+      });
     } finally {
       setIsSubmitting(false);
     }
