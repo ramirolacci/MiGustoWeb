@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../pages/Contacto.css';
 import { sendFormEmail } from '../services/emailjs';
 import Swal from 'sweetalert2';
@@ -20,6 +20,9 @@ const Proveedores: React.FC = () => {
     email: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVideoFading, setIsVideoFading] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const validate = () => {
     const newErrors: any = {};
@@ -114,19 +117,62 @@ const Proveedores: React.FC = () => {
       });
     });
   }, []);
+  useEffect(() => {
+    return () => {
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleVideoEnded = () => {
+    setIsVideoFading(true);
+    if (fadeTimeoutRef.current) {
+      clearTimeout(fadeTimeoutRef.current);
+    }
+    fadeTimeoutRef.current = setTimeout(() => {
+      setIsVideoFading(false);
+    }, 900);
+  };
+
   const isMobile = useIsMobile();
   return (
-    <div className="sucursales-section" style={{ marginTop: '0px' }}>
-      <div className="background-overlay"></div>
-      <div className="sucursales-container">
-        <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img src="/images/proveedores/Proveedores-titulo.png" alt="Título Proveedores" className="proveedores-titulo-img" style={{ width: '80%', maxWidth: '400px', marginTop: isMobile ? '10px' : '60px', marginBottom: '30px', opacity: 1, position: 'relative', zIndex: 2 }} />
-            <img src="/images/side-menu/proveedor.png" alt="Imagen proveedor" className="proveedor-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, backgroundColor: '#fff', position: 'relative', zIndex: 2 }} />
-          </div>
-          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '56px' }}>
-            <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
-              <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
+    <div className="sucursales-section" style={{ marginTop: '0px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+        <video
+          ref={videoRef}
+          className="proveedor-bg-video"
+          src="/images/proveedores/ProveedoresVideo.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          onEnded={handleVideoEnded}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
+      </div>
+      <div className="sucursales-container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="responsive-row" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', width: '100vw', minHeight: '100vh', alignItems: isMobile ? 'center' : 'flex-start', justifyContent: 'flex-start', padding: '20px 20px 40px', boxSizing: 'border-box' }}>
+          <div
+            className="contacto-container no-pattern-bg"
+            style={{
+              width: isMobile ? '100%' : '50vw',
+              maxWidth: '640px',
+              display: 'flex',
+              justifyContent: 'flex-start',
+              marginTop: isMobile ? '8px' : '16px',
+              marginLeft: isMobile ? 0 : '5vw',
+              padding: 0,
+              background: 'transparent',
+              boxShadow: 'none'
+            }}
+          >
+            <div className="contacto-content" style={{ width: '100%', marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
+              <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.75)', backdropFilter: 'blur(6px)' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', width: '100%', textAlign: 'center' }}>
+                  <img src="/images/proveedores/Proveedores-titulo.png" alt="Título Proveedores" className="proveedores-titulo-img" style={{ width: isMobile ? '80%' : '60%', maxWidth: '400px', marginTop: isMobile ? '0px' : '10px', marginBottom: '20px', opacity: 1, position: 'relative', zIndex: 2 }} />
+                </div>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en ser proveedor de Mi Gusto.</p>
                 <form className="contacto-form" onSubmit={handleSubmit} noValidate>
                   <div className="form-row">
@@ -232,13 +278,6 @@ if (typeof window !== 'undefined') {
         align-items: center !important;
         justify-content: center !important;
         padding: 20px !important;
-      }
-      .responsive-row img.proveedor-img {
-        margin-top: 0px !important;
-        margin-bottom: 32px !important;
-        width: 100% !important;
-        max-width: 400px !important;
-        height: auto !important;
       }
       .proveedores-titulo-img {
         margin-top: 0px !important;
