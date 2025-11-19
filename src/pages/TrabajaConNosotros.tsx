@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../pages/Contacto.css';
 import { sendFormEmail } from '../services/emailjs';
 import Swal from 'sweetalert2';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const sucursalesList = [
   'Ballester',
@@ -102,6 +103,18 @@ const TrabajaConNosotros: React.FC = () => {
   const localidadesBuenosAires = [
     'Adrogué', 'Almirante Brown', 'Avellaneda', 'Bahía Blanca', 'Balcarce', 'Baradero', 'Berazategui', 'Berisso', 'Bolívar', 'Bragado', 'Campana', 'Cañuelas', 'Capitán Sarmiento', 'Carlos Casares', 'Carlos Tejedor', 'Carmen de Areco', 'Castelli', 'Chacabuco', 'Chascomús', 'Chivilcoy', 'Colón', 'Coronel Dorrego', 'Coronel Pringles', 'Coronel Suárez', 'Daireaux', 'Dolores', 'Ensenada', 'Escobar', 'Esteban Echeverría', 'Exaltación de la Cruz', 'Ezeiza', 'Florencio Varela', 'Florentino Ameghino', 'General Alvarado', 'General Alvear', 'General Arenales', 'General Belgrano', 'General Guido', 'General Juan Madariaga', 'General La Madrid', 'General Las Heras', 'General Lavalle', 'General Paz', 'General Pinto', 'General Pueyrredón', 'General Rodríguez', 'General San Martín', 'General Viamonte', 'General Villegas', 'Guaminí', 'Hipólito Yrigoyen', 'Hurlingham', 'Ituzaingó', 'José C. Paz', 'Junín', 'La Matanza', 'La Plata', 'Lanús', 'Laprida', 'Las Flores', 'Leandro N. Alem', 'Lincoln', 'Lobería', 'Lobos', 'Lomas de Zamora', 'Luján', 'Magdalena', 'Maipú', 'Malvinas Argentinas', 'Mar Chiquita', 'Marcos Paz', 'Mercedes', 'Merlo', 'Monte', 'Monte Hermoso', 'Moreno', 'Morón', 'Navarro', 'Necochea', 'Olavarría', 'Patagones', 'Pehuajó', 'Pellegrini', 'Pergamino', 'Pila', 'Pilar', 'Pinamar', 'Presidente Perón', 'Puán', 'Punta Indio', 'Quilmes', 'Ramallo', 'Rauch', 'Rivadavia', 'Rojas', 'Roque Pérez', 'Saavedra', 'Saladillo', 'Salliqueló', 'Salto', 'San Andrés de Giles', 'San Antonio de Areco', 'San Cayetano', 'San Fernando', 'San Isidro', 'San Miguel', 'San Nicolás', 'San Pedro', 'San Vicente', 'Suipacha', 'Tandil', 'Tapalqué', 'Tigre', 'Tordillo', 'Tornquist', 'Trenque Lauquen', 'Tres Arroyos', 'Tres de Febrero', 'Tres Lomas', 'Vicente López', 'Villa Gesell', 'Villarino', 'Zárate'
   ];
+
+  const [isVideoFading, setIsVideoFading] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const validate = () => {
     const newErrors: any = {};
@@ -229,18 +242,56 @@ const TrabajaConNosotros: React.FC = () => {
     }
   };
 
+  const handleVideoEnded = () => {
+    setIsVideoFading(true);
+    if (fadeTimeoutRef.current) {
+      clearTimeout(fadeTimeoutRef.current);
+    }
+    fadeTimeoutRef.current = setTimeout(() => {
+      setIsVideoFading(false);
+    }, 900);
+  };
+
+  const isMobile = useIsMobile();
+
   return (
-    <div className="sucursales-section" style={{ marginTop: '0px' }}>
-      <div className="background-overlay"></div>
-      <div className="sucursales-container">
-        <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: '95%', maxWidth: '600px', marginTop: '60px', marginBottom: '25px', opacity: 1, position: 'relative', zIndex: 2 }} />
-            <img src="/images/side-menu/staff.png" alt="Imagen staff" className="trabaja-img" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block', opacity: 1, position: 'relative', zIndex: 2 }} />
-          </div>
-          <div className="contacto-container" style={{ width: '50vw', minHeight: '100vh', display: 'flex', alignItems: 'stretch', justifyContent: 'center', marginTop: '24px' }}>
-            <div className="contacto-content" style={{ width: '100%', marginTop: 0 }}>
-              <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.65)', backdropFilter: 'blur(5px)' }}>
+    <div className="sucursales-section" style={{ marginTop: '0px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+        <video
+          ref={videoRef}
+          className="trabaja-bg-video"
+          src="/images/trabaja_con_nosotros/trabajaVideo.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          onEnded={handleVideoEnded}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
+      </div>
+      <div className="sucursales-container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="responsive-row" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', width: '100vw', minHeight: '100vh', alignItems: isMobile ? 'center' : 'flex-start', justifyContent: isMobile ? 'center' : 'flex-end', padding: '20px 20px 40px', boxSizing: 'border-box' }}>
+          <div
+            className="contacto-container no-pattern-bg"
+            style={{
+              width: isMobile ? '100%' : '45vw',
+              maxWidth: '600px',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginTop: isMobile ? '8px' : '16px',
+              marginLeft: isMobile ? 0 : 'auto',
+              marginRight: isMobile ? 0 : '5vw',
+              padding: 0,
+              background: 'transparent',
+              boxShadow: 'none'
+            }}
+          >
+            <div className="contacto-content" style={{ width: '100%', marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
+              <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.75)', backdropFilter: 'blur(6px)' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                  <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: isMobile ? '95%' : '85%', maxWidth: '580px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '28px', opacity: 1 }} />
+                </div>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en formar parte de nuestro equipo.</p>
                 <form className="contacto-form" onSubmit={handleSubmit}>
                   <style>{`
@@ -485,7 +536,7 @@ const TrabajaConNosotros: React.FC = () => {
 
 export default TrabajaConNosotros;
 
-// Solo para mobile: subir imagen y formulario y mantener separación
+// Solo para mobile: ajustes de márgenes y disposición
 if (typeof window !== 'undefined') {
   const style = document.createElement('style');
   style.innerHTML = `
@@ -494,17 +545,19 @@ if (typeof window !== 'undefined') {
         margin-top: 0px !important;
       }
       .contacto-container {
-        margin-top: 12px !important;
+        margin-top: 16px !important;
+        width: 100% !important;
+        padding: 0 !important;
       }
-      .responsive-row img.trabaja-img {
-        margin-top: 0px !important;
-        margin-bottom: 32px !important;
+      .responsive-row {
+        flex-direction: column !important;
+        padding: 20px !important;
       }
       .trabaja-titulo-img {
-        margin-top: -10px !important;
+        margin-top: 0px !important;
         margin-bottom: 20px !important;
-        width: 98% !important;
-        max-width: 400px !important;
+        width: 90% !important;
+        max-width: 340px !important;
       }
     }
   `;
