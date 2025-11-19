@@ -7,19 +7,10 @@ html, body {
 }
 
 .venta-corporativa-section {
-  background: #111;
   width: 100vw;
   overflow: visible;
-  background-image: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)), url('/images/corporate/background-text.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   padding-top: 70px; /* igual a la altura del navbar */
-}
-
-/* Evitar doble fondo: ocultar overlay genérico en esta página */
-.venta-corporativa-section .background-overlay {
-  display: none !important;
+  background: transparent;
 }
 
 @media (min-width: 901px) {

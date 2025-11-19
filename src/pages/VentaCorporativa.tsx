@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../pages/Contacto.css';
 import './VentaCorporativa.css';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { sendFormEmail } from '../services/emailjs';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const VentaCorporativa: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -29,6 +30,18 @@ const VentaCorporativa: React.FC = () => {
         descripcionEvento: '',
         observaciones: '',
     });
+
+    const [isVideoFading, setIsVideoFading] = useState(false);
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (fadeTimeoutRef.current) {
+                clearTimeout(fadeTimeoutRef.current);
+            }
+        };
+    }, []);
 
     // ScrollReveal para animaciones
     useEffect(() => {
@@ -101,6 +114,16 @@ const VentaCorporativa: React.FC = () => {
         }));
     };
 
+    const handleVideoEnded = () => {
+        setIsVideoFading(true);
+        if (fadeTimeoutRef.current) {
+            clearTimeout(fadeTimeoutRef.current);
+        }
+        fadeTimeoutRef.current = setTimeout(() => {
+            setIsVideoFading(false);
+        }, 900);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
@@ -154,25 +177,38 @@ const VentaCorporativa: React.FC = () => {
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const dd = String(today.getDate()).padStart(2, '0');
     const minDate = `${yyyy}-${mm}-${dd}`;
+    const isMobile = useIsMobile();
 
     return (
-        <div className="venta-corporativa-section" style={{ marginTop: '0px' }}>
-            <div className="background-overlay"></div>
-            <div className="sucursales-container">
-                <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
+        <div className="venta-corporativa-section" style={{ marginTop: '0px', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+                <video
+                    ref={videoRef}
+                    className="venta-corporativa-video"
+                    src="/images/corporate/corpoVideo.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onEnded={handleVideoEnded}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
+            </div>
+            <div className="sucursales-container" style={{ position: 'relative', zIndex: 2 }}>
+                <div className="responsive-row" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch', justifyContent: 'space-between', padding: isMobile ? '32px 16px' : '48px 64px', boxSizing: 'border-box', gap: '32px' }}>
                     {/* PARTE IZQUIERDA: Imagen de Venta Corporativa */}
                     <div className="venta-corporativa-img" style={{ 
-                        width: '50vw', 
-                        height: '100%', 
-                        maxHeight: '100vh', 
+                        width: isMobile ? '100%' : '48vw', 
                         display: 'flex', 
                         flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        marginTop: '88px', 
+                        alignItems: 'flex-start',
+                        justifyContent: 'center',
+                        marginTop: isMobile ? '0px' : '24px', 
                         position: 'relative', 
                         zIndex: 2,
-                        padding: '40px'
+                        padding: isMobile ? '0px' : '24px',
+                        backdropFilter: 'blur(2px)'
                     }}>
                         <style>{`
                             @media (max-width: 900px) {
@@ -180,17 +216,6 @@ const VentaCorporativa: React.FC = () => {
                                     width: 100vw !important;
                                     padding: 16px !important;
                                     margin-top: 0px !important;
-                                }
-                                .venta-corporativa-img .corp-title-img {
-                                    width: min(72vw, 340px) !important;
-                                    margin-top: -32px !important;
-                                    margin-bottom: 16px !important;
-                                }
-                                .venta-corporativa-img .corp-hero-img {
-                                    width: 92vw !important;
-                                    max-width: 520px !important;
-                                    margin-top: 0px !important;
-                                    margin-bottom: 16px !important;
                                 }
                                 .venta-corporativa-img .corp-text {
                                     padding: 0 8px !important;
@@ -209,39 +234,19 @@ const VentaCorporativa: React.FC = () => {
                                 }
                             }
                         `}</style>
-                        {/* Título Venta Corporativa */}
-                        <img src="/images/corporate/venta corporativa.png" alt="Venta Corporativa" className="corp-title-img" style={{ 
-                            width: '420px', 
-                            marginTop: '-70px',
-                            marginBottom: '40px', 
-                            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
-                            zIndex: 3
-                        }} />
-                        
-                        {/* Imagen de fondo */}
-                        <img src="/images/side-menu/corporativa.png" alt="Venta corporativa" className="corp-hero-img" style={{ 
-                            width: '100%', 
-                            maxWidth: '680px',
-                            height: 'auto',
-                            maxHeight: 'calc(100vh - 200px)',
-                            objectFit: 'cover',
-                            borderRadius: '12px', 
-                            boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-                            zIndex: 2,
-                            marginTop: '0px',
-                            marginBottom: '32px'
-                        }} />
-                        
                         {/* Bloque de beneficios */}
                         <div className="corp-text" style={{ 
                             textAlign: 'left',
                             zIndex: 3,
-                            padding: '20px'
+                            padding: '24px',
+                            background: 'rgba(0,0,0,0.45)',
+                            borderRadius: '14px',
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.35)'
                         }}>
-                            <div className="corp-text-title" style={{ fontWeight: 700, fontSize: '1.6rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                            <div className="corp-text-title" style={{ fontWeight: 700, fontSize: '1.75rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                                 Beneficios Corporativos
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     <img src="/images/corporate/descuento.png" alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
@@ -266,21 +271,33 @@ const VentaCorporativa: React.FC = () => {
 
                     {/* PARTE DERECHA: Formulario */}
                     <div className="contacto-container no-pattern-bg" style={{ 
-                        width: '50vw', 
-                        minHeight: '100vh', 
+                        width: isMobile ? '100%' : '38vw', 
+                        maxWidth: '560px',
+                        minHeight: 'auto', 
                         display: 'flex', 
-                        alignItems: 'stretch', 
-                        justifyContent: 'center', 
-                        marginTop: '56px' 
+                        alignItems: 'flex-start', 
+                        justifyContent: isMobile ? 'center' : 'flex-end', 
+                        marginTop: isMobile ? '0px' : '24px',
+                        marginLeft: 'auto',
+                        padding: 0,
+                        background: 'transparent',
+                        boxShadow: 'none'
                     }}>
                         <div className="contacto-content" style={{ 
                             width: '100%', 
-                            marginTop: 0 
+                            marginTop: 0,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
                         }}>
                             <div className="contacto-form-container" style={{ 
-                                background: 'rgba(30, 30, 30, 0.65)', 
-                                backdropFilter: 'blur(5px)'
+                                background: 'rgba(30, 30, 30, 0.78)', 
+                                backdropFilter: 'blur(6px)',
+                                width: '100%'
                             }}>
+                                <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                    <img src="/images/corporate/venta corporativa.png" alt="Venta Corporativa" style={{ width: isMobile ? '95%' : '85%', maxWidth: '520px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
+                                </div>
                                 <p style={{ textAlign: 'center', fontSize: '1.4rem', marginBottom: '24px' }}>
                                     Eventos Corporativos: solicitá tu propuesta personalizada
                                 </p>
@@ -476,11 +493,11 @@ if (typeof window !== 'undefined') {
                 margin-top: 0px !important;
             }
             .contacto-container {
-                margin-top: 32px !important;
+                margin-top: 16px !important;
+                width: 100% !important;
             }
-            .responsive-row img {
-                margin-top: 8px !important;
-                margin-bottom: 32px !important;
+            .contacto-form-container {
+                padding: 24px !important;
             }
         }
     `;
