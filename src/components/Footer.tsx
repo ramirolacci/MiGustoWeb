@@ -136,7 +136,9 @@ const Footer: React.FC = () => {
           <div className="footer-col-12">
             <p className="footer-final-text">
               © 2025 Mi Gusto. Todos los derechos reservados | <strong>La Honoria Alimentos S.A.</strong> – Argentina CUIT: 30-71558654-8<br />
-              <span style={{ display: 'block', marginTop: '0.5rem' }}>Desarrollado por el equipo de Sistemas y Desarrollo de <strong>Mi Gusto.</strong></span>
+              <span style={{ display: 'block', marginTop: '0.5rem' }}>
+                Desarrollado por el <a href="https://waveframe.com.ar" target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', fontWeight: 600, textDecoration: 'underline', cursor: 'pointer' }}>equipo de Sistemas y Desarrollo</a> de <strong>Mi Gusto.</strong>
+              </span>
             </p>
           </div>
         </div>

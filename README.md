@@ -1,145 +1,80 @@
-# Créditos — Mi Gusto Web
+# Mi Gusto — WebApp Gastronómica
 
-Este proyecto fue íntegramente desarrollado por el equipo de Sistemas de **Mi Gusto**, con dedicación, profesionalismo y compromiso con la excelencia tecnológica.
+> **Experiencia, visión y tecnología al servicio de la marca.**
 
-## Equipo de Desarrollo
+---
 
-- [**Joaquín Tonizzo**](https://github.com/JoaquinTonizzo)
+## ✨ Descripción General y Filosofía Visual
+Plataforma cross-device para la gestión, visualización y promoción de productos, franquicias, sucursales y oportunidades laborales; diseñada desde cero para fascinar y convertir. Toda la arquitectura, animación y microinteracción fue planificada para transmitir modernidad, confianza y dinamismo.
+
+---
+
+## 💡 Principios de Diseño & Experiencia de Usuario
+- **Animaciones sofisticadas:** Cada sección entra animada de forma heroica, con blur, escalado y scroll reveal para captar la atención.
+- **Glassmorphism moderno:** Los formularios y bloques clave lucen paneles glass con feedback visual y títulos con efectos de brillo.
+- **Microinteracciones celulares:** Menús sticky, tabbar responsivo, chips animados y cards click/hover atractivas.
+- **Navegación inspirada en apps nativas:** Cada ruta tiene su propio storytelling visual.
+- **Mobile-first real:** El diseño está pensado primero para el pulgar. Todo es accesible, táctil y readable.
+- **Sin pantallas de carga molestas:** ¡Acceso inmediato al contenido clave!
+
+---
+
+
+## 🌟 Aspectos Técnicos e Innovadores
+- **React, TypeScript y Vite** para máximo rendimiento.
+- **Lazy Loading avanzado** (carga diferida de rutas y assets visuales).
+- **ScrollReveal, Framer Motion, model-viewer:** animaciones personalizadas y exclusivas de cards y secciones.
+- **Accesibilidad real:** roles, aria y contraste validados, navegación por teclado, mobile-first y focus states claros.
+- **Sin pantallas de carga generales:** Entrás directo a la experiencia.
+- **Formularios custom** para franquicias, proveedores, RRHH y contacto con validación instantánea y mensajes claros.
+- **Catálogo modularizado:** Productos, promociones y beneficios con separación de lógica/presentación.
+- **Flipbook digital:** Carta tipo revista con transición de hojas física.
+- **Soporte de productos 3D** para empanadas premium (model-viewer incluido).
+- **Consumo de APIs y serverless functions** seguro y optimizado.
+- **Estructura lista para Storybook, testing y escalabilidad**.
+
+---
+
+## 📱 Experiencia Mobile Destacada
+- Menú sticky y tabbar que flota en mobile.
+- Todo elemento táctil, con feedback al toque.
+- Formularios y CTA que explotan el viewport móvil.
+- Animaciones amigables y selectores touch.
+- Integración instantánea con WhatsApp y apps nativas.
+
+---
+
+## Equipo de Desarrollo y Agradecimientos
+
 - [**Facundo Carrizo**](https://github.com/Facu14carrizo)
 - [**Ramiro Lacci**](https://github.com/ramirolacci)
 
----
 
-Agradecemos a toda la organización Mi Gusto por la confianza y el apoyo brindado durante el desarrollo de esta plataforma.
+Especial agradecimiento a toda la organización Mi Gusto por su confianza y visión a largo plazo, y a todos los colaboradores que aportaron pasión, ideas disruptivas y feedback real de usuarios.
 
-> **Mi Gusto Web** es el resultado del trabajo colaborativo, la innovación y la pasión por la tecnología aplicada a la mejora continua de nuestros servicios.
-
----
-
-
-
-# Documentación y Aspectos Destacados 
-
-## Descripción General
-
-**Mi Gusto Web** es una plataforma digital desarrollada con tecnologías de modernas para la gestión, visualización y promoción de productos, sucursales y servicios de la empresa Mi Gusto. El proyecto está orientado a la escalabilidad, accesibilidad, innovación y mantenibilidad, siguiendo los más altos estándares de la industria.
+> Mi Gusto Web es el resultado de la sinergia entre desarrollo profesional, diseño, usuarios y cultura digital gastronómica.
 
 ---
 
-## Aspectos Destacados e Innovadores
+## Tecnologías y librerías clave
 
-### 🚀 Tecnología de Vanguardia
-- **React, TypeScript y Vite**: Stack moderno, robusto y altamente escalable.
-- **Carga diferida (Lazy Loading)**: Optimización del rendimiento mediante la carga asíncrona de páginas y recursos.
-- **Gestión eficiente de imágenes**: Uso de técnicas avanzadas como `loading="lazy"` para mejorar la velocidad y la experiencia visual.
-
-### ♿ Accesibilidad y Experiencia de Usuario
-- **Navegación accesible**: Cumplimiento de estándares de accesibilidad (a11y) mediante roles semánticos, `aria-labels` y soporte completo para navegación por teclado.
-- **Contraste y legibilidad óptimos**: Diseño inclusivo, adaptado a todo tipo de usuarios y dispositivos.
-- **Interacciones modernas**: Animaciones y feedback visual que enriquecen la experiencia del usuario.
-
-### 🧩 Modularidad y Escalabilidad
-- **Componentización avanzada**: Arquitectura basada en componentes reutilizables y fácilmente mantenibles.
-- **Separación de lógica y presentación**: Código estructurado y limpio, facilitando la evolución y el mantenimiento.
-- **Preparación para pruebas y CI/CD**: Estructura lista para la integración de pruebas automatizadas y flujos de integración continua.
-
-### 📱 Diseño Responsive y Mobile First
-- **Adaptabilidad total**: Interfaz optimizada para todo tipo de dispositivos, garantizando una experiencia consistente.
-- **Soporte para gestos e interacciones táctiles**: Navegación fluida en móviles y tablets.
-
-### 🗂️ Contenidos Dinámicos e Interactivos
-- **Catálogo interactivo tipo revista**: Visualización innovadora de productos mediante un flipbook digital.
-- **Buscadores inteligentes**: Herramientas de búsqueda rápida y eficiente para productos y sucursales.
-- **Formularios avanzados**: Soluciones integradas para contacto, franquicias, proveedores y postulaciones laborales, con validación y feedback inmediato.
-
-### 🔒 Seguridad y Buenas Prácticas
-- **Gestión segura de enlaces externos**: Implementación de `rel="noopener noreferrer"` y validaciones para prevenir vulnerabilidades.
-- **Control riguroso de dependencias**: Solo se incluyen librerías necesarias y se mantiene el entorno actualizado.
-
-### 🌟 Preparada para el Futuro
-- **Soporte para internacionalización (i18n)** y ampliación de funcionalidades.
-- **Estructura compatible con Storybook, pruebas automáticas y nuevas integraciones.**
-- **Documentación técnica profesional**: Archivos `.md` claros y completos para facilitar el onboarding y la presentación del proyecto.
+- React 18+, TypeScript, Vite, CSS animado y modular
+- Framer Motion, ScrollReveal (animaciones de entrada, hover y aparición)
+- SweetAlert2 (UX alerts), EmailJS (contacto serverless)
+- React Router, Context API, Model-Viewer
+- Testing y estructura lista para CI/CD, Storybook, i18n
 
 ---
 
-## Estructura de Carpetas
-
-```
-MiGustoSite/
-├── public/                # Archivos estáticos y recursos públicos
-├── src/
-│   ├── assets/            # Imágenes, íconos y recursos multimedia
-│   ├── components/        # Componentes reutilizables de UI
-│   ├── data/              # Datos estáticos (productos, sucursales, etc.)
-│   ├── pages/             # Páginas principales (rutas)
-│   ├── styles/            # Estilos globales o módulos CSS
-│   └── main.tsx           # Punto de entrada de la app
-├── package.json           # Dependencias y scripts
-├── vite.config.ts         # Configuración de Vite
-├── tsconfig*.json         # Configuración de TypeScript
-└── README.md              # Descripción general y Documentación principal (este archivo)
-```
+## Buenas Prácticas
+- Modularidad, componentes y hooks claros
+- Lógica y presentación separados (y CSS modular)
+- Accesibilidad y UX a nivel marca internacional
+- Documentación/Onboarding en español y amigable para opensource
 
 ---
 
-## Tecnologías Utilizadas
+## Colaboraciones
+- [**Joaquín Tonizzo**](https://github.com/JoaquinTonizzo)
 
-- **React** (v19+)
-- **TypeScript**
-- **Vite**
-- **Bootstrap** (estilos base)
-- **React Router DOM** (ruteo)
-- **EmailJS** (formularios de contacto)
-- **Otras:**
-  - **Framer Motion** (animaciones y transiciones)
-  - **Tailwind CSS** (utilidades de estilos, preparado para migración)
-  - **Sharp** (optimización de imágenes)
-  - **SweetAlert2** (alertas y diálogos personalizados)
-  - **Axios** (peticiones HTTP)
-  - **PostCSS** y **Autoprefixer** (procesamiento de CSS)
-  - **Scripts optimizadores de imagenes**
-
----
-
-## Buenas Prácticas y Estándares
-
-- **Componentes funcionales y hooks** para lógica de estado y efectos.
-- **Separación de lógica y presentación**: hooks y utilidades para lógica, componentes para UI.
-- **Lazy loading** de páginas y recursos pesados.
-- **Accesibilidad (a11y)**: roles, aria-labels, navegación por teclado y contraste adecuado.
-- **Estilos modularizados** y preparados para migrar a CSS modules o Tailwind.
-- **Validación y feedback en formularios**.
-- **Gestión segura de dependencias y enlaces externos**.
-
----
-
-## Testing y Calidad
-
-- Estructura preparada para integrar **Jest** y **React Testing Library**.
-- Componentes y hooks diseñados para ser fácilmente testeables.
-- Recomendado: agregar tests unitarios y de integración para componentes críticos y lógica de negocio.
-
----
-
-## Accesibilidad
-
-- Navegación accesible por teclado en todos los menús y formularios.
-- Uso de etiquetas `alt` descriptivas en imágenes.
-- Roles y atributos ARIA en elementos interactivos.
-- Contraste de colores validado para usuarios con baja visión.
-
----
-
-## Mantenimiento y Escalabilidad
-
-- Código modular y documentado.
-- Estructura preparada para agregar nuevas páginas, hooks y utilidades.
-- Dependencias actualizadas y revisadas periódicamente.
-- Documentación clara para onboarding de nuevos desarrolladores.
-
----
-
-*Proyecto diseñado, construido y revisado bajo estándares profesionales de desarrollo web.* 
-
-© Equipo de Sistemas — Mi Gusto
+© Equipo de Sistemas — Mi Gusto 2023-2024
