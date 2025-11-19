@@ -71,6 +71,7 @@ export default function Productos() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [hoveredBigBurger, setHoveredBigBurger] = useState(false);
     const scrollRevealRef = useRef<any>(null);
+    const [sectionVisible, setSectionVisible] = useState(false);
 
     useEffect(() => {
         // Sincronizar desde query params si llegan desde HomeMobile
@@ -100,6 +101,9 @@ export default function Productos() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        requestAnimationFrame(() => setSectionVisible(true));
+    }, []);
 
     useEffect(() => {
         // Cargar model-viewer solo si hay hover en Big Burger
@@ -319,7 +323,7 @@ export default function Productos() {
     }, [productosFiltrados]);
 
     return (
-        <div className="productos-section">
+        <div className={`productos-section ${sectionVisible ? 'section-visible' : ''}`}>
             <div className="background-overlay"></div>
             <div className="productos-container">
                 {/* Título removido a pedido: "Conocé nuestros productos" */}

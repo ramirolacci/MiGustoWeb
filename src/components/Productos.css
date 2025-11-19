@@ -122,6 +122,36 @@ body {
     background-color: #000;
     overflow: hidden;
     isolation: isolate;
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+    filter: blur(8px);
+}
+
+.productos-section.section-visible {
+    animation: productosHeroIn 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes productosHeroIn {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.92);
+        filter: blur(8px);
+        clip-path: inset(25% 15% 30% 15% round 24px);
+    }
+    45% {
+        opacity: 0.9;
+        transform: translateY(-6px) scale(1.02);
+        filter: blur(0px);
+        clip-path: inset(0 0 0 0 round 32px);
+        box-shadow: 0 45px 80px rgba(0, 0, 0, 0.55);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+        clip-path: inset(0 0 0 0);
+        box-shadow: none;
+    }
 }
 
 .productos-container {

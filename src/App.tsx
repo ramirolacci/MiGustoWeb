@@ -1,8 +1,7 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-import LoadingSpinner from './components/LoadingSpinner';
 import MobileTabbar from './components/MobileTabbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import BotmakerChat from './components/BotmakerChat';
@@ -43,21 +42,12 @@ import './styles/mobile-layout.css';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const AppContent: React.FC = () => {
-  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const isMobile = useIsMobile();
 
-  // Mantener overlay de carga y registrar pageview al finalizar transición
+  // Registrar pageview al cambiar de ruta
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-      trackPageView(location.pathname, document.title);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-      setLoading(true);
-    };
+    trackPageView(location.pathname, document.title);
   }, [location.pathname]);
 
   const isLovers = location.pathname.startsWith('/lovers');
@@ -70,7 +60,6 @@ const AppContent: React.FC = () => {
 
   return (
     <>
-      {loading && <LoadingSpinner isLoading={loading} />}
       {!isLovers && !isViewer3D && <BotmakerChat />}
       <div className="app">
         <GoogleAnalytics />
