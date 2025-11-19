@@ -75,6 +75,10 @@ const Franquicias: React.FC = () => {
     localidadPreferencia: '',
     inmuebleGarantia: '',
   });
+  const [isVideoFading, setIsVideoFading] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [showWhy, setShowWhy] = useState(false);
 
   // ScrollReveal para animaciones
   useEffect(() => {
@@ -95,6 +99,14 @@ const Franquicias: React.FC = () => {
         reset: true
       });
     });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+      }
+    };
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -209,26 +221,50 @@ const Franquicias: React.FC = () => {
     }
   };
 
+  const handleVideoEnded = () => {
+    setIsVideoFading(true);
+    if (fadeTimeoutRef.current) {
+      clearTimeout(fadeTimeoutRef.current);
+    }
+    fadeTimeoutRef.current = setTimeout(() => {
+      setIsVideoFading(false);
+    }, 900);
+  };
+
   const progressBarWidth = ((currentStep - 1) / 2) * 100;
 
   return (
-    <div className="sucursales-section" style={{ marginTop: '0px' }}>
-      <div className="background-overlay"></div>
-      <div className="sucursales-container">
-        <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch' }}>
-          {/* PARTE IZQUIERDA: Imagen de Franquicias */}
+    <div className="sucursales-section" style={{ marginTop: '0px', position: 'relative', overflow: 'hidden', background: 'transparent' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+        <video
+          ref={videoRef}
+          className="franquicias-bg-video"
+          src="/images/franquicias/videoFranquicias.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          onEnded={handleVideoEnded}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
+      </div>
+      <div className="sucursales-container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch', padding: '48px 64px', boxSizing: 'border-box', gap: '32px' }}>
+          {/* PARTE IZQUIERDA: Información Franquicias */}
           <div className="franquicias-img" style={{ 
             width: '50vw', 
             height: '100%', 
             maxHeight: '100vh', 
             display: 'flex', 
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
             marginTop: '0px',
             position: 'relative', 
             zIndex: 2,
-            padding: '20px'
+            padding: '20px',
+            backdropFilter: 'blur(2px)'
           }}>
             <style>{`
               @media (max-width: 900px) {
@@ -236,15 +272,6 @@ const Franquicias: React.FC = () => {
                   width: 100vw !important;
                   padding: 16px !important;
                   margin-top: 8px !important;
-                }
-                .franquicias-img .franq-title-img {
-                  width: min(72vw, 320px) !important;
-                  margin-bottom: 16px !important;
-                }
-                .franquicias-img .franq-hero-img {
-                  width: 92vw !important;
-                  max-width: 520px !important;
-                  margin-bottom: 16px !important;
                 }
                 .franquicias-img .franq-text {
                   padding: 0 8px !important;
@@ -259,36 +286,54 @@ const Franquicias: React.FC = () => {
                 }
               }
             `}</style>
-            {/* Título Franquicias */}
-            <img src="/images/franquicias/Franquicias.png" alt="Franquicias" className="franq-title-img" style={{ 
-              width: '340px', 
-              marginBottom: '12px', 
-              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
-              zIndex: 3
-            }} />
-            
-            {/* Imagen de fondo */}
-            <img src="/images/side-menu/franquicia.png" alt="Sucursal Mi Gusto" className="franq-hero-img" style={{ 
-              width: '100%', 
-              height: 'auto',
-              maxHeight: 'calc(100vh - 200px)',
-              objectFit: 'cover',
-              borderRadius: '12px', 
-              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-              zIndex: 2,
-              marginBottom: '12px'
-            }} />
-            
-                        {/* Bloque de texto explicativo */}
+            {/* Bloque de texto explicativo */}
             <div className="franq-text" style={{
               textAlign: 'left',
               zIndex: 3,
-              padding: '20px'
+              padding: '20px',
+              background: 'rgba(0,0,0,0.45)',
+              borderRadius: '14px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.35)'
             }}>
-              <div className="franq-text-title" style={{ fontWeight: 700, fontSize: '1.6rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+              <button
+                onClick={() => setShowWhy(prev => !prev)}
+                aria-expanded={showWhy}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '1.7rem',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                  cursor: 'pointer',
+                  padding: 0,
+                  width: '100%',
+                  textAlign: 'left',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
                 ¿Por qué elegir Mi Gusto?
-              </div>
-              <div className="franq-text-body" style={{ fontSize: '1.25rem', lineHeight: 1.6, color: '#ffffff', whiteSpace: 'pre-line', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                <span style={{ fontSize: '1.3rem', transition: 'transform 0.3s ease', transform: showWhy ? 'rotate(90deg)' : 'rotate(0deg)' }}>
+                  ❯
+                </span>
+              </button>
+              <div
+                className="franq-text-body"
+                style={{
+                  fontSize: '1.25rem',
+                  lineHeight: 1.6,
+                  color: '#ffffff',
+                  whiteSpace: 'pre-line',
+                  textShadow: '1px 1px 3px rgba(0,0,0,0.8)',
+                  maxHeight: showWhy ? '600px' : '0px',
+                  opacity: showWhy ? 1 : 0,
+                  overflow: 'hidden',
+                  transition: 'max-height 0.6s ease, opacity 0.6s ease',
+                  marginTop: showWhy ? '16px' : '0px'
+                }}
+              >
 Porque llevamos más de 25 años en el mercado y sabemos cómo
 hacer que un negocio funcione. Tenemos un modelo probado,
 pensado para vender en volumen y con procesos simples de 
@@ -307,22 +352,27 @@ crecimiento, este es el momento de sumarte.
           </div>
 
           {/* PARTE DERECHA: Formulario */}
-          <div className="contacto-container" style={{ 
+          <div className="contacto-container no-pattern-bg" style={{ 
             width: '50vw', 
             minHeight: '100vh', 
             display: 'flex', 
-            alignItems: 'stretch', 
+            alignItems: 'flex-start', 
             justifyContent: 'center', 
-            marginTop: '56px' 
+            marginTop: '0px',
+            padding: 0,
+            background: 'transparent',
+            boxShadow: 'none'
           }}>
             <div className="contacto-content" style={{ 
               width: '100%', 
               marginTop: 0 
             }}>
               <div className="contacto-form-container" style={{ 
-                background: 'rgba(30, 30, 30, 0.65)', 
-                backdropFilter: 'blur(5px)'
+                background: 'rgba(30, 30, 30, 0.85)'
               }}>
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                  <img src="/images/franquicias/Franquicias.png" alt="Franquicias" style={{ width: '85%', maxWidth: '460px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
+                </div>
                 <p style={{ textAlign: 'center', fontSize: '1.3rem', marginBottom: '24px' }}>Completa el siguiente formulario si estás interesado en abrir una franquicia de Mi Gusto.</p>
                 <div style={{ textAlign: 'center', marginBottom: '16px', fontSize: '1.1rem', color: '#ffc107' }}>
                   Paso {currentStep} de 3
