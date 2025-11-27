@@ -174,9 +174,10 @@ interface SideMenuFlowingLinkProps {
   link: string;
   text: string;
   image?: string;
+  onNavigate?: () => void;
 }
 
-function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
+function SideMenuFlowingLink({ link, text, image, onNavigate }: SideMenuFlowingLinkProps) {
   const itemRef = React.useRef<HTMLDivElement>(null);
   const marqueeRef = React.useRef<HTMLDivElement>(null);
   const marqueeInnerRef = React.useRef<HTMLDivElement>(null);
@@ -192,7 +193,7 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
     const yDiff = y - y2;
     return xDiff * xDiff + yDiff * yDiff;
   };
-  const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleMouseEnter = (ev: React.MouseEvent) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const x = ev.clientX - rect.left;
@@ -204,7 +205,7 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
       .to(marqueeRef.current, animationDefaults.duration, { y: '0%', ease: animationDefaults.ease })
       .to(marqueeInnerRef.current, animationDefaults.duration, { y: '0%', ease: animationDefaults.ease });
   };
-  const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleMouseLeave = (ev: React.MouseEvent) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const x = ev.clientX - rect.left;
@@ -214,37 +215,28 @@ function SideMenuFlowingLink({ link, text, image }: SideMenuFlowingLinkProps) {
     tl.to(marqueeRef.current, animationDefaults.duration, { y: edge === 'top' ? '-101%' : '101%', ease: animationDefaults.ease })
       .to(marqueeInnerRef.current, animationDefaults.duration, { y: edge === 'top' ? '101%' : '-101%', ease: animationDefaults.ease });
   };
-  const imagesOnly = !!image; // usar solo imágenes para todos los ítems que tengan imagen
-  const groupContent = imagesOnly
-    ? Array.from({ length: 14 }).map((_, idx) => (
-        <div
-          key={`img-only-${idx}`}
-          className="marquee__img"
-          style={{ backgroundImage: `url(${image})` }}
-        />
-      ))
-    : Array.from({ length: 10 }).map((_, idx) => (
-        <React.Fragment key={idx}>
-          <span>{text}</span>
-          {image && (
-            <div
-              className="marquee__img"
-              style={{ backgroundImage: `url(${image})` }}
-            />
-          )}
-        </React.Fragment>
-      ));
+  const handleClick = () => {
+    if (onNavigate) {
+      onNavigate();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  // Siempre mostrar texto repetido en lugar de imágenes
+  const groupContent = Array.from({ length: 20 }).map((_, idx) => (
+    <span key={idx}>{text}</span>
+  ));
   return (
     <div className="menu__item" ref={itemRef}>
-      <a
+      <Link
         className="menu__item-link"
-        href={link}
+        to={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
         {text}
-      </a>
-      <div className="marquee" ref={marqueeRef} data-images-only={imagesOnly ? 'true' : 'false'}>
+      </Link>
+      <div className="marquee" ref={marqueeRef} data-images-only="false">
         <div className="marquee__inner-wrap" ref={marqueeInnerRef}>
           <div className="marquee__inner">
             <div className="marquee__group">
@@ -1049,6 +1041,7 @@ const NavBar: React.FC = () => {
                       link={link.path}
                       text={link.label}
                       image={link.image || undefined}
+                      onNavigate={() => setIsMenuOpen(false)}
                     />
                   </li>
                 ))}

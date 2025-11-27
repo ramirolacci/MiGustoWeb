@@ -1327,10 +1327,12 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
   color: #060010;
   white-space: nowrap;
   text-transform: uppercase;
-  font-weight: 400;
-  font-size: 2.2rem;
+  font-weight: 800;
+  font-size: 4.5rem;
   line-height: 1.0;
   padding: 0;
+  font-family: inherit;
+  letter-spacing: 0.02em;
 }
 .marquee[data-images-only="true"] span { display: none !important; }
 .marquee__img {
