@@ -77,7 +77,7 @@ const Franquicias: React.FC = () => {
   });
   const [isVideoFading, setIsVideoFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeTimeoutRef = useRef<number | null>(null);
   const [showWhy, setShowWhy] = useState(false);
 
   // ScrollReveal para animaciones

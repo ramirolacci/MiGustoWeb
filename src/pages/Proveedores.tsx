@@ -22,7 +22,7 @@ const Proveedores: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVideoFading, setIsVideoFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeTimeoutRef = useRef<number | null>(null);
 
   const validate = () => {
     const newErrors: any = {};
