@@ -26,8 +26,8 @@ interface ProductModal3DProps {
 const RUTAS_3D: Record<string, string> = {
     "Big burger": "/models/big-burger-3D.glb",
     "Big Burger": "/models/big-burger-3D.glb",
-    "Mexican Pibil pork": "/models/mexican-veggie-3D.glb", 
-    "Mexican pibil pork": "/models/mexican-veggie-3D.glb", 
+    "Mexican Pibil pork": "/models/mexican-veggie-3D.glb",
+    "Mexican pibil pork": "/models/mexican-veggie-3D.glb",
     "Mexican Veggie": "/models/mexican-veggie-3D.glb",
     "Mexican veggie": "/models/mexican-veggie-3D.glb",
     "Matambre a la pizza": "/models/Matambre-a-la-Pizza-3D.glb",
@@ -97,7 +97,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
             }
             setLoading3D(true); // Reiniciar el loading cada vez que cambia el producto 3D
         }
-        
+
         // Cargar Lottie para el ícono del botón 3D
         if (!document.querySelector('script[src*="lottie"]')) {
             const lottieScript = document.createElement('script');
@@ -165,16 +165,16 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
 
         const modal = modalRef.current;
         const rect = modal.getBoundingClientRect();
-        
+
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
         // Limitar x e y para que nunca se salgan del área
         x = Math.max(0, Math.min(x, rect.width));
         y = Math.max(0, Math.min(y, rect.height));
-        
+
         const rotateX = ((y / rect.height) * 100 - 50) * -0.3;
         const rotateY = ((x / rect.width) * 100 - 50) * 0.3;
-        
+
         setRotation({ x: rotateX, y: rotateY });
         setPosition({ x, y });
     };
@@ -208,10 +208,10 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
         if (modalRef.current) {
             const modal = modalRef.current;
             const rect = modal.getBoundingClientRect();
-            
+
             const rotateX = ((deltaY / rect.height) * 100) * -0.6;
             const rotateY = ((deltaX / rect.width) * 100) * 0.6;
-            
+
             setRotation({ x: rotateX, y: rotateY });
             setPosition({ x: deltaX, y: deltaY });
         }
@@ -246,24 +246,21 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     // Determino si el producto es de la categoría Promociones
     const esPromocion = producto.categoria && producto.categoria.toLowerCase().includes('promocion');
 
-    return (
-        <div className="modal-overlay" onClick={onClose} style={tiene3D ? {background:'#181818ee',backdropFilter:'blur(2px)'} : {}}>
-            {ReactDOM.createPortal(
-                <button 
-                    className={tiene3D ? "boton-cerrar-3d" : "modal-close"}
-                    onClick={handleClose}
-                    aria-label="Cerrar modal"
-                >×</button>,
-                document.body
-            )}
-            <div 
+    return ReactDOM.createPortal(
+        <div className="modal-overlay" onClick={onClose} style={tiene3D ? { background: '#181818ee', backdropFilter: 'blur(2px)' } : {}}>
+            <button
+                className={tiene3D ? "boton-cerrar-3d" : "modal-close"}
+                onClick={handleClose}
+                aria-label="Cerrar modal"
+            >×</button>
+            <div
                 ref={modalRef}
                 className={
                     tiene3D
                         ? "modal-content-3d modal-horizontal"
                         : isMobile
-                        ? "modal-content-3d modal-mobile-column"
-                        : "modal-content-3d modal-horizontal"
+                            ? "modal-content-3d modal-mobile-column"
+                            : "modal-content-3d modal-horizontal"
                 }
                 onClick={e => e.stopPropagation()}
                 style={tiene3D ? {
@@ -286,175 +283,171 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
             >
                 {/* Indicador de carga para el modelo 3D */}
                 {show3D && tiene3D && RUTAS_3D[producto.titulo] && loading3D && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      // Desktop: mucho más a la izquierda, Mobile: centrado
-                      top: '50%',
-                      left: '36%',
-                      transform: 'translate(-50%, -50%)',
-                      zIndex: 100,
-                      background: 'rgba(24,24,24,0.85)',
-                      color: '#FFD700',
-                      padding: '24px 36px',
-                      borderRadius: 16,
-                      fontWeight: 700,
-                      fontSize: 22,
-                      boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 16,
-                      minWidth: 260,
-                      maxWidth: 340,
-                      textAlign: 'center',
-                    }}
-                    className="loading-3d-indicator"
-                  >
-                    <span className="fa fa-spinner fa-spin" style={{fontSize: 32}}></span>
-                    Cargando modelo 3D...
-                  </div>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            // Desktop: mucho más a la izquierda, Mobile: centrado
+                            top: '50%',
+                            left: '36%',
+                            transform: 'translate(-50%, -50%)',
+                            zIndex: 100,
+                            background: 'rgba(24,24,24,0.85)',
+                            color: '#FFD700',
+                            padding: '24px 36px',
+                            borderRadius: 16,
+                            fontWeight: 700,
+                            fontSize: 22,
+                            boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 16,
+                            minWidth: 260,
+                            maxWidth: 340,
+                            textAlign: 'center',
+                        }}
+                        className="loading-3d-indicator"
+                    >
+                        <span className="fa fa-spinner fa-spin" style={{ fontSize: 32 }}></span>
+                        Cargando modelo 3D...
+                    </div>
                 )}
                 {tiene3D ? (
                     <div className="modal-3d-fullscreen-wrapper">
                         <div className="modal-3d-viewer-outer">
-                            <div className="modal-3d-viewer-container" style={{background:'none',border:'none',boxShadow:'none', width: '60vw', height: '80vh', minWidth: '320px', minHeight: '320px', maxWidth: '900px', maxHeight: '92vh', position: 'relative'}}>
+                            <div className="modal-3d-viewer-container" style={{ background: 'none', border: 'none', boxShadow: 'none', width: '60vw', height: '80vh', minWidth: '320px', minHeight: '320px', maxWidth: '900px', maxHeight: '92vh', position: 'relative' }}>
                                 <div className="model-3d-align-left">
-                                {show3D ? (
-                                    // Mostrar modelo 3D cuando show3D es true
-                                    RUTAS_3D[producto.titulo] && React.createElement('model-viewer' as any, {
-                                        src: RUTAS_3D[producto.titulo],
-                                        alt: producto.titulo + ' 3D',
-                                        'camera-controls': true,
-                                        'auto-rotate': true,
-                                        'auto-rotate-delay': '0',
-                                        ar: false,
-                                        style: {
+                                    {show3D ? (
+                                        // Mostrar modelo 3D cuando show3D es true
+                                        RUTAS_3D[producto.titulo] && React.createElement('model-viewer' as any, {
+                                            src: RUTAS_3D[producto.titulo],
+                                            alt: producto.titulo + ' 3D',
+                                            'camera-controls': true,
+                                            'auto-rotate': true,
+                                            'auto-rotate-delay': '0',
+                                            ar: false,
+                                            style: {
+                                                width: '100%',
+                                                height: '100%',
+                                                minWidth: '320px',
+                                                minHeight: '320px',
+                                                maxWidth: '900px',
+                                                maxHeight: '92vh',
+                                                background: 'transparent',
+                                                borderRadius: 0,
+                                                outline: 'none',
+                                                zIndex: 10,
+                                                display: 'block',
+                                                position: 'relative',
+                                                left: 0,
+                                                top: 0,
+                                                marginLeft: 0,
+                                            },
+                                            'shadow-intensity': '1.5',
+                                            'shadow-softness': '1',
+                                            exposure: '2',
+                                            'camera-orbit': (() => {
+                                                const base = CAMERA_ORBITS_3D[producto.titulo] || '0deg 75deg 2.5m';
+                                                if (!isMobile) return base;
+                                                const parts = base.split(' ');
+                                                if (parts.length >= 3) {
+                                                    parts[2] = '1.9m';
+                                                    return parts.join(' ');
+                                                }
+                                                return '0deg 75deg 1.9m';
+                                            })(),
+                                            'min-camera-orbit': isMobile ? 'auto auto 1.8m' : 'auto auto 3m',
+                                            'max-camera-orbit': isMobile ? 'auto auto 2.1m' : 'auto auto 3m',
+                                            'field-of-view': isMobile ? '20deg' : undefined,
+                                            'interaction-prompt': 'none',
+                                            'disable-pan': true,
+                                            onLoad: () => setLoading3D(false),
+                                        })
+                                    ) : (
+                                        // Mostrar imagen PNG cuando show3D es false
+                                        <div style={{
                                             width: '100%',
                                             height: '100%',
-                                            minWidth: '320px',
-                                            minHeight: '320px',
-                                            maxWidth: '900px',
-                                            maxHeight: '92vh',
-                                            background: 'transparent',
-                                            borderRadius: 0,
-                                            outline: 'none',
-                                            zIndex: 10,
-                                            display: 'block',
-                                            position: 'relative',
-                                            left: 0,
-                                            top: 0,
-                                            marginLeft: 0,
-                                        },
-                                        'shadow-intensity': '1.5',
-                                        'shadow-softness': '1',
-                                        exposure: '2',
-                                        'camera-orbit': (() => {
-                                            const base = CAMERA_ORBITS_3D[producto.titulo] || '0deg 75deg 2.5m';
-                                            if (!isMobile) return base;
-                                            const parts = base.split(' ');
-                                            if (parts.length >= 3) {
-                                                parts[2] = '1.9m';
-                                                return parts.join(' ');
-                                            }
-                                            return '0deg 75deg 1.9m';
-                                        })(),
-                                        'min-camera-orbit': isMobile ? 'auto auto 1.8m' : 'auto auto 3m',
-                                        'max-camera-orbit': isMobile ? 'auto auto 2.1m' : 'auto auto 3m',
-                                        'field-of-view': isMobile ? '20deg' : undefined,
-                                        'interaction-prompt': 'none',
-                                        'disable-pan': true,
-                                        onLoad: () => setLoading3D(false),
-                                    })
-                                ) : (
-                                    // Mostrar imagen PNG cuando show3D es false
-                                    <div style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        background: 'transparent'
-                                    }}>
-                                        <img 
-                                            src={IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen} 
-                                            alt={producto.titulo}
-                                            onLoad={() => console.log('✅ Imagen PNG cargada correctamente para:', producto.titulo)}
-                                            onError={() => console.log('❌ Error cargando imagen PNG para:', producto.titulo, 'src:', IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen)}
-                                            style={{
-                                                width: '50%',
-                                                height: '50%',
-                                                objectFit: 'contain',
-                                                borderRadius: '12px'
-                                            }}
-                                        />
-                                    </div>
-                                )}
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            background: 'transparent'
+                                        }}>
+                                            <img
+                                                src={IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen}
+                                                alt={producto.titulo}
+                                                style={{
+                                                    width: '50%',
+                                                    height: '50%',
+                                                    objectFit: 'contain',
+                                                    borderRadius: '12px'
+                                                }}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
-                        <div className="modal-3d-info" style={{position: 'relative'}}>
+                        <div className="modal-3d-info" style={{ position: 'relative' }}>
                             {tiene3D && RUTAS_3D[producto.titulo] && (
-                            <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    console.log('🔄 Botón 3D clickeado, show3D actual:', show3D);
-                                    setShow3D(!show3D);
-                                    console.log('✅ show3D después del click:', !show3D);
-                                }}
-                                style={{
-                                    position: 'absolute',
-                                    bottom: 18,
-                                    right: 18,
-                                    background: 'transparent',
-                                    border: 'none',
-                                    padding: '0',
-                                    cursor: 'pointer',
-                                    transition: 'transform 0.2s ease',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    zIndex: 1000,
-                                    boxShadow: 'none',
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.transform = 'scale(1.6)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.transform = 'scale(1)';
-                                }}
-                                title="3D"
-                            >
-                                <iframe
-                                    src="https://lottie.host/embed/7ae74040-aac6-4c39-9ffa-559e8a1f4c60/ZEdWR7FqTN.lottie"
-                                    style={{
-                                        width: '40px',
-                                        height: '40px',
-                                        border: 'none',
-                                        background: 'transparent',
-                                        transform: 'scale(1.5)',
-                                        transformOrigin: 'center',
-                                        pointerEvents: 'none'
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setShow3D(!show3D);
                                     }}
-                                ></iframe>
-                            </button>
+                                    style={{
+                                        position: 'absolute',
+                                        bottom: 18,
+                                        right: 18,
+                                        background: 'transparent',
+                                        border: 'none',
+                                        padding: '0',
+                                        cursor: 'pointer',
+                                        transition: 'transform 0.2s ease',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        zIndex: 1000,
+                                        boxShadow: 'none',
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.6)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                    }}
+                                    title="3D"
+                                >
+                                    <iframe
+                                        src="https://lottie.host/embed/7ae74040-aac6-4c39-9ffa-559e8a1f4c60/ZEdWR7FqTN.lottie"
+                                        style={{
+                                            width: '40px',
+                                            height: '40px',
+                                            border: 'none',
+                                            background: 'transparent',
+                                            transform: 'scale(1.5)',
+                                            transformOrigin: 'center',
+                                            pointerEvents: 'none'
+                                        }}
+                                    ></iframe>
+                                </button>
                             )}
-                            <h2 className="titulo-impresionante-3d" style={{margin: 0, marginBottom: 16}}>{producto.titulo}</h2>
+                            <h2 className="titulo-impresionante-3d" style={{ margin: 0, marginBottom: 16 }}>{producto.titulo}</h2>
                             {obtenerIngredientes().length > 0 && !isMobile && (
-                                    <div style={{color:'#fff',marginBottom:8}}>
-                                        <h3 style={{color:'#FFD700',margin: 0, marginBottom: 12}}>Ingredientes</h3>
-                                        <ul className="ingredientes-lista" style={{paddingLeft:18, marginTop: 8}}>
-                                            {obtenerIngredientes().map((ingrediente, index) => (
-                                                <li key={index} style={{marginBottom:6}}>{ingrediente}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                <div style={{ color: '#fff', marginBottom: 8 }}>
+                                    <h3 style={{ color: '#FFD700', margin: 0, marginBottom: 12 }}>Ingredientes</h3>
+                                    <ul className="ingredientes-lista" style={{ paddingLeft: 18, marginTop: 8 }}>
+                                        {obtenerIngredientes().map((ingrediente, index) => (
+                                            <li key={index} style={{ marginBottom: 6 }}>{ingrediente}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             )}
                         </div>
                     </div>
                 ) : (
                     <React.Fragment>
-                        <div className="modal-horizontal-content" style={{width: '100%', height: '100%'}}>
+                        <div className="modal-horizontal-content" style={{ width: '100%', height: '100%' }}>
                             <div className="modal-horizontal-left">
                                 <div className="modal-header-3d">
                                     <div className="modal-image-container"
@@ -494,20 +487,15 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             transition: 'box-shadow 0.2s, background 0.2s'
                                         }}
                                     >
-                                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px'}}>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                                             <h2 className="modal-product-title"
                                                 // Aplico el mismo estilo visual que el título de las cards
-                                                style={{margin: 0}}
+                                                style={{ margin: 0 }}
                                             >{producto.titulo}</h2>
                                             {IMAGENES_PNG[producto.titulo] && (
                                                 <button
                                                     onClick={() => {
-                                                        console.log('🔄 Botón 3D clickeado (modal normal) para:', producto.titulo);
-                                                        console.log('📊 show3D actual:', show3D);
-                                                        console.log('🖼️ IMAGENES_PNG disponible:', IMAGENES_PNG[producto.titulo]);
                                                         setShow3D(!show3D);
-                                                        console.log('✅ show3D después del click:', !show3D);
-                                                        console.log('🎯 Debería mostrar:', !show3D ? 'PNG' : '3D');
                                                     }}
                                                     style={{
                                                         background: show3D ? '#FFD700' : 'transparent',
@@ -541,14 +529,14 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             )}
                                         </div>
                                         {obtenerIngredientes().length > 0 && !isMobile && (
-                                                <>
-                                                    <h3 style={{ color: '#FFD700', margin: 0, marginBottom: 12 }}>Ingredientes</h3>
-                                                    <ul className="ingredientes-lista">
-                                                        {obtenerIngredientes().map((ingrediente, index) => (
-                                                            <li key={index}>{ingrediente}</li>
-                                                        ))}
-                                                    </ul>
-                                                </>
+                                            <>
+                                                <h3 style={{ color: '#FFD700', margin: 0, marginBottom: 12 }}>Ingredientes</h3>
+                                                <ul className="ingredientes-lista">
+                                                    {obtenerIngredientes().map((ingrediente, index) => (
+                                                        <li key={index}>{ingrediente}</li>
+                                                    ))}
+                                                </ul>
+                                            </>
                                         )}
                                     </div>
                                     {producto.tiempoPreparacion && (
@@ -573,46 +561,15 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                             <p>{producto.calorias}</p>
                                         </div>
                                     )}
-                                    {/** Botón "Agregar al carrito" oculto temporalmente
-                                    <div style={{ marginTop: 12 }}>
-                                        <button
-                                            className="btn btn-warning"
-                                            onClick={() => {
-                                                const numericPrice = (() => {
-                                                  if (producto.categoria === 'Empanada' && producto.precio) {
-                                                    const n = parseInt(String(producto.precio).replace(/\D/g, ''));
-                                                    return isNaN(n) ? 0 : n;
-                                                  }
-                                                  return 0;
-                                                })();
-                                                addItem({
-                                                  title: producto.titulo,
-                                                  image: producto.imagenDetalle || producto.imagen,
-                                                  price: numericPrice,
-                                                  category: producto.categoria,
-                                                });
-                                                // Animación hacia el carrito en el navbar
-                                                try {
-                                                  const imgEl = document.querySelector('.modal-image-container img');
-                                                  const cartBtn = document.getElementById('nav-cart-button');
-                                                  if (imgEl instanceof HTMLElement && cartBtn instanceof HTMLElement) {
-                                                    flyToCart(imgEl, cartBtn);
-                                                  }
-                                                } catch {}
-                                            }}
-                                        >
-                                            Agregar al carrito
-                                        </button>
-                                    </div>
-                                    **/}
                                 </div>
                             </div>
                         </div>
                     </React.Fragment>
                 )}
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 
-export default ProductModal3D; 
+export default ProductModal3D;

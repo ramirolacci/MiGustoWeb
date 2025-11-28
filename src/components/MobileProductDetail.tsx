@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import './MobileProductDetail.css';
 
 // Declaración para TypeScript
 declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': any;
+    namespace JSX {
+        interface IntrinsicElements {
+            'model-viewer': any;
+        }
     }
-  }
 }
 
 type MobileProduct = {
@@ -41,9 +42,9 @@ function getIngredients(producto: MobileProduct): string[] {
 
 // Lista de productos que tienen modelo 3D disponible
 const PRODUCTOS_3D = [
-    "Big burger", "Big Burger", "Mexican Pibil pork", "Mexican pibil pork", 
-    "Mexican Veggie", "Mexican veggie", "Matambre a la pizza", 
-    "Cheese burger", "Cheese Burger", "American Chicken", "American chicken", 
+    "Big burger", "Big Burger", "Mexican Pibil pork", "Mexican pibil pork",
+    "Mexican Veggie", "Mexican veggie", "Matambre a la pizza",
+    "Cheese burger", "Cheese Burger", "American Chicken", "American chicken",
     "Vacio y provoleta", "Franuí chocolate amargo", "Franuí chocolate con leche"
 ];
 
@@ -51,8 +52,8 @@ const PRODUCTOS_3D = [
 const RUTAS_3D: Record<string, string> = {
     "Big burger": "/models/big-burger-3D.glb",
     "Big Burger": "/models/big-burger-3D.glb",
-    "Mexican Pibil pork": "/models/mexican-veggie-3D.glb", 
-    "Mexican pibil pork": "/models/mexican-veggie-3D.glb", 
+    "Mexican Pibil pork": "/models/mexican-veggie-3D.glb",
+    "Mexican pibil pork": "/models/mexican-veggie-3D.glb",
     "Mexican Veggie": "/models/mexican-veggie-3D.glb",
     "Mexican veggie": "/models/mexican-veggie-3D.glb",
     "Matambre a la pizza": "/models/Matambre-a-la-Pizza-3D.glb",
@@ -101,7 +102,7 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
     const ingredients = getIngredients(producto);
     const [show3D, setShow3D] = useState(false);
     const tiene3D = PRODUCTOS_3D.includes(producto.titulo);
-    
+
     // Cargar model-viewer si no está presente
     useEffect(() => {
         if (tiene3D && !document.querySelector('script[src*="model-viewer"]')) {
@@ -112,13 +113,34 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
         }
     }, [tiene3D]);
 
+    // Prevenir scroll del body y scrollear al top cuando se abre el modal
+    useEffect(() => {
+        // Guardar la posición actual del scroll
+        const scrollY = window.scrollY;
 
-    return (
+        // Prevenir scroll en el body
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+
+        // Cleanup: restaurar el scroll cuando se cierra el modal
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollY);
+        };
+    }, []);
+
+
+    return ReactDOM.createPortal(
         <div className="mpd-overlay" role="dialog" aria-modal="true" onClick={onClose}>
             <div className="mpd-sheet" onClick={(e) => e.stopPropagation()}>
                 <button className="mpd-close" aria-label="Cerrar" onClick={onClose}>×</button>
                 {tiene3D && (
-                    <button 
+                    <button
                         className="mpd-3d-toggle"
                         onClick={(e) => {
                             e.stopPropagation();
@@ -168,9 +190,9 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
                             'disable-pan': true
                         })
                     ) : (
-                        <img 
-                            src={!show3D && tiene3D ? (IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen) : (producto.imagenDetalle || producto.imagen)} 
-                            alt={producto.titulo} 
+                        <img
+                            src={!show3D && tiene3D ? (IMAGENES_PNG[producto.titulo] || producto.imagenDetalle || producto.imagen) : (producto.imagenDetalle || producto.imagen)}
+                            alt={producto.titulo}
                         />
                     )}
                 </div>
@@ -187,7 +209,8 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
                     )}
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 
