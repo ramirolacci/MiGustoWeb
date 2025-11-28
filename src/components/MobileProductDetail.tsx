@@ -135,6 +135,37 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
     }, []);
 
 
+    const ingredientsRef = React.useRef<HTMLUListElement>(null);
+
+    useEffect(() => {
+        if (ingredientsRef.current && ingredients.length > 0) {
+            import('gsap').then((gsapModule) => {
+                const gsap = gsapModule.default;
+                const items = ingredientsRef.current?.children;
+                if (items) {
+                    gsap.fromTo(items,
+                        {
+                            opacity: 0,
+                            y: 30,
+                            scale: 0.8,
+                            rotationX: -45
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            rotationX: 0,
+                            stagger: 0.08,
+                            duration: 0.8,
+                            ease: "elastic.out(1, 0.6)",
+                            clearProps: "all"
+                        }
+                    );
+                }
+            });
+        }
+    }, [ingredients]);
+
     return ReactDOM.createPortal(
         <div className="mpd-overlay" role="dialog" aria-modal="true" onClick={onClose}>
             <div className="mpd-sheet" onClick={(e) => e.stopPropagation()}>
@@ -200,7 +231,7 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({ producto, onC
                     <h2 className="mpd-title">{producto.titulo}</h2>
                     {ingredients.length > 0 && (
                         <section>
-                            <ul className="mpd-ingredients">
+                            <ul className="mpd-ingredients" ref={ingredientsRef}>
                                 {ingredients.map((ing, idx) => (
                                     <li key={idx}>{ing}</li>
                                 ))}

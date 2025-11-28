@@ -76,6 +76,7 @@ const CAMERA_ORBITS_3D: Record<string, string> = {
 const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tiene3D }) => {
     const { addItem } = useCart();
     const modalRef = useRef<HTMLDivElement>(null);
+    const ingredientsRef = useRef<HTMLUListElement>(null);
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
@@ -159,6 +160,33 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     useEffect(() => {
         setShow3D(false);
     }, [producto.titulo]);
+
+    // GSAP Animation for ingredients
+    useEffect(() => {
+        if (ingredientsRef.current) {
+            import('gsap').then((gsapModule) => {
+                const gsap = gsapModule.default;
+                const items = ingredientsRef.current?.children;
+                if (items && items.length > 0) {
+                    gsap.fromTo(items,
+                        {
+                            opacity: 0,
+                            x: -20,
+                            stagger: 0.05
+                        },
+                        {
+                            opacity: 1,
+                            x: 0,
+                            stagger: 0.05,
+                            duration: 0.5,
+                            ease: "power2.out",
+                            clearProps: "all"
+                        }
+                    );
+                }
+            });
+        }
+    }, [producto.titulo, tiene3D]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!modalRef.current || isDragging) return;
@@ -436,7 +464,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                             {obtenerIngredientes().length > 0 && !isMobile && (
                                 <div style={{ color: '#fff', marginBottom: 8 }}>
                                     <h3 style={{ color: '#FFD700', margin: 0, marginBottom: 12 }}>Ingredientes</h3>
-                                    <ul className="ingredientes-lista" style={{ paddingLeft: 18, marginTop: 8 }}>
+                                    <ul className="ingredientes-lista" ref={ingredientsRef} style={{ paddingLeft: 18, marginTop: 8 }}>
                                         {obtenerIngredientes().map((ingrediente, index) => (
                                             <li key={index} style={{ marginBottom: 6 }}>{ingrediente}</li>
                                         ))}
@@ -531,7 +559,7 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
                                         {obtenerIngredientes().length > 0 && !isMobile && (
                                             <>
                                                 <h3 style={{ color: '#FFD700', margin: 0, marginBottom: 12 }}>Ingredientes</h3>
-                                                <ul className="ingredientes-lista">
+                                                <ul className="ingredientes-lista" ref={ingredientsRef}>
                                                     {obtenerIngredientes().map((ingrediente, index) => (
                                                         <li key={index}>{ingrediente}</li>
                                                     ))}
