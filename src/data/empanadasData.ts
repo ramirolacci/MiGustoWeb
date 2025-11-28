@@ -140,14 +140,6 @@ export const empanadas: Empanada[] = [
     esPremium: false
   },
   {
-    imagen: "https://i.postimg.cc/FRJDQZbH/tomate-y-albahaca.png",
-    imagenCard: "https://i.postimg.cc/5tzmL07d/jamontomateyalbhaca.jpg",
-    titulo: "Jamón, tomate y albahaca",
-    precio: 3700,
-    descripcion: "Jamón cocido en cubos, Tomates cherry asados, Albahaca fresca, Abundante queso muzzarella.",
-    esPremium: false
-  },
-  {
     imagen: "https://i.postimg.cc/NGS2HDk4/pollo.png",
     imagenCard: "https://i.postimg.cc/ZRMKmbm0/pollo.jpg",
     titulo: "Pollo",

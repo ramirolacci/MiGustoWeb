@@ -327,7 +327,6 @@ function App() {
     'American Chicken',
     'Jamon, queso y huevo',
     'Carne Picante',
-    'Jamon, Tomate y albahaca',
     'Carne al cuchillo',
     'Queso y Cebolla',
     'Carne Suave',
