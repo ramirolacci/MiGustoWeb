@@ -105,6 +105,23 @@ const Login: React.FC = () => {
         >
           {loading ? 'Ingresando…' : 'Ingresar'}
         </button>
+        <div className="text-center mt-3">
+          <button
+            type="button"
+            className="btn w-100"
+            onClick={() => navigate('/canje')}
+            style={{ 
+              backgroundColor: 'transparent', 
+              borderColor: 'rgba(255,255,255,0.3)', 
+              color: 'rgba(255,255,255,0.9)', 
+              fontWeight: 500,
+              borderWidth: 1,
+              borderStyle: 'solid'
+            }}
+          >
+            Ingresar como invitado
+          </button>
+        </div>
         <div className="text-center mt-3" style={{ color: 'rgba(255,255,255,0.8)' }}>
           ¿No tenés cuenta? <a href="/register">Crear cuenta</a>
         </div>

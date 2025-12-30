@@ -34,6 +34,7 @@ const Register = lazy(() => import('./pages/Register'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Account = lazy(() => import('./pages/Account'));
 const Canje = lazy(() => import('./pages/Canje'));
+const IngredientExplodedView = lazy(() => import('./components/IngredientExplodedView'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
 
@@ -53,10 +54,10 @@ const AppContent: React.FC = () => {
   const isLovers = location.pathname.startsWith('/lovers');
   const isViewer3D = location.pathname === '/3d';
   const isHomeMobile = location.pathname === '/m';
-  
+
   // Determinar si mostrar el tabbar móvil - no excluir lovers
   const showMobileTabbar = isMobile; // mostrar tabbar (y sidebar) también en /3d
-  
+
 
   return (
     <>
@@ -66,32 +67,38 @@ const AppContent: React.FC = () => {
         {!isLovers && !isMobile && <header><NavBar /></header>}
         <main className='main'>
           <ErrorBoundary>
-            <Suspense fallback={null}> 
+            <Suspense fallback={null}>
               <Routes>
-              <Route path="/" element={<ResponsiveHome />} />
-              {/* Home mobile dedicado */}
-              <Route path="/m" element={<HomeMobile />} />
-              <Route path="/carta" element={<Carta />} />
-              <Route path="/productos" element={<Productos />} />
-              <Route path="/sucursales" element={<Sucursales />} />
-              <Route path="/nosotros" element={<Nosotros />} />
-              <Route path="/contacto" element={<Contacto />} />
-              <Route path="/proveedores" element={<Proveedores />} />
-              <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
-              <Route path="/franquicias" element={<Franquicias />} />
-              <Route path="/venta-corporativa" element={<VentaCorporativa />} />
-              <Route path="/lovers/*" element={<Lovers />} />
-              <Route path="/3d" element={<Viewer3D />} />
-              <Route path="/legales" element={<Legales />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-              <Route path="/mi-cuenta" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-              <Route path="/canje" element={<Canje />} />
-              {/* Ejemplo de ruta protegida: */}
-              <Route path="/admin" element={<ProtectedRoute><div style={{color:'#fff', padding:'2rem'}}>Área Privada</div></ProtectedRoute>} />
-              <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
+                <Route path="/" element={<ResponsiveHome />} />
+                {/* Home mobile dedicado */}
+                <Route path="/m" element={<HomeMobile />} />
+                <Route path="/carta" element={<Carta />} />
+                <Route path="/productos" element={<Productos />} />
+                <Route path="/sucursales" element={<Sucursales />} />
+                <Route path="/nosotros" element={<Nosotros />} />
+                <Route path="/contacto" element={<Contacto />} />
+                <Route path="/proveedores" element={<Proveedores />} />
+                <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
+                <Route path="/franquicias" element={<Franquicias />} />
+                <Route path="/venta-corporativa" element={<VentaCorporativa />} />
+                <Route path="/lovers/*" element={<Lovers />} />
+                <Route path="/3d" element={<Viewer3D />} />
+                <Route path="/legales" element={<Legales />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                <Route path="/mi-cuenta" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+                <Route path="/canje" element={<Canje />} />
+                {/* Ejemplo de ruta protegida: */}
+                <Route path="/admin" element={<ProtectedRoute><div style={{ color: '#fff', padding: '2rem' }}>Área Privada</div></ProtectedRoute>} />
+                <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
+                <Route path="/exploded-test" element={
+                  <>
+                    <Productos />
+                    <IngredientExplodedView />
+                  </>
+                } />
               </Routes>
             </Suspense>
           </ErrorBoundary>

@@ -1,0 +1,211 @@
+.iev-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.6);
+    /* Slightly darker for better text contrast */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: white;
+    overflow: hidden;
+    /* Keep hidden on container, but handle inner overflow better */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+}
+
+.iev-title {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #ffb700;
+    z-index: 10;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+.iev-image-wrapper {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iev-product-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.iev-svg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    overflow: visible;
+    /* CRITICAL: Allow lines to draw outside if needed */
+}
+
+.iev-labels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.iev-label-item {
+    pointer-events: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Modern Label Styling */
+.iev-label-content {
+    background: transparent;
+    padding: 8px 0;
+    position: relative;
+}
+
+.iev-label-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.iev-label-underline {
+    height: 2px;
+    width: 100%;
+    background: #ffb700;
+    margin-top: 4px;
+    box-shadow: 0 0 10px rgba(255, 183, 0, 0.6);
+    transform-origin: left;
+}
+
+.iev-close-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.iev-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg) scale(1.1);
+    border-color: #ffb700;
+    color: #ffb700;
+}
+
+@media (max-width: 768px) {
+    .iev-image-wrapper {
+        width: 100vw;
+        /* Full width to prevent clipping */
+        height: 75vw;
+        /* Sufficient height */
+        max-width: none;
+        /* remove constraint */
+        max-height: 450px;
+    }
+
+    .iev-product-image {
+        width: 75%;
+        /* Reduce PNG size */
+        max-width: 320px;
+    }
+
+    .iev-title {
+        font-size: 1.5rem;
+        top: 20px;
+        padding: 0 60px;
+        /* Space for close button */
+    }
+
+    .iev-label-text {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .iev-label-content {
+        white-space: pre-line;
+        /* Allow manual line breaks with \n */
+        /* removed fixed max-width, controlled by JS width or natural flow */
+    }
+
+    .iev-close-btn {
+        width: 45px;
+        height: 45px;
+        top: 20px;
+        right: 15px;
+        font-size: 1.5rem;
+    }
+}
+
+/* New 3D Button Implementation - Base Styles (Desktop) */
+.iev-3d-btn-new {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+
+.iev-3d-btn-new:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffb700;
+}
+
+/* Mobile Overrides for New Button - Must be at the end to override base */
+@media (max-width: 768px) {
+    .iev-3d-btn-new {
+        width: 45px;
+        height: 45px;
+        top: 20px;
+        left: 15px;
+        right: auto;
+    }
+}

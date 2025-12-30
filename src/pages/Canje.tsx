@@ -67,15 +67,19 @@ const Canje: React.FC = () => {
   }), [reduceMotion]);
 
   useEffect(() => {
-    if (!token) return; // No cargar datos si no está logueado
     (async () => {
       try {
-        const [loyalty, redeemables] = await Promise.all([
-          getMyLoyalty(),
-          getRedeemableProducts(),
-        ]);
-        setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : 0);
+        // Cargar productos siempre (disponible para invitados)
+        const redeemables = await getRedeemableProducts();
         setProducts(redeemables);
+        
+        // Solo cargar puntos si hay token
+        if (token) {
+          const loyalty = await getMyLoyalty();
+          setPoints(typeof loyalty.totalPoints === 'number' ? loyalty.totalPoints : 0);
+        } else {
+          setPoints(0);
+        }
       } catch (err) {
         setError('No pudimos cargar el programa de canje.');
       } finally {
@@ -85,6 +89,11 @@ const Canje: React.FC = () => {
   }, [token]);
 
   const handleRedeem = async (product: LoyaltyProduct) => {
+    if (!token) {
+      setError('Debés iniciar sesión para canjear productos.');
+      setTimeout(() => navigate('/login'), 2000);
+      return;
+    }
     setError(null);
     setSuccessMsg(null);
     if (!canRedeem(product.pointsCost)) {
@@ -108,33 +117,6 @@ const Canje: React.FC = () => {
     }
   };
 
-  if (!token) {
-    return (
-      <div className="canje-section">
-        <div className="background-overlay"></div>
-        <div className="particles-overlay" aria-hidden="true"></div>
-        <div className="container canje-container py-5" style={{ minHeight: '70vh', marginTop: 64 }}>
-          <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
-            <div className="card p-4 text-center" style={{ maxWidth: 720, width: '100%', borderRadius: 16, boxShadow: '0 10px 30px rgba(0,0,0,0.35)', background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)', backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <img
-                src="https://www.migusto.com.ar/assets/images/logoMGBlanco.png"
-                alt="Mi Gusto"
-                style={{ height: 48, width: 'auto', maxWidth: '80%', objectFit: 'contain', display: 'block', margin: '0 auto 12px', filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.6))' }}
-              />
-              <p className="mb-4" style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.05rem' }}>
-                Crea una cuenta o ingresa si es que ya tienes una para que puedas canjear tus Puntos! Haz click en el botón de abajo para más detalles sobre MiGusto Coins.
-              </p>
-              <div className="d-flex justify-content-center">
-                <button className="btn btn-mg" onClick={() => navigate('/login')}>
-                  Mi MG
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="canje-section">
@@ -162,29 +144,37 @@ const Canje: React.FC = () => {
           <p className="mb-0 canje-subtitle">
             Acumulá puntos con tus compras y canjealos por productos de Mi Gusto.
           </p>
+          {!token && (
+            <div className="alert alert-info mt-3 mb-0" style={{ fontSize: '0.9rem', padding: '0.75rem 1rem' }}>
+              <i className="fas fa-info-circle me-2"></i>
+              Estás viendo los premios como invitado. <a href="/login" style={{ color: '#ffbf1f', textDecoration: 'underline' }}>Iniciá sesión</a> para canjear tus puntos.
+            </div>
+          )}
         </div>
-        <div className="canje-points-abs">
-          <div className="card canje-points-card" style={{ minWidth: 260, borderRadius: 14, overflow: 'hidden' }}>
-          <div className="p-3 d-flex align-items-center" style={{ background: 'linear-gradient(90deg, #2b2b2b, #1a1a1a)' }}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              className="me-2"
-              style={{ filter: 'drop-shadow(0 0 6px rgba(212,162,0,0.5))' }}
-            >
-              <path d="M3 13c0-5 3.5-8 9-8s9 3 9 8c0 0-3.8 3-9 3S3 13 3 13z" fill="#f2c078" stroke="#a77f00" strokeWidth="1.6" />
-              <path d="M5 12.2c1 .6 2.2 1 3.5 1.2M8.8 13.7c1.1.2 2.3.3 3.2.3M13.7 14c1.4-.1 2.7-.4 3.8-.9M18.1 12.7c.6-.3 1.1-.6 1.6-1" stroke="#a77f00" strokeWidth="1" fill="none" strokeLinecap="round"/>
-              <path d="M8 8.5c1-.6 2.1-.9 3.2-1" stroke="#ffe9bf" strokeWidth="1" fill="none" strokeLinecap="round"/>
-            </svg>
-            <div>
-              <div className="canje-points-label">MiGusto Points</div>
-              <AnimatedCounter value={points} className="canje-points-value" />
+        {token && (
+          <div className="canje-points-abs">
+            <div className="card canje-points-card" style={{ minWidth: 260, borderRadius: 14, overflow: 'hidden' }}>
+            <div className="p-3 d-flex align-items-center" style={{ background: 'linear-gradient(90deg, #2b2b2b, #1a1a1a)' }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                className="me-2"
+                style={{ filter: 'drop-shadow(0 0 6px rgba(212,162,0,0.5))' }}
+              >
+                <path d="M3 13c0-5 3.5-8 9-8s9 3 9 8c0 0-3.8 3-9 3S3 13 3 13z" fill="#f2c078" stroke="#a77f00" strokeWidth="1.6" />
+                <path d="M5 12.2c1 .6 2.2 1 3.5 1.2M8.8 13.7c1.1.2 2.3.3 3.2.3M13.7 14c1.4-.1 2.7-.4 3.8-.9M18.1 12.7c.6-.3 1.1-.6 1.6-1" stroke="#a77f00" strokeWidth="1" fill="none" strokeLinecap="round"/>
+                <path d="M8 8.5c1-.6 2.1-.9 3.2-1" stroke="#ffe9bf" strokeWidth="1" fill="none" strokeLinecap="round"/>
+              </svg>
+              <div>
+                <div className="canje-points-label">MiGusto Points</div>
+                <AnimatedCounter value={points} className="canje-points-value" />
+              </div>
+            </div>
             </div>
           </div>
-          </div>
-        </div>
+        )}
       </div>
 
       <AnimatePresence>
@@ -255,17 +245,17 @@ const Canje: React.FC = () => {
                         const isThermoMate = p.id === 'coupon-004' || name.includes('termo') || name.includes('mate');
                         const isBoard = p.id === 'board-005' || name.includes('tabla');
                         const src = isCap
-                          ? '/canjes/Gorra.mp4'
+                          ? '/images/canjes/Gorra.mp4'
                           : isCar
-                          ? '/canjes/Auto.mp4'
+                          ? '/images/canjes/Auto.mp4'
                           : isShirt
-                          ? '/canjes/Remera.mp4'
+                          ? '/images/canjes/Remera.mp4'
                           : isCup
-                          ? '/canjes/vaso.mp4'
+                          ? '/images/canjes/vaso.mp4'
                           : isThermoMate
-                          ? '/canjes/termoymate.mp4'
+                          ? '/images/canjes/termoymate.mp4'
                           : isBoard
-                          ? '/canjes/tabla.mp4'
+                          ? '/images/canjes/tabla.mp4'
                           : null;
                         return src ? (
                           <motion.video
@@ -306,25 +296,37 @@ const Canje: React.FC = () => {
                     <motion.h5 className="canje-card-title" variants={childVariants} custom={0}>{p.name}</motion.h5>
                     <motion.p className="canje-card-text" variants={childVariants} custom={1}>{p.shortDescription}</motion.p>
                     <motion.div className="canje-actions" variants={childVariants} custom={2}>
-                      <motion.button
-                        className={`btn ${enough ? 'btn-warning' : 'btn-secondary'} btn-canje`}
-                        disabled={!enough || isLoading}
-                        onClick={() => handleRedeem(p)}
-                        aria-disabled={!enough}
-                        whileHover={reduceMotion || !enough || isLoading ? {} : { scale: 1.06, y: -2 }}
-                        whileTap={reduceMotion || !enough || isLoading ? {} : { scale: 0.97, y: 0 }}
-                        transition={{ type: 'spring', stiffness: 360, damping: 16 }}
-                      >
-                        {isLoading ? (
-                          <span className="loading-dots" aria-hidden="true">
-                            <span className="dot" />
-                            <span className="dot" />
-                            <span className="dot" />
-                          </span>
-                        ) : (
-                          (enough ? 'Canjear' : 'Puntos insuficientes')
-                        )}
-                      </motion.button>
+                      {!token ? (
+                        <motion.button
+                          className="btn btn-warning btn-canje"
+                          onClick={() => navigate('/login')}
+                          whileHover={reduceMotion ? {} : { scale: 1.06, y: -2 }}
+                          whileTap={reduceMotion ? {} : { scale: 0.97, y: 0 }}
+                          transition={{ type: 'spring', stiffness: 360, damping: 16 }}
+                        >
+                          Iniciar sesión para canjear
+                        </motion.button>
+                      ) : (
+                        <motion.button
+                          className={`btn ${enough ? 'btn-warning' : 'btn-secondary'} btn-canje`}
+                          disabled={!enough || isLoading}
+                          onClick={() => handleRedeem(p)}
+                          aria-disabled={!enough}
+                          whileHover={reduceMotion || !enough || isLoading ? {} : { scale: 1.06, y: -2 }}
+                          whileTap={reduceMotion || !enough || isLoading ? {} : { scale: 0.97, y: 0 }}
+                          transition={{ type: 'spring', stiffness: 360, damping: 16 }}
+                        >
+                          {isLoading ? (
+                            <span className="loading-dots" aria-hidden="true">
+                              <span className="dot" />
+                              <span className="dot" />
+                              <span className="dot" />
+                            </span>
+                          ) : (
+                            (enough ? 'Canjear' : 'Puntos insuficientes')
+                          )}
+                        </motion.button>
+                      )}
                     </motion.div>
                   </div>
                 </motion.div>
