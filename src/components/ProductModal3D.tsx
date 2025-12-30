@@ -87,6 +87,27 @@ const ProductModal3D: React.FC<ProductModal3DProps> = ({ producto, onClose, tien
     const [isMobile, setIsMobile] = useState(false);
     const [show3D, setShow3D] = useState(false);
 
+    // Prevenir scroll del body y mantener la posición actual del viewport
+    useEffect(() => {
+        // Guardar la posición actual del scroll
+        const scrollY = window.scrollY;
+
+        // Prevenir scroll en el body
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+
+        // Cleanup: restaurar el scroll cuando se cierra el modal
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollY);
+        };
+    }, []);
+
     useEffect(() => {
         if (tiene3D) {
             // Cargar el script de model-viewer si no está presente

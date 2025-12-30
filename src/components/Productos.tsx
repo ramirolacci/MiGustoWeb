@@ -3,6 +3,8 @@ import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import MobileProductDetail from './MobileProductDetail';
 import NavBar from './NavBar';
+import IngredientExplodedView from './IngredientExplodedView';
+import { explodedProductConfigs } from '../data/explodedViewConfig';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { flyToCart } from '../utils/flyToCart';
@@ -210,7 +212,7 @@ export default function Productos() {
     useEffect(() => {
         const initScrollReveal = async () => {
             const ScrollReveal = (await import('scrollreveal')).default;
-            
+
             scrollRevealRef.current = ScrollReveal({
                 distance: '20px',
                 duration: 1000,
@@ -352,7 +354,7 @@ export default function Productos() {
                                     className="mobile-search-input"
                                 />
                                 {busqueda && (
-                                    <button 
+                                    <button
                                         className="clear-search-btn"
                                         onClick={() => setBusqueda('')}
                                     >
@@ -365,7 +367,7 @@ export default function Productos() {
                             </div>
                         </div>
                     )}
-                    
+
                     {/* Contenedor de categorías con scroll horizontal */}
                     <div className="categories-container">
                         <div className="categories-scroll">
@@ -386,8 +388,8 @@ export default function Productos() {
                                     if (category.key === 'Clasicas') return filtro === 'Empanadas' && tipoProducto === 'Clasicas';
                                     return filtro === category.key;
                                 })();
-                                
-                                        return (
+
+                                return (
                                     <button
                                         key={category.key}
                                         className={`category-chip ${isActive ? 'active' : ''} ${category.key === 'Promociones' ? 'promociones-chip' : ''} ${category.key === 'Carta' ? 'carta-chip' : ''} ${category.key === 'Premium' ? 'premium-chip' : ''} ${category.key === 'Clasicas' ? 'clasicas-chip' : ''} ${category.key === 'Pizzas' ? 'pizzas-chip' : ''} ${category.key === 'Pizzas INDI' ? 'pizzas-indi-chip' : ''} ${category.key === 'Fitzzas' ? 'fitzzas-chip' : ''}`}
@@ -471,131 +473,131 @@ export default function Productos() {
                                     key={prod.titulo + '-' + prod.categoria}
                                     onClick={() => setProductoSeleccionado(prod)}
                                     data-categoria={filtro}
-                                    style={{ position: 'relative', '--card-index': idx } as React.CSSProperties }
+                                    style={{ position: 'relative', '--card-index': idx } as React.CSSProperties}
                                 >
                                     {/* Ícono 3D eliminado por requerimiento */}
                                     {/* Renderizado estándar para todas las cards, incluyendo Big burger */}
-                                        <>
-                                            <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} />
-                                            <div className="producto-info">
-                                                <h3
-                                                    className="titulo-card-desktop"
-                                                    style={{
-                                                        fontSize: ([
-                                                            'Jamón, Tomate, Huevo, Roquefort',
-                                                            'Jamón, tomate, huevo y roquefort',
-                                                            'Jamón crudo, rúcula y stracciatella INDI',
-                                                            'Mortadela, pistacho y stracciatella INDI',
-                                                            'Fitzza mortadela, pistacho y stracciatella',
-                                                            'Fitzza jamón crudo, rúcula y stracciatella',
-                                                            'Fitzza Jamón crudo, rúcula y stracciatella'
-                                                        ].includes(prod.titulo)
-                                                            ? '1.45rem'
-                                                            : (prod.titulo.length > 28 ? (prod.titulo.length > 38 ? '1.05rem' : '1.18rem') : '1.45rem')),
-                                                        fontWeight: 600,
-                                                        margin: '-1.3rem 0 0.4rem 0',
-                                                        letterSpacing: '0.03em',
-                                                        lineHeight: 1.18,
-                                                        textAlign: 'center',
-                                                        textShadow: 'rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px',
-                                                        padding: '0.18em 0.1em',
-                                                        borderRadius: '12px',
-                                                        position: 'relative',
-                                                        overflow: 'hidden',
-                                                        background: 'transparent',
-                                                        backgroundClip: 'text',
-                                                        WebkitBackgroundClip: 'text',
-                                                        WebkitTextFillColor: 'transparent',
-                                                        backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
-                                                        animation: 'brilloTituloCard 2.5s linear infinite',
-                                                        whiteSpace: 'nowrap',
-                                                        textOverflow: 'ellipsis',
-                                                        display: 'block',
-                                                        maxWidth: '100%',
-                                                    }}
-                                                    title={prod.titulo}
-                                                >
-                                                    {prod.titulo}
-                                                </h3>
-                                                {/* Descripción e ingredientes debajo del título */}
-                                                {prod.descripcion && (() => {
-                                                    // Cards especiales a corregir
-                                                    const especiales = [
-                                                        'Carne con aceituna',
-                                                        'Pollo',
-                                                        'Verdura'
-                                                    ];
-                                                    // Cards que necesitan mostrar bien el segundo renglón
-                                                    const mostrarDosRenglones = [
+                                    <>
+                                        <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} />
+                                        <div className="producto-info">
+                                            <h3
+                                                className="titulo-card-desktop"
+                                                style={{
+                                                    fontSize: ([
                                                         'Jamón, Tomate, Huevo, Roquefort',
-                                                        'Provolone, Jamón y Longaniza',
-                                                        'Provolone, Jamón y Morrón'
-                                                    ];
-                                                    if (especiales.includes(prod.titulo)) {
-                                                        return (
-                                                            <p style={{
-                                                                color: '#fff',
-                                                                fontSize: '1rem',
-                                                                margin: '0 0 0.3rem 0',
-                                                                textAlign: 'left',
-                                                                opacity: 0.85,
-                                                                lineHeight: 1.4,
-                                                                fontWeight: 400,
-                                                                display: '-webkit-box',
-                                                                WebkitLineClamp: 2,
-                                                                WebkitBoxOrient: 'vertical',
-                                                                overflow: 'hidden',
-                                                                textOverflow: 'ellipsis',
-                                                                maxHeight: '2.8em',
-                                                            }}>{prod.descripcion}</p>
-                                                        );
-                                                    }
-                                                    if (mostrarDosRenglones.includes(prod.titulo)) {
-                                                        return (
-                                                            <p style={{
-                                                                color: '#fff',
-                                                                fontSize: '0.93rem',
-                                                                margin: '0 0 0.3rem 0',
-                                                                textAlign: 'left',
-                                                                opacity: 0.85,
-                                                                lineHeight: 1.35,
-                                                                fontWeight: 400,
-                                                                display: '-webkit-box',
-                                                                WebkitLineClamp: 2,
-                                                                WebkitBoxOrient: 'vertical',
-                                                                overflow: 'hidden',
-                                                                textOverflow: 'ellipsis',
-                                                                maxHeight: '2.7em',
-                                                            }}>{prod.descripcion}</p>
-                                                        );
-                                                    }
-                                                    // Resto de las cards
+                                                        'Jamón, tomate, huevo y roquefort',
+                                                        'Jamón crudo, rúcula y stracciatella INDI',
+                                                        'Mortadela, pistacho y stracciatella INDI',
+                                                        'Fitzza mortadela, pistacho y stracciatella',
+                                                        'Fitzza jamón crudo, rúcula y stracciatella',
+                                                        'Fitzza Jamón crudo, rúcula y stracciatella'
+                                                    ].includes(prod.titulo)
+                                                        ? '1.45rem'
+                                                        : (prod.titulo.length > 28 ? (prod.titulo.length > 38 ? '1.05rem' : '1.18rem') : '1.45rem')),
+                                                    fontWeight: 600,
+                                                    margin: '-1.3rem 0 0.4rem 0',
+                                                    letterSpacing: '0.03em',
+                                                    lineHeight: 1.18,
+                                                    textAlign: 'center',
+                                                    textShadow: 'rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px',
+                                                    padding: '0.18em 0.1em',
+                                                    borderRadius: '12px',
+                                                    position: 'relative',
+                                                    overflow: 'hidden',
+                                                    background: 'transparent',
+                                                    backgroundClip: 'text',
+                                                    WebkitBackgroundClip: 'text',
+                                                    WebkitTextFillColor: 'transparent',
+                                                    backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
+                                                    animation: 'brilloTituloCard 2.5s linear infinite',
+                                                    whiteSpace: 'nowrap',
+                                                    textOverflow: 'ellipsis',
+                                                    display: 'block',
+                                                    maxWidth: '100%',
+                                                }}
+                                                title={prod.titulo}
+                                            >
+                                                {prod.titulo}
+                                            </h3>
+                                            {/* Descripción e ingredientes debajo del título */}
+                                            {prod.descripcion && (() => {
+                                                // Cards especiales a corregir
+                                                const especiales = [
+                                                    'Carne con aceituna',
+                                                    'Pollo',
+                                                    'Verdura'
+                                                ];
+                                                // Cards que necesitan mostrar bien el segundo renglón
+                                                const mostrarDosRenglones = [
+                                                    'Jamón, Tomate, Huevo, Roquefort',
+                                                    'Provolone, Jamón y Longaniza',
+                                                    'Provolone, Jamón y Morrón'
+                                                ];
+                                                if (especiales.includes(prod.titulo)) {
                                                     return (
-                                                        <>
-                                                            <p style={{
-                                                                color: '#fff',
-                                                                fontSize: '1rem',
-                                                                margin: '0 0 0.3rem 0',
-                                                                textAlign: 'left',
-                                                                opacity: 0.85,
-                                                                lineHeight: 1.4,
-                                                                fontWeight: 400,
-                                                                display: '-webkit-box',
-                                                                WebkitLineClamp: 2,
-                                                                WebkitBoxOrient: 'vertical',
-                                                                overflow: 'hidden',
-                                                                textOverflow: 'ellipsis',
-                                                                maxHeight: '2.8em',
-                                                            }}>{prod.descripcion}</p>
-                                                            {prod.ingredientes && prod.ingredientes.length > 0 && ![
-                                                                'Cuatro Quesos',
-                                                                'Cuatro quesos',
-                                                                'Pollo al champignon',
-                                                                'Choclo',
-                                                                'Calabaza',
-                                                                'Panceta y Ciruela',
-                                                                'Panceta y ciruela'
-                                                            ].includes(prod.titulo) && (
+                                                        <p style={{
+                                                            color: '#fff',
+                                                            fontSize: '1rem',
+                                                            margin: '0 0 0.3rem 0',
+                                                            textAlign: 'left',
+                                                            opacity: 0.85,
+                                                            lineHeight: 1.4,
+                                                            fontWeight: 400,
+                                                            display: '-webkit-box',
+                                                            WebkitLineClamp: 2,
+                                                            WebkitBoxOrient: 'vertical',
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            maxHeight: '2.8em',
+                                                        }}>{prod.descripcion}</p>
+                                                    );
+                                                }
+                                                if (mostrarDosRenglones.includes(prod.titulo)) {
+                                                    return (
+                                                        <p style={{
+                                                            color: '#fff',
+                                                            fontSize: '0.93rem',
+                                                            margin: '0 0 0.3rem 0',
+                                                            textAlign: 'left',
+                                                            opacity: 0.85,
+                                                            lineHeight: 1.35,
+                                                            fontWeight: 400,
+                                                            display: '-webkit-box',
+                                                            WebkitLineClamp: 2,
+                                                            WebkitBoxOrient: 'vertical',
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            maxHeight: '2.7em',
+                                                        }}>{prod.descripcion}</p>
+                                                    );
+                                                }
+                                                // Resto de las cards
+                                                return (
+                                                    <>
+                                                        <p style={{
+                                                            color: '#fff',
+                                                            fontSize: '1rem',
+                                                            margin: '0 0 0.3rem 0',
+                                                            textAlign: 'left',
+                                                            opacity: 0.85,
+                                                            lineHeight: 1.4,
+                                                            fontWeight: 400,
+                                                            display: '-webkit-box',
+                                                            WebkitLineClamp: 2,
+                                                            WebkitBoxOrient: 'vertical',
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            maxHeight: '2.8em',
+                                                        }}>{prod.descripcion}</p>
+                                                        {prod.ingredientes && prod.ingredientes.length > 0 && ![
+                                                            'Cuatro Quesos',
+                                                            'Cuatro quesos',
+                                                            'Pollo al champignon',
+                                                            'Choclo',
+                                                            'Calabaza',
+                                                            'Panceta y Ciruela',
+                                                            'Panceta y ciruela'
+                                                        ].includes(prod.titulo) && (
                                                                 <p style={{
                                                                     color: '#FFD700',
                                                                     fontSize: '0.98rem',
@@ -614,20 +616,20 @@ export default function Productos() {
                                                                     {prod.ingredientes.join(', ')}
                                                                 </p>
                                                             )}
-                                                        </>
-                                                    );
-                                                })()}
-                                                <div style={{
-                                                    width: '80%',
-                                                    height: '0.7em',
-                                                    margin: '-0.3em auto 0 auto',
-                                                    background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.01) 100%)',
-                                                    opacity: 0.7,
-                                                    borderRadius: '50%',
-                                                    filter: 'blur(2.5px)',
-                                                }}></div>
-                                                {/* Botón sutil con ícono (overlay) - oculto temporalmente */}
-                                                {/**
+                                                    </>
+                                                );
+                                            })()}
+                                            <div style={{
+                                                width: '80%',
+                                                height: '0.7em',
+                                                margin: '-0.3em auto 0 auto',
+                                                background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.01) 100%)',
+                                                opacity: 0.7,
+                                                borderRadius: '50%',
+                                                filter: 'blur(2.5px)',
+                                            }}></div>
+                                            {/* Botón sutil con ícono (overlay) - oculto temporalmente */}
+                                            {/**
                                                 <button
                                                     aria-label="Agregar al carrito"
                                                     onClick={(e) => {
@@ -702,26 +704,35 @@ export default function Productos() {
                                                     <span className="fa fa-cart-plus" style={{ fontSize: 18 }} />
                                                 </button>
                                                 **/}
-                                            </div>
-                                        </>
+                                        </div>
+                                    </>
                                 </div>
                             );
                         })
                     )}
                 </div>
 
-                {productoSeleccionado && !isMobile && (
-                    <ProductModal3D
-                        producto={productoSeleccionado}
-                        onClose={() => setProductoSeleccionado(null)}
-                        tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
-                    />
-                )}
-                {productoSeleccionado && isMobile && (
-                    <MobileProductDetail
-                        producto={productoSeleccionado}
+                {productoSeleccionado && explodedProductConfigs[productoSeleccionado.titulo] ? (
+                    <IngredientExplodedView
+                        config={explodedProductConfigs[productoSeleccionado.titulo]}
                         onClose={() => setProductoSeleccionado(null)}
                     />
+                ) : (
+                    <>
+                        {productoSeleccionado && !isMobile && (
+                            <ProductModal3D
+                                producto={productoSeleccionado}
+                                onClose={() => setProductoSeleccionado(null)}
+                                tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
+                            />
+                        )}
+                        {productoSeleccionado && isMobile && (
+                            <MobileProductDetail
+                                producto={productoSeleccionado}
+                                onClose={() => setProductoSeleccionado(null)}
+                            />
+                        )}
+                    </>
                 )}
 
                 {showPrecioModal && (
