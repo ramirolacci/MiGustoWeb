@@ -96,7 +96,7 @@ const AppContent: React.FC = () => {
                 <Route path="/exploded-test" element={
                   <>
                     <Productos />
-                    <IngredientExplodedView onClose={() => { }} />
+                    {/* IngredientExplodedView ahora requiere config, se usa desde Productos */}
                   </>
                 } />
               </Routes>

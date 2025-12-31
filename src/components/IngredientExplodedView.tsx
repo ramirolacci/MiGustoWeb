@@ -80,8 +80,10 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
         
         // Verificar que los elementos necesarios existan
         const hasImage = imageRef.current && !show3D;
-        const hasLines = svgRef.current?.querySelectorAll('path')?.length > 0;
-        const hasLabels = labelsRef.current?.children?.length > 0;
+        const lines = svgRef.current?.querySelectorAll('path');
+        const hasLines = lines && lines.length > 0;
+        const labels = labelsRef.current?.children;
+        const hasLabels = labels && labels.length > 0;
         
         if (!hasImage && !hasLines && !hasLabels) return;
 
