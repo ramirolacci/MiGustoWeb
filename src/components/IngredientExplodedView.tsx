@@ -75,7 +75,15 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
 
     // Animation Sequence
     useEffect(() => {
-        if (!svgRef.current || !labelsRef.current || (!imageRef.current && !show3D)) return;
+        // Esperar a que los elementos estén renderizados
+        if (!containerRef.current || dimensions.width === 0) return;
+        
+        // Verificar que los elementos necesarios existan
+        const hasImage = imageRef.current && !show3D;
+        const hasLines = svgRef.current?.querySelectorAll('path')?.length > 0;
+        const hasLabels = labelsRef.current?.children?.length > 0;
+        
+        if (!hasImage && !hasLines && !hasLabels) return;
 
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -117,7 +125,7 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
             }
 
             const lines = svgRef.current?.querySelectorAll('path');
-            if (lines) {
+            if (lines && lines.length > 0) {
                 tl.fromTo(lines,
                     { strokeDasharray: 500, strokeDashoffset: 500, opacity: 0 },
                     { strokeDashoffset: 0, opacity: 1, duration: 0.6, stagger: 0.05 },
@@ -126,7 +134,7 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
             }
 
             const labels = labelsRef.current?.children;
-            if (labels) {
+            if (labels && labels.length > 0) {
                 tl.fromTo(labels,
                     { y: 20, opacity: 0, scale: 0.8 },
                     { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.05 },
@@ -215,7 +223,23 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                     let lineEndDistance = distance;
                     if (!isMobile && activeAlign === 'left') {
                         // Desktop Left align tweaks
-                        if (ing.id === 1 || ing.id === 4 || ing.id === 5) {
+                        // Para "Big burger", "Doble bacon" (id: 3) necesita estar más cerca
+                        if (config.name === 'Big burger' && ing.id === 3) {
+                            lineEndDistance = distance * 0.7;
+                        } 
+                        // Para "Mexican pibil pork", "Achiote con porotos negros" (id: 2) necesita estar más cerca
+                        else if (config.name === 'Mexican pibil pork' && ing.id === 2) {
+                            lineEndDistance = distance * 0.7;
+                        }
+                        // Para "Vacio y provoleta", "Morrón salteado a fuego lento" (id: 3) necesita estar más cerca
+                        else if (config.name === 'Vacio y provoleta' && ing.id === 3) {
+                            lineEndDistance = distance * 0.7;
+                        }
+                        // Para "American chicken", "Mar de cheddar" (id: 3) necesita estar más cerca
+                        else if (config.name === 'American chicken' && ing.id === 3) {
+                            lineEndDistance = distance * 0.7;
+                        }
+                        else if (ing.id === 1 || ing.id === 4 || ing.id === 5) {
                             lineEndDistance = distance * 0.7;
                         } else {
                             lineEndDistance = distance * 0.8;
@@ -280,7 +304,23 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                     if (!isMobile) {
                         let lineEndDistance = distance;
                         if (activeAlign === 'left') {
-                            if (ing.id === 1 || ing.id === 4 || ing.id === 5) {
+                            // Para "Big burger", "Doble bacon" (id: 3) necesita estar más cerca
+                            if (config.name === 'Big burger' && ing.id === 3) {
+                                lineEndDistance = distance * 0.7;
+                            } 
+                            // Para "Mexican pibil pork", "Achiote con porotos negros" (id: 2) necesita estar más cerca
+                            else if (config.name === 'Mexican pibil pork' && ing.id === 2) {
+                                lineEndDistance = distance * 0.7;
+                            }
+                            // Para "Vacio y provoleta", "Morrón salteado a fuego lento" (id: 3) necesita estar más cerca
+                            else if (config.name === 'Vacio y provoleta' && ing.id === 3) {
+                                lineEndDistance = distance * 0.7;
+                            }
+                            // Para "American chicken", "Mar de cheddar" (id: 3) necesita estar más cerca
+                            else if (config.name === 'American chicken' && ing.id === 3) {
+                                lineEndDistance = distance * 0.7;
+                            }
+                            else if (ing.id === 1 || ing.id === 4 || ing.id === 5) {
                                 lineEndDistance = distance * 0.7;
                             } else {
                                 lineEndDistance = distance * 0.8;

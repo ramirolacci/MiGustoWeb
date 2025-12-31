@@ -95,6 +95,8 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    white-space: pre-line;
+    /* Permite que los saltos de línea (\n) se muestren correctamente */
 }
 
 .iev-label-underline {
