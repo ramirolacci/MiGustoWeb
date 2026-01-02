@@ -169,6 +169,18 @@
         /* removed fixed max-width, controlled by JS width or natural flow */
     }
 
+    .iev-label-item {
+        max-width: 40vw;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .iev-label-text {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
     .iev-close-btn {
         width: 45px;
         height: 45px;

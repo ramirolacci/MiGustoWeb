@@ -38,13 +38,13 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         name: 'Mexican pibil pork',
         image: '/images/final/empanada-mexican-pibil-pork.png',
         modelUrl: '/models/mexican-pibil-pork-3D.glb',
-        cameraOrbit: '0deg 75deg 3m',
+        cameraOrbit: '55deg 35deg 3m',
         ingredients: [
-            { id: 1, name: 'Bondiola de cerdo\nde larga coccion', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Achiote con\nporotos negros', x: 15, y: 60, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 3, name: 'Crema acida', x: 75, y: 25, align: 'right', mobileX: 80, mobileY: 20, mobileAlign: 'right' },
-            { id: 4, name: 'Cebolla encurtida', x: 75, y: 50, align: 'right', mobileX: 80, mobileY: 50, mobileAlign: 'right' },
-            { id: 5, name: 'Cilantro', x: 75, y: 75, align: 'right', mobileX: 80, mobileY: 80, mobileAlign: 'right' },
+            { id: 1, name: 'Bondiola de cerdo\nde larga coccion', x: 15, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: 'Achiote con\nporotos negros', x: 15, y: 60, align: 'left', mobileX: 30, mobileY: 80, mobileAlign: 'left' },
+            { id: 3, name: 'Crema acida', x: 75, y: 25, align: 'right', mobileX: 70, mobileY: 20, mobileAlign: 'right' },
+            { id: 4, name: 'Cebolla encurtida', x: 75, y: 50, align: 'right', mobileX: 70, mobileY: 65, mobileAlign: 'right' },
+            { id: 5, name: 'Cilantro', x: 75, y: 75, align: 'right', mobileX: 70, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'Big burger': {
@@ -52,14 +52,14 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         name: 'Big burger',
         image: '/images/final/empanada-big-burger.png',
         modelUrl: '/models/big-burger-3D.glb',
-        cameraOrbit: '45deg 65deg 1.7m', // Copying from copy local in Productos.tsx
+        cameraOrbit: '50deg 65deg 3m',
         ingredients: [
-            { id: 1, name: 'Blend de\nojo de bife', x: 15, y: 20, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
+            { id: 1, name: 'Blend de\nojo de bife', x: 28, y: 20, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
             { id: 2, name: 'Tapa de asado', x: 15, y: 50, align: 'left', mobileX: 20, mobileY: 50, mobileAlign: 'left' },
             { id: 3, name: 'Doble bacon', x: 15, y: 80, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 4, name: 'Cheddar', x: 75, y: 30, align: 'right', mobileX: 80, mobileY: 30, mobileAlign: 'right' },
-            { id: 5, name: 'Pepinillos', x: 75, y: 55, align: 'right', mobileX: 80, mobileY: 55, mobileAlign: 'right' },
-            { id: 6, name: 'Salsa Big', x: 75, y: 80, align: 'right', mobileX: 80, mobileY: 80, mobileAlign: 'right' },
+            { id: 4, name: 'Pepinillos', x: 75, y: 10, align: 'right', mobileX: 80, mobileY: 30, mobileAlign: 'right' },
+            { id: 5, name: 'Cheddar', x: 75, y: 65, align: 'right', mobileX: 80, mobileY: 55, mobileAlign: 'right' },
+            { id: 6, name: 'Salsa Big', x: 75, y: 88, align: 'right', mobileX: 80, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'Matambre a la pizza': {

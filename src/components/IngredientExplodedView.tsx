@@ -30,7 +30,7 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
     useEffect(() => {
         // Guardar la posición actual del scroll
         const scrollY = window.scrollY;
-        
+
         // Prevenir scroll en el body mientras el modal está abierto
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
@@ -77,21 +77,21 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
     useEffect(() => {
         // Esperar a que los elementos estén renderizados
         if (!containerRef.current || dimensions.width === 0) return;
-        
+
         // Verificar que los elementos necesarios existan
         const hasImage = imageRef.current && !show3D;
         const lines = svgRef.current?.querySelectorAll('path');
         const hasLines = lines && lines.length > 0;
         const labels = labelsRef.current?.children;
         const hasLabels = labels && labels.length > 0;
-        
+
         if (!hasImage && !hasLines && !hasLabels) return;
 
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
+            // 1. Initial Image Animation (Common to both)
             if (imageRef.current && !show3D) {
-                // Animación dramática para la imagen
                 tl.fromTo(imageRef.current,
                     {
                         scale: 0.3,
@@ -127,22 +127,66 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
             }
 
             const lines = svgRef.current?.querySelectorAll('path');
-            if (lines && lines.length > 0) {
-                tl.fromTo(lines,
-                    { strokeDasharray: 500, strokeDashoffset: 500, opacity: 0 },
-                    { strokeDashoffset: 0, opacity: 1, duration: 0.6, stagger: 0.05 },
-                    show3D ? 0 : 0.5
-                );
+            const circles = svgRef.current?.querySelectorAll('circle');
+            const labels = labelsRef.current?.children;
+
+            if (isMobile) {
+                // --- MOBILE ANIMATION (Sequential & Slower) ---
+                if (lines && lines.length > 0 && labels && labels.length > 0) {
+                    // Start after image animation or immediately if 3D
+                    const startDelay = show3D ? 0.2 : 0;
+
+                    // Iterate through each ingredient to create a sequence
+                    lines.forEach((line, i) => {
+                        const label = labels[i];
+                        const circle = circles ? circles[i] : null;
+
+                        // 1. Draw Line (Very Fast)
+                        tl.fromTo(line,
+                            { strokeDasharray: 600, strokeDashoffset: 600, opacity: 0 },
+                            { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: 'power2.out' },
+                            i === 0 ? 0.1 : ">-0.25" // Start immediately at 0.1s (parallel to image), then chain
+                        );
+
+                        // 1b. Show Circle (Pop in when line done)
+                        if (circle) {
+                            tl.fromTo(circle,
+                                { scale: 0, opacity: 0 },
+                                { scale: 1, opacity: 1, duration: 0.2, ease: 'back.out(2)' },
+                                ">-0.1"
+                            );
+                        }
+
+                        // 2. Fade in Label (Snap in)
+                        if (label) {
+                            tl.fromTo(label,
+                                { y: 10, opacity: 0, scale: 0.95 },
+                                { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' },
+                                "<"
+                            );
+                        }
+                    });
+                }
+
+            } else {
+                // --- DESKTOP ANIMATION (Original / Staggered) ---
+                if (lines && lines.length > 0) {
+                    tl.fromTo(lines,
+                        { strokeDasharray: 500, strokeDashoffset: 500, opacity: 0 },
+                        { strokeDashoffset: 0, opacity: 1, duration: 0.6, stagger: 0.05 },
+                        show3D ? 0 : 0.5
+                    );
+                }
+
+                if (labels && labels.length > 0) {
+                    tl.fromTo(labels,
+                        { y: 20, opacity: 0, scale: 0.8 },
+                        { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.05 },
+                        "<" // Labels start with lines
+                    );
+                }
             }
 
-            const labels = labelsRef.current?.children;
-            if (labels && labels.length > 0) {
-                tl.fromTo(labels,
-                    { y: 20, opacity: 0, scale: 0.8 },
-                    { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.05 },
-                    "<"
-                );
-            }
         }, containerRef);
 
         return () => ctx.revert();
@@ -228,7 +272,7 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                         // Para "Big burger", "Doble bacon" (id: 3) necesita estar más cerca
                         if (config.name === 'Big burger' && ing.id === 3) {
                             lineEndDistance = distance * 0.7;
-                        } 
+                        }
                         // Para "Mexican pibil pork", "Achiote con porotos negros" (id: 2) necesita estar más cerca
                         else if (config.name === 'Mexican pibil pork' && ing.id === 2) {
                             lineEndDistance = distance * 0.7;
@@ -309,7 +353,7 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                             // Para "Big burger", "Doble bacon" (id: 3) necesita estar más cerca
                             if (config.name === 'Big burger' && ing.id === 3) {
                                 lineEndDistance = distance * 0.7;
-                            } 
+                            }
                             // Para "Mexican pibil pork", "Achiote con porotos negros" (id: 2) necesita estar más cerca
                             else if (config.name === 'Mexican pibil pork' && ing.id === 2) {
                                 lineEndDistance = distance * 0.7;
@@ -347,16 +391,54 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                         transform: 'translate(-50%, -50%)',
                     };
 
-                    if (activeAlign === 'left') {
-                        commonStyle.transform = 'translate(-100%, -50%)';
-                        commonStyle.textAlign = 'right';
-                    } else if (activeAlign === 'right') {
-                        commonStyle.transform = 'translate(0%, -50%)';
-                        commonStyle.textAlign = 'left';
-                    } else if (activeAlign === 'center') {
-                        commonStyle.transform = 'translate(-50%, -50%)';
-                        commonStyle.textAlign = 'center';
-                        commonStyle.width = '200px';
+                    // En móvil, ajustar las posiciones para evitar que se salgan del contenedor
+                    if (isMobile) {
+                        let finalXPercent = labelXPercent;
+
+                        // Ajustar posición si está muy cerca de los bordes
+                        if (activeAlign === 'left' && labelXPercent < 30) {
+                            finalXPercent = 30;
+                            commonStyle.left = `${finalXPercent}%`;
+                        } else if (activeAlign === 'right' && labelXPercent > 70) {
+                            finalXPercent = 70;
+                            commonStyle.left = `${finalXPercent}%`;
+                        }
+
+                        // Calcular el ancho máximo disponible basado en la posición final
+                        const leftPixels = (finalXPercent / 100) * dimensions.width;
+                        const rightPixels = dimensions.width - leftPixels;
+
+                        if (activeAlign === 'left') {
+                            // Para left align, asegurar que no se salga por la izquierda
+                            const maxWidth = Math.min(leftPixels - 15, dimensions.width * 0.35);
+                            commonStyle.maxWidth = `${maxWidth}px`;
+                            commonStyle.transform = 'translate(-100%, -50%)';
+                            commonStyle.textAlign = 'right';
+                        } else if (activeAlign === 'right') {
+                            // Para right align, asegurar que no se salga por la derecha
+                            const maxWidth = Math.min(rightPixels - 15, dimensions.width * 0.35);
+                            commonStyle.maxWidth = `${maxWidth}px`;
+                            commonStyle.transform = 'translate(0%, -50%)';
+                            commonStyle.textAlign = 'left';
+                        } else if (activeAlign === 'center') {
+                            const maxWidth = Math.min(dimensions.width * 0.5, 200);
+                            commonStyle.maxWidth = `${maxWidth}px`;
+                            commonStyle.transform = 'translate(-50%, -50%)';
+                            commonStyle.textAlign = 'center';
+                        }
+                    } else {
+                        // Desktop mantiene el comportamiento original
+                        if (activeAlign === 'left') {
+                            commonStyle.transform = 'translate(-100%, -50%)';
+                            commonStyle.textAlign = 'right';
+                        } else if (activeAlign === 'right') {
+                            commonStyle.transform = 'translate(0%, -50%)';
+                            commonStyle.textAlign = 'left';
+                        } else if (activeAlign === 'center') {
+                            commonStyle.transform = 'translate(-50%, -50%)';
+                            commonStyle.textAlign = 'center';
+                            commonStyle.width = '200px';
+                        }
                     }
 
                     return (
@@ -368,8 +450,8 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                                 }} >{ing.name}</span>
                                 <div className="iev-label-underline" style={{
                                     width: '100%',
-                                    marginRight: activeAlign === 'left' ? '-20px' : 0,
-                                    marginLeft: activeAlign === 'right' ? '-20px' : 0
+                                    marginRight: activeAlign === 'left' ? '5px' : 0,
+                                    marginLeft: activeAlign === 'right' ? '5px' : 0
                                 }}></div>
                             </div>
                         </div>
