@@ -54,12 +54,12 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/big-burger-3D.glb',
         cameraOrbit: '50deg 65deg 3m',
         ingredients: [
-            { id: 1, name: 'Blend de\nojo de bife', x: 28, y: 20, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Tapa de asado', x: 15, y: 50, align: 'left', mobileX: 20, mobileY: 50, mobileAlign: 'left' },
+            { id: 1, name: 'Blend de\nojo de bife', x: 28, y: 20, align: 'left', mobileX: 10, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: 'Tapa de asado', x: 15, y: 50, align: 'left', mobileX: 65, mobileY: 30, mobileAlign: 'left' },
             { id: 3, name: 'Doble bacon', x: 15, y: 80, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 4, name: 'Pepinillos', x: 75, y: 10, align: 'right', mobileX: 80, mobileY: 30, mobileAlign: 'right' },
-            { id: 5, name: 'Cheddar', x: 75, y: 65, align: 'right', mobileX: 80, mobileY: 55, mobileAlign: 'right' },
-            { id: 6, name: 'Salsa Big', x: 75, y: 88, align: 'right', mobileX: 80, mobileY: 80, mobileAlign: 'right' },
+            { id: 4, name: 'Pepinillos', x: 75, y: 10, align: 'right', mobileX: 80, mobileY: 25, mobileAlign: 'right' },
+            { id: 5, name: 'Cheddar', x: 75, y: 65, align: 'right', mobileX: 80, mobileY: 65, mobileAlign: 'right' },
+            { id: 6, name: 'Salsa Big', x: 75, y: 88, align: 'right', mobileX: 75, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'Matambre a la pizza': {

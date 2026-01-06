@@ -267,7 +267,15 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     let lineEndDistance = distance;
-                    if (!isMobile && activeAlign === 'left') {
+                    if (isMobile) {
+                        // Shorten line by 20px generally
+                        let reduction = 20;
+                        // Special case for Big Burger Tapa de Asado (ID 2) to be even shorter
+                        if (config.name === 'Big burger' && ing.id === 2) {
+                            reduction = 45;
+                        }
+                        lineEndDistance = Math.max(0, distance - reduction);
+                    } else if (!isMobile && activeAlign === 'left') {
                         // Desktop Left align tweaks
                         // Para "Big burger", "Doble bacon" (id: 3) necesita estar más cerca
                         if (config.name === 'Big burger' && ing.id === 3) {
