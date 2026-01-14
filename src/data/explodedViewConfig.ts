@@ -627,5 +627,174 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
             { id: 1, name: 'Mozzarella', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
             { id: 2, name: 'Salsa artesanal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
         ]
+    },
+    // FITZZAS
+    'Fitzza muzza_FITZZA': {
+        id: 'fitzza-muzza-001',
+        name: 'Fitzza muzza',
+        image: 'https://i.postimg.cc/KvKVWLM2/769c023c-aad2-4695-8e4a-44620a373397-Photoroom.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Salsa de tomate\nartesanal', x: 20, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Mozzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Fitzza napo_FITZZA': {
+        id: 'fitzza-napo-001',
+        name: 'Fitzza napo',
+        image: 'https://i.postimg.cc/3rP5Yn7R/efd484b6-e5ca-4658-ae8c-3ecd2671d758-Photoroom.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Rodajas de tomate', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa provenzal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Fitzza fugazzetta_FITZZA': {
+        id: 'fitzza-fugazzetta-001',
+        name: 'Fitzza fugazzetta',
+        image: 'https://i.postimg.cc/Z5bfSd9n/363935fe-487b-40e2-8978-728ffa5f65f0-Photoroom.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Cebolla blanca', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Provolone', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Fitzza pepperoni_FITZZA': {
+        id: 'fitzza-pepperoni-001',
+        name: 'Fitzza pepperoni',
+        image: 'https://i.postimg.cc/zG4Rjm1N/eb57bd40-3872-458a-b926-903db25dd94a-Photoroom.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Mozzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Fitzza mortadela, pistacho y stracciatella_FITZZA': {
+        id: 'fitzza-mortadela-pistacho-001',
+        name: 'Fitzza mortadela, pistacho y stracciatella',
+        image: 'https://i.postimg.cc/sgW23vtF/890ba29d-3b08-4651-b10f-dc3f6462b940-Photoroom.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Pistachos', x: 75, y: 30, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
+            { id: 3, name: 'Stracciatella', x: 50, y: 70, align: 'center', mobileX: 50, mobileY: 70, mobileAlign: 'center' },
+        ]
+    },
+    'Fitzza Jamón crudo, rúcula y stracciatella_FITZZA': {
+        id: 'fitzza-crudo-rucula-001',
+        name: 'Fitzza Jamón crudo, rúcula y stracciatella',
+        image: 'https://i.postimg.cc/RZwvj2H4/e4d0be75-1e7a-422e-802d-bded742f4e53-Photoroom.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Jamón crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Rúcula fresca', x: 75, y: 30, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
+            { id: 3, name: 'Stracciatella', x: 50, y: 70, align: 'center', mobileX: 50, mobileY: 70, mobileAlign: 'center' },
+        ]
+    },
+    // ADEREZOS
+    'Crema de ajo_ADEREZO': {
+        id: 'aderezo-crema-ajo-001',
+        name: 'Crema de ajo',
+        image: 'https://i.postimg.cc/VsBz44M9/Crema-de-Ajo.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Ajo suave', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Crema', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'American ketchup_ADEREZO': {
+        id: 'aderezo-ketchup-001',
+        name: 'American ketchup',
+        image: 'https://i.postimg.cc/JzwVLkb7/American-Ketchup.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Tomates maduros', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Especias americanas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'BBQ_ADEREZO': {
+        id: 'aderezo-bbq-001',
+        name: 'BBQ',
+        image: 'https://i.postimg.cc/HL2fXvFj/BBQ.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Toque ahumado', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa barbacoa', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Cheddar_ADEREZO': {
+        id: 'aderezo-cheddar-001',
+        name: 'Cheddar',
+        image: 'https://i.postimg.cc/XNhtfC1K/Cheddar.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Queso cheddar', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Crema suave', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Chimichurri_ADEREZO': {
+        id: 'aderezo-chimi-001',
+        name: 'Chimichurri',
+        image: 'https://i.postimg.cc/7YjGrmsC/Chimichurri.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Perejil y ajo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Aceite y vinagre', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Criolla_ADEREZO': {
+        id: 'aderezo-criolla-001',
+        name: 'Criolla',
+        image: 'https://i.postimg.cc/qvfR5gqy/Criolla.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Cebolla y morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Tomate fresco', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Crema ácida_ADEREZO': {
+        id: 'aderezo-crema-acida-001',
+        name: 'Crema ácida',
+        image: 'https://i.postimg.cc/VsBz44M9/Crema-de-Ajo.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Toque de limón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Crema fresca', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Guacamole_ADEREZO': {
+        id: 'aderezo-guacamole-001',
+        name: 'Guacamole',
+        image: 'https://i.postimg.cc/LXs611QK/Guacamole.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Palta fresca', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Limón y especias', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Picante_ADEREZO': {
+        id: 'aderezo-picante-001',
+        name: 'Picante',
+        image: 'https://i.postimg.cc/CL8MkY71/Picante.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Chiles selectos', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Especias picantes', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
     }
 };

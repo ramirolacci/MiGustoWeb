@@ -709,10 +709,12 @@ export default function Productos() {
                 {(productoSeleccionado && (
                     explodedProductConfigs[productoSeleccionado.titulo] ||
                     explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_INDI']
+                    explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] ||
+                    explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] ||
+                    explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO']
                 )) ? (
                     <IngredientExplodedView
-                        config={explodedProductConfigs[productoSeleccionado.titulo] || explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_INDI']}
+                        config={explodedProductConfigs[productoSeleccionado.titulo] || explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] || explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO']}
                         onClose={() => setProductoSeleccionado(null)}
                         enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
                     />
