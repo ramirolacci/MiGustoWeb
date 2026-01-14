@@ -27,10 +27,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '180deg 100deg 2.9m',
         ingredients: [
             { id: 1, name: 'Salsa bbq', x: 15, y: 25, align: 'left', mobileX: 50, mobileY: 18, mobileAlign: 'center' },
-            { id: 2, name: 'Mar de\ncheddar', x: 75, y: 30, align: 'right', mobileX: 78, mobileY: 28, mobileAlign: 'right' },
-            { id: 3, name: 'Doble bacon', x: 75, y: 65, align: 'right', mobileX: 78, mobileY: 82, mobileAlign: 'left' },
-            { id: 4, name: 'Blend de\nOjo de Bife', x: 15, y: 50, align: 'left', mobileX: 25, mobileY: 30, mobileAlign: 'left' },
-            { id: 5, name: 'Vacio', x: 15, y: 75, align: 'left', mobileX: 35, mobileY: 82, mobileAlign: 'left' },
+            { id: 2, name: 'Mar de\ncheddar', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 28, mobileAlign: 'right' },
+            { id: 3, name: 'Doble bacon', x: 75, y: 65, align: 'right', mobileX: 78, mobileY: 80, mobileAlign: 'left' },
+            { id: 4, name: 'Blend de\nOjo de Bife', x: 15, y: 50, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
+            { id: 5, name: 'Vacio', x: 15, y: 75, align: 'left', mobileX: 35, mobileY: 75, mobileAlign: 'left' },
         ]
     },
     'Mexican pibil pork': {
@@ -41,10 +41,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '55deg 35deg 3m',
         ingredients: [
             { id: 1, name: 'Bondiola de cerdo\nde larga coccion', x: 15, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Achiote con\nporotos negros', x: 15, y: 60, align: 'left', mobileX: 30, mobileY: 80, mobileAlign: 'left' },
+            { id: 2, name: 'Achiote con\nporotos negros', x: 15, y: 60, align: 'left', mobileX: 30, mobileY: 73, mobileAlign: 'left' },
             { id: 3, name: 'Crema acida', x: 75, y: 25, align: 'right', mobileX: 70, mobileY: 20, mobileAlign: 'right' },
-            { id: 4, name: 'Cebolla encurtida', x: 75, y: 50, align: 'right', mobileX: 70, mobileY: 65, mobileAlign: 'right' },
-            { id: 5, name: 'Cilantro', x: 75, y: 75, align: 'right', mobileX: 70, mobileY: 80, mobileAlign: 'right' },
+            { id: 4, name: 'Cebolla encurtida', x: 75, y: 50, align: 'right', mobileX: 74, mobileY: 70, mobileAlign: 'right' },
+            { id: 5, name: 'Cilantro', x: 75, y: 75, align: 'right', mobileX: 48, mobileY: 83, mobileAlign: 'right' },
         ]
     },
     'Big burger': {
@@ -54,12 +54,12 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/big-burger-3D.glb',
         cameraOrbit: '50deg 65deg 3m',
         ingredients: [
-            { id: 1, name: 'Blend de\nojo de bife', x: 28, y: 20, align: 'left', mobileX: 10, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Tapa de asado', x: 15, y: 50, align: 'left', mobileX: 65, mobileY: 30, mobileAlign: 'left' },
-            { id: 3, name: 'Doble bacon', x: 15, y: 80, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 4, name: 'Pepinillos', x: 75, y: 10, align: 'right', mobileX: 80, mobileY: 25, mobileAlign: 'right' },
-            { id: 5, name: 'Cheddar', x: 75, y: 65, align: 'right', mobileX: 80, mobileY: 65, mobileAlign: 'right' },
-            { id: 6, name: 'Salsa Big', x: 75, y: 88, align: 'right', mobileX: 75, mobileY: 80, mobileAlign: 'right' },
+            { id: 1, name: 'Blend de\nojo de bife', x: 28, y: 20, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Tapa de asado', x: 15, y: 50, align: 'left', mobileX: 55, mobileY: 15, mobileAlign: 'left' },
+            { id: 3, name: 'Doble bacon', x: 15, y: 80, align: 'left', mobileX: 27, mobileY: 70, mobileAlign: 'left' },
+            { id: 4, name: 'Pepinillos', x: 75, y: 10, align: 'right', mobileX: 70, mobileY: 30, mobileAlign: 'right' },
+            { id: 5, name: 'Cheddar', x: 75, y: 65, align: 'right', mobileX: 73, mobileY: 67, mobileAlign: 'right' },
+            { id: 6, name: 'Salsa Big', x: 75, y: 88, align: 'right', mobileX: 50, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'Matambre a la pizza': {
@@ -69,11 +69,11 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/Matambre-a-la-Pizza-3D.glb',
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Matambre tierno\nahumado a leña', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Muzzarella', x: 15, y: 50, align: 'left', mobileX: 65, mobileY: 30, mobileAlign: 'left' },
-            { id: 3, name: 'Salsa casera\nde tomate', x: 30, y: 75, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 4, name: 'Gratinado de\nprovolone', x: 75, y: 30, align: 'right', mobileX: 80, mobileY: 30, mobileAlign: 'right' },
-            { id: 5, name: 'Salsa chimichurri', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Matambre tierno\nahumado a leña', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Muzzarella', x: 15, y: 50, align: 'left', mobileX: 60, mobileY: 17, mobileAlign: 'left' },
+            { id: 3, name: 'Salsa casera\nde tomate', x: 30, y: 75, align: 'left', mobileX: 28, mobileY: 75, mobileAlign: 'left' },
+            { id: 4, name: 'Gratinado de\nprovolone', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 30, mobileAlign: 'right' },
+            { id: 5, name: 'Salsa chimichurri', x: 75, y: 70, align: 'right', mobileX: 73, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Vacio y provoleta': {
@@ -146,8 +146,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Salteado de cebolla,\nmorrón, verdeo\ncon huevo duro', x: 15, y: 50, align: 'left', mobileX: 20, mobileY: 50, mobileAlign: 'left' },
-            { id: 3, name: 'Abundantes rodajas\nde aceitunas verdes', x: 75, y: 35, align: 'right', mobileX: 80, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Salteado de cebolla,\nmorrón, verdeo\ncon huevo duro', x: 15, y: 50, align: 'left', mobileX: 35, mobileY: 70, mobileAlign: 'left' },
+            { id: 3, name: 'Abundantes rodajas\nde aceitunas verdes', x: 75, y: 35, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
             { id: 4, name: 'Delicadas especias', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
         ]
     },
@@ -158,9 +158,9 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Carne cuadrada premium\ncon corte a cuchillo\nartesanal', x: 15, y: 35, align: 'left', mobileX: 20, mobileY: 35, mobileAlign: 'left' },
-            { id: 2, name: 'Mix de morrón\ny huevo', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 3, name: 'Toque secreto\nsalteño', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Carne cuadrada premium\ncon corte a cuchillo\nartesanal', x: 15, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Mix de morrón\ny huevo', x: 75, y: 40, align: 'right', mobileX: 60, mobileY: 25, mobileAlign: 'right' },
+            { id: 3, name: 'Toque secreto\nsalteño', x: 75, y: 70, align: 'right', mobileX: 70, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'Carne suave': {
@@ -170,10 +170,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 30, align: 'left', mobileX: 20, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salteado con\ncebolla y morrón', x: 15, y: 60, align: 'left', mobileX: 20, mobileY: 60, mobileAlign: 'left' },
-            { id: 3, name: 'Huevo duro', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 4, name: 'Delicadas especias\nde nuestra tradición', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 30, align: 'left', mobileX: 27, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Salteado con\ncebolla y morrón', x: 15, y: 60, align: 'left', mobileX: 27, mobileY: 75, mobileAlign: 'left' },
+            { id: 3, name: 'Huevo duro', x: 75, y: 40, align: 'right', mobileX: 73, mobileY: 30, mobileAlign: 'right' },
+            { id: 4, name: 'Delicadas especias\nde nuestra tradición', x: 75, y: 70, align: 'right', mobileX: 73, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Queso y cebolla': {
@@ -183,9 +183,9 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Perfecta union\nmuzzarella seleccionada', x: 15, y: 35, align: 'left', mobileX: 20, mobileY: 35, mobileAlign: 'left' },
-            { id: 2, name: 'Salteado\nde cebolla', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 3, name: 'Toque de quesardo\nestacionado', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Perfecta union\nmuzzarella seleccionada', x: 15, y: 35, align: 'left', mobileX: 27, mobileY: 27, mobileAlign: 'left' },
+            { id: 2, name: 'Salteado\nde cebolla', x: 75, y: 40, align: 'right', mobileX: 73, mobileY: 35, mobileAlign: 'right' },
+            { id: 3, name: 'Toque de quesardo\nestacionado', x: 75, y: 70, align: 'right', mobileX: 73, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Roquefort con jamón': {
@@ -195,8 +195,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Jamón cocido\nfeteado', x: 15, y: 40, align: 'left', mobileX: 20, mobileY: 40, mobileAlign: 'left' },
-            { id: 2, name: 'Intenso queso\nroquefort premium', x: 75, y: 60, align: 'right', mobileX: 80, mobileY: 60, mobileAlign: 'right' },
+            { id: 1, name: 'Jamón cocido\nfeteado', x: 15, y: 40, align: 'left', mobileX: 27, mobileY: 27, mobileAlign: 'left' },
+            { id: 2, name: 'Intenso queso\nroquefort premium', x: 75, y: 60, align: 'right', mobileX: 72, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pollo': {
@@ -206,10 +206,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Suprema de pollo\ncortada en trozos\na base de cebolla', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Morrón y\nsalsa de especias', x: 15, y: 55, align: 'left', mobileX: 20, mobileY: 55, mobileAlign: 'left' },
-            { id: 3, name: 'Cocinado\na fuego lento', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 4, name: 'Finalizado con\nhuevo duro', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Suprema de pollo\ncortada en trozos\na base de cebolla', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Morrón y\nsalsa de especias', x: 15, y: 55, align: 'left', mobileX: 28, mobileY: 70, mobileAlign: 'left' },
+            { id: 3, name: 'Cocinado\na fuego lento', x: 75, y: 40, align: 'right', mobileX: 72, mobileY: 30, mobileAlign: 'right' },
+            { id: 4, name: 'Finalizado con\nhuevo duro', x: 75, y: 70, align: 'right', mobileX: 72, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Cuatro quesos': {
@@ -219,10 +219,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Blend de abundante\nqueso muzzarella', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Quesardo\nseleccionado', x: 15, y: 50, align: 'left', mobileX: 20, mobileY: 50, mobileAlign: 'left' },
-            { id: 3, name: 'Roquefort\nintenso', x: 75, y: 35, align: 'right', mobileX: 80, mobileY: 35, mobileAlign: 'right' },
-            { id: 4, name: 'Provolone\nestacionado', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Blend de abundante\nqueso muzzarella', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Quesardo\nseleccionado', x: 15, y: 50, align: 'left', mobileX: 28, mobileY: 70, mobileAlign: 'left' },
+            { id: 3, name: 'Roquefort\nintenso', x: 75, y: 35, align: 'right', mobileX: 72, mobileY: 30, mobileAlign: 'right' },
+            { id: 4, name: 'Provolone\nestacionado', x: 75, y: 70, align: 'right', mobileX: 72, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'Pollo al champignon': {
@@ -232,9 +232,9 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Suprema de pollo\ncortada en trozos', x: 15, y: 35, align: 'left', mobileX: 20, mobileY: 35, mobileAlign: 'left' },
-            { id: 2, name: 'Cremosa salsa\nbechamel', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 3, name: 'Champignon fresco\nsalteado', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Suprema de pollo\ncortada en trozos', x: 15, y: 35, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Cremosa salsa\nbechamel', x: 75, y: 40, align: 'right', mobileX: 73, mobileY: 30, mobileAlign: 'right' },
+            { id: 3, name: 'Champignon fresco\nsalteado', x: 75, y: 70, align: 'right', mobileX: 73, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Choclo': {
@@ -244,10 +244,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Deliciosa mezcla\nde choclo entero', x: 15, y: 30, align: 'left', mobileX: 20, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Choclo\ncremoso', x: 15, y: 60, align: 'left', mobileX: 20, mobileY: 60, mobileAlign: 'left' },
-            { id: 3, name: 'Especias', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 4, name: 'Abundante queso\nmuzzarella', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Deliciosa mezcla\nde choclo entero', x: 15, y: 30, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Choclo\ncremoso', x: 15, y: 60, align: 'left', mobileX: 25, mobileY: 68, mobileAlign: 'left' },
+            { id: 3, name: 'Especias', x: 75, y: 40, align: 'right', mobileX: 71, mobileY: 32, mobileAlign: 'right' },
+            { id: 4, name: 'Abundante queso\nmuzzarella', x: 75, y: 70, align: 'right', mobileX: 72, mobileY: 78, mobileAlign: 'right' },
         ]
     },
     'Verdura': {
@@ -257,10 +257,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Salteado de espinaca,\ncebolla, morrón,\npuerro y verdeo', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Cremosa salsa\nbechamel', x: 15, y: 55, align: 'left', mobileX: 20, mobileY: 55, mobileAlign: 'left' },
-            { id: 3, name: 'Rebosada de abundante\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
-            { id: 4, name: 'Queso sardo\nestacionado', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 1, name: 'Salteado de espinaca,\ncebolla, morrón,\npuerro y verdeo', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 15, mobileAlign: 'left' },
+            { id: 2, name: 'Cremosa salsa\nbechamel', x: 15, y: 55, align: 'left', mobileX: 28, mobileY: 70, mobileAlign: 'left' },
+            { id: 3, name: 'Rebosada de abundante\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 73, mobileY: 30, mobileAlign: 'right' },
+            { id: 4, name: 'Queso sardo\nestacionado', x: 75, y: 70, align: 'right', mobileX: 73, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Calabaza': {
@@ -270,8 +270,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Calabaza horneada\nespeciada', x: 15, y: 40, align: 'left', mobileX: 20, mobileY: 40, mobileAlign: 'left' },
-            { id: 2, name: 'Abundante muzzarella\nen tapa integral', x: 75, y: 50, align: 'right', mobileX: 80, mobileY: 50, mobileAlign: 'right' },
+            { id: 1, name: 'Calabaza horneada\nespeciada', x: 15, y: 40, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Abundante muzzarella\nen tapa integral', x: 75, y: 50, align: 'right', mobileX: 72, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Semillas', x: 75, y: 75, align: 'right', mobileX: 80, mobileY: 75, mobileAlign: 'right' },
         ]
     },
@@ -282,8 +282,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Panceta ahumada\nfeteada', x: 15, y: 35, align: 'left', mobileX: 20, mobileY: 35, mobileAlign: 'left' },
-            { id: 2, name: 'Abundante queso\nmuzzarella', x: 75, y: 45, align: 'right', mobileX: 80, mobileY: 45, mobileAlign: 'right' },
+            { id: 1, name: 'Panceta ahumada\nfeteada', x: 15, y: 35, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Abundante queso\nmuzzarella', x: 75, y: 45, align: 'right', mobileX: 72, mobileY: 26, mobileAlign: 'right' },
             { id: 3, name: 'Ciruelas\nen pasas', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
         ]
     }
