@@ -706,9 +706,13 @@ export default function Productos() {
                     )}
                 </div>
 
-                {productoSeleccionado && explodedProductConfigs[productoSeleccionado.titulo] ? (
+                {(productoSeleccionado && (
+                    explodedProductConfigs[productoSeleccionado.titulo] ||
+                    explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] ||
+                    explodedProductConfigs[productoSeleccionado.titulo + '_INDI']
+                )) ? (
                     <IngredientExplodedView
-                        config={explodedProductConfigs[productoSeleccionado.titulo]}
+                        config={explodedProductConfigs[productoSeleccionado.titulo] || explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_INDI']}
                         onClose={() => setProductoSeleccionado(null)}
                         enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
                     />
