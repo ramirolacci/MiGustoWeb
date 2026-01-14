@@ -6,9 +6,10 @@ import type { ExplodedProductConfig } from '../data/explodedViewConfig';
 interface Props {
     config: ExplodedProductConfig;
     onClose: () => void;
+    enable3D?: boolean;
 }
 
-const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
+const IngredientExplodedView: React.FC<Props> = ({ config, onClose, enable3D = true }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
     const svgRef = useRef<SVGSVGElement>(null);
@@ -49,13 +50,13 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
 
     // Load model-viewer script
     useEffect(() => {
-        if (!document.querySelector('script[src*="model-viewer"]')) {
+        if (enable3D && !document.querySelector('script[src*="model-viewer"]')) {
             const script = document.createElement('script');
             script.type = 'module';
             script.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
             document.body.appendChild(script);
         }
-    }, []);
+    }, [enable3D]);
 
     // Update dimensions on mount and resize
     useEffect(() => {
@@ -197,23 +198,25 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose }) => {
             <h2 className="iev-title">{config.name}</h2>
 
             {/* 3D Toggle Button */}
-            <button
-                className="iev-3d-btn-new"
-                onClick={() => setShow3D(!show3D)}
-                aria-label="Alternar vista 3D"
-            >
-                <iframe
-                    src="https://lottie.host/embed/7ae74040-aac6-4c39-9ffa-559e8a1f4c60/ZEdWR7FqTN.lottie"
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        border: 'none',
-                        background: 'transparent',
-                        transform: 'scale(1.5)',
-                        pointerEvents: 'none'
-                    }}
-                ></iframe>
-            </button>
+            {enable3D && (
+                <button
+                    className="iev-3d-btn-new"
+                    onClick={() => setShow3D(!show3D)}
+                    aria-label="Alternar vista 3D"
+                >
+                    <iframe
+                        src="https://lottie.host/embed/7ae74040-aac6-4c39-9ffa-559e8a1f4c60/ZEdWR7FqTN.lottie"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            border: 'none',
+                            background: 'transparent',
+                            transform: 'scale(1.5)',
+                            pointerEvents: 'none'
+                        }}
+                    ></iframe>
+                </button>
+            )}
 
             <div className="iev-image-wrapper">
                 {show3D ? (

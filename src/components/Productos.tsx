@@ -43,18 +43,12 @@ function formatearPrecio(precio: string | number) {
 const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
 const EMPANADAS_3D = [
-    "Big burger",
-    "Mexican Pibil pork",
     "Mexican pibil pork",
-    "Mexican Veggie",
-    "Mexican veggie",
+    "Big burger",
     "Matambre a la pizza",
     "Cheese burger",
-    "American Chicken",
-    "American chicken",
     "Vacio y provoleta",
-    // "Franuí chocolate amargo", // 3D deshabilitado: usar imagen estática
-    // "Franuí chocolate con leche", // 3D deshabilitado: usar imagen estática
+    "American chicken"
 ];
 
 // Copia local de rutas y orbits para Big Burger
@@ -716,6 +710,7 @@ export default function Productos() {
                     <IngredientExplodedView
                         config={explodedProductConfigs[productoSeleccionado.titulo]}
                         onClose={() => setProductoSeleccionado(null)}
+                        enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
                     />
                 ) : (
                     <>
