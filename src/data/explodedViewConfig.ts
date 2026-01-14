@@ -796,5 +796,227 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
             { id: 1, name: 'Chiles selectos', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
             { id: 2, name: 'Especias picantes', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
         ]
+    },
+    // POSTRES
+    'Franuí chocolate amargo_POSTRE': {
+        id: 'postre-franui-amargo-001',
+        name: 'Franuí chocolate amargo',
+        image: 'https://i.postimg.cc/3wDKXLCG/Franu-Chocolate-Amargo.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Frambuesas\nselectas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Chocolate amargo', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Franuí chocolate con leche_POSTRE': {
+        id: 'postre-franui-leche-001',
+        name: 'Franuí chocolate con leche',
+        image: 'https://i.postimg.cc/SQD3sVhq/Franu-Chocolate-Con-Leche.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Chocolate con leche', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Franuí pink_POSTRE': {
+        id: 'postre-franui-pink-001',
+        name: 'Franuí pink',
+        image: 'https://i.postimg.cc/3JGX6J96/Franu-Pink.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Chocolate pink', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    // PROMOCIONES
+    'Pack 2 Empanadas_PROMO': {
+        id: 'promo-pack-2-001',
+        name: 'Pack 2 Empanadas',
+        image: 'https://i.postimg.cc/8c4gKDLm/pack-2-salsa.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa a elección', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pack 3 Empanadas_PROMO': {
+        id: 'promo-pack-3-001',
+        name: 'Pack 3 Empanadas',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/c3d7a1d0-89b4-4c47-bf82-f92c5a83f0dc.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '1 Salsa', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pack 6 Empanadas_PROMO': {
+        id: 'promo-pack-6-001',
+        name: 'Pack 6 Empanadas',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/0a6c286d-8ec5-4978-b059-ec4b544882d0.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pack 8 Empanadas_PROMO': {
+        id: 'promo-pack-8-001',
+        name: 'Pack 8 Empanadas',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/b6b61047-4fc8-4363-9493-b162a64d432b.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '8 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pack 12 Empanadas_PROMO': {
+        id: 'promo-pack-12-001',
+        name: 'Pack 12 Empanadas',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/31986e6d-2e89-496d-a5b2-fc562796e0f8.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '12 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '3 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pack 18 Empanadas_PROMO': {
+        id: 'promo-pack-18-001',
+        name: 'Pack 18 Empanadas',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/a9f1f79b-5489-49a8-9b75-03cf78b71b7f.png',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '18 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '5 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Promo Pareja_PROMO': {
+        id: 'promo-pareja-001',
+        name: 'Promo Pareja',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/50e950c9-3419-4cf5-a4b1-a93f36f46fa7.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'Media de cada', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '2 Empanadas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Promo Clasica_PROMO': {
+        id: 'promo-clasica-001',
+        name: 'Promo Clasica',
+        image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/6e1635de-e2fe-4c55-a1e6-4c35338d2622.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Promo Ideal_PROMO': {
+        id: 'promo-ideal-001',
+        name: 'Promo Ideal',
+        image: 'https://i.postimg.cc/nznVB4tH/Promo-Ideal.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '1 Salsa + Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Promo Sugerida_PROMO': {
+        id: 'promo-sugerida-001',
+        name: 'Promo Sugerida',
+        image: 'https://i.postimg.cc/HxJmkfGq/promo-sugerida.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: '1 Salsa + Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pack 2 Empanadas + Salsa + Bebida + Vaso_PROMO': {
+        id: 'promo-pack-2-vaso-001',
+        name: 'Pack 2 Empanadas + Salsa + Bebida + Vaso',
+        image: 'https://i.postimg.cc/D0r0zz80/MINIATURA.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa + Bebida + Vaso', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pizza INDI Muzzarella + Bebida_PROMO': {
+        id: 'promo-indi-muzza-bebida-001',
+        name: 'Pizza INDI Muzzarella + Bebida',
+        image: 'https://i.postimg.cc/mrFfxJvP/pizza-INDI-bebida.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'INDI Muzzarella', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pizza INDI Napolitana + Bebida_PROMO': {
+        id: 'promo-indi-napo-bebida-001',
+        name: 'Pizza INDI Napolitana + Bebida',
+        image: 'https://i.postimg.cc/RZMNZVPF/pizza-INDI-napo-bebida.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'INDI Napolitana', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pizza INDI Jamón y Morrón + Bebida_PROMO': {
+        id: 'promo-indi-jamon-morron-bebida-001',
+        name: 'Pizza INDI Jamón y Morrón + Bebida',
+        image: 'https://i.postimg.cc/CKFW6dFM/pizza-INDI-MORRON-BEBIDA.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'INDI Jamón y Morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pizza INDI Pepperoni + Bebida_PROMO': {
+        id: 'promo-indi-pepperoni-bebida-001',
+        name: 'Pizza INDI Pepperoni + Bebida',
+        image: 'https://i.postimg.cc/RZ0YcyGN/pizza-INDI-peppe-bebida.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'INDI Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pizza INDI Jamón Crudo, Rúcula y Stracciatella + Bebida_PROMO': {
+        id: 'promo-indi-crudo-rucula-bebida-001',
+        name: 'Pizza INDI Jamón Crudo, Rúcula y Stracciatella + Bebida',
+        image: 'https://i.postimg.cc/7ZmfRG3P/pizza-INDI-jamon-crudo-bebida.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'INDI Jamón Crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
+    },
+    'Pizza INDI Mortadela, Pistacho y Stracciatella + Bebida_PROMO': {
+        id: 'promo-indi-mortadela-bebida-001',
+        name: 'Pizza INDI Mortadela, Pistacho y Stracciatella + Bebida',
+        image: 'https://i.postimg.cc/bY3Wsq9z/pizza-INDI-mortadela-bebida.jpg',
+        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        cameraOrbit: '0deg 75deg 3m',
+        ingredients: [
+            { id: 1, name: 'INDI Mortadela', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+        ]
     }
 };

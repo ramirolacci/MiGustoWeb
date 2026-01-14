@@ -711,10 +711,12 @@ export default function Productos() {
                     explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] ||
                     explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] ||
                     explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO']
+                    explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO'] ||
+                    explodedProductConfigs[productoSeleccionado.titulo + '_POSTRE'] ||
+                    explodedProductConfigs[productoSeleccionado.titulo + '_PROMO']
                 )) ? (
                     <IngredientExplodedView
-                        config={explodedProductConfigs[productoSeleccionado.titulo] || explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] || explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO']}
+                        config={explodedProductConfigs[productoSeleccionado.titulo] || explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] || explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO'] || explodedProductConfigs[productoSeleccionado.titulo + '_POSTRE'] || explodedProductConfigs[productoSeleccionado.titulo + '_PROMO']}
                         onClose={() => setProductoSeleccionado(null)}
                         enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
                     />
