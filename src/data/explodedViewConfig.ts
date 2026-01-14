@@ -109,8 +109,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Jamón cocido\nfeteado', x: 15, y: 40, align: 'left', mobileX: 20, mobileY: 40, mobileAlign: 'left' },
-            { id: 2, name: 'Abundante\nmuzzarella seleccionada', x: 75, y: 60, align: 'right', mobileX: 80, mobileY: 60, mobileAlign: 'right' },
+            { id: 1, name: 'Jamón cocido\nfeteado', x: 15, y: 40, align: 'left', mobileX: 50, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Abundante muzzarella seleccionada', x: 75, y: 60, align: 'right', mobileX: 30, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Jamón, huevo y queso': {
