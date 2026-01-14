@@ -120,8 +120,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Jamón cocido\nen cubos', x: 15, y: 30, align: 'left', mobileX: 20, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Colmado de\nmuzzarella seleccionada', x: 75, y: 40, align: 'right', mobileX: 80, mobileY: 40, mobileAlign: 'right' },
+            { id: 1, name: 'Jamón cocido en cubos', x: 15, y: 30, align: 'left', mobileX: 40, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Colmado de muzzarella seleccionada', x: 75, y: 40, align: 'right', mobileX: 40, mobileY: 70, mobileAlign: 'right' },
             { id: 3, name: 'Huevo duro', x: 15, y: 70, align: 'left', mobileX: 20, mobileY: 70, mobileAlign: 'left' },
         ]
     },
@@ -133,7 +133,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Salteado de cebolla\ny morrón', x: 15, y: 50, align: 'left', mobileX: 20, mobileY: 50, mobileAlign: 'left' },
+            { id: 2, name: 'Salteado de cebolla\ny morrón', x: 15, y: 50, align: 'left', mobileX: 30, mobileY: 70, mobileAlign: 'left' },
             { id: 3, name: 'Verdeo y\nhuevo duro', x: 75, y: 35, align: 'right', mobileX: 80, mobileY: 35, mobileAlign: 'right' },
             { id: 4, name: 'Especias y\nají picante', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
         ]
