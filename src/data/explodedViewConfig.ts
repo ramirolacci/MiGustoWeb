@@ -83,11 +83,11 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/vacio-provoleta-3D.glb',
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Delicioso vacio\nasado desmechado', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Clásico\nchimichurri con cebolla', x: 15, y: 50, align: 'left', mobileX: 70, mobileY: 70, mobileAlign: 'left' },
-            { id: 3, name: 'Morrón salteado\na fuego lento', x: 15, y: 75, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 4, name: 'Provoleta y\nmuzzarella', x: 75, y: 30, align: 'right', mobileX: 80, mobileY: 25, mobileAlign: 'right' },
-            { id: 5, name: 'Semolin en la tapa', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 80, mobileAlign: 'right' },
+            { id: 1, name: 'Delicioso vacio\nasado desmechado', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: 'Clásico chimichurri con cebolla', x: 15, y: 50, align: 'left', mobileX: 70, mobileY: 83, mobileAlign: 'left' },
+            { id: 3, name: 'Morrón salteado\na fuego lento', x: 15, y: 75, align: 'left', mobileX: 28, mobileY: 70, mobileAlign: 'left' },
+            { id: 4, name: 'Provoleta y\nmuzzarella', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 25, mobileAlign: 'right' },
+            { id: 5, name: 'Semolin en la tapa', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 67, mobileAlign: 'right' },
         ]
     },
     'American chicken': {
@@ -97,8 +97,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/american-chicken-3D.glb',
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Chicken sabroso\ny dulce', x: 15, y: 30, align: 'left', mobileX: 20, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Bacón crujiente\nbraseado', x: 75, y: 30, align: 'right', mobileX: 80, mobileY: 30, mobileAlign: 'right' },
+            { id: 1, name: 'Chicken sabroso\ny dulce', x: 15, y: 30, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Bacón crujiente\nbraseado', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 30, mobileAlign: 'right' },
             { id: 3, name: 'Mar de cheddar', x: 15, y: 70, align: 'left', mobileX: 20, mobileY: 70, mobileAlign: 'left' },
         ]
     },
