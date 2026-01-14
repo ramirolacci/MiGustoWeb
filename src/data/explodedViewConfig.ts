@@ -84,10 +84,10 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Delicioso vacio\nasado desmechado', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Clásico\nchimichurri con cebolla', x: 15, y: 50, align: 'left', mobileX: 20, mobileY: 50, mobileAlign: 'left' },
+            { id: 2, name: 'Clásico\nchimichurri con cebolla', x: 15, y: 50, align: 'left', mobileX: 70, mobileY: 70, mobileAlign: 'left' },
             { id: 3, name: 'Morrón salteado\na fuego lento', x: 15, y: 75, align: 'left', mobileX: 20, mobileY: 80, mobileAlign: 'left' },
-            { id: 4, name: 'Provoleta y\nmuzzarella', x: 75, y: 30, align: 'right', mobileX: 80, mobileY: 30, mobileAlign: 'right' },
-            { id: 5, name: 'Semolin en la tapa', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 70, mobileAlign: 'right' },
+            { id: 4, name: 'Provoleta y\nmuzzarella', x: 75, y: 30, align: 'right', mobileX: 80, mobileY: 25, mobileAlign: 'right' },
+            { id: 5, name: 'Semolin en la tapa', x: 75, y: 70, align: 'right', mobileX: 80, mobileY: 80, mobileAlign: 'right' },
         ]
     },
     'American chicken': {
