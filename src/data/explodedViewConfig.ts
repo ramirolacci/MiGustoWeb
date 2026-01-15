@@ -637,7 +637,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Salsa de tomate\nartesanal', x: 20, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Mozzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'MUzzarella', x: 75, y: 40, align: 'right', mobileX: 67, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Fitzza napo_FITZZA': {
@@ -648,7 +648,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Rodajas de tomate', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salsa provenzal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Salsa provenzal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Fitzza fugazzetta_FITZZA': {
@@ -659,7 +659,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla blanca', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Provolone', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Provolone', x: 75, y: 40, align: 'right', mobileX: 67, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Fitzza pepperoni_FITZZA': {
@@ -670,7 +670,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Mozzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'MUzzarella', x: 75, y: 40, align: 'right', mobileX: 67, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Fitzza mortadela, pistacho y stracciatella_FITZZA': {
@@ -680,7 +680,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
             { id: 2, name: 'Pistachos', x: 75, y: 30, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Stracciatella', x: 50, y: 70, align: 'center', mobileX: 50, mobileY: 70, mobileAlign: 'center' },
         ]
