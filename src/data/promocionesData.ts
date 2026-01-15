@@ -57,7 +57,7 @@ export const promociones: Promocion[] = [
     {
         titulo: "Promo Ideal",
         descripcion: "Pack de 2 empanadas + 1 Lata de 354ml + 1 salsa a eleccion.",
-        imagen: "https://i.postimg.cc/nznVB4tH/Promo-Ideal.jpg",
+        imagen: "https://i.postimg.cc/tCB0NkX6/7d4309d1-cba5-4b39-bb4e-75711a4d1526.jpg",
         esRecomendado: true
     },
     {

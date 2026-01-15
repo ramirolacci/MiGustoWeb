@@ -17,37 +17,37 @@ export const promosDestacadas: MobilePromoSlide[] = [
 ];
 
 export const combosImperdibles: MobilePromoSlide[] = [
-  { 
-    id: 'i1', 
-    image: 'https://i.postimg.cc/JhGSfFLS/pack-6.jpg', 
+  {
+    id: 'i1',
+    image: 'https://i.postimg.cc/JhGSfFLS/pack-6.jpg',
     title: 'Pack 6',
     productName: 'Pack 6 Empanadas',
     price: '$22.000'
   },
-  { 
-    id: 'i2', 
-    image: 'https://i.postimg.cc/2j2FWSvx/promo-sugerida.jpg', 
+  {
+    id: 'i2',
+    image: 'https://i.postimg.cc/2j2FWSvx/promo-sugerida.jpg',
     title: 'Promo Sugerida',
     productName: 'Promo Sugerida',
     price: '$14.000'
   },
-  { 
-    id: 'i3', 
-    image: 'https://i.postimg.cc/43ghMDtj/pack-18.jpg', 
+  {
+    id: 'i3',
+    image: 'https://i.postimg.cc/43ghMDtj/pack-18.jpg',
     title: 'Pack 18',
     productName: 'Pack 18 Empanadas',
     price: '$61.000'
   },
-  { 
-    id: 'i4', 
-    image: 'https://i.postimg.cc/3rvY4dzm/pack-3.jpg', 
+  {
+    id: 'i4',
+    image: 'https://i.postimg.cc/3rvY4dzm/pack-3.jpg',
     title: 'Pack 3',
     productName: 'Pack 3 Empanadas',
     price: '$11.000'
   },
-  { 
-    id: 'i5', 
-    image: 'https://i.postimg.cc/gJBjYQXW/promo-ideal.jpg', 
+  {
+    id: 'i5',
+    image: 'https://i.postimg.cc/tCB0NkX6/7d4309d1-cba5-4b39-bb4e-75711a4d1526.jpg',
     title: 'Promo Ideal',
     productName: 'Combo Ideal',
     price: '$12.000'

@@ -850,8 +850,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '1 Salsa', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '1 Salsa', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Pack 6 Empanadas_PROMO': {
@@ -861,8 +861,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Pack 8 Empanadas_PROMO': {
@@ -872,8 +872,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '8 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '8 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Pack 12 Empanadas_PROMO': {
@@ -883,8 +883,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '12 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '3 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '12 Empanadas', x: 25, y: 35, align: 'left', mobileX: 36, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '3 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Pack 18 Empanadas_PROMO': {
@@ -894,8 +894,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '18 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '5 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '18 Empanadas', x: 25, y: 35, align: 'left', mobileX: 36, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '5 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Promo Pareja_PROMO': {
@@ -905,8 +905,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Media de cada', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '2 Empanadas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Media de cada una', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '2 Empanadas', x: 75, y: 40, align: 'right', mobileX: 66, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Promo Clasica_PROMO': {
@@ -916,19 +916,19 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '2 Salsas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Promo Ideal_PROMO': {
         id: 'promo-ideal-001',
         name: 'Promo Ideal',
-        image: 'https://i.postimg.cc/nznVB4tH/Promo-Ideal.jpg',
+        image: 'https://i.postimg.cc/tCB0NkX6/7d4309d1-cba5-4b39-bb4e-75711a4d1526.jpg',
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '1 Salsa + Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: '1 Salsa + Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Promo Sugerida_PROMO': {
@@ -938,8 +938,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: '1 Salsa + Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: '1 Salsa + Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pack 2 Empanadas + Salsa + Bebida + Vaso_PROMO': {
@@ -949,8 +949,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salsa + Bebida + Vaso', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa + Bebida + Vaso', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pizza INDI Muzzarella + Bebida_PROMO': {
@@ -960,8 +960,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'INDI Muzzarella', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'INDI Muzzarella', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pizza INDI Napolitana + Bebida_PROMO': {
@@ -971,8 +971,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'INDI Napolitana', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'INDI Napolitana', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pizza INDI Jamón y Morrón + Bebida_PROMO': {
@@ -982,8 +982,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'INDI Jamón y Morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'INDI Jamón y Morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pizza INDI Pepperoni + Bebida_PROMO': {
@@ -1004,8 +1004,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'INDI Jamón Crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'INDI Jamón Crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     },
     'Pizza INDI Mortadela, Pistacho y Stracciatella + Bebida_PROMO': {
@@ -1015,8 +1015,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'INDI Mortadela', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'INDI Mortadela', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Bebida', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 75, mobileAlign: 'right' },
         ]
     }
 };
