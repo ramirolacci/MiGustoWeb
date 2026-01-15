@@ -318,6 +318,22 @@ export default function Productos() {
         }
     }, [productosFiltrados]);
 
+    const explodedConfig = useMemo(() => {
+        if (!productoSeleccionado) return null;
+
+        const { titulo, categoria } = productoSeleccionado;
+
+        if (categoria === 'Pizza') return explodedProductConfigs[titulo + '_PIZZA'];
+        if (categoria === 'Pizzas INDI') return explodedProductConfigs[titulo + '_INDI'];
+        if (categoria === 'Fitzzas') return explodedProductConfigs[titulo + '_FITZZA'];
+        if (categoria === 'Salsas') return explodedProductConfigs[titulo + '_ADEREZO'];
+        if (categoria === 'Postres') return explodedProductConfigs[titulo + '_POSTRE'];
+        if (categoria === 'Promociones') return explodedProductConfigs[titulo + '_PROMO'];
+
+        // Empanadas or fallback
+        return explodedProductConfigs[titulo];
+    }, [productoSeleccionado]);
+
     return (
         <div className={`productos-section ${sectionVisible ? 'section-visible' : ''}`}>
             <div className="background-overlay"></div>
@@ -706,19 +722,11 @@ export default function Productos() {
                     )}
                 </div>
 
-                {(productoSeleccionado && (
-                    explodedProductConfigs[productoSeleccionado.titulo] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_POSTRE'] ||
-                    explodedProductConfigs[productoSeleccionado.titulo + '_PROMO']
-                )) ? (
+                {explodedConfig ? (
                     <IngredientExplodedView
-                        config={explodedProductConfigs[productoSeleccionado.titulo] || explodedProductConfigs[productoSeleccionado.titulo + '_PIZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_INDI'] || explodedProductConfigs[productoSeleccionado.titulo + '_FITZZA'] || explodedProductConfigs[productoSeleccionado.titulo + '_ADEREZO'] || explodedProductConfigs[productoSeleccionado.titulo + '_POSTRE'] || explodedProductConfigs[productoSeleccionado.titulo + '_PROMO']}
+                        config={explodedConfig}
                         onClose={() => setProductoSeleccionado(null)}
-                        enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
+                        enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado!.titulo.toLowerCase())}
                     />
                 ) : (
                     <>

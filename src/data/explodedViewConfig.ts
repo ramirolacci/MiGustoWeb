@@ -307,7 +307,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Doble carga de\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 30, mobileAlign: 'right' },
+            { id: 1, name: 'Doble carga de\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
             { id: 2, name: 'Salsa de tomate\nartesanal', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
         ]
     },
@@ -344,7 +344,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         ingredients: [
             { id: 1, name: 'Rodajas de\ntomate fresco', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
             { id: 2, name: 'Salsa casera\nde provenzal', x: 75, y: 25, align: 'right', mobileX: 70, mobileY: 20, mobileAlign: 'right' },
-            { id: 3, name: 'Queso\nmuzzarella', x: 75, y: 60, align: 'right', mobileX: 70, mobileY: 65, mobileAlign: 'right' },
+            { id: 3, name: 'Queso\nmuzzarella', x: 75, y: 60, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Napolitana con jamón_PIZZA': {
@@ -354,7 +354,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Jamón cocido', x: 20, y: 50, align: 'left', mobileX: 25, mobileY: 50, mobileAlign: 'left' },
+            { id: 1, name: 'Jamón cocido', x: 20, y: 50, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
             { id: 2, name: 'Tomate fresco\nen rodajas', x: 75, y: 30, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Topping de\nprovenzal', x: 60, y: 70, align: 'right', mobileX: 60, mobileY: 75, mobileAlign: 'right' },
         ]
@@ -391,7 +391,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Panceta ahumada\ncrujiente', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Muzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Muzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Roquefort_PIZZA': {
@@ -402,7 +402,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Queso roquefort\nintenso', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Base de\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Base de\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Roquefort con jamón_PIZZA': {
@@ -424,8 +424,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Muzzarella', x: 20, y: 30, align: 'left', mobileX: 25, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Roquefort', x: 75, y: 30, align: 'right', mobileX: 75, mobileY: 25, mobileAlign: 'right' },
+            { id: 1, name: 'Muzzarella', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Roquefort', x: 75, y: 30, align: 'right', mobileX: 71, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Provolone', x: 20, y: 65, align: 'left', mobileX: 25, mobileY: 65, mobileAlign: 'left' },
             { id: 4, name: 'Parmesano', x: 75, y: 65, align: 'right', mobileX: 75, mobileY: 65, mobileAlign: 'right' },
         ]
@@ -438,7 +438,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Ajo deshidratado\ny perejil', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Muzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Muzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Fugazzeta_PIZZA': {
@@ -460,8 +460,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Cebolla', x: 20, y: 30, align: 'left', mobileX: 25, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Panceta\ncrujiente', x: 75, y: 40, align: 'right', mobileX: 75, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Cebolla', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Panceta\ncrujiente', x: 75, y: 40, align: 'right', mobileX: 72, mobileY: 35, mobileAlign: 'right' },
             { id: 3, name: 'Provolone', x: 50, y: 75, align: 'center', mobileX: 50, mobileY: 75, mobileAlign: 'center' },
         ]
     },
@@ -472,8 +472,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Cebolla', x: 20, y: 30, align: 'left', mobileX: 25, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Jamón cocido', x: 75, y: 40, align: 'right', mobileX: 75, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Cebolla', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Jamón cocido', x: 75, y: 40, align: 'right', mobileX: 72, mobileY: 35, mobileAlign: 'right' },
             { id: 3, name: 'Provolone', x: 50, y: 75, align: 'center', mobileX: 50, mobileY: 75, mobileAlign: 'center' },
         ]
     },
@@ -484,8 +484,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Tomate', x: 20, y: 30, align: 'left', mobileX: 25, mobileY: 25, mobileAlign: 'left' },
-            { id: 2, name: 'Albahaca\nfresca', x: 75, y: 30, align: 'right', mobileX: 75, mobileY: 25, mobileAlign: 'right' },
+            { id: 1, name: 'Tomate', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Albahaca\nfresca', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Aceite de oliva', x: 50, y: 70, align: 'center', mobileX: 50, mobileY: 70, mobileAlign: 'center' },
         ]
     },
@@ -496,8 +496,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Jamón cocido', x: 20, y: 25, align: 'left', mobileX: 25, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Tomate fresco', x: 75, y: 30, align: 'right', mobileX: 75, mobileY: 25, mobileAlign: 'right' },
+            { id: 1, name: 'Jamón cocido', x: 20, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: 'Tomate fresco', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Huevo cocido', x: 50, y: 75, align: 'center', mobileX: 50, mobileY: 75, mobileAlign: 'center' },
         ]
     },
@@ -521,7 +521,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Huevo cocido', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Huevo cocido', x: 75, y: 40, align: 'right', mobileX: 72, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Jamón, tomate, huevo y roquefort_PIZZA': {
@@ -531,8 +531,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Jamón y huevo', x: 20, y: 25, align: 'left', mobileX: 25, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Roquefort', x: 75, y: 30, align: 'right', mobileX: 75, mobileY: 25, mobileAlign: 'right' },
+            { id: 1, name: 'Jamón y huevo', x: 20, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: 'Roquefort', x: 75, y: 30, align: 'right', mobileX: 72, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Rodajas de tomate', x: 50, y: 75, align: 'center', mobileX: 50, mobileY: 75, mobileAlign: 'center' },
         ]
     },
@@ -543,8 +543,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Provolone', x: 20, y: 25, align: 'left', mobileX: 25, mobileY: 20, mobileAlign: 'left' },
-            { id: 2, name: 'Morrones', x: 75, y: 30, align: 'right', mobileX: 75, mobileY: 25, mobileAlign: 'right' },
+            { id: 1, name: 'Provolone', x: 20, y: 25, align: 'left', mobileX: 35, mobileY: 20, mobileAlign: 'left' },
+            { id: 2, name: 'Morrones', x: 75, y: 30, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Jamón cocido', x: 50, y: 75, align: 'center', mobileX: 50, mobileY: 75, mobileAlign: 'center' },
         ]
     },
@@ -556,7 +556,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Panceta', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Verdeo fresco', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Verdeo fresco', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     // PIZZAS INDI
