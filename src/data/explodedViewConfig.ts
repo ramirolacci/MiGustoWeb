@@ -579,7 +579,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
+            { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
             { id: 2, name: 'Pistachos', x: 75, y: 30, align: 'right', mobileX: 70, mobileY: 25, mobileAlign: 'right' },
             { id: 3, name: 'Stracciatella', x: 50, y: 70, align: 'center', mobileX: 50, mobileY: 70, mobileAlign: 'center' },
         ]
@@ -592,7 +592,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Mozzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Muzzarella', x: 75, y: 40, align: 'right', mobileX: 65, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Jamón y morrón INDI_INDI': {
@@ -603,7 +603,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Morrones asados', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Morrones asados', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Napolitana INDI_INDI': {
@@ -614,7 +614,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Rodajas de tomate', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salsa provenzal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Salsa provenzal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Muzza INDI_INDI': {
@@ -624,8 +624,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Mozzarella', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salsa artesanal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Mozzarella', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa artesanal', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     // FITZZAS
