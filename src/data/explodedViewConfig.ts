@@ -806,7 +806,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Frambuesas\nselectas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Chocolate amargo', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Chocolate amargo', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 63, mobileAlign: 'right' },
         ]
     },
     'Franuí chocolate con leche_POSTRE': {
@@ -816,8 +816,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Chocolate con leche', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 33, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Chocolate con leche', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 63, mobileAlign: 'right' },
         ]
     },
     'Franuí pink_POSTRE': {
@@ -827,8 +827,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Chocolate pink', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
+            { id: 2, name: 'Chocolate pink', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 63, mobileAlign: 'right' },
         ]
     },
     // PROMOCIONES
@@ -839,8 +839,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salsa a elección', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Salsa a elección', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Pack 3 Empanadas_PROMO': {
