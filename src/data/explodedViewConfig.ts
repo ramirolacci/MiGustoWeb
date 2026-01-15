@@ -706,7 +706,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Ajo suave', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Crema', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Crema', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'American ketchup_ADEREZO': {
@@ -717,7 +717,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Tomates maduros', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Especias americanas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Especias americanas', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'BBQ_ADEREZO': {
@@ -728,7 +728,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Toque ahumado', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Salsa barbacoa', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Salsa barbacoa', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Cheddar_ADEREZO': {
@@ -739,7 +739,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Queso cheddar', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Crema suave', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Crema suave', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Chimichurri_ADEREZO': {
@@ -750,7 +750,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Perejil y ajo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Aceite y vinagre', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Aceite y vinagre', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Criolla_ADEREZO': {
@@ -761,7 +761,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla y morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Tomate fresco', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Tomate fresco', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Crema ácida_ADEREZO': {
@@ -772,7 +772,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Toque de limón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Crema fresca', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Crema fresca', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Guacamole_ADEREZO': {
@@ -783,7 +783,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Palta fresca', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Limón y especias', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 2, name: 'Limón y especias', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     'Picante_ADEREZO': {
@@ -793,8 +793,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
-            { id: 1, name: 'Chiles selectos', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
-            { id: 2, name: 'Especias picantes', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 35, mobileAlign: 'right' },
+            { id: 1, name: 'Chiles selectos', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
+            { id: 2, name: 'Especias picantes', x: 75, y: 40, align: 'right', mobileX: 60, mobileY: 70, mobileAlign: 'right' },
         ]
     },
     // POSTRES
