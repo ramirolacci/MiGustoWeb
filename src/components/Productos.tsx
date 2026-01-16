@@ -334,6 +334,49 @@ export default function Productos() {
         return explodedProductConfigs[titulo];
     }, [productoSeleccionado]);
 
+    // Navigation Logic
+    const handleNextProduct = () => {
+        if (!productoSeleccionado || productosFiltrados.length <= 1) return;
+
+        const currentIndex = productosFiltrados.findIndex(p =>
+            p.titulo === productoSeleccionado.titulo && p.categoria === productoSeleccionado.categoria
+        );
+
+        if (currentIndex !== -1) {
+            const nextIndex = (currentIndex + 1) % productosFiltrados.length;
+            setProductoSeleccionado(productosFiltrados[nextIndex]);
+        }
+    };
+
+    const handlePrevProduct = () => {
+        if (!productoSeleccionado || productosFiltrados.length <= 1) return;
+
+        const currentIndex = productosFiltrados.findIndex(p =>
+            p.titulo === productoSeleccionado.titulo && p.categoria === productoSeleccionado.categoria
+        );
+
+        if (currentIndex !== -1) {
+            const prevIndex = (currentIndex - 1 + productosFiltrados.length) % productosFiltrados.length;
+            setProductoSeleccionado(productosFiltrados[prevIndex]);
+        }
+    };
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!productoSeleccionado) return;
+
+            if (e.key === 'ArrowRight') {
+                handleNextProduct();
+            } else if (e.key === 'ArrowLeft') {
+                handlePrevProduct();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [productoSeleccionado, productosFiltrados]); // Re-bind when selection or list changes
+
     return (
         <div className={`productos-section ${sectionVisible ? 'section-visible' : ''}`}>
             <div className="background-overlay"></div>
@@ -727,6 +770,8 @@ export default function Productos() {
                         config={explodedConfig}
                         onClose={() => setProductoSeleccionado(null)}
                         enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado!.titulo.toLowerCase())}
+                        onNext={handleNextProduct}
+                        onPrev={handlePrevProduct}
                     />
                 ) : (
                     <>

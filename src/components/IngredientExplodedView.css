@@ -225,3 +225,60 @@
         right: auto;
     }
 }
+
+/* Navigation Buttons */
+.iev-nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.65);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10002;
+    /* Above everything else */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.iev-nav-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+    border-color: #FFD700;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.iev-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.iev-prev-btn {
+    left: 20px;
+}
+
+.iev-next-btn {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .iev-nav-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .iev-prev-btn {
+        left: 10px;
+    }
+
+    .iev-next-btn {
+        right: 10px;
+    }
+}

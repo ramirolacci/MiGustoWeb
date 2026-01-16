@@ -7,9 +7,11 @@ interface Props {
     config: ExplodedProductConfig;
     onClose: () => void;
     enable3D?: boolean;
+    onNext?: () => void;
+    onPrev?: () => void;
 }
 
-const IngredientExplodedView: React.FC<Props> = ({ config, onClose, enable3D = true }) => {
+const IngredientExplodedView: React.FC<Props> = ({ config, onClose, enable3D = true, onNext, onPrev }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
     const svgRef = useRef<SVGSVGElement>(null);
@@ -473,7 +475,41 @@ const IngredientExplodedView: React.FC<Props> = ({ config, onClose, enable3D = t
             <button className="iev-close-btn" onClick={onClose}>
                 &times;
             </button>
-        </div>
+
+            {
+                onPrev && (
+                    <button
+                        className="iev-nav-btn iev-prev-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onPrev();
+                        }}
+                        aria-label="Producto anterior"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                )
+            }
+
+            {
+                onNext && (
+                    <button
+                        className="iev-nav-btn iev-next-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onNext();
+                        }}
+                        aria-label="Siguiente producto"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                )
+            }
+        </div >
     );
 };
 
