@@ -55,7 +55,7 @@ const Nosotros: React.FC = () => {
                     const interval = setInterval(() => {
                         currentStep++;
                         setFranquiciasCount(currentStep);
-                        
+
                         if (currentStep >= targetNumber) {
                             clearInterval(interval);
                         }
@@ -259,7 +259,7 @@ const Nosotros: React.FC = () => {
         const container = valoresContainerRef.current;
         const track = carouselRef.current;
         const valoresSection = valoresContainerRef.current?.closest('.section-card');
-        
+
         if (!container || !track || !valoresSection) return;
 
         const computeMaxScrollPx = () => {
@@ -325,29 +325,29 @@ const Nosotros: React.FC = () => {
         const container = valoresContainerRef.current;
         const track = carouselRef.current;
         const valoresSection = valoresContainerRef.current?.closest('.section-card');
-        
+
         if (!container || !track || !valoresSection) return;
 
         let rafId = 0;
         let last = performance.now();
         const SPEED_PX_PER_SEC = 25; // velocidad aumentada para efecto pasarela
-        
+
         // Variable para trackear si el ScrollTrigger está activo
         let scrollTriggerActive = false;
-        
+
         // Crear un observer para detectar cuando ScrollTrigger está activo
         const checkScrollTrigger = () => {
             const triggers = ScrollTrigger.getAll();
-            scrollTriggerActive = triggers.some(trigger => 
-                trigger.trigger === valoresSection && 
+            scrollTriggerActive = triggers.some(trigger =>
+                trigger.trigger === valoresSection &&
                 trigger.isActive
             );
         };
-        
+
         const loop = (now: number) => {
             const dt = now - last;
             last = now;
-            
+
             checkScrollTrigger();
 
             // Solo auto-scroll si no está arrastrando, no está hover, y ScrollTrigger no está activo
@@ -378,21 +378,21 @@ const Nosotros: React.FC = () => {
                         <div className="section-card">
                             <h2>QUIENES SOMOS?</h2>
                             <p>
-                            Somos Mi Gusto, una empresa familiar que nació en el año 2000 en Don Torcuato,
-                            impulsada por la pasión de Lucía, una mujer emprendedora que, junto a sus hijos
-                            Jésica y Pablo Lemos, transformó una pequeña rotisería en una de las cadenas de
-                            empanadas gourmet más reconocidas del país.
+                                Somos Mi Gusto, una empresa familiar que nació en el año 2000 en Don Torcuato,
+                                impulsada por la pasión de Lucía, una mujer emprendedora que, junto a sus hijos
+                                Jésica y Pablo Lemos, transformó una pequeña rotisería en una de las cadenas de
+                                empanadas gourmet más reconocidas del país.
                             </p><br></br>
                             <p>
-                            Nuestro éxito radica en la combinación de tradición familiar, atención
-                            personalizada y una constante búsqueda por innovar en sabores y formatos,
-                            adaptándonos a las tendencias y necesidades de nuestros clientes.
+                                Nuestro éxito radica en la combinación de tradición familiar, atención
+                                personalizada y una constante búsqueda por innovar en sabores y formatos,
+                                adaptándonos a las tendencias y necesidades de nuestros clientes.
                             </p><br></br>
                             <p>
-                            En Mi Gusto, no solo vendemos empanadas; ofrecemos una invitación a disfrutar
-                            de un producto premium, elaborado con ingredientes seleccionados y una pasión
-                            que se transmite en cada bocado. Somos una marca que crece con sus clientes,
-                            siempre fiel a sus raíces y con la mirada puesta en el futuro gastronómico.
+                                En Mi Gusto, no solo vendemos empanadas; ofrecemos una invitación a disfrutar
+                                de un producto premium, elaborado con ingredientes seleccionados y una pasión
+                                que se transmite en cada bocado. Somos una marca que crece con sus clientes,
+                                siempre fiel a sus raíces y con la mirada puesta en el futuro gastronómico.
                             </p>
                         </div>
                     </div>
@@ -409,8 +409,8 @@ const Nosotros: React.FC = () => {
                                     playsInline
                                     muted={!isPlaying}
                                     controls={false}
-                                    style={{ 
-                                        width: '100%', 
+                                    style={{
+                                        width: '100%',
                                         height: '100%',
                                         objectFit: 'cover'
                                     }}
@@ -424,9 +424,9 @@ const Nosotros: React.FC = () => {
                                 )}
                                 <div className="tiktok-overlay">
                                     <div className="tiktok-user-info">
-                                        <img 
-                                            src="/images/logos/logoBot.png" 
-                                            alt="Mi Gusto" 
+                                        <img
+                                            src="/assets/LOGOBOT.png"
+                                            alt="Mi Gusto"
                                             className="tiktok-avatar"
                                         />
                                         <div className="tiktok-username">@migusto</div>
@@ -462,16 +462,16 @@ const Nosotros: React.FC = () => {
                     <div className="mision">
                         <h2>MISIÓN</h2>
                         <p>
-                            Nuestra misión es ofrecer una experiencia gastronómica única, 
-                            combinando la tradición de las empanadas con innovación culinaria, 
+                            Nuestra misión es ofrecer una experiencia gastronómica única,
+                            combinando la tradición de las empanadas con innovación culinaria,
                             manteniendo los más altos estándares de calidad y servicio.
                         </p>
                     </div>
                     <div className="vision">
                         <h2>VISIÓN</h2>
                         <p>
-                            Aspiramos a ser reconocidos como la marca líder en empanadas gourmet, 
-                            expandiendo nuestra presencia a nivel nacional e internacional, 
+                            Aspiramos a ser reconocidos como la marca líder en empanadas gourmet,
+                            expandiendo nuestra presencia a nivel nacional e internacional,
                             manteniendo siempre nuestra esencia y compromiso con la excelencia.
                         </p>
                     </div>
@@ -481,8 +481,8 @@ const Nosotros: React.FC = () => {
                     <h2>FRANQUICIAS</h2>
                     <div className="franquicias-content">
                         <p>
-                            Actualmente contamos con 37 franquicias distribuidas estratégicamente 
-                            en diferentes puntos del país, ofreciendo la misma calidad y experiencia 
+                            Actualmente contamos con 37 franquicias distribuidas estratégicamente
+                            en diferentes puntos del país, ofreciendo la misma calidad y experiencia
                             en cada una de nuestras ubicaciones.
                         </p>
                         <div className="franquicias-stats" ref={franquiciasRef}>
