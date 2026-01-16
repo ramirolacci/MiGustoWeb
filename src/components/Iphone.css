@@ -2,97 +2,101 @@
 
 /* Scroll solo para la opción Promociones dentro del iPhone */
 .promociones-scroll {
-  overflow-y: auto;
-  height: 100%;
+    overflow-y: auto;
+    height: 100%;
 }
+
 /* Modal Pedido dentro del iPhone */
 .pedido-modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
 }
 
 .pedido-modal {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  min-width: 260px;
-  max-width: 90vw;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    min-width: 260px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .pedido-modal-title {
-  font-size: 1.15rem;
-  font-weight: bold;
-  margin-bottom: 1.2rem;
-  text-align: center;
-  color: #111;
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    color: #111;
 }
 
 /* Líneas sutiles entre las opciones del modal */
 .pedido-modal-option {
-  background: #f5f5f5;
-  border: none;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.7rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-  position: relative;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
 }
+
 .pedido-modal-option:not(:last-of-type)::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: -0.35rem;
-  height: 1px;
-  background: #d9d3d3;
-  opacity: 0.8;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: -0.35rem;
+    height: 1px;
+    background: #d9d3d3;
+    opacity: 0.8;
 }
 
 .pedido-modal-option {
-  background: #f5f5f5;
-  border: none;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.7rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
 }
+
 .pedido-modal-option:hover {
-  background: #e0e0e0;
+    background: #e0e0e0;
 }
 
 .pedido-modal-cancel {
-  background: transparent;
-  border: none;
-  color: #d32f2f;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  border-radius: 12px;
-  padding: 0.6rem 1rem;
-  transition: background 0.2s;
+    background: transparent;
+    border: none;
+    color: #d32f2f;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    transition: background 0.2s;
 }
+
 .pedido-modal-cancel:hover {
-  background: #fbe9e7;
+    background: #fbe9e7;
 }
 
 /* Encapsula todos los estilos bajo .iphone-wrapper para evitar afectar el resto del sitio */
@@ -690,9 +694,9 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 0.5rem;
-    border: 2px solid #D4AF37;
+    border: 2px solid #000;
 }
 
 .iphone-wrapper .menu-options-list {
@@ -822,7 +826,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: contain;
     border: 0.5px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -1077,18 +1081,18 @@
 
 /* Estilos para el efecto reveal del iPhone */
 .iphone-reveal {
-  /* Solo para ScrollReveal, no ocultar el elemento */
+    /* Solo para ScrollReveal, no ocultar el elemento */
 }
 
 .iphone-reveal.reveal-active {
-  /* Estado activo para ScrollReveal */
+    /* Estado activo para ScrollReveal */
 }
 
 /* Asegurar que el iPhone tenga el efecto reveal */
 .iphone-wrapper {
-  /* Solo para ScrollReveal, no ocultar el elemento */
+    /* Solo para ScrollReveal, no ocultar el elemento */
 }
 
 .iphone-wrapper.reveal-active {
-  /* Estado activo para ScrollReveal */
+    /* Estado activo para ScrollReveal */
 }

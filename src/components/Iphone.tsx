@@ -80,9 +80,9 @@ const IphoneStore: React.FC = () => {
 
     return (
         <main>
-            <div 
-                id="iPhone" 
-                className="iphone-wrapper animate iphone-reveal" 
+            <div
+                id="iPhone"
+                className="iphone-wrapper animate iphone-reveal"
                 ref={iphoneRef}
             >
                 <div className="iPhone">
@@ -100,9 +100,9 @@ const IphoneStore: React.FC = () => {
                                 <div className="island-sensor"></div>
                             </div>
                             <div className="icons">
-                                <i className="fa-solid fa-signal icon" style={{fontSize: '0.95rem'}} aria-label="signal"></i>
-                                <i className="fa-solid fa-wifi icon" style={{fontSize: '0.95rem'}} aria-label="wifi"></i>
-                                <i className="fa-solid fa-battery-full icon" style={{fontSize: '0.95rem'}} aria-label="battery"></i>
+                                <i className="fa-solid fa-signal icon" style={{ fontSize: '0.95rem' }} aria-label="signal"></i>
+                                <i className="fa-solid fa-wifi icon" style={{ fontSize: '0.95rem' }} aria-label="wifi"></i>
+                                <i className="fa-solid fa-battery-full icon" style={{ fontSize: '0.95rem' }} aria-label="battery"></i>
                             </div>
                         </div>
                         <div className="appstore-header">
@@ -119,16 +119,16 @@ const IphoneStore: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* WhatsApp Notification */}
                     {showWhatsAppNotification && (
                         <div className="whatsapp-notification-pop-up">
                             <div className="notification-sender-and-message">
                                 <div className="notification-sender-line">
-                                    <img src="/images/logos/logo.jpg" alt="Mi Gusto" className="notification-sender-icon" />
+                                    <img src="/assets/LOGOBOT.png" alt="Mi Gusto" className="notification-sender-icon" />
                                     <span className="notification-sender">Mi Gusto</span>
                                 </div>
-                                <p className="notification-message">Ya pediste lo de siempre? 🥟<br/>Te extrañamos 💕</p>
+                                <p className="notification-message">Ya pediste lo de siempre? 🥟<br />Te extrañamos 💕</p>
                             </div>
                         </div>
                     )}
@@ -139,55 +139,55 @@ const IphoneStore: React.FC = () => {
                             <div className="menu-sidebar">
                                 {/* Sección del perfil */}
                                 <div className="profile-section">
-                                    <img src="/images/logos/logo.jpg" alt="Profile" className="profile-avatar" /> {/* Usando logo.jpg */}
+                                    <img src="/assets/LOGOBOT.png" alt="Profile" className="profile-avatar" /> {/* Usando logo.jpg */}
                                     <span>Mi Gusto</span>
                                 </div>
 
                                 {/* Lista de opciones del menú */}
                                 <ul className="menu-options-list">
                                     <li className={`menu-item ${activeCategory === 'Inicio' ? 'active' : ''}`} onClick={() => handleCategoryClick('Inicio')}>
-                                         <i className="fa-solid fa-house"></i>
-                                         <span>Inicio</span>
+                                        <i className="fa-solid fa-house"></i>
+                                        <span>Inicio</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Hacer pedido')}>
-                                         <i className="fa-solid fa-cart-plus"></i> {/* Icono placeholder */}
-                                         <span>Hacer pedido</span>
+                                        <i className="fa-solid fa-cart-plus"></i> {/* Icono placeholder */}
+                                        <span>Hacer pedido</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Mis Pedidos')}>
-                                         <i className="fa-solid fa-receipt"></i> {/* Icono placeholder */}
-                                         <span>Mis Pedidos</span>
+                                        <i className="fa-solid fa-receipt"></i> {/* Icono placeholder */}
+                                        <span>Mis Pedidos</span>
                                     </li>
-                                     <li className="menu-item" onClick={() => handleCategoryClick('Mis direcciones')}>
-                                         <i className="fa-solid fa-location-dot"></i> {/* Icono placeholder */}
-                                         <span>Mis direcciones</span>
+                                    <li className="menu-item" onClick={() => handleCategoryClick('Mis direcciones')}>
+                                        <i className="fa-solid fa-location-dot"></i> {/* Icono placeholder */}
+                                        <span>Mis direcciones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Cupones')}>
-                                         <i className="fa-solid fa-ticket"></i> {/* Icono actualizado */}
-                                         <span>Cupones</span>
+                                        <i className="fa-solid fa-ticket"></i> {/* Icono actualizado */}
+                                        <span>Cupones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Mis cupones')}>
-                                         <i className="fa-solid fa-ticket"></i> {/* Icono actualizado */}
-                                         <span>Mis cupones</span>
+                                        <i className="fa-solid fa-ticket"></i> {/* Icono actualizado */}
+                                        <span>Mis cupones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Promociones')}>
-                                         <i className="fa-solid fa-tags"></i> {/* Icono placeholder */}
-                                         <span>Promociones</span>
+                                        <i className="fa-solid fa-tags"></i> {/* Icono placeholder */}
+                                        <span>Promociones</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Locales')}>
-                                         <i className="fa-solid fa-store"></i> {/* Icono placeholder */}
-                                         <span>Locales</span>
+                                        <i className="fa-solid fa-store"></i> {/* Icono placeholder */}
+                                        <span>Locales</span>
                                     </li>
-                                     <li className="menu-item" onClick={() => handleCategoryClick('Institucional')}>
-                                         <i className="fa-solid fa-building"></i> {/* Icono placeholder */}
-                                         <span>Institucional</span>
+                                    <li className="menu-item" onClick={() => handleCategoryClick('Institucional')}>
+                                        <i className="fa-solid fa-building"></i> {/* Icono placeholder */}
+                                        <span>Institucional</span>
                                     </li>
                                     <li className={`menu-item ${activeCategory === 'Perfil' ? 'active' : ''}`} onClick={() => handleCategoryClick('Perfil')}>
-                                         <i className="fa-solid fa-user"></i> {/* Icono placeholder */}
-                                         <span>Perfil</span>
+                                        <i className="fa-solid fa-user"></i> {/* Icono placeholder */}
+                                        <span>Perfil</span>
                                     </li>
                                     <li className="menu-item" onClick={() => handleCategoryClick('Sobre la app')}>
-                                         <i className="fa-solid fa-circle-info"></i> {/* Icono actualizado */}
-                                         <span>Sobre la app</span>
+                                        <i className="fa-solid fa-circle-info"></i> {/* Icono actualizado */}
+                                        <span>Sobre la app</span>
                                     </li>
                                 </ul>
                             </div>
@@ -198,17 +198,17 @@ const IphoneStore: React.FC = () => {
                     <div className="iphone-content-scrollable">
                         {activeCategory === 'Promociones' ? (
                             <div className="promociones-scroll" style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <img 
-                                    src="/images/promotions/promociones-iphone.jpg" 
-                                    alt="Promociones" 
+                                <img
+                                    src="/images/promotions/promociones-iphone.jpg"
+                                    alt="Promociones"
                                     style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
                                 />
                             </div>
                         ) : activeCategory === 'Mis cupones' ? (
                             <div style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <img 
-                                    src="/images/promotions/mis-cupones.jpg" 
-                                    alt="Mis cupones" 
+                                <img
+                                    src="/images/promotions/mis-cupones.jpg"
+                                    alt="Mis cupones"
                                     style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
                                 />
                             </div>
@@ -217,8 +217,8 @@ const IphoneStore: React.FC = () => {
                                 {/* Slider de imágenes */}
                                 <div className="iphone-slider">
                                     {sliderImages.map((image, index) => (
-                                        <div 
-                                            key={index} 
+                                        <div
+                                            key={index}
                                             className={`iphone-slide ${index === currentSlide ? 'active' : ''}`}
                                             style={{ backgroundImage: `url(${image})` }}
                                         >
@@ -229,8 +229,8 @@ const IphoneStore: React.FC = () => {
                                 {/* Indicadores del slider */}
                                 <div className="slider-indicators">
                                     {sliderImages.map((_, index) => (
-                                        <span 
-                                            key={index} 
+                                        <span
+                                            key={index}
                                             className={`indicator ${index === currentSlide ? 'active' : ''}`}
                                             onClick={() => setCurrentSlide(index)}
                                         ></span>
@@ -252,28 +252,28 @@ const IphoneStore: React.FC = () => {
                     </div>
 
                     <ul className="footer">
-                        <li 
+                        <li
                             className={`item ${activeCategory === 'Inicio' ? 'active' : ''}`}
                             onClick={() => handleCategoryClick('Inicio')}
                         >
                             <i className="fa-solid fa-house"></i>
                             <span>Inicio</span>
                         </li>
-                        <li 
+                        <li
                             className={`item ${activeCategory === 'Pedir' ? 'active' : ''}`}
                             onClick={() => handleCategoryClick('Pedir')}
                         >
                             <i className="fa-solid fa-cart-shopping"></i>
                             <span>Pedir</span>
                         </li>
-                        <li 
+                        <li
                             className={`item ${activeCategory === 'Mis cupones' ? 'active' : ''}`}
                             onClick={() => handleCategoryClick('Mis cupones')}
                         >
                             <i className="fa-solid fa-ticket"></i>
                             <span>Mis cupones</span>
                         </li>
-                        <li 
+                        <li
                             className={`item ${activeCategory === 'Promociones' ? 'active' : ''}`}
                             onClick={() => handleCategoryClick('Promociones')}
                         >
