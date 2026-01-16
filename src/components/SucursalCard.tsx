@@ -53,13 +53,13 @@ const SucursalCard: React.FC<Props> = ({ sucursal }) => {
                 <div className="sucursal-header">
                     <h5 className="sucursal-title">
                         <img
-                            src="/images/logos/logo.jpg"
+                            src="/assets/sucursal_card_logo.png"
                             alt="Logo"
                             className="sucursal-logo"
                         />
                         {sucursal.nombre}
                     </h5>
-                    <button 
+                    <button
                         className="whatsapp-button"
                         onClick={handleWhatsAppClick}
                         title="Contactar por WhatsApp"
@@ -91,7 +91,7 @@ const SucursalCard: React.FC<Props> = ({ sucursal }) => {
                                 </div>
                             </div>
                         )}
-                        
+
                         {/* Mapa real */}
                         {mapaVisible && (
                             <iframe
@@ -100,7 +100,7 @@ const SucursalCard: React.FC<Props> = ({ sucursal }) => {
                                 loading="lazy"
                                 title={`Mapa de ${sucursal.nombre}`}
                                 onLoad={handleMapaLoad}
-                                style={{ 
+                                style={{
                                     opacity: mapaCargado ? 1 : 0,
                                     transition: 'opacity 0.3s ease'
                                 }}
