@@ -245,7 +245,7 @@ const Franquicias: React.FC = () => {
           loop
           playsInline
           onEnded={handleVideoEnded}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(8px)' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(2px)' }}
         />
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
       </div>
@@ -907,7 +907,7 @@ if (typeof window !== 'undefined') {
         margin-bottom: 24px !important;
       }
       .franquicias-bg-video {
-        filter: blur(8px) !important;
+        filter: blur(2px) !important;
       }
       .contacto-form input,
       .contacto-form select {
