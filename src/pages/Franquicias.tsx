@@ -245,12 +245,38 @@ const Franquicias: React.FC = () => {
           loop
           playsInline
           onEnded={handleVideoEnded}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(8px)' }}
         />
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
       </div>
       <div className="sucursales-container" style={{ position: 'relative', zIndex: 2 }}>
         <div className="responsive-row" style={{ display: 'flex', flexDirection: 'row', width: '100vw', minHeight: '100vh', alignItems: 'stretch', padding: '48px 64px', boxSizing: 'border-box', gap: '32px' }}>
+          <style>{`
+            @media (max-width: 900px) {
+              .responsive-row {
+                flex-direction: column !important;
+                padding: 20px 16px !important;
+                gap: 20px !important;
+                min-height: auto !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                box-sizing: border-box !important;
+              }
+            }
+            @media (max-width: 480px) {
+              .responsive-row {
+                padding: 16px 12px !important;
+                gap: 16px !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                box-sizing: border-box !important;
+              }
+            }
+          `}</style>
           {/* PARTE IZQUIERDA: Información Franquicias */}
           <div className="franquicias-img" style={{ 
             width: '50vw', 
@@ -258,7 +284,7 @@ const Franquicias: React.FC = () => {
             maxHeight: '100vh', 
             display: 'flex', 
             flexDirection: 'column',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             justifyContent: 'center',
             marginTop: '0px',
             position: 'relative', 
@@ -272,9 +298,15 @@ const Franquicias: React.FC = () => {
                   width: 100vw !important;
                   padding: 16px !important;
                   margin-top: 8px !important;
+                  maxHeight: auto !important;
+                  height: auto !important;
+                  align-items: center !important;
                 }
                 .franquicias-img .franq-text {
-                  padding: 0 8px !important;
+                  padding: 16px !important;
+                  margin: 0 auto !important;
+                  width: 100% !important;
+                  max-width: 100% !important;
                 }
                 .franquicias-img .franq-text-title {
                   font-size: 1.3rem !important;
@@ -283,6 +315,26 @@ const Franquicias: React.FC = () => {
                 .franquicias-img .franq-text-body {
                   font-size: 1.05rem !important;
                   line-height: 1.55 !important;
+                }
+                .franquicias-img button {
+                  font-size: 1.4rem !important;
+                }
+              }
+              @media (max-width: 480px) {
+                .franquicias-img {
+                  padding: 12px !important;
+                  align-items: center !important;
+                }
+                .franquicias-img .franq-text {
+                  padding: 12px !important;
+                  margin: 0 auto !important;
+                  width: 100% !important;
+                }
+                .franquicias-img button {
+                  font-size: 1.2rem !important;
+                }
+                .franquicias-img .franq-text-body {
+                  font-size: 0.95rem !important;
                 }
               }
             `}</style>
@@ -293,7 +345,11 @@ const Franquicias: React.FC = () => {
               padding: '20px',
               background: 'rgba(0,0,0,0.45)',
               borderRadius: '14px',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.35)'
+              boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+              transform: 'scale(0.9)',
+              transformOrigin: 'center',
+              width: '100%',
+              maxWidth: '100%'
             }}>
               <button
                 onClick={() => setShowWhy(prev => !prev)}
@@ -313,7 +369,20 @@ const Franquicias: React.FC = () => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
+                className="franq-why-button"
               >
+                <style>{`
+                  @media (max-width: 900px) {
+                    .franq-why-button {
+                      font-size: 1.4rem !important;
+                    }
+                  }
+                  @media (max-width: 480px) {
+                    .franq-why-button {
+                      font-size: 1.2rem !important;
+                    }
+                  }
+                `}</style>
                 ¿Por qué elegir Mi Gusto?
                 <span style={{ fontSize: '1.3rem', transition: 'transform 0.3s ease', transform: showWhy ? 'rotate(90deg)' : 'rotate(0deg)' }}>
                   ❯
@@ -363,20 +432,126 @@ crecimiento, este es el momento de sumarte.
             background: 'transparent',
             boxShadow: 'none'
           }}>
+            <style>{`
+              @media (max-width: 900px) {
+                .contacto-container.no-pattern-bg {
+                  width: 100% !important;
+                  max-width: 100% !important;
+                  min-height: auto !important;
+                  padding: 0 !important;
+                  margin: 0 auto !important;
+                  display: flex !important;
+                  justify-content: center !important;
+                  align-items: center !important;
+                  box-sizing: border-box !important;
+                }
+              }
+            `}</style>
             <div className="contacto-content" style={{ 
               width: '100%', 
-              marginTop: 0 
+              marginTop: 0,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}>
               <div className="contacto-form-container" style={{ 
-                background: 'rgba(30, 30, 30, 0.85)'
+                background: 'rgba(30, 30, 30, 0.85)',
+                transform: 'scale(0.9)',
+                transformOrigin: 'center',
+                width: '100%',
+                maxWidth: '100%'
               }}>
+                <style>{`
+                  @media (max-width: 900px) {
+                    .contacto-form-container {
+                      padding: 20px !important;
+                      margin: 0 auto !important;
+                      width: 100% !important;
+                      max-width: 100% !important;
+                      box-sizing: border-box !important;
+                      transform: scale(0.9) !important;
+                      transform-origin: center !important;
+                    }
+                    .contacto-content {
+                      width: 100% !important;
+                      max-width: 100% !important;
+                      display: flex !important;
+                      justify-content: center !important;
+                      align-items: center !important;
+                      margin: 0 auto !important;
+                      padding: 0 !important;
+                      box-sizing: border-box !important;
+                    }
+                  }
+                  @media (max-width: 480px) {
+                    .contacto-form-container {
+                      padding: 16px !important;
+                      margin: 0 auto !important;
+                      width: 100% !important;
+                      max-width: 100% !important;
+                      box-sizing: border-box !important;
+                      transform: scale(0.9) !important;
+                      transform-origin: center !important;
+                    }
+                    .contacto-content {
+                      width: 100% !important;
+                      max-width: 100% !important;
+                      display: flex !important;
+                      justify-content: center !important;
+                      align-items: center !important;
+                      margin: 0 auto !important;
+                      padding: 0 !important;
+                      box-sizing: border-box !important;
+                    }
+                  }
+                `}</style>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                   <img src="/images/franquicias/Franquicias.png" alt="Franquicias" style={{ width: '85%', maxWidth: '460px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
+                  <style>{`
+                    @media (max-width: 900px) {
+                      .contacto-form-container img {
+                        width: 90% !important;
+                        max-width: 300px !important;
+                        margin-bottom: 16px !important;
+                      }
+                    }
+                    @media (max-width: 480px) {
+                      .contacto-form-container img {
+                        width: 95% !important;
+                        max-width: 250px !important;
+                        margin-bottom: 12px !important;
+                      }
+                    }
+                  `}</style>
                 </div>
                 <p style={{ textAlign: 'center', fontSize: '1.3rem', marginBottom: '24px' }}>Completa el siguiente formulario si estás interesado en abrir una franquicia de Mi Gusto.</p>
+                <style>{`
+                  @media (max-width: 900px) {
+                    .contacto-form-container p {
+                      font-size: 1.1rem !important;
+                      margin-bottom: 20px !important;
+                      padding: 0 8px !important;
+                    }
+                  }
+                  @media (max-width: 480px) {
+                    .contacto-form-container p {
+                      font-size: 1rem !important;
+                      margin-bottom: 16px !important;
+                      padding: 0 4px !important;
+                    }
+                  }
+                `}</style>
                 <div style={{ textAlign: 'center', marginBottom: '16px', fontSize: '1.1rem', color: '#ffc107' }}>
                   Paso {currentStep} de 3
                 </div>
+                <style>{`
+                  @media (max-width: 480px) {
+                    .contacto-form-container > div[style*="color: #ffc107"] {
+                      font-size: 1rem !important;
+                      margin-bottom: 12px !important;
+                    }
+                  }
+                `}</style>
                 <div className="progress-bar-container">
                   <div className="progress-bar" style={{ width: `${progressBarWidth}%` }}></div>
                 </div>
@@ -423,6 +598,27 @@ crecimiento, este es el momento de sumarte.
                       box-shadow: 0 4px 24px rgba(0,0,0,0.25) !important;
                       left: -100px !important;
                       position: relative !important;
+                    }
+                    @media (max-width: 900px) {
+                      .react-datepicker {
+                        left: 50% !important;
+                        transform: translateX(-50%) !important;
+                        position: fixed !important;
+                        z-index: 9999 !important;
+                        top: 50% !important;
+                        margin-top: -200px !important;
+                      }
+                    }
+                    @media (max-width: 480px) {
+                      .react-datepicker {
+                        width: 90vw !important;
+                        max-width: 320px !important;
+                        font-size: 0.9rem !important;
+                      }
+                      .react-datepicker__day {
+                        font-size: 0.85rem !important;
+                        padding: 6px !important;
+                      }
                     }
                     .react-datepicker__header {
                       background: #222 !important;
@@ -684,13 +880,105 @@ if (typeof window !== 'undefined') {
     @media (max-width: 900px) {
       .sucursales-section {
         margin-top: 0px !important;
+        min-height: auto !important;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+      .sucursales-container {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
       }
       .contacto-container {
-        margin-top: 56px !important;
+        margin-top: 0px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .responsive-row {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
       }
       .responsive-row img {
         margin-top: 8px !important;
-        margin-bottom: 32px !important;
+        margin-bottom: 24px !important;
+      }
+      .franquicias-bg-video {
+        filter: blur(8px) !important;
+      }
+      .contacto-form input,
+      .contacto-form select {
+        font-size: 16px !important; /* Evita zoom en iOS */
+      }
+      .form-buttons {
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+      .form-buttons .btn-ver-mas {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+      }
+      .franquicias-img {
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+      }
+      .franq-text {
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .contacto-container.no-pattern-bg {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+      }
+      .contacto-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .contacto-form-container {
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .sucursales-section {
+        padding: 0 !important;
+      }
+      .responsive-row {
+        padding: 12px !important;
+      }
+      .contacto-form-container {
+        padding: 16px !important;
+      }
+      .contacto-form label {
+        font-size: 0.95rem !important;
+      }
+      .contacto-form input,
+      .contacto-form select {
+        padding: 12px !important;
+        font-size: 16px !important;
+      }
+      .form-row {
+        margin-bottom: 8px !important;
+      }
+      .form-group {
+        margin-bottom: 12px !important;
       }
     }
   `;

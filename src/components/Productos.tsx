@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
+import gsap from 'gsap';
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import MobileProductDetail from './MobileProductDetail';
@@ -280,6 +281,8 @@ export default function Productos() {
                 easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
             });
 
+            // --- OLD ScrollReveal for Products (Removed in favor of GSAP) ---
+            /*
             scrollRevealRef.current.reveal('.producto-card', {
                 distance: '25px',
                 duration: 800,
@@ -297,6 +300,7 @@ export default function Productos() {
                 reset: false,
                 easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
             });
+            */
         };
 
         initScrollReveal();
@@ -317,6 +321,60 @@ export default function Productos() {
             }, 100);
         }
     }, [productosFiltrados]);
+
+    // --- GSAP ANIMATION FOR PRODUCTS ---
+    useEffect(() => {
+        // Kill previous animations to prevent conflicts
+        gsap.killTweensOf('.producto-card');
+        gsap.killTweensOf('.producto-row-mobile');
+
+        if (productosFiltrados.length === 0) return;
+
+        const ctx = gsap.context(() => {
+            if (isMobile) {
+                // Mobile Animation: Slide up + Fade in
+                gsap.fromTo('.producto-row-mobile',
+                    {
+                        opacity: 0,
+                        y: 30,
+                        scale: 0.95
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.5,
+                        stagger: 0.05,
+                        ease: "power2.out",
+                        clearProps: "all" // Ensure interactivity remains after
+                    }
+                );
+            } else {
+                // Desktop Animation: Elastic Pop-in with 3D Rotation
+                gsap.fromTo('.producto-card',
+                    {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.8,
+                        rotationX: 15,
+                        transformPerspective: 1000
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        rotationX: 0,
+                        duration: 0.7,
+                        stagger: 0.04, // Faster stagger for impressiveness
+                        ease: "back.out(1.2)", // Bouncy effect
+                        clearProps: "transform" // Keep only transform clear to avoid layout issues, keep opacity
+                    }
+                );
+            }
+        });
+
+        return () => ctx.revert();
+    }, [productosFiltrados, isMobile]); // Run whenever products change
 
     const explodedConfig = useMemo(() => {
         if (!productoSeleccionado) return null;

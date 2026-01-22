@@ -148,7 +148,7 @@ const Proveedores: React.FC = () => {
           loop
           playsInline
           onEnded={handleVideoEnded}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(1px)' }}
         />
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
       </div>
