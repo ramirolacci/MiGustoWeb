@@ -191,7 +191,7 @@ const VentaCorporativa: React.FC = () => {
                     loop
                     playsInline
                     onEnded={handleVideoEnded}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(1px)' }}
                 />
                 <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.35)', opacity: isVideoFading ? 1 : 0, transition: 'opacity 1.6s ease' }} />
             </div>
@@ -202,7 +202,7 @@ const VentaCorporativa: React.FC = () => {
                         width: isMobile ? '100%' : '48vw', 
                         display: 'flex', 
                         flexDirection: 'column',
-                        alignItems: 'flex-start',
+                        alignItems: isMobile ? 'center' : 'flex-start',
                         justifyContent: 'center',
                         marginTop: isMobile ? '0px' : '24px', 
                         position: 'relative', 
@@ -213,12 +213,19 @@ const VentaCorporativa: React.FC = () => {
                         <style>{`
                             @media (max-width: 900px) {
                                 .venta-corporativa-img {
-                                    width: 100vw !important;
+                                    width: 100% !important;
+                                    max-width: 100% !important;
                                     padding: 16px !important;
                                     margin-top: 0px !important;
+                                    align-items: center !important;
+                                    justify-content: center !important;
                                 }
                                 .venta-corporativa-img .corp-text {
-                                    padding: 0 8px !important;
+                                    padding: 20px !important;
+                                    margin: 0 auto !important;
+                                    width: 100% !important;
+                                    max-width: 100% !important;
+                                    box-sizing: border-box !important;
                                 }
                                 .venta-corporativa-img .corp-text-title {
                                     font-size: 1.35rem !important;
@@ -241,7 +248,10 @@ const VentaCorporativa: React.FC = () => {
                             padding: '24px',
                             background: 'rgba(0,0,0,0.45)',
                             borderRadius: '14px',
-                            boxShadow: '0 8px 32px rgba(0,0,0,0.35)'
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+                            width: '100%',
+                            maxWidth: '100%',
+                            boxSizing: 'border-box'
                         }}>
                             <div className="corp-text-title" style={{ fontWeight: 700, fontSize: '1.75rem', marginBottom: '24px', color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                                 Beneficios Corporativos
@@ -275,26 +285,66 @@ const VentaCorporativa: React.FC = () => {
                         maxWidth: '560px',
                         minHeight: 'auto', 
                         display: 'flex', 
-                        alignItems: 'flex-start', 
+                        alignItems: isMobile ? 'center' : 'flex-start', 
                         justifyContent: isMobile ? 'center' : 'flex-end', 
                         marginTop: isMobile ? '0px' : '24px',
-                        marginLeft: 'auto',
+                        marginLeft: isMobile ? 'auto' : 'auto',
+                        marginRight: isMobile ? 'auto' : 'auto',
                         padding: 0,
                         background: 'transparent',
                         boxShadow: 'none'
                     }}>
+                        <style>{`
+                            @media (max-width: 900px) {
+                                .contacto-container.no-pattern-bg {
+                                    width: 100% !important;
+                                    max-width: 100% !important;
+                                    display: flex !important;
+                                    justify-content: center !important;
+                                    align-items: center !important;
+                                    margin: 0 auto !important;
+                                    padding: 0 !important;
+                                    box-sizing: border-box !important;
+                                }
+                            }
+                        `}</style>
                         <div className="contacto-content" style={{ 
                             width: '100%', 
+                            maxWidth: '100%',
                             marginTop: 0,
                             display: 'flex',
                             flexDirection: 'column',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}>
+                            <style>{`
+                                @media (max-width: 900px) {
+                                    .contacto-content {
+                                        width: 100% !important;
+                                        max-width: 100% !important;
+                                        display: flex !important;
+                                        justify-content: center !important;
+                                        align-items: center !important;
+                                        margin: 0 auto !important;
+                                    }
+                                }
+                            `}</style>
                             <div className="contacto-form-container" style={{ 
                                 background: 'rgba(30, 30, 30, 0.78)', 
                                 backdropFilter: 'blur(6px)',
-                                width: '100%'
+                                width: '100%',
+                                maxWidth: '100%'
                             }}>
+                                <style>{`
+                                    @media (max-width: 900px) {
+                                        .contacto-form-container {
+                                            width: 100% !important;
+                                            max-width: 100% !important;
+                                            margin: 0 auto !important;
+                                            box-sizing: border-box !important;
+                                        }
+                                    }
+                                `}</style>
                                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                                     <img src="/images/corporate/venta corporativa.png" alt="Venta Corporativa" style={{ width: isMobile ? '95%' : '85%', maxWidth: '520px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
                                 </div>
@@ -495,9 +545,53 @@ if (typeof window !== 'undefined') {
             .contacto-container {
                 margin-top: 16px !important;
                 width: 100% !important;
+                max-width: 100% !important;
+            }
+            .contacto-container.no-pattern-bg {
+                width: 100% !important;
+                max-width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                box-sizing: border-box !important;
+            }
+            .contacto-content {
+                width: 100% !important;
+                max-width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                margin: 0 auto !important;
             }
             .contacto-form-container {
                 padding: 24px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                box-sizing: border-box !important;
+            }
+            .venta-corporativa-img {
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .corp-text {
+                margin: 0 auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .responsive-row {
+                align-items: center !important;
+                justify-content: center !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                box-sizing: border-box !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
         }
     `;

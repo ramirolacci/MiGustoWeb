@@ -313,6 +313,22 @@ const TrabajaConNosotros: React.FC = () => {
                       min-width: 300px !important;
                       box-sizing: border-box !important;
                     }
+                    @media (max-width: 768px) {
+                      .contacto-form .select-match-input {
+                        min-width: 100% !important;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                      }
+                      .form-row {
+                        flex-direction: column !important;
+                        gap: 0 !important;
+                      }
+                      .form-group.half-width {
+                        width: 100% !important;
+                        min-width: 100% !important;
+                        max-width: 100% !important;
+                      }
+                    }
                     .contacto-form .select-match-input:focus {
                       outline: none !important;
                       border-color: #ffc107 !important;
@@ -558,6 +574,51 @@ if (typeof window !== 'undefined') {
         margin-bottom: 20px !important;
         width: 90% !important;
         max-width: 340px !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column !important;
+        gap: 0 !important;
+      }
+      .form-group.half-width {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 14px !important;
+      }
+      .contacto-form .select-match-input {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .contacto-form input,
+      .contacto-form select {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 16px !important;
+      }
+      .contacto-form-container {
+        padding: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .form-group.half-width {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+      }
+      .contacto-form-container {
+        padding: 16px !important;
+      }
+      .contacto-form input,
+      .contacto-form select {
+        padding: 12px !important;
       }
     }
   `;
