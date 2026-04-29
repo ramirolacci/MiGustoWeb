@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Buscador from '../components/Buscador';
 import './HomeMobile.css';
-import { combosImperdibles, promosDestacadas, type MobilePromoSlide } from '../data/mobilePromos';
+import { promosDestacadasService, combosImperdiblesService, type MobilePromoSlide } from '../services/sliderService';
 import OptimizedImage from '../components/OptimizedImage';
 
 type Slide = MobilePromoSlide & { bg?: string };
@@ -94,10 +94,13 @@ export default function HomeMobile() {
   const isMobile = useIsMobile();
   const [filtro, setFiltro] = useState('');
   const [isSearchVisible, setIsSearchVisible] = useState(true);
+  const [promoSlides, setPromoSlides] = useState<Slide[]>([]);
+  const [moreSlides, setMoreSlides] = useState<Slide[]>([]);
 
-  const promoSlides = useMemo<Slide[]>(() => promosDestacadas, []);
-
-  const moreSlides = useMemo<Slide[]>(() => combosImperdibles, []);
+  useEffect(() => {
+    setPromoSlides(promosDestacadasService.getAll());
+    setMoreSlides(combosImperdiblesService.getAll());
+  }, []);
 
   const handleCategory = (key: string) => {
     navigate(`/productos#${key}`);

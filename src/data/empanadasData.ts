@@ -16,8 +16,9 @@ export interface Empanada {
 
 export const empanadas: Empanada[] = [
   {
-    imagen: "https://i.postimg.cc/Jn1YwrX3/Mexican-Pibil-pork.jpg",
+    imagen: "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
     imagenDetalle: "https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png",
+    imagenCard: "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
     titulo: "Mexican pibil pork",
     precio: 4000,
     descripcion: "Bondiola de cerdo de larga coccion, Achiote con porotos negros, Crema acida, Cebolla encurtida, Cilantro.",
@@ -78,9 +79,9 @@ export const empanadas: Empanada[] = [
     esPremium: false
   },
   {
-    imagen: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
-    imagenDetalle: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
-    imagenCard: "https://i.postimg.cc/QxTMKhBq/jamonquesoyhuevo.jpg",
+    imagen: "https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg",
+    imagenDetalle: "https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg",
+    imagenCard: "https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg",
     titulo: "Jamón, huevo y queso",
     precio: 3700,
     descripcion: "Jamón cocido en cubos, Colmado de muzzarella seleccionada, Huevo duro.",

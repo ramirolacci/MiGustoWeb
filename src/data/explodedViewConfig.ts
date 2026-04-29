@@ -36,7 +36,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Mexican pibil pork': {
         id: 'mexican-pibil-pork-001',
         name: 'Mexican pibil pork',
-        image: '/images/final/empanada-mexican-pibil-pork.png',
+        image: 'https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg',
         modelUrl: '/models/mexican-pibil-pork-3D.glb',
         cameraOrbit: '55deg 35deg 3m',
         ingredients: [
@@ -116,7 +116,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Jamón, huevo y queso': {
         id: 'jamon-huevo-queso-001',
         name: 'Jamón, huevo y queso',
-        image: 'https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png',
+        image: 'https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg',
         modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [

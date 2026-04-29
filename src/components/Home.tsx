@@ -3,20 +3,19 @@ import { gsap } from 'gsap';
 
 import './Home.css';
 import IphoneWhatsapp from './Iphone';
-
-const slidesDesktop = [
-    '/images/sliders/SLIDER 2000X1125 copia.jpg',
-    '/images/sliders/Generico.jpg',
-    '/images/sliders/desktop2.jpg',
-    '/images/sliders/desktop3.jpg',
-];
-
-// Usar las mismas imágenes en mobile
-const slidesMobile = slidesDesktop;
+import { sliderService } from '../services/sliderService';
 
 const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean }) {
     const [current, setCurrent] = useState(1);
     const [transition, setTransition] = useState(true);
+    const [slidesDesktop, setSlidesDesktop] = useState<string[]>([]);
+    const [slidesMobile, setSlidesMobile] = useState<string[]>([]);
+    
+    useEffect(() => {
+        setSlidesDesktop(sliderService.getDesktopSlides());
+        setSlidesMobile(sliderService.getMobileSlides());
+    }, []);
+    
     const slides = isMobile ? slidesMobile : slidesDesktop;
     const timeoutRef = useRef<number | null>(null);
 

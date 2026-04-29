@@ -10,13 +10,14 @@ import { useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { flyToCart } from '../utils/flyToCart';
 
-import { pizzas } from '../data/pizzasData';
-import { empanadas } from '../data/empanadasData';
-import { fitzzas } from '../data/fitzzasData';
-import { pizzasIndi } from '../data/pizzasIndiData';
-import { salsas } from '../data/salsasData';
-import { postres } from '../data/postresData';
-import { promociones } from '../data/promocionesData';
+import { pizzas as originalPizzas } from '../data/pizzasData';
+import { empanadas as originalEmpanadas } from '../data/empanadasData';
+import { fitzzas as originalFitzzas } from '../data/fitzzasData';
+import { pizzasIndi as originalPizzasIndi } from '../data/pizzasIndiData';
+import { salsas as originalSalsas } from '../data/salsasData';
+import { postres as originalPostres } from '../data/postresData';
+import { promociones as originalPromociones } from '../data/promocionesData';
+import { getProductData } from '../utils/productDataLoader';
 
 interface Producto {
     titulo: string;
@@ -69,6 +70,16 @@ export default function Productos() {
     const [hoveredBigBurger, setHoveredBigBurger] = useState(false);
     const scrollRevealRef = useRef<any>(null);
     const [sectionVisible, setSectionVisible] = useState(false);
+
+    // Cargar datos (combina originales con ediciones del admin)
+    const productData = getProductData();
+    const empanadas = productData.empanadas;
+    const pizzas = productData.pizzas;
+    const pizzasIndi = productData.pizzasIndi;
+    const fitzzas = productData.fitzzas;
+    const salsas = productData.salsas;
+    const postres = productData.postres;
+    const promociones = productData.promociones;
 
     useEffect(() => {
         // Sincronizar desde query params si llegan desde HomeMobile

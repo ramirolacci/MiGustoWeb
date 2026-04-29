@@ -37,6 +37,9 @@ const Canje = lazy(() => import('./pages/Canje'));
 const IngredientExplodedView = lazy(() => import('./components/IngredientExplodedView'));
 import ProtectedRoute from './components/ProtectedRoute';
 const DefensaConsumidor = lazy(() => import('./pages/DefensaConsumidor'));
+const AdminLogin = lazy(() => import('./pages/AdminLogin'));
+const AdminPanel = lazy(() => import('./pages/AdminPanel'));
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 
 import './App.css';
 import './styles/mobile-layout.css';
@@ -90,8 +93,8 @@ const AppContent: React.FC = () => {
                 <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                 <Route path="/mi-cuenta" element={<ProtectedRoute><Account /></ProtectedRoute>} />
                 <Route path="/canje" element={<Canje />} />
-                {/* Ejemplo de ruta protegida: */}
-                <Route path="/admin" element={<ProtectedRoute><div style={{ color: '#fff', padding: '2rem' }}>Área Privada</div></ProtectedRoute>} />
+                <Route path="/admin" element={<AdminLogin />} />
+                <Route path="/admin/panel" element={<AdminProtectedRoute><AdminPanel /></AdminProtectedRoute>} />
                 <Route path="/defensa-consumidor" element={<DefensaConsumidor />} />
                 <Route path="/exploded-test" element={
                   <>
