@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -8,6 +8,7 @@ import BotmakerChat from './components/BotmakerChat';
 import Viewer3D from './components/Viewer3D';
 import CookieConsent from './components/CookieConsent';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import LoadingSpinner from './components/LoadingSpinner';
 import LoversForm from './pages/LoversForm';
 import Carta from './pages/Carta';
 import { trackPageView } from './services/analytics';
@@ -48,6 +49,15 @@ import ErrorBoundary from './components/ErrorBoundary';
 const AppContent: React.FC = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+
+  // Forzar tiempo mínimo de carga para ver la animación del mundial
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 2000); // 2 segundos mínimo
+    return () => clearTimeout(timer);
+  }, []);
 
   // Registrar pageview al cambiar de ruta
   useEffect(() => {
@@ -64,13 +74,14 @@ const AppContent: React.FC = () => {
 
   return (
     <>
+      <LoadingSpinner isLoading={isInitialLoading} />
       {!isLovers && !isViewer3D && <BotmakerChat />}
       <div className="app">
         <GoogleAnalytics />
         {!isLovers && !isMobile && <header><NavBar /></header>}
         <main className='main'>
           <ErrorBoundary>
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner isLoading={true} />}>
               <Routes>
                 <Route path="/" element={<ResponsiveHome />} />
                 {/* Home mobile dedicado */}

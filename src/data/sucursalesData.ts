@@ -39,6 +39,16 @@ export const sucursales: Sucursal[] = [
         mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6571.584390267806!2d-58.46480970282218!3d-34.55881650618978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb52cc7c10f8b%3A0x88b0e133e593f197!2sMi%20Gusto!5e0!3m2!1ses!2sar!4v1749052339943!5m2!1ses!2sar"
     },
     {
+        nombre: "Caballito",
+        direccion: "Av. Rivadavia 6193",
+        localidad: "Caballito",
+        provincia: "Ciudad Autónoma de Buenos Aires",
+        telefono: "+54 11 4631-0000",
+        horario: "Lunes a Domingo 11:00 a 23:30",
+        mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.847424564567!2d-58.4512411!3d-34.6212456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca1b4f4e7e6d%3A0x2f4e4e4e4e4e4e4e!2sMi%20Gusto%20Caballito!5e0!3m2!1ses!2sar!4v1686600000000!5m2!1ses!2sar"
+    },
+
+    {
         nombre: "Belgrano",
         direccion: "Av. Dr. Ricardo Balbín 2395",
         localidad: "Belgrano",
@@ -65,6 +75,16 @@ export const sucursales: Sucursal[] = [
         horario: "Lunes a Miércoles 11:30 a 14:30 y 19:00 a 23:30 | Jueves a Domingo 11:00 a 15:00 y 18:00 a 00:00",
         mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.3444201406396!2d-58.96566362354834!3d-34.16311083436409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb722ea4799fe3%3A0x621583e70d282306!2sMi%20Gusto!5e0!3m2!1ses!2sar!4v1749053384800!5m2!1ses!2sar"
     },
+    {
+        nombre: "Cañitas",
+        direccion: "Báez 436",
+        localidad: "Palermo",
+        provincia: "Ciudad Autónoma de Buenos Aires",
+        telefono: "+54 11 4777-0000",
+        horario: "Lunes a Domingo 11:00 a 00:00",
+        mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.923456789012!2d-58.4356789!3d-34.5678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb59a2b2b2b2b%3A0x2f4e4e4e4e4e4e4f!2sMi%20Gusto%20Ca%C3%B1itas!5e0!3m2!1ses!2sar!4v1686600000000!5m2!1ses!2sar"
+    },
+
     {
         nombre: "Del Viso",
         direccion: "Colectora 12 de Octubre 3252",
@@ -344,4 +364,14 @@ export const sucursales: Sucursal[] = [
         horario: "Lunes a Miércoles 11:00 a 23:30 | Jueves 11:00 a 00:00 | Viernes y Sábado 11:00 a 00:00 | Domingo 17:45 a 00:00",
         mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.892744322835!2d-58.49491812353177!3d-34.58158035633073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb70a2d8361f3%3A0xdc78073fd174c7a1!2sMi%20Gusto!5e0!3m2!1ses!2sar!4v1749061480658!5m2!1ses!2sar"
     },
+    {
+        nombre: "Vicente Lopez",
+        direccion: "Av. Maipú 1100",
+        localidad: "Vicente López",
+        provincia: "Provincia de Buenos Aires",
+        telefono: "+54 11 4791-0000",
+        horario: "Lunes a Domingo 11:00 a 23:30",
+        mapaEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.064595955403!2d-58.4809886!3d-34.5265913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb1504f60a29f%3A0x56b43fffb858a6a8!2sMi%20Gusto%20Vicente%20Lopez!5e0!3m2!1ses!2sar!4v1686600000000!5m2!1ses!2sar"
+    },
+
 ];

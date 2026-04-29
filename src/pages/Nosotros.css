@@ -911,7 +911,7 @@
     user-select: none;
     will-change: transform;
     scroll-behavior: smooth;
-    animation: pasarela-flow 60s linear infinite;
+    animation: pasarela-flow 30s linear infinite;
     overflow: visible;
     /* no recortar sombras internas */
     position: relative;

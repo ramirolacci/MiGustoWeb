@@ -46,9 +46,9 @@ const Nosotros: React.FC = () => {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setFranquiciasCount(0);
-                    const targetNumber = 37;
+                    const targetNumber = 39;
                     const duration = 1500; // 1.5 segundos
-                    const steps = 37; // Un paso por número
+                    const steps = 39; // Un paso por número
                     const stepDuration = duration / steps;
 
                     let currentStep = 0;
@@ -287,20 +287,6 @@ const Nosotros: React.FC = () => {
             end: 'bottom 12%',
             scrub: false,
             invalidateOnRefresh: true,
-            onEnter: () => {
-                track.style.animationPlayState = 'paused';
-                baseScroll = container.scrollLeft;
-            },
-            onEnterBack: () => {
-                track.style.animationPlayState = 'paused';
-                baseScroll = container.scrollLeft;
-            },
-            onLeave: () => {
-                track.style.animationPlayState = 'running';
-            },
-            onLeaveBack: () => {
-                track.style.animationPlayState = 'running';
-            },
             onUpdate: self => {
                 if (isDraggingRef.current) return;
                 const target = baseScroll + self.progress * maxScrollPx;
@@ -320,53 +306,17 @@ const Nosotros: React.FC = () => {
         };
     }, []);
 
-    // Auto-scroll infinito mejorado tipo pasarela (solo cuando no hay interacción ni scroll activo)
+    // Sincronizar el estado de la animación con hover/drag
     useEffect(() => {
-        const container = valoresContainerRef.current;
         const track = carouselRef.current;
-        const valoresSection = valoresContainerRef.current?.closest('.section-card');
+        if (!track) return;
 
-        if (!container || !track || !valoresSection) return;
-
-        let rafId = 0;
-        let last = performance.now();
-        const SPEED_PX_PER_SEC = 25; // velocidad aumentada para efecto pasarela
-
-        // Variable para trackear si el ScrollTrigger está activo
-        let scrollTriggerActive = false;
-
-        // Crear un observer para detectar cuando ScrollTrigger está activo
-        const checkScrollTrigger = () => {
-            const triggers = ScrollTrigger.getAll();
-            scrollTriggerActive = triggers.some(trigger =>
-                trigger.trigger === valoresSection &&
-                trigger.isActive
-            );
-        };
-
-        const loop = (now: number) => {
-            const dt = now - last;
-            last = now;
-
-            checkScrollTrigger();
-
-            // Solo auto-scroll si no está arrastrando, no está hover, y ScrollTrigger no está activo
-            if (!isDraggingRef.current && !isHoveringRef.current && !scrollTriggerActive) {
-                container.scrollLeft += (SPEED_PX_PER_SEC * dt) / 1000;
-
-                // Reiniciar cuando llegue a la mitad para scroll infinito
-                const half = track.scrollWidth / 2;
-                if (half > 0 && container.scrollLeft >= half) {
-                    container.scrollLeft -= half;
-                }
-            }
-
-            rafId = requestAnimationFrame(loop);
-        };
-
-        rafId = requestAnimationFrame(loop);
-        return () => cancelAnimationFrame(rafId);
-    }, []);
+        if (isDragging || isHovering) {
+            track.style.animationPlayState = 'paused';
+        } else {
+            track.style.animationPlayState = 'running';
+        }
+    }, [isDragging, isHovering]);
 
 
     return (
@@ -481,7 +431,7 @@ const Nosotros: React.FC = () => {
                     <h2>FRANQUICIAS</h2>
                     <div className="franquicias-content">
                         <p>
-                            Actualmente contamos con 37 franquicias distribuidas estratégicamente
+                            Actualmente contamos con 39 franquicias distribuidas estratégicamente
                             en diferentes puntos del país, ofreciendo la misma calidad y experiencia
                             en cada una de nuestras ubicaciones.
                         </p>

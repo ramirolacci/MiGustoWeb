@@ -10,6 +10,8 @@ const sucursalesList = [
   'Barrancas de Belgrano',
   'Belgrano',
   'Bella Vista',
+  'Caballito',
+  'Cañitas',
   'Campana',
   'Del Viso',
   'Devoto',
@@ -39,6 +41,7 @@ const sucursalesList = [
   'San Miguel',
   'Tigre',
   'Tortugas Norte',
+  'Vicente Lopez',
   'Villa Adelina',
   'Villa Crespo',
   'Villa Urquiza'

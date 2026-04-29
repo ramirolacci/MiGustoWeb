@@ -79,12 +79,29 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
     };
   }, [isLoading]);
 
+  // Activar modo mundial
+  const IS_MUNDIAL_SEASON = true;
+
   if (!isLoading) return null;
 
   return (
     <div className="loading-spinner-overlay">
       <div className="loading-spinner">
-        {isVideoActive ? (
+        {IS_MUNDIAL_SEASON ? (
+          <div className="mundial-loader-container">
+            <img 
+              src="/images/mundial/ball.png" 
+              alt="Mundial" 
+              className="soccer-ball" 
+            />
+            <div className="ball-shadow"></div>
+            <img 
+              src="/assets/Logo Mi Gusto 2025.png" 
+              alt="Mi Gusto" 
+              className="mundial-logo" 
+            />
+          </div>
+        ) : isVideoActive ? (
           <video
             ref={videoRef}
             className="spinner-video"
@@ -102,4 +119,4 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   );
 };
 
-export default LoadingSpinner; 
+export default LoadingSpinner;
