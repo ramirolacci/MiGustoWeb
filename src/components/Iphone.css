@@ -114,8 +114,7 @@
     perspective: 1000px;
     position: relative;
     margin: 2rem;
-    transition: all 0.3s ease;
-    transform: none;
+    will-change: transform;
 }
 
 .iphone-wrapper.animate {
@@ -173,8 +172,7 @@
     box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75), inset 0px 0px 15px rgba(255, 255, 255, 0.05), inset 0px 0px 10px 2px rgba(255, 255, 255, 0.1);
     background-color: #000;
     overflow: hidden;
-    transition: all 0.3s ease;
-    transform: none;
+    will-change: transform;
 }
 
 .iphone-wrapper .iPhone::-webkit-scrollbar {
@@ -659,91 +657,91 @@
 }
 
 .iphone-wrapper .menu-sidebar {
-    width: 70%;
+    width: 82%;
     height: 100%;
-    background-color: #1c1c1e;
-    padding: 1.5rem 1rem;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2.5rem 1.2rem;
     box-sizing: border-box;
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.iphone-wrapper .menu-sidebar::-webkit-scrollbar {
-    display: none;
+    border-right: 1px solid rgba(255, 191, 31, 0.15);
 }
 
 .iphone-wrapper .menu-overlay.visible .menu-sidebar {
     transform: translateX(0);
+    box-shadow: 15px 0 35px rgba(0, 0, 0, 0.6);
 }
 
 .iphone-wrapper .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2rem;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: #fff;
-    font-size: 1rem;
 }
 
 .iphone-wrapper .profile-avatar {
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     object-fit: contain;
-    margin-bottom: 0.5rem;
-    border: 2px solid #000;
+    margin-bottom: 0.8rem;
+    border: 2px solid #ffbf1f;
+    box-shadow: 0 0 15px rgba(255, 191, 31, 0.3);
+    background: #000;
 }
 
-.iphone-wrapper .menu-options-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.iphone-wrapper .profile-section span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #fff, #ffbf1f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .iphone-wrapper .menu-item {
     display: flex;
     align-items: center;
-    padding: 0.8rem 0;
-    color: #fff;
-    font-size: 1rem;
+    padding: 1rem 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    border-radius: 12px;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
 }
 
 .iphone-wrapper .menu-item i {
-    font-size: 1.2rem;
-    margin-right: 1rem;
-    color: #D4AF37;
+    font-size: 1.1rem;
+    margin-right: 1.2rem;
+    color: #ffbf1f;
+    width: 20px;
+    text-align: center;
 }
 
 .iphone-wrapper .menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 191, 31, 0.1);
+    color: #fff;
+    transform: translateX(5px);
 }
 
 .iphone-wrapper .menu-item.active {
-    position: relative;
-    font-weight: bold;
+    background: linear-gradient(90deg, rgba(255, 191, 31, 0.2) 0%, transparent 100%);
+    color: #ffbf1f;
+    font-weight: 700;
+    border-left: 3px solid #ffbf1f;
 }
 
 .iphone-wrapper .menu-item.active i {
-    color: #fff;
-}
-
-.iphone-wrapper .menu-item.active::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 80%;
-    background-color: #ff0000;
-    border-radius: 2px;
+    color: #ffbf1f;
 }
 
 .whatsapp-notification-pop-up {

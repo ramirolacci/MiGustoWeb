@@ -506,18 +506,16 @@ const NavBar: React.FC = () => {
 
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
-    { path: '/', label: 'Home', image: '' },
-    // Carta removido del side menu
-    { path: '/productos', label: 'Productos', image: '' },
-    { path: '/sucursales', label: 'Sucursales', image: '' },
-    { path: '/nosotros', label: 'Nosotros', image: '/images/side-menu/localMiGusto.webp' },
-    { path: '/proveedores', label: 'Proveedores', image: '/images/side-menu/proveedor.png' },
-    { path: '/trabaja-con-nosotros', label: 'Trabaja con nosotros', image: '/images/side-menu/staff.png' },
-    { path: '/franquicias', label: 'Franquicias', image: '/images/side-menu/franquicia.png' },
-    { path: '/venta-corporativa', label: 'Venta corporativa', image: '/images/side-menu/corporativa.png' },
-    { path: '/legales', label: 'Legales', image: '' },
-    { path: '/defensa-consumidor', label: 'Defensa al consumidor', image: '' },
-    { path: '/3d', label: 'MG EXPERIENCE', image: '/images/side-menu/EstudioFondo.png' },
+    { path: '/', label: 'Inicio', icon: 'fa-house' },
+    { path: '/productos', label: 'Nuestra Carta', icon: 'fa-utensils' },
+    { path: '/sucursales', label: 'Sucursales', icon: 'fa-location-dot' },
+    { path: '/nosotros', label: 'Nuestra Historia', icon: 'fa-star' },
+    { path: '/proveedores', label: 'Proveedores', icon: 'fa-truck' },
+    { path: '/trabaja-con-nosotros', label: 'Únete al equipo', icon: 'fa-users' },
+    { path: '/franquicias', label: 'Franquicias', icon: 'fa-shop' },
+    { path: '/venta-corporativa', label: 'Venta Corporativa', icon: 'fa-briefcase' },
+    { path: '/legales', label: 'Legales', icon: 'fa-scale-balanced' },
+    { path: '/defensa-consumidor', label: 'Defensa al Consumidor', icon: 'fa-shield-halved' },
   ];
 
   // En desktop oculto los links pedidos, en mobile muestro todos
@@ -1032,21 +1030,53 @@ const NavBar: React.FC = () => {
             ref={menuRef}
             className={`side-menu ${isMenuOpen ? 'open' : ''}`}
             id="side-menu"
+            onClick={() => setIsMenuOpen(false)}
           >
-            <div className="side-menu-left side-menu-centered">
-              <ul className="side-menu-list flowing-menu-list">
-                {sideMenuLinks.map((link) => (
-                  <li key={link.path + '-' + isMenuOpen} className="side-menu-item flowing-menu-item">
-                    <SideMenuFlowingLink
-                      link={link.path}
-                      text={link.label}
-                      image={link.image || undefined}
-                      onNavigate={() => setIsMenuOpen(false)}
-                    />
-                  </li>
-                ))}
-              </ul>
-              {/* Ícono de cuenta removido del menú mobile */}
+            <div className="side-menu-drawer" onClick={(e) => e.stopPropagation()}>
+              <div className="side-menu-header">
+                <div className="side-menu-brand">
+                  <img src="/assets/Logo Mi Gusto 2025.png" alt="Mi Gusto" className="side-menu-logo" />
+                </div>
+                <button className="side-menu-close-btn" onClick={() => setIsMenuOpen(false)}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+              </div>
+
+              <div className="side-menu-scroll-area">
+                  <div className="side-menu-section-label">Explorar</div>
+                  <ul className="side-menu-list">
+                    {sideMenuLinks.map((link, idx) => (
+                      <li key={link.path + '-' + isMenuOpen} className="side-menu-item" style={{ '--idx': idx } as React.CSSProperties}>
+                        <Link to={link.path} className="side-menu-link-premium" onClick={() => setIsMenuOpen(false)}>
+                            <span className="side-menu-link-icon">
+                                <i className={`fa-solid ${link.icon}`}></i>
+                            </span>
+                            <span className="side-menu-link-text">{link.label}</span>
+                            <span className="side-menu-link-arrow">
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+              </div>
+
+              <div className="side-menu-footer">
+                <div className="side-menu-footer-top">
+                    <div className="side-menu-socials">
+                      <a href="https://instagram.com/migustoar" target="_blank" rel="noreferrer" title="Instagram"><i className="fa-brands fa-instagram"></i></a>
+                      <a href="https://facebook.com/migustoar" target="_blank" rel="noreferrer" title="Facebook"><i className="fa-brands fa-facebook"></i></a>
+                      <a href="https://tiktok.com/@migustoar" target="_blank" rel="noreferrer" title="TikTok"><i className="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div className="side-menu-info">
+                  <p className="side-menu-contact">contacto@migusto.com.ar</p>
+                  <p className="side-menu-copyright">© 2025 Mi Gusto. <br/>Crafted for perfection.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

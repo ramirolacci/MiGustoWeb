@@ -1,14 +1,6 @@
 .hero-animated-title .hero-letter {
   display: inline-block;
-  animation: heroPulse 1.8s ease-in-out infinite;
-  transform-origin: 50% 60%;
-}
-
-@keyframes heroPulse {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
-  30% { transform: scale(1.08); filter: drop-shadow(0 4px 18px rgba(0,0,0,0.2)); }
-  60% { transform: scale(1); }
-  100% { transform: scale(1); }
+  will-change: transform, opacity;
 }
 /* Ajustes para notebooks con escala 125% */
 @media (min-width: 1024px) and (max-width: 1366px) {
@@ -231,16 +223,14 @@
 }
 
 .home-app-descarga h2 {
-  font-size: 3.8rem;
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800;
   margin-bottom: 1.5rem;
-  background: linear-gradient(45deg, #ffffff, #D4AF37);
+  background: linear-gradient(45deg, #ffffff, #ffbf1f);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientAnimation 3s ease infinite;
-  min-height: 80px;
-  padding: 30px;
+  line-height: 1.1;
 }
 
 @keyframes gradientAnimation {
@@ -289,6 +279,21 @@
   justify-content: center;
   align-items: center;
   padding: 40px 0;
+  perspective: 1000px;
+}
+
+.iphone-reveal-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.iphone-wrapper {
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 @media (max-width: 900px) {

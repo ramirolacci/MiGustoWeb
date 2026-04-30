@@ -331,11 +331,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 92px; /* ligeramente más grande */
+    min-width: 92px; 
     outline: none;
     cursor: pointer;
     text-decoration: none;
-    transition: transform 0.3s ease;
+    will-change: transform;
   }
   
   /* Agrandar el botón completo cuando está activo */
@@ -950,16 +950,18 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     height: 420px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     position: relative;
     border: 1px solid rgba(212, 175, 55, 0.2);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
 }
 
-.producto-card:hover {
+/* .producto-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
     border-color: rgba(212, 175, 55, 0.2);
@@ -969,7 +971,7 @@ body {
 .producto-card:active {
     transform: translateY(-4px) scale(1.01);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .producto-card img {
     width: 100%;

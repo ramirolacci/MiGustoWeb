@@ -89,17 +89,56 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
       <div className="loading-spinner">
         {IS_MUNDIAL_SEASON ? (
           <div className="mundial-loader-container">
-            <img 
-              src="/images/mundial/ball.png" 
-              alt="Mundial" 
-              className="soccer-ball" 
-            />
-            <div className="ball-shadow"></div>
-            <img 
-              src="/assets/Logo Mi Gusto 2025.png" 
-              alt="Mi Gusto" 
-              className="mundial-logo" 
-            />
+            <div className="mundial-bg-glow"></div>
+            <div className="mundial-sky-glow"></div>
+            <div className="mundial-sun-rays"></div>
+            <div className="mundial-flash-overlay"></div>
+            
+            {/* Confetti Particles */}
+            <div className="confetti-container">
+                {Array.from({ length: 40 }).map((_, i) => (
+                    <div key={i} className={`confetti piece-${i % 10}`} style={{ '--i': i } as React.CSSProperties}></div>
+                ))}
+            </div>
+
+            <div className="mundial-lens-flare"></div>
+            
+            <div className="ball-wrapper">
+              <img 
+                src="/images/mundial/ball.png" 
+                alt="Mundial" 
+                className="soccer-ball" 
+              />
+              <div className="ball-trail"></div>
+              <div className="ball-shadow"></div>
+            </div>
+
+            <div className="mundial-content">
+              <img 
+                src="/assets/Logo Mi Gusto 2025.png" 
+                alt="Mi Gusto" 
+                className="mundial-logo" 
+              />
+              <div className="mundial-text-container">
+                <span className="mundial-text-highlight">es MUNDIAL</span>
+              </div>
+            </div>
+
+            <div className="mundial-stars-v2">
+              <i className="fa-solid fa-star star-xl"></i>
+              <div className="stars-row">
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+              </div>
+            </div>
+            
+            <div className="mundial-stadium-lights">
+                <div className="light-beam lb-left"></div>
+                <div className="light-beam lb-right"></div>
+            </div>
           </div>
         ) : isVideoActive ? (
           <video

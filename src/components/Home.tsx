@@ -1,5 +1,9 @@
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useEffect, useRef, memo, useMemo } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 import './Home.css';
 import IphoneWhatsapp from './Iphone';
@@ -511,6 +515,96 @@ function PromoCards() {
 }
 
 function Home() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const heroTitleRef = useRef<HTMLHeadingElement>(null);
+    const iphoneContainerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        // Hero Title Animation
+        const letters = heroTitleRef.current?.querySelectorAll('.hero-letter');
+        if (letters) {
+            gsap.fromTo(letters, 
+                { opacity: 0, y: 50, rotateX: -90 },
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    rotateX: 0, 
+                    duration: 0.8, 
+                    stagger: 0.03, 
+                    ease: "back.out(1.7)",
+                    delay: 0.5
+                }
+            );
+        }
+
+        // Parallax effect for Hero Video
+        gsap.to(".home-hero-video", {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".home-hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // App Section Reveal
+        const appTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".home-app-section-row",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        appTl.from(".home-app-descarga h2", { x: -50, opacity: 0, duration: 0.8, ease: "power3.out" })
+             .from(".app-descarga-text", { x: -30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+             .from(".home-app-links a", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6, ease: "back.out(1.7)" }, "-=0.4")
+             .from(".iphone-reveal-container", { scale: 0.8, opacity: 0, duration: 1, ease: "expo.out" }, "-=1");
+
+        // 3D Tilt Effect for iPhone on Mouse Move
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!iphoneContainerRef.current) return;
+            const rect = iphoneContainerRef.current.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (centerX - x) / 15;
+
+            gsap.to(iphoneContainerRef.current.querySelector('.iphone-wrapper'), {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+            
+            gsap.to(iphoneContainerRef.current.querySelector('.iphone-triangle-bg'), {
+                x: (x - centerX) / 8,
+                y: (y - centerY) / 8,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        };
+
+        const handleMouseLeave = () => {
+            if (!iphoneContainerRef.current) return;
+            gsap.to(iphoneContainerRef.current.querySelector('.iphone-wrapper'), { rotateX: 0, rotateY: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
+            gsap.to(iphoneContainerRef.current.querySelector('.iphone-triangle-bg'), { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
+        };
+
+        const currentContainer = iphoneContainerRef.current;
+        currentContainer?.addEventListener('mousemove', handleMouseMove);
+        currentContainer?.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            currentContainer?.removeEventListener('mousemove', handleMouseMove);
+            currentContainer?.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, { scope: containerRef });
+
     const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 700);
@@ -653,7 +747,7 @@ function Home() {
     }, []);
 
     return (
-        <div className="home">
+        <div className="home" ref={containerRef}>
             {/* Nueva sección hero principal */}
             <section
                 className="home-hero"
@@ -697,7 +791,7 @@ function Home() {
                     }}
                 />
                 <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1200, padding: '0 24px' }}>
-                    <h1 className="home-hero-title hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24 }}>
+                    <h1 ref={heroTitleRef} className="home-hero-title hero-animated-title" style={{ color: '#fff', fontWeight: 800, fontSize: isMobile ? 34 : 64, lineHeight: 1.1, marginBottom: 24, perspective: '1000px' }}>
                         {(() => {
                             const line1 = 'Disfrutá hoy tu';
                             const line2 = 'experiencia de verdad';
@@ -706,7 +800,7 @@ function Home() {
                                     <span
                                         key={startIndex + idx}
                                         className="hero-letter"
-                                        style={{ animationDelay: `${(startIndex + idx) * 0.06}s` }}
+                                        style={{ display: 'inline-block', whiteSpace: 'pre' }}
                                     >
                                         {ch === ' ' ? '\u00A0' : ch}
                                     </span>
@@ -714,9 +808,8 @@ function Home() {
                             );
                             return (
                                 <>
-                                    {renderLine(line1, 0)}
-                                    <br />
-                                    {renderLine(line2, Array.from(line1).length)}
+                                    <div style={{ overflow: 'hidden' }}>{renderLine(line1, 0)}</div>
+                                    <div style={{ overflow: 'hidden' }}>{renderLine(line2, Array.from(line1).length)}</div>
                                 </>
                             );
                         })()}
@@ -786,7 +879,7 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="home-app-iphone iphone-reveal-container" style={{ position: 'relative' }}>
+                <div ref={iphoneContainerRef} className="home-app-iphone iphone-reveal-container" style={{ position: 'relative', perspective: '1200px' }}>
                     {/* Triángulo amarillo de fondo para efecto 3D */}
                     <div 
                         className="iphone-triangle-bg"
@@ -804,7 +897,7 @@ function Home() {
                             boxShadow: '0 0 40px rgba(255, 191, 31, 0.6)'
                         }}
                     />
-                    <div style={{ position: 'relative', zIndex: 2 }}>
+                    <div className="iphone-3d-wrap" style={{ position: 'relative', zIndex: 2, transformStyle: 'preserve-3d' }}>
                         <IphoneWhatsapp />
                     </div>
                 </div>

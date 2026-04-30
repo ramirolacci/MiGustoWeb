@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import './Iphone.css';
 
 // Importar las imágenes de los sliders
@@ -49,6 +51,25 @@ const IphoneStore: React.FC = () => {
 
         return () => clearInterval(slideInterval);
     }, [sliderImages.length]);
+
+    useGSAP(() => {
+        if (isMenuOpen) {
+            gsap.from(".menu-item", {
+                x: -30,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.4,
+                ease: "power2.out",
+                delay: 0.1
+            });
+            gsap.from(".profile-section", {
+                y: -20,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        }
+    }, [isMenuOpen]);
 
 
     const handleCategoryClick = (category: string) => {

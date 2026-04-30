@@ -1,5 +1,9 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 import './Productos.css';
 import ProductModal3D from './ProductModal3D';
 import MobileProductDetail from './MobileProductDetail';
@@ -58,6 +62,7 @@ const RUTA_3D_BIG_BURGER = "/models/big-burger-3D.glb";
 const ORBIT_3D_BIG_BURGER = "45deg 65deg 1.7m";
 
 export default function Productos() {
+    const containerRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
     const { addItem } = useCart();
     const [filtro, setFiltro] = useState<'Empanadas' | typeof categorias[number]>('Empanadas');
@@ -334,58 +339,133 @@ export default function Productos() {
     }, [productosFiltrados]);
 
     // --- GSAP ANIMATION FOR PRODUCTS ---
-    useEffect(() => {
-        // Kill previous animations to prevent conflicts
-        gsap.killTweensOf('.producto-card');
-        gsap.killTweensOf('.producto-row-mobile');
-
+    useGSAP(() => {
         if (productosFiltrados.length === 0) return;
 
-        const ctx = gsap.context(() => {
-            if (isMobile) {
-                // Mobile Animation: Slide up + Fade in
-                gsap.fromTo('.producto-row-mobile',
-                    {
-                        opacity: 0,
-                        y: 30,
-                        scale: 0.95
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.5,
-                        stagger: 0.05,
-                        ease: "power2.out",
-                        clearProps: "all" // Ensure interactivity remains after
-                    }
-                );
-            } else {
-                // Desktop Animation: Elastic Pop-in with 3D Rotation
-                gsap.fromTo('.producto-card',
-                    {
-                        opacity: 0,
-                        y: 50,
-                        scale: 0.8,
-                        rotationX: 15,
-                        transformPerspective: 1000
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        rotationX: 0,
-                        duration: 0.7,
-                        stagger: 0.04, // Faster stagger for impressiveness
-                        ease: "back.out(1.2)", // Bouncy effect
-                        clearProps: "transform" // Keep only transform clear to avoid layout issues, keep opacity
-                    }
-                );
+        // Entry animation for cards
+        const cards = isMobile ? '.producto-row-mobile' : '.producto-card';
+        
+        gsap.fromTo(cards, 
+            { 
+                opacity: 0, 
+                y: 100, 
+                rotateX: -15, 
+                scale: 0.9,
+                transformPerspective: 1000 
+            },
+            { 
+                opacity: 1, 
+                y: 0, 
+                rotateX: 0, 
+                scale: 1, 
+                duration: 0.8, 
+                stagger: {
+                    each: 0.05,
+                    from: "start",
+                    grid: "auto"
+                },
+                ease: "back.out(1.4)",
+                scrollTrigger: {
+                    trigger: ".productos-lista",
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
             }
-        });
+        );
 
-        return () => ctx.revert();
-    }, [productosFiltrados, isMobile]); // Run whenever products change
+        // Magnetic effect for category chips (Desktop only)
+        if (!isMobile) {
+            const chips = gsap.utils.toArray('.category-chip');
+            const listeners: { el: HTMLElement, move: any, leave: any }[] = [];
+
+            chips.forEach((chip: any) => {
+                const handleMouseMove = (e: MouseEvent) => {
+                    const rect = chip.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(chip, {
+                        x: x * 0.3,
+                        y: y * 0.3,
+                        scale: 1.05,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                };
+
+                const handleMouseLeave = () => {
+                    gsap.to(chip, {
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.6,
+                        ease: "elastic.out(1, 0.3)"
+                    });
+                };
+
+                chip.addEventListener('mousemove', handleMouseMove);
+                chip.addEventListener('mouseleave', handleMouseLeave);
+                listeners.push({ el: chip, move: handleMouseMove, leave: handleMouseLeave });
+            });
+
+            // Managing cleanup for chips
+            return () => {
+                listeners.forEach(({ el, move, leave }) => {
+                    el.removeEventListener('mousemove', move);
+                    el.removeEventListener('mouseleave', leave);
+                });
+            };
+        }
+    }, { scope: containerRef, dependencies: [productosFiltrados, isMobile] });
+
+    useGSAP(() => {
+        // 3D Tilt for Product Cards (Desktop only)
+        if (!isMobile && productosFiltrados.length > 0) {
+            const productCards = gsap.utils.toArray('.producto-card');
+            const cardListeners: { el: HTMLElement, move: any, leave: any }[] = [];
+
+            productCards.forEach((card: any) => {
+                const handleMouseMove = (e: MouseEvent) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (centerY - y) / 10;
+                    const rotateY = (x - centerX) / 10;
+
+                    gsap.to(card, {
+                        rotateX: rotateX,
+                        rotateY: rotateY,
+                        scale: 1.02,
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                };
+
+                const handleMouseLeave = () => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: "elastic.out(1, 0.3)"
+                    });
+                };
+
+                card.addEventListener('mousemove', handleMouseMove);
+                card.addEventListener('mouseleave', handleMouseLeave);
+                cardListeners.push({ el: card, move: handleMouseMove, leave: handleMouseLeave });
+            });
+
+            return () => {
+                cardListeners.forEach(({ el, move, leave }) => {
+                    el.removeEventListener('mousemove', move);
+                    el.removeEventListener('mouseleave', leave);
+                });
+            };
+        }
+    }, { scope: containerRef, dependencies: [productosFiltrados, isMobile] });
 
     const explodedConfig = useMemo(() => {
         if (!productoSeleccionado) return null;
@@ -447,7 +527,7 @@ export default function Productos() {
     }, [productoSeleccionado, productosFiltrados]); // Re-bind when selection or list changes
 
     return (
-        <div className={`productos-section ${sectionVisible ? 'section-visible' : ''}`}>
+        <div ref={containerRef} className={`productos-section ${sectionVisible ? 'section-visible' : ''}`}>
             <div className="background-overlay"></div>
             <div className="productos-container">
                 {/* Título removido a pedido: "Conocé nuestros productos" */}
