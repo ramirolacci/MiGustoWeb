@@ -36,7 +36,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Mexican pibil pork': {
         id: 'mexican-pibil-pork-001',
         name: 'Mexican pibil pork',
-        image: 'https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg',
+        image: '/images/final/empanada-mexican-pibil-pork.png',
         modelUrl: '/models/mexican-pibil-pork-3D.glb',
         cameraOrbit: '55deg 35deg 3m',
         ingredients: [
