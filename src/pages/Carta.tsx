@@ -57,7 +57,7 @@ const Carta: React.FC = () => {
                   { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || '/icons/products/aderezos.svg' },
                   { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || '/icons/products/postres.svg' },
                   { key: 'Carta', label: 'Carta', icon: '/images/carta.svg' },
-                  { key: 'Promociones', label: 'Promociones', icon: '/images/promotions/promoIcon.png' },
+                  { key: 'Promociones', label: 'Promos y Packs', icon: '/images/promotions/promoIcon.png' },
                 ].map((category) => {
                   const isActive = category.key === 'Carta';
                   return (
