@@ -70,8 +70,8 @@ const RUTAS_3D: Record<string, string> = {
 const IMAGENES_PNG: Record<string, string> = {
     "Big burger": "/images/final/empanada-big-burger.png",
     "Big Burger": "/images/final/empanada-big-burger.png",
-    "Mexican Pibil pork": "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
-    "Mexican pibil pork": "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
+    "Mexican Pibil pork": "/images/final/empanada-mexican-pibil-pork.png",
+    "Mexican pibil pork": "/images/final/empanada-mexican-pibil-pork.png",
     "Matambre a la pizza": "/images/final/empanada-matambre -alapizza.png",
     "Cheese burger": "/images/final/empanada-cheese-burger.png",
     "Cheese Burger": "/images/final/empanada-cheese-burger.png",

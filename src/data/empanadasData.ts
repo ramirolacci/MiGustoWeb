@@ -17,7 +17,7 @@ export interface Empanada {
 export const empanadas: Empanada[] = [
   {
     imagen: "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
-    imagenDetalle: "https://i.postimg.cc/hGWzWcVs/Mexican-Pibil-Pork.png",
+    imagenDetalle: "/images/final/empanada-mexican-pibil-pork.png",
     imagenCard: "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
     titulo: "Mexican pibil pork",
     precio: 4000,

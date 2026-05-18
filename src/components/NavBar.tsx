@@ -435,7 +435,7 @@ const NavBar: React.FC = () => {
         { data: fitzzas as any[], categoria: 'Fitzzas' },
         { data: salsas as any[], categoria: 'Salsas' },
         { data: postres as any[], categoria: 'Postres' },
-        { data: promociones as any[], categoria: 'Promociones' },
+        { data: promociones as any[], categoria: 'Promos y Packs' },
       ];
       for (const { data, categoria } of datasets) {
         for (const it of data) {
