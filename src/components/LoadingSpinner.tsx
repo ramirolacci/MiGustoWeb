@@ -82,6 +82,58 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   // Activar modo mundial
   const IS_MUNDIAL_SEASON = true;
 
+  // Generar partículas de confeti de alta fidelidad para el mundial (celeste, blanco, oro)
+  const confettiParticles = React.useMemo(() => {
+    if (!isLoading) return [];
+    return Array.from({ length: 80 }).map((_, i) => {
+      const xStart = Math.random() * 100;
+      const xEnd = xStart + (-15 + Math.random() * 30);
+      const yStart = -10;
+      
+      const colors = [
+        '#75AADB', // Celeste patrio
+        '#ffffff', // Blanco
+        '#FFD700', // Amarillo Sol brillante
+        '#3a8fd9', // Celeste bandera
+        '#FFFEEF', // Blanco seda brillante
+        '#FFC700', // Amarillo Sol profundo
+      ];
+      const color = colors[i % colors.length];
+
+      // Delay structure: negative delays let particles start mid-screen, positive delays stagger new ones
+      const delay = i % 2 === 0 ? `-${Math.random() * 6}s` : `${Math.random() * 4}s`;
+      const duration = 4 + Math.random() * 4; // 4s to 8s for a gentle, elegant fall
+      const scale = 0.4 + Math.random() * 0.7; // 0.4x to 1.1x
+
+      const shapes = ['circle', 'rect', 'square', 'ribbon', 'triangle'];
+      const shape = shapes[i % shapes.length];
+
+      const rotateX = Math.random() * 360;
+      const rotateY = Math.random() * 360;
+      const rotateZ = Math.random() * 360;
+
+      const flutterSpeed = 1.5 + Math.random() * 2.5; // 1.5s to 4s for realistic flutter
+
+      return {
+        id: i,
+        shape,
+        style: {
+          '--x-start': `${xStart}%`,
+          '--x-end': `${xEnd}%`,
+          '--y-start': `${yStart}vh`,
+          '--delay': delay,
+          '--duration': `${duration}s`,
+          '--scale': scale,
+          '--color': color,
+          '--rotate-x': `${rotateX}deg`,
+          '--rotate-y': `${rotateY}deg`,
+          '--rotate-z': `${rotateZ}deg`,
+          '--flutter-speed': `${flutterSpeed}s`,
+        } as React.CSSProperties
+      };
+    });
+  }, [isLoading]);
+
   if (!isLoading) return null;
 
   return (
@@ -96,9 +148,13 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
             
             {/* Confetti Particles */}
             <div className="confetti-container">
-                {Array.from({ length: 40 }).map((_, i) => (
-                    <div key={i} className={`confetti piece-${i % 10}`} style={{ '--i': i } as React.CSSProperties}></div>
-                ))}
+              {confettiParticles.map((p) => (
+                <div 
+                  key={p.id} 
+                  className={`confetti-particle shape-${p.shape}`} 
+                  style={p.style}
+                />
+              ))}
             </div>
 
             <div className="mundial-lens-flare"></div>

@@ -2021,3 +2021,39 @@ body.ocultar-navbar nav.navbar, body.ocultar-navbar .navbar {
     display: none !important;
   }
 }
+
+/* Tres estrellas del mundial debajo del logo en el navbar */
+.navbar-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.navbar-star-icon {
+  color: #ffbf1f !important; /* Dorado del Sol de Mayo */
+  font-size: 0.62rem !important;
+  filter: drop-shadow(0 0 3px rgba(255, 191, 31, 0.75)) !important;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Estrella del medio ligeramente más grande y elevada (diseño original de la camiseta argentina campeona) */
+.navbar-stars .main-star {
+  font-size: 0.75rem !important;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 5px rgba(255, 191, 31, 0.9)) !important;
+}
+
+/* Animación de brillo sutil en las estrellas al pasar el mouse por el logo */
+.navbar-brand-desktop:hover .navbar-star-icon {
+  transform: scale(1.2);
+  color: #ffffff !important; /* Brilla blanco al hacer hover */
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 1)) !important;
+}
+
+.navbar-brand-desktop:hover .main-star {
+  transform: scale(1.3) translateY(-3px);
+}

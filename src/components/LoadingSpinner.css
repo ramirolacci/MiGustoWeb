@@ -170,7 +170,7 @@ body.loading-active .hamburger-menu * {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: radial-gradient(circle at center, #0a0e14 0%, #000 100%);
+  background: radial-gradient(circle at center, #041628 0%, #020914 60%, #000000 100%) !important;
 }
 
 .mundial-sun-rays {
@@ -179,9 +179,11 @@ body.loading-active .hamburger-menu * {
     height: 200%;
     background: repeating-conic-gradient(
         from 0deg,
-        rgba(255, 191, 31, 0.05) 0deg 10deg,
-        transparent 10deg 20deg
-    );
+        rgba(117, 170, 219, 0.04) 0deg 8deg,
+        transparent 8deg 16deg,
+        rgba(255, 215, 0, 0.03) 16deg 24deg,
+        transparent 24deg 32deg
+    ) !important;
     animation: sun-rotate 60s linear infinite;
     z-index: 2;
 }
@@ -213,26 +215,92 @@ body.loading-active .hamburger-menu * {
     inset: 0;
     z-index: 50;
     pointer-events: none;
+    overflow: hidden;
+    perspective: 1200px; /* Enable 3D depth for premium rotations */
 }
 
-.confetti {
+.confetti-particle {
     position: absolute;
-    width: 8px;
-    height: 12px;
-    background: #fff;
-    top: -20px;
-    opacity: 0.8;
-    animation: confetti-fall calc(3s + var(--i) * 0.1s) linear infinite;
-    left: calc(var(--i) * 2.5%);
+    top: var(--y-start);
+    left: var(--x-start);
+    opacity: 0;
+    will-change: transform, top, opacity;
+    transform: translate3d(0, 0, 0) scale(var(--scale));
+    animation: 
+      confetti-fall-3d var(--duration) linear var(--delay) infinite,
+      confetti-flutter var(--flutter-speed) ease-in-out var(--delay) infinite alternate;
 }
 
-.piece-0, .piece-3 { background: #75AADB; width: 10px; height: 10px; border-radius: 50%; }
-.piece-1, .piece-4 { background: #ffbf1f; width: 6px; height: 15px; }
-.piece-2, .piece-5 { background: #fff; width: 12px; height: 6px; }
+/* Custom Shape designs using pure CSS */
+.shape-rect {
+    width: 12px;
+    height: 6px;
+    background-color: var(--color);
+    border-radius: 1px;
+}
 
-@keyframes confetti-fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+.shape-square {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color);
+    border-radius: 1px;
+}
+
+.shape-circle {
+    width: 9px;
+    height: 9px;
+    background-color: var(--color);
+    border-radius: 50%;
+}
+
+.shape-ribbon {
+    width: 4px;
+    height: 18px;
+    background-color: var(--color);
+    border-radius: 1px;
+    transform: skewY(15deg); /* Spiral twisted curl */
+}
+
+.shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid var(--color);
+    background-color: transparent !important;
+}
+
+/* 3D Fall trajectory (Translation + Rotation) */
+@keyframes confetti-fall-3d {
+    0% {
+        top: var(--y-start);
+        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(var(--scale));
+        opacity: 0;
+    }
+    4% {
+        opacity: 0.9; /* Fade in quickly as it enters viewport */
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        top: 105vh;
+        left: var(--x-end);
+        transform: translate3d(0, 0, 80px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) scale(var(--scale));
+        opacity: 0; /* Elegant fade out at the bottom */
+    }
+}
+
+/* Fluttering simulation: slight side-to-side oscillation and rotation */
+@keyframes confetti-flutter {
+    0% {
+        margin-left: -20px;
+        transform: rotateY(-30deg) rotateX(15deg);
+    }
+    100% {
+        margin-left: 20px;
+        transform: rotateY(30deg) rotateX(-15deg);
+    }
 }
 
 .mundial-lens-flare {
@@ -264,26 +332,40 @@ body.loading-active .hamburger-menu * {
     filter: blur(50px);
 }
 
-.lb-left { top: -100px; left: -100px; transform: rotate(45deg); }
-.lb-right { top: -100px; right: -100px; transform: rotate(-45deg); }
+.lb-left { 
+    top: -100px; 
+    left: -100px; 
+    transform: rotate(45deg); 
+    background: linear-gradient(to bottom, rgba(117, 170, 219, 0.15), transparent) !important;
+}
+
+.lb-right { 
+    top: -100px; 
+    right: -100px; 
+    transform: rotate(-45deg); 
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), transparent) !important;
+}
 
 .ball-wrapper {
     position: relative;
     z-index: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .soccer-ball {
   width: 180px !important;
   height: 180px !important;
   animation: juggling 2s ease-in-out infinite !important;
-  filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
+  filter: drop-shadow(0 0 35px rgba(117, 170, 219, 0.7)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)) !important;
 }
 
 .ball-trail {
     position: absolute;
-    width: 2px;
+    width: 3px;
     height: 150px;
-    background: linear-gradient(to top, rgba(255, 215, 0, 0.5), transparent);
+    background: linear-gradient(to top, rgba(117, 170, 219, 0.8), rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.8), transparent) !important;
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
@@ -291,10 +373,22 @@ body.loading-active .hamburger-menu * {
     animation: trail-reveal 2s ease-in-out infinite;
 }
 
+.ball-shadow {
+    position: absolute;
+    width: 120px;
+    height: 15px;
+    background: radial-gradient(ellipse at center, rgba(117, 170, 219, 0.4) 0%, rgba(255, 215, 0, 0.1) 40%, transparent 70%) !important;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: shadow-scale 2s ease-in-out infinite !important;
+}
+
 .mundial-logo {
   height: 80px !important;
   width: auto !important;
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4)) !important;
+  filter: drop-shadow(0 0 30px rgba(117, 170, 219, 0.5)) !important;
   animation: logo-3d-shine 3s ease-in-out infinite !important;
   object-fit: contain !important;
   opacity: 1 !important;
@@ -312,14 +406,19 @@ body.loading-active .hamburger-menu * {
 .mundial-text-highlight {
     font-size: 2.5rem;
     font-weight: 950;
-    background: linear-gradient(90deg, #75AADB 0%, #fff 50%, #75AADB 100%);
+    background: linear-gradient(90deg, #75AADB 0%, #ffffff 25%, #ffd700 50%, #ffffff 75%, #75AADB 100%) !important;
     background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: text-shimmer 3s linear infinite;
-    text-shadow: 0 0 30px rgba(117, 170, 219, 0.5);
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    display: inline-block !important;
+    animation: text-shimmer 3s linear infinite !important;
+}
+
+@keyframes text-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
 }
 
 .mundial-content {

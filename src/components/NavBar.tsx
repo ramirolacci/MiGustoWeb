@@ -719,7 +719,7 @@ const NavBar: React.FC = () => {
             }}
           >
             <Link
-              className="navbar-brand d-flex align-items-center navbar-brand-desktop"
+              className="navbar-brand d-flex flex-column align-items-center navbar-brand-desktop"
               to="/"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -737,9 +737,16 @@ const NavBar: React.FC = () => {
                 style={{
                   transition: 'all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   transform: 'translateZ(30px)',
-                  willChange: 'transform'
+                  willChange: 'transform',
+                  marginRight: '0 !important' /* Reset margin to center with the stars */
                 }}
               />
+              {/* Tres estrellas mundialistas debajo del logo */}
+              <div className="navbar-stars">
+                <i className="fa-solid fa-star navbar-star-icon"></i>
+                <i className="fa-solid fa-star navbar-star-icon main-star"></i>
+                <i className="fa-solid fa-star navbar-star-icon"></i>
+              </div>
             </Link>
           </div>
 
