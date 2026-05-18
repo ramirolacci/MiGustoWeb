@@ -5,6 +5,16 @@ import './HomeMobile.css';
 import { promosDestacadasService, combosImperdiblesService, type MobilePromoSlide } from '../services/sliderService';
 import OptimizedImage from '../components/OptimizedImage';
 
+// Importar bases de datos para búsqueda inteligente en mobile
+import { sucursales as sucursalesData } from '../data/sucursalesData';
+import { pizzas as pizzasData } from '../data/pizzasData';
+import { empanadas as empanadasData } from '../data/empanadasData';
+import { fitzzas as fitzzasData } from '../data/fitzzasData';
+import { pizzasIndi as pizzasIndiData } from '../data/pizzasIndiData';
+import { salsas as salsasData } from '../data/salsasData';
+import { postres as postresData } from '../data/postresData';
+import { promociones as promocionesData } from '../data/promocionesData';
+
 type Slide = MobilePromoSlide & { bg?: string };
 
 const useIsMobile = (breakpoint: number = 768) => {
@@ -152,15 +162,55 @@ export default function HomeMobile() {
             setFiltro={setFiltro}
             onSubmit={(q) => {
               if (!q) return;
-              const query = q.toLowerCase();
-              // Sucursales
-              const branchKeywords = ['pilar', 'palermo', 'belgrano', 'tigre', 'escobar', 'campana', 'san miguel', 'san martin', 'devoto', 'balvanera'];
-              if (branchKeywords.some(k => query.includes(k))) {
-                navigate(`/sucursales?q=${encodeURIComponent(q)}`);
-                return;
+              const normalize = (str: string) => str
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/\p{Diacritic}+/gu, '');
+              const qn = normalize(q);
+
+              // 1. Calcular coincidencia en base de datos de productos
+              const productDatasets = [
+                empanadasData,
+                pizzasData,
+                pizzasIndiData,
+                fitzzasData,
+                salsasData,
+                postresData,
+                promocionesData,
+              ];
+
+              let productScore = 0;
+              for (const dataset of productDatasets) {
+                for (const item of dataset) {
+                  const texto = [
+                    item.titulo,
+                    item.descripcion,
+                    Array.isArray((item as any).ingredientes) ? (item as any).ingredientes.join(' ') : '',
+                    (item as any).categoria,
+                  ].filter(Boolean).join(' ');
+                  if (normalize(String(texto)).includes(qn)) productScore++;
+                }
               }
-              // Productos
-              navigate(`/productos?search=${encodeURIComponent(q)}`);
+
+              // 2. Calcular coincidencia en base de datos de sucursales
+              let branchScore = 0;
+              for (const s of sucursalesData) {
+                const texto = [s.nombre, s.localidad, s.provincia, s.direccion].filter(Boolean).join(' ');
+                if (normalize(String(texto)).includes(qn)) branchScore += 3; // Peso extra por coincidencia de sucursal
+              }
+
+              // Boost si el usuario usa palabras clave referidas a sucursales
+              const branchHints = ['sucursal', 'local', 'tienda', 'direccion', 'dirección', 'mapa', 'cerca', 'donde', 'dónde', 'ubicacion', 'ubicación'];
+              if (branchHints.some(h => qn.includes(normalize(h)))) {
+                branchScore += 5;
+              }
+
+              // 3. Redirigir según la mayor puntuación de coincidencia
+              if (branchScore > productScore) {
+                navigate(`/sucursales?q=${encodeURIComponent(q)}`);
+              } else {
+                navigate(`/productos?search=${encodeURIComponent(q)}`);
+              }
             }}
           />
         </div>
