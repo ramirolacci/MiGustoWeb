@@ -1080,8 +1080,7 @@ const NavBar: React.FC = () => {
                     </div>
                 </div>
                 <div className="side-menu-info">
-                  <p className="side-menu-contact">contacto@migusto.com.ar</p>
-                  <p className="side-menu-copyright">© 2025 Mi Gusto. <br/>Crafted for perfection.</p>
+                  <p className="side-menu-copyright">© 2026 Mi Gusto. <br/><span className="side-menu-tagline">Experiencias de verdad</span></p>
                 </div>
               </div>
             </div>
