@@ -43,16 +43,16 @@ const RUTAS_3D: Record<string, string> = {
 
 // Mapeo de imágenes PNG para empanadas premium
 const IMAGENES_PNG: Record<string, string> = {
-    "Big burger": "/images/final/empanada-big-burger.png",
-    "Big Burger": "/images/final/empanada-big-burger.png",
-    "Mexican Pibil pork": "/images/final/empanada-mexican-pibil-pork.png",
-    "Mexican pibil pork": "/images/final/empanada-mexican-pibil-pork.png",
-    "Matambre a la pizza": "/images/final/empanada-matambre -alapizza.png",
-    "Cheese burger": "/images/final/empanada-cheese-burger.png",
-    "Cheese Burger": "/images/final/empanada-cheese-burger.png",
-    "American Chicken": "/images/final/empanada-american-chicken.png",
-    "American chicken": "/images/final/empanada-american-chicken.png",
-    "Vacio y provoleta": "/images/final/empanada-vacio-yprovoleta.png",
+    "Big burger": "/images/empanadas/empanada-big-burger.png",
+    "Big Burger": "/images/empanadas/empanada-big-burger.png",
+    "Mexican Pibil pork": "/images/empanadas/empanada-mexican-pibil-pork.png",
+    "Mexican pibil pork": "/images/empanadas/empanada-mexican-pibil-pork.png",
+    "Matambre a la pizza": "/images/empanadas/empanada-matambre -alapizza.png",
+    "Cheese burger": "/images/empanadas/empanada-cheese-burger.png",
+    "Cheese Burger": "/images/empanadas/empanada-cheese-burger.png",
+    "American Chicken": "/images/empanadas/empanada-american-chicken.png",
+    "American chicken": "/images/empanadas/empanada-american-chicken.png",
+    "Vacio y provoleta": "/images/empanadas/empanada-vacio-yprovoleta.png",
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {

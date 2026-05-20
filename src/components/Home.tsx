@@ -514,7 +514,18 @@ function PromoCards() {
     );
 }
 
+const HOME_VIDEOS = [
+  '/videos/promotional/VideoFlash.mp4',
+  '/videos/promotional/VideoFlash (1).mp4',
+  '/videos/promotional/VideoFlash (2).mp4'
+];
+
 function Home() {
+    const [selectedVideo] = useState(() => {
+        const randomIndex = Math.floor(Math.random() * HOME_VIDEOS.length);
+        return HOME_VIDEOS[randomIndex];
+    });
+
     const containerRef = useRef<HTMLDivElement>(null);
     const heroTitleRef = useRef<HTMLHeadingElement>(null);
     const iphoneContainerRef = useRef<HTMLDivElement>(null);
@@ -780,7 +791,7 @@ function Home() {
                         objectFit: 'cover',
                         objectPosition: 'center'
                     }}
-                    src="/videos/promotional/VideoFlash.mp4"
+                    src={selectedVideo}
                     poster="/images/sliders/mainpain.png"
                 />
                 <div

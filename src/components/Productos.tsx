@@ -529,6 +529,8 @@ export default function Productos() {
     return (
         <div ref={containerRef} className={`productos-section ${sectionVisible ? 'section-visible' : ''}`}>
             <div className="background-overlay"></div>
+            <div className="glow-spot-1"></div>
+            <div className="glow-spot-2"></div>
             <div className="productos-container">
                 {/* Título removido a pedido: "Conocé nuestros productos" */}
 
@@ -629,45 +631,61 @@ export default function Productos() {
                     </div>
                 </div>
 
-                {/* Subfiltros antiguos (Premium | CLÁSICAS) eliminados en desktop */}
-
                 <div className="productos-lista">
                     {productosFiltrados.length === 0 ? (
                         <div className="productos-no-resultados">
-                            No se encontraron productos que coincidan con tu búsqueda
+                            <div className="empty-state-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <h3>Sin resultados</h3>
+                            <p>No encontramos coincidencias para "{busqueda}".</p>
+                            {busqueda && (
+                                <button className="btn-limpiar-busqueda" onClick={() => setBusqueda("")}>
+                                    Limpiar búsqueda
+                                </button>
+                            )}
                         </div>
                     ) : (
                         productosFiltrados.map((prod, idx) => {
-                            const tiene3D = EMPANADAS_3D.includes(prod.titulo);
-                            // Eliminar el formato especial de Big burger
-                            // const isBigBurger = prod.titulo.toLowerCase().includes("big burg");
                             if (isMobile) {
-                                // Cards que deben mostrar solo una vez la descripción
-                                const soloDescripcion = [
-                                    'Carne con aceituna',
-                                    'Pollo',
-                                    'Cuatro quesos',
-                                    'Cuatro Quesos',
-                                    'Pollo al champignon',
-                                    'Choclo',
-                                    'Verdura',
-                                    'Calabaza',
-                                    'Panceta y ciruela',
-                                    'Panceta y Ciruela'
-                                ];
                                 return (
-                                    <div className="producto-row-mobile" key={prod.titulo + '-' + prod.categoria} onClick={() => setProductoSeleccionado(prod)} style={{ '--card-index': idx } as React.CSSProperties}>
-                                        <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
+                                    <div 
+                                        className="producto-card-mobile" 
+                                        key={prod.titulo + '-' + prod.categoria} 
+                                        onClick={() => setProductoSeleccionado(prod)} 
+                                        style={{ '--card-index': idx } as React.CSSProperties}
+                                    >
+                                        <div className="producto-img-mobile-container">
+                                            <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} className="producto-img-mobile" />
+                                            {prod.esPremium && <span className="mobile-badge-premium">✨</span>}
+                                        </div>
                                         <div className="producto-info-mobile">
-                                            <h3>{prod.titulo}</h3>
-                                            <p>{prod.descripcion}</p>
-                                            {prod.ingredientes && prod.ingredientes.length > 0 && !soloDescripcion.includes(prod.titulo) && (
-                                                <p className="ingredientes-mobile">{prod.ingredientes.join(', ')}</p>
+                                            <div className="mobile-card-header">
+                                                <h3>{prod.titulo}</h3>
+                                                {prod.precio && <span className="mobile-card-precio">${formatearPrecio(prod.precio)}</span>}
+                                            </div>
+                                            <p className="mobile-card-desc">{prod.descripcion}</p>
+                                            {prod.ingredientes && prod.ingredientes.length > 0 && (
+                                                <div className="mobile-card-ingredients-container">
+                                                    {prod.ingredientes.slice(0, 2).map((ing, i) => (
+                                                        <span key={i} className="mobile-ingrediente-tag">{ing}</span>
+                                                    ))}
+                                                    {prod.ingredientes.length > 2 && <span className="mobile-ingrediente-tag-more">+{prod.ingredientes.length - 2}</span>}
+                                                </div>
                                             )}
+                                        </div>
+                                        <div className="mobile-card-arrow">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
                                         </div>
                                     </div>
                                 );
                             }
+
                             // --- CARD DESKTOP ---
                             return (
                                 <div
@@ -675,239 +693,42 @@ export default function Productos() {
                                     key={prod.titulo + '-' + prod.categoria}
                                     onClick={() => setProductoSeleccionado(prod)}
                                     data-categoria={filtro}
-                                    style={{ position: 'relative', '--card-index': idx } as React.CSSProperties}
+                                    style={{ '--card-index': idx } as React.CSSProperties}
                                 >
-                                    {/* Ícono 3D eliminado por requerimiento */}
-                                    {/* Renderizado estándar para todas las cards, incluyendo Big burger */}
-                                    <>
-                                        <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} />
-                                        <div className="producto-info">
-                                            <h3
-                                                className="titulo-card-desktop"
-                                                style={{
-                                                    fontSize: ([
-                                                        'Jamón, Tomate, Huevo, Roquefort',
-                                                        'Jamón, tomate, huevo y roquefort',
-                                                        'Jamón crudo, rúcula y stracciatella INDI',
-                                                        'Mortadela, pistacho y stracciatella INDI',
-                                                        'Fitzza mortadela, pistacho y stracciatella',
-                                                        'Fitzza jamón crudo, rúcula y stracciatella',
-                                                        'Fitzza Jamón crudo, rúcula y stracciatella'
-                                                    ].includes(prod.titulo)
-                                                        ? '1.45rem'
-                                                        : (prod.titulo.length > 28 ? (prod.titulo.length > 38 ? '1.05rem' : '1.18rem') : '1.45rem')),
-                                                    fontWeight: 600,
-                                                    margin: '-1.3rem 0 0.4rem 0',
-                                                    letterSpacing: '0.03em',
-                                                    lineHeight: 1.18,
-                                                    textAlign: 'center',
-                                                    textShadow: 'rgb(255 215 0 / 65%) 0px 2px 8px, rgb(194 186 144) 0px 1px 0px',
-                                                    padding: '0.18em 0.1em',
-                                                    borderRadius: '12px',
-                                                    position: 'relative',
-                                                    overflow: 'hidden',
-                                                    background: 'transparent',
-                                                    backgroundClip: 'text',
-                                                    WebkitBackgroundClip: 'text',
-                                                    WebkitTextFillColor: 'transparent',
-                                                    backgroundImage: 'linear-gradient(90deg, #FFD700 10%, #FFA500 60%, #fff 100%)',
-                                                    animation: 'brilloTituloCard 2.5s linear infinite',
-                                                    whiteSpace: 'nowrap',
-                                                    textOverflow: 'ellipsis',
-                                                    display: 'block',
-                                                    maxWidth: '100%',
-                                                }}
-                                                title={prod.titulo}
-                                            >
-                                                {prod.titulo}
-                                            </h3>
-                                            {/* Descripción e ingredientes debajo del título */}
-                                            {prod.descripcion && (() => {
-                                                // Cards especiales a corregir
-                                                const especiales = [
-                                                    'Carne con aceituna',
-                                                    'Pollo',
-                                                    'Verdura'
-                                                ];
-                                                // Cards que necesitan mostrar bien el segundo renglón
-                                                const mostrarDosRenglones = [
-                                                    'Jamón, Tomate, Huevo, Roquefort',
-                                                    'Provolone, Jamón y Longaniza',
-                                                    'Provolone, Jamón y Morrón'
-                                                ];
-                                                if (especiales.includes(prod.titulo)) {
-                                                    return (
-                                                        <p style={{
-                                                            color: '#fff',
-                                                            fontSize: '1rem',
-                                                            margin: '0 0 0.3rem 0',
-                                                            textAlign: 'left',
-                                                            opacity: 0.85,
-                                                            lineHeight: 1.4,
-                                                            fontWeight: 400,
-                                                            display: '-webkit-box',
-                                                            WebkitLineClamp: 2,
-                                                            WebkitBoxOrient: 'vertical',
-                                                            overflow: 'hidden',
-                                                            textOverflow: 'ellipsis',
-                                                            maxHeight: '2.8em',
-                                                        }}>{prod.descripcion}</p>
-                                                    );
-                                                }
-                                                if (mostrarDosRenglones.includes(prod.titulo)) {
-                                                    return (
-                                                        <p style={{
-                                                            color: '#fff',
-                                                            fontSize: '0.93rem',
-                                                            margin: '0 0 0.3rem 0',
-                                                            textAlign: 'left',
-                                                            opacity: 0.85,
-                                                            lineHeight: 1.35,
-                                                            fontWeight: 400,
-                                                            display: '-webkit-box',
-                                                            WebkitLineClamp: 2,
-                                                            WebkitBoxOrient: 'vertical',
-                                                            overflow: 'hidden',
-                                                            textOverflow: 'ellipsis',
-                                                            maxHeight: '2.7em',
-                                                        }}>{prod.descripcion}</p>
-                                                    );
-                                                }
-                                                // Resto de las cards
-                                                return (
-                                                    <>
-                                                        <p style={{
-                                                            color: '#fff',
-                                                            fontSize: '1rem',
-                                                            margin: '0 0 0.3rem 0',
-                                                            textAlign: 'left',
-                                                            opacity: 0.85,
-                                                            lineHeight: 1.4,
-                                                            fontWeight: 400,
-                                                            display: '-webkit-box',
-                                                            WebkitLineClamp: 2,
-                                                            WebkitBoxOrient: 'vertical',
-                                                            overflow: 'hidden',
-                                                            textOverflow: 'ellipsis',
-                                                            maxHeight: '2.8em',
-                                                        }}>{prod.descripcion}</p>
-                                                        {prod.ingredientes && prod.ingredientes.length > 0 && ![
-                                                            'Cuatro Quesos',
-                                                            'Cuatro quesos',
-                                                            'Pollo al champignon',
-                                                            'Choclo',
-                                                            'Calabaza',
-                                                            'Panceta y Ciruela',
-                                                            'Panceta y ciruela'
-                                                        ].includes(prod.titulo) && (
-                                                                <p style={{
-                                                                    color: '#FFD700',
-                                                                    fontSize: '0.98rem',
-                                                                    margin: '0 0 0.5rem 0',
-                                                                    textAlign: 'center',
-                                                                    opacity: 0.85,
-                                                                    lineHeight: 1.3,
-                                                                    fontWeight: 400,
-                                                                    display: '-webkit-box',
-                                                                    WebkitLineClamp: 2,
-                                                                    WebkitBoxOrient: 'vertical',
-                                                                    overflow: 'hidden',
-                                                                    textOverflow: 'ellipsis',
-                                                                    maxHeight: '2.8em',
-                                                                }}>
-                                                                    {prod.ingredientes.join(', ')}
-                                                                </p>
-                                                            )}
-                                                    </>
-                                                );
-                                            })()}
-                                            <div style={{
-                                                width: '80%',
-                                                height: '0.7em',
-                                                margin: '-0.3em auto 0 auto',
-                                                background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.01) 100%)',
-                                                opacity: 0.7,
-                                                borderRadius: '50%',
-                                                filter: 'blur(2.5px)',
-                                            }}></div>
-                                            {/* Botón sutil con ícono (overlay) - oculto temporalmente */}
-                                            {/**
-                                                <button
-                                                    aria-label="Agregar al carrito"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        const numericPrice = (() => {
-                                                          if (prod.categoria === 'Empanada' && prod.precio) {
-                                                            const n = parseInt(String(prod.precio).replace(/\D/g, ''));
-                                                            return isNaN(n) ? 0 : n;
-                                                          }
-                                                          return 0;
-                                                        })();
-                                                        addItem({
-                                                          title: prod.titulo,
-                                                          image: prod.imagen,
-                                                          price: numericPrice,
-                                                          category: prod.categoria,
-                                                        });
-                                                    // Animación hacia el botón del carrito en el navbar
-                                                    try {
-                                                      const card = (e.currentTarget as HTMLElement).closest('.producto-card');
-                                                      const imgEl = card?.querySelector('img');
-                                                      const cartBtn = document.getElementById('nav-cart-button');
-                                                      if (imgEl instanceof HTMLElement && cartBtn instanceof HTMLElement) {
-                                                        flyToCart(imgEl, cartBtn);
-                                                      } else {
-                                                        // Fallback: volar hacia esquina superior derecha
-                                                        const phantom = document.createElement('img');
-                                                        phantom.src = prod.imagen;
-                                                        phantom.style.position = 'fixed';
-                                                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                                                        phantom.style.left = rect.left + 'px';
-                                                        phantom.style.top = rect.top + 'px';
-                                                        phantom.style.width = '96px';
-                                                        phantom.style.height = '96px';
-                                                        phantom.style.objectFit = 'cover';
-                                                        phantom.style.borderRadius = '12px';
-                                                        phantom.style.zIndex = '99999';
-                                                        document.body.appendChild(phantom);
-                                                        const endLeft = window.innerWidth - 24;
-                                                        const endTop = 16;
-                                                        const dx = endLeft - rect.left;
-                                                        const dy = endTop - rect.top;
-                                                        phantom.animate([
-                                                          { transform: 'translate(0,0) scale(1)', opacity: 1 },
-                                                          { offset: 0.6, transform: `translate(${dx * .7}px, ${dy * .7}px) scale(.8)`, opacity: .9 },
-                                                          { transform: `translate(${dx}px, ${dy}px) scale(.2)`, opacity: 0 }
-                                                        ], { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = () => phantom.remove();
-                                                      }
-                                                    } catch {}
-                                                    }}
-                                                    style={{
-                                                        position: 'absolute',
-                                                        right: 12,
-                                                        bottom: 12,
-                                                        width: 44,
-                                                        height: 44,
-                                                        borderRadius: 22,
-                                                        background: '#ffbf1f',
-                                                        color: '#111',
-                                                        border: 'none',
-                                                        boxShadow: '0 8px 18px rgba(0,0,0,.35)',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        cursor: 'pointer',
-                                                        transition: 'transform .15s ease, box-shadow .15s ease',
-                                                    }}
-                                                    onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.96)')}
-                                                    onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-                                                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-                                                >
-                                                    <span className="fa fa-cart-plus" style={{ fontSize: 18 }} />
-                                                </button>
-                                                **/}
+                                    <div className="producto-card-shine"></div>
+
+                                    <div className="producto-badges">
+                                        {prod.esPremium && <span className="badge-premium">✨ Premium</span>}
+                                        {prod.esVegetariano && <span className="badge-veggie">🍃 Veggie</span>}
+                                        {prod.esRecomendado && <span className="badge-recommended">🔥 Recomendado</span>}
+                                    </div>
+
+                                    <div className="producto-image-container">
+                                        <img src={prod.imagenCard || prod.imagen} alt={prod.titulo} className="producto-img" />
+                                        <div className="producto-image-overlay"></div>
+                                    </div>
+
+                                    <div className="producto-info">
+                                        <h3 className="producto-card-titulo" title={prod.titulo}>
+                                            {prod.titulo}
+                                        </h3>
+                                        <p className="producto-card-desc">{prod.descripcion}</p>
+                                        {prod.ingredientes && prod.ingredientes.length > 0 && (
+                                            <div className="producto-card-ingredientes-container">
+                                                {prod.ingredientes.slice(0, 3).map((ing, i) => (
+                                                    <span key={i} className="producto-ingrediente-tag">{ing}</span>
+                                                ))}
+                                                {prod.ingredientes.length > 3 && <span className="producto-ingrediente-tag-more">+{prod.ingredientes.length - 3}</span>}
+                                            </div>
+                                        )}
+                                        <div className="producto-card-footer">
+                                            {prod.precio && (
+                                                <span className="producto-card-precio">
+                                                    ${formatearPrecio(prod.precio)}
+                                                </span>
+                                            )}
                                         </div>
-                                    </>
+                                    </div>
                                 </div>
                             );
                         })

@@ -17,7 +17,7 @@ export interface Empanada {
 export const empanadas: Empanada[] = [
   {
     imagen: "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
-    imagenDetalle: "/images/final/empanada-mexican-pibil-pork.png",
+    imagenDetalle: "/images/empanadas/empanada-mexican-pibil-pork.png",
     imagenCard: "https://i.postimg.cc/FKpbMKyM/Miniaturas-Mexican-Pibil-pork.jpg",
     titulo: "Mexican pibil pork",
     precio: 4000,
@@ -27,7 +27,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/9a2d8724-46bc-4cde-915f-c958c8e25ef4.jpg",
-    imagenDetalle: "https://i.postimg.cc/9FTt4mc3/burger.png",
+    imagenDetalle: "/images/empanadas/empanada-big-burger.png",
     titulo: "Big burger",
     precio: 4000,
     descripcion: "Blend de ojo de bife, Tapa de asado, Doble bacon, Cheddar, Pepinillos, Salsa Big.",
@@ -36,7 +36,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://pedidosya.dhmedia.io/image/pedidosya/products/0a6315c4-600e-4091-808f-565ff5906571.jpg",
-    imagenDetalle: "https://i.postimg.cc/sXTmjwPT/Matambre-a-la-pizza.png",
+    imagenDetalle: "/images/empanadas/empanada-matambre -alapizza.png",
     titulo: "Matambre a la pizza",
     precio: 4000,
     descripcion: "Matambre tierno ahumado a leña, Muzzarella, Salsa casera de tomate, Gratinado de provolone, Salsa chimichurri.",
@@ -45,7 +45,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/brRW2qqg/cheese.jpg",
-    imagenDetalle: "https://i.postimg.cc/9Ftb8mKd/cheese-burger.png",
+    imagenDetalle: "/images/empanadas/empanada-cheese-burger.png",
     titulo: "Cheese burger",
     precio: 4000,
     descripcion: "Blend de ojo de bife y vacio, Doble bacon, Salsa bbq, Mar de cheddar.",
@@ -54,7 +54,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/X77DzSVP/vacio.jpg",
-    imagenDetalle: "https://i.postimg.cc/Dz32yH1f/VACIO-Y-PROVOLETA.png",
+    imagenDetalle: "/images/empanadas/empanada-vacio-yprovoleta.png",
     titulo: "Vacio y provoleta",
     precio: 4000,
     descripcion: "Delicioso vacio asado desmechado, Clásico chimichurri con cebolla, Morrón salteado a fuego lento, Provoleta y muzzarella seleccionada, Semolin en la tapa.",
@@ -63,7 +63,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/W3v5mxWG/american.jpg",
-    imagenDetalle: "https://i.postimg.cc/bv0qGgRx/AMERICAN.png",
+    imagenDetalle: "/images/empanadas/empanada-american-chicken.png",
     titulo: "American chicken",
     precio: 4000,
     descripcion: "Chicken sabroso y dulce, Bacón crujiente braseado, Mar de cheddar.",
@@ -71,7 +71,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png",
-    imagenDetalle: "https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png",
+    imagenDetalle: "/images/empanadas/Jamon-y-queso.png",
     imagenCard: "https://i.postimg.cc/yYKCxRG3/jamonyqueso.jpg",
     titulo: "Jamón y queso",
     precio: 3700,
@@ -89,7 +89,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/fLCSdvyz/Carne-picante.png",
-    imagenDetalle: "https://i.postimg.cc/fLCSdvyz/Carne-picante.png",
+    imagenDetalle: "/images/empanadas/Carne-picante.png",
     imagenCard: "https://i.postimg.cc/VLszd07h/carnepicante.jpg",
     titulo: "Carne picante",
     precio: 3700,
@@ -98,7 +98,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/MHHWPC0L/con-aceitunas.png",
-    imagenDetalle: "https://i.postimg.cc/MHHWPC0L/con-aceitunas.png",
+    imagenDetalle: "/images/empanadas/con-aceitunas.png",
     imagenCard: "https://i.postimg.cc/dVkPy28V/carneyaceituna.jpg",
     titulo: "Carne con aceituna",
     precio: 3700,
@@ -113,7 +113,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/d12LYjrR/Carne-a-cuchillo.png",
-    imagenDetalle: "https://i.postimg.cc/d12LYjrR/Carne-a-cuchillo.png",
+    imagenDetalle: "/images/empanadas/Carne-a-cuchillo.png",
     imagenCard: "https://i.postimg.cc/GpFfFq9n/cortadaacuchillo.jpg",
     titulo: "Carne a cuchillo",
     precio: 3700,
@@ -122,7 +122,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/NMjmpnW9/Carne-Suave.png",
-    imagenDetalle: "https://i.postimg.cc/NMjmpnW9/Carne-Suave.png",
+    imagenDetalle: "/images/empanadas/Carne-Suave.png",
     imagenCard: "https://i.postimg.cc/qqwh2VHT/carnesuave.jpg",
     titulo: "Carne suave",
     precio: 3700,
@@ -131,7 +131,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/1XtxRybm/Cebolla.png",
-    imagenDetalle: "https://i.postimg.cc/1XtxRybm/Cebolla.png",
+    imagenDetalle: "/images/empanadas/Cebolla.png",
     imagenCard: "https://i.postimg.cc/FzVcGk39/cebollayqueso.jpg",
     titulo: "Queso y cebolla",
     precio: 3700,
@@ -141,7 +141,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png",
-    imagenDetalle: "https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png",
+    imagenDetalle: "/images/empanadas/Roquefort-con-jamon.png",
     imagenCard: "https://i.postimg.cc/wjfr07Qs/roquefortyjamon.jpg",
     titulo: "Roquefort con jamón",
     precio: 3700,
@@ -150,7 +150,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/NGS2HDk4/pollo.png",
-    imagenDetalle: "https://i.postimg.cc/NGS2HDk4/pollo.png",
+    imagenDetalle: "/images/empanadas/pollo.png",
     imagenCard: "https://i.postimg.cc/ZRMKmbm0/pollo.jpg",
     titulo: "Pollo",
     precio: 3700,
@@ -165,7 +165,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/rw1NF3W3/cuatro-quesos.png",
-    imagenDetalle: "https://i.postimg.cc/rw1NF3W3/cuatro-quesos.png",
+    imagenDetalle: "/images/empanadas/cuatro-quesos.png",
     imagenCard: "https://i.postimg.cc/43rHvQ7N/cuatroquesos.jpg",
     titulo: "Cuatro quesos",
     precio: 3700,
@@ -181,7 +181,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/rmGWykxP/champi.png",
-    imagenDetalle: "https://i.postimg.cc/rmGWykxP/champi.png",
+    imagenDetalle: "/images/empanadas/champi.png",
     imagenCard: "https://i.postimg.cc/50C7pgs0/polloychampignon.jpg",
     titulo: "Pollo al champignon",
     precio: 3700,
@@ -195,7 +195,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/t40x6JkM/choclo.png",
-    imagenDetalle: "https://i.postimg.cc/t40x6JkM/choclo.png",
+    imagenDetalle: "/images/empanadas/choclo.png",
     imagenCard: "https://i.postimg.cc/HLpdqJqQ/choclo.jpg",
     titulo: "Choclo",
     precio: 3700,

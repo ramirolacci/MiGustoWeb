@@ -1,149 +1,346 @@
-import { useState, useMemo, useEffect } from "react";
-import './Productos.css';
-import ProductView from './ProductView';
+import { useState, useMemo, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import './Productos2.css';
 import ProductModal3D from './ProductModal3D';
-import { empanadas } from '../data/empanadasData';
+import MobileProductDetail from './MobileProductDetail';
+import IngredientExplodedView from './IngredientExplodedView';
+import { explodedProductConfigs } from '../data/explodedViewConfig';
+import { getProductData } from '../utils/productDataLoader';
 
-const categorias = ["Promociones", "Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
-
-// Defino el tipo para los productos, incluyendo noHover opcional
-interface ProductData {
-    id: string;
-    top: string;
-    left: string;
-    width: string;
-    height: string;
-    noHover?: boolean;
-}
-
-const productsData: ProductData[] = [
-    { id: '01', top: '5%', left: '2%', width: '23%', height: '25%' },
-    { id: '02', top: '5%', left: '26%', width: '23%', height: '25%' },
-    { id: '03', top: '5%', left: '50%', width: '23%', height: '25%' },
-    { id: '04', top: '5%', left: '74%', width: '23%', height: '25%' },
-    { id: '05', top: '37%', left: '14%', width: '23%', height: '25%' },
-    { id: '06', top: '37%', left: '39%', width: '23%', height: '25%', noHover: true },
-    { id: '07', top: '37%', left: '64%', width: '23%', height: '25%' },
-    { id: '08', top: '69%', left: '26%', width: '23%', height: '25%' },
-    { id: '09', top: '69%', left: '50%', width: '23%', height: '25%' },
+const EMPANADAS_3D = [
+    "Mexican pibil pork",
+    "Big burger",
+    "Matambre a la pizza",
+    "Cheese burger",
+    "Vacio y provoleta",
+    "American chicken"
 ];
 
-export default function Productos2() {
-    const [filtro, setFiltro] = useState(categorias[1]);
-    const [busqueda, setBusqueda] = useState("");
-    const [tipoProducto, setTipoProducto] = useState<"Premium" | "Clasicas" | null>(null);
-    const [dimensions, setDimensions] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-    const [productoSeleccionado, setProductoSeleccionado] = useState<any | null>(null);
+const categorias = ["Empanadas", "Pizzas", "Pizzas INDI", "Fitzzas", "Salsas", "Postres"];
 
-    // Mapeo de id a producto de empanadas
-    const idToProducto: Record<string, any> = {
-        '01': empanadas.find(e => e.titulo.toLowerCase().includes('vacio')),
-        '02': empanadas.find(e => e.titulo.toLowerCase().includes('big')),
-        '03': empanadas.find(e => e.titulo.toLowerCase().includes('matambre')),
-        '04': empanadas.find(e => e.titulo.toLowerCase().includes('cheese')),
-        '05': empanadas.find(e => e.titulo.toLowerCase().includes('american')),
-        '08': empanadas.find(e => e.titulo.toLowerCase().includes('pibil')),
-    };
+interface Product {
+    titulo: string;
+    descripcion: string;
+    imagen: string;
+    imagenCard?: string;
+    precio?: string | number;
+    categoria: string;
+    ingredientes?: string[];
+    esPremium?: boolean;
+    esVegetariano?: boolean;
+    esRecomendado?: boolean;
+}
+
+function formatearPrecio(precio: string | number) {
+    const num = typeof precio === "string" ? parseInt(precio.replace(/\D/g, "")) : precio;
+    if (isNaN(num)) return precio;
+    return num.toLocaleString("es-AR");
+}
+
+export default function Productos2() {
+    const [activeCategory, setActiveCategory] = useState<string>("Empanadas");
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [productoSeleccionado, setProductoSeleccionado] = useState<Product | null>(null);
+    const dragStartX = useRef<number | null>(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
-        const handleResize = () => {
-            setDimensions({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Reset active index when category changes
+    useEffect(() => {
+        setActiveIndex(0);
+    }, [activeCategory]);
+
+    // Fetch dynamic product data mapped to existing categories
+    const productData = getProductData();
+
+    const itemsByCategory = useMemo(() => {
+        return {
+            "Empanadas": productData.empanadas || [],
+            "Pizzas": productData.pizzas || [],
+            "Pizzas INDI": productData.pizzasIndi || [],
+            "Fitzzas": productData.fitzzas || [],
+            "Salsas": productData.salsas || [],
+            "Postres": productData.postres || []
+        } as Record<string, Product[]>;
+    }, [productData]);
+
+    const currentProducts = useMemo(() => {
+        return itemsByCategory[activeCategory] || [];
+    }, [itemsByCategory, activeCategory]);
+
+    const totalItems = currentProducts.length;
+
+    const explodedConfig = useMemo(() => {
+        if (!productoSeleccionado) return null;
+
+        const { titulo, categoria } = productoSeleccionado;
+
+        if (categoria === 'Pizza' || activeCategory === 'Pizzas') return explodedProductConfigs[titulo + '_PIZZA'];
+        if (categoria === 'Pizzas INDI' || activeCategory === 'Pizzas INDI') return explodedProductConfigs[titulo + '_INDI'];
+        if (categoria === 'Fitzzas' || activeCategory === 'Fitzzas') return explodedProductConfigs[titulo + '_FITZZA'];
+        if (categoria === 'Salsas' || activeCategory === 'Salsas') return explodedProductConfigs[titulo + '_ADEREZO'];
+        if (categoria === 'Postres' || activeCategory === 'Postres') return explodedProductConfigs[titulo + '_POSTRE'];
+
+        return explodedProductConfigs[titulo];
+    }, [productoSeleccionado, activeCategory]);
+
+    const handleNextProduct = () => {
+        if (totalItems <= 1) return;
+        const nextIdx = (activeIndex + 1) % totalItems;
+        setActiveIndex(nextIdx);
+        setProductoSeleccionado(currentProducts[nextIdx] as any);
+    };
+
+    const handlePrevProduct = () => {
+        if (totalItems <= 1) return;
+        const prevIdx = (activeIndex - 1 + totalItems) % totalItems;
+        setActiveIndex(prevIdx);
+        setProductoSeleccionado(currentProducts[prevIdx] as any);
+    };
+
+    // Navigation functions with wrap-around
+    const handleNext = () => {
+        if (totalItems <= 1) return;
+        setActiveIndex((prev) => (prev + 1) % totalItems);
+    };
+
+    const handlePrev = () => {
+        if (totalItems <= 1) return;
+        setActiveIndex((prev) => (prev - 1 + totalItems) % totalItems);
+    };
+
+    // Keyboard support
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "ArrowLeft") handlePrev();
+            if (e.key === "ArrowRight") handleNext();
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [totalItems]);
+
+    // Drag / Touch gestures for carousel swipe
+    const handleTouchStart = (e: React.TouchEvent) => {
+        dragStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (dragStartX.current === null) return;
+        const diff = dragStartX.current - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) handleNext();
+            else handlePrev();
+        }
+        dragStartX.current = null;
+    };
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        dragStartX.current = e.clientX;
+    };
+
+    const handleMouseUp = (e: React.MouseEvent) => {
+        if (dragStartX.current === null) return;
+        const diff = dragStartX.current - e.clientX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) handleNext();
+            else handlePrev();
+        }
+        dragStartX.current = null;
+    };
+
+    // Helper math to calculate slider offsets and positioning classes
+    const getCardClass = (idx: number) => {
+        if (totalItems === 0) return "hidden-right";
+        if (idx === activeIndex) return "active";
+
+        // Previous and next mapping
+        const prevIdx = (activeIndex - 1 + totalItems) % totalItems;
+        const nextIdx = (activeIndex + 1) % totalItems;
+
+        if (idx === prevIdx && totalItems > 1) return "prev";
+        if (idx === nextIdx && totalItems > 1) return "next";
+
+        // Determine if left or right based on relative difference
+        let diff = idx - activeIndex;
+        // Adjust for wrap around relative display
+        if (diff < -totalItems / 2) diff += totalItems;
+        if (diff > totalItems / 2) diff -= totalItems;
+
+        return diff < 0 ? "hidden-left" : "hidden-right";
+    };
+
+    const activeProduct = currentProducts[activeIndex];
+
     return (
-        <div className="productos-section">
-            <div className="background-overlay"></div>
-            <div className="productos-container">
-                <h2 className="productos-titulo">Conocé nuestros productos</h2>
-
-                <div className="productos-busqueda">
-                    <input
-                        type="text"
-                        placeholder="Buscar productos..."
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                        className="productos-input-busqueda"
-                    />
-                    <i className="fas fa-search buscador-icon"></i>
+        <div 
+            className="productos2-section"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+        >
+            {/* Header section with heavy Vicio style typography */}
+            <div className="productos2-header">
+                <div className="productos2-title-block">
+                    <h1 className="productos2-main-title">
+                        MÁXIMA DEFINICIÓN DE <br />
+                        <span className="productos2-category-span">Empanadas.</span>
+                    </h1>
+                    <Link to="/productos" className="productos2-collection-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <line x1="5" y1="19" x2="19" y2="5"></line>
+                            <polyline points="12 5 19 5 19 12"></polyline>
+                        </svg>
+                        Ver Menú Tradicional
+                    </Link>
                 </div>
+                <div className="productos2-top-right">
+                    EL MEJOR SABOR DE HOY, <br />
+                    HECHO A TU GUSTO.
+                </div>
+            </div>
 
-                <div className="productos-categorias">
-                    {categorias.map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => {
-                                setFiltro(cat);
-                                setTipoProducto(null);
-                            }}
-                            className={`productos-btn ${filtro === cat ? "active" : ""}`}
+            {/* 3D Carousel slider core */}
+            <div className="productos2-carousel-container">
+                {totalItems === 0 ? (
+                    <div className="productos2-empty-slider">
+                        No hay productos disponibles en esta categoría.
+                    </div>
+                ) : (
+                    <div className="productos2-slider-track" key={activeCategory}>
+                        {currentProducts.map((prod, idx) => {
+                            const cardClass = getCardClass(idx);
+                            const isActive = cardClass === "active";
+
+                            return (
+                                <div
+                                    key={prod.titulo + '-' + idx}
+                                    className={`productos2-slider-card ${cardClass}`}
+                                    onClick={() => {
+                                        if (isActive) {
+                                            setProductoSeleccionado(prod);
+                                        } else {
+                                            setActiveIndex(idx);
+                                        }
+                                    }}
+                                >
+                                    {/* Floating cutout product image */}
+                                    <div className="productos2-card-image-wrapper">
+                                        <img 
+                                            src={prod.imagenDetalle || prod.imagen} 
+                                            alt={prod.titulo} 
+                                            className="productos2-card-img" 
+                                        />
+                                    </div>
+
+                                    {/* Product description and pricing box */}
+                                    <div className="productos2-product-info-box">
+                                        <h3 className="productos2-product-title">
+                                            {prod.titulo}
+                                        </h3>
+                                        <p className="productos2-product-desc">
+                                            {prod.descripcion}
+                                        </p>
+                                        {prod.precio && (
+                                            <span className="productos2-product-price">
+                                                ${formatearPrecio(prod.precio)}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
+
+            {/* Center navigation controls */}
+            {totalItems > 0 && (
+                <div className="productos2-controls-row">
+                    <div className="productos2-arrow-capsule">
+                        <button className="productos2-nav-btn" onClick={handlePrev} type="button">
+                            ←
+                        </button>
+                        <span className="productos2-counter">
+                            {String(activeIndex + 1).padStart(2, '0')} / {String(totalItems).padStart(2, '0')}
+                        </span>
+                        <button className="productos2-nav-btn" onClick={handleNext} type="button">
+                            →
+                        </button>
+                    </div>
+
+                    {activeProduct && (
+                        <button 
+                            className="productos2-action-btn" 
+                            onClick={() => setProductoSeleccionado(activeProduct)}
                             type="button"
                         >
-                            {cat}
+                            Ver Detalles
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
                         </button>
-                    ))}
+                    )}
                 </div>
+            )}
 
-                {filtro === "Empanadas" && (
-                    <div className="productos-subfiltros">
-                        <button
-                            onClick={() => setTipoProducto("Premium")}
-                            className={`subfiltro-btn ${tipoProducto === "Premium" ? "active" : ""}`}
+            {/* Premium list footer with slider categories */}
+            <div className="productos2-footer">
+                <span className="productos2-slogan">
+                    EXPERTOS EN DARTE LO TUYO.
+                </span>
+                
+                <ul className="productos2-categories-bar">
+                    {categorias.map((cat) => (
+                        <li
+                            key={cat}
+                            className={`productos2-cat-item ${activeCategory === cat ? "active" : ""}`}
+                            onClick={() => setActiveCategory(cat)}
                         >
-                            PREMIUM
-                        </button>
-                        <span className="subfiltro-separator">|</span>
-                        <button
-                            onClick={() => setTipoProducto("Clasicas")}
-                            className={`subfiltro-btn ${tipoProducto === "Clasicas" ? "active" : ""}`}
-                        >
-                            CLÁSICAS
-                        </button>
-                    </div>
-                )}
+                            {cat}
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="productos2-footer-links">
+                    <a href="#" className="productos2-footer-link">Legal</a>
+                    <a href="#" className="productos2-footer-link">Instagram</a>
+                    <a href="#" className="productos2-footer-link">TikTok</a>
+                </div>
             </div>
-            {/* Distribución con posiciones absolutas */}
-            <div style={{
-                position: 'relative',
-                width: '100vw',
-                height: '90vh',
-                maxWidth: '100vw',
-                margin: '-32px 0 0 0',
-                background: 'transparent',
-                overflow: 'hidden'
-            }}>
-                {productsData.map(product => (
-                    <div key={product.id} style={{ position: 'absolute', top: product.top, left: product.left, width: product.width, height: product.height }}>
-                        <ProductView 
-                            image={`/${product.id}.png`} 
-                            alt={`Producto ${product.id}`} 
-                            width={dimensions.width * 0.23} 
-                            height={dimensions.height * 0.23} 
-                            noHover={!!product.noHover}
-                            onClick={() => {
-                                if (product.id === '07') return;
-                                const prod = idToProducto[product.id];
-                                if (prod) setProductoSeleccionado(prod);
-                            }}
-                            style={{ cursor: product.id !== '07' ? 'pointer' : 'default' }}
+
+            {/* Product detail Modal matching Productos1 */}
+            {explodedConfig ? (
+                <IngredientExplodedView
+                    config={explodedConfig}
+                    onClose={() => setProductoSeleccionado(null)}
+                    enable3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado!.titulo.toLowerCase())}
+                    onNext={handleNextProduct}
+                    onPrev={handlePrevProduct}
+                />
+            ) : (
+                <>
+                    {productoSeleccionado && !isMobile && (
+                        <ProductModal3D
+                            producto={productoSeleccionado as any}
+                            onClose={() => setProductoSeleccionado(null)}
+                            tiene3D={EMPANADAS_3D.some(t => t.toLowerCase() === productoSeleccionado.titulo.toLowerCase())}
                         />
-                    </div>
-                ))}
-                {productoSeleccionado && (
-                    <ProductModal3D
-                        producto={productoSeleccionado}
-                        onClose={() => setProductoSeleccionado(null)}
-                    />
-                )}
-            </div>
+                    )}
+                    {productoSeleccionado && isMobile && (
+                        <MobileProductDetail
+                            producto={productoSeleccionado as any}
+                            onClose={() => setProductoSeleccionado(null)}
+                        />
+                    )}
+                </>
+            )}
         </div>
     );
-} 
+}

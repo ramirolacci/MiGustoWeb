@@ -19,6 +19,7 @@ import { useIsMobile } from './hooks/useIsMobile';
 const ResponsiveHome = lazy(() => import('./components/ResponsiveHome'));
 const HomeMobile = lazy(() => import('./pages/HomeMobile'));
 const Productos = lazy(() => import('./components/Productos'));
+const Productos2 = lazy(() => import('./components/Productos2'));
 const Sucursales = lazy(() => import('./components/Sucursales'));
 const Nosotros = lazy(() => import('./pages/Nosotros'));
 const Contacto = lazy(() => import('./pages/Contacto'));
@@ -88,6 +89,7 @@ const AppContent: React.FC = () => {
                 <Route path="/m" element={<HomeMobile />} />
                 <Route path="/carta" element={<Carta />} />
                 <Route path="/productos" element={<Productos />} />
+                <Route path="/productos2" element={<Productos2 />} />
                 <Route path="/sucursales" element={<Sucursales />} />
                 <Route path="/nosotros" element={<Nosotros />} />
                 <Route path="/contacto" element={<Contacto />} />

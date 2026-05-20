@@ -98,7 +98,18 @@ const generateEmpanadas = () => {
 
 const EMPANADAS_DATA = generateEmpanadas();
 
+const HOME_VIDEOS = [
+  '/videos/promotional/VideoFlash.mp4',
+  '/videos/promotional/VideoFlash (1).mp4',
+  '/videos/promotional/VideoFlash (2).mp4'
+];
+
 export default function HomeMobile() {
+  const [selectedVideo] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * HOME_VIDEOS.length);
+    return HOME_VIDEOS[randomIndex];
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useIsMobile();
@@ -215,29 +226,7 @@ export default function HomeMobile() {
           />
         </div>
 
-        {/* Video hero section */}
-        <section className="hm-video-hero">
-          <video
-            className="hm-video-bg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            src="/videos/promotional/VideoFlash.mp4"
-            poster="/images/sliders/mainpain.png"
-          />
-          <div className="hm-video-overlay" />
-          <div className="hm-video-content">
-            <h1 className="hm-hero-title">
-              <span className="hm-hero-highlight">Disfrutá</span> hoy tu
-              <br />
-              experiencia de verdad
-            </h1>
-          </div>
-        </section>
-
-        {/* Botones de categorías */}
+        {/* Botones de categorías (Arriba) */}
         {true && (
         <section className="hm-categories">
           <div className="hm-cat hm-cat-premium" onClick={() => navigate('/productos?tab=Empanadas&type=Premium')}>
@@ -279,7 +268,30 @@ export default function HomeMobile() {
         </section>
         )}
 
-        <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} />
+        {/* Video hero section (Abajo) */}
+        <section className="hm-video-hero">
+          <video
+            className="hm-video-bg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            src={selectedVideo}
+            poster="/images/sliders/mainpain.png"
+          />
+          <div className="hm-video-overlay" />
+          <div className="hm-video-content">
+            <h1 className="hm-hero-title">
+              <span className="hm-hero-highlight">Disfrutá</span> hoy tu
+              <br />
+              experiencia de verdad
+            </h1>
+          </div>
+        </section>
+
+        {/* Oculto temporalmente Promos destacadas por solicitud del usuario */}
+        {/* <PromoCarousel title="Promos destacadas" slides={promoSlides} isDestacadas={true} /> */}
 
         {/** Oculto temporalmente el banner "Unite a Lovers Club" en mobile **/}
         {/**
@@ -315,7 +327,8 @@ export default function HomeMobile() {
          </section>
         **/}
 
-        <PromoCarousel title="Promos imperdibles" slides={moreSlides} />
+        {/* Oculto temporalmente Promos imperdibles por solicitud del usuario */}
+        {/* <PromoCarousel title="Promos imperdibles" slides={moreSlides} /> */}
         {/* Carrusel "Para compartir" oculto en móvil por solicitud del usuario */}
         {/* <PromoCarousel title="Para compartir" slides={moreSlides} /> */}
       </div>

@@ -22,7 +22,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Cheese burger': {
         id: 'cheeseburger-001',
         name: 'Cheeseburger',
-        image: '/images/final/empanada-cheese-burger.png',
+        image: '/images/empanadas/empanada-cheese-burger.png',
         modelUrl: '/models/cheese-burger-3D.glb',
         cameraOrbit: '180deg 100deg 2.9m',
         ingredients: [
@@ -36,7 +36,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Mexican pibil pork': {
         id: 'mexican-pibil-pork-001',
         name: 'Mexican pibil pork',
-        image: '/images/final/empanada-mexican-pibil-pork.png',
+        image: '/images/empanadas/empanada-mexican-pibil-pork.png',
         modelUrl: '/models/mexican-pibil-pork-3D.glb',
         cameraOrbit: '55deg 35deg 3m',
         ingredients: [
@@ -50,7 +50,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Big burger': {
         id: 'big-burger-001',
         name: 'Big burger',
-        image: '/images/final/empanada-big-burger.png',
+        image: '/images/empanadas/empanada-big-burger.png',
         modelUrl: '/models/big-burger-3D.glb',
         cameraOrbit: '50deg 65deg 3m',
         ingredients: [
@@ -65,7 +65,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Matambre a la pizza': {
         id: 'matambre-pizza-001',
         name: 'Matambre a la pizza',
-        image: '/images/final/empanada-matambre -alapizza.png',
+        image: '/images/empanadas/empanada-matambre -alapizza.png',
         modelUrl: '/models/Matambre-a-la-Pizza-3D.glb',
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
@@ -79,7 +79,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Vacio y provoleta': {
         id: 'vacio-provoleta-001',
         name: 'Vacio y provoleta',
-        image: '/images/final/empanada-vacio-yprovoleta.png',
+        image: '/images/empanadas/empanada-vacio-yprovoleta.png',
         modelUrl: '/models/vacio-provoleta-3D.glb',
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
@@ -93,7 +93,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'American chicken': {
         id: 'american-chicken-001',
         name: 'American chicken',
-        image: '/images/final/empanada-american-chicken.png',
+        image: '/images/empanadas/empanada-american-chicken.png',
         modelUrl: '/models/american-chicken-3D.glb',
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [

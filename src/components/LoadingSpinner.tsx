@@ -83,12 +83,13 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   const IS_MUNDIAL_SEASON = true;
 
   // Generar partículas de confeti de alta fidelidad para el mundial (celeste, blanco, oro)
+  // Reducido a 32 para optimización táctil / CPU en mobile (buttery smooth 60fps)
   const confettiParticles = React.useMemo(() => {
     if (!isLoading) return [];
-    return Array.from({ length: 80 }).map((_, i) => {
+    return Array.from({ length: 32 }).map((_, i) => {
       const xStart = Math.random() * 100;
       const xEnd = xStart + (-15 + Math.random() * 30);
-      const yStart = -10;
+      const xDrift = xEnd - xStart;
       
       const colors = [
         '#75AADB', // Celeste patrio
@@ -119,8 +120,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
         shape,
         style: {
           '--x-start': `${xStart}%`,
-          '--x-end': `${xEnd}%`,
-          '--y-start': `${yStart}vh`,
+          '--x-drift': `${xDrift}vw`,
           '--delay': delay,
           '--duration': `${duration}s`,
           '--scale': scale,

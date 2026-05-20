@@ -221,10 +221,10 @@ body.loading-active .hamburger-menu * {
 
 .confetti-particle {
     position: absolute;
-    top: var(--y-start);
+    top: -10vh !important; /* Estático: previene recálculos de Layout */
     left: var(--x-start);
     opacity: 0;
-    will-change: transform, top, opacity;
+    will-change: transform, opacity; /* Removido top para forzar aceleración por GPU pura */
     transform: translate3d(0, 0, 0) scale(var(--scale));
     animation: 
       confetti-fall-3d var(--duration) linear var(--delay) infinite,
@@ -270,24 +270,21 @@ body.loading-active .hamburger-menu * {
     background-color: transparent !important;
 }
 
-/* 3D Fall trajectory (Translation + Rotation) */
+/* 3D Fall trajectory (Translation + Rotation) - Acelerado 100% por Hardware Compositor (60fps) */
 @keyframes confetti-fall-3d {
     0% {
-        top: var(--y-start);
         transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(var(--scale));
         opacity: 0;
     }
     4% {
-        opacity: 0.9; /* Fade in quickly as it enters viewport */
+        opacity: 0.9; /* Fade in rápido al entrar */
     }
     90% {
         opacity: 0.9;
     }
     100% {
-        top: 105vh;
-        left: var(--x-end);
-        transform: translate3d(0, 0, 80px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) scale(var(--scale));
-        opacity: 0; /* Elegant fade out at the bottom */
+        transform: translate3d(var(--x-drift), 115vh, 80px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) scale(var(--scale));
+        opacity: 0; /* Desvanecimiento sutil al final */
     }
 }
 

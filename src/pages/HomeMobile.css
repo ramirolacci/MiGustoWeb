@@ -58,13 +58,18 @@
 /* Video Hero Section */
 .hm-video-hero {
   position: relative;
-  width: 100%;
-  height: 60vh;
-  min-height: 350px;
-  max-height: 450px;
+  width: calc(100% - 32px);
+  margin-left: 16px;
+  margin-right: 16px;
+  height: 48vh;
+  min-height: 280px;
+  max-height: 380px;
   overflow: hidden;
-  margin-top: -8px;
-  margin-bottom: 8px;
+  margin-top: 14px;
+  margin-bottom: 20px;
+  border-radius: 18px; /* Redondear los bordes para estilo card super premium */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .hm-video-bg {
@@ -187,8 +192,10 @@
 
 /* Categorías */
 .hm-categories {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-  padding: 14px 2px 4px 2px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 12px 16px 4px 16px; /* 16px a los costados para alinear perfecto con el buscador táctil */
 }
 .hm-cat { 
   display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 6px; 
