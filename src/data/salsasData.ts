@@ -52,17 +52,4 @@ export const salsas: Salsa[] = [
         titulo: "Crema ácida",
         descripcion: "Crema ácida suave y refrescante."
     },
-    {
-        imagen: "https://i.postimg.cc/LXs611QK/Guacamole.png",
-        imagenCard: "https://i.postimg.cc/65GbcKYt/Aderezo-de-Salsa-Guacamole.jpg",
-        titulo: "Guacamole",
-        descripcion: "Puré de aguacate con limón y especias.",
-        esRecomendado: true
-    },
-    {
-        imagen: "https://i.postimg.cc/CL8MkY71/Picante.png",
-        imagenCard: "https://i.postimg.cc/Jhh2bkg7/Aderezo-Salsa-Picante.jpg",
-        titulo: "Picante",
-        descripcion: "Salsa picante con un toque de chile."
-    }
 ]; 
