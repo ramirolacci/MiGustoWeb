@@ -259,13 +259,35 @@ export default function Productos2() {
             </div>
 
             {/* 3D Carousel slider core */}
-            <div className="productos2-carousel-container">
+            <div 
+                className="productos2-carousel-container"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+            >
                 {totalItems === 0 ? (
                     <div className="productos2-empty-slider">
                         No hay productos disponibles en esta categoría.
                     </div>
                 ) : (
-                    <div className="productos2-slider-track" key={activeCategory}>
+                    <>
+                        {/* Mobile side arrows */}
+                        {totalItems > 1 && (
+                            <>
+                                <button className="productos2-mobile-side-arrow left" onClick={(e) => { e.stopPropagation(); handlePrev(); }} aria-label="Anterior">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </button>
+                                <button className="productos2-mobile-side-arrow right" onClick={(e) => { e.stopPropagation(); handleNext(); }} aria-label="Siguiente">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                            </>
+                        )}
+                        <div className="productos2-slider-track" key={activeCategory}>
                         {currentProducts.map((prod, idx) => {
                             const cardClass = getCardClass(idx);
                             const isActive = cardClass === "active";
@@ -308,7 +330,8 @@ export default function Productos2() {
                                 </div>
                             );
                         })}
-                    </div>
+                        </div>
+                    </>
                 )}
             </div>
 
