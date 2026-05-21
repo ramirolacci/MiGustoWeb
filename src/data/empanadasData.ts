@@ -80,7 +80,7 @@ export const empanadas: Empanada[] = [
   },
   {
     imagen: "https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg",
-    imagenDetalle: "https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg",
+    imagenDetalle: "https://i.postimg.cc/3rZBTPXq/jamon-y-huevo.png",
     imagenCard: "https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg",
     titulo: "Jamón, huevo y queso",
     precio: 4355,
