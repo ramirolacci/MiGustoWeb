@@ -43,12 +43,24 @@ export default function Productos2() {
     const [productoSeleccionado, setProductoSeleccionado] = useState<Product | null>(null);
     const dragStartX = useRef<number | null>(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [startAnimations, setStartAnimations] = useState(false);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        // Delay to allow loading spinner (2s) to finish
+        const timer = setTimeout(() => {
+            setAnimateClass(true);
+        }, 2200);
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Helper state alias for class trigger
+    const [animateClass, setAnimateClass] = useState(false);
 
     // Reset active index when category changes
     useEffect(() => {
@@ -231,7 +243,7 @@ export default function Productos2() {
 
     return (
         <div 
-            className="productos2-section"
+            className={`productos2-section ${animateClass ? 'start-anim' : ''}`}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onMouseDown={handleMouseDown}
@@ -383,6 +395,14 @@ export default function Productos2() {
                         </li>
                     ))}
                 </ul>
+
+                <Link to="/productos" className="productos2-mobile-collection-link">
+                    Ver menú tradicional
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </Link>
 
                 <div className="productos2-footer-links">
                     <a href="#" className="productos2-footer-link">Legal</a>

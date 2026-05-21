@@ -88,6 +88,10 @@
     margin-right: 8px !important;
 }
 
+.productos2-mobile-collection-link {
+    display: none !important;
+}
+
 /* Right header micro slogan */
 .productos2-top-right {
     text-align: right !important;
@@ -122,7 +126,6 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    animation: stage3DEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) both !important;
 }
 
 /* SLIDER PRODUCT CARD */
@@ -492,66 +495,65 @@
     }
 
     .productos2-collection-link {
-        font-size: 0.72rem !important;
-        margin-top: 4px !important;
+        display: none !important;
     }
 
     .productos2-carousel-container {
-        height: 270px !important;
-        min-height: 270px !important;
-        margin: 5px 0 0 0 !important;
+        height: 315px !important;
+        min-height: 315px !important;
+        margin: 10px 0 0 0 !important;
     }
 
     .productos2-slider-card {
-        width: 150px !important;
-        height: 200px !important;
+        width: 165px !important;
+        height: 220px !important;
     }
 
     .productos2-slider-card.active {
-        transform: translate3d(0, -5px, 80px) scale(1.28) !important;
+        transform: translate3d(0, -5px, 80px) scale(1.32) !important;
     }
 
     .productos2-slider-card.prev {
-        transform: translate3d(-90px, 0, -40px) rotateY(15deg) scale(0.9) !important;
+        transform: translate3d(-105px, 0, -40px) rotateY(15deg) scale(0.9) !important;
         opacity: 0.55 !important;
     }
 
     .productos2-slider-card.next {
-        transform: translate3d(90px, 0, -40px) rotateY(-15deg) scale(0.9) !important;
+        transform: translate3d(105px, 0, -40px) rotateY(-15deg) scale(0.9) !important;
         opacity: 0.55 !important;
     }
 
     .productos2-slider-card.hidden-left {
-        transform: translate3d(-180px, 10px, -150px) rotateY(30deg) scale(0.5) !important;
+        transform: translate3d(-195px, 10px, -150px) rotateY(30deg) scale(0.5) !important;
     }
 
     .productos2-slider-card.hidden-right {
-        transform: translate3d(180px, 10px, -150px) rotateY(-30deg) scale(0.5) !important;
+        transform: translate3d(195px, 10px, -150px) rotateY(-30deg) scale(0.5) !important;
     }
 
     .productos2-card-image-wrapper {
-        height: 105px !important;
+        height: 120px !important;
     }
 
     .productos2-slider-card.active .productos2-card-image-wrapper::before {
-        width: 95px !important;
-        height: 95px !important;
+        width: 110px !important;
+        height: 110px !important;
     }
 
     .productos2-product-info-box {
         margin-top: 5px !important;
-        max-width: 150px !important;
+        max-width: 165px !important;
     }
 
     .productos2-product-title {
-        font-size: 0.8rem !important;
-        margin-bottom: 2px !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 4px !important;
     }
 
     .productos2-product-desc {
-        font-size: 0.65rem !important;
-        line-height: 1.25 !important;
-        margin-bottom: 2px !important;
+        font-size: 0.74rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 4px !important;
         display: -webkit-box !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
@@ -559,7 +561,7 @@
     }
 
     .productos2-product-price {
-        font-size: 0.85rem !important;
+        font-size: 1.05rem !important;
     }
 
     .productos2-controls-row {
@@ -597,6 +599,26 @@
         gap: 0 !important;
     }
 
+    .productos2-mobile-collection-link {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.72rem !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        color: #ffd700 !important; /* Gold highlight */
+        text-decoration: none !important;
+        margin: 15px auto 0 auto !important; /* Centered below categories */
+        letter-spacing: 0.05em !important;
+        gap: 6px !important;
+        transition: transform 0.3s ease !important;
+        cursor: pointer !important;
+    }
+
+    .productos2-mobile-collection-link:active {
+        transform: scale(0.95) !important;
+    }
+
     .productos2-slogan {
         display: none !important;
     }
@@ -615,9 +637,6 @@
         scrollbar-width: none !important;
         mask-image: linear-gradient(to right, transparent, white 15px, white calc(100% - 15px), transparent) !important;
         -webkit-mask-image: linear-gradient(to right, transparent, white 15px, white calc(100% - 15px), transparent) !important;
-        
-        /* Hint scroll swipe peek on load */
-        animation: categoriesHintSwipe 1.6s ease-in-out 1.2s both !important;
     }
     
     .productos2-categories-bar::-webkit-scrollbar {
@@ -702,31 +721,49 @@
    IMPRESSIVE CATEGORY SELECTION TRANSITIONS & KEYFRAME ANIMATIONS
    ========================================================================== */
 
+/* Default hidden states before animation triggers to prevent flashing on load */
+.productos2-section:not(.start-anim) .productos2-slider-track,
+.productos2-section:not(.start-anim) .productos2-category-span,
+.productos2-section:not(.start-anim) .productos2-card-image-wrapper,
+.productos2-section:not(.start-anim) .productos2-product-info-box {
+    opacity: 0 !important;
+}
+
+/* Track Stage 3D Entrance */
+.productos2-section.start-anim .productos2-slider-track {
+    animation: stage3DEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
 /* Title Category Slide Entrance */
-.productos2-category-span {
+.productos2-section.start-anim .productos2-category-span {
     display: inline-block !important;
     animation: titleSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both !important;
 }
 
 /* Image Wrapper Bounce Pop-in */
-.productos2-slider-card .productos2-card-image-wrapper {
+.productos2-section.start-anim .productos2-slider-card .productos2-card-image-wrapper {
     animation: imageBounceEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) both !important;
 }
 
 /* Staggered card delays */
-.productos2-slider-card.prev .productos2-card-image-wrapper {
+.productos2-section.start-anim .productos2-slider-card.prev .productos2-card-image-wrapper {
     animation-delay: 0.05s !important;
 }
-.productos2-slider-card.next .productos2-card-image-wrapper {
+.productos2-section.start-anim .productos2-slider-card.next .productos2-card-image-wrapper {
     animation-delay: 0.05s !important;
 }
-.productos2-slider-card.active .productos2-card-image-wrapper {
+.productos2-section.start-anim .productos2-slider-card.active .productos2-card-image-wrapper {
     animation-delay: 0.2s !important;
 }
 
 /* Description text & info pop-in animation */
-.productos2-slider-card.active .productos2-product-info-box {
+.productos2-section.start-anim .productos2-slider-card.active .productos2-product-info-box {
     animation: infoSlideUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both !important;
+}
+
+/* Category swipe wiggler trigger */
+.productos2-section.start-anim .productos2-categories-bar {
+    animation: categoriesHintSwipe 1.6s ease-in-out 1.2s both !important;
 }
 
 /* --- KEYFRAMES --- */
