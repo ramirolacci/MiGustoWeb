@@ -59,12 +59,65 @@ export default function Productos2() {
     const productData = getProductData();
 
     const itemsByCategory = useMemo(() => {
+        // Reorder Empanadas safely:
+        let orderedEmpanadas = [...(productData.empanadas || [])];
+        const pibil = orderedEmpanadas.find(e => e.titulo.toLowerCase() === "mexican pibil pork");
+        const bigBurger = orderedEmpanadas.find(e => e.titulo.toLowerCase() === "big burger");
+        const matambre = orderedEmpanadas.find(e => e.titulo.toLowerCase() === "matambre a la pizza");
+        
+        if (pibil && bigBurger && matambre) {
+            const rest = orderedEmpanadas.filter(e => 
+                e.titulo.toLowerCase() !== "mexican pibil pork" &&
+                e.titulo.toLowerCase() !== "big burger" &&
+                e.titulo.toLowerCase() !== "matambre a la pizza"
+            );
+            orderedEmpanadas = [pibil, matambre, ...rest, bigBurger];
+        }
+
+        // Reorder Pizzas safely:
+        let orderedPizzas = [...(productData.pizzas || [])];
+        const muzza = orderedPizzas.find(p => p.titulo.toLowerCase() === "muzzarella");
+        const caprese = orderedPizzas.find(p => p.titulo.toLowerCase() === "caprese");
+        const provoloneJamonMorron = orderedPizzas.find(p => p.titulo.toLowerCase() === "provolone, jamón y morrón");
+        
+        if (muzza && caprese && provoloneJamonMorron) {
+            const rest = orderedPizzas.filter(p => 
+                p.titulo.toLowerCase() !== "muzzarella" &&
+                p.titulo.toLowerCase() !== "caprese" &&
+                p.titulo.toLowerCase() !== "provolone, jamón y morrón"
+            );
+            orderedPizzas = [muzza, caprese, ...rest, provoloneJamonMorron];
+        }
+
+        // Reorder Pizzas INDI safely:
+        let orderedPizzasIndi = [...(productData.pizzasIndi || [])];
+        const napoIndi = orderedPizzasIndi.find(p => p.titulo.toLowerCase() === "napolitana indi");
+        if (napoIndi) {
+            const rest = orderedPizzasIndi.filter(p => p.titulo.toLowerCase() !== "napolitana indi");
+            orderedPizzasIndi = [...rest, napoIndi];
+        }
+
+        // Reorder Salsas safely:
+        let orderedSalsas = [...(productData.salsas || [])];
+        const cheddar = orderedSalsas.find(s => s.titulo.toLowerCase() === "cheddar");
+        const criolla = orderedSalsas.find(s => s.titulo.toLowerCase() === "criolla");
+        const ketchup = orderedSalsas.find(s => s.titulo.toLowerCase() === "american ketchup");
+        
+        if (cheddar && criolla && ketchup) {
+            const rest = orderedSalsas.filter(s => 
+                s.titulo.toLowerCase() !== "cheddar" &&
+                s.titulo.toLowerCase() !== "criolla" &&
+                s.titulo.toLowerCase() !== "american ketchup"
+            );
+            orderedSalsas = [cheddar, criolla, ...rest, ketchup];
+        }
+
         return {
-            "Empanadas": productData.empanadas || [],
-            "Pizzas": productData.pizzas || [],
-            "Pizzas INDI": productData.pizzasIndi || [],
+            "Empanadas": orderedEmpanadas,
+            "Pizzas": orderedPizzas,
+            "Pizzas INDI": orderedPizzasIndi,
             "Fitzzas": productData.fitzzas || [],
-            "Salsas": productData.salsas || [],
+            "Salsas": orderedSalsas,
             "Postres": productData.postres || []
         } as Record<string, Product[]>;
     }, [productData]);

@@ -239,19 +239,5 @@ export const empanadas: Empanada[] = [
     ],
     esVegetariano: true,
     esPremium: false
-  },
-  {
-    imagen: "https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png",
-    imagenDetalle: "https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png",
-    imagenCard: "https://i.postimg.cc/HLc1DQSj/pancetayciruela.jpg",
-    titulo: "Panceta y ciruela",
-    precio: 4355,
-    descripcion: "Panceta ahumada feteada, abundante queso muzzarella y ciruelas en pasas.",
-    ingredientes: [
-      "Panceta ahumada feteada",
-      "Abundante queso muzzarella",
-      "Ciruelas en pasas"
-    ],
-    esPremium: false
   }
 ];

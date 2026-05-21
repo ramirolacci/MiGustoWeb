@@ -280,6 +280,7 @@ const NavBar: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 700);
   const [navRevealPlayed, setNavRevealPlayed] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [productosDropdownOpen, setProductosDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileSearchQuery, setMobileSearchQuery] = useState('');
@@ -507,7 +508,8 @@ const NavBar: React.FC = () => {
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
     { path: '/', label: 'Inicio', icon: 'fa-house' },
-    { path: '/productos', label: 'Nuestra Carta', icon: 'fa-utensils' },
+    { path: '/productos', label: 'Productos 1', icon: 'fa-utensils' },
+    { path: '/productos2', label: 'Productos 2', icon: 'fa-cube' },
     { path: '/sucursales', label: 'Sucursales', icon: 'fa-location-dot' },
     { path: '/nosotros', label: 'Nuestra Historia', icon: 'fa-star' },
     { path: '/proveedores', label: 'Proveedores', icon: 'fa-truck' },
@@ -520,7 +522,7 @@ const NavBar: React.FC = () => {
 
   // En desktop oculto los links pedidos, en mobile muestro todos
   const sideMenuLinks = isDesktop
-    ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Sucursales', 'Legales', 'Defensa al consumidor'].includes(link.label))
+    ? allSideMenuLinks.filter(link => !['Home', 'Carta', 'Productos', 'Productos 1', 'Productos 2', 'Nuestra Carta', 'Sucursales', 'Legales', 'Defensa al consumidor'].includes(link.label))
     : allSideMenuLinks;
 
   return (
@@ -604,6 +606,63 @@ const NavBar: React.FC = () => {
         }
         .cart-icon {
           transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .productos-dropdown-container {
+          position: relative;
+        }
+        .productos-dropdown-menu {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(10, 10, 10, 0.96);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          min-width: 220px;
+          padding: 8px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.03);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          z-index: 1000;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          animation: dropdownFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @keyframes dropdownFadeIn {
+          0% { opacity: 0; transform: translateX(-50%) translateY(8px); }
+          100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        .productos-dropdown-item {
+          display: flex;
+          flex-direction: column;
+          padding: 10px 16px;
+          border-radius: 8px;
+          color: rgba(255, 255, 255, 0.7);
+          text-decoration: none;
+          transition: all 0.3s ease;
+          text-align: left;
+        }
+        .productos-dropdown-item:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: #ffffff;
+        }
+        .productos-dropdown-item.active {
+          background: rgba(212, 175, 55, 0.1);
+          color: #D4AF37;
+          border-left: 2px solid #D4AF37;
+          padding-left: 14px;
+        }
+        .productos-dropdown-item .item-title {
+          font-family: 'Outfit', sans-serif;
+          font-weight: 700;
+          font-size: 0.95rem;
+          letter-spacing: 0.02em;
+        }
+        .productos-dropdown-item .item-subtitle {
+          font-size: 0.75rem;
+          opacity: 0.6;
+          margin-top: 2px;
         }
         @media (max-width: 600px) {
           .switch-lovers {
@@ -975,27 +1034,100 @@ const NavBar: React.FC = () => {
                       {/* Botón de cerrar removido: la lupa ahora abre/cierra */}
                     </form>
                   </li>
-                  {navLinks.map((link, idx) => (
-                    <li key={link.path} className="nav-item">
-                      <Link
-                        className={`nav-link text-white epic-reveal${navRevealPlayed ? ' animation-played' : ''}${location.pathname === link.path ? ' nav-link-active' : ''}`}
-                        to={link.path}
-                        onClick={e => {
-                          setIsMenuOpen(false);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                          // Efecto de click animado
-                          const target = e.currentTarget;
-                          target.classList.add('nav-link-clicked');
-                          setTimeout(() => target.classList.remove('nav-link-clicked'), 350);
-                        }}
-                        tabIndex={0}
-                        aria-current={location.pathname === link.path ? 'page' : undefined}
-                        style={{ '--nav-index': idx } as React.CSSProperties }
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {navLinks.map((link, idx) => {
+                    if (link.label === 'Productos') {
+                      return (
+                        <li 
+                          key={link.path} 
+                          className="nav-item position-relative productos-dropdown-container"
+                          onMouseEnter={() => setProductosDropdownOpen(true)}
+                          onMouseLeave={() => setProductosDropdownOpen(false)}
+                        >
+                          <button
+                            className={`nav-link text-white epic-reveal border-0 bg-transparent${navRevealPlayed ? ' animation-played' : ''}${location.pathname.startsWith('/productos') ? ' nav-link-active' : ''}`}
+                            onClick={() => setProductosDropdownOpen(!productosDropdownOpen)}
+                            aria-expanded={productosDropdownOpen}
+                            style={{ 
+                              '--nav-index': idx, 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: '6px',
+                              outline: 'none',
+                              cursor: 'pointer',
+                              padding: '10px 15px'
+                            } as React.CSSProperties}
+                          >
+                            Productos
+                            <svg 
+                              width="12" 
+                              height="12" 
+                              viewBox="0 0 24 24" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              strokeWidth="2.5" 
+                              style={{ 
+                                transform: productosDropdownOpen ? 'rotate(180deg)' : 'rotate(0)', 
+                                transition: 'transform 0.3s ease' 
+                              }}
+                            >
+                              <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                          </button>
+                          
+                          {productosDropdownOpen && (
+                            <div className="productos-dropdown-menu">
+                              <Link 
+                                to="/productos" 
+                                className={`productos-dropdown-item ${location.pathname === '/productos' ? 'active' : ''}`}
+                                onClick={() => {
+                                  setProductosDropdownOpen(false);
+                                  setIsMenuOpen(false);
+                                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                              >
+                                <span className="item-title">Productos 1</span>
+                                <span className="item-subtitle">Vista Tradicional</span>
+                              </Link>
+                              <Link 
+                                to="/productos2" 
+                                className={`productos-dropdown-item ${location.pathname === '/productos2' ? 'active' : ''}`}
+                                onClick={() => {
+                                  setProductosDropdownOpen(false);
+                                  setIsMenuOpen(false);
+                                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                              >
+                                <span className="item-title">Productos 2</span>
+                                <span className="item-subtitle">Vista Moderna</span>
+                              </Link>
+                            </div>
+                          )}
+                        </li>
+                      );
+                    }
+                    
+                    return (
+                      <li key={link.path} className="nav-item">
+                        <Link
+                          className={`nav-link text-white epic-reveal${navRevealPlayed ? ' animation-played' : ''}${location.pathname === link.path ? ' nav-link-active' : ''}`}
+                          to={link.path}
+                          onClick={e => {
+                            setIsMenuOpen(false);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            // Efecto de click animado
+                            const target = e.currentTarget;
+                            target.classList.add('nav-link-clicked');
+                            setTimeout(() => target.classList.remove('nav-link-clicked'), 350);
+                          }}
+                          tabIndex={0}
+                          aria-current={location.pathname === link.path ? 'page' : undefined}
+                          style={{ '--nav-index': idx } as React.CSSProperties }
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                   <li>
                     <a
                       className="nav-link text-white nav-link-pedir"

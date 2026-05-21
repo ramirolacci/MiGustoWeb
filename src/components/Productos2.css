@@ -150,28 +150,28 @@
 /* Left inactive card styling */
 .productos2-slider-card.prev {
     z-index: 5 !important;
-    transform: translate3d(-410px, 0, -40px) rotateY(15deg) scale(1.18) !important;
+    transform: translate3d(-500px, 0, -40px) rotateY(15deg) scale(1.18) !important;
     opacity: 0.8 !important;
 }
 
 /* Right inactive card styling */
 .productos2-slider-card.next {
     z-index: 5 !important;
-    transform: translate3d(410px, 0, -40px) rotateY(-15deg) scale(1.18) !important;
+    transform: translate3d(500px, 0, -40px) rotateY(-15deg) scale(1.18) !important;
     opacity: 0.8 !important;
 }
 
 /* Far left and far right cards (hidden or extremely small) */
 .productos2-slider-card.hidden-left {
     z-index: 1 !important;
-    transform: translate3d(-600px, 30px, -300px) rotateY(45deg) scale(0.5) !important;
+    transform: translate3d(-750px, 30px, -300px) rotateY(45deg) scale(0.5) !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
 
 .productos2-slider-card.hidden-right {
     z-index: 1 !important;
-    transform: translate3d(600px, 30px, -300px) rotateY(-45deg) scale(0.5) !important;
+    transform: translate3d(750px, 30px, -300px) rotateY(-45deg) scale(0.5) !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }

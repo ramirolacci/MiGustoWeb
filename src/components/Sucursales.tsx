@@ -126,15 +126,11 @@ const Sucursales: React.FC = () => {
             <div className="background-overlay"></div>
             <div className="sucursales-container">
                 <div className="container">
-                    {/* Buscador para móvil */}
-                    <div className="sucursales-buscador">
-                        <Buscador 
-                            filtro={filtro} 
-                            setFiltro={setFiltro}
-                            placeholder="Buscar sucursales cercanas"
-                        />
+                    <div className="text-center" style={{ marginBottom: '0.8rem' }}>
+                        <span style={{ fontSize: '0.82rem', fontWeight: 800, letterSpacing: '0.2em', color: '#D4AF37', textTransform: 'uppercase', fontFamily: 'Outfit', display: 'inline-block' }}>
+                            ↖ NUESTRA RED
+                        </span>
                     </div>
-                    
                     <h2 className="productos-titulo">Encontrá tu sucursal más cercana</h2>
 
                     <div className="row">
