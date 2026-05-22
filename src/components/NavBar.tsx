@@ -514,9 +514,9 @@ const NavBar: React.FC = () => {
     { path: '/sucursales', label: 'Sucursales', icon: 'fa-location-dot' },
     { path: '/nosotros', label: 'Nuestra Historia', icon: 'fa-star' },
     { path: '/proveedores', label: 'Proveedores', icon: 'fa-truck' },
-    { path: '/trabaja-con-nosotros', label: 'Únete al equipo', icon: 'fa-users' },
     { path: '/franquicias', label: 'Franquicias', icon: 'fa-shop' },
     { path: '/venta-corporativa', label: 'Venta Corporativa', icon: 'fa-briefcase' },
+    { path: '/trabaja-con-nosotros', label: 'Únete al equipo', icon: 'fa-users' },
     { path: '/legales', label: 'Legales', icon: 'fa-scale-balanced' },
     { path: '/defensa-consumidor', label: 'Defensa al Consumidor', icon: 'fa-shield-halved' },
   ];
