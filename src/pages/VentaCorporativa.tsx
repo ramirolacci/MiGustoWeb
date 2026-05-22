@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 import '../pages/Contacto.css';
 import './VentaCorporativa.css';
 import Swal from 'sweetalert2';
@@ -185,7 +186,7 @@ const VentaCorporativa: React.FC = () => {
                 <video
                     ref={videoRef}
                     className="venta-corporativa-video"
-                    src="/images/corporate/corpoVideo.mp4"
+                    src={assetUrl("/images/corporate/corpoVideo.mp4")}
                     autoPlay
                     muted
                     loop
@@ -258,19 +259,19 @@ const VentaCorporativa: React.FC = () => {
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/images/corporate/descuento.png" alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <img src={assetUrl("/images/corporate/descuento.png")} alt="Descuento" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Packs corporativos anticipados con hasta 25% OFF
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/images/corporate/entrega.png" alt="Entrega" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <img src={assetUrl("/images/corporate/entrega.png")} alt="Entrega" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Entregas en CABA y GBA
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img src="/images/corporate/servicio.png" alt="Servicio" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
+                                    <img src={assetUrl("/images/corporate/servicio.png")} alt="Servicio" className="corp-icon" style={{ width: 44, height: 44, objectFit: 'contain' }} loading="lazy" />
                                     <span className="corp-text-body" style={{ fontSize: '1.25rem', color: '#ffffff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
                                         Atención personalizada, adaptada a tus necesidades
                                     </span>
@@ -346,7 +347,7 @@ const VentaCorporativa: React.FC = () => {
                                     }
                                 `}</style>
                                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                                    <img src="/images/corporate/venta corporativa.png" alt="Venta Corporativa" style={{ width: isMobile ? '95%' : '85%', maxWidth: '520px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
+                                    <img src={assetUrl("/images/corporate/venta corporativa.png")} alt="Venta Corporativa" style={{ width: isMobile ? '95%' : '85%', maxWidth: '520px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
                                 </div>
                                 <p style={{ textAlign: 'center', fontSize: '1.4rem', marginBottom: '24px' }}>
                                     Eventos Corporativos: solicitá tu propuesta personalizada

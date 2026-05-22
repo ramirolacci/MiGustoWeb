@@ -23,6 +23,7 @@ interface Product {
     descripcion: string;
     imagen: string;
     imagenCard?: string;
+    imagenDetalle?: string;
     precio?: string | number;
     categoria: string;
     ingredientes?: string[];

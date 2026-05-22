@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 import '../pages/Contacto.css';
 import { sendFormEmail } from '../services/emailjs';
 import Swal from 'sweetalert2';
@@ -263,7 +264,7 @@ const TrabajaConNosotros: React.FC = () => {
         <video
           ref={videoRef}
           className="trabaja-bg-video"
-          src="/images/trabaja_con_nosotros/trabajaVideo.mp4"
+          src={assetUrl("/images/trabaja_con_nosotros/trabajaVideo.mp4")}
           autoPlay
           muted
           loop
@@ -293,7 +294,7 @@ const TrabajaConNosotros: React.FC = () => {
             <div className="contacto-content" style={{ width: '100%', marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
               <div className="contacto-form-container" style={{ background: 'rgba(30, 30, 30, 0.75)', backdropFilter: 'blur(6px)' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                  <img src="/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png" alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: isMobile ? '95%' : '85%', maxWidth: '580px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '28px', opacity: 1 }} />
+                  <img src={assetUrl("/images/trabaja_con_nosotros/Trabaja con nosotros titulo.png")} alt="Título Trabaja con nosotros" className="trabaja-titulo-img" style={{ width: isMobile ? '95%' : '85%', maxWidth: '580px', marginTop: isMobile ? '0px' : '-10px', marginBottom: '28px', opacity: 1 }} />
                 </div>
                 <p style={{ textAlign: 'center' }}>Completa el siguiente formulario si estás interesado en formar parte de nuestro equipo.</p>
                 <form className="contacto-form" onSubmit={handleSubmit}>

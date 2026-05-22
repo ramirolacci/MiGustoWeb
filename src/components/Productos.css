@@ -227,7 +227,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/images/corporate/background-text.jpg');
+    background-image: url('../../public/images/corporate/background-text.jpg');
     background-size: 120% auto;
     background-position: center;
     background-repeat: repeat;
@@ -2816,9 +2816,14 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
 @media (min-width: 769px) {
   .categories-scroll {
     justify-content: center;
-    flex-wrap: wrap;
-    overflow-x: visible;
-    padding: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 8px;
+    scrollbar-width: none;
+  }
+
+  .categories-scroll::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -2982,15 +2987,15 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
   font-weight: 500;
   text-align: center;
   line-height: 1.2;
-  color: #fff; /* Etiquetas totalmente visibles */
+  color: #fff;
+  white-space: nowrap;
   transition: color 0.3s ease;
 }
 
-/* Ajustes para desktop */
 @media (min-width: 769px) {
   .category-chip {
-    min-width: 100px;
-    padding: 12px;
+    min-width: 88px;
+    padding: 8px 6px;
   }
   
   .category-icon {
@@ -3442,7 +3447,7 @@ model-viewer, model-viewer .userInput, model-viewer .slot.canvas, model-viewer c
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 30px !important;
     padding: 10px 20px !important;
-    max-width: 1000px !important;
+    max-width: min(100%, 1200px) !important;
     margin: 20px auto !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25) !important;
 }

@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMyLoyalty, getRedeemableProducts, redeemProduct } from '../services/loyalty';
@@ -6,7 +7,7 @@ import '../components/Productos.css';
 import './Canje.css';
 import { getToken } from '../services/auth';
 import { useLoyalty } from '../context/LoyaltyContext';
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, type Variants } from 'framer-motion';
 
 const Canje: React.FC = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Canje: React.FC = () => {
     }
   }), [reduceMotion]);
 
-  const cardVariants = useMemo(() => ({
+  const cardVariants = useMemo((): Variants => ({
     hidden: {
       opacity: 0,
       y: reduceMotion ? 0 : 40,
@@ -48,7 +49,7 @@ const Canje: React.FC = () => {
       clipPath: 'inset(0% 0% 0% 0%)',
       filter: 'none',
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 180,
         damping: 16,
         mass: 0.7,
@@ -57,7 +58,7 @@ const Canje: React.FC = () => {
     })
   }), [reduceMotion]);
 
-  const childVariants = useMemo(() => ({
+  const childVariants = useMemo((): Variants => ({
     hidden: { opacity: 0, y: reduceMotion ? 0 : 14 },
     show: (i: number = 0) => ({
       opacity: 1,
@@ -245,17 +246,17 @@ const Canje: React.FC = () => {
                         const isThermoMate = p.id === 'coupon-004' || name.includes('termo') || name.includes('mate');
                         const isBoard = p.id === 'board-005' || name.includes('tabla');
                         const src = isCap
-                          ? '/images/canjes/Gorra.mp4'
+                          ? assetUrl('/images/canjes/Gorra.mp4')
                           : isCar
-                          ? '/images/canjes/Auto.mp4'
+                          ? assetUrl('/images/canjes/Auto.mp4')
                           : isShirt
-                          ? '/images/canjes/Remera.mp4'
+                          ? assetUrl('/images/canjes/Remera.mp4')
                           : isCup
-                          ? '/images/canjes/vaso.mp4'
+                          ? assetUrl('/images/canjes/vaso.mp4')
                           : isThermoMate
-                          ? '/images/canjes/termoymate.mp4'
+                          ? assetUrl('/images/canjes/termoymate.mp4')
                           : isBoard
-                          ? '/images/canjes/tabla.mp4'
+                          ? assetUrl('/images/canjes/tabla.mp4')
                           : null;
                         return src ? (
                           <motion.video

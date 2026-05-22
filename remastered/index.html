@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+    <link rel="icon" type="image/png" href="/tools/remastered/assets/CRUNCHY.png" />
+    <link rel="apple-touch-icon" href="/tools/remastered/assets/CRUNCHY.png" />
+    <link rel="shortcut icon" href="/tools/remastered/assets/CRUNCHY.png" />
+    <link rel="manifest" href="/tools/remastered/root/manifest.webmanifest" />
+    <meta name="theme-color" content="#b01a1a" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Gusto - Experiencias de Verdad</title>
+    <script>
+      (function() {
+        function createOrGetLink(rel, sizes) {
+          var selector = sizes ? 'link[rel="' + rel + '"][sizes="' + sizes + '"]' : 'link[rel="' + rel + '"]';
+          var link = document.querySelector(selector);
+          if (!link) {
+            link = document.createElement('link');
+            link.rel = rel;
+            if (sizes) link.sizes = sizes;
+            document.head.appendChild(link);
+          }
+          link.type = 'image/png';
+          return link;
+        }
+
+        function drawIcon(img, size) {
+          var canvas = document.createElement('canvas');
+          canvas.width = size; canvas.height = size;
+          var ctx = canvas.getContext('2d');
+          if (!ctx) return '';
+          ctx.clearRect(0, 0, size, size);
+          var iw = img.naturalWidth || img.width;
+          var ih = img.naturalHeight || img.height;
+          var scale = Math.min(size / iw, size / ih);
+          var nw = Math.round(iw * scale);
+          var nh = Math.round(ih * scale);
+          var dx = Math.floor((size - nw) / 2);
+          var dy = Math.floor((size - nh) / 2);
+          ctx.drawImage(img, dx, dy, nw, nh);
+          return canvas.toDataURL('image/png');
+        }
+
+        function generateFavicons() {
+          var img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function() {
+            // Generar múltiples tamaños para que se vea más grande/nítido donde aplique
+            var sizes = [16, 32, 48, 64, 96, 128, 180, 192, 256, 512];
+            sizes.forEach(function(sz) {
+              var data = drawIcon(img, sz);
+              var link = createOrGetLink('icon', sz + 'x' + sz);
+              link.href = data;
+            });
+            // Atajos habituales
+            var data32 = drawIcon(img, 32);
+            createOrGetLink('shortcut icon').href = data32;
+            // Apple recomenda 180x180
+            var data180 = drawIcon(img, 180);
+            createOrGetLink('apple-touch-icon', '180x180').href = data180;
+          };
+          img.src = '/tools/remastered/assets/CRUNCHY.png';
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', generateFavicons);
+        } else {
+          generateFavicons();
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/tools/remastered/assets/index-DKLXAvOK.js"></script>
+    <link rel="stylesheet" crossorigin href="/tools/remastered/assets/index-CN31cOtf.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

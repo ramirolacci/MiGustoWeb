@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -5,9 +6,9 @@ import './Iphone.css';
 
 // Importar las imágenes de los sliders
 const sliderImages = [
-    '/images/sliders/mobile1.jpg',
-    '/images/sliders/mobile3.jpg',
-    '/images/sliders/mobile2.jpg',
+    assetUrl('/images/sliders/mobile1.jpg'),
+    assetUrl('/images/sliders/mobile3.jpg'),
+    assetUrl('/images/sliders/mobile2.jpg'),
 ];
 
 const IphoneStore: React.FC = () => {
@@ -146,7 +147,7 @@ const IphoneStore: React.FC = () => {
                         <div className="whatsapp-notification-pop-up">
                             <div className="notification-sender-and-message">
                                 <div className="notification-sender-line">
-                                    <img src="/assets/LOGOBOT.png" alt="Mi Gusto" className="notification-sender-icon" />
+                                    <img src={assetUrl("/assets/LOGOBOT.png")} alt="Mi Gusto" className="notification-sender-icon" />
                                     <span className="notification-sender">Mi Gusto</span>
                                 </div>
                                 <p className="notification-message">Ya pediste lo de siempre? 🥟<br />Te extrañamos 💕</p>
@@ -160,7 +161,7 @@ const IphoneStore: React.FC = () => {
                             <div className="menu-sidebar">
                                 {/* Sección del perfil */}
                                 <div className="profile-section">
-                                    <img src="/assets/LOGOBOT.png" alt="Profile" className="profile-avatar" /> {/* Usando logo.jpg */}
+                                    <img src={assetUrl("/assets/LOGOBOT.png")} alt="Profile" className="profile-avatar" /> {/* Usando logo.jpg */}
                                     <span>Mi Gusto</span>
                                 </div>
 
@@ -220,7 +221,7 @@ const IphoneStore: React.FC = () => {
                         {activeCategory === 'Promociones' ? (
                             <div className="promociones-scroll" style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <img
-                                    src="/images/promotions/promociones-iphone.jpg"
+                                    src={assetUrl("/images/promotions/promociones-iphone.jpg")}
                                     alt="Promociones"
                                     style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
                                 />
@@ -228,7 +229,7 @@ const IphoneStore: React.FC = () => {
                         ) : activeCategory === 'Mis cupones' ? (
                             <div style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <img
-                                    src="/images/promotions/mis-cupones.jpg"
+                                    src={assetUrl("/images/promotions/mis-cupones.jpg")}
                                     alt="Mis cupones"
                                     style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
                                 />

@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-    <link rel="icon" type="image/png" href="/assets/CRUNCHY.png" />
-    <link rel="apple-touch-icon" href="/assets/CRUNCHY.png" />
-    <link rel="shortcut icon" href="/assets/CRUNCHY.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="%BASE_URL%assets/CRUNCHY.png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%assets/CRUNCHY.png" />
+    <link rel="shortcut icon" href="%BASE_URL%assets/CRUNCHY.png" />
+    <link rel="manifest" href="%BASE_URL%root/manifest.webmanifest" />
     <meta name="theme-color" content="#b01a1a" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Gusto - Experiencias de Verdad</title>
@@ -61,7 +61,7 @@
             var data180 = drawIcon(img, 180);
             createOrGetLink('apple-touch-icon', '180x180').href = data180;
           };
-          img.src = '/assets/CRUNCHY.png';
+          img.src = '%BASE_URL%assets/CRUNCHY.png';
         }
 
         if (document.readyState === 'loading') {

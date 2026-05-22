@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './ProductModal3D.css';
@@ -24,35 +25,35 @@ interface ProductModal3DProps {
 }
 
 const RUTAS_3D: Record<string, string> = {
-    "Big burger": "/models/big-burger-3D.glb",
-    "Big Burger": "/models/big-burger-3D.glb",
-    "Mexican Pibil pork": "/models/mexican-veggie-3D.glb",
-    "Mexican pibil pork": "/models/mexican-veggie-3D.glb",
-    "Mexican Veggie": "/models/mexican-veggie-3D.glb",
-    "Mexican veggie": "/models/mexican-veggie-3D.glb",
-    "Matambre a la pizza": "/models/Matambre-a-la-Pizza-3D.glb",
-    "Cheese burger": "/models/cheese-burger-3D.glb",
-    "Cheese Burger": "/models/cheese-burger-3D.glb",
-    "American Chicken": "/models/american-chicken-3D.glb",
-    "American chicken": "/models/american-chicken-3D.glb",
-    "Vacio y provoleta": "/models/vacio-provoleta-3D.glb",
+    "Big burger": assetUrl("/models/big-burger-3D.glb"),
+    "Big Burger": assetUrl("/models/big-burger-3D.glb"),
+    "Mexican Pibil pork": assetUrl("/models/mexican-veggie-3D.glb"),
+    "Mexican pibil pork": assetUrl("/models/mexican-veggie-3D.glb"),
+    "Mexican Veggie": assetUrl("/models/mexican-veggie-3D.glb"),
+    "Mexican veggie": assetUrl("/models/mexican-veggie-3D.glb"),
+    "Matambre a la pizza": assetUrl("/models/Matambre-a-la-Pizza-3D.glb"),
+    "Cheese burger": assetUrl("/models/cheese-burger-3D.glb"),
+    "Cheese Burger": assetUrl("/models/cheese-burger-3D.glb"),
+    "American Chicken": assetUrl("/models/american-chicken-3D.glb"),
+    "American chicken": assetUrl("/models/american-chicken-3D.glb"),
+    "Vacio y provoleta": assetUrl("/models/vacio-provoleta-3D.glb"),
     // Modelos de Franui
-    "Franuí chocolate amargo": "/models/Franui-Dark-3D.glb",
-    "Franuí chocolate con leche": "/models/Franui-Milk-3D.glb",
+    "Franuí chocolate amargo": assetUrl("/models/Franui-Dark-3D.glb"),
+    "Franuí chocolate con leche": assetUrl("/models/Franui-Milk-3D.glb"),
 };
 
 // Mapeo de imágenes PNG para empanadas premium
 const IMAGENES_PNG: Record<string, string> = {
-    "Big burger": "/images/empanadas/empanada-big-burger.png",
-    "Big Burger": "/images/empanadas/empanada-big-burger.png",
-    "Mexican Pibil pork": "/images/empanadas/empanada-mexican-pibil-pork.png",
-    "Mexican pibil pork": "/images/empanadas/empanada-mexican-pibil-pork.png",
-    "Matambre a la pizza": "/images/empanadas/empanada-matambre -alapizza.png",
-    "Cheese burger": "/images/empanadas/empanada-cheese-burger.png",
-    "Cheese Burger": "/images/empanadas/empanada-cheese-burger.png",
-    "American Chicken": "/images/empanadas/empanada-american-chicken.png",
-    "American chicken": "/images/empanadas/empanada-american-chicken.png",
-    "Vacio y provoleta": "/images/empanadas/empanada-vacio-yprovoleta.png",
+    "Big burger": assetUrl("/images/empanadas/empanada-big-burger.png"),
+    "Big Burger": assetUrl("/images/empanadas/empanada-big-burger.png"),
+    "Mexican Pibil pork": assetUrl("/images/empanadas/empanada-mexican-pibil-pork.png"),
+    "Mexican pibil pork": assetUrl("/images/empanadas/empanada-mexican-pibil-pork.png"),
+    "Matambre a la pizza": assetUrl("/images/empanadas/empanada-matambre -alapizza.png"),
+    "Cheese burger": assetUrl("/images/empanadas/empanada-cheese-burger.png"),
+    "Cheese Burger": assetUrl("/images/empanadas/empanada-cheese-burger.png"),
+    "American Chicken": assetUrl("/images/empanadas/empanada-american-chicken.png"),
+    "American chicken": assetUrl("/images/empanadas/empanada-american-chicken.png"),
+    "Vacio y provoleta": assetUrl("/images/empanadas/empanada-vacio-yprovoleta.png"),
 };
 
 const CAMERA_ORBITS_3D: Record<string, string> = {

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Empanadas Premium">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffcf4d"/>
+      <stop offset="1" stop-color="#ffbf1f"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M8 36c0-10 12-20 24-20s24 10 24 20c0 0-10 8-24 8S8 36 8 36z"/>
+  <path fill="none" stroke="#7a5b00" stroke-width="2" d="M12 34c3 2 9 6 20 6s17-4 20-6"/>
+  <circle cx="20" cy="36" r="2" fill="#7a5b00"/>
+  <circle cx="28" cy="38" r="2" fill="#7a5b00"/>
+  <circle cx="36" cy="38" r="2" fill="#7a5b00"/>
+  <circle cx="44" cy="36" r="2" fill="#7a5b00"/>
+  <path fill="#ffcf4d" d="M10 26l6-8 6 6 6-6 6 6 6-6 8 6-2 2c-8-6-26-6-34 0z" opacity=".35"/>
+  <path d="M10 14l4-4 4 4-4 4z" fill="#ffbf1f"/>
+</svg>
+
+
+
+
+
+

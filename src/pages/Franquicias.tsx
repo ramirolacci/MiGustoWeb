@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 import '../pages/Contacto.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -239,7 +240,7 @@ const Franquicias: React.FC = () => {
         <video
           ref={videoRef}
           className="franquicias-bg-video"
-          src="/images/franquicias/videoFranquicias.mp4"
+          src={assetUrl("/images/franquicias/videoFranquicias.mp4")}
           autoPlay
           muted
           loop
@@ -506,7 +507,7 @@ crecimiento, este es el momento de sumarte.
                   }
                 `}</style>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                  <img src="/images/franquicias/Franquicias.png" alt="Franquicias" style={{ width: '85%', maxWidth: '460px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
+                  <img src={assetUrl("/images/franquicias/Franquicias.png")} alt="Franquicias" style={{ width: '85%', maxWidth: '460px', marginBottom: '20px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6))' }} />
                   <style>{`
                     @media (max-width: 900px) {
                       .contacto-form-container img {

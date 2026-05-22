@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import axios from 'axios';
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3000';
@@ -23,42 +24,42 @@ const mockProducts: LoyaltyProduct[] = [
     name: 'Gorra Mi Gusto',
     shortDescription: 'Edición limitada con logo bordado',
     pointsCost: 350,
-    imageUrl: '/images/canjes/Gorra.jpg',
+    imageUrl: assetUrl('/images/canjes/Gorra.jpg'),
   },
   {
     id: 'cup-002',
     name: 'Vaso térmico',
     shortDescription: 'Acero inoxidable, 500 ml',
     pointsCost: 520,
-    imageUrl: '/images/canjes/vaso.jpg',
+    imageUrl: assetUrl('/images/canjes/vaso.jpg'),
   },
   {
     id: 'tshirt-003',
     name: 'Remera Mi Gusto',
     shortDescription: '100% algodón, unisex',
     pointsCost: 690,
-    imageUrl: '/images/canjes/Remera.jpg',
+    imageUrl: assetUrl('/images/canjes/Remera.jpg'),
   },
   {
     id: 'coupon-004',
     name: 'Set Termo y Mate',
     shortDescription: 'Set termo 1.4L y mate versión limitada',
     pointsCost: 800,
-    imageUrl: '/images/canjes/termoymate.jpg',
+    imageUrl: assetUrl('/images/canjes/termoymate.jpg'),
   },
   {
     id: 'board-005',
     name: 'Tabla para empanadas',
     shortDescription: 'Tabla de madera premium para servir empanadas',
     pointsCost: 1200,
-    imageUrl: '/images/canjes/tabla.jpg',
+    imageUrl: assetUrl('/images/canjes/tabla.jpg'),
   },
   {
     id: 'car-006',
     name: 'Auto 0 km',
     shortDescription: 'Gran premio especial del programa de canje',
     pointsCost: 1000000,
-    imageUrl: '/images/canjes/auto.jpg',
+    imageUrl: assetUrl('/images/canjes/auto.jpg'),
   },
 ];
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Buscador from '../components/Buscador';
 import './HomeMobile.css';
@@ -99,9 +100,9 @@ const generateEmpanadas = () => {
 const EMPANADAS_DATA = generateEmpanadas();
 
 const HOME_VIDEOS = [
-  '/videos/promotional/VideoFlash.mp4',
-  '/videos/promotional/VideoFlash (1).mp4',
-  '/videos/promotional/VideoFlash (2).mp4'
+  assetUrl('/videos/promotional/VideoFlash.mp4'),
+  assetUrl('/videos/promotional/VideoFlash (1).mp4'),
+  assetUrl('/videos/promotional/VideoFlash (2).mp4')
 ];
 
 export default function HomeMobile() {
@@ -278,7 +279,7 @@ export default function HomeMobile() {
             playsInline
             preload="auto"
             src={selectedVideo}
-            poster="/images/sliders/mainpain.png"
+            poster={assetUrl("/images/sliders/mainpain.png")}
           />
           <div className="hm-video-overlay" />
           <div className="hm-video-content">

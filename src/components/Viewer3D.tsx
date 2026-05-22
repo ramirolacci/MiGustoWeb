@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 
 import React, { useEffect, useRef, useState } from 'react';
 // Sidebar móvil provisto por MobileTabbar; no montamos uno custom aquí
@@ -178,7 +179,7 @@ const Viewer3D: React.FC = () => {
       style={{ 
         width: '100vw', 
         height: '100dvh', 
-        background: `url('/images/EstudioFondo.png') center center / cover no-repeat, #181818`,
+        background: `url(${assetUrl('/images/EstudioFondo.png')}) center center / cover no-repeat, #181818`,
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
@@ -308,7 +309,7 @@ const Viewer3D: React.FC = () => {
       )}
       {/* Model Viewer */}
       {React.createElement('model-viewer' as any, {
-        src: '/models/Doritos-3D.glb',
+        src: assetUrl('/models/Doritos-3D.glb'),
         alt: 'Doritos 3D',
         'camera-controls': true,
         'auto-rotate': true,

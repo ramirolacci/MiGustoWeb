@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useEffect } from 'react';
 import Revista from '../components/Revista';
 import '../components/Productos.css';
@@ -49,15 +50,15 @@ const Carta: React.FC = () => {
             <div className="categories-container">
               <div className="categories-scroll">
                 {[
-                  { key: 'Premium', label: 'Premium', icon: '/images/burgerLoading.png' },
-                  { key: 'Clasicas', label: 'Clásicas', icon: empanadas.find(e => !e.esPremium)?.imagen || '/icons/products/empanadas-clasicas.svg' },
-                  { key: 'Pizzas', label: 'Pizzas', icon: pizzas.find(p => p.titulo === 'Caprese')?.imagen || '/icons/products/pizza.svg' },
-                  { key: 'Pizzas INDI', label: 'Pizzas INDI', icon: pizzasIndi[0]?.imagen || '/icons/products/pizza.svg' },
-                  { key: 'Fitzzas', label: 'Fitzzas', icon: fitzzas[0]?.imagen || '/icons/products/fitzza.svg' },
-                  { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || '/icons/products/aderezos.svg' },
-                  { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || '/icons/products/postres.svg' },
-                  { key: 'Carta', label: 'Carta', icon: '/images/carta.svg' },
-                  { key: 'Promociones', label: 'Promos y Packs', icon: '/images/promotions/promoIcon.png' },
+                  { key: 'Premium', label: 'Premium', icon: assetUrl('/images/burgerLoading.png') },
+                  { key: 'Clasicas', label: 'Clásicas', icon: empanadas.find(e => !e.esPremium)?.imagen || assetUrl('/icons/products/empanadas-clasicas.svg') },
+                  { key: 'Pizzas', label: 'Pizzas', icon: pizzas.find(p => p.titulo === 'Caprese')?.imagen || assetUrl('/icons/products/pizza.svg') },
+                  { key: 'Pizzas INDI', label: 'Pizzas INDI', icon: pizzasIndi[0]?.imagen || assetUrl('/icons/products/pizza.svg') },
+                  { key: 'Fitzzas', label: 'Fitzzas', icon: fitzzas[0]?.imagen || assetUrl('/icons/products/fitzza.svg') },
+                  { key: 'Salsas', label: 'Aderezos', icon: salsas.find(s => s.titulo.toLowerCase() === 'bbq')?.imagen || assetUrl('/icons/products/aderezos.svg') },
+                  { key: 'Postres', label: 'Postres', icon: postres[0]?.imagen || assetUrl('/icons/products/postres.svg') },
+                  { key: 'Carta', label: 'Carta', icon: assetUrl('/images/carta.svg') },
+                  { key: 'Promociones', label: 'Promos y Packs', icon: assetUrl('/images/promotions/promoIcon.png') },
                 ].map((category) => {
                   const isActive = category.key === 'Carta';
                   return (

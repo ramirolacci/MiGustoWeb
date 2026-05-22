@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import MobileSideMenu from './MobileSideMenu';
@@ -19,7 +20,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Inicio" 
           aria-current={location.pathname === '/' ? 'page' : undefined}
         >
-          <img src="/icons/navigation/tab-home.svg" alt="Inicio" />
+          <img src={assetUrl("/icons/navigation/tab-home.svg")} alt="Inicio" />
           <span>Inicio</span>
         </button>
         
@@ -32,7 +33,7 @@ const MobileTabbar: React.FC = () => {
          *   aria-label="Canje" 
          *   aria-current={location.pathname.startsWith('/canje') ? 'page' : undefined}
          * >
-         *   <img src="/icons/tab-canje.svg" alt="Canje" />
+         *   <img src={assetUrl("/icons/tab-canje.svg")} alt="Canje" />
          *   <span>Canje</span>
          * </button>
          */}
@@ -44,7 +45,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Productos" 
           aria-current={location.pathname.startsWith('/productos') ? 'page' : undefined}
         >
-          <img src="/icons/products/empanadas-clasicas.svg" alt="Productos" />
+          <img src={assetUrl("/icons/products/empanadas-clasicas.svg")} alt="Productos" />
           <span>Productos</span>
         </button>
 
@@ -53,7 +54,7 @@ const MobileTabbar: React.FC = () => {
           onClick={() => window.open('https://pedir.migusto.com.ar/', '_blank')} 
           aria-label="Pedir"
         >
-          <img src="/icons/navigation/tab-pedir.svg" alt="Pedir" />
+          <img src={assetUrl("/icons/navigation/tab-pedir.svg")} alt="Pedir" />
           <span>Pedir</span>
         </button>
 
@@ -70,7 +71,7 @@ const MobileTabbar: React.FC = () => {
          *   aria-label="Cuenta" 
          *   aria-current={(location.pathname.startsWith('/mi-cuenta') || location.pathname.startsWith('/perfil')) ? 'page' : undefined}
          * >
-         *   <img src="/icons/tab-cuenta.svg" alt="Cuenta" />
+         *   <img src={assetUrl("/icons/tab-cuenta.svg")} alt="Cuenta" />
          *   <span>Cuenta</span>
          * </button>
          */}
@@ -82,7 +83,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Sucursales" 
           aria-current={location.pathname.startsWith('/sucursales') ? 'page' : undefined}
         >
-          <img src="/icons/navigation/tab-sucursales.svg" alt="Sucursales" />
+          <img src={assetUrl("/icons/navigation/tab-sucursales.svg")} alt="Sucursales" />
           <span>Sucursales</span>
         </button>
         
@@ -92,7 +93,7 @@ const MobileTabbar: React.FC = () => {
           aria-label="Menú" 
           aria-current={menuOpen ? 'page' : undefined}
         >
-          <img src="/icons/navigation/tab-menu.svg" alt="Menú" />
+          <img src={assetUrl("/icons/navigation/tab-menu.svg")} alt="Menú" />
           <span>Menú</span>
         </button>
       </nav>

@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useState, useRef, useEffect } from 'react';
 import type { Sucursal } from '../data/sucursalesData';
 import './SucursalCard.css';
@@ -53,7 +54,7 @@ const SucursalCard: React.FC<Props> = ({ sucursal }) => {
                 <div className="sucursal-header">
                     <h5 className="sucursal-title">
                         <img
-                            src="/assets/sucursal_card_logo.png"
+                            src={assetUrl("/assets/sucursal_card_logo.png")}
                             alt="Logo"
                             className="sucursal-logo"
                         />

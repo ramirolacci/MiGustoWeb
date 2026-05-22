@@ -56,7 +56,7 @@ body {
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background-image: url('/images/corporate/background-text.jpg') !important;
+    background-image: url('../../public/images/corporate/background-text.jpg') !important;
     background-size: 130% auto !important;
     background-position: center !important;
     background-repeat: repeat !important;

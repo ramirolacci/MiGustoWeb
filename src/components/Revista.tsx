@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import { useState, useRef, useEffect } from 'react';
 import './Revista.css'
 import HTMLFlipBook from 'react-pageflip';
@@ -9,17 +10,17 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 
 const catalogoFotos = [
-    '/images/catalogo/2.jpg',
-    '/images/catalogo/3.jpg',
-    '/images/catalogo/4.jpg',
-    '/images/catalogo/5.jpg',
-    '/images/catalogo/6.jpg',
-    '/images/catalogo/7.jpg',
-    '/images/catalogo/8.jpg',
-    '/images/catalogo/9.jpg',
-    '/images/catalogo/10.jpg',
-    '/images/catalogo/11.jpg',
-    '/images/catalogo/12.jpg',
+    assetUrl('/images/catalogo/2.jpg'),
+    assetUrl('/images/catalogo/3.jpg'),
+    assetUrl('/images/catalogo/4.jpg'),
+    assetUrl('/images/catalogo/5.jpg'),
+    assetUrl('/images/catalogo/6.jpg'),
+    assetUrl('/images/catalogo/7.jpg'),
+    assetUrl('/images/catalogo/8.jpg'),
+    assetUrl('/images/catalogo/9.jpg'),
+    assetUrl('/images/catalogo/10.jpg'),
+    assetUrl('/images/catalogo/11.jpg'),
+    assetUrl('/images/catalogo/12.jpg'),
 ];
 
 const Revista = () => {
@@ -249,7 +250,7 @@ const Revista = () => {
                                 <SwiperSlide key="portada">
                                     <div className="revista-pagina">
                                         <Zoom>
-                                            <img src="/images/catalogo/tapa1.jpg" alt="portada" className="revista-img" loading="lazy" />
+                                            <img src={assetUrl("/images/catalogo/tapa1.jpg")} alt="portada" className="revista-img" loading="lazy" />
                                         </Zoom>
                                     </div>
                                 </SwiperSlide>
@@ -314,7 +315,7 @@ const Revista = () => {
                                 showPageCorners={false}
                             >
                                 <div className="revista-pagina">
-                                    <img src="/images/catalogo/tapa1.jpg" alt="portada" className="revista-img" loading="lazy" />
+                                    <img src={assetUrl("/images/catalogo/tapa1.jpg")} alt="portada" className="revista-img" loading="lazy" />
                                 </div>
                                 {catalogoFotos.map((src, i) => (
                                     <div className="revista-pagina" key={i + 1}>

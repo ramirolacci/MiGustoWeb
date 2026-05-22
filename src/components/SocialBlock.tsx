@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React from 'react';
 import './Footer.css';
 
@@ -52,7 +53,7 @@ const SocialBlock: React.FC = () => (
         rel="noopener noreferrer"
       >
         <img
-          src="/assets/google-play-logo.svg"
+          src={assetUrl("/assets/google-play-logo.svg")}
           alt="Google Play"
           width="120"
         />
@@ -66,7 +67,7 @@ const SocialBlock: React.FC = () => (
         rel="noopener noreferrer"
       >
         <img
-          src="/assets/app-store-apple-logo.svg"
+          src={assetUrl("/assets/app-store-apple-logo.svg")}
           alt="App Store"
           width="120"
         />

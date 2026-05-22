@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 export interface ExplodedIngredient {
     id: number;
     name: string;
@@ -22,8 +23,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Cheese burger': {
         id: 'cheeseburger-001',
         name: 'Cheeseburger',
-        image: '/images/empanadas/empanada-cheese-burger.png',
-        modelUrl: '/models/cheese-burger-3D.glb',
+        image: assetUrl('/images/empanadas/empanada-cheese-burger.png'),
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'),
         cameraOrbit: '180deg 100deg 2.9m',
         ingredients: [
             { id: 1, name: 'Salsa bbq', x: 15, y: 25, align: 'left', mobileX: 50, mobileY: 18, mobileAlign: 'center' },
@@ -36,8 +37,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Mexican pibil pork': {
         id: 'mexican-pibil-pork-001',
         name: 'Mexican pibil pork',
-        image: '/images/empanadas/empanada-mexican-pibil-pork.png',
-        modelUrl: '/models/mexican-pibil-pork-3D.glb',
+        image: assetUrl('/images/empanadas/empanada-mexican-pibil-pork.png'),
+        modelUrl: assetUrl('/models/mexican-pibil-pork-3D.glb'),
         cameraOrbit: '55deg 35deg 3m',
         ingredients: [
             { id: 1, name: 'Bondiola de cerdo\nde larga coccion', x: 15, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
@@ -50,8 +51,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Big burger': {
         id: 'big-burger-001',
         name: 'Big burger',
-        image: '/images/empanadas/empanada-big-burger.png',
-        modelUrl: '/models/big-burger-3D.glb',
+        image: assetUrl('/images/empanadas/empanada-big-burger.png'),
+        modelUrl: assetUrl('/models/big-burger-3D.glb'),
         cameraOrbit: '50deg 65deg 3m',
         ingredients: [
             { id: 1, name: 'Blend de\nojo de bife', x: 28, y: 20, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
@@ -65,8 +66,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Matambre a la pizza': {
         id: 'matambre-pizza-001',
         name: 'Matambre a la pizza',
-        image: '/images/empanadas/empanada-matambre -alapizza.png',
-        modelUrl: '/models/Matambre-a-la-Pizza-3D.glb',
+        image: assetUrl('/images/empanadas/empanada-matambre -alapizza.png'),
+        modelUrl: assetUrl('/models/Matambre-a-la-Pizza-3D.glb'),
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Matambre tierno\nahumado a leña', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
@@ -79,8 +80,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'Vacio y provoleta': {
         id: 'vacio-provoleta-001',
         name: 'Vacio y provoleta',
-        image: '/images/empanadas/empanada-vacio-yprovoleta.png',
-        modelUrl: '/models/vacio-provoleta-3D.glb',
+        image: assetUrl('/images/empanadas/empanada-vacio-yprovoleta.png'),
+        modelUrl: assetUrl('/models/vacio-provoleta-3D.glb'),
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Delicioso vacio\nasado desmechado', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 20, mobileAlign: 'left' },
@@ -93,8 +94,8 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
     'American chicken': {
         id: 'american-chicken-001',
         name: 'American chicken',
-        image: '/images/empanadas/empanada-american-chicken.png',
-        modelUrl: '/models/american-chicken-3D.glb',
+        image: assetUrl('/images/empanadas/empanada-american-chicken.png'),
+        modelUrl: assetUrl('/models/american-chicken-3D.glb'),
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Chicken sabroso\ny dulce', x: 15, y: 30, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
@@ -106,7 +107,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'jamon-queso-001',
         name: 'Jamón y queso',
         image: 'https://i.postimg.cc/fyWNFt0W/Jamon-y-queso.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido\nfeteado', x: 15, y: 40, align: 'left', mobileX: 50, mobileY: 30, mobileAlign: 'left' },
@@ -117,7 +118,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'jamon-huevo-queso-001',
         name: 'Jamón, huevo y queso',
         image: 'https://i.postimg.cc/ZYQn5y42/jamon-queso-y-huevo-emp.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido en cubos', x: 15, y: 30, align: 'left', mobileX: 40, mobileY: 30, mobileAlign: 'left' },
@@ -129,7 +130,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'carne-picante-001',
         name: 'Carne picante',
         image: 'https://i.postimg.cc/fLCSdvyz/Carne-picante.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
@@ -142,7 +143,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'carne-aceituna-001',
         name: 'Carne con aceituna',
         image: 'https://i.postimg.cc/MHHWPC0L/con-aceitunas.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 25, align: 'left', mobileX: 20, mobileY: 25, mobileAlign: 'left' },
@@ -155,7 +156,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'carne-cuchillo-001',
         name: 'Carne a cuchillo',
         image: 'https://i.postimg.cc/d12LYjrR/Carne-a-cuchillo.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Carne cuadrada premium\ncon corte a cuchillo\nartesanal', x: 15, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -167,7 +168,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'carne-suave-001',
         name: 'Carne suave',
         image: 'https://i.postimg.cc/NMjmpnW9/Carne-Suave.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Corte de paleta\npremium', x: 15, y: 30, align: 'left', mobileX: 27, mobileY: 30, mobileAlign: 'left' },
@@ -180,7 +181,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'queso-cebolla-001',
         name: 'Queso y cebolla',
         image: 'https://i.postimg.cc/1XtxRybm/Cebolla.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Perfecta union\nmuzzarella seleccionada', x: 15, y: 35, align: 'left', mobileX: 27, mobileY: 27, mobileAlign: 'left' },
@@ -192,7 +193,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'roquefort-jamon-001',
         name: 'Roquefort con jamón',
         image: 'https://i.postimg.cc/L5m9pQGp/Roquefort-con-jamon.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido\nfeteado', x: 15, y: 40, align: 'left', mobileX: 27, mobileY: 27, mobileAlign: 'left' },
@@ -203,7 +204,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pollo-001',
         name: 'Pollo',
         image: 'https://i.postimg.cc/NGS2HDk4/pollo.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Suprema de pollo\ncortada en trozos\na base de cebolla', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
@@ -216,7 +217,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'cuatro-quesos-001',
         name: 'Cuatro quesos',
         image: 'https://i.postimg.cc/rw1NF3W3/cuatro-quesos.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Blend de abundante\nqueso muzzarella', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
@@ -229,7 +230,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pollo-champignon-001',
         name: 'Pollo al champignon',
         image: 'https://i.postimg.cc/rmGWykxP/champi.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Suprema de pollo\ncortada en trozos', x: 15, y: 35, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
@@ -241,7 +242,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'choclo-001',
         name: 'Choclo',
         image: 'https://i.postimg.cc/t40x6JkM/choclo.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Deliciosa mezcla\nde choclo entero', x: 15, y: 30, align: 'left', mobileX: 28, mobileY: 25, mobileAlign: 'left' },
@@ -254,7 +255,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'verdura-001',
         name: 'Verdura',
         image: 'https://i.postimg.cc/zGcQZVmp/verdura.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Salteado de espinaca,\ncebolla, morrón,\npuerro y verdeo', x: 15, y: 25, align: 'left', mobileX: 28, mobileY: 15, mobileAlign: 'left' },
@@ -267,7 +268,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'calabaza-001',
         name: 'Calabaza',
         image: 'https://i.postimg.cc/brr5kQtn/Calabaza.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Calabaza horneada\nespeciada', x: 15, y: 40, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
@@ -279,7 +280,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'panceta-ciruela-001',
         name: 'Panceta y ciruela',
         image: 'https://i.postimg.cc/D08fz9NT/panceta-y-ciruela.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Panceta ahumada\nfeteada', x: 15, y: 35, align: 'left', mobileX: 28, mobileY: 30, mobileAlign: 'left' },
@@ -292,7 +293,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-muzza-001',
         name: 'Muzzarella',
         image: 'https://i.postimg.cc/50Lkjt7H/Muzza-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Salsa de tomate\ncasera artesanal', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -304,7 +305,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-doble-muzza-001',
         name: 'Doble muzzarella',
         image: 'https://i.postimg.cc/50Lkjt7H/Muzza-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Doble carga de\nmuzzarella', x: 75, y: 40, align: 'right', mobileX: 70, mobileY: 70, mobileAlign: 'right' },
@@ -315,7 +316,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-muzza-jamon-001',
         name: 'Muzzarella con jamón',
         image: 'https://i.postimg.cc/7hPMDPpr/Muzza-con-Jamon-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido\nde primera', x: 25, y: 40, align: 'left', mobileX: 30, mobileY: 35, mobileAlign: 'left' },
@@ -327,7 +328,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-jamon-morrones-001',
         name: 'Jamón con morrones',
         image: 'https://i.postimg.cc/Y9rmLn81/Jamon-con-morrones-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Morrones asados\ndulces', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -339,7 +340,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-napo-001',
         name: 'Napolitana',
         image: 'https://i.postimg.cc/gcv2bqDp/Napo-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Rodajas de\ntomate fresco', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -351,7 +352,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-napo-jamon-001',
         name: 'Napolitana con jamón',
         image: 'https://i.postimg.cc/pL9NRPHj/Napo-con-Jamon-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido', x: 20, y: 50, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -363,7 +364,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-provo-001',
         name: 'Provolone',
         image: 'https://i.postimg.cc/zfSx1QVW/Provolone-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Queso provolone\ngratinado', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -375,7 +376,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-provo-jamon-001',
         name: 'Provolone con jamón',
         image: 'https://i.postimg.cc/RZvRLRPZ/Provolone-con-Jamon-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Provolone\ngratinado', x: 25, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -387,7 +388,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-panceta-001',
         name: 'Panceta',
         image: 'https://i.postimg.cc/Kc9v8stP/Panceta-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Panceta ahumada\ncrujiente', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -398,7 +399,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-roque-001',
         name: 'Roquefort',
         image: 'https://i.postimg.cc/g0CLNcYH/Roquefort-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Queso roquefort\nintenso', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -409,7 +410,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-roque-jamon-001',
         name: 'Roquefort con jamón',
         image: 'https://i.postimg.cc/HWqHnJ62/Roquefort-con-Jamon-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Roquefort', x: 25, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -421,7 +422,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-4quesos-001',
         name: 'Cuatro quesos',
         image: 'https://i.postimg.cc/9MqmgyxD/Cuatro-Quesos-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Muzzarella', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -434,7 +435,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-provenzal-001',
         name: 'Provenzal',
         image: 'https://i.postimg.cc/V6FG8VZp/Provenzal-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Ajo deshidratado\ny perejil', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -445,7 +446,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-fugazzeta-001',
         name: 'Fugazzeta',
         image: 'https://i.postimg.cc/HLdbgkGW/Fugazzeta-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla blanca\nen juliana', x: 25, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -457,7 +458,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-fugazzeta-panceta-001',
         name: 'Fugazzeta con panceta',
         image: 'https://i.postimg.cc/135Ft5Rv/Fugazzeta-con-Panceta-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -469,7 +470,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-fugazzeta-jamon-001',
         name: 'Fugazzeta con jamón',
         image: 'https://i.postimg.cc/WbqKyTcf/Fugazzeta-con-Jamon-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -481,7 +482,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-caprese-001',
         name: 'Caprese',
         image: 'https://i.postimg.cc/MGwpT9Yq/Caprese-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Tomate', x: 20, y: 30, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -493,7 +494,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-jamon-tomate-huevo-001',
         name: 'Jamón, tomate y huevo',
         image: 'https://i.postimg.cc/TYHkfSf5/Jamon-Tomate-y-Huevo-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido', x: 20, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
@@ -505,7 +506,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-muzza-huevo-001',
         name: 'Muzzarella con huevo',
         image: 'https://i.postimg.cc/dVygXvrV/Muzza-con-Huevo-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Huevo picado', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -517,7 +518,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-jamon-huevo-001',
         name: 'Jamón y huevo',
         image: 'https://i.postimg.cc/hGhsw1Hb/Jamon-y-huevo-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -528,7 +529,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-jthr-001',
         name: 'Jamón, tomate, huevo y roquefort',
         image: 'https://i.postimg.cc/3NMHWRgV/Jamon-tomate-huevo-y-roquefort-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón y huevo', x: 20, y: 25, align: 'left', mobileX: 30, mobileY: 20, mobileAlign: 'left' },
@@ -540,7 +541,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-pjm-001',
         name: 'Provolone, jamón y morrón',
         image: 'https://i.postimg.cc/c4BryyW0/Provolone-Jamon-y-Morron-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Provolone', x: 20, y: 25, align: 'left', mobileX: 35, mobileY: 20, mobileAlign: 'left' },
@@ -552,7 +553,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'pizza-panceta-verdeo-001',
         name: 'Panceta y verdeo',
         image: 'https://i.postimg.cc/R05SNg4X/Panceta-y-verdeo-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Panceta', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -564,7 +565,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'indi-crudo-rucula-001',
         name: 'Jamón crudo, rúcula y stracciatella INDI',
         image: 'https://i.postimg.cc/T3Szw1qx/INDI-Rucula-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -576,7 +577,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'indi-mortadela-pistacho-001',
         name: 'Mortadela, pistacho y stracciatella INDI',
         image: 'https://i.postimg.cc/j5kP0VYM/Indi-Mortadela-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
@@ -588,7 +589,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'indi-pepperoni-001',
         name: 'Pepperoni INDI',
         image: 'https://i.postimg.cc/BZPG1dns/INDI-Pepperonni-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -599,7 +600,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'indi-jamon-morron-001',
         name: 'Jamón y morrón INDI',
         image: 'https://i.postimg.cc/y6DS3YRd/INDI-Jamon-y-morrones-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón cocido', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -610,7 +611,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'indi-napo-001',
         name: 'Napolitana INDI',
         image: 'https://i.postimg.cc/HkvgMHXY/INDI-Napo-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Rodajas de tomate', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -621,7 +622,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'indi-muzza-001',
         name: 'Muzza INDI',
         image: 'https://i.postimg.cc/sgkTqNRP/INDI-Muzza-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Mozzarella', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
@@ -633,7 +634,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'fitzza-muzza-001',
         name: 'Fitzza muzza',
         image: 'https://i.postimg.cc/KvKVWLM2/769c023c-aad2-4695-8e4a-44620a373397-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Salsa de tomate\nartesanal', x: 20, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -644,7 +645,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'fitzza-napo-001',
         name: 'Fitzza napo',
         image: 'https://i.postimg.cc/3rP5Yn7R/efd484b6-e5ca-4658-ae8c-3ecd2671d758-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Rodajas de tomate', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -655,7 +656,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'fitzza-fugazzetta-001',
         name: 'Fitzza fugazzetta',
         image: 'https://i.postimg.cc/Z5bfSd9n/363935fe-487b-40e2-8978-728ffa5f65f0-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla blanca', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -666,7 +667,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'fitzza-pepperoni-001',
         name: 'Fitzza pepperoni',
         image: 'https://i.postimg.cc/zG4Rjm1N/eb57bd40-3872-458a-b926-903db25dd94a-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -677,7 +678,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'fitzza-mortadela-pistacho-001',
         name: 'Fitzza mortadela, pistacho y stracciatella',
         image: 'https://i.postimg.cc/sgW23vtF/890ba29d-3b08-4651-b10f-dc3f6462b940-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Mortadela', x: 20, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
@@ -689,7 +690,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'fitzza-crudo-rucula-001',
         name: 'Fitzza Jamón crudo, rúcula y stracciatella',
         image: 'https://i.postimg.cc/RZwvj2H4/e4d0be75-1e7a-422e-802d-bded742f4e53-Photoroom.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Jamón crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -702,7 +703,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-crema-ajo-001',
         name: 'Crema de ajo',
         image: 'https://i.postimg.cc/VsBz44M9/Crema-de-Ajo.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Ajo suave', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -713,7 +714,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-ketchup-001',
         name: 'American ketchup',
         image: 'https://i.postimg.cc/JzwVLkb7/American-Ketchup.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Tomates maduros', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -724,7 +725,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-bbq-001',
         name: 'BBQ',
         image: 'https://i.postimg.cc/HL2fXvFj/BBQ.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Toque ahumado', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -735,7 +736,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-cheddar-001',
         name: 'Cheddar',
         image: 'https://i.postimg.cc/XNhtfC1K/Cheddar.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Queso cheddar', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -746,7 +747,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-chimi-001',
         name: 'Chimichurri',
         image: 'https://i.postimg.cc/7YjGrmsC/Chimichurri.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Perejil y ajo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -757,7 +758,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-criolla-001',
         name: 'Criolla',
         image: 'https://i.postimg.cc/qvfR5gqy/Criolla.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Cebolla y morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -768,7 +769,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-crema-acida-001',
         name: 'Crema ácida',
         image: 'https://i.postimg.cc/VsBz44M9/Crema-de-Ajo.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Toque de limón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -779,7 +780,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-guacamole-001',
         name: 'Guacamole',
         image: 'https://i.postimg.cc/LXs611QK/Guacamole.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Palta fresca', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -790,7 +791,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'aderezo-picante-001',
         name: 'Picante',
         image: 'https://i.postimg.cc/CL8MkY71/Picante.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Chiles selectos', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -802,7 +803,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'postre-franui-amargo-001',
         name: 'Franuí chocolate amargo',
         image: 'https://i.postimg.cc/3wDKXLCG/Franu-Chocolate-Amargo.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Frambuesas\nselectas', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -813,7 +814,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'postre-franui-leche-001',
         name: 'Franuí chocolate con leche',
         image: 'https://i.postimg.cc/SQD3sVhq/Franu-Chocolate-Con-Leche.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 33, mobileY: 30, mobileAlign: 'left' },
@@ -824,7 +825,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'postre-franui-pink-001',
         name: 'Franuí pink',
         image: 'https://i.postimg.cc/3JGX6J96/Franu-Pink.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Frambuesas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 30, mobileAlign: 'left' },
@@ -836,7 +837,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-2-001',
         name: 'Pack 2 Empanadas',
         image: 'https://i.postimg.cc/8c4gKDLm/pack-2-salsa.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -847,7 +848,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-3-001',
         name: 'Pack 3 Empanadas',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/c3d7a1d0-89b4-4c47-bf82-f92c5a83f0dc.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -858,7 +859,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-6-001',
         name: 'Pack 6 Empanadas',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/0a6c286d-8ec5-4978-b059-ec4b544882d0.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -869,7 +870,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-8-001',
         name: 'Pack 8 Empanadas',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/b6b61047-4fc8-4363-9493-b162a64d432b.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '8 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -880,7 +881,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-12-001',
         name: 'Pack 12 Empanadas',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/31986e6d-2e89-496d-a5b2-fc562796e0f8.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '12 Empanadas', x: 25, y: 35, align: 'left', mobileX: 36, mobileY: 25, mobileAlign: 'left' },
@@ -891,7 +892,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-18-001',
         name: 'Pack 18 Empanadas',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/a9f1f79b-5489-49a8-9b75-03cf78b71b7f.png',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '18 Empanadas', x: 25, y: 35, align: 'left', mobileX: 36, mobileY: 25, mobileAlign: 'left' },
@@ -902,7 +903,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pareja-001',
         name: 'Promo Pareja',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/50e950c9-3419-4cf5-a4b1-a93f36f46fa7.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'Media de cada una', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -913,7 +914,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-clasica-001',
         name: 'Promo Clasica',
         image: 'https://pedidosya.dhmedia.io/image/pedidosya/products/6e1635de-e2fe-4c55-a1e6-4c35338d2622.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '6 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -924,7 +925,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-ideal-001',
         name: 'Promo Ideal',
         image: 'https://i.postimg.cc/tCB0NkX6/7d4309d1-cba5-4b39-bb4e-75711a4d1526.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -935,7 +936,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-sugerida-001',
         name: 'Promo Sugerida',
         image: 'https://i.postimg.cc/HxJmkfGq/promo-sugerida.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '3 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 20, mobileAlign: 'left' },
@@ -946,7 +947,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-pack-2-vaso-001',
         name: 'Pack 2 Empanadas + Salsa + Bebida + Vaso',
         image: 'https://i.postimg.cc/D0r0zz80/MINIATURA.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: '2 Empanadas', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -957,7 +958,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-indi-muzza-bebida-001',
         name: 'Pizza INDI Muzzarella + Bebida',
         image: 'https://i.postimg.cc/mrFfxJvP/pizza-INDI-bebida.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'INDI Muzzarella', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -968,7 +969,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-indi-napo-bebida-001',
         name: 'Pizza INDI Napolitana + Bebida',
         image: 'https://i.postimg.cc/RZMNZVPF/pizza-INDI-napo-bebida.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'INDI Napolitana', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },
@@ -979,7 +980,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-indi-jamon-morron-bebida-001',
         name: 'Pizza INDI Jamón y Morrón + Bebida',
         image: 'https://i.postimg.cc/CKFW6dFM/pizza-INDI-MORRON-BEBIDA.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'INDI Jamón y Morrón', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -990,7 +991,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-indi-pepperoni-bebida-001',
         name: 'Pizza INDI Pepperoni + Bebida',
         image: 'https://i.postimg.cc/RZ0YcyGN/pizza-INDI-peppe-bebida.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'INDI Pepperoni', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 30, mobileAlign: 'left' },
@@ -1001,7 +1002,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-indi-crudo-rucula-bebida-001',
         name: 'Pizza INDI Jamón Crudo, Rúcula y Stracciatella + Bebida',
         image: 'https://i.postimg.cc/7ZmfRG3P/pizza-INDI-jamon-crudo-bebida.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'INDI Jamón Crudo', x: 25, y: 35, align: 'left', mobileX: 30, mobileY: 25, mobileAlign: 'left' },
@@ -1012,7 +1013,7 @@ export const explodedProductConfigs: Record<string, ExplodedProductConfig> = {
         id: 'promo-indi-mortadela-bebida-001',
         name: 'Pizza INDI Mortadela, Pistacho y Stracciatella + Bebida',
         image: 'https://i.postimg.cc/bY3Wsq9z/pizza-INDI-mortadela-bebida.jpg',
-        modelUrl: '/models/cheese-burger-3D.glb', // Placeholder
+        modelUrl: assetUrl('/models/cheese-burger-3D.glb'), // Placeholder
         cameraOrbit: '0deg 75deg 3m',
         ingredients: [
             { id: 1, name: 'INDI Mortadela', x: 25, y: 35, align: 'left', mobileX: 35, mobileY: 25, mobileAlign: 'left' },

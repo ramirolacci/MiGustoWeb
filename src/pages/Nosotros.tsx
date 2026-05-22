@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -365,7 +366,7 @@ const Nosotros: React.FC = () => {
                                         objectFit: 'cover'
                                     }}
                                 >
-                                    <source src="/videos/corporate/MiGusto_Pabloyjesica.mp4" type="video/mp4" />
+                                    <source src={assetUrl("/videos/corporate/MiGusto_Pabloyjesica.mp4")} type="video/mp4" />
                                 </video>
                                 {!isPlaying && (
                                     <div className="play-overlay">
@@ -375,7 +376,7 @@ const Nosotros: React.FC = () => {
                                 <div className="tiktok-overlay">
                                     <div className="tiktok-user-info">
                                         <img
-                                            src="/assets/LOGOBOT.png"
+                                            src={assetUrl("/assets/LOGOBOT.png")}
                                             alt="Mi Gusto"
                                             className="tiktok-avatar"
                                         />

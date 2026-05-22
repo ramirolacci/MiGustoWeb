@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, memo, useMemo } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -125,10 +126,10 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
 function PromoCards() {
     const cards = [
         { type: 'lovers', cta: 'Conocer más', href: '/lovers' },
-        { img: '/images/sliders/SLIDER 2000X1125 copia.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/images/sliders/desktop2.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
-        { img: '/images/sliders/desktop3.jpg', cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' },
-        { img: '/images/sliders/Generico.jpg', cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' }
+        { img: assetUrl('/images/sliders/SLIDER 2000X1125 copia.jpg'), cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
+        { img: assetUrl('/images/sliders/desktop2.jpg'), cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' },
+        { img: assetUrl('/images/sliders/desktop3.jpg'), cta: 'Ver novedad', href: 'https://apps.apple.com/ar/app/mi-gusto/id1487319586' },
+        { img: assetUrl('/images/sliders/Generico.jpg'), cta: 'Ver novedad', href: 'https://pedir.migusto.com.ar/' }
     ] as Array<{ img?: string; cta: string; href: string; type?: 'lovers' }>;
 
     // Carrusel con arrastre manual
@@ -515,9 +516,9 @@ function PromoCards() {
 }
 
 const HOME_VIDEOS = [
-  '/videos/promotional/VideoFlash.mp4',
-  '/videos/promotional/VideoFlash (1).mp4',
-  '/videos/promotional/VideoFlash (2).mp4'
+  assetUrl('/videos/promotional/VideoFlash.mp4'),
+  assetUrl('/videos/promotional/VideoFlash (1).mp4'),
+  assetUrl('/videos/promotional/VideoFlash (2).mp4')
 ];
 
 function Home() {
@@ -792,7 +793,7 @@ function Home() {
                         objectPosition: 'center'
                     }}
                     src={selectedVideo}
-                    poster="/images/sliders/mainpain.png"
+                    poster={assetUrl("/images/sliders/mainpain.png")}
                 />
                 <div
                     style={{
@@ -879,14 +880,14 @@ function Home() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="/assets/google-play-logo.svg" alt="Google Play" style={{ height: 60 }} loading="lazy" />
+                            <img src={assetUrl("/assets/google-play-logo.svg")} alt="Google Play" style={{ height: 60 }} loading="lazy" />
                         </a>
                         <a
                             href="https://apps.apple.com/ar/app/mi-gusto/id1487319586"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="/assets/app-store-apple-logo.svg" alt="App Store" style={{ height: 60 }} loading="lazy" />
+                            <img src={assetUrl("/assets/app-store-apple-logo.svg")} alt="App Store" style={{ height: 60 }} loading="lazy" />
                         </a>
                     </div>
                 </div>

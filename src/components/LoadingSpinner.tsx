@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useEffect, useState, useRef } from 'react';
 import './LoadingSpinner.css';
 
@@ -161,7 +162,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
             
             <div className="ball-wrapper">
               <img 
-                src="/images/mundial/ball.png" 
+                src={assetUrl("/images/mundial/ball.png")} 
                 alt="Mundial" 
                 className="soccer-ball" 
               />
@@ -171,7 +172,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
 
             <div className="mundial-content">
               <img 
-                src="/assets/Logo Mi Gusto 2025.png" 
+                src={assetUrl("/assets/Logo Mi Gusto 2025.png")} 
                 alt="Mi Gusto" 
                 className="mundial-logo" 
               />

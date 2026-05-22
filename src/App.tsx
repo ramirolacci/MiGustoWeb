@@ -128,8 +128,9 @@ const AppContent: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
   return (
-    <Router>
+    <Router basename={basename}>
       <LoyaltyProvider>
         <AppContent />
       </LoyaltyProvider>

@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useState, useEffect } from "react";
 import SocialBlock from './SocialBlock';
 import { Link } from 'react-router-dom';
@@ -50,7 +51,7 @@ const Footer: React.FC = () => {
             <div className="footer-logo-divider-vertical" aria-hidden="true"></div>
             <a href="#top" className="footer-logo-link" onClick={handleLinkClick} aria-label="Ir al inicio de la página">
               <img
-                src="/assets/Logo Mi Gusto 2025.png"
+                src={assetUrl("/assets/Logo Mi Gusto 2025.png")}
                 alt="Mi Gusto Empanadas de Verdad"
                 className="footer-logo-img"
               />

@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
@@ -762,7 +763,7 @@ const NavBar: React.FC = () => {
                 tabIndex={0}
                 aria-label="Pedir online (se abre en nueva pestaña)"
               >
-                <img src="/images/promotions/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+                <img src={assetUrl("/images/promotions/BOTON DE HACE TU PEDIDO.png")} alt="Haz tu pedido" className="btn-hacer-pedido-img" />
               </a>
             </div>
           </div>
@@ -789,7 +790,7 @@ const NavBar: React.FC = () => {
               }}
             >
               <img
-                src="/assets/Logo Mi Gusto 2025.png"
+                src={assetUrl("/assets/Logo Mi Gusto 2025.png")}
                 alt="Mi Gusto"
                 height="40"
                 className={`me-2 navbar-logo-img${isHovered ? ' navbar-logo-img-hover' : ''}`}
@@ -1144,7 +1145,7 @@ const NavBar: React.FC = () => {
                       tabIndex={0}
                       aria-label="Pedir online (se abre en nueva pestaña)"
                     >
-                      <img src="/images/promotions/BOTON DE HACE TU PEDIDO.png" alt="Haz tu pedido" className="btn-hacer-pedido-img" />
+                      <img src={assetUrl("/images/promotions/BOTON DE HACE TU PEDIDO.png")} alt="Haz tu pedido" className="btn-hacer-pedido-img" />
                     </a>
                   </li>
                   
@@ -1174,7 +1175,7 @@ const NavBar: React.FC = () => {
             <div className="side-menu-drawer" onClick={(e) => e.stopPropagation()}>
               <div className="side-menu-header">
                 <div className="side-menu-brand">
-                  <img src="/assets/Logo Mi Gusto 2025.png" alt="Mi Gusto" className="side-menu-logo" />
+                  <img src={assetUrl("/assets/Logo Mi Gusto 2025.png")} alt="Mi Gusto" className="side-menu-logo" />
                 </div>
                 <button className="side-menu-close-btn" onClick={() => setIsMenuOpen(false)}>
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none">

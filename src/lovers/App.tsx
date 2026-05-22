@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Heart, Mail, Phone, MapPin, Check, Star, Users, Gift, ChevronDown } from 'lucide-react';
 import emailjs from '@emailjs/browser';
@@ -642,7 +643,7 @@ function App() {
   }
 
   return (
-    <div className="app lovers-app" style={{ overflow: 'hidden', height: '100vh', background: "url('/assets/background-text.jpg') center center / cover no-repeat" }}>
+    <div className="app lovers-app" style={{ overflow: 'hidden', height: '100vh', background: `url(${assetUrl('/assets/background-text.jpg')}) center center / cover no-repeat` }}>
       <NavBar />
       
       <style>{modalStyles}</style>

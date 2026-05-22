@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl';
 // Servicio para gestionar sliders del home y promociones móviles
 
 const STORAGE_KEYS = {
@@ -24,20 +25,20 @@ export interface MobilePromoSlide {
 
 // Slides del home (desktop y mobile)
 const defaultSlidesDesktop = [
-  '/images/sliders/SLIDER 2000X1125 copia.jpg',
-  '/images/sliders/Generico.jpg',
-  '/images/sliders/desktop2.jpg',
-  '/images/sliders/desktop3.jpg',
+  assetUrl('/images/sliders/SLIDER 2000X1125 copia.jpg'),
+  assetUrl('/images/sliders/Generico.jpg'),
+  assetUrl('/images/sliders/desktop2.jpg'),
+  assetUrl('/images/sliders/desktop3.jpg'),
 ];
 
 const defaultSlidesMobile = defaultSlidesDesktop;
 
 // Promociones destacadas y combos imperdibles
 const defaultPromosDestacadas: MobilePromoSlide[] = [
-  { id: 'd0', image: '/images/sliders/SLIDER 2000X1125 copia.jpg' },
-  { id: 'd2', image: '/images/sliders/desktop2.jpg' },
-  { id: 'd3', image: '/images/sliders/desktop3.jpg' },
-  { id: 'd1', image: '/images/sliders/Generico.jpg' },
+  { id: 'd0', image: assetUrl('/images/sliders/SLIDER 2000X1125 copia.jpg') },
+  { id: 'd2', image: assetUrl('/images/sliders/desktop2.jpg') },
+  { id: 'd3', image: assetUrl('/images/sliders/desktop3.jpg') },
+  { id: 'd1', image: assetUrl('/images/sliders/Generico.jpg') },
 ];
 
 const defaultCombosImperdibles: MobilePromoSlide[] = [
