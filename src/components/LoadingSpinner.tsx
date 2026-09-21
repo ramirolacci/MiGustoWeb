@@ -81,7 +81,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ isLoading }) => {
   }, [isLoading]);
 
   // Activar modo mundial
-  const IS_MUNDIAL_SEASON = true;
+  const IS_MUNDIAL_SEASON = false;
 
   // Generar partículas de confeti de alta fidelidad para el mundial (celeste, blanco, oro)
   // Reducido a 32 para optimización táctil / CPU en mobile (buttery smooth 60fps)

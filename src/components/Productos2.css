@@ -11,6 +11,10 @@
     max-height: 100vh !important;
     overflow: hidden !important;
     background-color: #141414 !important; /* Matte charcoal dark gray */
+    background-image: url('/assets/background-text2.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     color: #ffffff !important;
     font-family: 'Outfit', sans-serif !important;
     display: flex !important;
@@ -34,6 +38,19 @@
     z-index: 1 !important;
 }
 
+/* Bottom smooth fade transition overlay to remove section cut line */
+.productos2-section::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 160px !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 60%, #000000 100%) !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+}
+
 /* Header Area (Top left and top right) */
 .productos2-header {
     display: flex !important;
@@ -41,6 +58,7 @@
     align-items: flex-start !important;
     width: 100% !important;
     z-index: 5 !important;
+    margin-top: 50px !important;
     margin-bottom: 20px !important;
 }
 
@@ -102,6 +120,7 @@
     color: rgba(255, 255, 255, 0.6) !important;
     max-width: 250px !important;
     line-height: 1.4 !important;
+    margin-top: 35px !important;
 }
 
 /* 3D CAROUSEL WORKSPACE */

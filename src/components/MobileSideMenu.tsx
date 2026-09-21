@@ -50,12 +50,6 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({ isOpen, onClose }) => {
         <div className="side-menu-header">
           <div className="side-menu-brand" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <img src={assetUrl("/assets/Logo Mi Gusto 2025.png")} alt="Mi Gusto" className="side-menu-logo" style={{ marginRight: 0 }} />
-            {/* Tres estrellas del mundial debajo del logo */}
-            <div className="navbar-stars" style={{ marginTop: '4px' }}>
-              <i className="fa-solid fa-star navbar-star-icon"></i>
-              <i className="fa-solid fa-star navbar-star-icon main-star"></i>
-              <i className="fa-solid fa-star navbar-star-icon"></i>
-            </div>
           </div>
           <button className="side-menu-close-btn" onClick={onClose} aria-label="Cerrar menú">
               <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none">

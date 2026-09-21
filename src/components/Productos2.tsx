@@ -4,6 +4,7 @@ import './Productos2.css';
 import ProductModal3D from './ProductModal3D';
 import MobileProductDetail from './MobileProductDetail';
 import IngredientExplodedView from './IngredientExplodedView';
+import { assetUrl } from '../utils/assetUrl';
 import { explodedProductConfigs } from '../data/explodedViewConfig';
 import { getProductData } from '../utils/productDataLoader';
 
@@ -38,7 +39,19 @@ function formatearPrecio(precio: string | number) {
     return num.toLocaleString("es-AR");
 }
 
-export default function Productos2() {
+interface Productos2Props {
+    onlyPremium?: boolean;
+    hidePrice?: boolean;
+    autoPlay?: boolean;
+    autoPlayInterval?: number;
+}
+
+export default function Productos2({
+    onlyPremium = false,
+    hidePrice = false,
+    autoPlay = false,
+    autoPlayInterval = 2000
+}: Productos2Props = {}) {
     const [activeCategory, setActiveCategory] = useState<string>("Empanadas");
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [productoSeleccionado, setProductoSeleccionado] = useState<Product | null>(null);
@@ -136,10 +149,23 @@ export default function Productos2() {
     }, [productData]);
 
     const currentProducts = useMemo(() => {
-        return itemsByCategory[activeCategory] || [];
-    }, [itemsByCategory, activeCategory]);
+        const list = itemsByCategory[activeCategory] || [];
+        if (onlyPremium) {
+            return list.filter(item => item.esPremium);
+        }
+        return list;
+    }, [itemsByCategory, activeCategory, onlyPremium]);
 
     const totalItems = currentProducts.length;
+
+    // Auto-play interval for automatic sliding
+    useEffect(() => {
+        if (!autoPlay || totalItems <= 1 || productoSeleccionado) return;
+        const interval = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % totalItems);
+        }, autoPlayInterval);
+        return () => clearInterval(interval);
+    }, [autoPlay, totalItems, autoPlayInterval, productoSeleccionado]);
 
     const explodedConfig = useMemo(() => {
         if (!productoSeleccionado) return null;
@@ -245,6 +271,12 @@ export default function Productos2() {
     return (
         <div 
             className={`productos2-section ${animateClass ? 'start-anim' : ''}`}
+            style={{
+                backgroundImage: `url(${assetUrl('/assets/background-text2.png')})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onMouseDown={handleMouseDown}
@@ -334,7 +366,7 @@ export default function Productos2() {
                                         <p className="productos2-product-desc">
                                             {prod.descripcion}
                                         </p>
-                                        {prod.precio && (
+                                        {!hidePrice && prod.precio && (
                                             <span className="productos2-product-price">
                                                 ${formatearPrecio(prod.precio)}
                                             </span>

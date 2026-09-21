@@ -795,18 +795,9 @@ const NavBar: React.FC = () => {
                 height="40"
                 className={`me-2 navbar-logo-img${isHovered ? ' navbar-logo-img-hover' : ''}`}
                 style={{
-                  transition: 'all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  transform: 'translateZ(30px)',
-                  willChange: 'transform',
-                  marginRight: '0 !important' /* Reset margin to center with the stars */
+                  willChange: 'transform'
                 }}
               />
-              {/* Tres estrellas mundialistas debajo del logo */}
-              <div className="navbar-stars">
-                <i className="fa-solid fa-star navbar-star-icon"></i>
-                <i className="fa-solid fa-star navbar-star-icon main-star"></i>
-                <i className="fa-solid fa-star navbar-star-icon"></i>
-              </div>
             </Link>
           </div>
 

@@ -52,11 +52,11 @@ const AppContent: React.FC = () => {
   const isMobile = useIsMobile();
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
-  // Forzar tiempo mínimo de carga para ver la animación del mundial
+  // Tiempo mínimo de carga inicial
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsInitialLoading(false);
-    }, 2000); // 2 segundos mínimo
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 

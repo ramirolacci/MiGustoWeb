@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 import './Home.css';
 import IphoneWhatsapp from './Iphone';
+import Productos2 from './Productos2';
 import { sliderService } from '../services/sliderService';
 
 const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean }) {
@@ -15,12 +16,12 @@ const HomeSlider = memo(function HomeSlider({ isMobile }: { isMobile: boolean })
     const [transition, setTransition] = useState(true);
     const [slidesDesktop, setSlidesDesktop] = useState<string[]>([]);
     const [slidesMobile, setSlidesMobile] = useState<string[]>([]);
-    
+
     useEffect(() => {
         setSlidesDesktop(sliderService.getDesktopSlides());
         setSlidesMobile(sliderService.getMobileSlides());
     }, []);
-    
+
     const slides = isMobile ? slidesMobile : slidesDesktop;
     const timeoutRef = useRef<number | null>(null);
 
@@ -159,18 +160,18 @@ function PromoCards() {
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!isDraggingRef.current || !trackRef.current) return;
-        
+
         const deltaX = e.clientX - startXRef.current;
         const newPos = startPosRef.current + deltaX;
-        
+
         // Aplicar límites suaves para una buena experiencia de usuario
         const containerEl = trackRef.current.parentElement;
         if (!containerEl) return;
-        
+
         const styles = window.getComputedStyle(trackRef.current);
         const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
         const containerWidth = window.innerWidth; // Usar el ancho completo de la ventana
-        
+
         // Calcular el ancho total de todas las cards
         let totalCardsWidth = 0;
         const cards = Array.from(trackRef.current.children);
@@ -181,10 +182,10 @@ function PromoCards() {
                 totalCardsWidth += gap;
             }
         });
-        
+
         // Permitir arrastrar libremente con límites suaves
         const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth + 200); // +200px para más libertad
-        
+
         posRef.current = Math.max(-maxScrollDistance, Math.min(0, newPos));
         trackRef.current.style.transform = `translate3d(${Math.round(posRef.current)}px, 0, 0)`;
     };
@@ -208,18 +209,18 @@ function PromoCards() {
 
     const handleTouchMove = (e: React.TouchEvent) => {
         if (!isDraggingRef.current || !trackRef.current || isDesktopRef.current) return;
-        
+
         const deltaX = e.touches[0].clientX - startXRef.current;
         const newPos = startPosRef.current + deltaX;
-        
+
         // Aplicar límites suaves para una buena experiencia de usuario
         const containerEl = trackRef.current.parentElement;
         if (!containerEl) return;
-        
+
         const styles = window.getComputedStyle(trackRef.current);
         const gap = parseFloat(styles.columnGap || styles.gap || '32') || 32;
         const containerWidth = window.innerWidth; // Usar el ancho completo de la ventana
-        
+
         // Calcular el ancho total de todas las cards
         let totalCardsWidth = 0;
         const cards = Array.from(trackRef.current.children);
@@ -230,10 +231,10 @@ function PromoCards() {
                 totalCardsWidth += gap;
             }
         });
-        
+
         // Permitir arrastrar libremente con límites suaves
         const maxScrollDistance = Math.max(0, totalCardsWidth - containerWidth + 200); // +200px para más libertad
-        
+
         posRef.current = Math.max(-maxScrollDistance, Math.min(0, newPos));
         trackRef.current.style.transform = `translate3d(${Math.round(posRef.current)}px, 0, 0)`;
     };
@@ -258,14 +259,14 @@ function PromoCards() {
         if (!cardsInitializedRef.current) {
             const cardsArray = Array.from(cards) as HTMLElement[];
             const startX = window.innerWidth + 50;
-            
+
             // Posicionar todas las cards fuera de la pantalla a la derecha desde el inicio
             gsap.set(cardsArray, {
                 x: startX,
                 opacity: 0,
                 force3D: true
             });
-            
+
             cardsInitializedRef.current = true;
         }
 
@@ -276,9 +277,9 @@ function PromoCards() {
                     // Solo animar cuando realmente esté visible en el viewport Y las cards estén inicializadas
                     if (entry.isIntersecting && !cardsAnimatedRef.current && cardsInitializedRef.current) {
                         cardsAnimatedRef.current = true;
-                        
+
                         const cardsArray = Array.from(cards) as HTMLElement[];
-                        
+
                         // Crear timeline simple y eficiente
                         const tl = gsap.timeline({
                             defaults: {
@@ -295,7 +296,7 @@ function PromoCards() {
                                 ease: 'back.out(1.3)'
                             }, index * 0.08); // Delay escalonado
                         });
-                        
+
                         animationRef.current = tl;
                         observer.disconnect();
                     }
@@ -322,87 +323,87 @@ function PromoCards() {
         <section ref={sectionRef} className="home-cards" style={{ padding: '56px 0', width: '100%' }}>
             <div style={{ width: '100%', position: 'relative' }}>
                 <div
-                  className="home-cards-carousel"
-                  ref={trackRef}
-                  style={{ 
-                    display: 'flex', 
-                    gap: 32, 
-                    alignItems: 'stretch', 
-                    willChange: 'transform', 
-                    cursor: 'grab',
-                    transform: 'translateZ(0)', // GPU acceleration
-                    backfaceVisibility: 'hidden'
-                  }}
-                  onMouseDown={handleMouseDown}
-                  onMouseMove={handleMouseMove}
-                  onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseLeave}
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
+                    className="home-cards-carousel"
+                    ref={trackRef}
+                    style={{
+                        display: 'flex',
+                        gap: 32,
+                        alignItems: 'stretch',
+                        willChange: 'transform',
+                        cursor: 'grab',
+                        transform: 'translateZ(0)', // GPU acceleration
+                        backfaceVisibility: 'hidden'
+                    }}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseLeave}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                 >
-                  {/** Oculto temporalmente la card de "Unite a Lovers Club" **/}
-                  {cards
-                    .filter(card => card.type !== 'lovers')
-                    .map((card, idx) => (
-                        <div
-                          key={`set1-${idx}`}
-                          className="home-card sr-card"
-                          style={{
-                            borderRadius: 20,
-                            overflow: 'visible',
-                            background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04))',
-                            padding: 2,
-                            border: '1px solid rgba(255,255,255,0.08)',
-                            boxShadow: '0 16px 40px rgba(0,0,0,0.25)',
-                            minWidth: '400px',
-                            width: '25vw',
-                            flexShrink: 0
-                          }}
-                        >
-                          <div style={{
-                            position: 'relative',
-                            width: '100%',
-                            aspectRatio: '16 / 9',
-                            // Fondo transparente para evitar marcas detrás de la imagen
-                            background: 'transparent',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: 18,
-                            overflow: 'hidden'
-                          }}>
-                            {/** Card Lovers comentada
+                    {/** Oculto temporalmente la card de "Unite a Lovers Club" **/}
+                    {cards
+                        .filter(card => card.type !== 'lovers')
+                        .map((card, idx) => (
+                            <div
+                                key={`set1-${idx}`}
+                                className="home-card sr-card"
+                                style={{
+                                    borderRadius: 20,
+                                    overflow: 'visible',
+                                    background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04))',
+                                    padding: 2,
+                                    border: '1px solid rgba(255,255,255,0.08)',
+                                    boxShadow: '0 16px 40px rgba(0,0,0,0.25)',
+                                    minWidth: '400px',
+                                    width: '25vw',
+                                    flexShrink: 0
+                                }}
+                            >
+                                <div style={{
+                                    position: 'relative',
+                                    width: '100%',
+                                    aspectRatio: '16 / 9',
+                                    // Fondo transparente para evitar marcas detrás de la imagen
+                                    background: 'transparent',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    borderRadius: 18,
+                                    overflow: 'hidden'
+                                }}>
+                                    {/** Card Lovers comentada
                             {card.type === 'lovers' ? (
                               <> ... contenido ... </>
                             ) : (
                             **/}
-                              <>
-                                <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} loading="lazy" />
-                                <a
-                                  href={card.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="btn"
-                                  style={{
-                                    position: 'absolute',
-                                    left: 24,
-                                    bottom: 24,
-                                    backgroundColor: '#ffbf1f',
-                                    borderColor: '#ffbf1f',
-                                    color: '#1b1b1b',
-                                    fontWeight: 700,
-                                    padding: '14px 24px',
-                                    borderRadius: 16,
-                                    textDecoration: 'none'
-                                  }}
-                                >
-                                  {card.cta}
-                                </a>
-                              </>
-                          </div>
-                        </div>
-                  ))}
+                                    <>
+                                        <img src={card.img} alt={card.cta} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} loading="lazy" />
+                                        <a
+                                            href={card.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn"
+                                            style={{
+                                                position: 'absolute',
+                                                left: 24,
+                                                bottom: 24,
+                                                backgroundColor: '#ffbf1f',
+                                                borderColor: '#ffbf1f',
+                                                color: '#1b1b1b',
+                                                fontWeight: 700,
+                                                padding: '14px 24px',
+                                                borderRadius: 16,
+                                                textDecoration: 'none'
+                                            }}
+                                        >
+                                            {card.cta}
+                                        </a>
+                                    </>
+                                </div>
+                            </div>
+                        ))}
                 </div>
             </div>
             <style>{`
@@ -516,9 +517,9 @@ function PromoCards() {
 }
 
 const HOME_VIDEOS = [
-  assetUrl('/videos/promotional/VideoFlash.mp4'),
-  assetUrl('/videos/promotional/VideoFlash (1).mp4'),
-  assetUrl('/videos/promotional/VideoFlash (2).mp4')
+    assetUrl('/videos/promotional/VideoFlash.mp4'),
+    assetUrl('/videos/promotional/VideoFlash (1).mp4'),
+    assetUrl('/videos/promotional/VideoFlash (2).mp4')
 ];
 
 function Home() {
@@ -535,14 +536,14 @@ function Home() {
         // Hero Title Animation
         const letters = heroTitleRef.current?.querySelectorAll('.hero-letter');
         if (letters) {
-            gsap.fromTo(letters, 
+            gsap.fromTo(letters,
                 { opacity: 0, y: 50, rotateX: -90 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    rotateX: 0, 
-                    duration: 0.8, 
-                    stagger: 0.03, 
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    duration: 0.8,
+                    stagger: 0.03,
                     ease: "back.out(1.7)",
                     delay: 0.5
                 }
@@ -571,9 +572,9 @@ function Home() {
         });
 
         appTl.from(".home-app-descarga h2", { x: -50, opacity: 0, duration: 0.8, ease: "power3.out" })
-             .from(".app-descarga-text", { x: -30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
-             .from(".home-app-links a", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6, ease: "back.out(1.7)" }, "-=0.4")
-             .from(".iphone-reveal-container", { scale: 0.8, opacity: 0, duration: 1, ease: "expo.out" }, "-=1");
+            .from(".app-descarga-text", { x: -30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+            .from(".home-app-links a", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6, ease: "back.out(1.7)" }, "-=0.4")
+            .from(".iphone-reveal-container", { scale: 0.8, opacity: 0, duration: 1, ease: "expo.out" }, "-=1");
 
         // 3D Tilt Effect for iPhone on Mouse Move
         const handleMouseMove = (e: MouseEvent) => {
@@ -592,7 +593,7 @@ function Home() {
                 duration: 0.5,
                 ease: "power2.out"
             });
-            
+
             gsap.to(iphoneContainerRef.current.querySelector('.iphone-triangle-bg'), {
                 x: (x - centerX) / 8,
                 y: (y - centerY) / 8,
@@ -769,7 +770,7 @@ function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    overflow: 'hidden',
+                    overflow: 'visible',
                     paddingTop: 64
                 }}
             >
@@ -863,10 +864,37 @@ function Home() {
                         </a>
                     </div>
                 </div>
+
+                {/* Divisor cheddar flotante superpuesto en el límite exacto */}
+                <div
+                    className="hero-cheddar-divider"
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        transform: 'translateY(40%)',
+                        zIndex: 30,
+                        pointerEvents: 'none',
+                        lineHeight: 0
+                    }}
+                >
+                    <img
+                        src={assetUrl("/assets/divisorcheddar.png")}
+                        alt="Divisor Cheddar"
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            display: 'block',
+                            objectFit: 'cover'
+                        }}
+                    />
+                </div>
             </section>
 
-            {/* Cards tipo slider debajo del hero */}
-            <PromoCards />
+            {/* Visualizador moderno de empanadas premium con carrusel automático y sin precio */}
+            <Productos2 onlyPremium={true} hidePrice={true} autoPlay={true} autoPlayInterval={2000} />
+            {/* <PromoCards /> */}
             <section className="home-app-section-row">
                 <div className="home-app-descarga">
                     <h2>Descargá nuestra app</h2>
@@ -893,7 +921,7 @@ function Home() {
                 </div>
                 <div ref={iphoneContainerRef} className="home-app-iphone iphone-reveal-container" style={{ position: 'relative', perspective: '1200px' }}>
                     {/* Triángulo amarillo de fondo para efecto 3D */}
-                    <div 
+                    <div
                         className="iphone-triangle-bg"
                         style={{
                             position: 'absolute',

@@ -215,8 +215,21 @@
   filter: contrast(1.2) brightness(1.2);
 }
 
-.home-app-descarga {
+/* Overlay de fundido superior para transición suave entre secciones */
+.home-app-section-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.75) 60%, transparent 100%);
+  pointer-events: none;
   z-index: 1;
+}
+
+.home-app-descarga {
+  z-index: 2;
   color: #fff;
   text-align: center;
   max-width: 700px;
