@@ -42,6 +42,8 @@ function formatearPrecio(precio: string | number) {
 interface Productos2Props {
     onlyPremium?: boolean;
     hidePrice?: boolean;
+    hideControls?: boolean;
+    hideFooter?: boolean;
     autoPlay?: boolean;
     autoPlayInterval?: number;
 }
@@ -49,6 +51,8 @@ interface Productos2Props {
 export default function Productos2({
     onlyPremium = false,
     hidePrice = false,
+    hideControls = false,
+    hideFooter = false,
     autoPlay = false,
     autoPlayInterval = 2000
 }: Productos2Props = {}) {
@@ -294,7 +298,7 @@ export default function Productos2({
                             <line x1="5" y1="19" x2="19" y2="5"></line>
                             <polyline points="12 5 19 5 19 12"></polyline>
                         </svg>
-                        Ver Menú Tradicional
+                        Ver menú completo
                     </Link>
                 </div>
                 <div className="productos2-top-right">
@@ -356,6 +360,14 @@ export default function Productos2({
                                             alt={prod.titulo} 
                                             className="productos2-card-img" 
                                         />
+                                        {isActive && (
+                                            <div className="productos2-click-hint">
+                                                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M15 15l-2 5-2-4-4-2 5-2 3-3z"/>
+                                                </svg>
+                                                <span>Clickeame</span>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Product description and pricing box */}
@@ -381,7 +393,7 @@ export default function Productos2({
             </div>
 
             {/* Center navigation controls */}
-            {totalItems > 0 && (
+            {!hideControls && totalItems > 0 && (
                 <div className="productos2-controls-row">
                     <div className="productos2-arrow-capsule">
                         <button className="productos2-nav-btn" onClick={handlePrev} type="button">
@@ -412,37 +424,39 @@ export default function Productos2({
             )}
 
             {/* Premium list footer with slider categories */}
-            <div className="productos2-footer">
-                <span className="productos2-slogan">
-                    EXPERTOS EN DARTE LO TUYO.
-                </span>
-                
-                <ul className="productos2-categories-bar">
-                    {categorias.map((cat) => (
-                        <li
-                            key={cat}
-                            className={`productos2-cat-item ${activeCategory === cat ? "active" : ""}`}
-                            onClick={() => setActiveCategory(cat)}
-                        >
-                            {cat}
-                        </li>
-                    ))}
-                </ul>
+            {!hideFooter && (
+                <div className="productos2-footer">
+                    <span className="productos2-slogan">
+                        EXPERTOS EN DARTE LO TUYO.
+                    </span>
+                    
+                    <ul className="productos2-categories-bar">
+                        {categorias.map((cat) => (
+                            <li
+                                key={cat}
+                                className={`productos2-cat-item ${activeCategory === cat ? "active" : ""}`}
+                                onClick={() => setActiveCategory(cat)}
+                            >
+                                {cat}
+                            </li>
+                        ))}
+                    </ul>
 
-                <Link to="/productos" className="productos2-mobile-collection-link">
-                    Ver menú tradicional
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </Link>
+                    <Link to="/productos" className="productos2-mobile-collection-link">
+                        Ver menú completo
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </Link>
 
-                <div className="productos2-footer-links">
-                    <a href="#" className="productos2-footer-link">Legal</a>
-                    <a href="#" className="productos2-footer-link">Instagram</a>
-                    <a href="#" className="productos2-footer-link">TikTok</a>
+                    <div className="productos2-footer-links">
+                        <a href="#" className="productos2-footer-link">Legal</a>
+                        <a href="#" className="productos2-footer-link">Instagram</a>
+                        <a href="#" className="productos2-footer-link">TikTok</a>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Product detail Modal matching Productos1 */}
             {explodedConfig ? (
