@@ -44,6 +44,7 @@ interface Productos2Props {
     hidePrice?: boolean;
     hideControls?: boolean;
     hideFooter?: boolean;
+    hideDescription?: boolean;
     autoPlay?: boolean;
     autoPlayInterval?: number;
 }
@@ -53,6 +54,7 @@ export default function Productos2({
     hidePrice = false,
     hideControls = false,
     hideFooter = false,
+    hideDescription = false,
     autoPlay = false,
     autoPlayInterval = 2000
 }: Productos2Props = {}) {
@@ -375,9 +377,11 @@ export default function Productos2({
                                         <h3 className="productos2-product-title">
                                             {prod.titulo}
                                         </h3>
-                                        <p className="productos2-product-desc">
-                                            {prod.descripcion}
-                                        </p>
+                                        {!hideDescription && prod.descripcion && (
+                                            <p className="productos2-product-desc">
+                                                {prod.descripcion}
+                                            </p>
+                                        )}
                                         {!hidePrice && prod.precio && (
                                             <span className="productos2-product-price">
                                                 ${formatearPrecio(prod.precio)}

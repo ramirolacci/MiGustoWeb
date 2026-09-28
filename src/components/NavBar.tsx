@@ -509,8 +509,7 @@ const NavBar: React.FC = () => {
   // 2. Agregar propiedad image a los links del menú colapsable
   const allSideMenuLinks = [
     { path: '/', label: 'Inicio', icon: 'fa-house' },
-    { path: '/productos', label: 'Productos 1', icon: 'fa-utensils' },
-    { path: '/productos2', label: 'Productos 2', icon: 'fa-cube' },
+    { path: '/productos', label: 'Productos', icon: 'fa-utensils' },
     { path: '/sucursales', label: 'Sucursales', icon: 'fa-location-dot' },
     { path: '/nosotros', label: 'Nuestra Historia', icon: 'fa-star' },
     { path: '/proveedores', label: 'Proveedores', icon: 'fa-truck' },
@@ -1027,77 +1026,6 @@ const NavBar: React.FC = () => {
                     </form>
                   </li>
                   {navLinks.map((link, idx) => {
-                    if (link.label === 'Productos') {
-                      return (
-                        <li 
-                          key={link.path} 
-                          className="nav-item position-relative productos-dropdown-container"
-                          onMouseEnter={() => setProductosDropdownOpen(true)}
-                          onMouseLeave={() => setProductosDropdownOpen(false)}
-                        >
-                          <button
-                            className={`nav-link text-white epic-reveal border-0 bg-transparent${navRevealPlayed ? ' animation-played' : ''}${location.pathname.startsWith('/productos') ? ' nav-link-active' : ''}`}
-                            onClick={() => setProductosDropdownOpen(!productosDropdownOpen)}
-                            aria-expanded={productosDropdownOpen}
-                            style={{ 
-                              '--nav-index': idx, 
-                              display: 'flex', 
-                              alignItems: 'center', 
-                              gap: '6px',
-                              outline: 'none',
-                              cursor: 'pointer',
-                              padding: '10px 15px'
-                            } as React.CSSProperties}
-                          >
-                            Productos
-                            <svg 
-                              width="12" 
-                              height="12" 
-                              viewBox="0 0 24 24" 
-                              fill="none" 
-                              stroke="currentColor" 
-                              strokeWidth="2.5" 
-                              style={{ 
-                                transform: productosDropdownOpen ? 'rotate(180deg)' : 'rotate(0)', 
-                                transition: 'transform 0.3s ease' 
-                              }}
-                            >
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          
-                          {productosDropdownOpen && (
-                            <div className="productos-dropdown-menu">
-                              <Link 
-                                to="/productos" 
-                                className={`productos-dropdown-item ${location.pathname === '/productos' ? 'active' : ''}`}
-                                onClick={() => {
-                                  setProductosDropdownOpen(false);
-                                  setIsMenuOpen(false);
-                                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                                }}
-                              >
-                                <span className="item-title">Productos 1</span>
-                                <span className="item-subtitle">Vista Tradicional</span>
-                              </Link>
-                              <Link 
-                                to="/productos2" 
-                                className={`productos-dropdown-item ${location.pathname === '/productos2' ? 'active' : ''}`}
-                                onClick={() => {
-                                  setProductosDropdownOpen(false);
-                                  setIsMenuOpen(false);
-                                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                                }}
-                              >
-                                <span className="item-title">Productos 2</span>
-                                <span className="item-subtitle">Vista Moderna</span>
-                              </Link>
-                            </div>
-                          )}
-                        </li>
-                      );
-                    }
-                    
                     return (
                       <li key={link.path} className="nav-item">
                         <Link

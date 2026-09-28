@@ -892,8 +892,8 @@ function Home() {
                 </div>
             </section>
 
-            {/* Visualizador moderno de empanadas premium con carrusel automático, sin precio, sin controles y sin barra inferior */}
-            <Productos2 onlyPremium={true} hidePrice={true} hideControls={true} hideFooter={true} autoPlay={true} autoPlayInterval={2000} />
+            {/* Visualizador moderno de empanadas premium con carrusel automático, sin precio, sin descripción, sin controles y sin barra inferior */}
+            <Productos2 onlyPremium={true} hidePrice={true} hideDescription={true} hideControls={true} hideFooter={true} autoPlay={true} autoPlayInterval={2000} />
             {/* <PromoCards /> */}
             <section className="home-app-section-row">
                 <div className="home-app-descarga">
